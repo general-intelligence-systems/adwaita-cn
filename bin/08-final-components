@@ -159,7 +159,11 @@ module FinalComponents
       next if entry.key?("classes")
 
       own = self.rendered(name, nodes, classes)
-      entry["node"] = own if own
+
+      unless own.nil?
+        entry["node"] = own
+      end
+
       entry["nodes"] = [own || name.downcase].select{|node| widgets.key?(node)}
       entry["classes"] = self.classes_for(entry["nodes"], widgets, contexts)
     end
@@ -386,17 +390,15 @@ module FinalComponents
   # AdwPreferencesRow, whose node is `row`, so `row`'s rules are ActionRow's rules -- and
   # looking only at the class itself left ActionRow with no styling at all.
   def self.rendered(name, nodes, classes)
+    found = nil
     current = name
 
-    while current
+    while current && found.nil?
       found = nodes.find{|_node, entry| entry["kind"] == "root" && entry["widget"] == current}
-
-      return found.first if found
-
       current = classes.dig(current, "parent")
     end
 
-    nil
+    found&.first
   end
 
   # Every enumeration a buildable component's props draw from, so that what is generated as
@@ -440,13 +442,11 @@ module FinalComponents
     current = name
 
     while current && classes.key?(current) && !seen.include?(current)
-      return true if current == "Widget"
-
       seen << current
       current = classes.fetch(current)["parent"]
     end
 
-    false
+    seen.include?("Widget")
   end
 
   def self.entry(_name, kind, schema, classes, shared, enums)

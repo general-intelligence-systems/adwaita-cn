@@ -538,7 +538,6 @@ module AdwaitaTailwind
       end
     end.uniq
   end
-
 end
 
 AdwaitaTailwind.run(ARGV)

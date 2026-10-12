@@ -262,7 +262,6 @@ module AdwaitaComponents
       .reject{|selector| selector == node}
       .map{|selector| selector.delete_prefix(node).delete_prefix(".")}
   end
-
 end
 
 AdwaitaComponents.run(ARGV)
