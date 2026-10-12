@@ -91,6 +91,29 @@ parent. Those three already inherit everything the Gtk class has, so the parent 
 one beyond it and `parentThrough` records what was stepped over. `--qualified` turns
 consolidation off.
 
+`bin/gtk-enums` turns the enumerations into TypeScript:
+
+```bash
+bin/gtk-enums > registry/adwaita/lib/enums.ts     # 137 unions
+```
+
+A string-literal union and its value array from one source, because both are wanted and keeping
+them in step by hand is how they drift — the type annotates a prop at no runtime cost, the array
+populates a select and is what a lint checks against:
+
+```ts
+export const toolbarStyleValues = ["flat", "raised", "raised-border"] as const
+export type ToolbarStyle = (typeof toolbarStyleValues)[number]
+```
+
+**The values are GTK's nicks.** A member is written `raised_border` in the introspection data
+and the string the property system accepts is `raised-border`. Generating from the names would
+produce a type that insists on a value GTK rejects.
+
+Bitfields are left out: a flag set is several members at once, so its TypeScript is an array of
+the union rather than the union, and a prop typed as one is almost always wrong. `--flags`
+emits them, each marked.
+
 Types come out as something a JavaScript lint can check: `utf8` is a string, `gboolean` a
 boolean, an enumeration becomes its list of values (`Adw.ToolbarStyle` → `flat`, `raised`,
 `raised_border`), and a widget or model becomes `node`. Names are given both ways, GTK's

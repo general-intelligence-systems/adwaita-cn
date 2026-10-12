@@ -122,8 +122,21 @@ module GtkSchemas
       document = REXML::Document.new(File.read(File.join(root, relative)))
 
       REXML::XPath.each(document, "//namespace/enumeration | //namespace/bitfield") do |node|
-        members = REXML::XPath.match(node, "member").map{|member| member.attribute("name").to_s}
-        enums["#{namespace}.#{node.attribute('name')}"] = members
+        # THE NICK, NOT THE NAME. A member is written `raised_border` in the GIR and the string
+        # the property system actually accepts is `raised-border`; reporting the name would have
+        # anything built on this insist on a value GTK rejects.
+        members = REXML::XPath.match(node, "member").map do |member|
+          {
+            "value" => member.attribute("nick")&.to_s || member.attribute("name").to_s,
+            "name" => member.attribute("name").to_s,
+            "number" => member.attribute("value")&.to_s,
+          }
+        end
+
+        enums["#{namespace}.#{node.attribute('name')}"] = {
+          "flags" => node.name == "bitfield",
+          "members" => members,
+        }
       end
 
       REXML::XPath.each(document, "//namespace/class") do |node|
@@ -182,7 +195,11 @@ module GtkSchemas
     elsif PRIMITIVES.key?(gir)
       { "type" => PRIMITIVES.fetch(gir) }
     elsif enums.key?(qualified)
-      { "type" => "enum", "enum" => qualified, "values" => enums.fetch(qualified) }
+      {
+        "type" => "enum",
+        "enum" => qualified,
+        "values" => enums.fetch(qualified).fetch("members").map{|member| member.fetch("value")},
+      }
     else
       { "type" => "node", "gobject" => qualified }
     end

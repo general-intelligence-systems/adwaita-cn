@@ -23,6 +23,18 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "gtk-enums",
+      "type": "registry:lib",
+      "title": "GTK enums",
+      "description": "Every enumeration GTK and libadwaita define, as string-literal unions with their value arrays. Generated from the introspection data by bin/gtk-enums.",
+      "files": [
+        {
+          "path": "registry/adwaita/lib/enums.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }
