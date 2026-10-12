@@ -9,7 +9,7 @@
 #      bin/02-fetch-gir
 #
 # DESCRIPTION
-#      Writes Gtk-4.0.gir and Adw-1.gir into vendor/gir/, which is what bin/06-gtk-schemas reads.
+#      Writes Gtk-4.0.gir and Adw-1.gir into vendor/gir/, which is what bin/07-gtk-schemas reads.
 #
 #      A GIR FILE IS THE WIDGET API, stated by the toolkit rather than by its documentation.
 #      GObject introspection is what language bindings are generated from, so every class, every
@@ -31,7 +31,7 @@
 #      The bin/02-fetch-gir utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/06-gtk-schemas, bin/01-fetch-adwaita, g-ir-scanner(1)
+#      bin/07-gtk-schemas, bin/01-fetch-adwaita, g-ir-scanner(1)
 #
 # adwaita-cn                         October 12, 2026                          02-FETCH-GIR(1)
 

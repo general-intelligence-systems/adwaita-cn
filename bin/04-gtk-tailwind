@@ -1,0 +1,118 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 04-GTK-TAILWIND(1)                General Commands Manual                 04-GTK-TAILWIND(1)
+#
+# NAME
+#      bin/04-gtk-tailwind — GTK's own theme, for the widgets libadwaita leaves alone
+#
+# SYNOPSIS
+#      bin/04-gtk-tailwind [--contexts] [--all] [pattern ...]
+#
+# DESCRIPTION
+#      Runs bin/03-adwaita-tailwind over GTK's Default theme instead of libadwaita's stylesheet,
+#      and keeps only the nodes libadwaita never styles.
+#
+#      THIS IS A SEPARATE STAGE BECAUSE THE TWO SHEETS ARE ALTERNATIVES, NOT LAYERS. libadwaita
+#      replaces GTK's theme: an application which links it gets its stylesheet instead of
+#      Default's, not on top of it. So a declaration GTK makes about a node libadwaita also
+#      styles is not a gap to fill -- it is the other theme's answer, and taking it reintroduces
+#      exactly what Adwaita removed. A headerbar is the plainest case: GTK gives it a
+#      background-image, a border-radius and padding, and Adwaita's has none of the three.
+#
+#      WHAT IS LEFT IS A GENUINE GAP. libadwaita styles 131 nodes and GTK's Default styles 95,
+#      and seven of GTK's are nodes libadwaita never mentions: the expander arrow and its
+#      container, a notebook, a treeview junction, a tree expander's indent, and the file
+#      chooser's button and thumbnails. Those widgets are not part of the Adwaita look because
+#      libadwaita has nothing to say about them, so GTK's theme is all there is, and a component
+#      which wraps one is better off with it than with nothing.
+#
+#      Output is the same shape as bin/03-adwaita-tailwind's and the options mean the same
+#      things, so the join reads whichever has an answer for a node, preferring Adwaita's.
+#
+# OPTIONS
+#      --contexts   Key by each selector context separately rather than merging them.
+#      --all        Include widgets styled by a single declaration.
+#
+# FILES
+#      vendor/adwaita/gtk-default-light.css   the input
+#      vendor/adwaita/widgets-contexts.json   what libadwaita already answers, from 03
+#      vendor/adwaita/gtk-widgets.json        the output
+#
+# EXIT STATUS
+#      The bin/04-gtk-tailwind utility exits 0 on success, and >0 if an error occurs.
+#
+# EXAMPLES
+#      The map, and the contexts beside it:
+#
+#            bin/04-gtk-tailwind > vendor/adwaita/gtk-widgets.json
+#            bin/04-gtk-tailwind --contexts --all > vendor/adwaita/gtk-widgets-contexts.json
+#
+#      What GTK styles and libadwaita does not:
+#
+#            bin/04-gtk-tailwind | jq 'keys'
+#
+# SEE ALSO
+#      bin/03-adwaita-tailwind, bin/08-final-components
+#
+# adwaita-cn                         October 12, 2026                       04-GTK-TAILWIND(1)
+
+require "json"
+require "open3"
+require "set"
+
+module GtkTailwind
+  SHEET = "vendor/adwaita/gtk-default-light.css"
+
+  # THE CONTEXTS, NOT THE MERGED MAP. The merged map drops a subject styled by one lone
+  # declaration and keys by the compound rather than the node, so reading it as "what libadwaita
+  # styles" understates it -- `menubutton` and `stackswitcher` came out as gaps on the strength
+  # of that, when libadwaita styles both. The contexts are every selector it has a rule for.
+  ADWAITA = "vendor/adwaita/widgets-contexts.json"
+
+  # The converter, over GTK's sheet. It is the same code either way, which is the point: the
+  # sheets differ, the conversion does not.
+  def self.convert(root, argv)
+    command = [File.join(root, "bin/03-adwaita-tailwind"), "--sheet", SHEET, *argv]
+    output, status = Open3.capture2(*command)
+
+    unless status.success?
+      warn("gtk-tailwind: bin/03-adwaita-tailwind failed")
+      exit(1)
+    end
+
+    JSON.parse(output)
+  end
+
+  # A selector GTK styles and libadwaita does not. The node is what decides it rather than the
+  # whole selector: `notebook > header` is GTK's to answer because libadwaita says nothing about
+  # a notebook at all, while `headerbar > button` is not, because libadwaita styles both ends of
+  # it and its silence on that exact pairing is the cascade working rather than a gap.
+  def self.gap?(selector, styled)
+    nodes = self.nodes(selector)
+
+    !nodes.empty? && nodes.none?{|node| styled.include?(node)}
+  end
+
+  # Every node libadwaita has a rule about, which is what this stage defers to.
+  def self.styled(root)
+    JSON.parse(File.read(File.join(root, ADWAITA))).keys.filter_map do |selector|
+      self.nodes(selector).last
+    end.to_set
+  end
+
+  # The node each segment of a selector names, in order, skipping the segments which name none.
+  def self.nodes(selector)
+    selector.split(/\s*>\s*|\s+/).filter_map{|segment| segment[/\A[a-z][a-z0-9-]*/]}
+  end
+
+  def self.run(argv)
+    root = File.expand_path("..", __dir__)
+    styled = self.styled(root)
+    widgets = self.convert(root, argv).select{|selector, _variants| self.gap?(selector, styled)}
+
+    puts(JSON.pretty_generate(widgets))
+  end
+end
+
+GtkTailwind.run(ARGV)

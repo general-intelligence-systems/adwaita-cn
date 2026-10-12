@@ -7,14 +7,16 @@
 #      bin/03-adwaita-tailwind — what each Adwaita widget measures, as Tailwind classes
 #
 # SYNOPSIS
-#      bin/03-adwaita-tailwind [--json] [--contexts] [--all] [pattern ...]
+#      bin/03-adwaita-tailwind [--contexts] [--all] [--sheet PATH] [pattern ...]
 #
 # DESCRIPTION
-#      Reads the stylesheets under vendor/adwaita/ and writes, as JSON on stdout, the map of
-#      every selector they style to the Tailwind classes which reproduce its metrics.
+#      Reads libadwaita's stylesheet and writes, as JSON on stdout, the map of every selector it
+#      styles to the Tailwind classes which reproduce its metrics.
 #
-#      This is the first of two passes. bin/04-adwaita-components reads this map and folds it into
-#      the component list.
+#      LIBADWAITA'S SHEET AND NOTHING ELSE. It replaces GTK's theme rather than extending it, so
+#      reading GTK's underneath does not fill gaps -- it reintroduces the gradients, radii and
+#      text shadows Adwaita took out. bin/04-gtk-tailwind is the separate stage for GTK's sheet,
+#      and it covers only the nodes libadwaita never mentions.
 #
 #      THIS IS GEOMETRY, NOT COLOUR. A component looks like Adwaita because of its radii, its
 #      minimum heights, its padding, its focus ring and the easing on its transitions -- not
@@ -36,10 +38,10 @@
 # OPTIONS
 #      --contexts   Key by each selector context separately rather than merging them.
 #      --all        Include widgets styled by a single declaration, which are mostly noise.
+#      --sheet      Convert another stylesheet instead. bin/04-gtk-tailwind uses this.
 #
 # FILES
 #      vendor/adwaita/adwaita.css
-#      vendor/adwaita/gtk-default-light.css
 #      vendor/adwaita/VERSIONS
 #              Which release each sheet came from. The metrics move between releases.
 #
@@ -51,12 +53,12 @@
 #
 #            bin/03-adwaita-tailwind > vendor/adwaita/widgets.json
 #
-#      Both passes:
+#      The contexts, which is what the join reads:
 #
-#            bin/03-adwaita-tailwind | bin/04-adwaita-components > vendor/adwaita/components.json
+#            bin/03-adwaita-tailwind --contexts --all > vendor/adwaita/widgets-contexts.json
 #
 # SEE ALSO
-#      bin/01-fetch-adwaita
+#      bin/01-fetch-adwaita, bin/04-gtk-tailwind
 #
 # async-matrix                          October 12, 2026                03-ADWAITA-TAILWIND(1)
 
@@ -64,11 +66,17 @@ require "json"
 require "set"
 
 module AdwaitaTailwind
-  # GTK'S SHEET FIRST, BECAUSE ADWAITA IS LAYERED ON TOP OF IT. Order is the cascade here, and
-  # getting it backwards hands every shared value to GTK: a button came out at GTK's 5px radius
-  # and 4px/9px padding rather than Adwaita's 9px and 5px/10px, which is most of what makes an
-  # Adwaita button look like one.
-  SHEETS = %w[vendor/adwaita/gtk-default-light.css vendor/adwaita/adwaita.css].freeze
+  # ONE SHEET PER RUN, BECAUSE LIBADWAITA REPLACES GTK'S THEME RATHER THAN EXTENDING IT.
+  # Reading both at once was wrong, and not subtly: GTK's Default theme gives a headerbar a
+  # `background-image`, a `border-radius` and a `padding` which libadwaita deliberately does not
+  # have, and gives a button and a label the `text-shadow` and `-gtk-icon-shadow` of the embossed
+  # look Adwaita dropped. Those are not gaps in Adwaita for GTK to fill in underneath -- they are
+  # the other theme's answer to the same question, and layering them in makes a component look
+  # like GTK Default where Adwaita said otherwise.
+  #
+  # So this converts whichever sheet it is given, and bin/04-gtk-tailwind is the separate stage
+  # which handles GTK's, for the nodes libadwaita never mentions at all.
+  SHEET = "vendor/adwaita/adwaita.css"
 
   # Colour is the one thing a port does not take from here, so it never reaches the output.
   COLOUR = %w[
@@ -366,11 +374,11 @@ module AdwaitaTailwind
     end
   end
 
-  # Every rule in the sheets, at the top level only.
-  def self.rules(root)
+  # Every rule in the sheet, at the top level only.
+  def self.rules(root, sheet)
     [].tap do |found|
-      SHEETS.each do |sheet|
-        css = File.read(File.join(root, sheet)).gsub(%r{/\*.*?\*/}m, "")
+      [sheet].each do |one|
+        css = File.read(File.join(root, one)).gsub(%r{/\*.*?\*/}m, "")
 
         # At-rules are skipped whole: a nested block is an override for a condition this is not
         # describing, and an unnested one (@define-color, @import) carries no declarations.
@@ -460,13 +468,22 @@ module AdwaitaTailwind
     end
   end
 
+  # An option written `--sheet PATH`, taken out of the arguments along with its value so that
+  # what is left is the patterns.
+  def self.option(argv, name)
+    index = argv.index(name)
+
+    argv.slice!(index, 2).last if index
+  end
+
   def self.run(argv)
     root = File.expand_path("..", __dir__)
     contexts = argv.delete("--contexts")
     all = argv.delete("--all")
+    sheet = self.option(argv, "--sheet") || SHEET
     patterns = argv
 
-    widgets = self.collect(self.rules(root), contexts: !contexts.nil?)
+    widgets = self.collect(self.rules(root, sheet), contexts: !contexts.nil?)
 
     # A widget styled by one lone declaration is almost always a fragment of a bigger rule
     # rather than something to build.

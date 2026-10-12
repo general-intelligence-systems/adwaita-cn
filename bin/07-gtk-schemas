@@ -1,0 +1,472 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 07-GTK-SCHEMAS(1)                 General Commands Manual                  07-GTK-SCHEMAS(1)
+#
+# NAME
+#      bin/07-gtk-schemas — every widget's props, out of the introspection data
+#
+# SYNOPSIS
+#      bin/07-gtk-schemas [--own] > schemas.json
+#
+# DESCRIPTION
+#      Reads the GIR files under vendor/gir/ and writes, as JSON on stdout, one entry per widget
+#      class: its properties, each with the type it takes, its default, and whether it can be
+#      written at all.
+#
+#      THERE IS NO Adw/Gtk SPLIT IN THE OUTPUT. A component is one component, so the two
+#      namespaces are consolidated under the bare class name and Adw takes precedence: 348
+#      classes out of 269 Gtk and 90 Adw, with eleven names claimed by both.
+#
+#      ADW WINS OUTRIGHT RATHER THAN BY MERGING, and that distinction is the whole point.
+#      Adw.Dialog descends from Gtk.Widget, not from Gtk.Window, so it is a different API which
+#      happens to share a name -- folding Gtk.Dialog's twenty-three extra properties in would
+#      have the schema claim props the widget does not accept, which is exactly what this is
+#      meant to stop. Adw.ShortcutsSection is the extreme case: three properties against
+#      Gtk.ShortcutsSection's forty-three. Each shadowed class is named in `shadows` so the
+#      choice is visible rather than silent.
+#
+#      THE ONE EXCEPTION IS A SELF-REFERENTIAL PARENT. Adw.Window, Adw.ApplicationWindow and
+#      Adw.Application each subclass the very Gtk class they shadow, so bare-ifying the parent
+#      would make `Window` its own parent. In those three the Adw class already inherits
+#      everything the Gtk one has -- Gtk-only property count is zero for all three -- so the
+#      parent emitted is the shadowed class's parent, one step further up, and `parentThrough`
+#      records the class stepped over.
+#
+#      INHERITANCE IS RESOLVED, which is the point of doing this rather than reading the
+#      documentation. Adw.ActionRow declares six properties of its own and accepts about sixty:
+#      `title` comes from Adw.PreferencesRow, `visible` and `sensitive` from Gtk.Widget, and a
+#      lint which only knew the six would reject every correct use of the other fifty-four. Each
+#      property records the class which declared it, so the chain is auditable.
+#
+#      TYPES ARE MAPPED TO WHAT A JAVASCRIPT LINT CAN CHECK. `utf8` is a string, `gboolean` a
+#      boolean, `gint` and `gdouble` numbers, an enumeration becomes the list of values it
+#      accepts, and anything else -- a widget, a model, a paintable -- becomes "node", because
+#      that is what it is once it is a prop on a component.
+#
+#      NAMES ARE GIVEN BOTH WAYS. GTK spells a property `subtitle-lines` and React spells the
+#      same prop `subtitleLines`, so each entry carries both and the lint can match whichever
+#      the source uses.
+#
+#      Read-only properties are included and flagged rather than dropped: passing one is an
+#      error worth reporting, and a lint cannot report what it was not told about.
+#
+# OPTIONS
+#      --own        Only the properties each class declares, without the inherited ones.
+#      --qualified  Key by Adw.Button and Gtk.Button rather than consolidating.
+#
+# FILES
+#      vendor/gir/Gtk-4.0.gir
+#      vendor/gir/Adw-1.gir
+#      vendor/gir/VERSIONS
+#              Which release each file came from. Properties move between releases.
+#
+# EXIT STATUS
+#      The bin/07-gtk-schemas utility exits 0 on success, and >0 if an error occurs.
+#
+# EXAMPLES
+#      The schemas:
+#
+#            bin/07-gtk-schemas > vendor/gir/schemas.json
+#
+#      What ActionRow itself adds:
+#
+#            bin/07-gtk-schemas --own | jq '.classes.ActionRow.properties | keys'
+#
+# SEE ALSO
+#      bin/02-fetch-gir, bin/05-adwaita-components
+#
+# adwaita-cn                        October 12, 2026                         07-GTK-SCHEMAS(1)
+
+require "json"
+require "rexml/document"
+
+module GtkSchemas
+  GIR = {
+    "Gtk" => "vendor/gir/Gtk-4.0.gir",
+    "Adw" => "vendor/gir/Adw-1.gir",
+  }.freeze
+
+  # The GIR type names which are a JavaScript primitive, and which one.
+  PRIMITIVES = {
+    "utf8" => "string",
+    "filename" => "string",
+    "gboolean" => "boolean",
+    "gint" => "number",
+    "guint" => "number",
+    "gint64" => "number",
+    "guint64" => "number",
+    "glong" => "number",
+    "gulong" => "number",
+    "gfloat" => "number",
+    "gdouble" => "number",
+    "gsize" => "number",
+    "gssize" => "number",
+    "gunichar" => "string",
+    "none" => "void",
+  }.freeze
+
+  # GTK spells a property `subtitle-lines`; React spells the same prop `subtitleLines`.
+  def self.camel(name)
+    parts = name.split("-")
+
+    (parts.first.to_s + parts.drop(1).map(&:capitalize).join)
+  end
+
+  # Everything declared in both files, keyed the way a GIR type reference spells it.
+  def self.read(root)
+    classes = {}
+    enums = {}
+
+    GIR.each do |namespace, relative|
+      document = REXML::Document.new(File.read(File.join(root, relative)))
+
+      REXML::XPath.each(document, "//namespace/enumeration | //namespace/bitfield") do |node|
+        # THE NICK, NOT THE NAME. A member is written `raised_border` in the GIR and the string
+        # the property system actually accepts is `raised-border`; reporting the name would have
+        # anything built on this insist on a value GTK rejects.
+        members = REXML::XPath.match(node, "member").map do |member|
+          {
+            "value" => member.attribute("nick")&.to_s || member.attribute("name").to_s,
+            "name" => member.attribute("name").to_s,
+            "number" => member.attribute("value")&.to_s,
+          }
+        end
+
+        enums["#{namespace}.#{node.attribute('name')}"] = {
+          "flags" => node.name == "bitfield",
+          "members" => members,
+        }
+      end
+
+      REXML::XPath.each(document, "//namespace/class") do |node|
+        name = node.attribute("name").to_s
+        parent = node.attribute("parent")&.to_s
+
+        classes["#{namespace}.#{name}"] = {
+          namespace: namespace,
+          # A parent in the same namespace is written bare, so it is qualified here.
+          parent: self.qualify(parent, namespace),
+          properties: self.properties(node),
+          css: self.css(node),
+        }
+      end
+    end
+
+    [classes, enums]
+  end
+
+  # A GIR type reference is bare inside its own namespace and dotted outside it.
+  def self.qualify(name, namespace)
+    if name.nil? || name.empty?
+      nil
+    elsif name.include?(".")
+      name
+    else
+      "#{namespace}.#{name}"
+    end
+  end
+
+  def self.properties(node)
+    REXML::XPath.match(node, "property").to_h do |property|
+      name = property.attribute("name").to_s
+      type = REXML::XPath.first(property, "type | array")
+      writable = property.attribute("writable")&.to_s == "1"
+
+      [
+        name,
+        {
+          "prop" => self.camel(name),
+          "gir" => type&.attribute("name")&.to_s,
+          "writable" => writable,
+          "constructOnly" => property.attribute("construct-only")&.to_s == "1",
+          "default" => property.attribute("default-value")&.to_s,
+          "deprecated" => property.attribute("deprecated")&.to_s == "1",
+        },
+      ]
+    end
+  end
+
+  # The GIR type as something a lint can test a JSX attribute against.
+  def self.kind(gir, namespace, enums)
+    qualified = self.qualify(gir, namespace)
+
+    if gir.nil?
+      { "type" => "node" }
+    elsif PRIMITIVES.key?(gir)
+      { "type" => PRIMITIVES.fetch(gir) }
+    elsif enums.key?(qualified)
+      {
+        "type" => "enum",
+        "enum" => qualified,
+        "values" => enums.fetch(qualified).fetch("members").map{|member| member.fetch("value")},
+      }
+    else
+      { "type" => "node", "gobject" => qualified }
+    end
+  end
+
+  # A class's properties with its ancestors' folded in, nearest declaration winning.
+  def self.resolve(name, classes, own:)
+    chain = []
+    current = name
+
+    while current && classes.key?(current)
+      chain << current
+      current = classes.fetch(current)[:parent]
+    end
+
+    if own
+      chain = chain.take(1)
+    end
+
+    # Furthest ancestor first, so a class which redeclares a property overwrites it.
+    chain.reverse.each_with_object({}) do |ancestor, found|
+      classes.fetch(ancestor)[:properties].each do |property, attributes|
+        found[property] = attributes.merge("from" => ancestor)
+      end
+    end
+  end
+
+  # Adw before Gtk, so that consolidating by bare name keeps the Adw class.
+  PRECEDENCE = %w[Adw Gtk].freeze
+
+  # The bare name a qualified class is consolidated under, and nil for anything outside the two
+  # namespaces -- a GObject or Gio parent stays qualified, because it is not a component.
+  def self.consolidated(qualified, classes)
+    namespace, name = qualified.to_s.split(".", 2)
+
+    if PRECEDENCE.include?(namespace) && classes.key?(qualified)
+      name
+    else
+      qualified
+    end
+  end
+
+  # ── The CSS nodes, which is what ties a stylesheet selector to a class ──
+
+  # A stylesheet addresses `list > row`, not GtkListBox > GtkListBoxRow, and the join between the
+  # two spellings is documented: every widget's doc comment carries a `# CSS nodes` section
+  # naming the node it renders as, the subnodes under it, and the style classes it takes. That
+  # section is the authority for which class a selector is talking about, so it is parsed rather
+  # than guessed at.
+  #
+  # It is written two ways. Most classes draw a tree in a fenced block, where the first line is
+  # the node the widget itself is and the lines below it are its parts:
+  #
+  #       list[.separators][.rich-list][.navigation-sidebar][.boxed-list]
+  #       ╰── row[.activatable]
+  #
+  # The rest say the same thing in a sentence -- "has a single CSS node with name button", "has a
+  # main node `expander-widget`, and subnode `box`" -- so both forms are read.
+
+  # A sentence naming the node the widget itself is.
+  ROOTS = [
+    /\b(?:main|single)\s+(?:CSS\s+)?nodes?\s+(?:with\s+)?(?:the\s+)?(?:name|named|called)\s+[`']?([a-z][a-z0-9-]*)/,
+    /\b(?:main|single)\s+(?:CSS\s+)?nodes?\s+[`']([a-z][a-z0-9-]*)[`']/,
+  ].freeze
+
+  # A sentence naming a node the widget draws inside itself.
+  PARTS = [
+    /\bsub-?nodes?\s+(?:with\s+)?(?:the\s+)?(?:names?|named|called)\s+[`']?([a-z][a-z0-9-]*)/,
+    /\bsub-?nodes?\s+[`']([a-z][a-z0-9-]*)[`']/,
+    /\bnodes?\s+with\s+the\s+names?\s+[`']([a-z][a-z0-9-]*)[`']/,
+    /\bcontains\s+nodes?\s+[`']([a-z][a-z0-9-]*)[`']/,
+  ].freeze
+
+  # A style class the class documents itself as taking, in a sentence or as a link into
+  # libadwaita's style-classes page.
+  STYLES = [
+    /\.([a-z][a-z0-9-]*)\s+style\s+class/,
+    /\[`\.([a-z][a-z0-9-]*)`\]\(style-classes/,
+  ].freeze
+
+  # The bases every widget descends from, which name no component.
+  UNIVERSAL = ["GObject.Object", "GObject.InitiallyUnowned", "Gtk.Widget"].freeze
+
+  # What one class's documentation says it renders as.
+  def self.css(node)
+    documentation = REXML::XPath.first(node, "doc")&.text.to_s
+    section = documentation[/^#+\s*CSS\s+nodes?\s*$(.*?)(?=^#+\s|\z)/m, 1]
+
+    self.drawn(section.to_s).merge("styles" => self.matches(STYLES, section.to_s))
+  end
+
+  # The tree if one is drawn, and the sentences otherwise. A class which draws its tree says
+  # everything in it, so the prose beside it is not read for nodes -- GtkEmojiChooser draws a
+  # popover whose parts include `entry.search`, and reading its sentence as well would have the
+  # Entry class claim to render it.
+  def self.drawn(section)
+    fenced = section[/```\n(.*?)```/m, 1]
+
+    if fenced
+      lines = fenced.lines.map{|line| self.line(line)}.compact
+      { "root" => lines.first, "parts" => lines.drop(1).uniq - [lines.first] }
+    else
+      { "root" => self.matches(ROOTS, section).first, "parts" => self.matches(PARTS, section) }
+    end
+  end
+
+  # One line of a drawn tree. The box-drawing prefix is dropped, an optional node is unwrapped,
+  # and a `<child>` placeholder is not a node name at all.
+  def self.line(line)
+    line.sub(/\A[^a-zA-Z\[]*/, "").sub(/\A\[/, "")[/\A[a-z][a-z0-9-]*/]
+  end
+
+  def self.matches(patterns, text)
+    patterns.flat_map{|pattern| text.scan(pattern)}.flatten.uniq
+  end
+
+  # Every documented node name, against the one class it belongs to. A root node is the class
+  # itself; a part is something the class draws inside itself and is no component of its own, so
+  # which it is comes out of the index rather than being left for a reader to work out.
+  def self.index(classes, keyed)
+    roots = self.documenters(classes){|css| [css["root"]].compact}
+    parts = self.documenters(classes){|css| css["parts"]}
+
+    (roots.keys | parts.keys).sort.to_h do |node|
+      owners = roots.fetch(node, parts[node])
+
+      [node, {
+        "kind" => roots.key?(node) ? "root" : "part",
+        "widget" => self.owner(node, owners, classes, keyed),
+        "documented" => owners.map{|name| self.bare(name, classes, keyed)}.uniq.sort,
+      }]
+    end
+  end
+
+  # Which class a node name means. Two things say so and they agree, which is what makes this
+  # safe to automate: GTK names a widget's node after the widget, lowercased and with the
+  # hyphens gone, and the documentation draws that same node at the top of the class's tree. Of
+  # the 86 documented root nodes 85 are also the name of a class, and the one which is not --
+  # `dialog`, drawn by AboutDialog and PreferencesDialog -- is Adw.Dialog, which both descend
+  # from. So the name is read first, and the tree is what corroborates it.
+  def self.owner(node, owners, classes, keyed)
+    named = keyed.keys.find{|key| key.downcase.delete("-") == node.delete("-")}
+
+    named || self.bare(self.common(owners, classes), classes, keyed)
+  end
+
+  # The class a node's documenters have in common, for a node named after no class. Several
+  # classes document the same node when they inherit it -- `row` is every AdwPreferencesRow
+  # subclass -- so the one they share is the one which draws it.
+  #
+  # UNRELATED CLASSES SHARE A NODE TOO, and there the answer is that there is no single owner.
+  # GtkExpander and GtkTreeExpander both draw an `expander` arrow and have nothing in common
+  # below GtkWidget, so an ancestor that high is reported as no owner rather than as every
+  # widget there is.
+  def self.common(owners, classes)
+    found = owners.map{|name| self.ancestry(name, classes)}.reduce do |left, right|
+      left.take_while.with_index{|name, index| right[index] == name}
+    end.last
+
+    UNIVERSAL.include?(found) ? nil : found
+  end
+
+  # Furthest ancestor first, so a common prefix is a common ancestry.
+  def self.ancestry(name, classes)
+    chain = []
+    current = name
+
+    while current && classes.key?(current)
+      chain.unshift(current)
+      current = classes.fetch(current)[:parent]
+    end
+
+    chain
+  end
+
+  # Every style class a widget documents itself as taking. A STYLE CLASS IS A MODIFIER RATHER
+  # THAN A WIDGET -- `.card` is something a box or a button can be, not a class of its own -- so
+  # this records which widgets accept it and nothing is made to claim it is one.
+  def self.styles(classes, keyed)
+    self.documenters(classes){|css| css["styles"]}.sort.to_h do |style, owners|
+      [style, owners.map{|name| self.bare(name, classes, keyed)}.uniq.sort]
+    end
+  end
+
+  # Each name against the classes which named it.
+  def self.documenters(classes)
+    classes.each_with_object({}) do |(name, entry), found|
+      yield(entry[:css]).each{|value| (found[value] ||= []) << name}
+    end
+  end
+
+  # The key a class is consolidated under, which for a shadowed Gtk class is the Adw class's.
+  def self.bare(name, classes, keyed)
+    key = self.consolidated(name, classes)
+
+    keyed.key?(key) ? key : name
+  end
+
+  def self.run(argv)
+    root = File.expand_path("..", __dir__)
+    own = !argv.delete("--own").nil?
+    qualified = !argv.delete("--qualified").nil?
+    classes, enums = self.read(root)
+
+    if qualified
+      keyed = classes.keys.to_h{|name| [name, name]}
+    else
+      # Gtk first and Adw second, so Adw overwrites the shared names.
+      keyed = {}
+      PRECEDENCE.reverse.each do |namespace|
+        classes.each_key do |name|
+          if name.start_with?("#{namespace}.")
+            keyed[name.split(".", 2).last] = name
+          end
+        end
+      end
+    end
+
+    schemas = keyed.sort.to_h do |key, name|
+      entry = classes.fetch(name)
+      properties = self.resolve(name, classes, own: own).sort.to_h do |property, attributes|
+        [property, attributes.merge(self.kind(attributes["gir"], entry[:namespace], enums))]
+      end
+
+      [key, self.entry(key, name, entry, classes, qualified).merge(
+        "properties" => properties,
+        "css" => entry[:css],
+      )]
+    end
+
+    puts(JSON.pretty_generate({
+      "versions" => File.read(File.join(root, "vendor/gir/VERSIONS")).lines.map{|line| line.strip.squeeze(" ")},
+      "enums" => enums.sort.to_h,
+      "classes" => schemas,
+      "nodes" => self.index(classes, keyed),
+      "styles" => self.styles(classes, keyed),
+    }))
+  end
+
+  # One class's own identity: where it came from, what it displaced, and who its parent is once
+  # the namespaces are gone.
+  def self.entry(key, name, entry, classes, qualified)
+    shadowed = "Gtk.#{key}"
+    parent = entry[:parent]
+
+    found = {
+      "class" => name,
+      "namespace" => entry[:namespace],
+      "parent" => qualified ? parent : self.consolidated(parent, classes),
+    }
+
+    if !qualified && entry[:namespace] == "Adw" && classes.key?(shadowed) && shadowed != name
+      found["shadows"] = shadowed
+    end
+
+    # THE EXCEPTION. Adw.Window's parent is Gtk.Window, which consolidates to `Window` -- the
+    # entry's own key, so the pointer would be a loop. The Adw class subclasses the one it
+    # shadows and therefore already carries its properties, so the parent emitted is the one
+    # beyond it and the class stepped over is recorded.
+    if found["parent"] == key
+      found["parentThrough"] = parent
+      found["parent"] = self.consolidated(classes.fetch(parent)[:parent], classes)
+    end
+
+    found
+  end
+end
+
+GtkSchemas.run(ARGV)

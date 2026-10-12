@@ -35,20 +35,6 @@
         }
       }
     },
-    ".boxed-list": {
-      "widget": "Adw.PreferencesGroup's list",
-      "variants": [],
-      "states": [
-        "base"
-      ],
-      "classes": {
-        ".boxed-list": {
-          "base": [
-            "rounded-[8px]"
-          ]
-        }
-      }
-    },
     ".card": {
       "widget": "the card style class",
       "variants": [],
@@ -93,17 +79,15 @@
             "ml-1",
             "mr-2.5",
             "shadow-none",
-            "min-w-4.5",
-            "min-h-4.5",
-            "rounded-full",
             "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
             "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+            "min-w-4.5",
+            "min-h-4.5",
+            "rounded-full"
           ],
-          "hover": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
-          ],
+          "hover": [],
           "active": [],
           "disabled": [],
           "focus-visible": [
@@ -126,11 +110,10 @@
         ".keycap": {
           "base": [
             "p-1.5",
-            "mt-0.5",
             "min-w-5",
             "min-h-[25px]",
-            "rounded-[6px]",
             "shadow-[inset_0_-2px_var(--card-shade-color)]",
+            "rounded-[6px]",
             "text-[smaller]"
           ]
         }
@@ -140,19 +123,13 @@
       "widget": "Adw.NavigationSplitView's sidebar",
       "variants": [],
       "states": [
-        "base",
-        "focus"
+        "base"
       ],
       "classes": {
         ".navigation-sidebar": {
           "base": [
             "pt-1.5",
-            "pb-1",
-            "px-0",
-            "shadow-none"
-          ],
-          "focus": [
-            "shadow-none"
+            "pb-1"
           ]
         }
       }
@@ -199,14 +176,8 @@
       "classes": {
         ".titlebar": {
           "base": [
-            "py-0",
-            "px-1.5",
-            "min-h-11.5",
-            "border-b-[1px]",
-            "border-solid",
-            "rounded-none",
-            "duration-200",
-            "ease-[ease-out]"
+            "shadow-none",
+            "min-h-8"
           ]
         }
       }
@@ -280,43 +251,28 @@
         "color",
         "combo",
         "destructive-action",
-        "destructive-action.circular.image-button.model",
-        "destructive-action.flat",
         "dnd",
-        "down",
-        "emoji-section",
         "emoji-section.image-button",
         "flat",
-        "flat.keyboard-activating",
         "image-button",
-        "image-button.destructive-action",
         "image-button.down",
         "image-button.model",
-        "image-button.suggested-action",
         "image-button.up",
         "image-text-button",
         "image-text-button.image-button.down",
         "image-text-button.image-button.up",
-        "keyboard-activating",
-        "keyboard-activating.sidebar-button",
         "link",
         "opaque",
         "osd",
-        "osd.image-button",
         "pill",
         "sidebar-button",
-        "slider-button",
         "suggested-action",
-        "suggested-action.circular.image-button.model",
-        "suggested-action.flat",
         "text-button",
         "text-button.circular",
         "text-button.image-button",
         "text-button.image-button.down",
         "text-button.image-button.up",
-        "toggle",
-        "up",
-        ":backdrop.flat"
+        "toggle"
       ],
       "states": [
         "base",
@@ -324,15 +280,12 @@
         "active",
         "disabled",
         "focus-visible",
-        "disabled:active",
         "data-[state=checked]",
         "data-[state=checked]:hover",
         "data-[state=checked]:active",
-        "disabled:data-[state=checked]",
         "last",
         "first",
         "last:first",
-        "focus",
         "data-[selected]",
         "data-[selected]:active",
         "hover:last",
@@ -355,10 +308,9 @@
         "hover:last:first",
         "active:last:first",
         "last:last:disabled",
-        "last:first:disabled",
         "disabled:last:first",
-        "data-[state=checked]:last:first",
-        "only"
+        "last:first:disabled",
+        "data-[state=checked]:last:first"
       ],
       "classes": {
         "button": {
@@ -368,43 +320,23 @@
             "min-h-6",
             "min-w-4",
             "rounded-[9px]",
-            "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
-            "duration-[300ms]",
+            "font-bold",
             "outline-offset-[4px]",
-            "font-bold"
+            "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+            "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]"
           ],
-          "hover": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
-          ],
-          "active": [
-            "shadow-none",
-            "duration-[50ms]"
-          ],
-          "disabled": [
-            "shadow-none"
-          ],
+          "hover": [],
+          "active": [],
+          "disabled": [],
           "focus-visible": [
             "outline-2",
             "outline-offset-[-2px]"
           ],
-          "disabled:active": [
-            "shadow-none"
-          ],
-          "data-[state=checked]": [
-            "shadow-none",
-            "duration-[50ms]"
-          ],
-          "data-[state=checked]:hover": [
-            "shadow-none"
-          ],
-          "data-[state=checked]:active": [
-            "shadow-none"
-          ],
-          "disabled:data-[state=checked]": [
-            "shadow-none"
-          ]
+          "data-[state=checked]": [],
+          "data-[state=checked]:hover": [],
+          "data-[state=checked]:active": []
         },
         "button.arrow-button": {
           "base": [
@@ -467,22 +399,15 @@
             "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
-          "hover": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
-          ],
-          "focus": [],
-          "active": [
-            "shadow-none"
-          ],
+          "hover": [],
+          "active": [],
           "disabled": [],
           "focus-visible": [
             "outline-2",
             "outline-offset-[-2px]"
           ],
           "data-[selected]": [],
-          "data-[state=checked]": [
-            "shadow-none"
-          ],
+          "data-[state=checked]": [],
           "data-[selected]:active": [],
           "data-[state=checked]:hover": [],
           "data-[state=checked]:active": []
@@ -504,102 +429,18 @@
           ]
         },
         "button.destructive-action": {
-          "base": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
-            "duration-[300ms]",
-            "outline-offset-[4px]"
-          ],
-          "hover": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
-          ],
-          "active": [
-            "shadow-none"
-          ],
-          "disabled": [],
-          "focus-visible": [
-            "outline-2",
-            "outline-offset-[-2px]"
-          ],
-          "disabled:active": [
-            "shadow-none"
-          ],
-          "data-[state=checked]": [
-            "shadow-none"
-          ],
+          "base": [],
+          "hover": [],
+          "active": [],
+          "data-[state=checked]": [],
           "data-[state=checked]:hover": [],
-          "data-[state=checked]:active": [],
-          "disabled:data-[state=checked]": [
-            "shadow-none"
-          ]
-        },
-        "button.destructive-action.circular.image-button.model": {
-          "base": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
-            "duration-[300ms]",
-            "outline-offset-[4px]"
-          ],
-          "focus-visible": [
-            "outline-2",
-            "outline-offset-[-2px]"
-          ]
-        },
-        "button.destructive-action.flat": {
-          "base": [
-            "shadow-none"
-          ],
-          "disabled": [
-            "shadow-none"
-          ]
+          "data-[state=checked]:active": []
         },
         "button.dnd": {
-          "base": [
-            "py-0",
-            "px-1.5",
-            "border-none",
-            "rounded-none",
-            "shadow-[inset_0_0_0_1px_#ffffff]"
-          ],
-          "hover": [
-            "py-0",
-            "px-1.5",
-            "border-none",
-            "rounded-none",
-            "shadow-[inset_0_0_0_1px_#ffffff]"
-          ],
-          "active": [
-            "py-0",
-            "px-1.5",
-            "border-none",
-            "rounded-none",
-            "shadow-[inset_0_0_0_1px_#ffffff]"
-          ],
-          "data-[selected]": [
-            "py-0",
-            "px-1.5",
-            "border-none",
-            "rounded-none",
-            "shadow-[inset_0_0_0_1px_#ffffff]"
-          ]
-        },
-        "button.down": {
-          "base": [
-            "rounded-tl-[0]",
-            "rounded-tr-[0]"
-          ]
-        },
-        "button.emoji-section": {
-          "base": [
-            "pt-[3px]",
-            "pb-0",
-            "px-0",
-            "border-[3px]",
-            "rounded-none",
-            "min-w-8",
-            "min-h-7",
-            "shadow-none"
-          ],
+          "base": [],
           "hover": [],
-          "data-[state=checked]": []
+          "active": [],
+          "data-[selected]": []
         },
         "button.emoji-section.image-button": {
           "base": [
@@ -627,46 +468,21 @@
         "button.flat": {
           "base": [
             "shadow-none",
+            "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "outline-offset-[4px]"
-          ],
-          "hover": [
-            "shadow-none",
-            "transition-[all]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "duration-[500ms]"
-          ],
-          "active": [
-            "shadow-none",
-            "transition-[all]",
             "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
-          "disabled": [
-            "shadow-none"
-          ],
+          "hover": [],
+          "active": [],
+          "disabled": [],
           "focus-visible": [
             "outline-2",
             "outline-offset-[-2px]"
           ],
-          "data-[state=checked]": [
-            "shadow-none",
-            "transition-[all]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-          ],
+          "data-[state=checked]": [],
           "data-[state=checked]:hover": [],
           "data-[state=checked]:active": []
-        },
-        "button.flat.keyboard-activating": {
-          "base": [
-            "shadow-none",
-            "transition-[all]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-          ]
         },
         "button.image-button": {
           "base": [
@@ -674,31 +490,20 @@
             "min-w-6"
           ]
         },
-        "button.image-button.destructive-action": {
-          "base": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
-            "duration-[300ms]",
-            "outline-offset-[4px]"
-          ],
-          "focus-visible": [
-            "outline-2",
-            "outline-offset-[-2px]"
-          ]
-        },
         "button.image-button.down": {
           "base": [
             "p-0",
             "m-0",
             "min-h-4",
-            "border-solid",
-            "rounded-none",
-            "shadow-none",
             "min-w-5.5",
+            "rounded-none",
             "font-bold",
             "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
             "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+            "shadow-none",
+            "border-solid",
             "border-l-[0]",
             "border-r-[1px]"
           ],
@@ -706,9 +511,9 @@
             "p-0",
             "my-2.5",
             "mx-0.5",
-            "rounded-[0_0_9px_9px]",
             "min-h-7.5",
             "min-w-7.5",
+            "rounded-[0_0_9px_9px]",
             "font-bold",
             "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
@@ -717,16 +522,13 @@
             "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
             "border-t-[1px]"
           ],
-          "hover": [
-            "shadow-none"
-          ],
           "first": [
             "p-0",
             "my-2.5",
             "mx-0.5",
-            "rounded-[9px_9px_0_0]",
             "min-h-7.5",
             "min-w-7.5",
+            "rounded-[9px_9px_0_0]",
             "font-bold",
             "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
@@ -735,12 +537,9 @@
             "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
             "border-b-[1px]"
           ],
-          "active": [
-            "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.2)]"
-          ],
-          "disabled": [
-            "shadow-none"
-          ],
+          "hover": [],
+          "active": [],
+          "disabled": [],
           "hover:last": [],
           "hover:first": [],
           "active:last": [],
@@ -763,8 +562,8 @@
           ],
           "data-[state=checked]": [],
           "data-[state=checked]:last": [],
-          "data-[state=checked]:first": [],
           "data-[state=checked]:hover": [],
+          "data-[state=checked]:first": [],
           "data-[state=checked]:active": [],
           "data-[state=checked]:hover:last": [],
           "data-[state=checked]:hover:first": [],
@@ -775,9 +574,9 @@
           "base": [
             "p-0",
             "shadow-none",
+            "outline-offset-[4px]",
             "min-h-8",
-            "min-w-8",
-            "outline-offset-[4px]"
+            "min-w-8"
           ],
           "hover": [],
           "active": [],
@@ -792,29 +591,18 @@
           "data-[state=checked]:hover": [],
           "data-[state=checked]:active": []
         },
-        "button.image-button.suggested-action": {
-          "base": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
-            "duration-[300ms]",
-            "outline-offset-[4px]"
-          ],
-          "focus-visible": [
-            "outline-2",
-            "outline-offset-[-2px]"
-          ]
-        },
         "button.image-button.up": {
           "base": [
             "py-0",
             "m-0",
-            "min-h-4",
-            "border-solid",
-            "rounded-none",
             "shadow-none",
             "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
             "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+            "rounded-none",
+            "border-solid",
+            "min-h-4",
             "min-w-5.5",
             "border-l-[0]",
             "border-r-[1px]"
@@ -823,9 +611,9 @@
             "p-0",
             "my-2.5",
             "mx-0.5",
-            "rounded-[0_0_9px_9px]",
             "min-h-7.5",
             "min-w-7.5",
+            "rounded-[0_0_9px_9px]",
             "font-bold",
             "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
@@ -834,19 +622,13 @@
             "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
             "border-t-[1px]"
           ],
-          "hover": [
-            "shadow-none"
-          ],
           "first": [
             "rounded-[9px_9px_0_0]",
             "border-b-[1px]"
           ],
-          "active": [
-            "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.2)]"
-          ],
-          "disabled": [
-            "shadow-none"
-          ],
+          "hover": [],
+          "active": [],
+          "disabled": [],
           "last:last": [
             "p-0",
             "my-2.5",
@@ -860,7 +642,6 @@
             "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
-          "hover:last": [],
           "last:first": [
             "p-0",
             "my-2.5",
@@ -875,13 +656,14 @@
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
             "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]"
           ],
+          "hover:last": [],
           "active:last": [],
-          "last:disabled": [],
+          "disabled:last": [],
           "focus-visible": [
             "outline-2",
             "outline-offset-[-2px]"
           ],
-          "disabled:last": [],
+          "last:disabled": [],
           "hover:last:first": [],
           "active:last:first": [],
           "focus-visible:last": [
@@ -889,8 +671,8 @@
             "outline-offset-[-2px]"
           ],
           "last:last:disabled": [],
-          "last:first:disabled": [],
           "disabled:last:first": [],
+          "last:first:disabled": [],
           "data-[state=checked]": [],
           "data-[state=checked]:last": [],
           "data-[state=checked]:hover": [],
@@ -923,36 +705,14 @@
             "px-[9px]"
           ]
         },
-        "button.keyboard-activating": {
-          "base": [
-            "shadow-none",
-            "duration-[50ms]"
-          ]
-        },
-        "button.keyboard-activating.sidebar-button": {
-          "base": [
-            "shadow-none",
-            "transition-[all]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-          ]
-        },
         "button.link": {
           "base": [
-            "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
             "font-inherit"
           ],
-          "hover": [
-            "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]"
-          ],
-          "active": [
-            "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]"
-          ],
+          "hover": [],
+          "active": [],
           "disabled": [],
-          "data-[selected]": [],
-          "data-[state=checked]": [
-            "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]"
-          ]
+          "data-[state=checked]": []
         },
         "button.opaque": {
           "base": [
@@ -974,40 +734,23 @@
         },
         "button.osd": {
           "base": [
+            "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
             "min-w-8",
             "min-h-8",
-            "rounded-[5px]",
-            "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
             "outline-offset-[5px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
             "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
-          "hover": [
-            "shadow-none"
-          ],
-          "active": [
-            "shadow-none"
-          ],
+          "hover": [],
+          "active": [],
           "focus-visible": [
             "outline-2",
             "outline-offset-[1px]"
           ],
-          "data-[state=checked]": [
-            "shadow-none"
-          ],
+          "data-[state=checked]": [],
           "data-[state=checked]:hover": [],
           "data-[state=checked]:active": []
-        },
-        "button.osd.image-button": {
-          "base": [
-            "min-w-7.5"
-          ],
-          "only": [
-            "m-1",
-            "rounded-full",
-            "shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
-          ]
         },
         "button.pill": {
           "base": [
@@ -1021,96 +764,42 @@
             "p-0",
             "my-[3px]",
             "shadow-none",
+            "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
             "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
             "min-h-6.5",
             "min-w-6.5",
-            "rounded-full",
-            "outline-offset-[4px]"
+            "rounded-full"
           ],
-          "hover": [
-            "shadow-none",
-            "transition-[all]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "duration-[500ms]"
-          ],
-          "active": [
-            "shadow-none",
-            "transition-[all]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-          ],
-          "disabled": [
-            "shadow-none"
-          ],
+          "hover": [],
+          "active": [],
+          "disabled": [],
           "focus-visible": [
             "outline-2",
             "outline-offset-[-2px]"
           ],
-          "data-[state=checked]": [
-            "shadow-none",
-            "transition-[all]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-          ],
+          "data-[state=checked]": [],
           "data-[state=checked]:hover": [],
           "data-[state=checked]:active": []
-        },
-        "button.slider-button": {
-          "base": [
-            "px-0"
-          ]
         },
         "button.suggested-action": {
           "base": [
             "shadow-none",
-            "duration-[300ms]",
             "outline-offset-[5px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+            "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
-          "hover": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
-          ],
-          "active": [
-            "shadow-none"
-          ],
-          "disabled": [],
+          "hover": [],
+          "active": [],
           "focus-visible": [
             "outline-2",
             "outline-offset-[1px]"
           ],
-          "disabled:active": [
-            "shadow-none"
-          ],
-          "data-[state=checked]": [
-            "shadow-none"
-          ],
+          "data-[state=checked]": [],
           "data-[state=checked]:hover": [],
-          "data-[state=checked]:active": [],
-          "disabled:data-[state=checked]": [
-            "shadow-none"
-          ]
-        },
-        "button.suggested-action.circular.image-button.model": {
-          "base": [
-            "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
-            "duration-[300ms]",
-            "outline-offset-[4px]"
-          ],
-          "focus-visible": [
-            "outline-2",
-            "outline-offset-[-2px]"
-          ]
-        },
-        "button.suggested-action.flat": {
-          "base": [
-            "shadow-none"
-          ],
-          "disabled": [
-            "shadow-none"
-          ]
+          "data-[state=checked]:active": []
         },
         "button.text-button": {
           "base": [
@@ -1151,37 +840,6 @@
         "button.toggle": {
           "base": [
             "p-0"
-          ],
-          "data-[state=checked]": [
-            "shadow-none"
-          ]
-        },
-        "button.up": {
-          "base": [
-            "rounded-bl-[0]",
-            "rounded-br-[0]"
-          ]
-        },
-        "button:backdrop.flat": {
-          "base": [
-            "shadow-none",
-            "duration-200",
-            "ease-[ease-out]"
-          ],
-          "active": [
-            "shadow-none"
-          ],
-          "disabled": [
-            "shadow-none"
-          ],
-          "disabled:active": [
-            "shadow-none"
-          ],
-          "data-[state=checked]": [
-            "shadow-none"
-          ],
-          "disabled:data-[state=checked]": [
-            "shadow-none"
           ]
         }
       }
@@ -1213,22 +871,20 @@
         "indeterminate:hover",
         "data-[state=checked]",
         "indeterminate:active",
-        "indeterminate:disabled",
         "data-[state=checked]:hover",
-        "data-[state=checked]:active",
-        "data-[state=checked]:disabled"
+        "data-[state=checked]:active"
       ],
       "classes": {
         "check": {
           "base": [
             "p-[3px]",
+            "transition-[background,box-shadow]",
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
             "min-h-3.5",
             "min-w-3.5",
             "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)]",
-            "rounded-[6px]",
-            "transition-[background,box-shadow]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            "rounded-[6px]"
           ],
           "hover": [
             "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]"
@@ -1236,9 +892,7 @@
           "active": [
             "shadow-none"
           ],
-          "disabled": [
-            "shadow-none"
-          ],
+          "disabled": [],
           "indeterminate": [
             "shadow-none"
           ],
@@ -1246,19 +900,9 @@
           "data-[state=checked]": [
             "shadow-none"
           ],
-          "indeterminate:active": [
-            "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
-          ],
-          "indeterminate:disabled": [
-            "shadow-none"
-          ],
+          "indeterminate:active": [],
           "data-[state=checked]:hover": [],
-          "data-[state=checked]:active": [
-            "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
-          ],
-          "data-[state=checked]:disabled": [
-            "shadow-none"
-          ]
+          "data-[state=checked]:active": []
         },
         "check.left": {
           "base": [
@@ -1289,10 +933,10 @@
             "p-[3px]",
             "gap-[4px]",
             "rounded-[9px]",
+            "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "duration-[300ms]",
-            "outline-offset-[4px]"
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
           "focus-visible": [
             "outline-2",
@@ -1309,7 +953,6 @@
     "colorswatch": {
       "widget": "Gtk.ColorSwatch",
       "variants": [
-        "#add-color-button",
         "bottom",
         "left",
         "right",
@@ -1320,18 +963,15 @@
         "last",
         "first",
         "disabled",
-        "focus-visible",
-        "only"
+        "focus-visible"
       ],
       "classes": {
         "colorswatch": {
           "base": [
-            "transition-[outline-color,outline-width,outline-offset]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "duration-[300ms]",
             "outline-offset-[6px]",
-            "border-none",
-            "shadow-none"
+            "transition-[outline-color,outline-width,outline-offset]",
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
           "last": [
             "rounded-tr-[9.5px]",
@@ -1341,20 +981,10 @@
             "rounded-tl-[9.5px]",
             "rounded-bl-[9.5px]"
           ],
-          "disabled": [
-            "opacity-50"
-          ],
+          "disabled": [],
           "focus-visible": [
             "outline-4",
             "outline-offset-[-2px]"
-          ]
-        },
-        "colorswatch#add-color-button": {
-          "base": [
-            "rounded-[5px_0_0_5px]"
-          ],
-          "only": [
-            "rounded-[5px]"
           ]
         },
         "colorswatch.bottom": {
@@ -1385,20 +1015,10 @@
     },
     "columnview": {
       "widget": "Gtk.ColumnView",
-      "variants": [
-        "view",
-        "view.expander"
-      ],
+      "variants": [],
       "states": [
         "base",
-        "focus-visible",
-        "disabled",
-        "data-[selected]",
-        "data-[selected]:focus",
-        "disabled:data-[selected]",
-        "hover",
-        "data-[state=checked]",
-        "data-[selected]:hover"
+        "focus-visible"
       ],
       "classes": {
         "columnview": {
@@ -1413,35 +1033,6 @@
             "outline-2",
             "outline-offset-[-2px]"
           ]
-        },
-        "columnview.view": {
-          "base": [
-            "duration-[300ms]",
-            "outline-offset-[4px]",
-            "shadow-none"
-          ],
-          "disabled": [],
-          "focus-visible": [
-            "outline-2",
-            "outline-offset-[-2px]"
-          ],
-          "data-[selected]": [
-            "rounded-none"
-          ],
-          "data-[selected]:focus": [
-            "rounded-none"
-          ],
-          "disabled:data-[selected]": []
-        },
-        "columnview.view.expander": {
-          "base": [
-            "min-w-4",
-            "min-h-4"
-          ],
-          "hover": [],
-          "data-[selected]": [],
-          "data-[state=checked]": [],
-          "data-[selected]:hover": []
         }
       }
     },
@@ -1470,9 +1061,7 @@
     "entry": {
       "widget": "Gtk.Entry",
       "variants": [
-        "error",
-        "flat",
-        "warning"
+        "flat"
       ],
       "states": [
         "base",
@@ -1485,41 +1074,27 @@
             "min-h-8.5",
             "rounded-[9px]",
             "gap-[6px]",
-            "transition-[outline-color,outline-width,outline-offset]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "duration-[300ms]",
             "outline-offset-[-2px]",
+            "transition-[outline-color,outline-width,outline-offset]",
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
             "outline-2",
             "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
           ],
           "disabled": []
         },
-        "entry.error": {
-          "base": [
-            "duration-[300ms]",
-            "outline-offset-[-2px]",
-            "outline-2"
-          ]
-        },
         "entry.flat": {
           "base": [
             "p-0.5",
             "min-h-0",
-            "rounded-none",
-            "shadow-none"
+            "shadow-none",
+            "rounded-none"
           ],
           "disabled": [
             "p-0.5",
             "min-h-0",
-            "rounded-none",
-            "shadow-none"
-          ]
-        },
-        "entry.warning": {
-          "base": [
-            "duration-[300ms]",
-            "outline-offset-[-2px]",
-            "outline-2"
+            "shadow-none",
+            "rounded-none"
           ]
         }
       }
@@ -1598,7 +1173,6 @@
       "widget": "Adw.HeaderBar",
       "variants": [
         "adaptive-mode-flat",
-        "default-decoration",
         "flat",
         "titlebar"
       ],
@@ -1608,29 +1182,18 @@
       "classes": {
         "headerbar": {
           "base": [
-            "py-0",
-            "px-1.5",
             "mx-[-1px]",
             "min-h-[47px]",
-            "border-b-[1px]",
-            "border-solid",
-            "rounded-none",
+            "shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]",
             "transition-[background-color]",
             "duration-200",
-            "ease-[ease-out]",
-            "shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]"
+            "ease-[ease-out]"
           ]
         },
         "headerbar.adaptive-mode-flat": {
           "base": [
             "shadow-none",
             "min-h-11.5"
-          ]
-        },
-        "headerbar.default-decoration": {
-          "base": [
-            "p-1",
-            "min-h-[37px]"
           ]
         },
         "headerbar.flat": {
@@ -1658,26 +1221,10 @@
       ],
       "states": [
         "base",
-        "disabled",
-        "focus-visible",
         "data-[selected]",
-        "disabled:data-[selected]",
         "data-[state=checked]"
       ],
       "classes": {
-        "label": {
-          "base": [
-            "duration-[300ms]",
-            "outline-offset-[4px]"
-          ],
-          "disabled": [],
-          "focus-visible": [
-            "outline-2",
-            "outline-offset-[-2px]"
-          ],
-          "data-[selected]": [],
-          "disabled:data-[selected]": []
-        },
         "label.day-number": {
           "base": [
             "p-[3px]"
@@ -1687,8 +1234,7 @@
           ],
           "data-[state=checked]": [
             "rounded-[9px]"
-          ],
-          "disabled:data-[selected]": []
+          ]
         },
         "label.sidebar-label": {
           "base": [
@@ -1729,16 +1275,15 @@
         "hover",
         "active",
         "disabled",
-        "focus-visible",
-        "data-[selected]"
+        "focus-visible"
       ],
       "classes": {
         "link": {
           "base": [
-            "duration-[300ms]",
-            "outline-offset-[4px]",
             "font-inherit",
+            "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset]",
+            "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
           "hover": [],
@@ -1747,8 +1292,7 @@
           "focus-visible": [
             "outline-2",
             "outline-offset-[-2px]"
-          ],
-          "data-[selected]": []
+          ]
         }
       }
     },
@@ -1822,17 +1366,12 @@
     },
     "modelbutton": {
       "widget": "a row in a Gtk.PopoverMenu",
-      "variants": [
-        "flat"
-      ],
+      "variants": [],
       "states": [
         "base",
         "hover",
         "active",
-        "data-[selected]",
-        "data-[selected]:active",
-        "disabled",
-        "disabled:data-[selected]"
+        "data-[selected]"
       ],
       "classes": {
         "modelbutton": {
@@ -1845,20 +1384,7 @@
           ],
           "hover": [],
           "active": [],
-          "data-[selected]": [],
-          "data-[selected]:active": []
-        },
-        "modelbutton.flat": {
-          "base": [
-            "px-[5px]",
-            "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
-            "min-h-6.5",
-            "rounded-[5px]"
-          ],
-          "hover": [],
-          "disabled": [],
-          "data-[selected]": [],
-          "disabled:data-[selected]": []
+          "data-[selected]": []
         }
       }
     },
@@ -1873,7 +1399,9 @@
       "classes": {
         "popover.menu": {
           "base": [
-            "p-0"
+            "pt-0",
+            "pb-1",
+            "px-0"
           ]
         }
       }
@@ -1884,16 +1412,9 @@
         "osd"
       ],
       "states": [
-        "base",
-        "disabled"
+        "base"
       ],
       "classes": {
-        "progressbar": {
-          "base": [
-            "text-[smaller]"
-          ],
-          "disabled": []
-        },
         "progressbar.osd": {
           "base": [
             "min-w-0.5",
@@ -1917,22 +1438,20 @@
         "indeterminate:hover",
         "data-[state=checked]",
         "indeterminate:active",
-        "indeterminate:disabled",
         "data-[state=checked]:hover",
-        "data-[state=checked]:active",
-        "data-[state=checked]:disabled"
+        "data-[state=checked]:active"
       ],
       "classes": {
         "radio": {
           "base": [
             "p-[3px]",
+            "transition-[background,box-shadow]",
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
             "min-h-3.5",
             "min-w-3.5",
             "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)]",
-            "rounded-full",
-            "transition-[background,box-shadow]",
-            "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            "rounded-full"
           ],
           "hover": [
             "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]"
@@ -1940,9 +1459,7 @@
           "active": [
             "shadow-none"
           ],
-          "disabled": [
-            "shadow-none"
-          ],
+          "disabled": [],
           "indeterminate": [
             "shadow-none"
           ],
@@ -1950,19 +1467,9 @@
           "data-[state=checked]": [
             "shadow-none"
           ],
-          "indeterminate:active": [
-            "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
-          ],
-          "indeterminate:disabled": [
-            "shadow-none"
-          ],
+          "indeterminate:active": [],
           "data-[state=checked]:hover": [],
-          "data-[state=checked]:active": [
-            "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
-          ],
-          "data-[state=checked]:disabled": [
-            "shadow-none"
-          ]
+          "data-[state=checked]:active": []
         },
         "radio.left": {
           "base": [
@@ -1981,7 +1488,6 @@
     "row": {
       "widget": "Gtk.ListBoxRow / Adw.ActionRow",
       "variants": [
-        "activatable",
         "button.destructive-action",
         "button.suggested-action",
         "entry",
@@ -2000,38 +1506,22 @@
         "base",
         "focus-visible",
         "data-[selected]",
-        "disabled:data-[selected]",
-        "hover",
-        "active",
-        "data-[selected]:hover",
-        "data-[selected]:active",
         "disabled",
         "last"
       ],
       "classes": {
         "row": {
           "base": [
-            "duration-[300ms]",
             "outline-offset-[4px]",
             "transition-[outline-color,outline-width,outline-offset]",
+            "duration-200",
             "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
           "focus-visible": [
             "outline-2",
             "outline-offset-[-2px]"
           ],
-          "data-[selected]": [],
-          "disabled:data-[selected]": []
-        },
-        "row.activatable": {
-          "hover": [],
-          "active": [
-            "shadow-[inset_0_2px_2px_-2px_rgba(0,0,0,0.2)]"
-          ],
-          "data-[selected]:hover": [],
-          "data-[selected]:active": [
-            "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.5)]"
-          ]
+          "data-[selected]": []
         },
         "row.button.destructive-action": {
           "base": []
@@ -2138,9 +1628,7 @@
       "widget": "Gtk.Scale",
       "variants": [
         "color",
-        "color.fine-tune",
-        "color.fine-tune.horizontal",
-        "color.fine-tune.vertical"
+        "color.fine-tune"
       ],
       "states": [
         "base",
@@ -2151,8 +1639,7 @@
           "base": [
             "p-3",
             "min-h-2.5",
-            "min-w-2.5",
-            "duration-[300ms]"
+            "min-w-2.5"
           ],
           "disabled": []
         },
@@ -2165,24 +1652,13 @@
           "base": [
             "p-0.5"
           ]
-        },
-        "scale.color.fine-tune.horizontal": {
-          "base": [
-            "py-0.5"
-          ]
-        },
-        "scale.color.fine-tune.vertical": {
-          "base": [
-            "px-0.5"
-          ]
         }
       }
     },
     "scrollbar": {
       "widget": "Gtk.Scrollbar",
       "variants": [
-        "overlay-indicator",
-        "vertical"
+        "overlay-indicator"
       ],
       "states": [
         "base"
@@ -2192,12 +1668,6 @@
           "base": [
             "p-0",
             "shadow-none"
-          ]
-        },
-        "scrollbar.vertical": {
-          "base": [
-            "pt-1.5",
-            "mt-[-1px]"
           ]
         }
       }
@@ -2237,8 +1707,6 @@
         },
         "separator.wide": {
           "base": [
-            "p-0",
-            "m-0",
             "min-w-[5px]",
             "min-h-[5px]",
             "shadow-[inset_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
@@ -2301,9 +1769,7 @@
     "spinbutton": {
       "widget": "Gtk.SpinButton",
       "variants": [
-        "error",
-        "flat",
-        "warning"
+        "flat"
       ],
       "states": [
         "base",
@@ -2316,41 +1782,27 @@
             "min-h-8.5",
             "rounded-[9px]",
             "gap-[0]",
-            "transition-[outline-color,outline-width,outline-offset]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "duration-[300ms]",
             "outline-offset-[-2px]",
+            "transition-[outline-color,outline-width,outline-offset]",
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
             "outline-2",
             "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
           ],
           "disabled": []
         },
-        "spinbutton.error": {
-          "base": [
-            "duration-[300ms]",
-            "outline-offset-[-2px]",
-            "outline-2"
-          ]
-        },
         "spinbutton.flat": {
           "base": [
             "p-0.5",
             "min-h-0",
-            "rounded-none",
-            "shadow-none"
+            "shadow-none",
+            "rounded-none"
           ],
           "disabled": [
             "p-0.5",
             "min-h-0",
             "shadow-none",
             "rounded-none"
-          ]
-        },
-        "spinbutton.warning": {
-          "base": [
-            "duration-[300ms]",
-            "outline-offset-[-2px]",
-            "outline-2"
           ]
         }
       }
@@ -2401,24 +1853,6 @@
         }
       }
     },
-    "stackswitcher": {
-      "widget": "Gtk.StackSwitcher",
-      "variants": [],
-      "states": [
-        "base",
-        "focus"
-      ],
-      "classes": {
-        "stackswitcher": {
-          "base": [
-            "shadow-none"
-          ],
-          "focus": [
-            "shadow-none"
-          ]
-        }
-      }
-    },
     "statusbar": {
       "widget": "Gtk.Statusbar",
       "variants": [],
@@ -2451,13 +1885,11 @@
         "switch": {
           "base": [
             "p-[3px]",
-            "font-bold",
-            "text-[smaller]",
             "rounded-[14px]",
+            "outline-offset-[5px]",
             "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-            "duration-[300ms]",
-            "outline-offset-[5px]"
+            "duration-200",
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
           ],
           "hover": [],
           "active": [],
@@ -2496,7 +1928,6 @@
             "min-h-6.5",
             "min-w-7.5",
             "font-normal",
-            "border-[1px]",
             "shadow-[0_0_0_1px_RGB(0_0_0/3%),0_1px_3px_1px_RGB(0_0_0/7%),0_2px_6px_2px_RGB(0_0_0/3%)]",
             "rounded-[9px]"
           ],
@@ -2508,11 +1939,11 @@
           "data-[selected]": [],
           "data-[state=checked]": [
             "outline-offset-[-2px]",
-            "outline-2",
-            "shadow-[inset_4px_0_var(--accent-bg-color)]",
             "transition-[outline-color,outline-width,outline-offset]",
             "duration-200",
-            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+            "outline-2",
+            "shadow-[inset_4px_0_var(--accent-bg-color)]"
           ],
           "data-[selected]:hover": [],
           "data-[selected]:active": []
@@ -2654,9 +2085,7 @@
     },
     "tooltip": {
       "widget": "Gtk.Tooltip",
-      "variants": [
-        "csd"
-      ],
+      "variants": [],
       "states": [
         "base"
       ],
@@ -2666,12 +2095,6 @@
             "py-1.5",
             "px-2.5",
             "rounded-[9px]",
-            "shadow-none"
-          ]
-        },
-        "tooltip.csd": {
-          "base": [
-            "rounded-[5px]",
             "shadow-none"
           ]
         }
@@ -2724,25 +2147,15 @@
       "widget": "Adw.ApplicationWindow",
       "variants": [
         "csd",
-        "csd.dialog.message",
         "csd.fullscreen",
         "csd.maximized",
-        "csd.popup",
         "csd.ssd-frame",
         "csd.tiled",
         "csd.tiled-bottom",
         "csd.tiled-left",
         "csd.tiled-right",
         "csd.tiled-top",
-        "dialog.message.csd.background",
-        "fullscreen",
-        "maximized",
-        "solid-csd",
-        "tiled",
-        "tiled-bottom",
-        "tiled-left",
-        "tiled-right",
-        "tiled-top"
+        "solid-csd"
       ],
       "states": [
         "base"
@@ -2753,16 +2166,10 @@
             "m-0",
             "shadow-[0_0_14px_5px_transparent,0_0_10px_5px_RGB(0_0_0/8%),0_0_0_1px_RGB(0_0_0/5%)]",
             "rounded-[var(--window-radius)]",
+            "outline-offset-[-1px]",
             "transition-[box-shadow]",
             "duration-200",
-            "ease-[ease-out]",
-            "outline-offset-[-1px]"
-          ]
-        },
-        "window.csd.dialog.message": {
-          "base": [
-            "rounded-[8px]",
-            "shadow-[0_0_14px_2px_RGB(0_0_6/3%),0_0_5px_2px_RGB(0_0_6/10%),0_0_0_1px_RGB(0_0_0/5%)]"
+            "ease-[ease-out]"
           ]
         },
         "window.csd.fullscreen": {
@@ -2773,12 +2180,6 @@
         "window.csd.maximized": {
           "base": [
             "shadow-none"
-          ]
-        },
-        "window.csd.popup": {
-          "base": [
-            "rounded-[5px]",
-            "shadow-[0_1px_2px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.13)]"
           ]
         },
         "window.csd.ssd-frame": {
@@ -2812,82 +2213,11 @@
             "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
           ]
         },
-        "window.dialog.message.csd.background": {
-          "base": [
-            "rounded-bl-[9px]",
-            "rounded-br-[9px]"
-          ]
-        },
-        "window.fullscreen": {
-          "base": [
-            "rounded-none",
-            "shadow-none"
-          ]
-        },
-        "window.maximized": {
-          "base": [
-            "rounded-none",
-            "shadow-none"
-          ]
-        },
         "window.solid-csd": {
           "base": [
             "p-[5px]",
             "m-0",
-            "rounded-none",
             "shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-backdrop-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
-          ]
-        },
-        "window.tiled": {
-          "base": [
-            "rounded-none",
-            "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
-          ]
-        },
-        "window.tiled-bottom": {
-          "base": [
-            "rounded-none",
-            "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
-          ]
-        },
-        "window.tiled-left": {
-          "base": [
-            "rounded-none",
-            "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
-          ]
-        },
-        "window.tiled-right": {
-          "base": [
-            "rounded-none",
-            "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
-          ]
-        },
-        "window.tiled-top": {
-          "base": [
-            "rounded-none",
-            "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
-          ]
-        }
-      }
-    },
-    "windowcontrols": {
-      "widget": "Gtk.WindowControls",
-      "variants": [
-        "end",
-        "start"
-      ],
-      "states": [
-        "base"
-      ],
-      "classes": {
-        "windowcontrols.end": {
-          "base": [
-            "mx-[7px]"
-          ]
-        },
-        "windowcontrols.start": {
-          "base": [
-            "mx-[7px]"
           ]
         }
       }
@@ -2918,7 +2248,6 @@
         ".document",
         ".edit-icon",
         ".error",
-        ".heading",
         ".icon",
         ".large-title",
         ".monospace",
@@ -2943,7 +2272,6 @@
     "internal": {
       "reason": "Nodes GTK draws inside a widget. The web builds those out of elements with no name of their own, so there is nothing to generate even though they carry real metrics -- read them off the parent in widgets.json.",
       "nodes": [
-        "*",
         ".app-version",
         ".apply-button",
         ".box",
@@ -2951,11 +2279,9 @@
         ".collapse-spacing",
         ".combo-searchbar",
         ".content-pane",
-        ".default-decoration",
         ".device-view",
         ".dialog-action-area",
         ".dialog-action-box",
-        ".drawing",
         ".dropdown-searchbar",
         ".editable-area",
         ".emoji-searchbar",
@@ -2975,7 +2301,6 @@
         ".start-action",
         ".suffixes",
         ".tab-unpin-icon",
-        ".tile",
         ".view",
         "accelerator",
         "arrow",
@@ -2990,7 +2315,6 @@
         "drag-handle",
         "drawing",
         "emoji-completion-row",
-        "expander-widget",
         "fill",
         "flowboxchild",
         "grid",
@@ -3005,6 +2329,7 @@
         "outline",
         "overlay",
         "overshoot",
+        "picture",
         "plane",
         "progress",
         "revealer",
@@ -3018,7 +2343,6 @@
         "text",
         "title",
         "trough",
-        "undershoot",
         "value",
         "viewport",
         "widget",

@@ -1,0 +1,268 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 05-ADWAITA-COMPONENTS(1)          General Commands Manual           05-ADWAITA-COMPONENTS(1)
+#
+# NAME
+#      bin/05-adwaita-components — the component list, out of the class map
+#
+# SYNOPSIS
+#      bin/05-adwaita-components [--legacy] [MAP] > components.json
+#
+# DESCRIPTION
+#      Reads the selector-to-classes map bin/03-adwaita-tailwind produces and writes, as JSON on
+#      stdout, the list of components to build: one entry per component, its variants named, its
+#      states listed, and every class it needs carried with it.
+#
+#      This is the second of the two passes. MAP defaults to vendor/adwaita/widgets.json, which
+#      is what the pass before it writes.
+#
+#      THE MAP IS NOT THE LIST, which is the whole reason this is a second pass. The map has one
+#      entry per selector, and a selector is not a component three times over:
+#
+#      `button.flat`, `button.pill` and `button.suggested-action` are one component with three
+#      variants, not three components.
+#
+#      `trough`, `slider`, `arrow` and `contents` are render nodes inside a widget. GTK styles
+#      its internals as CSS nodes; the web builds them out of elements with no name of their
+#      own, so there is nothing to generate.
+#
+#      `.title-1`, `.heading`, `.dim-label` and `.monospace` are typography, which is one item
+#      carrying text styles rather than a component each.
+#
+#      `treeview`, `iconview`, `notebook` and `menubar` are GTK 3 widgets libadwaita still
+#      styles and no new application uses.
+#
+#      WHICH IS WHICH CANNOT BE READ OFF THE CSS. A GTK node name does not say whether it is a
+#      widget or a part of one, so the tables below say instead, and anything they do not
+#      mention is reported as unclassified rather than dropped. A list which silently loses
+#      entries is worse than one which admits what it does not know.
+#
+# OPTIONS
+#      --legacy   Include the GTK 3 widgets, which are excluded by default.
+#
+# EXIT STATUS
+#      The bin/05-adwaita-components utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/03-adwaita-tailwind, bin/01-fetch-adwaita
+#
+# adwaita-cn                     October 12, 2026                     05-ADWAITA-COMPONENTS(1)
+
+require "json"
+
+module AdwaitaComponents
+  # A widget, and what it is called where it is documented. The key is the GTK CSS node; a
+  # component is built once per entry here and its variants become its props.
+  COMPONENTS = {
+    "button" => "Gtk.Button",
+    "splitbutton" => "Adw.SplitButton",
+    "menubutton" => "Gtk.MenuButton",
+    "modelbutton" => "a row in a Gtk.PopoverMenu",
+    "toggle" => "Adw.Toggle",
+    "toggle-group" => "Adw.ToggleGroup",
+    "entry" => "Gtk.Entry",
+    "spinbutton" => "Gtk.SpinButton",
+    "check" => "Gtk.CheckButton",
+    "radio" => "Gtk.CheckButton, radio",
+    "checkbutton" => "Gtk.CheckButton with its label",
+    "switch" => "Gtk.Switch",
+    "scale" => "Gtk.Scale",
+    "progressbar" => "Gtk.ProgressBar",
+    "levelbar" => "Gtk.LevelBar",
+    "spinner" => "Adw.Spinner",
+    "row" => "Gtk.ListBoxRow / Adw.ActionRow",
+    "list" => "Gtk.ListBox",
+    "listview" => "Gtk.ListView",
+    "gridview" => "Gtk.GridView",
+    "columnview" => "Gtk.ColumnView",
+    "flowbox" => "Gtk.FlowBox",
+    "expander" => "Adw.ExpanderRow",
+    "headerbar" => "Adw.HeaderBar",
+    "windowcontrols" => "Gtk.WindowControls",
+    "windowtitle" => "Adw.WindowTitle",
+    "window" => "Adw.ApplicationWindow",
+    "sheet" => "Adw.BottomSheet",
+    "popover" => "Gtk.Popover",
+    "tooltip" => "Gtk.Tooltip",
+    "toast" => "Adw.Toast",
+    "banner" => "Adw.Banner",
+    "statuspage" => "Adw.StatusPage",
+    "tab" => "Adw.TabBar's tab",
+    "tabbar" => "Adw.TabBar",
+    "tabthumbnail" => "Adw.TabOverview's thumbnail",
+    "viewswitcher" => "Adw.ViewSwitcher",
+    "viewswitchertitle" => "Adw.ViewSwitcherTitle",
+    "stackswitcher" => "Gtk.StackSwitcher",
+    "separator" => "Gtk.Separator",
+    "scrollbar" => "Gtk.Scrollbar",
+    "avatar" => "Adw.Avatar",
+    "calendar" => "Gtk.Calendar",
+    "colorswatch" => "Gtk.ColorSwatch",
+    "emoji" => "Gtk.EmojiChooser's emoji",
+    "frame" => "Gtk.Frame",
+    "label" => "Gtk.Label",
+    "link" => "a link button",
+    "shortcut-label" => "Gtk.ShortcutLabel",
+    "statusbar" => "Gtk.Statusbar",
+  }.freeze
+
+  # Style classes which are components in their own right rather than a variant of a node.
+  CLASS_COMPONENTS = {
+    ".card" => "the card style class",
+    ".toolbar" => "Adw.ToolbarView's bars",
+    ".boxed-list" => "Adw.PreferencesGroup's list",
+    ".navigation-sidebar" => "Adw.NavigationSplitView's sidebar",
+    ".sidebar" => "a sidebar pane",
+    ".osd" => "an on-screen-display overlay",
+    ".keycap" => "a key in a shortcuts window",
+    ".app-notification" => "an in-app notification",
+    ".titlebar" => "a window's title bar",
+    ".top-bar" => "Adw.ToolbarView's top bar",
+    ".bottom-bar" => "Adw.ToolbarView's bottom bar",
+    ".close" => "a close button",
+  }.freeze
+
+  # Typography, which is one item of text styles rather than a component each.
+  TYPOGRAPHY = %w[
+    .title-1 .title-2 .title-3 .title-4 .large-title .heading .caption .caption-heading .body
+    .document .monospace .numeric .dim-label .dimmed .accent .error .warning .success .title
+    .subtitle .icon .edit-icon
+  ].freeze
+
+  # Nodes GTK draws inside a widget. A web component has no element to hang these on, so there
+  # is nothing to generate even though they carry real metrics.
+  INTERNAL = %w[
+    * widget box grid child block text contents trough slider arrow highlight mask plane fill
+    value cell shadow dimming overlay image picture revealer viewport windowhandle header
+    outline item tabbox tabs tabboxchild sort-indicator cursor-handle drag-handle dndtarget
+    accelerator color marks indicator indicatorbin progress undershoot overshoot flowboxchild
+    expander-widget drawing selection popup decoration nothing paintable
+    shortcut shortcuts-section emoji-completion-row title
+  ].freeze
+
+  # GTK 3 widgets libadwaita still styles and nothing new is built with.
+  LEGACY = %w[treeview iconview notebook menubar placessidebar filelistcell].freeze
+
+  # Style classes which belong to one GTK dialog or chooser rather than to a component anyone
+  # would install.
+  INTERNAL_CLASSES = %w[
+    .box .view .apply-button .collapse-spacing .combo-searchbar .content-pane .default-decoration
+    .dialog-action-area .dialog-action-box .dropdown-searchbar .editable-area .emoji-searchbar
+    .emoji-toolbar .end-action .start-action .heading-bin .message-area .new-tab-button .prefixes
+    .suffixes .response-area .row-header .shortcut-row .shortcuts-search-results .sidebar-button
+    .sidebar-pane .tab-unpin-icon .tile .device-view .app-version .child .indicator .drawing
+    .shortcuts-section .shortcut .emoji-completion-row .sidebar-label .sidebar-icon .day-number
+    .separator .wide .osd-toolbar
+  ].freeze
+
+  # The node a selector is about. `*` is the universal selector and names no node at all, so
+  # it keeps its own name rather than becoming the empty string.
+  def self.node_of(selector)
+    node = selector[/\A[a-z][a-z0-9-]*/]
+
+    if !node.nil?
+      node
+    elsif selector.start_with?(".")
+      selector[/\A\.[a-z0-9-]+/].to_s
+    else
+      selector
+    end
+  end
+
+  def self.classify(node)
+    if COMPONENTS.key?(node) || CLASS_COMPONENTS.key?(node)
+      :component
+    elsif TYPOGRAPHY.include?(node)
+      :typography
+    elsif INTERNAL.include?(node) || INTERNAL_CLASSES.include?(node)
+      :internal
+    elsif LEGACY.include?(node)
+      :legacy
+    else
+      :unclassified
+    end
+  end
+
+  def self.run(argv)
+    legacy = argv.delete("--legacy")
+    source = argv.first || File.expand_path("../vendor/adwaita/widgets.json", __dir__)
+
+    map = JSON.parse(File.read(source))
+
+    grouped = {}
+
+    map.each do |selector, states|
+      node = self.node_of(selector)
+      kind = self.classify(node)
+
+      if kind == :legacy && legacy.nil?
+        next
+      end
+
+      group = grouped[node] ||= {
+        kind: kind,
+        name: COMPONENTS[node] || CLASS_COMPONENTS[node],
+        selectors: {},
+      }
+      group[:selectors][selector] = states
+    end
+
+    components = grouped.select{|_node, group| group[:kind] == :component}
+
+    puts(JSON.pretty_generate(self.as_items(grouped, components)))
+  end
+
+  # Why each set-aside group was set aside, carried into the output so the exclusions travel
+  # with the list rather than living only in this script.
+  ASIDES = {
+    typography: "Text styles rather than components: one item carrying all of them.",
+    internal: "Nodes GTK draws inside a widget. The web builds those out of elements with no " \
+              "name of their own, so there is nothing to generate even though they carry real " \
+              "metrics -- read them off the parent in widgets.json.",
+    legacy: "GTK 3 widgets libadwaita still styles and nothing new is built with. Pass " \
+            "--legacy to include them.",
+    unclassified: "Nodes the tables in this script do not mention. Classify them rather than " \
+                  "leaving them here.",
+  }.freeze
+
+  # The component list, plus what was set aside and why. Nothing is dropped silently: a
+  # consumer which cannot see the exclusions cannot argue with them.
+  def self.as_items(grouped, components)
+    {
+      "components" => self.components(components),
+      "excluded" => %i[typography unclassified legacy internal].to_h do |kind|
+        [
+          kind.to_s,
+          {
+            "reason" => ASIDES.fetch(kind),
+            "nodes" => grouped.select{|_node, group| group[:kind] == kind}.keys.sort,
+          },
+        ]
+      end,
+    }
+  end
+
+  def self.components(components)
+    components.sort.to_h do |node, group|
+      [
+        node,
+        {
+          "widget" => group[:name],
+          "variants" => self.variants_of(node, group),
+          "states" => group[:selectors].values.flat_map(&:keys).uniq,
+          "classes" => group[:selectors],
+        },
+      ]
+    end
+  end
+
+  def self.variants_of(node, group)
+    group[:selectors].keys
+      .reject{|selector| selector == node}
+      .map{|selector| selector.delete_prefix(node).delete_prefix(".")}
+  end
+
+end
+
+AdwaitaComponents.run(ARGV)

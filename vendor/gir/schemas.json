@@ -5541,6 +5541,11 @@
           "from": "Gtk.ATContext",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "AboutDialog": {
@@ -6248,6 +6253,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "dialog",
+        "parts": [
+          "dialog"
+        ],
+        "styles": []
       }
     },
     "AboutWindow": {
@@ -7156,13 +7168,25 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "AccessibleHyperlink": {
       "class": "Gtk.AccessibleHyperlink",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "ActionBar": {
       "class": "Gtk.ActionBar",
@@ -7558,6 +7582,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "actionbar",
+        "parts": [
+          "revealer",
+          "box",
+          "start",
+          "center",
+          "end"
+        ],
+        "styles": []
       }
     },
     "ActionRow": {
@@ -8054,13 +8089,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "row",
+        "parts": [],
+        "styles": []
       }
     },
     "ActivateAction": {
       "class": "Gtk.ActivateAction",
       "namespace": "Gtk",
       "parent": "ShortcutAction",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Adjustment": {
       "class": "Gtk.Adjustment",
@@ -8127,6 +8172,11 @@
           "from": "Gtk.Adjustment",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "AlertDialog": {
@@ -8683,6 +8733,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "AlternativeTrigger": {
@@ -8712,6 +8767,11 @@
           "type": "node",
           "gobject": "Gtk.ShortcutTrigger"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Animation": {
@@ -8778,13 +8838,23 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "AnimationTarget": {
       "class": "Adw.AnimationTarget",
       "namespace": "Adw",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "AnyFilter": {
       "class": "Gtk.AnyFilter",
@@ -8812,6 +8882,11 @@
           "from": "Gtk.MultiFilter",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "AppChooserButton": {
@@ -9238,6 +9313,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "AppChooserDialog": {
@@ -9940,6 +10020,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "AppChooserWidget": {
@@ -10386,6 +10473,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "appchooser",
+        "parts": [],
+        "styles": []
       }
     },
     "Application": {
@@ -10448,6 +10540,11 @@
           "type": "node",
           "gobject": "Adw.StyleManager"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ApplicationWindow": {
@@ -11146,6 +11243,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "AspectFrame": {
@@ -11583,6 +11685,11 @@
           "from": "Gtk.AspectFrame",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Assistant": {
@@ -12275,6 +12382,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [],
+        "styles": []
       }
     },
     "AssistantPage": {
@@ -12332,6 +12444,11 @@
           "from": "Gtk.AssistantPage",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Avatar": {
@@ -12747,6 +12864,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "avatar",
+        "parts": [],
+        "styles": []
       }
     },
     "Banner": {
@@ -13166,6 +13288,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "banner",
+        "parts": [
+          "banner"
+        ],
+        "styles": []
       }
     },
     "Bin": {
@@ -13541,13 +13670,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "BinLayout": {
       "class": "Gtk.BinLayout",
       "namespace": "Gtk",
       "parent": "LayoutManager",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "BookmarkList": {
       "class": "Gtk.BookmarkList",
@@ -13615,6 +13754,11 @@
           "from": "Gtk.BookmarkList",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "BoolFilter": {
@@ -13643,6 +13787,11 @@
           "from": "Gtk.BoolFilter",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "BottomSheet": {
@@ -14140,6 +14289,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Box": {
@@ -14572,6 +14726,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "box",
+        "parts": [],
+        "styles": []
       }
     },
     "BoxLayout": {
@@ -14625,6 +14784,11 @@
           "from": "Gtk.BoxLayout",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Breakpoint": {
@@ -14643,6 +14807,11 @@
           "type": "node",
           "gobject": "Adw.BreakpointCondition"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "BreakpointBin": {
@@ -15029,6 +15198,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Builder": {
@@ -15068,13 +15242,23 @@
           "from": "Gtk.Builder",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "BuilderCScope": {
       "class": "Gtk.BuilderCScope",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "BuilderListItemFactory": {
       "class": "Gtk.BuilderListItemFactory",
@@ -15113,6 +15297,11 @@
           "type": "node",
           "gobject": "Gtk.BuilderScope"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Button": {
@@ -15560,6 +15749,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "button",
+        "parts": [],
+        "styles": [
+          "flat",
+          "keyboard-activating",
+          "circular"
+        ]
       }
     },
     "ButtonContent": {
@@ -15964,6 +16162,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "buttoncontent",
+        "parts": [
+          "box",
+          "image",
+          "label"
+        ],
+        "styles": []
       }
     },
     "ButtonRow": {
@@ -16419,13 +16626,25 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "row",
+        "parts": [
+          "box"
+        ],
+        "styles": []
       }
     },
     "CClosureExpression": {
       "class": "Gtk.CClosureExpression",
       "namespace": "Gtk",
       "parent": "Expression",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Calendar": {
       "class": "Gtk.Calendar",
@@ -16882,19 +17101,43 @@
           "from": "Gtk.Calendar",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "calendar",
+        "parts": [
+          "header",
+          "button",
+          "stack",
+          "label",
+          "grid"
+        ],
+        "styles": [
+          "other-month",
+          "today"
+        ]
       }
     },
     "CallbackAction": {
       "class": "Gtk.CallbackAction",
       "namespace": "Gtk",
       "parent": "ShortcutAction",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "CallbackAnimationTarget": {
       "class": "Adw.CallbackAnimationTarget",
       "namespace": "Adw",
       "parent": "AnimationTarget",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Carousel": {
       "class": "Adw.Carousel",
@@ -17349,6 +17592,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "carousel",
+        "parts": [],
+        "styles": []
       }
     },
     "CarouselIndicatorDots": {
@@ -17724,6 +17972,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "carouselindicatordots",
+        "parts": [],
+        "styles": []
       }
     },
     "CarouselIndicatorLines": {
@@ -18099,6 +18352,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "carouselindicatorlines",
+        "parts": [],
+        "styles": []
       }
     },
     "CellArea": {
@@ -18139,6 +18397,11 @@
           "type": "node",
           "gobject": "Gtk.CellRenderer"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellAreaBox": {
@@ -18189,6 +18452,11 @@
           "from": "Gtk.CellAreaBox",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellAreaContext": {
@@ -18247,6 +18515,11 @@
           "from": "Gtk.CellAreaContext",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRenderer": {
@@ -18411,6 +18684,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererAccel": {
@@ -19092,6 +19370,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererCombo": {
@@ -19758,6 +20041,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererPixbuf": {
@@ -20003,6 +20291,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererProgress": {
@@ -20227,6 +20520,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererSpin": {
@@ -20893,6 +21191,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererSpinner": {
@@ -21093,6 +21396,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererText": {
@@ -21728,6 +22036,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellRendererToggle": {
@@ -21932,6 +22245,11 @@
           "from": "Gtk.CellRenderer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CellView": {
@@ -22371,6 +22689,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "cellview",
+        "parts": [],
+        "styles": []
       }
     },
     "CenterBox": {
@@ -22816,6 +23139,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CenterLayout": {
@@ -22833,6 +23161,11 @@
           "from": "Gtk.CenterLayout",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CheckButton": {
@@ -23281,6 +23614,14 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "checkbutton",
+        "parts": [
+          "check",
+          "label"
+        ],
+        "styles": []
       }
     },
     "Clamp": {
@@ -23692,6 +24033,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "clamp",
+        "parts": [],
+        "styles": []
       }
     },
     "ClampLayout": {
@@ -23735,6 +24081,11 @@
             "sp"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ClampScrollable": {
@@ -24146,13 +24497,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ClosureExpression": {
       "class": "Gtk.ClosureExpression",
       "namespace": "Gtk",
       "parent": "Expression",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "ColorButton": {
       "class": "Gtk.ColorButton",
@@ -24568,6 +24929,16 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "colorbutton",
+        "parts": [
+          "button",
+          "content"
+        ],
+        "styles": [
+          "color"
+        ]
       }
     },
     "ColorChooserDialog": {
@@ -25259,6 +25630,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "ColorChooserWidget": {
@@ -25655,6 +26033,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ColorDialog": {
@@ -25692,6 +26075,11 @@
           "from": "Gtk.ColorDialog",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ColorDialogButton": {
@@ -26100,6 +26488,16 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "colorbutton",
+        "parts": [
+          "button",
+          "content"
+        ],
+        "styles": [
+          "color"
+        ]
       }
     },
     "ColumnView": {
@@ -26607,6 +27005,19 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "columnview",
+        "parts": [
+          "header",
+          "column",
+          "listview",
+          "rubberband"
+        ],
+        "styles": [
+          "column-separators",
+          "separators"
+        ]
       }
     },
     "ColumnViewCell": {
@@ -26706,6 +27117,11 @@
           "from": "Gtk.ColumnViewCell",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ColumnViewColumn": {
@@ -26817,6 +27233,11 @@
           "from": "Gtk.ColumnViewColumn",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ColumnViewRow": {
@@ -26905,6 +27326,11 @@
           "from": "Gtk.ColumnViewRow",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ColumnViewSorter": {
@@ -26938,6 +27364,11 @@
             "descending"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ComboBox": {
@@ -27442,6 +27873,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "combobox",
+        "parts": [
+          "box",
+          "button",
+          "cellview",
+          "arrow",
+          "window"
+        ],
+        "styles": []
       }
     },
     "ComboBoxText": {
@@ -27946,6 +28388,16 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "combobox",
+        "parts": [
+          "box",
+          "entry",
+          "button",
+          "window"
+        ],
+        "styles": []
       }
     },
     "ComboRow": {
@@ -28554,13 +29006,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "row",
+        "parts": [],
+        "styles": []
       }
     },
     "ConstantExpression": {
       "class": "Gtk.ConstantExpression",
       "namespace": "Gtk",
       "parent": "Expression",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Constraint": {
       "class": "Gtk.Constraint",
@@ -28685,6 +29147,11 @@
             "baseline"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ConstraintGuide": {
@@ -28779,13 +29246,23 @@
             "weak"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ConstraintLayout": {
       "class": "Gtk.ConstraintLayout",
       "namespace": "Gtk",
       "parent": "LayoutManager",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "ConstraintLayoutChild": {
       "class": "Gtk.ConstraintLayoutChild",
@@ -28814,6 +29291,11 @@
           "type": "node",
           "gobject": "Gtk.LayoutManager"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CssProvider": {
@@ -28870,25 +29352,45 @@
             "reduce"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "CustomFilter": {
       "class": "Gtk.CustomFilter",
       "namespace": "Gtk",
       "parent": "Filter",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "CustomLayout": {
       "class": "Gtk.CustomLayout",
       "namespace": "Gtk",
       "parent": "LayoutManager",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "CustomSorter": {
       "class": "Gtk.CustomSorter",
       "namespace": "Gtk",
       "parent": "Sorter",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Dialog": {
       "class": "Adw.Dialog",
@@ -29363,6 +29865,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "DirectoryList": {
@@ -29453,6 +29960,11 @@
           "from": "Gtk.DirectoryList",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "DragIcon": {
@@ -29850,6 +30362,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "DragSource": {
@@ -29972,6 +30489,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "DrawingArea": {
@@ -30378,6 +30900,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "DropControllerMotion": {
@@ -30469,6 +30996,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "DropDown": {
@@ -30967,6 +31499,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "dropdown",
+        "parts": [],
+        "styles": []
       }
     },
     "DropTarget": {
@@ -31092,6 +31629,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "DropTargetAsync": {
@@ -31174,6 +31716,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EditableLabel": {
@@ -31570,6 +32117,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "editablelabel",
+        "parts": [
+          "stack",
+          "label",
+          "text"
+        ],
+        "styles": [
+          "editing"
+        ]
       }
     },
     "EmojiChooser": {
@@ -32046,6 +32604,19 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "popover",
+        "parts": [
+          "box",
+          "entry",
+          "button"
+        ],
+        "styles": [
+          "emoji-searchbar",
+          "emoji-section",
+          "emoji-toolbar"
+        ]
       }
     },
     "Entry": {
@@ -32895,6 +33466,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "entry",
+        "parts": [
+          "text",
+          "image",
+          "progress"
+        ],
+        "styles": []
       }
     },
     "EntryBuffer": {
@@ -32932,6 +33512,11 @@
           "from": "Gtk.EntryBuffer",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EntryCompletion": {
@@ -33031,6 +33616,11 @@
           "from": "Gtk.EntryCompletion",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EntryRow": {
@@ -33577,6 +34167,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "row",
+        "parts": [],
+        "styles": []
       }
     },
     "EnumListItem": {
@@ -33614,6 +34209,11 @@
           "from": "Adw.EnumListItem",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EnumListModel": {
@@ -33653,6 +34253,11 @@
           "from": "Adw.EnumListModel",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EventController": {
@@ -33713,6 +34318,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EventControllerFocus": {
@@ -33793,6 +34403,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EventControllerKey": {
@@ -33853,6 +34468,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EventControllerLegacy": {
@@ -33913,6 +34533,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EventControllerMotion": {
@@ -33993,6 +34618,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EventControllerScroll": {
@@ -34073,6 +34703,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "EveryFilter": {
@@ -34101,6 +34736,11 @@
           "from": "Gtk.MultiFilter",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Expander": {
@@ -34559,6 +35199,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "expander-widget",
+        "parts": [
+          "box",
+          "title",
+          "expander",
+          "label",
+          "child"
+        ],
+        "styles": []
       }
     },
     "ExpanderRow": {
@@ -35064,13 +35715,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "row",
+        "parts": [],
+        "styles": []
       }
     },
     "Expression": {
       "class": "Gtk.Expression",
       "namespace": "Gtk",
       "parent": null,
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "FileChooserDialog": {
       "class": "Gtk.FileChooserDialog",
@@ -35751,6 +36412,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "FileChooserNative": {
@@ -35819,6 +36487,11 @@
           "from": "Gtk.NativeDialog",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "FileChooserWidget": {
@@ -36235,6 +36908,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "filechooser",
+        "parts": [],
+        "styles": []
       }
     },
     "FileDialog": {
@@ -36326,6 +37004,11 @@
           "from": "Gtk.FileDialog",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "FileFilter": {
@@ -36373,6 +37056,11 @@
           "from": "Gtk.FileFilter",
           "type": "node"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "FileLauncher": {
@@ -36411,13 +37099,23 @@
           "from": "Gtk.FileLauncher",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Filter": {
       "class": "Gtk.Filter",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "FilterListModel": {
       "class": "Gtk.FilterListModel",
@@ -36497,6 +37195,11 @@
           "from": "Gtk.FilterListModel",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Fixed": {
@@ -36883,13 +37586,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "FixedLayout": {
       "class": "Gtk.FixedLayout",
       "namespace": "Gtk",
       "parent": "LayoutManager",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "FixedLayoutChild": {
       "class": "Gtk.FixedLayoutChild",
@@ -36929,6 +37642,11 @@
           "type": "node",
           "gobject": "Gsk.Transform"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Flap": {
@@ -37479,6 +38197,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "flap",
+        "parts": [],
+        "styles": []
       }
     },
     "FlattenListModel": {
@@ -37518,6 +38241,11 @@
           "from": "Gtk.FlattenListModel",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "FlowBox": {
@@ -37991,6 +38719,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "flowbox",
+        "parts": [
+          "flowboxchild",
+          "child",
+          "rubberband"
+        ],
+        "styles": []
       }
     },
     "FlowBoxChild": {
@@ -38388,6 +39125,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "FontButton": {
@@ -38814,6 +39556,16 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "fontbutton",
+        "parts": [
+          "button",
+          "content"
+        ],
+        "styles": [
+          "font"
+        ]
       }
     },
     "FontChooserDialog": {
@@ -39495,6 +40247,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "FontChooserWidget": {
@@ -39892,6 +40651,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "fontchooser",
+        "parts": [],
+        "styles": []
       }
     },
     "FontDialog": {
@@ -39952,6 +40716,11 @@
           "from": "Gtk.FontDialog",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "FontDialogButton": {
@@ -40418,6 +41187,16 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "fontbutton",
+        "parts": [
+          "button",
+          "content"
+        ],
+        "styles": [
+          "font"
+        ]
       }
     },
     "Frame": {
@@ -40846,6 +41625,14 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "frame",
+        "parts": [
+          "label",
+          "child"
+        ],
+        "styles": []
       }
     },
     "GLArea": {
@@ -41305,6 +42092,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Gesture": {
@@ -41375,6 +42167,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureClick": {
@@ -41475,6 +42272,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureDrag": {
@@ -41575,6 +42377,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureLongPress": {
@@ -41685,6 +42492,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GesturePan": {
@@ -41800,6 +42612,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureRotate": {
@@ -41870,6 +42687,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureSingle": {
@@ -41970,6 +42792,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureStylus": {
@@ -42080,6 +42907,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureSwipe": {
@@ -42180,6 +43012,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GestureZoom": {
@@ -42250,6 +43087,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GraphicsOffload": {
@@ -42672,6 +43514,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Grid": {
@@ -43108,6 +43955,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "grid",
+        "parts": [],
+        "styles": []
       }
     },
     "GridLayout": {
@@ -43165,6 +44017,11 @@
           "from": "Gtk.GridLayout",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GridLayoutChild": {
@@ -43234,6 +44091,11 @@
           "from": "Gtk.GridLayoutChild",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "GridView": {
@@ -43713,6 +44575,14 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "gridview",
+        "parts": [
+          "child",
+          "rubberband"
+        ],
+        "styles": []
       }
     },
     "HeaderBar": {
@@ -44154,6 +45024,18 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "headerbar",
+        "parts": [
+          "windowhandle",
+          "box",
+          "widget",
+          "windowcontrols",
+          "button",
+          "other"
+        ],
+        "styles": []
       }
     },
     "IMContext": {
@@ -44211,6 +45093,11 @@
             "terminal"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "IMContextSimple": {
@@ -44268,6 +45155,11 @@
             "terminal"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "IMMulticontext": {
@@ -44325,6 +45217,11 @@
             "terminal"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "IconPaintable": {
@@ -44383,6 +45280,11 @@
           "from": "Gtk.IconPaintable",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "IconTheme": {
@@ -44441,6 +45343,11 @@
           "from": "Gtk.IconTheme",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "IconView": {
@@ -45011,6 +45918,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "iconview",
+        "parts": [
+          "rubberband"
+        ],
+        "styles": []
       }
     },
     "Image": {
@@ -45502,6 +46416,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "image",
+        "parts": [
+          "image"
+        ],
+        "styles": []
       }
     },
     "InfoBar": {
@@ -45926,6 +46847,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "infobar",
+        "parts": [],
+        "styles": [
+          "close"
+        ]
       }
     },
     "InlineViewSwitcher": {
@@ -46337,6 +47265,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "inline-view-switcher",
+        "parts": [
+          "inline-view-switcher"
+        ],
+        "styles": []
       }
     },
     "Inscription": {
@@ -46842,6 +47777,11 @@
           "from": "Gtk.Inscription",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "label",
+        "parts": [],
+        "styles": []
       }
     },
     "KeyvalTrigger": {
@@ -46870,6 +47810,11 @@
           "type": "node",
           "gobject": "Gdk.ModifierType"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Label": {
@@ -47475,6 +48420,17 @@
           "from": "Gtk.Label",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "label",
+        "parts": [
+          "selection",
+          "link"
+        ],
+        "styles": [
+          "keycap",
+          "link"
+        ]
       }
     },
     "Layout": {
@@ -47503,6 +48459,11 @@
           "from": "Adw.Layout",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "LayoutChild": {
@@ -47532,13 +48493,23 @@
           "type": "node",
           "gobject": "Gtk.LayoutManager"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "LayoutManager": {
       "class": "Gtk.LayoutManager",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "LayoutSlot": {
       "class": "Adw.LayoutSlot",
@@ -47912,6 +48883,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Leaflet": {
@@ -48420,6 +49396,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "leaflet",
+        "parts": [],
+        "styles": []
       }
     },
     "LeafletPage": {
@@ -48458,6 +49439,11 @@
           "from": "Adw.LeafletPage",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "LevelBar": {
@@ -48899,6 +49885,14 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "levelbar",
+        "parts": [
+          "trough",
+          "block"
+        ],
+        "styles": []
       }
     },
     "LinkButton": {
@@ -49366,6 +50360,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "button",
+        "parts": [],
+        "styles": [
+          "link"
+        ]
       }
     },
     "ListBase": {
@@ -49767,6 +50768,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ListBox": {
@@ -50216,6 +51222,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "list",
+        "parts": [
+          "row"
+        ],
+        "styles": [
+          "separators",
+          "activatable",
+          "boxed-list"
+        ]
       }
     },
     "ListBoxRow": {
@@ -50633,6 +51650,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ListHeader": {
@@ -50692,6 +51714,11 @@
           "from": "Gtk.ListHeader",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ListItem": {
@@ -50791,19 +51818,34 @@
           "from": "Gtk.ListItem",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ListItemFactory": {
       "class": "Gtk.ListItemFactory",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "ListStore": {
       "class": "Gtk.ListStore",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "ListView": {
       "class": "Gtk.ListView",
@@ -51283,6 +52325,14 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "listview",
+        "parts": [
+          "row",
+          "rubberband"
+        ],
+        "styles": []
       }
     },
     "LockButton": {
@@ -51791,6 +52841,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MapListModel": {
@@ -51840,6 +52895,11 @@
           "from": "Gtk.MapListModel",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MediaControls": {
@@ -52237,6 +53297,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MediaFile": {
@@ -52397,6 +53462,11 @@
           "from": "Gtk.MediaStream",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MediaStream": {
@@ -52535,6 +53605,11 @@
           "from": "Gtk.MediaStream",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MenuButton": {
@@ -53052,6 +54127,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "menubutton",
+        "parts": [
+          "button",
+          "content",
+          "arrow"
+        ],
+        "styles": []
       }
     },
     "MessageDialog": {
@@ -53756,13 +54840,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MnemonicAction": {
       "class": "Gtk.MnemonicAction",
       "namespace": "Gtk",
       "parent": "ShortcutAction",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "MnemonicTrigger": {
       "class": "Gtk.MnemonicTrigger",
@@ -53779,6 +54873,11 @@
           "from": "Gtk.MnemonicTrigger",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MountOperation": {
@@ -53818,6 +54917,11 @@
           "type": "node",
           "gobject": "Gtk.Window"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MultiFilter": {
@@ -53846,6 +54950,11 @@
           "from": "Gtk.MultiFilter",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MultiLayoutView": {
@@ -54231,6 +55340,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "multi-layout-view",
+        "parts": [],
+        "styles": []
       }
     },
     "MultiSelection": {
@@ -54270,6 +55384,11 @@
           "from": "Gtk.MultiSelection",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "MultiSorter": {
@@ -54298,6 +55417,11 @@
           "from": "Gtk.MultiSorter",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "NamedAction": {
@@ -54315,6 +55439,11 @@
           "from": "Gtk.NamedAction",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "NativeDialog": {
@@ -54363,6 +55492,11 @@
           "from": "Gtk.NativeDialog",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "NavigationPage": {
@@ -54768,6 +55902,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "NavigationSplitView": {
@@ -55235,6 +56374,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "navigation-split-view",
+        "parts": [
+          "navigation-view",
+          "sidebar",
+          "content"
+        ],
+        "styles": []
       }
     },
     "NavigationView": {
@@ -55671,13 +56819,25 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "navigation-view",
+        "parts": [
+          "navigation-view"
+        ],
+        "styles": []
       }
     },
     "NeverTrigger": {
       "class": "Gtk.NeverTrigger",
       "namespace": "Gtk",
       "parent": "ShortcutTrigger",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "NoSelection": {
       "class": "Gtk.NoSelection",
@@ -55716,13 +56876,23 @@
           "from": "Gtk.NoSelection",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "NoneAnimationTarget": {
       "class": "Adw.NoneAnimationTarget",
       "namespace": "Adw",
       "parent": "AnimationTarget",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Notebook": {
       "class": "Gtk.Notebook",
@@ -56196,6 +57366,18 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "notebook",
+        "parts": [
+          "header",
+          "tabs",
+          "arrow",
+          "tab",
+          "stack",
+          "child"
+        ],
+        "styles": []
       }
     },
     "NotebookPage": {
@@ -56306,13 +57488,23 @@
           "from": "Gtk.NotebookPage",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "NothingAction": {
       "class": "Gtk.NothingAction",
       "namespace": "Gtk",
       "parent": "ShortcutAction",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "NumericSorter": {
       "class": "Gtk.NumericSorter",
@@ -56345,13 +57537,23 @@
             "descending"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ObjectExpression": {
       "class": "Gtk.ObjectExpression",
       "namespace": "Gtk",
       "parent": "Expression",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Overlay": {
       "class": "Gtk.Overlay",
@@ -56748,13 +57950,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "OverlayLayout": {
       "class": "Gtk.OverlayLayout",
       "namespace": "Gtk",
       "parent": "LayoutManager",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "OverlayLayoutChild": {
       "class": "Gtk.OverlayLayoutChild",
@@ -56803,6 +58015,11 @@
           "from": "Gtk.OverlayLayoutChild",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "OverlaySplitView": {
@@ -57300,6 +58517,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "overlay-split-view",
+        "parts": [
+          "widget",
+          "sidebar",
+          "content"
+        ],
+        "styles": []
       }
     },
     "PadController": {
@@ -57382,13 +58608,23 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PageSetup": {
       "class": "Gtk.PageSetup",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "PageSetupUnixDialog": {
       "class": "Gtk.PageSetupUnixDialog",
@@ -58069,6 +59305,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "Paned": {
@@ -58567,13 +59810,28 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "paned",
+        "parts": [
+          "child",
+          "separator"
+        ],
+        "styles": [
+          "wide"
+        ]
       }
     },
     "ParamSpecExpression": {
       "class": "Gtk.ParamSpecExpression",
       "namespace": "Gtk",
       "parent": "GObject.ParamSpec",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "PasswordEntry": {
       "class": "Gtk.PasswordEntry",
@@ -59000,6 +60258,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PasswordEntryBuffer": {
@@ -59037,6 +60300,11 @@
           "from": "Gtk.EntryBuffer",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PasswordEntryRow": {
@@ -59583,6 +60851,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Picture": {
@@ -60048,6 +61321,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "picture",
+        "parts": [
+          "picture"
+        ],
+        "styles": []
       }
     },
     "Popover": {
@@ -60524,6 +61804,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "popover",
+        "parts": [
+          "arrow",
+          "contents",
+          "child"
+        ],
+        "styles": []
       }
     },
     "PopoverBin": {
@@ -60953,6 +62242,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "popoverbin",
+        "parts": [
+          "popoverbin"
+        ],
+        "styles": []
       }
     },
     "PopoverMenu": {
@@ -61465,6 +62761,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PopoverMenuBar": {
@@ -61862,6 +63163,16 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "menubar",
+        "parts": [
+          "item",
+          "popover"
+        ],
+        "styles": [
+          "active"
+        ]
       }
     },
     "PreferencesDialog": {
@@ -62367,6 +63678,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "dialog",
+        "parts": [
+          "dialog"
+        ],
+        "styles": []
       }
     },
     "PreferencesGroup": {
@@ -62772,6 +64090,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "preferencesgroup",
+        "parts": [],
+        "styles": []
       }
     },
     "PreferencesPage": {
@@ -63197,6 +64520,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "preferencespage",
+        "parts": [],
+        "styles": []
       }
     },
     "PreferencesRow": {
@@ -63632,6 +64960,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PreferencesWindow": {
@@ -64359,13 +65692,25 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "PrintContext": {
       "class": "Gtk.PrintContext",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "PrintDialog": {
       "class": "Gtk.PrintDialog",
@@ -64424,6 +65769,11 @@
           "from": "Gtk.PrintDialog",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PrintJob": {
@@ -64484,6 +65834,11 @@
           "from": "Gtk.PrintJob",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PrintOperation": {
@@ -64692,13 +66047,23 @@
           "from": "Gtk.PrintOperation",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PrintSettings": {
       "class": "Gtk.PrintSettings",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "PrintUnixDialog": {
       "class": "Gtk.PrintUnixDialog",
@@ -65475,6 +66840,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [],
+        "styles": []
       }
     },
     "Printer": {
@@ -65592,6 +66962,11 @@
           "from": "Gtk.Printer",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ProgressBar": {
@@ -66039,6 +67414,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "progressbar",
+        "parts": [
+          "text",
+          "trough",
+          "progress"
+        ],
+        "styles": []
       }
     },
     "PropertyAnimationTarget": {
@@ -66068,13 +67452,23 @@
           "type": "node",
           "gobject": "GObject.ParamSpec"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "PropertyExpression": {
       "class": "Gtk.PropertyExpression",
       "namespace": "Gtk",
       "parent": "Expression",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "Range": {
       "class": "Gtk.Range",
@@ -66521,6 +67915,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "RecentManager": {
@@ -66548,6 +67947,11 @@
           "from": "Gtk.RecentManager",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Revealer": {
@@ -67002,6 +68406,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "revealer",
+        "parts": [],
+        "styles": []
       }
     },
     "Scale": {
@@ -67496,6 +68905,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "scale",
+        "parts": [
+          "value",
+          "marks",
+          "mark",
+          "label",
+          "indicator",
+          "trough",
+          "fill",
+          "highlight",
+          "slider"
+        ],
+        "styles": [
+          "bottom"
+        ]
       }
     },
     "ScaleButton": {
@@ -67933,6 +69359,14 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "scalebutton",
+        "parts": [
+          "button",
+          "icon"
+        ],
+        "styles": []
       }
     },
     "Scrollbar": {
@@ -68330,6 +69764,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "scrollbar",
+        "parts": [
+          "range",
+          "trough",
+          "slider"
+        ],
+        "styles": [
+          "vertical"
+        ]
       }
     },
     "ScrolledWindow": {
@@ -68890,6 +70335,17 @@
             "bottom-right"
           ]
         }
+      },
+      "css": {
+        "root": "scrolledwindow",
+        "parts": [
+          "overshoot",
+          "junction"
+        ],
+        "styles": [
+          "frame",
+          "bottom"
+        ]
       }
     },
     "SearchBar": {
@@ -69318,6 +70774,18 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "searchbar",
+        "parts": [
+          "revealer",
+          "box",
+          "child",
+          "button"
+        ],
+        "styles": [
+          "close"
+        ]
       }
     },
     "SearchEntry": {
@@ -69795,6 +71263,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SelectionFilterModel": {
@@ -69834,6 +71307,11 @@
           "from": "Gtk.SelectionFilterModel",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Separator": {
@@ -70220,6 +71698,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "separator",
+        "parts": [],
+        "styles": [
+          "vertical"
+        ]
       }
     },
     "Settings": {
@@ -70801,6 +72286,11 @@
           "from": "Gtk.Settings",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Shortcut": {
@@ -70841,13 +72331,23 @@
           "type": "node",
           "gobject": "Gtk.ShortcutTrigger"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutAction": {
       "class": "Gtk.ShortcutAction",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "ShortcutController": {
       "class": "Gtk.ShortcutController",
@@ -70966,6 +72466,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutLabel": {
@@ -71351,13 +72856,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "shortcut-label",
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutTrigger": {
       "class": "Gtk.ShortcutTrigger",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "ShortcutsDialog": {
       "class": "Adw.ShortcutsDialog",
@@ -71831,6 +73346,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutsGroup": {
@@ -72315,6 +73835,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutsItem": {
@@ -72378,6 +73903,11 @@
           "from": "Adw.ShortcutsItem",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutsSection": {
@@ -72417,6 +73947,11 @@
           "from": "Adw.ShortcutsSection",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutsShortcut": {
@@ -72935,6 +74470,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ShortcutsWindow": {
@@ -73626,6 +75166,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "window",
+        "parts": [
+          "window"
+        ],
+        "styles": []
       }
     },
     "Sidebar": {
@@ -74091,6 +75638,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "sidebar",
+        "parts": [
+          "sidebar"
+        ],
+        "styles": [
+          "navigation-sidebar"
+        ]
       }
     },
     "SidebarItem": {
@@ -74211,6 +75767,11 @@
           "from": "Adw.SidebarItem",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SidebarSection": {
@@ -74261,6 +75822,11 @@
           "from": "Adw.SidebarSection",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SignalAction": {
@@ -74278,13 +75844,23 @@
           "from": "Gtk.SignalAction",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SignalListItemFactory": {
       "class": "Gtk.SignalListItemFactory",
       "namespace": "Gtk",
       "parent": "ListItemFactory",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "SingleSelection": {
       "class": "Gtk.SingleSelection",
@@ -74364,6 +75940,11 @@
           "type": "node",
           "gobject": "GObject.Object"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SizeGroup": {
@@ -74388,6 +75969,11 @@
             "both"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SliceListModel": {
@@ -74447,13 +76033,23 @@
           "from": "Gtk.SliceListModel",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Snapshot": {
       "class": "Gtk.Snapshot",
       "namespace": "Gtk",
       "parent": "Gdk.Snapshot",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "SortListModel": {
       "class": "Gtk.SortListModel",
@@ -74534,13 +76130,23 @@
           "type": "node",
           "gobject": "Gtk.Sorter"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Sorter": {
       "class": "Gtk.Sorter",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "SpinButton": {
       "class": "Gtk.SpinButton",
@@ -75022,6 +76628,17 @@
           "from": "Gtk.SpinButton",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": "spinbutton",
+        "parts": [
+          "text",
+          "undershoot",
+          "button"
+        ],
+        "styles": [
+          "horizontal"
+        ]
       }
     },
     "SpinRow": {
@@ -75604,6 +77221,11 @@
           "from": "Adw.SpinRow",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Spinner": {
@@ -75969,6 +77591,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "image",
+        "parts": [
+          "image"
+        ],
+        "styles": []
       }
     },
     "SpinnerPaintable": {
@@ -75987,6 +77616,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SplitButton": {
@@ -76452,6 +78086,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "splitbutton",
+        "parts": [
+          "button",
+          "content",
+          "separator",
+          "menubutton",
+          "arrow"
+        ],
+        "styles": []
       }
     },
     "SpringAnimation": {
@@ -76599,6 +78244,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Squeezer": {
@@ -77085,6 +78735,11 @@
           "from": "Adw.Squeezer",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "squeezer",
+        "parts": [],
+        "styles": []
       }
     },
     "SqueezerPage": {
@@ -77113,6 +78768,11 @@
           "from": "Adw.SqueezerPage",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Stack": {
@@ -77617,6 +79277,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "stack",
+        "parts": [],
+        "styles": []
       }
     },
     "StackPage": {
@@ -77695,6 +79360,11 @@
           "from": "Gtk.StackPage",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "StackSidebar": {
@@ -78092,6 +79762,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "stacksidebar",
+        "parts": [],
+        "styles": [
+          "needs-attention"
+        ]
       }
     },
     "StackSwitcher": {
@@ -78489,6 +80166,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "stackswitcher",
+        "parts": [],
+        "styles": [
+          "needs-attention"
+        ]
       }
     },
     "StatusPage": {
@@ -78905,6 +80589,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "statuspage",
+        "parts": [],
+        "styles": []
       }
     },
     "Statusbar": {
@@ -79291,6 +80980,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "statusbar",
+        "parts": [],
+        "styles": []
       }
     },
     "StringFilter": {
@@ -79345,6 +81039,11 @@
           "from": "Gtk.StringFilter",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "StringList": {
@@ -79383,6 +81082,11 @@
           "from": "Gtk.StringList",
           "type": "node"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "StringObject": {
@@ -79400,6 +81104,11 @@
           "from": "Gtk.StringObject",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "StringSorter": {
@@ -79444,6 +81153,11 @@
           "from": "Gtk.StringSorter",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "StyleContext": {
@@ -79462,6 +81176,11 @@
           "type": "node",
           "gobject": "Gdk.Display"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "StyleManager": {
@@ -79591,6 +81310,11 @@
           "from": "Adw.StyleManager",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Svg": {
@@ -79656,6 +81380,11 @@
           "from": "Gtk.Svg",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "SwipeTracker": {
@@ -79744,6 +81473,11 @@
           "from": "Adw.SwipeTracker",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Switch": {
@@ -80150,6 +81884,14 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "switch",
+        "parts": [
+          "image",
+          "slider"
+        ],
+        "styles": []
       }
     },
     "SwitchRow": {
@@ -80656,6 +82398,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TabBar": {
@@ -81124,6 +82871,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "tabbar",
+        "parts": [],
+        "styles": []
       }
     },
     "TabButton": {
@@ -81499,6 +83251,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "tabbutton",
+        "parts": [],
+        "styles": []
       }
     },
     "TabOverview": {
@@ -81987,6 +83744,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "taboverview",
+        "parts": [],
+        "styles": []
       }
     },
     "TabPage": {
@@ -82158,6 +83920,11 @@
           "from": "Adw.TabPage",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TabView": {
@@ -82623,6 +84390,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "tabview",
+        "parts": [
+          "tabview"
+        ],
+        "styles": []
       }
     },
     "Text": {
@@ -83223,6 +84997,18 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "text",
+        "parts": [
+          "placeholder",
+          "undershoot",
+          "selection",
+          "cursor-handle",
+          "block-cursor",
+          "window"
+        ],
+        "styles": []
       }
     },
     "TextBuffer": {
@@ -83301,13 +85087,23 @@
           "from": "Gtk.TextBuffer",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TextChildAnchor": {
       "class": "Gtk.TextChildAnchor",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "TextMark": {
       "class": "Gtk.TextMark",
@@ -83334,6 +85130,11 @@
           "from": "Gtk.TextMark",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TextTag": {
@@ -84266,13 +86067,23 @@
           "from": "Gtk.TextTag",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TextTagTable": {
       "class": "Gtk.TextTagTable",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "TextView": {
       "class": "Gtk.TextView",
@@ -84915,6 +86726,16 @@
             "word-char"
           ]
         }
+      },
+      "css": {
+        "root": "textview",
+        "parts": [
+          "border",
+          "text",
+          "selection",
+          "window"
+        ],
+        "styles": []
       }
     },
     "TimedAnimation": {
@@ -85089,6 +86910,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Toast": {
@@ -85183,6 +87009,11 @@
           "from": "Adw.Toast",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ToastOverlay": {
@@ -85558,6 +87389,18 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "toastoverlay",
+        "parts": [
+          "child",
+          "toast",
+          "widget",
+          "label",
+          "custom",
+          "button"
+        ],
+        "styles": []
       }
     },
     "Toggle": {
@@ -85646,6 +87489,11 @@
           "from": "Adw.Toggle",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ToggleButton": {
@@ -86114,6 +87962,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "button",
+        "parts": [],
+        "styles": []
       }
     },
     "ToggleGroup": {
@@ -86539,6 +88392,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "toggle-group",
+        "parts": [
+          "toggle-group",
+          "toggle",
+          "separator"
+        ],
+        "styles": []
       }
     },
     "ToolbarView": {
@@ -87006,13 +88868,23 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Tooltip": {
       "class": "Gtk.Tooltip",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "TreeExpander": {
       "class": "Gtk.TreeExpander",
@@ -87461,6 +89333,15 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "treeexpander",
+        "parts": [
+          "indent",
+          "expander",
+          "child"
+        ],
+        "styles": []
       }
     },
     "TreeListModel": {
@@ -87520,6 +89401,11 @@
           "from": "Gtk.TreeListModel",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TreeListRow": {
@@ -87579,6 +89465,11 @@
           "type": "node",
           "gobject": "GObject.Object"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TreeListRowSorter": {
@@ -87597,6 +89488,11 @@
           "type": "node",
           "gobject": "Gtk.Sorter"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TreeModelFilter": {
@@ -87626,6 +89522,11 @@
           "type": "node",
           "gobject": "Gtk.TreePath"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TreeModelSort": {
@@ -87644,6 +89545,11 @@
           "type": "node",
           "gobject": "Gtk.TreeModel"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TreeSelection": {
@@ -87668,13 +89574,23 @@
             "multiple"
           ]
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TreeStore": {
       "class": "Gtk.TreeStore",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "TreeView": {
       "class": "Gtk.TreeView",
@@ -88239,6 +90155,17 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "treeview",
+        "parts": [
+          "header",
+          "button",
+          "sort-indicator",
+          "rubberband",
+          "dndtarget"
+        ],
+        "styles": []
       }
     },
     "TreeViewColumn": {
@@ -88449,13 +90376,23 @@
           "from": "Gtk.TreeViewColumn",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "TryExpression": {
       "class": "Gtk.TryExpression",
       "namespace": "Gtk",
       "parent": "Expression",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "UriLauncher": {
       "class": "Gtk.UriLauncher",
@@ -88472,6 +90409,11 @@
           "from": "Gtk.UriLauncher",
           "type": "string"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Video": {
@@ -88915,6 +90857,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ViewStack": {
@@ -89361,6 +91308,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "stack",
+        "parts": [],
+        "styles": []
       }
     },
     "ViewStackPage": {
@@ -89469,6 +91421,11 @@
           "from": "Adw.ViewStackPage",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ViewStackPages": {
@@ -89508,6 +91465,11 @@
           "type": "node",
           "gobject": "Adw.ViewStackPage"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ViewSwitcher": {
@@ -89898,6 +91860,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "viewswitcher",
+        "parts": [],
+        "styles": []
       }
     },
     "ViewSwitcherBar": {
@@ -90283,6 +92250,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "ViewSwitcherSidebar": {
@@ -90695,6 +92667,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "view-switcher-sidebar",
+        "parts": [],
+        "styles": []
       }
     },
     "ViewSwitcherTitle": {
@@ -91110,6 +93087,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "viewswitchertitle",
+        "parts": [],
+        "styles": []
       }
     },
     "Viewport": {
@@ -91517,6 +93499,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "viewport",
+        "parts": [],
+        "styles": []
       }
     },
     "VolumeButton": {
@@ -91964,6 +93951,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Widget": {
@@ -92350,6 +94342,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "WidgetPaintable": {
@@ -92368,6 +94365,11 @@
           "type": "node",
           "gobject": "Gtk.Widget"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "Window": {
@@ -93056,6 +95058,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     },
     "WindowControls": {
@@ -93487,13 +95494,28 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "windowcontrols",
+        "parts": [
+          "image",
+          "button"
+        ],
+        "styles": [
+          "empty"
+        ]
       }
     },
     "WindowGroup": {
       "class": "Gtk.WindowGroup",
       "namespace": "Gtk",
       "parent": "GObject.Object",
-      "properties": {}
+      "properties": {},
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
+      }
     },
     "WindowHandle": {
       "class": "Gtk.WindowHandle",
@@ -93890,6 +95912,13 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "windowhandle",
+        "parts": [
+          "windowhandle"
+        ],
+        "styles": []
       }
     },
     "WindowTitle": {
@@ -94274,6 +96303,11 @@
           "from": "Gtk.Widget",
           "type": "number"
         }
+      },
+      "css": {
+        "root": "windowtitle",
+        "parts": [],
+        "styles": []
       }
     },
     "WrapBox": {
@@ -94802,6 +96836,11 @@
           "from": "Adw.WrapBox",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": "wrap-box",
+        "parts": [],
+        "styles": []
       }
     },
     "WrapLayout": {
@@ -94973,7 +97012,1157 @@
           "from": "Adw.WrapLayout",
           "type": "boolean"
         }
+      },
+      "css": {
+        "root": null,
+        "parts": [],
+        "styles": []
       }
     }
+  },
+  "nodes": {
+    "actionbar": {
+      "kind": "root",
+      "widget": "ActionBar",
+      "documented": [
+        "ActionBar"
+      ]
+    },
+    "appchooser": {
+      "kind": "root",
+      "widget": "AppChooserWidget",
+      "documented": [
+        "AppChooserWidget"
+      ]
+    },
+    "arrow": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "ComboBox",
+        "MenuButton",
+        "Notebook",
+        "Popover",
+        "SplitButton"
+      ]
+    },
+    "avatar": {
+      "kind": "root",
+      "widget": "Avatar",
+      "documented": [
+        "Avatar"
+      ]
+    },
+    "banner": {
+      "kind": "root",
+      "widget": "Banner",
+      "documented": [
+        "Banner"
+      ]
+    },
+    "block": {
+      "kind": "part",
+      "widget": "LevelBar",
+      "documented": [
+        "LevelBar"
+      ]
+    },
+    "block-cursor": {
+      "kind": "part",
+      "widget": "Text",
+      "documented": [
+        "Text"
+      ]
+    },
+    "border": {
+      "kind": "part",
+      "widget": "TextView",
+      "documented": [
+        "TextView"
+      ]
+    },
+    "box": {
+      "kind": "root",
+      "widget": "Box",
+      "documented": [
+        "Box"
+      ]
+    },
+    "button": {
+      "kind": "root",
+      "widget": "Button",
+      "documented": [
+        "Button",
+        "LinkButton",
+        "ToggleButton"
+      ]
+    },
+    "buttoncontent": {
+      "kind": "root",
+      "widget": "ButtonContent",
+      "documented": [
+        "ButtonContent"
+      ]
+    },
+    "calendar": {
+      "kind": "root",
+      "widget": "Calendar",
+      "documented": [
+        "Calendar"
+      ]
+    },
+    "carousel": {
+      "kind": "root",
+      "widget": "Carousel",
+      "documented": [
+        "Carousel"
+      ]
+    },
+    "carouselindicatordots": {
+      "kind": "root",
+      "widget": "CarouselIndicatorDots",
+      "documented": [
+        "CarouselIndicatorDots"
+      ]
+    },
+    "carouselindicatorlines": {
+      "kind": "root",
+      "widget": "CarouselIndicatorLines",
+      "documented": [
+        "CarouselIndicatorLines"
+      ]
+    },
+    "cellview": {
+      "kind": "root",
+      "widget": "CellView",
+      "documented": [
+        "CellView"
+      ]
+    },
+    "center": {
+      "kind": "part",
+      "widget": "ActionBar",
+      "documented": [
+        "ActionBar"
+      ]
+    },
+    "check": {
+      "kind": "part",
+      "widget": "CheckButton",
+      "documented": [
+        "CheckButton"
+      ]
+    },
+    "checkbutton": {
+      "kind": "root",
+      "widget": "CheckButton",
+      "documented": [
+        "CheckButton"
+      ]
+    },
+    "child": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "Expander",
+        "FlowBox",
+        "Frame",
+        "GridView",
+        "Notebook",
+        "Paned",
+        "Popover",
+        "SearchBar",
+        "ToastOverlay",
+        "TreeExpander",
+        "Window"
+      ]
+    },
+    "clamp": {
+      "kind": "root",
+      "widget": "Clamp",
+      "documented": [
+        "Clamp"
+      ]
+    },
+    "colorbutton": {
+      "kind": "root",
+      "widget": "ColorButton",
+      "documented": [
+        "ColorButton",
+        "ColorDialogButton"
+      ]
+    },
+    "column": {
+      "kind": "part",
+      "widget": "ColumnView",
+      "documented": [
+        "ColumnView"
+      ]
+    },
+    "columnview": {
+      "kind": "root",
+      "widget": "ColumnView",
+      "documented": [
+        "ColumnView"
+      ]
+    },
+    "combobox": {
+      "kind": "root",
+      "widget": "ComboBox",
+      "documented": [
+        "ComboBox",
+        "ComboBoxText"
+      ]
+    },
+    "content": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "ColorButton",
+        "ColorDialogButton",
+        "FontButton",
+        "FontDialogButton",
+        "MenuButton",
+        "NavigationSplitView",
+        "OverlaySplitView",
+        "SplitButton"
+      ]
+    },
+    "contents": {
+      "kind": "part",
+      "widget": "Popover",
+      "documented": [
+        "Popover"
+      ]
+    },
+    "cursor-handle": {
+      "kind": "part",
+      "widget": "Text",
+      "documented": [
+        "Text"
+      ]
+    },
+    "custom": {
+      "kind": "part",
+      "widget": "ToastOverlay",
+      "documented": [
+        "ToastOverlay"
+      ]
+    },
+    "dialog": {
+      "kind": "root",
+      "widget": "Dialog",
+      "documented": [
+        "AboutDialog",
+        "PreferencesDialog"
+      ]
+    },
+    "dndtarget": {
+      "kind": "part",
+      "widget": "TreeView",
+      "documented": [
+        "TreeView"
+      ]
+    },
+    "dropdown": {
+      "kind": "root",
+      "widget": "DropDown",
+      "documented": [
+        "DropDown"
+      ]
+    },
+    "editablelabel": {
+      "kind": "root",
+      "widget": "EditableLabel",
+      "documented": [
+        "EditableLabel"
+      ]
+    },
+    "end": {
+      "kind": "part",
+      "widget": "ActionBar",
+      "documented": [
+        "ActionBar"
+      ]
+    },
+    "entry": {
+      "kind": "root",
+      "widget": "Entry",
+      "documented": [
+        "Entry"
+      ]
+    },
+    "expander": {
+      "kind": "part",
+      "widget": "Expander",
+      "documented": [
+        "Expander",
+        "TreeExpander"
+      ]
+    },
+    "expander-widget": {
+      "kind": "root",
+      "widget": "Expander",
+      "documented": [
+        "Expander"
+      ]
+    },
+    "filechooser": {
+      "kind": "root",
+      "widget": "FileChooserWidget",
+      "documented": [
+        "FileChooserWidget"
+      ]
+    },
+    "fill": {
+      "kind": "part",
+      "widget": "Scale",
+      "documented": [
+        "Scale"
+      ]
+    },
+    "flap": {
+      "kind": "root",
+      "widget": "Flap",
+      "documented": [
+        "Flap"
+      ]
+    },
+    "flowbox": {
+      "kind": "root",
+      "widget": "FlowBox",
+      "documented": [
+        "FlowBox"
+      ]
+    },
+    "flowboxchild": {
+      "kind": "part",
+      "widget": "FlowBoxChild",
+      "documented": [
+        "FlowBox"
+      ]
+    },
+    "fontbutton": {
+      "kind": "root",
+      "widget": "FontButton",
+      "documented": [
+        "FontButton",
+        "FontDialogButton"
+      ]
+    },
+    "fontchooser": {
+      "kind": "root",
+      "widget": "FontChooserWidget",
+      "documented": [
+        "FontChooserWidget"
+      ]
+    },
+    "frame": {
+      "kind": "root",
+      "widget": "Frame",
+      "documented": [
+        "Frame"
+      ]
+    },
+    "grid": {
+      "kind": "root",
+      "widget": "Grid",
+      "documented": [
+        "Grid"
+      ]
+    },
+    "gridview": {
+      "kind": "root",
+      "widget": "GridView",
+      "documented": [
+        "GridView"
+      ]
+    },
+    "header": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "Calendar",
+        "ColumnView",
+        "Notebook",
+        "TreeView"
+      ]
+    },
+    "headerbar": {
+      "kind": "root",
+      "widget": "HeaderBar",
+      "documented": [
+        "HeaderBar"
+      ]
+    },
+    "highlight": {
+      "kind": "part",
+      "widget": "Scale",
+      "documented": [
+        "Scale"
+      ]
+    },
+    "icon": {
+      "kind": "part",
+      "widget": "ScaleButton",
+      "documented": [
+        "ScaleButton"
+      ]
+    },
+    "iconview": {
+      "kind": "root",
+      "widget": "IconView",
+      "documented": [
+        "IconView"
+      ]
+    },
+    "image": {
+      "kind": "root",
+      "widget": "Image",
+      "documented": [
+        "Image",
+        "Spinner"
+      ]
+    },
+    "indent": {
+      "kind": "part",
+      "widget": "TreeExpander",
+      "documented": [
+        "TreeExpander"
+      ]
+    },
+    "indicator": {
+      "kind": "part",
+      "widget": "Scale",
+      "documented": [
+        "Scale"
+      ]
+    },
+    "infobar": {
+      "kind": "root",
+      "widget": "InfoBar",
+      "documented": [
+        "InfoBar"
+      ]
+    },
+    "inline-view-switcher": {
+      "kind": "root",
+      "widget": "InlineViewSwitcher",
+      "documented": [
+        "InlineViewSwitcher"
+      ]
+    },
+    "item": {
+      "kind": "part",
+      "widget": "PopoverMenuBar",
+      "documented": [
+        "PopoverMenuBar"
+      ]
+    },
+    "junction": {
+      "kind": "part",
+      "widget": "ScrolledWindow",
+      "documented": [
+        "ScrolledWindow"
+      ]
+    },
+    "label": {
+      "kind": "root",
+      "widget": "Label",
+      "documented": [
+        "Inscription",
+        "Label"
+      ]
+    },
+    "leaflet": {
+      "kind": "root",
+      "widget": "Leaflet",
+      "documented": [
+        "Leaflet"
+      ]
+    },
+    "levelbar": {
+      "kind": "root",
+      "widget": "LevelBar",
+      "documented": [
+        "LevelBar"
+      ]
+    },
+    "link": {
+      "kind": "part",
+      "widget": "Label",
+      "documented": [
+        "Label"
+      ]
+    },
+    "list": {
+      "kind": "root",
+      "widget": "ListBox",
+      "documented": [
+        "ListBox"
+      ]
+    },
+    "listview": {
+      "kind": "root",
+      "widget": "ListView",
+      "documented": [
+        "ListView"
+      ]
+    },
+    "mark": {
+      "kind": "part",
+      "widget": "Scale",
+      "documented": [
+        "Scale"
+      ]
+    },
+    "marks": {
+      "kind": "part",
+      "widget": "Scale",
+      "documented": [
+        "Scale"
+      ]
+    },
+    "menubar": {
+      "kind": "root",
+      "widget": "PopoverMenuBar",
+      "documented": [
+        "PopoverMenuBar"
+      ]
+    },
+    "menubutton": {
+      "kind": "root",
+      "widget": "MenuButton",
+      "documented": [
+        "MenuButton"
+      ]
+    },
+    "multi-layout-view": {
+      "kind": "root",
+      "widget": "MultiLayoutView",
+      "documented": [
+        "MultiLayoutView"
+      ]
+    },
+    "navigation-split-view": {
+      "kind": "root",
+      "widget": "NavigationSplitView",
+      "documented": [
+        "NavigationSplitView"
+      ]
+    },
+    "navigation-view": {
+      "kind": "root",
+      "widget": "NavigationView",
+      "documented": [
+        "NavigationView"
+      ]
+    },
+    "notebook": {
+      "kind": "root",
+      "widget": "Notebook",
+      "documented": [
+        "Notebook"
+      ]
+    },
+    "other": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "HeaderBar"
+      ]
+    },
+    "overlay-split-view": {
+      "kind": "root",
+      "widget": "OverlaySplitView",
+      "documented": [
+        "OverlaySplitView"
+      ]
+    },
+    "overshoot": {
+      "kind": "part",
+      "widget": "ScrolledWindow",
+      "documented": [
+        "ScrolledWindow"
+      ]
+    },
+    "paned": {
+      "kind": "root",
+      "widget": "Paned",
+      "documented": [
+        "Paned"
+      ]
+    },
+    "picture": {
+      "kind": "root",
+      "widget": "Picture",
+      "documented": [
+        "Picture"
+      ]
+    },
+    "placeholder": {
+      "kind": "part",
+      "widget": "Text",
+      "documented": [
+        "Text"
+      ]
+    },
+    "popover": {
+      "kind": "root",
+      "widget": "Popover",
+      "documented": [
+        "EmojiChooser",
+        "Popover"
+      ]
+    },
+    "popoverbin": {
+      "kind": "root",
+      "widget": "PopoverBin",
+      "documented": [
+        "PopoverBin"
+      ]
+    },
+    "preferencesgroup": {
+      "kind": "root",
+      "widget": "PreferencesGroup",
+      "documented": [
+        "PreferencesGroup"
+      ]
+    },
+    "preferencespage": {
+      "kind": "root",
+      "widget": "PreferencesPage",
+      "documented": [
+        "PreferencesPage"
+      ]
+    },
+    "progress": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "Entry",
+        "ProgressBar"
+      ]
+    },
+    "progressbar": {
+      "kind": "root",
+      "widget": "ProgressBar",
+      "documented": [
+        "ProgressBar"
+      ]
+    },
+    "range": {
+      "kind": "part",
+      "widget": "Range",
+      "documented": [
+        "Scrollbar"
+      ]
+    },
+    "revealer": {
+      "kind": "root",
+      "widget": "Revealer",
+      "documented": [
+        "Revealer"
+      ]
+    },
+    "row": {
+      "kind": "root",
+      "widget": "PreferencesRow",
+      "documented": [
+        "ActionRow",
+        "ButtonRow",
+        "ComboRow",
+        "EntryRow",
+        "ExpanderRow"
+      ]
+    },
+    "rubberband": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "ColumnView",
+        "FlowBox",
+        "GridView",
+        "IconView",
+        "ListView",
+        "TreeView"
+      ]
+    },
+    "scale": {
+      "kind": "root",
+      "widget": "Scale",
+      "documented": [
+        "Scale"
+      ]
+    },
+    "scalebutton": {
+      "kind": "root",
+      "widget": "ScaleButton",
+      "documented": [
+        "ScaleButton"
+      ]
+    },
+    "scrollbar": {
+      "kind": "root",
+      "widget": "Scrollbar",
+      "documented": [
+        "Scrollbar"
+      ]
+    },
+    "scrolledwindow": {
+      "kind": "root",
+      "widget": "ScrolledWindow",
+      "documented": [
+        "ScrolledWindow"
+      ]
+    },
+    "searchbar": {
+      "kind": "root",
+      "widget": "SearchBar",
+      "documented": [
+        "SearchBar"
+      ]
+    },
+    "selection": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "Label",
+        "Text",
+        "TextView"
+      ]
+    },
+    "separator": {
+      "kind": "root",
+      "widget": "Separator",
+      "documented": [
+        "Separator"
+      ]
+    },
+    "shortcut-label": {
+      "kind": "root",
+      "widget": "ShortcutLabel",
+      "documented": [
+        "ShortcutLabel"
+      ]
+    },
+    "sidebar": {
+      "kind": "root",
+      "widget": "Sidebar",
+      "documented": [
+        "Sidebar"
+      ]
+    },
+    "slider": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "Scale",
+        "Scrollbar",
+        "Switch"
+      ]
+    },
+    "sort-indicator": {
+      "kind": "part",
+      "widget": "TreeView",
+      "documented": [
+        "TreeView"
+      ]
+    },
+    "spinbutton": {
+      "kind": "root",
+      "widget": "SpinButton",
+      "documented": [
+        "SpinButton"
+      ]
+    },
+    "spinner": {
+      "kind": "root",
+      "widget": "Spinner",
+      "documented": [
+        "Spinner"
+      ]
+    },
+    "splitbutton": {
+      "kind": "root",
+      "widget": "SplitButton",
+      "documented": [
+        "SplitButton"
+      ]
+    },
+    "squeezer": {
+      "kind": "root",
+      "widget": "Squeezer",
+      "documented": [
+        "Squeezer"
+      ]
+    },
+    "stack": {
+      "kind": "root",
+      "widget": "Stack",
+      "documented": [
+        "Stack",
+        "ViewStack"
+      ]
+    },
+    "stacksidebar": {
+      "kind": "root",
+      "widget": "StackSidebar",
+      "documented": [
+        "StackSidebar"
+      ]
+    },
+    "stackswitcher": {
+      "kind": "root",
+      "widget": "StackSwitcher",
+      "documented": [
+        "StackSwitcher"
+      ]
+    },
+    "start": {
+      "kind": "part",
+      "widget": "ActionBar",
+      "documented": [
+        "ActionBar"
+      ]
+    },
+    "statusbar": {
+      "kind": "root",
+      "widget": "Statusbar",
+      "documented": [
+        "Statusbar"
+      ]
+    },
+    "statuspage": {
+      "kind": "root",
+      "widget": "StatusPage",
+      "documented": [
+        "StatusPage"
+      ]
+    },
+    "switch": {
+      "kind": "root",
+      "widget": "Switch",
+      "documented": [
+        "Switch"
+      ]
+    },
+    "tab": {
+      "kind": "part",
+      "widget": "Notebook",
+      "documented": [
+        "Notebook"
+      ]
+    },
+    "tabbar": {
+      "kind": "root",
+      "widget": "TabBar",
+      "documented": [
+        "TabBar"
+      ]
+    },
+    "tabbutton": {
+      "kind": "root",
+      "widget": "TabButton",
+      "documented": [
+        "TabButton"
+      ]
+    },
+    "taboverview": {
+      "kind": "root",
+      "widget": "TabOverview",
+      "documented": [
+        "TabOverview"
+      ]
+    },
+    "tabs": {
+      "kind": "part",
+      "widget": "Notebook",
+      "documented": [
+        "Notebook"
+      ]
+    },
+    "tabview": {
+      "kind": "root",
+      "widget": "TabView",
+      "documented": [
+        "TabView"
+      ]
+    },
+    "text": {
+      "kind": "root",
+      "widget": "Text",
+      "documented": [
+        "Text"
+      ]
+    },
+    "textview": {
+      "kind": "root",
+      "widget": "TextView",
+      "documented": [
+        "TextView"
+      ]
+    },
+    "title": {
+      "kind": "part",
+      "widget": "Expander",
+      "documented": [
+        "Expander"
+      ]
+    },
+    "titlebar": {
+      "kind": "part",
+      "widget": "Window",
+      "documented": [
+        "Window"
+      ]
+    },
+    "toast": {
+      "kind": "part",
+      "widget": "Toast",
+      "documented": [
+        "ToastOverlay"
+      ]
+    },
+    "toastoverlay": {
+      "kind": "root",
+      "widget": "ToastOverlay",
+      "documented": [
+        "ToastOverlay"
+      ]
+    },
+    "toggle": {
+      "kind": "part",
+      "widget": "Toggle",
+      "documented": [
+        "ToggleGroup"
+      ]
+    },
+    "toggle-group": {
+      "kind": "root",
+      "widget": "ToggleGroup",
+      "documented": [
+        "ToggleGroup"
+      ]
+    },
+    "treeexpander": {
+      "kind": "root",
+      "widget": "TreeExpander",
+      "documented": [
+        "TreeExpander"
+      ]
+    },
+    "treeview": {
+      "kind": "root",
+      "widget": "TreeView",
+      "documented": [
+        "TreeView"
+      ]
+    },
+    "trough": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "LevelBar",
+        "ProgressBar",
+        "Scale",
+        "Scrollbar"
+      ]
+    },
+    "undershoot": {
+      "kind": "part",
+      "widget": null,
+      "documented": [
+        "SpinButton",
+        "Text"
+      ]
+    },
+    "value": {
+      "kind": "part",
+      "widget": "Scale",
+      "documented": [
+        "Scale"
+      ]
+    },
+    "view-switcher-sidebar": {
+      "kind": "root",
+      "widget": "ViewSwitcherSidebar",
+      "documented": [
+        "ViewSwitcherSidebar"
+      ]
+    },
+    "viewport": {
+      "kind": "root",
+      "widget": "Viewport",
+      "documented": [
+        "Viewport"
+      ]
+    },
+    "viewswitcher": {
+      "kind": "root",
+      "widget": "ViewSwitcher",
+      "documented": [
+        "ViewSwitcher"
+      ]
+    },
+    "viewswitchertitle": {
+      "kind": "root",
+      "widget": "ViewSwitcherTitle",
+      "documented": [
+        "ViewSwitcherTitle"
+      ]
+    },
+    "widget": {
+      "kind": "part",
+      "widget": "Widget",
+      "documented": [
+        "HeaderBar",
+        "OverlaySplitView",
+        "ToastOverlay"
+      ]
+    },
+    "window": {
+      "kind": "root",
+      "widget": "Window",
+      "documented": [
+        "AboutDialog",
+        "AboutWindow",
+        "AppChooserDialog",
+        "Assistant",
+        "ColorChooserDialog",
+        "FileChooserDialog",
+        "FontChooserDialog",
+        "PageSetupUnixDialog",
+        "PreferencesWindow",
+        "PrintUnixDialog",
+        "ShortcutsWindow",
+        "Window"
+      ]
+    },
+    "windowcontrols": {
+      "kind": "root",
+      "widget": "WindowControls",
+      "documented": [
+        "WindowControls"
+      ]
+    },
+    "windowhandle": {
+      "kind": "root",
+      "widget": "WindowHandle",
+      "documented": [
+        "WindowHandle"
+      ]
+    },
+    "windowtitle": {
+      "kind": "root",
+      "widget": "WindowTitle",
+      "documented": [
+        "WindowTitle"
+      ]
+    },
+    "wrap-box": {
+      "kind": "root",
+      "widget": "WrapBox",
+      "documented": [
+        "WrapBox"
+      ]
+    }
+  },
+  "styles": {
+    "activatable": [
+      "ListBox"
+    ],
+    "active": [
+      "PopoverMenuBar"
+    ],
+    "bottom": [
+      "Scale",
+      "ScrolledWindow"
+    ],
+    "boxed-list": [
+      "ListBox"
+    ],
+    "circular": [
+      "Button"
+    ],
+    "close": [
+      "InfoBar",
+      "SearchBar"
+    ],
+    "color": [
+      "ColorButton",
+      "ColorDialogButton"
+    ],
+    "column-separators": [
+      "ColumnView"
+    ],
+    "default-decoration": [
+      "Window"
+    ],
+    "editing": [
+      "EditableLabel"
+    ],
+    "emoji-searchbar": [
+      "EmojiChooser"
+    ],
+    "emoji-section": [
+      "EmojiChooser"
+    ],
+    "emoji-toolbar": [
+      "EmojiChooser"
+    ],
+    "empty": [
+      "WindowControls"
+    ],
+    "flat": [
+      "Button"
+    ],
+    "font": [
+      "FontButton",
+      "FontDialogButton"
+    ],
+    "frame": [
+      "ScrolledWindow"
+    ],
+    "horizontal": [
+      "SpinButton"
+    ],
+    "keyboard-activating": [
+      "Button"
+    ],
+    "keycap": [
+      "Label"
+    ],
+    "link": [
+      "Label",
+      "LinkButton"
+    ],
+    "navigation-sidebar": [
+      "Sidebar"
+    ],
+    "needs-attention": [
+      "StackSidebar",
+      "StackSwitcher"
+    ],
+    "other-month": [
+      "Calendar"
+    ],
+    "separators": [
+      "ColumnView",
+      "ListBox"
+    ],
+    "solid-csd": [
+      "Window"
+    ],
+    "today": [
+      "Calendar"
+    ],
+    "vertical": [
+      "Scrollbar",
+      "Separator"
+    ],
+    "wide": [
+      "Paned"
+    ]
   }
 }

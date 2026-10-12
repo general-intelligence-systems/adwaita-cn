@@ -97,7 +97,7 @@ gresource extract "$gtk" /org/gtk/libgtk/theme/Default/Default-light.css > "$out
 
 # AND THE TEMPLATES. A composite widget's child tree is a .ui file in the same bundle, which is
 # the toolkit stating which widgets it is built out of -- GtkBox, GtkImage, GtkLabel and their
-# style classes, in order. bin/05-component-trees reads them.
+# style classes, in order. bin/06-component-trees reads them.
 mkdir -p "$out/ui"
 for resource in $(gresource list "$adwaita" | grep "/ui/.*\.ui$"); do
   gresource extract "$adwaita" "$resource" > "$out/ui/$(basename "$resource")"

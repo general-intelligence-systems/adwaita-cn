@@ -1,0 +1,24 @@
+{
+  "coverflow cover": {
+    "base": []
+  },
+  "expander-widget": {
+    "base": [
+      "duration-[300ms]",
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "filechooserbutton": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "notebook": {
+    "base": [
+      "duration-[300ms]"
+    ]
+  }
+}

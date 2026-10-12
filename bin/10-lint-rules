@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 10-LINT-RULES(1)                  General Commands Manual                   10-LINT-RULES(1)
+#
+# NAME
+#      bin/10-lint-rules — the rule file the oxlint plugin checks against
+#
+# SYNOPSIS
+#      bin/10-lint-rules > lint/rules.json
+#
+# DESCRIPTION
+#      Projects vendor/adwaita/final-components.json into the one file the oxlint plugin reads:
+#      every buildable component, and every prop it accepts.
+#
+#      THE PLUGIN KNOWS NOTHING, which is the point of generating this. A linter which infers
+#      whether a name is meant to be a GTK component guesses, and a guess that fires on correct
+#      code is worse than no lint at all -- an earlier version reported <ShellHeader> as a
+#      misspelling of <ListHeader>. Existence is declared here instead: a name in this file is
+#      checked, a name absent from it is not mentioned, and the plugin is a dumb rule-checker
+#      with no opinions of its own.
+#
+#      THE SET IS WHAT 07 RESOLVED, and nothing is decided here. A component exists because a
+#      template is built out of it, because it ships a template of its own, or because the
+#      stylesheet styles the CSS node GTK documents it as drawing. A style class is a modifier
+#      rather than a component and never reaches this file, which is why there is no longer an
+#      entry with no props for the plugin to make an exception for.
+#
+#      THE PROPS ARE EVERY PROP THE WIDGET ACCEPTS, inherited ones included. `<ActionRow
+#      visible>` is correct and `visible` is GtkWidget's, so a lint which knew only the
+#      thirteen props ActionRow declares would reject the other sixty-five.
+#
+#      Props are carried under both spellings, GTK's `subtitle-lines` and React's
+#      `subtitleLines`, so a component may use either.
+#
+# FILES
+#      vendor/adwaita/final-components.json  the components and their props, from 07
+#      lint/rules.json                       the output
+#
+# EXIT STATUS
+#      The bin/10-lint-rules utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/08-final-components, lint/adwaita-plugin.js
+#
+# adwaita-cn                         October 12, 2026                         10-LINT-RULES(1)
+
+require "json"
+
+module LintRules
+  # React's own, which no GTK class declares and every component takes.
+  REACT = %w[key ref children className style id slot].freeze
+
+  # Where a component is imported from. A named import from one of these must be a component in
+  # this file, which is how existence is checked without the plugin guessing from the name.
+  SOURCES = %w[@/components/ui/ @/components/adwaita/ adwaita-cn].freeze
+
+  def self.run(_argv)
+    root = File.expand_path("..", __dir__)
+    final = JSON.parse(File.read(File.join(root, "vendor/adwaita/final-components.json")))
+    components = final.fetch("components")
+
+    rules = final.fetch("buildable").sort.to_h do |name|
+      entry = components.fetch(name)
+
+      [name, {
+        "class" => entry["gtk"],
+        "nodes" => entry.fetch("nodes", []),
+        "props" => entry.fetch("accepts"),
+      }]
+    end
+
+    puts(JSON.pretty_generate({
+      "versions" => final.fetch("versions"),
+      "react" => REACT,
+      "sources" => SOURCES,
+      "components" => rules,
+    }))
+  end
+end
+
+LintRules.run(ARGV)

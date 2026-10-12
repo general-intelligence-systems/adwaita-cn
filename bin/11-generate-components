@@ -1,0 +1,237 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 11-GENERATE-COMPONENTS(1)       General Commands Manual      11-GENERATE-COMPONENTS(1)
+#
+# NAME
+#      bin/11-generate-components — a file per component, with its props and its classes
+#
+# SYNOPSIS
+#      bin/11-generate-components [--force]
+#
+# DESCRIPTION
+#      Writes one .tsx under registry/adwaita/ui/ for every buildable component in
+#      vendor/adwaita/final-components.json, with
+#      the props its GTK class accepts and the Tailwind classes its CSS node is styled with,
+#      and registers each one in registry.json.
+#
+#      THE MARKUP IS A PLACEHOLDER AND THE REST IS NOT. What is generated is everything that
+#      can be derived -- the prop names, their types, the enum unions they are drawn from, the
+#      cn() call with Adwaita's measurements in it -- so that writing a component is a matter of
+#      replacing one <div> with the markup it should have been. Nothing a human writes has to be
+#      kept in step with the toolkit by hand.
+#
+#      IT DOES NOT OVERWRITE. A file which exists is left exactly as it is, because the moment
+#      somebody replaces that <div> the file stops being generated output. Re-running this adds
+#      what is missing and touches nothing else, so it is safe after a release bump which brings
+#      new widgets. --force overwrites, which throws away hand-written markup and is there for
+#      regenerating on purpose.
+#
+#      PROPS ARE FACTORED THE WAY GTK FACTORS THEM. Gtk.Widget declares thirty writable
+#      properties -- visible, sensitive, tooltipText, the expand and align pairs -- and every
+#      widget has them. Repeating those in fifty-four interfaces would bury the five or ten
+#      which are actually the component's own, so they live in one WidgetProps and each
+#      component extends it. ActionRow adds thirteen, Button six, Switch two.
+#
+#      Read-only properties are left out: a prop which cannot be written is not a prop.
+#
+#      A component whose class is null is a style class -- styling with no properties -- so it
+#      gets the classes and no props beyond WidgetProps.
+#
+# OPTIONS
+#      --force   Overwrite files which already exist.
+#
+# FILES
+#      vendor/adwaita/final-components.json  which components exist, and what each accepts
+#      vendor/adwaita/widgets.json  the Tailwind classes per CSS node
+#      registry/adwaita/ui/         the output
+#      registry.json                gains an item per component
+#
+# EXIT STATUS
+#      The bin/11-generate-components utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/10-lint-rules, bin/03-adwaita-tailwind
+#
+# adwaita-cn                       October 12, 2026             11-GENERATE-COMPONENTS(1)
+
+require "json"
+require "set"
+
+module GenerateComponents
+  # The GIR type as the TypeScript a prop is annotated with. A widget-valued property is a
+  # ReactNode, because that is what it is once it is a prop.
+  TYPES = {
+    "string" => "string",
+    "boolean" => "boolean",
+    "number" => "number",
+    "node" => "ReactNode",
+    "void" => "void",
+  }.freeze
+
+  def self.run(argv)
+    root = File.expand_path("..", __dir__)
+    force = !argv.delete("--force").nil?
+    final = JSON.parse(File.read(File.join(root, "vendor/adwaita/final-components.json")))
+    flags = final.fetch("enums").select{|_name, enum| enum.fetch("flags")}.keys.to_set
+    components = final.fetch("components").slice(*final.fetch("buildable"))
+
+    # Gtk.Widget's own, which every component extends rather than repeats. bin/08-final-components
+    # has already subtracted them from each component's own props.
+    shared = final.fetch("widget")
+    self.write(root, "lib/widget-props.ts", self.widget_props(shared, flags), force)
+
+    written = []
+    skipped = []
+
+    components.sort.each do |name, component|
+      file = "ui/#{self.kebab(name)}.tsx"
+      source = self.component(name, component, flags)
+
+      if self.write(root, file, source, force)
+        written << name
+      else
+        skipped << name
+      end
+    end
+
+    self.register(root, components)
+
+    puts("written: #{written.size}")
+    puts("left alone: #{skipped.size}#{skipped.empty? ? '' : " (#{skipped.join(', ')})"}")
+  end
+
+  # True when the file was written, false when it was already there.
+  def self.write(root, relative, source, force)
+    path = File.join(root, "registry/adwaita", relative)
+
+    if File.exist?(path) && !force
+      false
+    else
+      FileUtils.mkdir_p(File.dirname(path))
+      File.write(path, source)
+      true
+    end
+  end
+
+  def self.kebab(name)
+    name.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
+  end
+
+  def self.annotation(attributes, flags)
+    if attributes.fetch("type") == "enum"
+      name = attributes.fetch("enum").split(".").last
+
+      # A bitfield is several members at once, so the prop is an array of its union.
+      flags.include?(attributes.fetch("enum")) ? "#{name}[]" : name
+    else
+      TYPES.fetch(attributes.fetch("type"), "unknown")
+    end
+  end
+
+  def self.declaration(prop, attributes, flags)
+    comment = "  /** #{attributes.fetch('gir') || 'object'}, from #{attributes.fetch('from')} */"
+    "#{comment}\n  #{prop}?: #{self.annotation(attributes, flags)}"
+  end
+
+  def self.widget_props(shared, flags)
+    lines = shared.sort.map{|prop, attributes| self.declaration(prop, attributes, flags)}
+    enums = self.enums_used(shared)
+
+    <<~TS
+      // Generated by bin/11-generate-components. Do not edit.
+      //
+      // Gtk.Widget's own writable properties, which every widget has. They live here rather
+      // than in all fifty-four component interfaces so that each component's file shows the
+      // five or ten props which are actually its own.
+
+      import type { ReactNode } from "react"
+      #{enums.empty? ? '' : "import type { #{enums.join(', ')} } from \"./enums\"\n"}
+      export interface WidgetProps {
+      #{lines.join("\n\n")}
+      }
+    TS
+  end
+
+  def self.enums_used(props)
+    props.values
+      .select{|attributes| attributes.fetch("type") == "enum"}
+      .map{|attributes| attributes.fetch("enum").split(".").last}
+      .uniq
+      .sort
+  end
+
+  # The classes the component's CSS node is styled with, base state only: a state is a variant
+  # the markup has to opt into and there is no markup yet.
+  def self.classes_for(component)
+    component.dig("classes", "base").to_a
+  end
+
+  def self.component(name, component, flags)
+    klass = component["gtk"]
+    props = component.fetch("props")
+    enums = self.enums_used(props)
+    tailwind = self.classes_for(component)
+
+    <<~TS
+      // #{name}#{klass ? " — #{klass}" : ''}
+      //
+      // Generated by bin/11-generate-components, which does not overwrite: the markup below is
+      // a placeholder, and replacing it is what makes this a component rather than output.
+      //
+      // The props are #{klass ? "#{klass}'s own writable properties" : 'WidgetProps only, because this widget has no public class'}.
+      // The classes are what Adwaita styles #{component['node'] || 'it'} with.
+
+      import type { ReactNode } from "react"
+
+      import { cn } from "@/lib/utils"
+      import type { WidgetProps } from "@/lib/widget-props"
+      #{enums.empty? ? '' : "import type { #{enums.join(', ')} } from \"@/lib/enums\"\n"}
+      export interface #{name}Props extends WidgetProps {
+        className?: string
+        children?: ReactNode
+      #{props.sort.map{|prop, attributes| self.declaration(prop, attributes, flags)}.join("\n\n")}
+      }
+
+      export function #{name}({ className, children }: #{name}Props) {
+        return (
+          // TODO: the markup. This div is a placeholder; the classes are not.
+          <div
+            className={cn(
+      #{tailwind.map{|c| "        #{c.inspect},"}.join("\n")}
+              className,
+            )}
+          >
+            {children}
+          </div>
+        )
+      }
+    TS
+  end
+
+  # An item per component, added only when it is not already there.
+  def self.register(root, components)
+    path = File.join(root, "registry.json")
+    registry = JSON.parse(File.read(path))
+    existing = registry.fetch("items").map{|item| item.fetch("name")}
+
+    components.sort.each do |name, component|
+      slug = self.kebab(name)
+      next if existing.include?(slug)
+
+      registry["items"] << {
+        "name" => slug,
+        "type" => "registry:ui",
+        "title" => name,
+        "description" => "#{component['widget']}#{component['class'] ? " (#{component['class']})" : ''}.",
+        "registryDependencies" => ["adwaita-theme", "gtk-enums"],
+        "files" => [{ "path" => "registry/adwaita/ui/#{slug}.tsx", "type" => "registry:ui" }],
+      }
+    end
+
+    File.write(path, "#{JSON.pretty_generate(registry)}\n")
+  end
+end
+
+require "fileutils"
+GenerateComponents.run(ARGV)

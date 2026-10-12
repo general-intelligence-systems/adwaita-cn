@@ -899,6 +899,1318 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "about-dialog",
+      "type": "registry:ui",
+      "title": "AboutDialog",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/about-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "about-window",
+      "type": "registry:ui",
+      "title": "AboutWindow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/about-window.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "action-bar",
+      "type": "registry:ui",
+      "title": "ActionBar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/action-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "adaptive-preview",
+      "type": "registry:ui",
+      "title": "AdaptivePreview",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/adaptive-preview.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "banner",
+      "type": "registry:ui",
+      "title": "Banner",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/banner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "bin",
+      "type": "registry:ui",
+      "title": "Bin",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/bin.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "box",
+      "type": "registry:ui",
+      "title": "Box",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/box.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breakpoint-bin",
+      "type": "registry:ui",
+      "title": "BreakpointBin",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/breakpoint-bin.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-content",
+      "type": "registry:ui",
+      "title": "ButtonContent",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/button-content.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-row",
+      "type": "registry:ui",
+      "title": "ButtonRow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/button-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "clamp",
+      "type": "registry:ui",
+      "title": "Clamp",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/clamp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "clamp-scrollable",
+      "type": "registry:ui",
+      "title": "ClampScrollable",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/clamp-scrollable.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combo-row",
+      "type": "registry:ui",
+      "title": "ComboRow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/combo-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "entry-row",
+      "type": "registry:ui",
+      "title": "EntryRow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/entry-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "expander-row",
+      "type": "registry:ui",
+      "title": "ExpanderRow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/expander-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "image",
+      "type": "registry:ui",
+      "title": "Image",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/image.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "inspector-page",
+      "type": "registry:ui",
+      "title": "InspectorPage",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/inspector-page.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "leaflet",
+      "type": "registry:ui",
+      "title": "Leaflet",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/leaflet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menu-button",
+      "type": "registry:ui",
+      "title": "MenuButton",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/menu-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "message-dialog",
+      "type": "registry:ui",
+      "title": "MessageDialog",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/message-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navigation-page",
+      "type": "registry:ui",
+      "title": "NavigationPage",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/navigation-page.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navigation-view",
+      "type": "registry:ui",
+      "title": "NavigationView",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/navigation-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "overlay",
+      "type": "registry:ui",
+      "title": "Overlay",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/overlay.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "overlay-split-view",
+      "type": "registry:ui",
+      "title": "OverlaySplitView",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/overlay-split-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "picture",
+      "type": "registry:ui",
+      "title": "Picture",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/picture.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "preferences-dialog",
+      "type": "registry:ui",
+      "title": "PreferencesDialog",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/preferences-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "preferences-page",
+      "type": "registry:ui",
+      "title": "PreferencesPage",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/preferences-page.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "preferences-row",
+      "type": "registry:ui",
+      "title": "PreferencesRow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/preferences-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "preferences-window",
+      "type": "registry:ui",
+      "title": "PreferencesWindow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/preferences-window.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "revealer",
+      "type": "registry:ui",
+      "title": "Revealer",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/revealer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scrolled-window",
+      "type": "registry:ui",
+      "title": "ScrolledWindow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/scrolled-window.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "search-bar",
+      "type": "registry:ui",
+      "title": "SearchBar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/search-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "search-entry",
+      "type": "registry:ui",
+      "title": "SearchEntry",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/search-entry.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "shortcuts-dialog",
+      "type": "registry:ui",
+      "title": "ShortcutsDialog",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/shortcuts-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spin-row",
+      "type": "registry:ui",
+      "title": "SpinRow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/spin-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "squeezer",
+      "type": "registry:ui",
+      "title": "Squeezer",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/squeezer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stack",
+      "type": "registry:ui",
+      "title": "Stack",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/stack.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "status-page",
+      "type": "registry:ui",
+      "title": "StatusPage",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/status-page.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch-row",
+      "type": "registry:ui",
+      "title": "SwitchRow",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/switch-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tab",
+      "type": "registry:ui",
+      "title": "Tab",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tab-bar",
+      "type": "registry:ui",
+      "title": "TabBar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tab-button",
+      "type": "registry:ui",
+      "title": "TabButton",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tab-overview",
+      "type": "registry:ui",
+      "title": "TabOverview",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab-overview.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tab-thumbnail",
+      "type": "registry:ui",
+      "title": "TabThumbnail",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab-thumbnail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "text",
+      "type": "registry:ui",
+      "title": "Text",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/text.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "text-view",
+      "type": "registry:ui",
+      "title": "TextView",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/text-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast-overlay",
+      "type": "registry:ui",
+      "title": "ToastOverlay",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toast-overlay.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast-widget",
+      "type": "registry:ui",
+      "title": "ToastWidget",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toast-widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-button",
+      "type": "registry:ui",
+      "title": "ToggleButton",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toggle-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "view-stack",
+      "type": "registry:ui",
+      "title": "ViewStack",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/view-stack.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "view-switcher-bar",
+      "type": "registry:ui",
+      "title": "ViewSwitcherBar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/view-switcher-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "view-switcher-button",
+      "type": "registry:ui",
+      "title": "ViewSwitcherButton",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/view-switcher-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "window-handle",
+      "type": "registry:ui",
+      "title": "WindowHandle",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/window-handle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "wrap-box",
+      "type": "registry:ui",
+      "title": "WrapBox",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/wrap-box.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "app-chooser-button",
+      "type": "registry:ui",
+      "title": "AppChooserButton",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/app-chooser-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "color-button",
+      "type": "registry:ui",
+      "title": "ColorButton",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/color-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combo-box",
+      "type": "registry:ui",
+      "title": "ComboBox",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/combo-box.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "drop-down",
+      "type": "registry:ui",
+      "title": "DropDown",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/drop-down.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "editable-label",
+      "type": "registry:ui",
+      "title": "EditableLabel",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/editable-label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "file-chooser-widget",
+      "type": "registry:ui",
+      "title": "FileChooserWidget",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/file-chooser-widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "flap",
+      "type": "registry:ui",
+      "title": "Flap",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/flap.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "flow-box-child",
+      "type": "registry:ui",
+      "title": "FlowBoxChild",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/flow-box-child.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "font-button",
+      "type": "registry:ui",
+      "title": "FontButton",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/font-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "grid",
+      "type": "registry:ui",
+      "title": "Grid",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-view",
+      "type": "registry:ui",
+      "title": "IconView",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/icon-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "info-bar",
+      "type": "registry:ui",
+      "title": "InfoBar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/info-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "inline-view-switcher",
+      "type": "registry:ui",
+      "title": "InlineViewSwitcher",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/inline-view-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "level-bar",
+      "type": "registry:ui",
+      "title": "LevelBar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/level-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "notebook",
+      "type": "registry:ui",
+      "title": "Notebook",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/notebook.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "paned",
+      "type": "registry:ui",
+      "title": "Paned",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/paned.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover-menu-bar",
+      "type": "registry:ui",
+      "title": "PopoverMenuBar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/popover-menu-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "range",
+      "type": "registry:ui",
+      "title": "Range",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/range.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stack-sidebar",
+      "type": "registry:ui",
+      "title": "StackSidebar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/stack-sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tab-view",
+      "type": "registry:ui",
+      "title": "TabView",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tree-expander",
+      "type": "registry:ui",
+      "title": "TreeExpander",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tree-expander.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "title": "TreeView",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tree-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "video",
+      "type": "registry:ui",
+      "title": "Video",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/video.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "view-switcher-sidebar",
+      "type": "registry:ui",
+      "title": "ViewSwitcherSidebar",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/view-switcher-sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "viewport",
+      "type": "registry:ui",
+      "title": "Viewport",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/viewport.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "widget",
+      "type": "registry:ui",
+      "title": "Widget",
+      "description": ".",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
