@@ -1,0 +1,31 @@
+---
+title: Installation
+description: Add the registry to a project, then add components from it.
+---
+
+## The theme first
+
+Every component here reads the variables in the `adwaita-theme` item, so that
+one goes in before the rest:
+
+```bash
+pnpm dlx shadcn@latest add https://general-intelligence-systems.github.io/adwaita-cn/r/adwaita-theme.json
+```
+
+It writes `styles/adwaita.css` and `lib/utils.ts`. Import the stylesheet
+wherever your Tailwind entry point lives.
+
+## A component
+
+```bash
+pnpm dlx shadcn@latest add https://general-intelligence-systems.github.io/adwaita-cn/r/button.json
+```
+
+## Or the whole registry under a namespace
+
+Naming the registry once means the items can be referred to by name afterwards:
+
+```bash
+pnpm dlx shadcn@latest registry add @adwaita=https://general-intelligence-systems.github.io/adwaita-cn/r/{name}.json
+pnpm dlx shadcn@latest add @adwaita/button @adwaita/switch
+```

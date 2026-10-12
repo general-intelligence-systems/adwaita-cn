@@ -1,0 +1,20 @@
+---
+title: adwaita-cn
+description: A shadcn registry of components built to GNOME Adwaita's geometry.
+---
+
+These components are not an Adwaita theme laid over shadcn/ui. The geometry —
+the radii, the easing curves, the opacities, the spacing — is read out of
+libadwaita's own compiled stylesheet by `bin/01-fetch-adwaita`, and the props
+come from GTK's introspection data by way of `bin/04-fetch-gir`. What the
+pipeline cannot generate is the markup, which is what makes each item a
+component rather than output.
+
+Colour is the one thing a port should not take wholesale, so every colour is a
+variable with libadwaita's own name. Point them at a brand's palette and the
+components keep Adwaita's geometry and lose its blue.
+
+## Where to start
+
+Install [the theme](/docs/installation) first — every other item reads its
+variables.

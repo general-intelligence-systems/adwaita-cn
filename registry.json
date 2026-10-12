@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "adwaita-cn",
-  "homepage": "https://github.com/n-at-han-k/adwaita-cn",
+  "homepage": "https://github.com/general-intelligence-systems/adwaita-cn",
   "items": [
     {
       "name": "adwaita-theme",

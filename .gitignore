@@ -7,3 +7,10 @@ node_modules
 
 # direnv
 .direnv
+
+# React Router / Vite build output and generated route types.
+/build
+/.react-router
+
+# Fumadocs MDX's generated index of content/.
+/.source

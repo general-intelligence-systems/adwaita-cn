@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# The Pages build. Everything it does beyond `pnpm build` is a consequence of
+# the site living at /adwaita-cn/ rather than at the root of a domain.
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+base="${DOCS_BASE_PATH:-/adwaita-cn/}"
+prefix="$(echo "$base" | tr -s '/' | sed 's|^/||; s|/$||')"
+out=build/client
+
+DOCS_BASE_PATH="$base" pnpm run build
+
+# Pages has no rewrites, so a request for a path with no file behind it gets
+# 404.html. The SPA shell is the right thing to serve there: the router reads
+# the URL and renders the real page, or its own not-found page, on the client.
+#
+# Where the shell lands depends on the prefix. With one, the prerendered routes
+# go under it and the shell takes the root index.html; without one they
+# collide, so the shell is named __spa-fallback.html instead.
+if [ -n "$prefix" ] && [ -f "$out/index.html" ]; then
+  mv "$out/index.html" "$out/404.html"
+elif [ -f "$out/__spa-fallback.html" ]; then
+  mv "$out/__spa-fallback.html" "$out/404.html"
+fi
+
+# The prerendered routes carry the prefix, so the HTML is written to
+# build/client/adwaita-cn/ while the assets, which Vite emits relative to the
+# output directory, are already where the prefixed URLs expect them. Pages
+# serves this directory *as* /adwaita-cn/, so the HTML has to come up a level or
+# every page would answer at /adwaita-cn/adwaita-cn/.
+if [ -n "$prefix" ] && [ -d "$out/$prefix" ]; then
+  cp -R "$out/$prefix/." "$out/"
+  rm -rf "$out/$prefix"
+fi
