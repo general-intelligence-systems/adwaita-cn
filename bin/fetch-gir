@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+# FETCH-GIR(1)                       General Commands Manual                     FETCH-GIR(1)
+#
+# NAME
+#      bin/fetch-gir — vendor GTK's and libadwaita's introspection data
+#
+# SYNOPSIS
+#      bin/fetch-gir
+#
+# DESCRIPTION
+#      Writes Gtk-4.0.gir and Adw-1.gir into vendor/gir/, which is what bin/gtk-schemas reads.
+#
+#      A GIR FILE IS THE WIDGET API, stated by the toolkit rather than by its documentation.
+#      GObject introspection is what language bindings are generated from, so every class, every
+#      property, its type, its default, whether it is writable and whether it is construct-only
+#      are all in there, machine-readable and exactly as the library defines them. There is no
+#      more authoritative answer to "what props does this component have".
+#
+#      Each file ships in its library's `dev` output, under share/gir-1.0.
+#
+#      The versions are recorded in vendor/gir/VERSIONS, because properties are added and
+#      deprecated between releases and a lint built on one release is only true of that one.
+#
+# FILES
+#      vendor/gir/Gtk-4.0.gir
+#      vendor/gir/Adw-1.gir
+#      vendor/gir/VERSIONS
+#
+# EXIT STATUS
+#      The bin/fetch-gir utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/gtk-schemas, bin/fetch-adwaita, g-ir-scanner(1)
+#
+# adwaita-cn                            October 12, 2026                         FETCH-GIR(1)
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+cd "$(dirname "$0")/.."
+
+out="vendor/gir"
+mkdir -p "$out"
+
+# pkg-config names the directory when the devshell provides the library, and the store is the
+# fallback. Neither library is a runtime dependency: they are where the schema comes from.
+locate() {
+  local module="$1" file="$2" pattern="$3" dir path
+
+  dir="$(pkg-config --variable=girdir "$module" 2>/dev/null || true)"
+  path="$dir/$file"
+
+  if [ ! -f "$path" ]; then
+    path="$(find /nix/store -maxdepth 4 -path "*$pattern*/share/gir-1.0/$file" 2>/dev/null | sort | tail -1)"
+  fi
+
+  if [ ! -f "$path" ]; then
+    echo "fetch-gir: cannot find $file; add $pattern's dev output to the devshell" >&2
+    exit 1
+  fi
+
+  echo "$path"
+}
+
+gtk="$(locate gtk4 Gtk-4.0.gir gtk4)"
+adw="$(locate libadwaita-1 Adw-1.gir libadwaita)"
+
+cp "$gtk" "$out/Gtk-4.0.gir"
+cp "$adw" "$out/Adw-1.gir"
+
+# The store path carries the version, which is the only place it is written down.
+{
+  echo "gtk4       $(basename "$(dirname "$(dirname "$(dirname "$gtk")")")")"
+  echo "libadwaita $(basename "$(dirname "$(dirname "$(dirname "$adw")")")")"
+} > "$out/VERSIONS"
+
+wc -c "$out"/*.gir
+cat "$out/VERSIONS"

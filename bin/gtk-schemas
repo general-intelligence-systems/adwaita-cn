@@ -1,0 +1,220 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# GTK-SCHEMAS(1)                     General Commands Manual                   GTK-SCHEMAS(1)
+#
+# NAME
+#      bin/gtk-schemas — every widget's props, out of the introspection data
+#
+# SYNOPSIS
+#      bin/gtk-schemas [--own] > schemas.json
+#
+# DESCRIPTION
+#      Reads the GIR files under vendor/gir/ and writes, as JSON on stdout, one entry per widget
+#      class: its properties, each with the type it takes, its default, and whether it can be
+#      written at all.
+#
+#      INHERITANCE IS RESOLVED, which is the point of doing this rather than reading the
+#      documentation. Adw.ActionRow declares six properties of its own and accepts about sixty:
+#      `title` comes from Adw.PreferencesRow, `visible` and `sensitive` from Gtk.Widget, and a
+#      lint which only knew the six would reject every correct use of the other fifty-four. Each
+#      property records the class which declared it, so the chain is auditable.
+#
+#      TYPES ARE MAPPED TO WHAT A JAVASCRIPT LINT CAN CHECK. `utf8` is a string, `gboolean` a
+#      boolean, `gint` and `gdouble` numbers, an enumeration becomes the list of values it
+#      accepts, and anything else -- a widget, a model, a paintable -- becomes "node", because
+#      that is what it is once it is a prop on a component.
+#
+#      NAMES ARE GIVEN BOTH WAYS. GTK spells a property `subtitle-lines` and React spells the
+#      same prop `subtitleLines`, so each entry carries both and the lint can match whichever
+#      the source uses.
+#
+#      Read-only properties are included and flagged rather than dropped: passing one is an
+#      error worth reporting, and a lint cannot report what it was not told about.
+#
+# OPTIONS
+#      --own   Only the properties each class declares, without the inherited ones.
+#
+# FILES
+#      vendor/gir/Gtk-4.0.gir
+#      vendor/gir/Adw-1.gir
+#      vendor/gir/VERSIONS
+#              Which release each file came from. Properties move between releases.
+#
+# EXIT STATUS
+#      The bin/gtk-schemas utility exits 0 on success, and >0 if an error occurs.
+#
+# EXAMPLES
+#      The schemas:
+#
+#            bin/gtk-schemas > vendor/gir/schemas.json
+#
+#      What Adw.ActionRow itself adds:
+#
+#            bin/gtk-schemas --own | jq '."Adw.ActionRow".properties | keys'
+#
+# SEE ALSO
+#      bin/fetch-gir, bin/adwaita-components
+#
+# adwaita-cn                            October 12, 2026                       GTK-SCHEMAS(1)
+
+require "json"
+require "rexml/document"
+
+module GtkSchemas
+  GIR = {
+    "Gtk" => "vendor/gir/Gtk-4.0.gir",
+    "Adw" => "vendor/gir/Adw-1.gir",
+  }.freeze
+
+  # The GIR type names which are a JavaScript primitive, and which one.
+  PRIMITIVES = {
+    "utf8" => "string",
+    "filename" => "string",
+    "gboolean" => "boolean",
+    "gint" => "number",
+    "guint" => "number",
+    "gint64" => "number",
+    "guint64" => "number",
+    "glong" => "number",
+    "gulong" => "number",
+    "gfloat" => "number",
+    "gdouble" => "number",
+    "gsize" => "number",
+    "gssize" => "number",
+    "gunichar" => "string",
+    "none" => "void",
+  }.freeze
+
+  # GTK spells a property `subtitle-lines`; React spells the same prop `subtitleLines`.
+  def self.camel(name)
+    parts = name.split("-")
+
+    (parts.first.to_s + parts.drop(1).map(&:capitalize).join)
+  end
+
+  # Everything declared in both files, keyed the way a GIR type reference spells it.
+  def self.read(root)
+    classes = {}
+    enums = {}
+
+    GIR.each do |namespace, relative|
+      document = REXML::Document.new(File.read(File.join(root, relative)))
+
+      REXML::XPath.each(document, "//namespace/enumeration | //namespace/bitfield") do |node|
+        members = REXML::XPath.match(node, "member").map{|member| member.attribute("name").to_s}
+        enums["#{namespace}.#{node.attribute('name')}"] = members
+      end
+
+      REXML::XPath.each(document, "//namespace/class") do |node|
+        name = node.attribute("name").to_s
+        parent = node.attribute("parent")&.to_s
+
+        classes["#{namespace}.#{name}"] = {
+          namespace: namespace,
+          # A parent in the same namespace is written bare, so it is qualified here.
+          parent: self.qualify(parent, namespace),
+          properties: self.properties(node),
+        }
+      end
+    end
+
+    [classes, enums]
+  end
+
+  # A GIR type reference is bare inside its own namespace and dotted outside it.
+  def self.qualify(name, namespace)
+    if name.nil? || name.empty?
+      nil
+    elsif name.include?(".")
+      name
+    else
+      "#{namespace}.#{name}"
+    end
+  end
+
+  def self.properties(node)
+    REXML::XPath.match(node, "property").to_h do |property|
+      name = property.attribute("name").to_s
+      type = REXML::XPath.first(property, "type | array")
+      writable = property.attribute("writable")&.to_s == "1"
+
+      [
+        name,
+        {
+          "prop" => self.camel(name),
+          "gir" => type&.attribute("name")&.to_s,
+          "writable" => writable,
+          "constructOnly" => property.attribute("construct-only")&.to_s == "1",
+          "default" => property.attribute("default-value")&.to_s,
+          "deprecated" => property.attribute("deprecated")&.to_s == "1",
+        },
+      ]
+    end
+  end
+
+  # The GIR type as something a lint can test a JSX attribute against.
+  def self.kind(gir, namespace, enums)
+    qualified = self.qualify(gir, namespace)
+
+    if gir.nil?
+      { "type" => "node" }
+    elsif PRIMITIVES.key?(gir)
+      { "type" => PRIMITIVES.fetch(gir) }
+    elsif enums.key?(qualified)
+      { "type" => "enum", "enum" => qualified, "values" => enums.fetch(qualified) }
+    else
+      { "type" => "node", "gobject" => qualified }
+    end
+  end
+
+  # A class's properties with its ancestors' folded in, nearest declaration winning.
+  def self.resolve(name, classes, own:)
+    chain = []
+    current = name
+
+    while current && classes.key?(current)
+      chain << current
+      current = classes.fetch(current)[:parent]
+    end
+
+    if own
+      chain = chain.take(1)
+    end
+
+    # Furthest ancestor first, so a class which redeclares a property overwrites it.
+    chain.reverse.each_with_object({}) do |ancestor, found|
+      classes.fetch(ancestor)[:properties].each do |property, attributes|
+        found[property] = attributes.merge("from" => ancestor)
+      end
+    end
+  end
+
+  def self.run(argv)
+    root = File.expand_path("..", __dir__)
+    own = !argv.delete("--own").nil?
+    classes, enums = self.read(root)
+
+    schemas = classes.sort.to_h do |name, entry|
+      properties = self.resolve(name, classes, own: own).sort.to_h do |property, attributes|
+        [property, attributes.merge(self.kind(attributes["gir"], entry[:namespace], enums))]
+      end
+
+      [
+        name,
+        {
+          "parent" => entry[:parent],
+          "properties" => properties,
+        },
+      ]
+    end
+
+    puts(JSON.pretty_generate({
+      "versions" => File.read(File.join(root, "vendor/gir/VERSIONS")).lines.map{|line| line.strip.squeeze(" ")},
+      "enums" => enums.sort.to_h,
+      "classes" => schemas,
+    }))
+  end
+end
+
+GtkSchemas.run(ARGV)

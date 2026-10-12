@@ -14,9 +14,10 @@
       {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            # bin/adwaita-tailwind is plain Ruby and needs no gems: the one thing
-            # it requires is json, which is stdlib.
-            ruby
+            # bin/adwaita-tailwind needs nothing but stdlib. bin/gtk-schemas needs
+            # rexml, which Ruby 3.4 unbundled, so it comes from here rather than
+            # from a Gemfile this project otherwise has no use for.
+            (ruby.withPackages (ps: [ ps.rexml ]))
 
             # bin/fetch-adwaita reads the compiled stylesheet back out of these.
             # glib provides gresource(1); the other two carry the sheet inside
@@ -25,6 +26,11 @@
             glib
             gtk4
             libadwaita
+
+            # And bin/fetch-gir reads the introspection data out of their dev
+            # outputs, which is where share/gir-1.0 lives.
+            gtk4.dev
+            libadwaita.dev
 
             # `shadcn build`, which turns registry.json into public/r/.
             nodejs

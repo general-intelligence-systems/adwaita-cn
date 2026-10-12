@@ -62,11 +62,33 @@ it.
 From 340 selectors that leaves **57 components**, with 98 nodes set aside. The exclusions are
 in `components.json` too, each with the reason, so nothing goes missing quietly.
 
+## The widget schemas
+
+The classes and their props come from the toolkit too, not from the documentation:
+
+```bash
+bin/fetch-gir                                     # Gtk-4.0.gir and Adw-1.gir, into vendor/gir/
+bin/gtk-schemas > vendor/gir/schemas.json         # 359 classes, 158 enums
+```
+
+A GIR file is GObject introspection data — what language bindings are generated from — so every
+class, every property, its type, its default and whether it is writable are stated by the
+library itself. `bin/gtk-schemas` resolves inheritance, which is the whole reason not to read
+the docs instead: `Adw.ActionRow` declares six properties and accepts forty-eight, with `title`
+from `Adw.PreferencesRow` and `visible` from `Gtk.Widget`. Each one records which class declared
+it.
+
+Types come out as something a JavaScript lint can check: `utf8` is a string, `gboolean` a
+boolean, an enumeration becomes its list of values (`Adw.ToolbarStyle` → `flat`, `raised`,
+`raised_border`), and a widget or model becomes `node`. Names are given both ways, GTK's
+`subtitle-lines` and React's `subtitleLines`.
+
 ## Layout
 
 ```
-bin/                       the three scripts above
-vendor/adwaita/            the extracted stylesheets, and which release each came from
+bin/                       the five scripts above
+vendor/adwaita/            the extracted stylesheets, the class map, the component list
+vendor/gir/                the introspection data, and the widget schemas
 registry.json              the registry index: one entry per component
 registry/adwaita/ui/       the components
 registry/adwaita/lib/      cn()
