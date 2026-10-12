@@ -8,7 +8,8 @@
     "widget": 89,
     "behaviour": 16,
     "private": 21,
-    "abstract": 1
+    "abstract": 1,
+    "variants": 101
   },
   "buildable": [
     "AboutDialog",
@@ -4093,7 +4094,8 @@
       },
       "node": "dialog",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "AboutWindow": {
       "kind": "composite",
@@ -6687,7 +6689,18 @@
       },
       "node": "window",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "devel": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Stripes the window's header bar, to mark a development build.",
+          "affects": [
+            "HeaderBar"
+          ]
+        }
+      }
     },
     "Acceleditor": {
       "kind": "private",
@@ -6701,7 +6714,8 @@
       "nodes": [
         "acceleditor"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ActionBar": {
       "kind": "widget",
@@ -7042,7 +7056,24 @@
       "nodes": [
         "actionbar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "toolbar": {
+          "classes": {
+            "base": [
+              "p-1.5",
+              "gap-[6px]",
+              "py-[3px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A horizontal box given a toolbar's padding and spacing.",
+          "combines": [
+            "osd"
+          ]
+        }
+      }
     },
     "ActionRow": {
       "kind": "composite",
@@ -7786,6 +7817,17 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
+      },
+      "variants": {
+        "property": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+          "combines": [
+            "monospace"
+          ]
+        }
       }
     },
     "AdaptivePreview": {
@@ -8372,7 +8414,8 @@
       "nodes": [
         "adaptive-preview"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Adjustment": {
       "kind": "behaviour",
@@ -8490,7 +8533,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "AlertDialog": {
       "kind": "composite",
@@ -9335,7 +9379,8 @@
       },
       "node": "dialog",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "AppChooserButton": {
       "kind": "widget",
@@ -9731,7 +9776,8 @@
       "nodes": [
         "appchooserbutton"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Avatar": {
       "kind": "widget",
@@ -10128,7 +10174,8 @@
           "rounded-full",
           "font-bold"
         ]
-      }
+      },
+      "variants": {}
     },
     "Banner": {
       "kind": "composite",
@@ -10639,7 +10686,8 @@
       ],
       "classes": {
         "base": []
-      }
+      },
+      "variants": {}
     },
     "Bin": {
       "kind": "widget",
@@ -10953,7 +11001,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "BottomSheet": {
       "kind": "widget",
@@ -11472,7 +11521,8 @@
       "nodes": [
         "bottom-sheet"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Box": {
       "kind": "widget",
@@ -11900,6 +11950,82 @@
           "font-bold",
           "text-[82%]"
         ]
+      },
+      "variants": {
+        "app-notification": {
+          "classes": {
+            "base": [
+              "p-2.5",
+              "gap-[10px]",
+              "rounded-[0_0_15px_15px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "OSD appearance with round bottom corners, for an in-app notification.",
+          "deprecated": {
+            "use": "ToastOverlay"
+          }
+        },
+        "card": {
+          "classes": {
+            "base": [
+              "rounded-[12px]",
+              "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+              "outline-offset-[5px]",
+              "transition-[outline-color,outline-width,outline-offset]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+              "shadow-none",
+              "outline-offset-[4px]",
+              "outline-2",
+              "outline-offset-[0]"
+            ],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[-1px]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "A card: rounded corners and a shadow.",
+          "combines": [
+            "activatable"
+          ]
+        },
+        "linked": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Makes a box's children appear as a single group. The box must have no spacing.",
+          "contains": [
+            "Button",
+            "MenuButton",
+            "DropDown",
+            "ColorDialogButton",
+            "FontDialogButton",
+            "TabButton",
+            "Entry",
+            "PasswordEntry",
+            "SearchEntry",
+            "SpinButton"
+          ]
+        },
+        "toolbar": {
+          "classes": {
+            "base": [
+              "p-1.5",
+              "gap-[6px]",
+              "py-[3px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A horizontal box given a toolbar's padding and spacing.",
+          "combines": [
+            "osd"
+          ]
+        }
       }
     },
     "Breakpoint": {
@@ -11929,7 +12055,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "BreakpointBin": {
       "kind": "widget",
@@ -12253,7 +12380,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Button": {
       "kind": "widget",
@@ -12714,6 +12842,216 @@
         "data-[state=checked]": [],
         "data-[state=checked]:hover": [],
         "data-[state=checked]:active": []
+      },
+      "variants": {
+        "activatable": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Gives a card hover and active states, for one that can be clicked.",
+          "combines": [
+            "card"
+          ]
+        },
+        "card": {
+          "classes": {
+            "base": [
+              "rounded-[12px]",
+              "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+              "outline-offset-[5px]",
+              "transition-[outline-color,outline-width,outline-offset]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+              "shadow-none",
+              "p-0",
+              "font-inherit",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+              "outline-offset-[4px]",
+              "outline-2",
+              "outline-offset-[0]"
+            ],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[-1px]"
+            ],
+            "data-[state=checked]": [],
+            "hover": [],
+            "active": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "A card: rounded corners and a shadow.",
+          "combines": [
+            "activatable"
+          ]
+        },
+        "circular": {
+          "classes": {
+            "base": [
+              "p-0",
+              "min-w-8.5",
+              "min-h-8.5",
+              "rounded-full",
+              "min-w-8",
+              "min-h-8"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Round, for a button holding an icon or one or two characters.",
+          "combines": [
+            "suggested-action",
+            "destructive-action",
+            "flat",
+            "osd"
+          ]
+        },
+        "destructive-action": {
+          "classes": {
+            "base": [],
+            "hover": [],
+            "active": [],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Uses destructive colours, to warn of damaging consequences.",
+          "combines": [
+            "flat",
+            "circular",
+            "pill"
+          ]
+        },
+        "flat": {
+          "classes": {
+            "base": [
+              "shadow-none",
+              "outline-offset-[4px]",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+              "p-0",
+              "my-1",
+              "min-w-5",
+              "min-h-5"
+            ],
+            "hover": [],
+            "active": [],
+            "disabled": [],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[-2px]"
+            ],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": [],
+            "last": [
+              "ml-1",
+              "mr--1"
+            ],
+            "first": [
+              "ml--1",
+              "mr-1"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Looks like a label or an icon until hovered.",
+          "combines": [
+            "destructive-action",
+            "round"
+          ]
+        },
+        "osd": {
+          "classes": {
+            "base": [
+              "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+              "min-w-8",
+              "min-h-8",
+              "outline-offset-[5px]",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            ],
+            "hover": [],
+            "active": [],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[1px]"
+            ],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "Dark and partially transparent, for a control overlapping content.",
+          "combines": [
+            "toolbar",
+            "circular",
+            "pill"
+          ]
+        },
+        "pill": {
+          "classes": {
+            "base": [
+              "py-2.5",
+              "px-8",
+              "rounded-full"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A pill, for an important standalone button.",
+          "combines": [
+            "suggested-action",
+            "destructive-action",
+            "flat",
+            "osd"
+          ]
+        },
+        "raised": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        },
+        "suggested-action": {
+          "classes": {
+            "base": [
+              "shadow-none",
+              "outline-offset-[5px]",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            ],
+            "hover": [],
+            "active": [],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[1px]"
+            ],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Uses accent colours, for the affirmative button in a dialog.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        }
       }
     },
     "ButtonContent": {
@@ -13090,7 +13428,8 @@
       "nodes": [
         "buttoncontent"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ButtonRow": {
       "kind": "composite",
@@ -13678,6 +14017,29 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
+      },
+      "variants": {
+        "destructive-action": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Uses destructive colours, to warn of damaging consequences.",
+          "combines": [
+            "flat",
+            "circular",
+            "pill"
+          ]
+        },
+        "suggested-action": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Uses accent colours, for the affirmative button in a dialog.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        }
       }
     },
     "Calendar": {
@@ -14127,7 +14489,8 @@
       ],
       "classes": {
         "base": []
-      }
+      },
+      "variants": {}
     },
     "CheckButton": {
       "kind": "widget",
@@ -14564,6 +14927,18 @@
           "outline-2",
           "outline-offset-[-2px]"
         ]
+      },
+      "variants": {
+        "selection-mode": {
+          "classes": {
+            "base": [
+              "rounded-[100px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Larger and round, for selecting items from a list or a grid."
+        }
       }
     },
     "Clamp": {
@@ -14950,7 +15325,8 @@
       "nodes": [
         "clamp"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ClampScrollable": {
       "kind": "widget",
@@ -15333,7 +15709,8 @@
       ],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Color": {
       "kind": "private",
@@ -15356,7 +15733,8 @@
         "disabled": [
           "opacity-0"
         ]
-      }
+      },
+      "variants": {}
     },
     "ColorButton": {
       "kind": "widget",
@@ -15732,7 +16110,8 @@
       "nodes": [
         "colorbutton"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Colorchooser": {
       "kind": "private",
@@ -15746,7 +16125,8 @@
       "nodes": [
         "colorchooser"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ColumnView": {
       "kind": "widget",
@@ -16287,7 +16667,8 @@
           "outline-2",
           "outline-offset-[-2px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "ComboBox": {
       "kind": "widget",
@@ -16834,7 +17215,8 @@
         "base": [
           "shadow-none"
         ]
-      }
+      },
+      "variants": {}
     },
     "ComboRow": {
       "kind": "composite",
@@ -17747,6 +18129,17 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
+      },
+      "variants": {
+        "property": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+          "combines": [
+            "monospace"
+          ]
+        }
       }
     },
     "Coverflow": {
@@ -17761,7 +18154,8 @@
       "nodes": [
         "coverflow"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Dialog": {
       "kind": "widget",
@@ -18265,7 +18659,8 @@
       "nodes": [
         "dialog"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "DialogHost": {
       "kind": "private",
@@ -18279,7 +18674,8 @@
       "nodes": [
         "dialog-host"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Dnd": {
       "kind": "private",
@@ -18295,7 +18691,8 @@
       ],
       "classes": {
         "base": []
-      }
+      },
+      "variants": {}
     },
     "DropControllerMotion": {
       "kind": "behaviour",
@@ -18422,7 +18819,8 @@
       ],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "DropDown": {
       "kind": "widget",
@@ -18947,7 +19345,8 @@
         "base": [
           "shadow-none"
         ]
-      }
+      },
+      "variants": {}
     },
     "DropTarget": {
       "kind": "behaviour",
@@ -19116,7 +19515,8 @@
       ],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "EditableLabel": {
       "kind": "widget",
@@ -19457,7 +19857,8 @@
       "nodes": [
         "editablelabel"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "EmojiCompletionRow": {
       "kind": "private",
@@ -19481,7 +19882,8 @@
         "focus": [],
         "hover": [],
         "active": []
-      }
+      },
+      "variants": {}
     },
     "Entry": {
       "kind": "widget",
@@ -20708,6 +21110,32 @@
           "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
         ],
         "disabled": []
+      },
+      "variants": {
+        "error": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": true,
+          "summary": "The error colour, and on an entry, invalid input."
+        },
+        "success": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": true,
+          "summary": "The success colour, and on an entry, valid input."
+        },
+        "warning": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": true,
+          "summary": "The warning colour, and on an entry, input needing attention."
+        }
       }
     },
     "EntryRow": {
@@ -21654,6 +22082,19 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
+      },
+      "variants": {
+        "monospace": {
+          "classes": {
+            "base": [
+              "font-[var(--monospace-font-family)]",
+              "text-[var(--monospace-font-size)]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The monospace font, for code, logs and shell commands."
+        }
       }
     },
     "EnumListModel": {
@@ -21708,7 +22149,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "EventControllerFocus": {
       "kind": "behaviour",
@@ -21830,7 +22272,8 @@
       ],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "EventControllerMotion": {
       "kind": "behaviour",
@@ -21952,7 +22395,8 @@
       ],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Expander": {
       "kind": "widget",
@@ -22413,7 +22857,8 @@
         "focus": [
           "shadow-none"
         ]
-      }
+      },
+      "variants": {}
     },
     "ExpanderRow": {
       "kind": "composite",
@@ -23173,6 +23618,17 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
+      },
+      "variants": {
+        "property": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+          "combines": [
+            "monospace"
+          ]
+        }
       }
     },
     "FadingLabel": {
@@ -23184,7 +23640,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "FileChooserWidget": {
       "kind": "widget",
@@ -23549,7 +24006,8 @@
         "base": [
           "shadow-[0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
         ]
-      }
+      },
+      "variants": {}
     },
     "Filechooserbutton": {
       "kind": "private",
@@ -23567,7 +24025,8 @@
         "base": [
           "shadow-none"
         ]
-      }
+      },
+      "variants": {}
     },
     "Filethumbnail": {
       "kind": "private",
@@ -23581,7 +24040,8 @@
       "nodes": [
         "filethumbnail"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Flap": {
       "kind": "widget",
@@ -24227,7 +24687,8 @@
       "nodes": [
         "flap"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "FloatingSheet": {
       "kind": "private",
@@ -24241,7 +24702,8 @@
       "nodes": [
         "floating-sheet"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "FlowBox": {
       "kind": "widget",
@@ -24745,7 +25207,21 @@
       "nodes": [
         "flowbox"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "navigation-sidebar": {
+          "classes": {
+            "base": [
+              "pt-1.5",
+              "pb-1",
+              "p-[3px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Sidebar styling: a transparent background and wider rows."
+        }
+      }
     },
     "FlowBoxChild": {
       "kind": "widget",
@@ -25106,7 +25582,8 @@
         "data-[selected]": [],
         "data-[selected]:hover": [],
         "data-[selected]:active": []
-      }
+      },
+      "variants": {}
     },
     "FontButton": {
       "kind": "widget",
@@ -25502,7 +25979,8 @@
       "nodes": [
         "fontbutton"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Frame": {
       "kind": "widget",
@@ -25904,7 +26382,8 @@
         "base": [
           "rounded-[12px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "GestureClick": {
       "kind": "behaviour",
@@ -26076,7 +26555,8 @@
       ],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Gizmo": {
       "kind": "private",
@@ -26087,7 +26567,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Grid": {
       "kind": "widget",
@@ -26518,7 +26999,8 @@
           "pb-[3px]",
           "pl-[3px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "GridView": {
       "kind": "widget",
@@ -27026,6 +27508,20 @@
         "base": [
           "p-[15px]"
         ]
+      },
+      "variants": {
+        "navigation-sidebar": {
+          "classes": {
+            "base": [
+              "pt-1.5",
+              "pb-1",
+              "p-[3px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Sidebar styling: a transparent background and wider rows."
+        }
       }
     },
     "HeaderBar": {
@@ -27494,6 +27990,45 @@
           "duration-200",
           "ease-[ease-out]"
         ]
+      },
+      "variants": {
+        "flat": {
+          "classes": {
+            "base": [
+              "shadow-none",
+              "min-h-11.5"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Gives the header bar a flat appearance.",
+          "combines": [
+            "destructive-action",
+            "round"
+          ],
+          "deprecated": {
+            "widgets": [
+              "HeaderBar"
+            ],
+            "use": "ToolbarView",
+            "summary": "Gives the header bar a flat appearance."
+          }
+        },
+        "toolbar": {
+          "classes": {
+            "base": [
+              "p-1.5",
+              "gap-[6px]",
+              "py-[3px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A horizontal box given a toolbar's padding and spacing.",
+          "combines": [
+            "osd"
+          ]
+        }
       }
     },
     "IconView": {
@@ -28192,7 +28727,8 @@
         "data-[selected]": [
           "rounded-[9px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "Image": {
       "kind": "widget",
@@ -28723,6 +29259,24 @@
           "opacity-80"
         ],
         "disabled": []
+      },
+      "variants": {
+        "icon-dropshadow": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "The shadow a GNOME application icon needs to read on a light background."
+        },
+        "lowres-icon": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "The shadow for an application icon below 32 pixels."
+        }
       }
     },
     "IndicatorBin": {
@@ -28740,7 +29294,8 @@
         "base": [
           "px-[calc(11px_-_var(---group-padding))]"
         ]
-      }
+      },
+      "variants": {}
     },
     "InfoBar": {
       "kind": "widget",
@@ -29147,7 +29702,8 @@
       "nodes": [
         "infobar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "InlineViewSwitcher": {
       "kind": "widget",
@@ -29539,7 +30095,28 @@
       "nodes": [
         "inline-view-switcher"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "flat": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Looks like a label or an icon until hovered.",
+          "combines": [
+            "destructive-action",
+            "round"
+          ]
+        },
+        "round": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Rounds the group and the toggles inside it.",
+          "combines": [
+            "flat"
+          ]
+        }
+      }
     },
     "InspectorPage": {
       "kind": "composite",
@@ -29691,7 +30268,8 @@
         "css": "inspectorpage"
       },
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Label": {
       "kind": "widget",
@@ -30401,6 +30979,137 @@
       "classes": {
         "base": [],
         "disabled": []
+      },
+      "variants": {
+        "body": {
+          "classes": {
+            "base": [
+              "font-normal",
+              "leading-[140%]",
+              "px-6",
+              "px-4.5"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "Increased line height, for descriptions and dialog body text.",
+          "combines": [
+            "document"
+          ]
+        },
+        "caption": {
+          "classes": {
+            "base": [
+              "font-normal",
+              "text-[82%]",
+              "leading-[140%]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "Smaller text, for sub-text accompanying body text."
+        },
+        "caption-heading": {
+          "classes": {
+            "base": [
+              "font-bold",
+              "text-[82%]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "Smaller text, for a heading accompanying body text."
+        },
+        "document": {
+          "classes": {
+            "base": [
+              "font-[var(--document-font-family)]",
+              "text-[var(--document-font-size)]",
+              "leading-[140%]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The document font, for the app's main content.",
+          "combines": [
+            "body"
+          ]
+        },
+        "heading": {
+          "classes": {
+            "base": [
+              "font-bold",
+              "m-3",
+              "mt-0"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The standard style for a UI heading at the default text size."
+        },
+        "monospace": {
+          "classes": {
+            "base": [
+              "font-[var(--monospace-font-family)]",
+              "text-[var(--monospace-font-size)]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The monospace font, for code, logs and shell commands."
+        },
+        "numeric": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": true,
+          "summary": "Tabular figures, so columns of numbers line up."
+        },
+        "title-1": {
+          "classes": {
+            "base": [
+              "font-extrabold",
+              "text-[181%]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The largest of the four title levels."
+        },
+        "title-2": {
+          "classes": {
+            "base": [
+              "font-extrabold",
+              "text-[136%]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The second of the four title levels."
+        },
+        "title-3": {
+          "classes": {
+            "base": [
+              "font-bold",
+              "text-[136%]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The third of the four title levels."
+        },
+        "title-4": {
+          "classes": {
+            "base": [
+              "font-bold",
+              "text-[118%]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The smallest of the four title levels."
+        }
       }
     },
     "Leaflet": {
@@ -30955,7 +31664,8 @@
       "nodes": [
         "leaflet"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "LevelBar": {
       "kind": "widget",
@@ -31380,7 +32090,8 @@
       ],
       "classes": {
         "disabled": []
-      }
+      },
+      "variants": {}
     },
     "LinkRow": {
       "kind": "private",
@@ -31391,7 +32102,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ListBox": {
       "kind": "widget",
@@ -31866,6 +32578,83 @@
         "focus": [
           "shadow-none"
         ]
+      },
+      "variants": {
+        "boxed-list": {
+          "classes": {
+            "base": [
+              "shadow-none",
+              "rounded-[12px]",
+              "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A boxed list. Set selection-mode to none."
+        },
+        "boxed-list-separate": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "A boxed list whose rows are separate cards."
+        },
+        "content": {
+          "classes": {
+            "base": [
+              "shadow-none",
+              "rounded-[12px]",
+              "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A boxed list appearance.",
+          "deprecated": {
+            "use": "boxed-list"
+          }
+        },
+        "monospace": {
+          "classes": {
+            "base": [
+              "font-[var(--monospace-font-family)]",
+              "text-[var(--monospace-font-size)]"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "The monospace font, for code, logs and shell commands."
+        },
+        "navigation-sidebar": {
+          "classes": {
+            "base": [
+              "pt-1.5",
+              "pb-1"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Sidebar styling: a transparent background and wider rows."
+        },
+        "sidebar": {
+          "classes": {
+            "base": [
+              "border-none",
+              "p-1.5",
+              "shadow-[inset_1px_0_var(--sidebar-border-color)]",
+              "transition-[background-color]",
+              "duration-200",
+              "ease-[ease-out]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A border at the end of the widget, and no background on lists inside it.",
+          "deprecated": {
+            "use": "navigation-sidebar"
+          }
+        }
       }
     },
     "ListView": {
@@ -32378,6 +33167,37 @@
         "focus": [
           "shadow-none"
         ]
+      },
+      "variants": {
+        "navigation-sidebar": {
+          "classes": {
+            "base": [
+              "pt-1.5",
+              "pb-1"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Sidebar styling: a transparent background and wider rows."
+        },
+        "sidebar": {
+          "classes": {
+            "base": [
+              "border-none",
+              "p-1.5",
+              "shadow-[inset_1px_0_var(--sidebar-border-color)]",
+              "transition-[background-color]",
+              "duration-200",
+              "ease-[ease-out]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A border at the end of the widget, and no background on lists inside it.",
+          "deprecated": {
+            "use": "navigation-sidebar"
+          }
+        }
       }
     },
     "Magnifier": {
@@ -32394,7 +33214,8 @@
       ],
       "classes": {
         "base": []
-      }
+      },
+      "variants": {}
     },
     "MenuButton": {
       "kind": "widget",
@@ -32953,6 +33774,80 @@
       ],
       "classes": {
         "disabled": []
+      },
+      "variants": {
+        "circular": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Round, for a button holding an icon or one or two characters.",
+          "combines": [
+            "suggested-action",
+            "destructive-action",
+            "flat",
+            "osd"
+          ]
+        },
+        "destructive-action": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Uses destructive colours, to warn of damaging consequences.",
+          "combines": [
+            "flat",
+            "circular",
+            "pill"
+          ]
+        },
+        "flat": {
+          "classes": {
+            "disabled": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Looks like a label or an icon until hovered.",
+          "combines": [
+            "destructive-action",
+            "round"
+          ]
+        },
+        "opaque": {
+          "classes": {
+            "base": [
+              "rounded-[9px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "An opaque background, to be combined with custom background and foreground colours.",
+          "deprecated": {
+            "use": "suggested-action"
+          }
+        },
+        "raised": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        },
+        "suggested-action": {
+          "classes": {
+            "base": [
+              "rounded-[9px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Uses accent colours, for the affirmative button in a dialog.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        }
       }
     },
     "MessageDialog": {
@@ -34009,7 +34904,18 @@
       },
       "node": "window",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "devel": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Stripes the window's header bar, to mark a development build.",
+          "affects": [
+            "HeaderBar"
+          ]
+        }
+      }
     },
     "NavigationPage": {
       "kind": "widget",
@@ -34373,7 +35279,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "NavigationView": {
       "kind": "widget",
@@ -34774,7 +35681,8 @@
       "nodes": [
         "navigation-view"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Notebook": {
       "kind": "widget",
@@ -35262,7 +36170,8 @@
         "base": [
           "duration-[300ms]"
         ]
-      }
+      },
+      "variants": {}
     },
     "Overlay": {
       "kind": "widget",
@@ -35632,6 +36541,36 @@
         "data-[state=checked]": [],
         "data-[state=checked]:hover": [],
         "data-[state=checked]:active": []
+      },
+      "variants": {
+        "app-notification": {
+          "classes": {
+            "base": [
+              "p-2.5",
+              "gap-[10px]",
+              "rounded-[0_0_15px_15px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "OSD appearance with round bottom corners, for an in-app notification.",
+          "deprecated": {
+            "use": "ToastOverlay"
+          }
+        },
+        "osd": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": true,
+          "summary": "Dark and partially transparent, for a control overlapping content.",
+          "combines": [
+            "toolbar",
+            "circular",
+            "pill"
+          ]
+        }
       }
     },
     "OverlaySplitView": {
@@ -36196,7 +37135,8 @@
       "nodes": [
         "overlay-split-view"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Paned": {
       "kind": "widget",
@@ -36719,7 +37659,8 @@
       "nodes": [
         "paned"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Pathbar": {
       "kind": "private",
@@ -36733,7 +37674,8 @@
       "nodes": [
         "pathbar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Picture": {
       "kind": "widget",
@@ -37219,7 +38161,8 @@
           "outline-offset-[-1px]",
           "rounded-[12px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "Placesview": {
       "kind": "private",
@@ -37233,7 +38176,8 @@
       "nodes": [
         "placesview"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Plane": {
       "kind": "private",
@@ -37258,7 +38202,8 @@
           "outline-2",
           "outline-offset-[2px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "Popover": {
       "kind": "widget",
@@ -37750,6 +38695,25 @@
       ],
       "classes": {
         "base": []
+      },
+      "variants": {
+        "menu": {
+          "classes": {
+            "base": [
+              "pt-1.5",
+              "pt-0",
+              "pb-1",
+              "px-0"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A menu-like appearance, for a popover holding a list.",
+          "contains": [
+            "ListBox",
+            "ListView"
+          ]
+        }
       }
     },
     "PopoverMenuBar": {
@@ -38102,7 +39066,8 @@
           "pb-[1px]",
           "shadow-[inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
         ]
-      }
+      },
+      "variants": {}
     },
     "PreferencesDialog": {
       "kind": "composite",
@@ -38988,7 +39953,8 @@
       },
       "node": "dialog",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "PreferencesGroup": {
       "kind": "composite",
@@ -39496,7 +40462,8 @@
       "nodes": [
         "preferencesgroup"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "PreferencesPage": {
       "kind": "composite",
@@ -39978,7 +40945,8 @@
       "nodes": [
         "preferencespage"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "PreferencesRow": {
       "kind": "widget",
@@ -40412,7 +41380,8 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
-      }
+      },
+      "variants": {}
     },
     "PreferencesWindow": {
       "kind": "composite",
@@ -41638,7 +42607,18 @@
       },
       "node": "window",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "devel": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Stripes the window's header bar, to mark a development build.",
+          "affects": [
+            "HeaderBar"
+          ]
+        }
+      }
     },
     "ProgressBar": {
       "kind": "widget",
@@ -42067,6 +43047,24 @@
       ],
       "classes": {
         "disabled": []
+      },
+      "variants": {
+        "osd": {
+          "classes": {
+            "base": [
+              "min-w-0.5",
+              "min-h-0.5"
+            ]
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "Dark and partially transparent, for a control overlapping content.",
+          "combines": [
+            "toolbar",
+            "circular",
+            "pill"
+          ]
+        }
       }
     },
     "Range": {
@@ -42504,7 +43502,8 @@
       "nodes": [
         "range"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Revealer": {
       "kind": "widget",
@@ -42974,6 +43973,23 @@
           "py-0",
           "px-3.5"
         ]
+      },
+      "variants": {
+        "app-notification": {
+          "classes": {
+            "base": [
+              "p-2.5",
+              "gap-[10px]",
+              "rounded-[0_0_15px_15px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "OSD appearance with round bottom corners, for an in-app notification.",
+          "deprecated": {
+            "use": "ToastOverlay"
+          }
+        }
       }
     },
     "Scale": {
@@ -43516,7 +44532,8 @@
           "min-w-2.5"
         ],
         "disabled": []
-      }
+      },
+      "variants": {}
     },
     "Scrollbar": {
       "kind": "widget",
@@ -43858,7 +44875,8 @@
       "nodes": [
         "scrollbar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ScrolledWindow": {
       "kind": "widget",
@@ -44538,7 +45556,33 @@
       "nodes": [
         "scrolledwindow"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "undershoot-bottom": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the bottom edge, indicating content scrolled out of view."
+        },
+        "undershoot-end": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the end edge, which follows text direction."
+        },
+        "undershoot-start": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the start edge, which follows text direction."
+        },
+        "undershoot-top": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the top edge, indicating content scrolled out of view."
+        }
+      }
     },
     "SearchBar": {
       "kind": "widget",
@@ -44941,7 +45985,30 @@
       "nodes": [
         "searchbar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "inline": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Removes the styling which makes the widget look part of a header bar."
+        },
+        "toolbar": {
+          "classes": {
+            "base": [
+              "p-1.5",
+              "gap-[6px]",
+              "py-[3px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A horizontal box given a toolbar's padding and spacing.",
+          "combines": [
+            "osd"
+          ]
+        }
+      }
     },
     "SearchEntry": {
       "kind": "widget",
@@ -45480,7 +46547,8 @@
         "Gtk.InputHints"
       ],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Separator": {
       "kind": "widget",
@@ -45810,6 +46878,34 @@
           "min-w-[1px]",
           "min-h-[1px]"
         ]
+      },
+      "variants": {
+        "sidebar": {
+          "classes": {
+            "base": [
+              "border-none",
+              "p-1.5",
+              "shadow-[inset_1px_0_var(--sidebar-border-color)]",
+              "transition-[background-color]",
+              "duration-200",
+              "ease-[ease-out]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A border at the end of the widget, and no background on lists inside it.",
+          "deprecated": {
+            "use": "navigation-sidebar"
+          }
+        },
+        "spacer": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Makes a separator invisible, so it acts as whitespace."
+        }
       }
     },
     "Shortcut": {
@@ -45887,7 +46983,8 @@
           "outline-2",
           "outline-offset-[4px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "ShortcutLabel": {
       "kind": "widget",
@@ -46236,7 +47333,8 @@
           "outline-2",
           "outline-offset-[1px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "ShortcutsDialog": {
       "kind": "composite",
@@ -46879,7 +47977,8 @@
       },
       "node": "dialog",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ShortcutsSection": {
       "kind": "behaviour",
@@ -46934,7 +48033,8 @@
         "base": [
           "m-5"
         ]
-      }
+      },
+      "variants": {}
     },
     "Sidebar": {
       "kind": "widget",
@@ -47370,7 +48470,8 @@
       "nodes": [
         "sidebar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "SignalListItemFactory": {
       "kind": "behaviour",
@@ -47381,7 +48482,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "SpinButton": {
       "kind": "widget",
@@ -47894,7 +48996,8 @@
           "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
         ],
         "disabled": []
-      }
+      },
+      "variants": {}
     },
     "SpinRow": {
       "kind": "composite",
@@ -48650,6 +49753,17 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
+      },
+      "variants": {
+        "property": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+          "combines": [
+            "monospace"
+          ]
+        }
       }
     },
     "Spinner": {
@@ -48960,7 +50074,8 @@
         "data-[state=checked]:disabled": [
           "opacity-0"
         ]
-      }
+      },
+      "variants": {}
     },
     "SplitButton": {
       "kind": "widget",
@@ -49450,6 +50565,69 @@
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "disabled": []
+      },
+      "variants": {
+        "destructive-action": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Uses destructive colours, to warn of damaging consequences.",
+          "combines": [
+            "flat",
+            "circular",
+            "pill"
+          ]
+        },
+        "flat": {
+          "classes": {
+            "hover": [],
+            "active": [],
+            "disabled": [],
+            "data-[state=checked]": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Looks like a label or an icon until hovered.",
+          "combines": [
+            "destructive-action",
+            "round"
+          ]
+        },
+        "opaque": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "An opaque background, to be combined with custom background and foreground colours.",
+          "deprecated": {
+            "use": "suggested-action"
+          }
+        },
+        "raised": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        },
+        "suggested-action": {
+          "classes": {
+            "base": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Uses accent colours, for the affirmative button in a dialog.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        }
       }
     },
     "Squeezer": {
@@ -49952,7 +51130,8 @@
       "flags": [],
       "node": "squeezer",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Stack": {
       "kind": "widget",
@@ -50504,7 +51683,8 @@
       "nodes": [
         "stack"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "StackPage": {
       "kind": "behaviour",
@@ -50618,7 +51798,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "StackSidebar": {
       "kind": "widget",
@@ -50960,7 +52141,8 @@
       "nodes": [
         "stacksidebar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "StackSwitcher": {
       "kind": "widget",
@@ -51302,7 +52484,8 @@
       "nodes": [
         "stackswitcher"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "StatusPage": {
       "kind": "composite",
@@ -51814,7 +52997,27 @@
       "nodes": [
         "statuspage"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "compact": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Takes less space, for a status page in a sidebar or a popover."
+        },
+        "pill": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A pill, for an important standalone button.",
+          "combines": [
+            "suggested-action",
+            "destructive-action",
+            "flat",
+            "osd"
+          ]
+        }
+      }
     },
     "Statusbar": {
       "kind": "widget",
@@ -52144,7 +53347,8 @@
           "py-1.5",
           "px-2.5"
         ]
-      }
+      },
+      "variants": {}
     },
     "Switch": {
       "kind": "widget",
@@ -52519,7 +53723,8 @@
         "data-[state=checked]": [],
         "data-[state=checked]:hover": [],
         "data-[state=checked]:active": []
-      }
+      },
+      "variants": {}
     },
     "SwitchRow": {
       "kind": "widget",
@@ -53084,6 +54289,17 @@
           "outline-offset-[-2px]"
         ],
         "data-[selected]": []
+      },
+      "variants": {
+        "property": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+          "combines": [
+            "monospace"
+          ]
+        }
       }
     },
     "Tab": {
@@ -53341,7 +54557,8 @@
         ],
         "data-[selected]:hover": [],
         "data-[selected]:active": []
-      }
+      },
+      "variants": {}
     },
     "TabBar": {
       "kind": "composite",
@@ -53922,7 +55139,15 @@
       "nodes": [
         "tabbar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "inline": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Removes the styling which makes the widget look part of a header bar."
+        }
+      }
     },
     "TabBox": {
       "kind": "private",
@@ -53933,7 +55158,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "TabButton": {
       "kind": "composite",
@@ -54394,7 +55620,8 @@
       "nodes": [
         "tabbutton"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "TabGrid": {
       "kind": "private",
@@ -54412,7 +55639,8 @@
         "base": [
           "shadow-none"
         ]
-      }
+      },
+      "variants": {}
     },
     "TabOverview": {
       "kind": "composite",
@@ -55215,7 +56443,8 @@
       "nodes": [
         "taboverview"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "TabOverviewScrollable": {
       "kind": "private",
@@ -55226,7 +56455,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "TabThumbnail": {
       "kind": "composite",
@@ -55524,7 +56754,8 @@
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "shadow-[inset_0_0_0_2px_color-mix(in_srgb,var(--accent-bg-color)_40%,transparent)]"
         ]
-      }
+      },
+      "variants": {}
     },
     "TabView": {
       "kind": "widget",
@@ -55980,7 +57211,8 @@
         "base": [
           "shadow-none"
         ]
-      }
+      },
+      "variants": {}
     },
     "Text": {
       "kind": "widget",
@@ -56748,7 +57980,8 @@
         "data-[selected]": [
           "rounded-[9px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "TextBuffer": {
       "kind": "behaviour",
@@ -56857,7 +58090,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "TextView": {
       "kind": "widget",
@@ -57705,6 +58939,17 @@
       ],
       "classes": {
         "base": []
+      },
+      "variants": {
+        "inline": {
+          "classes": {
+            "base": [],
+            "disabled": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Removes the styling which makes the widget look part of a header bar."
+        }
       }
     },
     "Toast": {
@@ -57891,7 +59136,8 @@
           "rounded-[150px]",
           "gap-[6px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "ToastOverlay": {
       "kind": "widget",
@@ -58206,7 +59452,8 @@
       "flags": [],
       "node": "toastoverlay",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ToastWidget": {
       "kind": "composite",
@@ -58331,7 +59578,8 @@
         "css": "toastwidget"
       },
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Toggle": {
       "kind": "behaviour",
@@ -58501,7 +59749,8 @@
           "outline-2",
           "outline-offset-[1px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "ToggleButton": {
       "kind": "widget",
@@ -58993,6 +60242,216 @@
         "data-[state=checked]": [],
         "data-[state=checked]:hover": [],
         "data-[state=checked]:active": []
+      },
+      "variants": {
+        "activatable": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Gives a card hover and active states, for one that can be clicked.",
+          "combines": [
+            "card"
+          ]
+        },
+        "card": {
+          "classes": {
+            "base": [
+              "rounded-[12px]",
+              "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+              "outline-offset-[5px]",
+              "transition-[outline-color,outline-width,outline-offset]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+              "shadow-none",
+              "p-0",
+              "font-inherit",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+              "outline-offset-[4px]",
+              "outline-2",
+              "outline-offset-[0]"
+            ],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[-1px]"
+            ],
+            "data-[state=checked]": [],
+            "hover": [],
+            "active": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "A card: rounded corners and a shadow.",
+          "combines": [
+            "activatable"
+          ]
+        },
+        "circular": {
+          "classes": {
+            "base": [
+              "p-0",
+              "min-w-8.5",
+              "min-h-8.5",
+              "rounded-full",
+              "min-w-8",
+              "min-h-8"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Round, for a button holding an icon or one or two characters.",
+          "combines": [
+            "suggested-action",
+            "destructive-action",
+            "flat",
+            "osd"
+          ]
+        },
+        "destructive-action": {
+          "classes": {
+            "base": [],
+            "hover": [],
+            "active": [],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": true,
+          "universal": false,
+          "summary": "Uses destructive colours, to warn of damaging consequences.",
+          "combines": [
+            "flat",
+            "circular",
+            "pill"
+          ]
+        },
+        "flat": {
+          "classes": {
+            "base": [
+              "shadow-none",
+              "outline-offset-[4px]",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+              "p-0",
+              "my-1",
+              "min-w-5",
+              "min-h-5"
+            ],
+            "hover": [],
+            "active": [],
+            "disabled": [],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[-2px]"
+            ],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": [],
+            "last": [
+              "ml-1",
+              "mr--1"
+            ],
+            "first": [
+              "ml--1",
+              "mr-1"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Looks like a label or an icon until hovered.",
+          "combines": [
+            "destructive-action",
+            "round"
+          ]
+        },
+        "osd": {
+          "classes": {
+            "base": [
+              "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+              "min-w-8",
+              "min-h-8",
+              "outline-offset-[5px]",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            ],
+            "hover": [],
+            "active": [],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[1px]"
+            ],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": false,
+          "universal": true,
+          "summary": "Dark and partially transparent, for a control overlapping content.",
+          "combines": [
+            "toolbar",
+            "circular",
+            "pill"
+          ]
+        },
+        "pill": {
+          "classes": {
+            "base": [
+              "py-2.5",
+              "px-8",
+              "rounded-full"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "A pill, for an important standalone button.",
+          "combines": [
+            "suggested-action",
+            "destructive-action",
+            "flat",
+            "osd"
+          ]
+        },
+        "raised": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        },
+        "suggested-action": {
+          "classes": {
+            "base": [
+              "shadow-none",
+              "outline-offset-[5px]",
+              "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+              "duration-200",
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+            ],
+            "hover": [],
+            "active": [],
+            "focus-visible": [
+              "outline-2",
+              "outline-offset-[1px]"
+            ],
+            "data-[state=checked]": [],
+            "data-[state=checked]:hover": [],
+            "data-[state=checked]:active": []
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Uses accent colours, for the affirmative button in a dialog.",
+          "combines": [
+            "circular",
+            "pill"
+          ]
+        }
       }
     },
     "ToggleGroup": {
@@ -59385,6 +60844,35 @@
           "rounded-[9px]"
         ],
         "disabled": []
+      },
+      "variants": {
+        "flat": {
+          "classes": {
+            "base": [
+              "shadow-none"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Looks like a label or an icon until hovered.",
+          "combines": [
+            "destructive-action",
+            "round"
+          ]
+        },
+        "round": {
+          "classes": {
+            "base": [
+              "rounded-[17px]"
+            ]
+          },
+          "colour": false,
+          "universal": false,
+          "summary": "Rounds the group and the toggles inside it.",
+          "combines": [
+            "flat"
+          ]
+        }
       }
     },
     "ToolbarView": {
@@ -59880,7 +61368,39 @@
       "nodes": [
         "toolbarview"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "inline": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Removes the styling which makes the widget look part of a header bar."
+        },
+        "undershoot-bottom": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the bottom edge, indicating content scrolled out of view."
+        },
+        "undershoot-end": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the end edge, which follows text direction."
+        },
+        "undershoot-start": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the start edge, which follows text direction."
+        },
+        "undershoot-top": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "A shadow at the top edge, indicating content scrolled out of view."
+        }
+      }
     },
     "Tooltip": {
       "kind": "behaviour",
@@ -59901,7 +61421,8 @@
           "rounded-[9px]",
           "shadow-none"
         ]
-      }
+      },
+      "variants": {}
     },
     "TreeExpander": {
       "kind": "widget",
@@ -60333,7 +61854,8 @@
         "base": [
           "gap-[4px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "TreeView": {
       "kind": "widget",
@@ -61014,7 +62536,8 @@
       "nodes": [
         "treeview"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "Video": {
       "kind": "widget",
@@ -61444,7 +62967,8 @@
       "nodes": [
         "video"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ViewStack": {
       "kind": "widget",
@@ -61868,7 +63392,8 @@
       "enums": [],
       "flags": [],
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ViewSwitcher": {
       "kind": "widget",
@@ -62217,7 +63742,8 @@
           "gap-[3px]",
           "min-h-8.5"
         ]
-      }
+      },
+      "variants": {}
     },
     "ViewSwitcherBar": {
       "kind": "composite",
@@ -62582,7 +64108,8 @@
       "nodes": [
         "viewswitcherbar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ViewSwitcherButton": {
       "kind": "composite",
@@ -62801,7 +64328,8 @@
         "css": "viewswitcherbutton.flat"
       },
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ViewSwitcherSidebar": {
       "kind": "widget",
@@ -63177,7 +64705,8 @@
       "nodes": [
         "view-switcher-sidebar"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {}
     },
     "ViewSwitcherTitle": {
       "kind": "composite",
@@ -63627,7 +65156,8 @@
         "base": [
           "my--1.5"
         ]
-      }
+      },
+      "variants": {}
     },
     "Viewport": {
       "kind": "widget",
@@ -63994,7 +65524,8 @@
           "rounded-tl-[18px]",
           "rounded-tr-[18px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "Widget": {
       "kind": "abstract",
@@ -64333,7 +65864,8 @@
           "duration-200",
           "ease-[ease-out]"
         ]
-      }
+      },
+      "variants": {}
     },
     "Window": {
       "kind": "widget",
@@ -65138,7 +66670,18 @@
       "nodes": [
         "window"
       ],
-      "classes": {}
+      "classes": {},
+      "variants": {
+        "devel": {
+          "classes": {},
+          "colour": true,
+          "universal": false,
+          "summary": "Stripes the window's header bar, to mark a development build.",
+          "affects": [
+            "HeaderBar"
+          ]
+        }
+      }
     },
     "WindowControls": {
       "kind": "widget",
@@ -65540,7 +67083,8 @@
         "base": [
           "gap-[3px]"
         ]
-      }
+      },
+      "variants": {}
     },
     "WindowHandle": {
       "kind": "widget",
@@ -65890,7 +67434,8 @@
           "duration-200",
           "ease-[ease-out]"
         ]
-      }
+      },
+      "variants": {}
     },
     "WindowTitle": {
       "kind": "composite",
@@ -66304,7 +67849,8 @@
           "my--1.5",
           "min-h-3"
         ]
-      }
+      },
+      "variants": {}
     },
     "WrapBox": {
       "kind": "widget",
@@ -66954,7 +68500,286 @@
       "flags": [],
       "node": "wrap-box",
       "nodes": [],
-      "classes": {}
+      "classes": {},
+      "variants": {}
+    }
+  },
+  "universal": {
+    "accent": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "The accent colour."
+    },
+    "background": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "The default window background and foreground colours."
+    },
+    "body": {
+      "classes": {
+        "base": [
+          "font-normal",
+          "leading-[140%]",
+          "px-6",
+          "px-4.5"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "Increased line height, for descriptions and dialog body text.",
+      "combines": [
+        "document"
+      ]
+    },
+    "caption": {
+      "classes": {
+        "base": [
+          "font-normal",
+          "text-[82%]",
+          "leading-[140%]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "Smaller text, for sub-text accompanying body text."
+    },
+    "caption-heading": {
+      "classes": {
+        "base": [
+          "font-bold",
+          "text-[82%]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "Smaller text, for a heading accompanying body text."
+    },
+    "card": {
+      "classes": {
+        "base": [
+          "rounded-[12px]",
+          "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+          "outline-offset-[5px]",
+          "transition-[outline-color,outline-width,outline-offset]",
+          "duration-200",
+          "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "shadow-none",
+          "outline-offset-[4px]",
+          "outline-2",
+          "outline-offset-[0]"
+        ],
+        "focus-visible": [
+          "outline-2",
+          "outline-offset-[-1px]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "A card: rounded corners and a shadow.",
+      "combines": [
+        "activatable"
+      ]
+    },
+    "dim-label": {
+      "classes": {
+        "base": [
+          "opacity-0",
+          "opacity-100",
+          "py-1.5",
+          "px-0"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "Partially transparent.",
+      "deprecated": {
+        "use": "dimmed"
+      }
+    },
+    "dimmed": {
+      "classes": {
+        "base": [
+          "opacity-0",
+          "opacity-100",
+          "py-1.5",
+          "px-0"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "Partially transparent, by the --dim-opacity variable."
+    },
+    "document": {
+      "classes": {
+        "base": [
+          "font-[var(--document-font-family)]",
+          "text-[var(--document-font-size)]",
+          "leading-[140%]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The document font, for the app's main content.",
+      "combines": [
+        "body"
+      ]
+    },
+    "error": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "The error colour, and on an entry, invalid input."
+    },
+    "frame": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "The default one-pixel border."
+    },
+    "heading": {
+      "classes": {
+        "base": [
+          "font-bold",
+          "m-3",
+          "mt-0"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The standard style for a UI heading at the default text size."
+    },
+    "large-title": {
+      "classes": {
+        "base": [
+          "font-light",
+          "text-[24pt]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "Large thin text, for a display heading in a greeter or an assistant.",
+      "deprecated": {
+        "use": "title-1"
+      }
+    },
+    "monospace": {
+      "classes": {
+        "base": [
+          "font-[var(--monospace-font-family)]",
+          "text-[var(--monospace-font-size)]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The monospace font, for code, logs and shell commands."
+    },
+    "numeric": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "Tabular figures, so columns of numbers line up."
+    },
+    "osd": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "Dark and partially transparent, for a control overlapping content.",
+      "combines": [
+        "toolbar",
+        "circular",
+        "pill"
+      ]
+    },
+    "success": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "The success colour, and on an entry, valid input."
+    },
+    "title-1": {
+      "classes": {
+        "base": [
+          "font-extrabold",
+          "text-[181%]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The largest of the four title levels."
+    },
+    "title-2": {
+      "classes": {
+        "base": [
+          "font-extrabold",
+          "text-[136%]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The second of the four title levels."
+    },
+    "title-3": {
+      "classes": {
+        "base": [
+          "font-bold",
+          "text-[136%]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The third of the four title levels."
+    },
+    "title-4": {
+      "classes": {
+        "base": [
+          "font-bold",
+          "text-[118%]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The smallest of the four title levels."
+    },
+    "view": {
+      "classes": {
+        "base": [
+          "border-none"
+        ],
+        "disabled": [],
+        "data-[selected]": [
+          "rounded-[9px]"
+        ],
+        "data-[selected]:focus": [
+          "rounded-[9px]"
+        ]
+      },
+      "colour": false,
+      "universal": true,
+      "summary": "The default view background and foreground colours."
+    },
+    "warning": {
+      "classes": {
+        "base": []
+      },
+      "colour": true,
+      "universal": true,
+      "summary": "The warning colour, and on an entry, input needing attention."
     }
   },
   "modifiers": {

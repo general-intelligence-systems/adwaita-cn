@@ -1,0 +1,139 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 12-COMPONENT-VARIANTS(1)          General Commands Manual           12-COMPONENT-VARIANTS(1)
+#
+# NAME
+#      bin/12-component-variants — every component, its variants, and the props to demonstrate
+#      them with
+#
+# SYNOPSIS
+#      bin/12-component-variants > vendor/adwaita/variants.json
+#
+# DESCRIPTION
+#      Compiles what bin/08-final-components resolved into one flat list: every component, every
+#      variant it can carry, and the props an example of it would write.
+#
+#      NOTHING IS WORKED OUT HERE. The variants are resolved in bin/08-final-components, which is
+#      where the component list and the stylesheet both already are, and a component carries its
+#      own `variants` in final-components.json. This reads them.
+#
+#      THE PROPS ARE THE ONES AN EXAMPLE CAN SHOW. A component accepts around seventy props and
+#      an example wants the two or three which put something on screen, so `example` carries
+#      only those, with a value derived from the prop:
+#
+#      A display-text prop gets its own name, humanised -- `title="Title"`. Which props those are
+#      is declared in SHOWN rather than worked out, because nothing in the introspection data
+#      separates `title` from `decorationLayout`: both are a writable string, and a name rule
+#      which caught `issueUrl` would still take `accelerator` and `closeResponse`.
+#
+#      `props` beside it is every prop the component declares, for the table in the
+#      documentation.
+#
+# FILES
+#      vendor/adwaita/final-components.json  the components and their variants, from 08
+#      vendor/adwaita/variants.json          the output
+#
+# EXIT STATUS
+#      The bin/12-component-variants utility exits 0 on success, and >0 if an error occurs.
+#
+# EXAMPLES
+#      The list:
+#
+#            bin/12-component-variants > vendor/adwaita/variants.json
+#
+#      What a button can be:
+#
+#            bin/12-component-variants | jq '.components.Button.variants | keys'
+#
+#      How many variants each component has, most first:
+#
+#            bin/12-component-variants | jq -r '.components | to_entries
+#              | map({k: .key, n: (.value.variants | length)}) | sort_by(-.n)[]
+#              | "\(.n)\t\(.k)"'
+#
+# SEE ALSO
+#      bin/08-final-components, bin/13-generate-examples
+#
+# adwaita-cn                         October 12, 2026                 12-COMPONENT-VARIANTS(1)
+
+require "json"
+
+module ComponentVariants
+  # THE PROPS AN EXAMPLE WRITES, DECLARED. A component accepts around seventy and an example
+  # wants the one or two which put something on screen, and no rule over the introspection data
+  # picks them out: `title` and `decorationLayout` are both a writable string, as are `label` and
+  # `issueUrl`. The type cannot tell text from an identifier and neither can the name -- a suffix
+  # rule which caught `-url` would still take `accelerator`, `imModule` and `closeResponse`.
+  #
+  # So this is the list, and it is short because it is only the props worth demonstrating a
+  # variant with. Anything else a component accepts is in `props`, which is what the
+  # documentation tabulates.
+  SHOWN = %w[
+    label title subtitle description heading body text comments tag version
+    placeholder-text button-label alternative-text disabled-text
+  ].freeze
+
+  def self.run(_argv)
+    root = File.expand_path("..", __dir__)
+    final = JSON.parse(File.read(File.join(root, "vendor/adwaita/final-components.json")))
+    components = final.fetch("components")
+
+    entries = final.fetch("buildable").sort.to_h do |name|
+      [name, self.entry(components.fetch(name))]
+    end
+
+    puts(JSON.pretty_generate({
+      "versions" => final.fetch("versions"),
+      "counts" => {
+        "components" => entries.length,
+        "universal" => final.fetch("universal").length,
+        "variants" => entries.values.sum{|entry| entry.fetch("variants").length},
+        "examples" => entries.values.sum{|entry| entry.fetch("variants").length + 1},
+      },
+      "universal" => final.fetch("universal"),
+      "components" => entries,
+    }))
+  end
+
+  def self.entry(component)
+    props = component.fetch("props")
+
+    {
+      "gtk" => component["gtk"],
+      "kind" => component.fetch("kind"),
+      "node" => component["node"],
+      "classes" => component.fetch("classes", {}),
+      "props" => props,
+      "example" => self.example(props),
+      "variants" => component.fetch("variants"),
+    }
+  end
+
+  # The props an example writes, with the value it writes for each.
+  def self.example(props)
+    props.select{|prop, attributes| self.showable?(prop, attributes)}.to_h do |prop, attributes|
+      [prop, self.value(prop, attributes)]
+    end
+  end
+
+  def self.showable?(prop, attributes)
+    attributes.fetch("type") == "string" && SHOWN.include?(self.kebab(prop))
+  end
+
+  # A text prop gets its own name back, which is what a placeholder in a demo should say.
+  def self.value(prop, _attributes)
+    { "type" => "string", "value" => self.humanise(prop) }
+  end
+
+  def self.kebab(prop)
+    prop.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
+  end
+
+  # `subtitleLines` -> `Subtitle lines`.
+  def self.humanise(prop)
+    self.kebab(prop).tr("-", " ").capitalize
+  end
+end
+
+ComponentVariants.run(ARGV)

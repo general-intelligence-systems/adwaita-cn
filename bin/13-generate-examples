@@ -1,0 +1,300 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 13-GENERATE-EXAMPLES(1)           General Commands Manual            13-GENERATE-EXAMPLES(1)
+#
+# NAME
+#      bin/13-generate-examples — one example per component and per variant
+#
+# SYNOPSIS
+#      bin/13-generate-examples [--force]
+#
+# DESCRIPTION
+#      Writes examples/ from vendor/adwaita/variants.json: one .tsx per component, and one more
+#      for each variant that component can carry. 118 components and 101 variants is 219 files.
+#
+#      THEY ARE REAL TSX AND NOT CODE FENCES, which is what makes them worth having. A fence in
+#      an .mdx file is a string nothing checks, and a wrong prop in one is a wrong prop the
+#      documentation teaches. These compile, so `tsc` and the oxlint plugin both read them, and
+#      an example which names a prop no widget has is a failed build rather than a page.
+#
+#      ONE FILE PER VARIANT, DEFAULT-EXPORTING ONE COMPONENT, so a harness can mount each and
+#      take one screenshot. examples/manifest.json lists them for exactly that.
+#
+#      THE CLASSES COME FROM A MODULE RATHER THAN FROM EACH FILE. An example reading
+#      `className={button.pill}` says which Adwaita style class it is demonstrating; the same
+#      example with `className="py-2.5 px-8 rounded-full"` says only what that happens to
+#      compile to. registry/adwaita/lib/variants.ts is generated beside the examples and holds
+#      the classes per component, because a variant is not the same everywhere -- `.flat` on a
+#      HeaderBar is `shadow-none min-h-11.5` and on a Button it is the whole flat-button rule.
+#
+#      HALF THE VARIANTS ARE COLOUR, which the manifest says of each. bin/03-adwaita-tailwind
+#      drops every colour declaration, so `.suggested-action` and `.destructive-action` reach
+#      here with nothing to contribute: their example is written, because the variant exists and
+#      the documentation should say so, and `colour` marks it as one a preview cannot show.
+#
+#      A CONTAINER GETS A CHILD. Three quarters of the components have no text prop to set --
+#      Box, Clamp, ScrolledWindow -- and an empty one screenshots as nothing, so an example
+#      which has no props to write renders a Label inside instead. Label itself is the exception,
+#      for obvious reasons.
+#
+#      IT DOES NOT OVERWRITE, the same as bin/11-generate-components. A generated example is a
+#      starting point and a better one may be written over it by hand; --force discards those.
+#
+# OPTIONS
+#      --force      Overwrite the examples which are already there.
+#
+# FILES
+#      vendor/adwaita/variants.json          the input, from 12
+#      examples/<component>/<variant>.tsx    one example
+#      examples/manifest.json                every example, for the harness
+#      registry/adwaita/lib/variants.ts      the classes each variant contributes
+#
+# EXIT STATUS
+#      The bin/13-generate-examples utility exits 0 on success, and >0 if an error occurs.
+#
+# EXAMPLES
+#      The examples:
+#
+#            bin/13-generate-examples
+#
+#      Which are verified by:
+#
+#            pnpm lint && pnpm typecheck
+#
+# SEE ALSO
+#      bin/12-component-variants, bin/11-generate-components, lint/adwaita-plugin.js
+#
+# adwaita-cn                         October 12, 2026                  13-GENERATE-EXAMPLES(1)
+
+require "fileutils"
+require "json"
+
+module GenerateExamples
+  # The state a variant's own rules describe. A variant has rules for hover and focus too, which
+  # belong on the component as Tailwind's own `hover:` prefixes once there is markup to put them
+  # on; an example demonstrates the variant at rest.
+  STATE = "base"
+
+  def self.run(argv)
+    root = File.expand_path("..", __dir__)
+    force = !argv.delete("--force").nil?
+    variants = JSON.parse(File.read(File.join(root, "vendor/adwaita/variants.json")))
+    components = variants.fetch("components")
+
+    self.write(root, "registry/adwaita/lib/variants.ts", self.module(variants), true)
+
+    manifest = []
+    written = 0
+    skipped = 0
+
+    components.sort.each do |name, component|
+      self.examples(name, component).each do |example|
+        manifest << example.reject{|key, _value| key == "source"}
+
+        if self.write(root, example.fetch("file"), example.fetch("source"), force)
+          written += 1
+        else
+          skipped += 1
+        end
+      end
+    end
+
+    self.write(root, "examples/manifest.json", "#{JSON.pretty_generate({
+      "versions" => variants.fetch("versions"),
+      "examples" => manifest,
+    })}\n", true)
+
+    puts("written: #{written}")
+    puts("left alone: #{skipped}")
+  end
+
+  # One example for the component itself, and one for each variant it can carry.
+  def self.examples(name, component)
+    base = {
+      "component" => name,
+      "variant" => nil,
+      "title" => name,
+      "summary" => "#{name} with no variant.",
+      "file" => "examples/#{self.kebab(name)}/base.tsx",
+      "source" => self.source(name, component, nil, nil),
+    }
+
+    [base] + component.fetch("variants").map do |style, variant|
+      {
+        "component" => name,
+        "variant" => style,
+        "title" => "#{name} .#{style}",
+        "summary" => variant.fetch("summary"),
+        "deprecated" => variant.key?("deprecated"),
+        # A variant whose every rule was a colour renders the same as the base example, so a
+        # harness taking previews has nothing to show and should say so rather than publish the
+        # same picture twice.
+        "colour" => variant.fetch("colour"),
+        "file" => "examples/#{self.kebab(name)}/#{style}.tsx",
+        "source" => self.source(name, component, style, variant),
+      }
+    end
+  end
+
+  def self.source(name, component, style, variant)
+    <<~TS
+      #{self.heading(name, style, variant).join("\n")}
+
+      import { #{name} } from "@/ui/#{self.kebab(name)}"#{self.imports(name, component, style)}
+
+      export default function #{self.function(name, style)}() {
+        return (
+      #{self.element(name, component, style)}
+        )
+      }
+    TS
+  end
+
+  # The comment at the top, as lines, because a deprecation adds two of them and interpolating a
+  # multi-line string into a heredoc indents everything after the first.
+  def self.heading(name, style, variant)
+    note = variant.nil? ? "The component as the stylesheet draws it." : variant.fetch("summary")
+
+    found = ["// #{name}#{style ? " — .#{style}" : ''}", "//", "// #{note}"]
+
+    if variant&.key?("deprecated")
+      found.push("//", "// DEPRECATED. #{self.replacement(variant)}")
+    end
+
+    found.push(
+      "//",
+      "// Generated by bin/13-generate-examples, which does not overwrite. Edit it into a better",
+      "// example and it will be left alone.",
+    )
+  end
+
+  # What the deprecation says instead. A replacement which is capitalised is a class rather than
+  # a style class, which is libadwaita saying the whole widget was the wrong answer.
+  def self.replacement(variant)
+    use = variant.fetch("deprecated").fetch("use")
+
+    use.match?(/\A[A-Z]/) ? "Use #{use} instead." : "Use .#{use} instead."
+  end
+
+  # The element, with the variant's classes and whatever text props the component has. A
+  # component with no text to set gets a Label inside it, so that there is something to see.
+  def self.element(name, component, style)
+    attributes = component.fetch("example").map do |prop, value|
+      "#{prop}=#{value.fetch('value').inspect}"
+    end
+
+    if style
+      attributes.unshift("className={#{self.camel(name)}.#{self.camel(style)}}")
+    end
+
+    written = attributes.empty? ? "" : " #{attributes.join(' ')}"
+
+    if self.child?(name, component)
+      ["    <#{name}#{written}>", '      <Label label="Label" />', "    </#{name}>"].join("\n")
+    else
+      "    <#{name}#{written} />"
+    end
+  end
+
+  # Whether this example puts a Label inside. A component with text props of its own does not
+  # need one, and Label cannot hold itself.
+  def self.child?(name, component)
+    component.fetch("example").empty? && name != "Label"
+  end
+
+  # The imports beyond the component: the classes module when there is a variant, and Label when
+  # the example wraps one.
+  def self.imports(name, component, style)
+    found = []
+    found << "\nimport { Label } from \"@/ui/label\"" if self.child?(name, component)
+    found << "\n\nimport { #{self.camel(name)} } from \"@/lib/variants\"" if style
+
+    found.join
+  end
+
+  # The classes each variant contributes, per component, so an example can name the variant it is
+  # demonstrating instead of repeating its classes.
+  def self.module(variants)
+    components = variants.fetch("components").reject{|_name, component| component.fetch("variants").empty?}
+
+    <<~TS
+      // Generated by bin/13-generate-examples from #{variants.fetch('versions').first}.
+      //
+      // What each of Adwaita's style classes contributes, per component. A variant is not the
+      // same everywhere: `.flat` on a HeaderBar removes its shadow, and on a Button it is the
+      // whole flat-button rule, so they are keyed by the component rather than by name alone.
+      //
+      // The classes are the variant's own, at rest. A variant's hover and focus rules belong on
+      // the component, which is where there is markup to hang them on.
+      //
+      // Do not edit. Run bin/13-generate-examples.
+
+      #{components.sort.map{|name, component| self.declaration(name, component)}.join("\n\n")}
+
+      #{self.universal(variants.fetch('universal'))}
+    TS
+  end
+
+  def self.declaration(name, component)
+    entries = component.fetch("variants").map do |style, variant|
+      "  #{self.documentation(variant)}\n  #{self.camel(style)}: #{self.classes(variant).inspect},"
+    end
+
+    "export const #{self.camel(name)} = {\n#{entries.join("\n\n")}\n} as const"
+  end
+
+  # The variants which go on any widget at all, which no component is the owner of.
+  def self.universal(universal)
+    entries = universal.map do |style, variant|
+      "  #{self.documentation(variant)}\n  #{self.camel(style)}: #{self.classes(variant).inspect},"
+    end
+
+    "export const universal = {\n#{entries.join("\n\n")}\n} as const"
+  end
+
+  def self.documentation(variant)
+    deprecated = variant.key?("deprecated") ? " @deprecated #{self.replacement(variant)}" : ""
+
+    "/** #{variant.fetch('summary')}#{deprecated} */"
+  end
+
+  def self.classes(variant)
+    variant.fetch("classes").fetch(STATE, []).join(" ")
+  end
+
+  # True when the file was written, false when it was already there.
+  def self.write(root, relative, source, force)
+    path = File.join(root, relative)
+
+    if File.exist?(path) && !force
+      false
+    else
+      FileUtils.mkdir_p(File.dirname(path))
+      File.write(path, source)
+      true
+    end
+  end
+
+  # What the example's function is called. IT CANNOT BE THE COMPONENT'S OWN NAME: the base
+  # example of ActionBar named its function ActionBar, which shadowed the import, so `<ActionBar>`
+  # resolved to the example itself -- a component taking no props, which is what tsc then
+  # reported against every prop the example wrote.
+  def self.function(name, style)
+    "#{name}#{style ? self.camel(style).capitalize : 'Base'}"
+  end
+
+  def self.kebab(name)
+    name.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
+  end
+
+  # `suggested-action` -> `suggestedAction`, and `ActionRow` -> `actionRow`. A nil variant is the
+  # base example, whose function is named after the component alone.
+  def self.camel(name)
+    parts = name.to_s.split(/[-_]/)
+
+    parts.first.to_s.sub(/\A[A-Z]/, &:downcase) + parts.drop(1).map(&:capitalize).join
+  end
+end
+
+GenerateExamples.run(ARGV)

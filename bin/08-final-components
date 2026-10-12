@@ -84,6 +84,116 @@ require "json"
 require "set"
 
 module FinalComponents
+  # ── The variants, which are declared rather than derived ──
+
+  # THE PUBLIC STYLE CLASSES, TAKEN FROM libadwaita's doc/style-classes.md AND WRITTEN OUT HERE.
+  # That page is the only statement of which style classes are API and which are libadwaita's
+  # own plumbing, and the stylesheet cannot tell them apart: `.pill` and `.apply-button` are both
+  # just a class on a button node, and the second is the apply button inside an AdwEntryRow,
+  # named by one rule four levels deep. Resolving the stylesheet alone made 622 "variants", most
+  # of them positions inside a template.
+  #
+  # IT IS A HASH AND NOT A PARSER because the page is prose. Parsing it would make the pipeline
+  # depend on the wording of a document which is written for people, and the list is fifty-two
+  # entries which change a few times a release. The CLASSES EACH ONE CONTRIBUTES ARE STILL READ
+  # FROM THE STYLESHEET -- this says which variants exist and what they go on, never what they
+  # look like.
+  #
+  # `widgets` is the classes the page names, and a variant reaches their subclasses too, because
+  # a subclass renders the same CSS node: `.flat` is documented for Gtk.Button and so is a
+  # variant of ToggleButton. `:any` is the page saying "can be used with any widget".
+  #
+  # Every name here is checked against the introspection data on the way through, so a typo is a
+  # failed run rather than a variant which silently never applies.
+  VARIANTS = {
+    # Buttons.
+    "suggested-action" => { summary: "Uses accent colours, for the affirmative button in a dialog.", widgets: %w[Button MenuButton SplitButton ButtonRow], combines: %w[circular pill] },
+    "destructive-action" => { summary: "Uses destructive colours, to warn of damaging consequences.", widgets: %w[Button MenuButton SplitButton ButtonRow], combines: %w[flat circular pill] },
+    "flat" => { summary: "Looks like a label or an icon until hovered.", widgets: %w[Button MenuButton SplitButton ToggleGroup InlineViewSwitcher], combines: %w[destructive-action round], deprecated: { widgets: %w[HeaderBar], use: "ToolbarView", summary: "Gives the header bar a flat appearance." } },
+    "raised" => { summary: "The regular appearance instead of the flat one, inside a toolbar.", widgets: %w[Button MenuButton SplitButton], combines: %w[circular pill] },
+    "circular" => { summary: "Round, for a button holding an icon or one or two characters.", widgets: %w[Button MenuButton], combines: %w[suggested-action destructive-action flat osd] },
+    "pill" => { summary: "A pill, for an important standalone button.", widgets: %w[Button StatusPage], combines: %w[suggested-action destructive-action flat osd] },
+
+    # Toggle groups.
+    "round" => { summary: "Rounds the group and the toggles inside it.", widgets: %w[ToggleGroup InlineViewSwitcher], combines: %w[flat] },
+
+    # Linked controls. The box carries the class; the page lists what may go inside it.
+    "linked" => { summary: "Makes a box's children appear as a single group. The box must have no spacing.", widgets: %w[Box], contains: %w[Button MenuButton DropDown ColorDialogButton FontDialogButton TabButton Entry PasswordEntry SearchEntry SpinButton] },
+
+    # Toolbars. HeaderBar, ActionBar and SearchBar have the appearance already.
+    "toolbar" => { summary: "A horizontal box given a toolbar's padding and spacing.", widgets: %w[Box], combines: %w[osd], shared: %w[HeaderBar ActionBar SearchBar] },
+
+    # Spacers.
+    "spacer" => { summary: "Makes a separator invisible, so it acts as whitespace.", widgets: %w[Separator] },
+
+    # Dimmed, and the colours, which the page says go on any widget.
+    "dimmed" => { summary: "Partially transparent, by the --dim-opacity variable.", widgets: :any },
+    "accent" => { summary: "The accent colour.", widgets: :any },
+    "success" => { summary: "The success colour, and on an entry, valid input.", widgets: :any, also: %w[Entry] },
+    "warning" => { summary: "The warning colour, and on an entry, input needing attention.", widgets: :any, also: %w[Entry] },
+    "error" => { summary: "The error colour, and on an entry, invalid input.", widgets: :any, also: %w[Entry] },
+
+    # Typography. "Can be applied to any widgets, but mostly used for Gtk.Label."
+    "title-1" => { summary: "The largest of the four title levels.", widgets: :any, mostly: %w[Label] },
+    "title-2" => { summary: "The second of the four title levels.", widgets: :any, mostly: %w[Label] },
+    "title-3" => { summary: "The third of the four title levels.", widgets: :any, mostly: %w[Label] },
+    "title-4" => { summary: "The smallest of the four title levels.", widgets: :any, mostly: %w[Label] },
+    "heading" => { summary: "The standard style for a UI heading at the default text size.", widgets: :any, mostly: %w[Label] },
+    "document" => { summary: "The document font, for the app's main content.", widgets: :any, mostly: %w[Label], combines: %w[body] },
+    "body" => { summary: "Increased line height, for descriptions and dialog body text.", widgets: :any, mostly: %w[Label], combines: %w[document] },
+    "caption-heading" => { summary: "Smaller text, for a heading accompanying body text.", widgets: :any, mostly: %w[Label] },
+    "caption" => { summary: "Smaller text, for sub-text accompanying body text.", widgets: :any, mostly: %w[Label] },
+    "monospace" => { summary: "The monospace font, for code, logs and shell commands.", widgets: :any, mostly: %w[Label], also: %w[EntryRow ListBox] },
+    "numeric" => { summary: "Tabular figures, so columns of numbers line up.", widgets: :any, mostly: %w[Label] },
+
+    # Boxed lists and cards.
+    "boxed-list" => { summary: "A boxed list. Set selection-mode to none.", widgets: %w[ListBox] },
+    "boxed-list-separate" => { summary: "A boxed list whose rows are separate cards.", widgets: %w[ListBox] },
+    "card" => { summary: "A card: rounded corners and a shadow.", widgets: :any, mostly: %w[Box Button], combines: %w[activatable] },
+    "activatable" => { summary: "Gives a card hover and active states, for one that can be clicked.", widgets: %w[Button], combines: %w[card] },
+
+    # Sidebars.
+    "navigation-sidebar" => { summary: "Sidebar styling: a transparent background and wider rows.", widgets: %w[ListBox ListView FlowBox GridView] },
+
+    # App icons.
+    "icon-dropshadow" => { summary: "The shadow a GNOME application icon needs to read on a light background.", widgets: %w[Image] },
+    "lowres-icon" => { summary: "The shadow for an application icon below 32 pixels.", widgets: %w[Image] },
+
+    # Selection mode check buttons.
+    "selection-mode" => { summary: "Larger and round, for selecting items from a list or a grid.", widgets: %w[CheckButton] },
+
+    # OSD, whose meaning depends on what carries it.
+    "osd" => { summary: "Dark and partially transparent, for a control overlapping content.", widgets: :any, mostly: %w[Button ProgressBar Overlay], combines: %w[toolbar circular pill] },
+
+    # The three which give a widget a default background, view or border.
+    "background" => { summary: "The default window background and foreground colours.", widgets: :any },
+    "view" => { summary: "The default view background and foreground colours.", widgets: :any },
+    "frame" => { summary: "The default one-pixel border.", widgets: :any },
+
+    # One-widget variants.
+    "compact" => { summary: "Takes less space, for a status page in a sidebar or a popover.", widgets: %w[StatusPage] },
+    "menu" => { summary: "A menu-like appearance, for a popover holding a list.", widgets: %w[Popover], contains: %w[ListBox ListView] },
+    "devel" => { summary: "Stripes the window's header bar, to mark a development build.", widgets: %w[Window], affects: %w[HeaderBar] },
+    "inline" => { summary: "Removes the styling which makes the widget look part of a header bar.", widgets: %w[SearchBar TabBar TextView ToolbarView] },
+
+    # Undershoot indicators.
+    "undershoot-top" => { summary: "A shadow at the top edge, indicating content scrolled out of view.", widgets: %w[ScrolledWindow ToolbarView] },
+    "undershoot-bottom" => { summary: "A shadow at the bottom edge, indicating content scrolled out of view.", widgets: %w[ScrolledWindow ToolbarView] },
+    "undershoot-start" => { summary: "A shadow at the start edge, which follows text direction.", widgets: %w[ScrolledWindow ToolbarView] },
+    "undershoot-end" => { summary: "A shadow at the end edge, which follows text direction.", widgets: %w[ScrolledWindow ToolbarView] },
+
+    # Property rows.
+    "property" => { summary: "Deemphasises the row's title and emphasises its subtitle, for a read-only property.", widgets: %w[ActionRow ExpanderRow], combines: %w[monospace] },
+
+    # Deprecated, kept because an application may still carry them.
+    "content" => { summary: "A boxed list appearance.", widgets: %w[ListBox], deprecated: { use: "boxed-list" } },
+    "sidebar" => { summary: "A border at the end of the widget, and no background on lists inside it.", widgets: %w[ListBox ListView Separator], deprecated: { use: "navigation-sidebar" } },
+    "app-notification" => { summary: "OSD appearance with round bottom corners, for an in-app notification.", widgets: %w[Box Overlay Revealer], deprecated: { use: "ToastOverlay" } },
+    "large-title" => { summary: "Large thin text, for a display heading in a greeter or an assistant.", widgets: :any, deprecated: { use: "title-1" } },
+    "opaque" => { summary: "An opaque background, to be combined with custom background and foreground colours.", widgets: %w[MenuButton SplitButton], deprecated: { use: "suggested-action" } },
+    "dim-label" => { summary: "Partially transparent.", widgets: :any, deprecated: { use: "dimmed" } },
+  }.freeze
+
   def self.read(root, relative)
     JSON.parse(File.read(File.join(root, relative)))
   end
@@ -177,15 +287,24 @@ module FinalComponents
       entry["tree"] = self.annotate(entry.fetch("tree"), [], contexts, widgets, root, entry["classes"])
     end
 
+    self.check(classes, modifiers)
+
+    # The variants each component can carry, which is the component side of the modifiers above.
+    components.each do |name, entry|
+      entry["variants"] = self.component_variants(name, self.ancestry(name, classes), entry["node"], contexts)
+    end
+
     buildable = components.reject{|_name, entry| %w[abstract behaviour private].include?(entry.fetch("kind"))}
 
     puts(JSON.pretty_generate({
       "versions" => schemas.fetch("versions"),
-      "counts" => components.group_by{|_name, entry| entry.fetch("kind")}.transform_values(&:size),
+      "counts" => components.group_by{|_name, entry| entry.fetch("kind")}.transform_values(&:size)
+        .merge("variants" => components.values.sum{|entry| entry.fetch("variants").length}),
       "buildable" => buildable.keys.sort,
       "enums" => self.referenced(buildable, enums),
       "widget" => shared,
       "components" => components.sort.to_h,
+      "universal" => self.universal_variants(contexts),
       "modifiers" => modifiers.sort.to_h,
       "parts" => parts.sort.to_h,
     }))
@@ -316,6 +435,138 @@ module FinalComponents
     end.uniq.sort
   end
 
+
+  # Which declared variants a component can carry. A variant names the classes it goes on and
+  # reaches their subclasses, so ToggleButton is offered `.flat` because Gtk.Button is.
+  #
+  # THE UNIVERSAL ONES ARE NOT REPEATED HERE. `.dimmed` and `.frame` go on any widget at all, and
+  # saying so 118 times says less than saying it once, so they are reported under `universal` and
+  # a component lists only the variants named for it. A variant which is universal *and* named
+  # for a widget appears in both, because both are true: `.osd` can go on anything and has
+  # further rules for a button.
+  def self.component_variants(name, ancestry, node, contexts)
+    found = VARIANTS.filter_map do |style, variant|
+      named = self.named(variant) & ancestry
+
+      [style, self.variant(style, variant, node, contexts, name)] unless named.empty?
+    end
+
+    found.to_h.sort.to_h
+  end
+
+  # The classes a variant declaration names, whatever it names them for. `mostly` is the page
+  # saying a class goes on anything but is meant for these; `also` is a second use with its own
+  # meaning, like `.error` on an Entry; `shared` is a widget which has the appearance already,
+  # as HeaderBar does a toolbar's.
+  #
+  # A DEPRECATED USE IS STILL A USE. `.flat` on a HeaderBar is deprecated and `.flat` on a Button
+  # is not, so HeaderBar is named here and the entry carries the deprecation -- offering it with
+  # the warning attached, which is what `.content` and `.sidebar` on a ListBox already did.
+  def self.named(variant)
+    widgets = variant.fetch(:widgets)
+
+    (widgets == :any ? [] : widgets) |
+      variant.fetch(:mostly, []) |
+      variant.fetch(:also, []) |
+      variant.fetch(:shared, []) |
+      variant.fetch(:deprecated, {}).fetch(:widgets, [])
+  end
+
+  # One variant, with the classes the stylesheet gives it ON THIS COMPONENT. The declaration says
+  # which variants exist and what they go on; the stylesheet says what they look like, and it
+  # does not say the same thing everywhere -- `.flat` on a headerbar is not `.flat` on a button,
+  # and merging every `.flat` rule gave a flat HeaderBar a button's padding and minimum height.
+  def self.variant(style, variant, node, contexts, name = nil)
+    found = variant.slice(:summary, :combines, :contains, :affects).transform_keys(&:to_s)
+    classes = self.variant_classes(style, node, contexts)
+
+    {
+      "classes" => classes,
+      # A variant whose every rule was a colour has nothing left once the colours are dropped.
+      # `.destructive-action` is exactly that, and saying so is better than an empty entry which
+      # looks like a gap in the extraction.
+      "colour" => classes.values.all?(&:empty?),
+      "universal" => variant.fetch(:widgets) == :any,
+    }.merge(found).merge(self.deprecation(variant, name))
+  end
+
+  # The deprecation, WHERE IT APPLIES TO THIS COMPONENT. `.flat` is deprecated on a HeaderBar and
+  # current on a Button, so a deprecation naming widgets reaches only those; one which names none
+  # is the whole style class being deprecated, and reaches every component carrying it.
+  #
+  # A DEPRECATED USE CAN ALSO MEAN SOMETHING ELSE -- `.flat` makes a button look like a label and
+  # makes a header bar flat -- so it carries its own summary, which replaces the general one.
+  def self.deprecation(variant, name)
+    deprecated = variant.fetch(:deprecated, nil)
+    widgets = deprecated&.fetch(:widgets, nil)
+
+    if deprecated.nil? || (widgets && !widgets.include?(name))
+      {}
+    else
+      { "deprecated" => deprecated.transform_keys(&:to_s) }
+        .merge(deprecated.slice(:summary).transform_keys(&:to_s))
+    end
+  end
+
+  # The rules which style a node carrying this class. The subject has to be the node -- a rule
+  # about another element is about that one, and a rule naming no element applies to any.
+  #
+  # ONLY THE CLASS ITSELF, so `button.flat.circular` is left out. That is the combination, which
+  # is what `combines` points at, and folding it in would make every flat button round.
+  #
+  # AT ANY DEPTH, because some variants are only ever written inside a context: `.raised` is
+  # `.toolbar button.raised`, since a raised button only means anything where buttons are flat by
+  # default. Requiring a bare selector left it with no classes at all.
+  def self.variant_classes(style, node, contexts)
+    own = contexts.select do |selector, _states|
+      element, classes = self.segment(self.segments(selector).last.to_s)
+
+      classes.to_a == [style] && (element.nil? || element == node)
+    end
+
+    self.merged(own.values)
+  end
+
+  # The variants which go on any widget at all, whose classes are the rules naming no element.
+  def self.universal_variants(contexts)
+    VARIANTS.select{|_style, variant| variant.fetch(:widgets) == :any}.sort.to_h do |style, variant|
+      [style, self.variant(style, variant, nil, contexts)]
+    end
+  end
+
+  # THE DECLARATION IS CHECKED, because it is hand-written. A class named for a variant which the
+  # introspection data does not have is a typo, and a variant the stylesheet has no rules for
+  # means the extraction missed it -- either way the run fails rather than quietly producing a
+  # variant which never applies to anything.
+  def self.check(classes, modifiers)
+    unknown = VARIANTS.flat_map do |style, variant|
+      wanted = self.named(variant) |
+        variant.fetch(:contains, []) |
+        variant.fetch(:affects, []) |
+        variant.fetch(:deprecated, {}).fetch(:widgets, [])
+
+      wanted.reject{|name| classes.key?(name)}.map{|name| "#{style}: #{name}"}
+    end
+
+    unstyled = VARIANTS.keys.reject{|style| modifiers.key?(style)}
+    undescribed = VARIANTS.reject{|_style, variant| variant.key?(:summary)}.keys
+
+    unless undescribed.empty?
+      warn("final-components: variants with no summary: #{undescribed.join(', ')}")
+      exit(1)
+    end
+
+    unless unknown.empty?
+      warn("final-components: variants name classes which do not exist: #{unknown.join(', ')}")
+      exit(1)
+    end
+
+    unless unstyled.empty?
+      warn("final-components: variants the stylesheet has no rules for: #{unstyled.join(', ')}")
+      exit(1)
+    end
+  end
+
   # Every style class there is, which is two sources because neither is complete on its own.
   #
   # THE STYLESHEET NAMES MOST OF THEM, in any selector segment rather than only as a bare
@@ -379,6 +630,19 @@ module FinalComponents
         self.each_node(entry.fetch("tree")) do |node|
           node.fetch("styles", []).each{|style| (found[style] ||= []) << node.fetch("class")}
         end
+      end
+    end
+  end
+
+  # A class and the classes it descends from, so that a variant documented for Gtk.Button is
+  # offered on ToggleButton too.
+  def self.ancestry(name, classes)
+    [].tap do |found|
+      current = name
+
+      while current && classes.key?(current) && !found.include?(current)
+        found << current
+        current = classes.fetch(current)["parent"]
       end
     end
   end

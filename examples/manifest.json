@@ -1,0 +1,1743 @@
+{
+  "versions": [
+    "gtk4 q5ixi78igmpb89h80y1vwzq720xb6vg2-gtk4-4.22.4-dev",
+    "libadwaita c38j9fgdd57lcg8rx2jz6r7w04cnmii1-libadwaita-1.9.3-dev"
+  ],
+  "examples": [
+    {
+      "component": "AboutDialog",
+      "variant": null,
+      "title": "AboutDialog",
+      "summary": "AboutDialog with no variant.",
+      "file": "examples/about-dialog/base.tsx"
+    },
+    {
+      "component": "AboutWindow",
+      "variant": null,
+      "title": "AboutWindow",
+      "summary": "AboutWindow with no variant.",
+      "file": "examples/about-window/base.tsx"
+    },
+    {
+      "component": "AboutWindow",
+      "variant": "devel",
+      "title": "AboutWindow .devel",
+      "summary": "Stripes the window's header bar, to mark a development build.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/about-window/devel.tsx"
+    },
+    {
+      "component": "ActionBar",
+      "variant": null,
+      "title": "ActionBar",
+      "summary": "ActionBar with no variant.",
+      "file": "examples/action-bar/base.tsx"
+    },
+    {
+      "component": "ActionBar",
+      "variant": "toolbar",
+      "title": "ActionBar .toolbar",
+      "summary": "A horizontal box given a toolbar's padding and spacing.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/action-bar/toolbar.tsx"
+    },
+    {
+      "component": "ActionRow",
+      "variant": null,
+      "title": "ActionRow",
+      "summary": "ActionRow with no variant.",
+      "file": "examples/action-row/base.tsx"
+    },
+    {
+      "component": "ActionRow",
+      "variant": "property",
+      "title": "ActionRow .property",
+      "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/action-row/property.tsx"
+    },
+    {
+      "component": "AdaptivePreview",
+      "variant": null,
+      "title": "AdaptivePreview",
+      "summary": "AdaptivePreview with no variant.",
+      "file": "examples/adaptive-preview/base.tsx"
+    },
+    {
+      "component": "AlertDialog",
+      "variant": null,
+      "title": "AlertDialog",
+      "summary": "AlertDialog with no variant.",
+      "file": "examples/alert-dialog/base.tsx"
+    },
+    {
+      "component": "AppChooserButton",
+      "variant": null,
+      "title": "AppChooserButton",
+      "summary": "AppChooserButton with no variant.",
+      "file": "examples/app-chooser-button/base.tsx"
+    },
+    {
+      "component": "Avatar",
+      "variant": null,
+      "title": "Avatar",
+      "summary": "Avatar with no variant.",
+      "file": "examples/avatar/base.tsx"
+    },
+    {
+      "component": "Banner",
+      "variant": null,
+      "title": "Banner",
+      "summary": "Banner with no variant.",
+      "file": "examples/banner/base.tsx"
+    },
+    {
+      "component": "Bin",
+      "variant": null,
+      "title": "Bin",
+      "summary": "Bin with no variant.",
+      "file": "examples/bin/base.tsx"
+    },
+    {
+      "component": "BottomSheet",
+      "variant": null,
+      "title": "BottomSheet",
+      "summary": "BottomSheet with no variant.",
+      "file": "examples/bottom-sheet/base.tsx"
+    },
+    {
+      "component": "Box",
+      "variant": null,
+      "title": "Box",
+      "summary": "Box with no variant.",
+      "file": "examples/box/base.tsx"
+    },
+    {
+      "component": "Box",
+      "variant": "app-notification",
+      "title": "Box .app-notification",
+      "summary": "OSD appearance with round bottom corners, for an in-app notification.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/box/app-notification.tsx"
+    },
+    {
+      "component": "Box",
+      "variant": "card",
+      "title": "Box .card",
+      "summary": "A card: rounded corners and a shadow.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/box/card.tsx"
+    },
+    {
+      "component": "Box",
+      "variant": "linked",
+      "title": "Box .linked",
+      "summary": "Makes a box's children appear as a single group. The box must have no spacing.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/box/linked.tsx"
+    },
+    {
+      "component": "Box",
+      "variant": "toolbar",
+      "title": "Box .toolbar",
+      "summary": "A horizontal box given a toolbar's padding and spacing.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/box/toolbar.tsx"
+    },
+    {
+      "component": "BreakpointBin",
+      "variant": null,
+      "title": "BreakpointBin",
+      "summary": "BreakpointBin with no variant.",
+      "file": "examples/breakpoint-bin/base.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": null,
+      "title": "Button",
+      "summary": "Button with no variant.",
+      "file": "examples/button/base.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "activatable",
+      "title": "Button .activatable",
+      "summary": "Gives a card hover and active states, for one that can be clicked.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/button/activatable.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "card",
+      "title": "Button .card",
+      "summary": "A card: rounded corners and a shadow.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/button/card.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "circular",
+      "title": "Button .circular",
+      "summary": "Round, for a button holding an icon or one or two characters.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/button/circular.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "destructive-action",
+      "title": "Button .destructive-action",
+      "summary": "Uses destructive colours, to warn of damaging consequences.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/button/destructive-action.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "flat",
+      "title": "Button .flat",
+      "summary": "Looks like a label or an icon until hovered.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/button/flat.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "osd",
+      "title": "Button .osd",
+      "summary": "Dark and partially transparent, for a control overlapping content.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/button/osd.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "pill",
+      "title": "Button .pill",
+      "summary": "A pill, for an important standalone button.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/button/pill.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "raised",
+      "title": "Button .raised",
+      "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/button/raised.tsx"
+    },
+    {
+      "component": "Button",
+      "variant": "suggested-action",
+      "title": "Button .suggested-action",
+      "summary": "Uses accent colours, for the affirmative button in a dialog.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/button/suggested-action.tsx"
+    },
+    {
+      "component": "ButtonContent",
+      "variant": null,
+      "title": "ButtonContent",
+      "summary": "ButtonContent with no variant.",
+      "file": "examples/button-content/base.tsx"
+    },
+    {
+      "component": "ButtonRow",
+      "variant": null,
+      "title": "ButtonRow",
+      "summary": "ButtonRow with no variant.",
+      "file": "examples/button-row/base.tsx"
+    },
+    {
+      "component": "ButtonRow",
+      "variant": "destructive-action",
+      "title": "ButtonRow .destructive-action",
+      "summary": "Uses destructive colours, to warn of damaging consequences.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/button-row/destructive-action.tsx"
+    },
+    {
+      "component": "ButtonRow",
+      "variant": "suggested-action",
+      "title": "ButtonRow .suggested-action",
+      "summary": "Uses accent colours, for the affirmative button in a dialog.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/button-row/suggested-action.tsx"
+    },
+    {
+      "component": "Calendar",
+      "variant": null,
+      "title": "Calendar",
+      "summary": "Calendar with no variant.",
+      "file": "examples/calendar/base.tsx"
+    },
+    {
+      "component": "CheckButton",
+      "variant": null,
+      "title": "CheckButton",
+      "summary": "CheckButton with no variant.",
+      "file": "examples/check-button/base.tsx"
+    },
+    {
+      "component": "CheckButton",
+      "variant": "selection-mode",
+      "title": "CheckButton .selection-mode",
+      "summary": "Larger and round, for selecting items from a list or a grid.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/check-button/selection-mode.tsx"
+    },
+    {
+      "component": "Clamp",
+      "variant": null,
+      "title": "Clamp",
+      "summary": "Clamp with no variant.",
+      "file": "examples/clamp/base.tsx"
+    },
+    {
+      "component": "ClampScrollable",
+      "variant": null,
+      "title": "ClampScrollable",
+      "summary": "ClampScrollable with no variant.",
+      "file": "examples/clamp-scrollable/base.tsx"
+    },
+    {
+      "component": "ColorButton",
+      "variant": null,
+      "title": "ColorButton",
+      "summary": "ColorButton with no variant.",
+      "file": "examples/color-button/base.tsx"
+    },
+    {
+      "component": "ColumnView",
+      "variant": null,
+      "title": "ColumnView",
+      "summary": "ColumnView with no variant.",
+      "file": "examples/column-view/base.tsx"
+    },
+    {
+      "component": "ComboBox",
+      "variant": null,
+      "title": "ComboBox",
+      "summary": "ComboBox with no variant.",
+      "file": "examples/combo-box/base.tsx"
+    },
+    {
+      "component": "ComboRow",
+      "variant": null,
+      "title": "ComboRow",
+      "summary": "ComboRow with no variant.",
+      "file": "examples/combo-row/base.tsx"
+    },
+    {
+      "component": "ComboRow",
+      "variant": "property",
+      "title": "ComboRow .property",
+      "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/combo-row/property.tsx"
+    },
+    {
+      "component": "Dialog",
+      "variant": null,
+      "title": "Dialog",
+      "summary": "Dialog with no variant.",
+      "file": "examples/dialog/base.tsx"
+    },
+    {
+      "component": "DropDown",
+      "variant": null,
+      "title": "DropDown",
+      "summary": "DropDown with no variant.",
+      "file": "examples/drop-down/base.tsx"
+    },
+    {
+      "component": "EditableLabel",
+      "variant": null,
+      "title": "EditableLabel",
+      "summary": "EditableLabel with no variant.",
+      "file": "examples/editable-label/base.tsx"
+    },
+    {
+      "component": "Entry",
+      "variant": null,
+      "title": "Entry",
+      "summary": "Entry with no variant.",
+      "file": "examples/entry/base.tsx"
+    },
+    {
+      "component": "Entry",
+      "variant": "error",
+      "title": "Entry .error",
+      "summary": "The error colour, and on an entry, invalid input.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/entry/error.tsx"
+    },
+    {
+      "component": "Entry",
+      "variant": "success",
+      "title": "Entry .success",
+      "summary": "The success colour, and on an entry, valid input.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/entry/success.tsx"
+    },
+    {
+      "component": "Entry",
+      "variant": "warning",
+      "title": "Entry .warning",
+      "summary": "The warning colour, and on an entry, input needing attention.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/entry/warning.tsx"
+    },
+    {
+      "component": "EntryRow",
+      "variant": null,
+      "title": "EntryRow",
+      "summary": "EntryRow with no variant.",
+      "file": "examples/entry-row/base.tsx"
+    },
+    {
+      "component": "EntryRow",
+      "variant": "monospace",
+      "title": "EntryRow .monospace",
+      "summary": "The monospace font, for code, logs and shell commands.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/entry-row/monospace.tsx"
+    },
+    {
+      "component": "Expander",
+      "variant": null,
+      "title": "Expander",
+      "summary": "Expander with no variant.",
+      "file": "examples/expander/base.tsx"
+    },
+    {
+      "component": "ExpanderRow",
+      "variant": null,
+      "title": "ExpanderRow",
+      "summary": "ExpanderRow with no variant.",
+      "file": "examples/expander-row/base.tsx"
+    },
+    {
+      "component": "ExpanderRow",
+      "variant": "property",
+      "title": "ExpanderRow .property",
+      "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/expander-row/property.tsx"
+    },
+    {
+      "component": "FileChooserWidget",
+      "variant": null,
+      "title": "FileChooserWidget",
+      "summary": "FileChooserWidget with no variant.",
+      "file": "examples/file-chooser-widget/base.tsx"
+    },
+    {
+      "component": "Flap",
+      "variant": null,
+      "title": "Flap",
+      "summary": "Flap with no variant.",
+      "file": "examples/flap/base.tsx"
+    },
+    {
+      "component": "FlowBox",
+      "variant": null,
+      "title": "FlowBox",
+      "summary": "FlowBox with no variant.",
+      "file": "examples/flow-box/base.tsx"
+    },
+    {
+      "component": "FlowBox",
+      "variant": "navigation-sidebar",
+      "title": "FlowBox .navigation-sidebar",
+      "summary": "Sidebar styling: a transparent background and wider rows.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/flow-box/navigation-sidebar.tsx"
+    },
+    {
+      "component": "FlowBoxChild",
+      "variant": null,
+      "title": "FlowBoxChild",
+      "summary": "FlowBoxChild with no variant.",
+      "file": "examples/flow-box-child/base.tsx"
+    },
+    {
+      "component": "FontButton",
+      "variant": null,
+      "title": "FontButton",
+      "summary": "FontButton with no variant.",
+      "file": "examples/font-button/base.tsx"
+    },
+    {
+      "component": "Frame",
+      "variant": null,
+      "title": "Frame",
+      "summary": "Frame with no variant.",
+      "file": "examples/frame/base.tsx"
+    },
+    {
+      "component": "Grid",
+      "variant": null,
+      "title": "Grid",
+      "summary": "Grid with no variant.",
+      "file": "examples/grid/base.tsx"
+    },
+    {
+      "component": "GridView",
+      "variant": null,
+      "title": "GridView",
+      "summary": "GridView with no variant.",
+      "file": "examples/grid-view/base.tsx"
+    },
+    {
+      "component": "GridView",
+      "variant": "navigation-sidebar",
+      "title": "GridView .navigation-sidebar",
+      "summary": "Sidebar styling: a transparent background and wider rows.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/grid-view/navigation-sidebar.tsx"
+    },
+    {
+      "component": "HeaderBar",
+      "variant": null,
+      "title": "HeaderBar",
+      "summary": "HeaderBar with no variant.",
+      "file": "examples/header-bar/base.tsx"
+    },
+    {
+      "component": "HeaderBar",
+      "variant": "flat",
+      "title": "HeaderBar .flat",
+      "summary": "Gives the header bar a flat appearance.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/header-bar/flat.tsx"
+    },
+    {
+      "component": "HeaderBar",
+      "variant": "toolbar",
+      "title": "HeaderBar .toolbar",
+      "summary": "A horizontal box given a toolbar's padding and spacing.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/header-bar/toolbar.tsx"
+    },
+    {
+      "component": "IconView",
+      "variant": null,
+      "title": "IconView",
+      "summary": "IconView with no variant.",
+      "file": "examples/icon-view/base.tsx"
+    },
+    {
+      "component": "Image",
+      "variant": null,
+      "title": "Image",
+      "summary": "Image with no variant.",
+      "file": "examples/image/base.tsx"
+    },
+    {
+      "component": "Image",
+      "variant": "icon-dropshadow",
+      "title": "Image .icon-dropshadow",
+      "summary": "The shadow a GNOME application icon needs to read on a light background.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/image/icon-dropshadow.tsx"
+    },
+    {
+      "component": "Image",
+      "variant": "lowres-icon",
+      "title": "Image .lowres-icon",
+      "summary": "The shadow for an application icon below 32 pixels.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/image/lowres-icon.tsx"
+    },
+    {
+      "component": "InfoBar",
+      "variant": null,
+      "title": "InfoBar",
+      "summary": "InfoBar with no variant.",
+      "file": "examples/info-bar/base.tsx"
+    },
+    {
+      "component": "InlineViewSwitcher",
+      "variant": null,
+      "title": "InlineViewSwitcher",
+      "summary": "InlineViewSwitcher with no variant.",
+      "file": "examples/inline-view-switcher/base.tsx"
+    },
+    {
+      "component": "InlineViewSwitcher",
+      "variant": "flat",
+      "title": "InlineViewSwitcher .flat",
+      "summary": "Looks like a label or an icon until hovered.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/inline-view-switcher/flat.tsx"
+    },
+    {
+      "component": "InlineViewSwitcher",
+      "variant": "round",
+      "title": "InlineViewSwitcher .round",
+      "summary": "Rounds the group and the toggles inside it.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/inline-view-switcher/round.tsx"
+    },
+    {
+      "component": "InspectorPage",
+      "variant": null,
+      "title": "InspectorPage",
+      "summary": "InspectorPage with no variant.",
+      "file": "examples/inspector-page/base.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": null,
+      "title": "Label",
+      "summary": "Label with no variant.",
+      "file": "examples/label/base.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "body",
+      "title": "Label .body",
+      "summary": "Increased line height, for descriptions and dialog body text.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/body.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "caption",
+      "title": "Label .caption",
+      "summary": "Smaller text, for sub-text accompanying body text.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/caption.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "caption-heading",
+      "title": "Label .caption-heading",
+      "summary": "Smaller text, for a heading accompanying body text.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/caption-heading.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "document",
+      "title": "Label .document",
+      "summary": "The document font, for the app's main content.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/document.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "heading",
+      "title": "Label .heading",
+      "summary": "The standard style for a UI heading at the default text size.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/heading.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "monospace",
+      "title": "Label .monospace",
+      "summary": "The monospace font, for code, logs and shell commands.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/monospace.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "numeric",
+      "title": "Label .numeric",
+      "summary": "Tabular figures, so columns of numbers line up.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/label/numeric.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "title-1",
+      "title": "Label .title-1",
+      "summary": "The largest of the four title levels.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/title-1.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "title-2",
+      "title": "Label .title-2",
+      "summary": "The second of the four title levels.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/title-2.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "title-3",
+      "title": "Label .title-3",
+      "summary": "The third of the four title levels.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/title-3.tsx"
+    },
+    {
+      "component": "Label",
+      "variant": "title-4",
+      "title": "Label .title-4",
+      "summary": "The smallest of the four title levels.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/label/title-4.tsx"
+    },
+    {
+      "component": "Leaflet",
+      "variant": null,
+      "title": "Leaflet",
+      "summary": "Leaflet with no variant.",
+      "file": "examples/leaflet/base.tsx"
+    },
+    {
+      "component": "LevelBar",
+      "variant": null,
+      "title": "LevelBar",
+      "summary": "LevelBar with no variant.",
+      "file": "examples/level-bar/base.tsx"
+    },
+    {
+      "component": "ListBox",
+      "variant": null,
+      "title": "ListBox",
+      "summary": "ListBox with no variant.",
+      "file": "examples/list-box/base.tsx"
+    },
+    {
+      "component": "ListBox",
+      "variant": "boxed-list",
+      "title": "ListBox .boxed-list",
+      "summary": "A boxed list. Set selection-mode to none.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/list-box/boxed-list.tsx"
+    },
+    {
+      "component": "ListBox",
+      "variant": "boxed-list-separate",
+      "title": "ListBox .boxed-list-separate",
+      "summary": "A boxed list whose rows are separate cards.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/list-box/boxed-list-separate.tsx"
+    },
+    {
+      "component": "ListBox",
+      "variant": "content",
+      "title": "ListBox .content",
+      "summary": "A boxed list appearance.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/list-box/content.tsx"
+    },
+    {
+      "component": "ListBox",
+      "variant": "monospace",
+      "title": "ListBox .monospace",
+      "summary": "The monospace font, for code, logs and shell commands.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/list-box/monospace.tsx"
+    },
+    {
+      "component": "ListBox",
+      "variant": "navigation-sidebar",
+      "title": "ListBox .navigation-sidebar",
+      "summary": "Sidebar styling: a transparent background and wider rows.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/list-box/navigation-sidebar.tsx"
+    },
+    {
+      "component": "ListBox",
+      "variant": "sidebar",
+      "title": "ListBox .sidebar",
+      "summary": "A border at the end of the widget, and no background on lists inside it.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/list-box/sidebar.tsx"
+    },
+    {
+      "component": "ListView",
+      "variant": null,
+      "title": "ListView",
+      "summary": "ListView with no variant.",
+      "file": "examples/list-view/base.tsx"
+    },
+    {
+      "component": "ListView",
+      "variant": "navigation-sidebar",
+      "title": "ListView .navigation-sidebar",
+      "summary": "Sidebar styling: a transparent background and wider rows.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/list-view/navigation-sidebar.tsx"
+    },
+    {
+      "component": "ListView",
+      "variant": "sidebar",
+      "title": "ListView .sidebar",
+      "summary": "A border at the end of the widget, and no background on lists inside it.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/list-view/sidebar.tsx"
+    },
+    {
+      "component": "MenuButton",
+      "variant": null,
+      "title": "MenuButton",
+      "summary": "MenuButton with no variant.",
+      "file": "examples/menu-button/base.tsx"
+    },
+    {
+      "component": "MenuButton",
+      "variant": "circular",
+      "title": "MenuButton .circular",
+      "summary": "Round, for a button holding an icon or one or two characters.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/menu-button/circular.tsx"
+    },
+    {
+      "component": "MenuButton",
+      "variant": "destructive-action",
+      "title": "MenuButton .destructive-action",
+      "summary": "Uses destructive colours, to warn of damaging consequences.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/menu-button/destructive-action.tsx"
+    },
+    {
+      "component": "MenuButton",
+      "variant": "flat",
+      "title": "MenuButton .flat",
+      "summary": "Looks like a label or an icon until hovered.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/menu-button/flat.tsx"
+    },
+    {
+      "component": "MenuButton",
+      "variant": "opaque",
+      "title": "MenuButton .opaque",
+      "summary": "An opaque background, to be combined with custom background and foreground colours.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/menu-button/opaque.tsx"
+    },
+    {
+      "component": "MenuButton",
+      "variant": "raised",
+      "title": "MenuButton .raised",
+      "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/menu-button/raised.tsx"
+    },
+    {
+      "component": "MenuButton",
+      "variant": "suggested-action",
+      "title": "MenuButton .suggested-action",
+      "summary": "Uses accent colours, for the affirmative button in a dialog.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/menu-button/suggested-action.tsx"
+    },
+    {
+      "component": "MessageDialog",
+      "variant": null,
+      "title": "MessageDialog",
+      "summary": "MessageDialog with no variant.",
+      "file": "examples/message-dialog/base.tsx"
+    },
+    {
+      "component": "MessageDialog",
+      "variant": "devel",
+      "title": "MessageDialog .devel",
+      "summary": "Stripes the window's header bar, to mark a development build.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/message-dialog/devel.tsx"
+    },
+    {
+      "component": "NavigationPage",
+      "variant": null,
+      "title": "NavigationPage",
+      "summary": "NavigationPage with no variant.",
+      "file": "examples/navigation-page/base.tsx"
+    },
+    {
+      "component": "NavigationView",
+      "variant": null,
+      "title": "NavigationView",
+      "summary": "NavigationView with no variant.",
+      "file": "examples/navigation-view/base.tsx"
+    },
+    {
+      "component": "Notebook",
+      "variant": null,
+      "title": "Notebook",
+      "summary": "Notebook with no variant.",
+      "file": "examples/notebook/base.tsx"
+    },
+    {
+      "component": "Overlay",
+      "variant": null,
+      "title": "Overlay",
+      "summary": "Overlay with no variant.",
+      "file": "examples/overlay/base.tsx"
+    },
+    {
+      "component": "Overlay",
+      "variant": "app-notification",
+      "title": "Overlay .app-notification",
+      "summary": "OSD appearance with round bottom corners, for an in-app notification.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/overlay/app-notification.tsx"
+    },
+    {
+      "component": "Overlay",
+      "variant": "osd",
+      "title": "Overlay .osd",
+      "summary": "Dark and partially transparent, for a control overlapping content.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/overlay/osd.tsx"
+    },
+    {
+      "component": "OverlaySplitView",
+      "variant": null,
+      "title": "OverlaySplitView",
+      "summary": "OverlaySplitView with no variant.",
+      "file": "examples/overlay-split-view/base.tsx"
+    },
+    {
+      "component": "Paned",
+      "variant": null,
+      "title": "Paned",
+      "summary": "Paned with no variant.",
+      "file": "examples/paned/base.tsx"
+    },
+    {
+      "component": "Picture",
+      "variant": null,
+      "title": "Picture",
+      "summary": "Picture with no variant.",
+      "file": "examples/picture/base.tsx"
+    },
+    {
+      "component": "Popover",
+      "variant": null,
+      "title": "Popover",
+      "summary": "Popover with no variant.",
+      "file": "examples/popover/base.tsx"
+    },
+    {
+      "component": "Popover",
+      "variant": "menu",
+      "title": "Popover .menu",
+      "summary": "A menu-like appearance, for a popover holding a list.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/popover/menu.tsx"
+    },
+    {
+      "component": "PopoverMenuBar",
+      "variant": null,
+      "title": "PopoverMenuBar",
+      "summary": "PopoverMenuBar with no variant.",
+      "file": "examples/popover-menu-bar/base.tsx"
+    },
+    {
+      "component": "PreferencesDialog",
+      "variant": null,
+      "title": "PreferencesDialog",
+      "summary": "PreferencesDialog with no variant.",
+      "file": "examples/preferences-dialog/base.tsx"
+    },
+    {
+      "component": "PreferencesGroup",
+      "variant": null,
+      "title": "PreferencesGroup",
+      "summary": "PreferencesGroup with no variant.",
+      "file": "examples/preferences-group/base.tsx"
+    },
+    {
+      "component": "PreferencesPage",
+      "variant": null,
+      "title": "PreferencesPage",
+      "summary": "PreferencesPage with no variant.",
+      "file": "examples/preferences-page/base.tsx"
+    },
+    {
+      "component": "PreferencesRow",
+      "variant": null,
+      "title": "PreferencesRow",
+      "summary": "PreferencesRow with no variant.",
+      "file": "examples/preferences-row/base.tsx"
+    },
+    {
+      "component": "PreferencesWindow",
+      "variant": null,
+      "title": "PreferencesWindow",
+      "summary": "PreferencesWindow with no variant.",
+      "file": "examples/preferences-window/base.tsx"
+    },
+    {
+      "component": "PreferencesWindow",
+      "variant": "devel",
+      "title": "PreferencesWindow .devel",
+      "summary": "Stripes the window's header bar, to mark a development build.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/preferences-window/devel.tsx"
+    },
+    {
+      "component": "ProgressBar",
+      "variant": null,
+      "title": "ProgressBar",
+      "summary": "ProgressBar with no variant.",
+      "file": "examples/progress-bar/base.tsx"
+    },
+    {
+      "component": "ProgressBar",
+      "variant": "osd",
+      "title": "ProgressBar .osd",
+      "summary": "Dark and partially transparent, for a control overlapping content.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/progress-bar/osd.tsx"
+    },
+    {
+      "component": "Range",
+      "variant": null,
+      "title": "Range",
+      "summary": "Range with no variant.",
+      "file": "examples/range/base.tsx"
+    },
+    {
+      "component": "Revealer",
+      "variant": null,
+      "title": "Revealer",
+      "summary": "Revealer with no variant.",
+      "file": "examples/revealer/base.tsx"
+    },
+    {
+      "component": "Revealer",
+      "variant": "app-notification",
+      "title": "Revealer .app-notification",
+      "summary": "OSD appearance with round bottom corners, for an in-app notification.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/revealer/app-notification.tsx"
+    },
+    {
+      "component": "Scale",
+      "variant": null,
+      "title": "Scale",
+      "summary": "Scale with no variant.",
+      "file": "examples/scale/base.tsx"
+    },
+    {
+      "component": "Scrollbar",
+      "variant": null,
+      "title": "Scrollbar",
+      "summary": "Scrollbar with no variant.",
+      "file": "examples/scrollbar/base.tsx"
+    },
+    {
+      "component": "ScrolledWindow",
+      "variant": null,
+      "title": "ScrolledWindow",
+      "summary": "ScrolledWindow with no variant.",
+      "file": "examples/scrolled-window/base.tsx"
+    },
+    {
+      "component": "ScrolledWindow",
+      "variant": "undershoot-bottom",
+      "title": "ScrolledWindow .undershoot-bottom",
+      "summary": "A shadow at the bottom edge, indicating content scrolled out of view.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/scrolled-window/undershoot-bottom.tsx"
+    },
+    {
+      "component": "ScrolledWindow",
+      "variant": "undershoot-end",
+      "title": "ScrolledWindow .undershoot-end",
+      "summary": "A shadow at the end edge, which follows text direction.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/scrolled-window/undershoot-end.tsx"
+    },
+    {
+      "component": "ScrolledWindow",
+      "variant": "undershoot-start",
+      "title": "ScrolledWindow .undershoot-start",
+      "summary": "A shadow at the start edge, which follows text direction.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/scrolled-window/undershoot-start.tsx"
+    },
+    {
+      "component": "ScrolledWindow",
+      "variant": "undershoot-top",
+      "title": "ScrolledWindow .undershoot-top",
+      "summary": "A shadow at the top edge, indicating content scrolled out of view.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/scrolled-window/undershoot-top.tsx"
+    },
+    {
+      "component": "SearchBar",
+      "variant": null,
+      "title": "SearchBar",
+      "summary": "SearchBar with no variant.",
+      "file": "examples/search-bar/base.tsx"
+    },
+    {
+      "component": "SearchBar",
+      "variant": "inline",
+      "title": "SearchBar .inline",
+      "summary": "Removes the styling which makes the widget look part of a header bar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/search-bar/inline.tsx"
+    },
+    {
+      "component": "SearchBar",
+      "variant": "toolbar",
+      "title": "SearchBar .toolbar",
+      "summary": "A horizontal box given a toolbar's padding and spacing.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/search-bar/toolbar.tsx"
+    },
+    {
+      "component": "SearchEntry",
+      "variant": null,
+      "title": "SearchEntry",
+      "summary": "SearchEntry with no variant.",
+      "file": "examples/search-entry/base.tsx"
+    },
+    {
+      "component": "Separator",
+      "variant": null,
+      "title": "Separator",
+      "summary": "Separator with no variant.",
+      "file": "examples/separator/base.tsx"
+    },
+    {
+      "component": "Separator",
+      "variant": "sidebar",
+      "title": "Separator .sidebar",
+      "summary": "A border at the end of the widget, and no background on lists inside it.",
+      "deprecated": true,
+      "colour": false,
+      "file": "examples/separator/sidebar.tsx"
+    },
+    {
+      "component": "Separator",
+      "variant": "spacer",
+      "title": "Separator .spacer",
+      "summary": "Makes a separator invisible, so it acts as whitespace.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/separator/spacer.tsx"
+    },
+    {
+      "component": "ShortcutLabel",
+      "variant": null,
+      "title": "ShortcutLabel",
+      "summary": "ShortcutLabel with no variant.",
+      "file": "examples/shortcut-label/base.tsx"
+    },
+    {
+      "component": "ShortcutsDialog",
+      "variant": null,
+      "title": "ShortcutsDialog",
+      "summary": "ShortcutsDialog with no variant.",
+      "file": "examples/shortcuts-dialog/base.tsx"
+    },
+    {
+      "component": "Sidebar",
+      "variant": null,
+      "title": "Sidebar",
+      "summary": "Sidebar with no variant.",
+      "file": "examples/sidebar/base.tsx"
+    },
+    {
+      "component": "SpinButton",
+      "variant": null,
+      "title": "SpinButton",
+      "summary": "SpinButton with no variant.",
+      "file": "examples/spin-button/base.tsx"
+    },
+    {
+      "component": "SpinRow",
+      "variant": null,
+      "title": "SpinRow",
+      "summary": "SpinRow with no variant.",
+      "file": "examples/spin-row/base.tsx"
+    },
+    {
+      "component": "SpinRow",
+      "variant": "property",
+      "title": "SpinRow .property",
+      "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/spin-row/property.tsx"
+    },
+    {
+      "component": "Spinner",
+      "variant": null,
+      "title": "Spinner",
+      "summary": "Spinner with no variant.",
+      "file": "examples/spinner/base.tsx"
+    },
+    {
+      "component": "SplitButton",
+      "variant": null,
+      "title": "SplitButton",
+      "summary": "SplitButton with no variant.",
+      "file": "examples/split-button/base.tsx"
+    },
+    {
+      "component": "SplitButton",
+      "variant": "destructive-action",
+      "title": "SplitButton .destructive-action",
+      "summary": "Uses destructive colours, to warn of damaging consequences.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/split-button/destructive-action.tsx"
+    },
+    {
+      "component": "SplitButton",
+      "variant": "flat",
+      "title": "SplitButton .flat",
+      "summary": "Looks like a label or an icon until hovered.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/split-button/flat.tsx"
+    },
+    {
+      "component": "SplitButton",
+      "variant": "opaque",
+      "title": "SplitButton .opaque",
+      "summary": "An opaque background, to be combined with custom background and foreground colours.",
+      "deprecated": true,
+      "colour": true,
+      "file": "examples/split-button/opaque.tsx"
+    },
+    {
+      "component": "SplitButton",
+      "variant": "raised",
+      "title": "SplitButton .raised",
+      "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/split-button/raised.tsx"
+    },
+    {
+      "component": "SplitButton",
+      "variant": "suggested-action",
+      "title": "SplitButton .suggested-action",
+      "summary": "Uses accent colours, for the affirmative button in a dialog.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/split-button/suggested-action.tsx"
+    },
+    {
+      "component": "Squeezer",
+      "variant": null,
+      "title": "Squeezer",
+      "summary": "Squeezer with no variant.",
+      "file": "examples/squeezer/base.tsx"
+    },
+    {
+      "component": "Stack",
+      "variant": null,
+      "title": "Stack",
+      "summary": "Stack with no variant.",
+      "file": "examples/stack/base.tsx"
+    },
+    {
+      "component": "StackSidebar",
+      "variant": null,
+      "title": "StackSidebar",
+      "summary": "StackSidebar with no variant.",
+      "file": "examples/stack-sidebar/base.tsx"
+    },
+    {
+      "component": "StackSwitcher",
+      "variant": null,
+      "title": "StackSwitcher",
+      "summary": "StackSwitcher with no variant.",
+      "file": "examples/stack-switcher/base.tsx"
+    },
+    {
+      "component": "StatusPage",
+      "variant": null,
+      "title": "StatusPage",
+      "summary": "StatusPage with no variant.",
+      "file": "examples/status-page/base.tsx"
+    },
+    {
+      "component": "StatusPage",
+      "variant": "compact",
+      "title": "StatusPage .compact",
+      "summary": "Takes less space, for a status page in a sidebar or a popover.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/status-page/compact.tsx"
+    },
+    {
+      "component": "StatusPage",
+      "variant": "pill",
+      "title": "StatusPage .pill",
+      "summary": "A pill, for an important standalone button.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/status-page/pill.tsx"
+    },
+    {
+      "component": "Statusbar",
+      "variant": null,
+      "title": "Statusbar",
+      "summary": "Statusbar with no variant.",
+      "file": "examples/statusbar/base.tsx"
+    },
+    {
+      "component": "Switch",
+      "variant": null,
+      "title": "Switch",
+      "summary": "Switch with no variant.",
+      "file": "examples/switch/base.tsx"
+    },
+    {
+      "component": "SwitchRow",
+      "variant": null,
+      "title": "SwitchRow",
+      "summary": "SwitchRow with no variant.",
+      "file": "examples/switch-row/base.tsx"
+    },
+    {
+      "component": "SwitchRow",
+      "variant": "property",
+      "title": "SwitchRow .property",
+      "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/switch-row/property.tsx"
+    },
+    {
+      "component": "Tab",
+      "variant": null,
+      "title": "Tab",
+      "summary": "Tab with no variant.",
+      "file": "examples/tab/base.tsx"
+    },
+    {
+      "component": "TabBar",
+      "variant": null,
+      "title": "TabBar",
+      "summary": "TabBar with no variant.",
+      "file": "examples/tab-bar/base.tsx"
+    },
+    {
+      "component": "TabBar",
+      "variant": "inline",
+      "title": "TabBar .inline",
+      "summary": "Removes the styling which makes the widget look part of a header bar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/tab-bar/inline.tsx"
+    },
+    {
+      "component": "TabButton",
+      "variant": null,
+      "title": "TabButton",
+      "summary": "TabButton with no variant.",
+      "file": "examples/tab-button/base.tsx"
+    },
+    {
+      "component": "TabOverview",
+      "variant": null,
+      "title": "TabOverview",
+      "summary": "TabOverview with no variant.",
+      "file": "examples/tab-overview/base.tsx"
+    },
+    {
+      "component": "TabThumbnail",
+      "variant": null,
+      "title": "TabThumbnail",
+      "summary": "TabThumbnail with no variant.",
+      "file": "examples/tab-thumbnail/base.tsx"
+    },
+    {
+      "component": "TabView",
+      "variant": null,
+      "title": "TabView",
+      "summary": "TabView with no variant.",
+      "file": "examples/tab-view/base.tsx"
+    },
+    {
+      "component": "Text",
+      "variant": null,
+      "title": "Text",
+      "summary": "Text with no variant.",
+      "file": "examples/text/base.tsx"
+    },
+    {
+      "component": "TextView",
+      "variant": null,
+      "title": "TextView",
+      "summary": "TextView with no variant.",
+      "file": "examples/text-view/base.tsx"
+    },
+    {
+      "component": "TextView",
+      "variant": "inline",
+      "title": "TextView .inline",
+      "summary": "Removes the styling which makes the widget look part of a header bar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/text-view/inline.tsx"
+    },
+    {
+      "component": "ToastOverlay",
+      "variant": null,
+      "title": "ToastOverlay",
+      "summary": "ToastOverlay with no variant.",
+      "file": "examples/toast-overlay/base.tsx"
+    },
+    {
+      "component": "ToastWidget",
+      "variant": null,
+      "title": "ToastWidget",
+      "summary": "ToastWidget with no variant.",
+      "file": "examples/toast-widget/base.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": null,
+      "title": "ToggleButton",
+      "summary": "ToggleButton with no variant.",
+      "file": "examples/toggle-button/base.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "activatable",
+      "title": "ToggleButton .activatable",
+      "summary": "Gives a card hover and active states, for one that can be clicked.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toggle-button/activatable.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "card",
+      "title": "ToggleButton .card",
+      "summary": "A card: rounded corners and a shadow.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-button/card.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "circular",
+      "title": "ToggleButton .circular",
+      "summary": "Round, for a button holding an icon or one or two characters.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-button/circular.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "destructive-action",
+      "title": "ToggleButton .destructive-action",
+      "summary": "Uses destructive colours, to warn of damaging consequences.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toggle-button/destructive-action.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "flat",
+      "title": "ToggleButton .flat",
+      "summary": "Looks like a label or an icon until hovered.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-button/flat.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "osd",
+      "title": "ToggleButton .osd",
+      "summary": "Dark and partially transparent, for a control overlapping content.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-button/osd.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "pill",
+      "title": "ToggleButton .pill",
+      "summary": "A pill, for an important standalone button.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-button/pill.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "raised",
+      "title": "ToggleButton .raised",
+      "summary": "The regular appearance instead of the flat one, inside a toolbar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toggle-button/raised.tsx"
+    },
+    {
+      "component": "ToggleButton",
+      "variant": "suggested-action",
+      "title": "ToggleButton .suggested-action",
+      "summary": "Uses accent colours, for the affirmative button in a dialog.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-button/suggested-action.tsx"
+    },
+    {
+      "component": "ToggleGroup",
+      "variant": null,
+      "title": "ToggleGroup",
+      "summary": "ToggleGroup with no variant.",
+      "file": "examples/toggle-group/base.tsx"
+    },
+    {
+      "component": "ToggleGroup",
+      "variant": "flat",
+      "title": "ToggleGroup .flat",
+      "summary": "Looks like a label or an icon until hovered.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-group/flat.tsx"
+    },
+    {
+      "component": "ToggleGroup",
+      "variant": "round",
+      "title": "ToggleGroup .round",
+      "summary": "Rounds the group and the toggles inside it.",
+      "deprecated": false,
+      "colour": false,
+      "file": "examples/toggle-group/round.tsx"
+    },
+    {
+      "component": "ToolbarView",
+      "variant": null,
+      "title": "ToolbarView",
+      "summary": "ToolbarView with no variant.",
+      "file": "examples/toolbar-view/base.tsx"
+    },
+    {
+      "component": "ToolbarView",
+      "variant": "inline",
+      "title": "ToolbarView .inline",
+      "summary": "Removes the styling which makes the widget look part of a header bar.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toolbar-view/inline.tsx"
+    },
+    {
+      "component": "ToolbarView",
+      "variant": "undershoot-bottom",
+      "title": "ToolbarView .undershoot-bottom",
+      "summary": "A shadow at the bottom edge, indicating content scrolled out of view.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toolbar-view/undershoot-bottom.tsx"
+    },
+    {
+      "component": "ToolbarView",
+      "variant": "undershoot-end",
+      "title": "ToolbarView .undershoot-end",
+      "summary": "A shadow at the end edge, which follows text direction.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toolbar-view/undershoot-end.tsx"
+    },
+    {
+      "component": "ToolbarView",
+      "variant": "undershoot-start",
+      "title": "ToolbarView .undershoot-start",
+      "summary": "A shadow at the start edge, which follows text direction.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toolbar-view/undershoot-start.tsx"
+    },
+    {
+      "component": "ToolbarView",
+      "variant": "undershoot-top",
+      "title": "ToolbarView .undershoot-top",
+      "summary": "A shadow at the top edge, indicating content scrolled out of view.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/toolbar-view/undershoot-top.tsx"
+    },
+    {
+      "component": "TreeExpander",
+      "variant": null,
+      "title": "TreeExpander",
+      "summary": "TreeExpander with no variant.",
+      "file": "examples/tree-expander/base.tsx"
+    },
+    {
+      "component": "TreeView",
+      "variant": null,
+      "title": "TreeView",
+      "summary": "TreeView with no variant.",
+      "file": "examples/tree-view/base.tsx"
+    },
+    {
+      "component": "Video",
+      "variant": null,
+      "title": "Video",
+      "summary": "Video with no variant.",
+      "file": "examples/video/base.tsx"
+    },
+    {
+      "component": "ViewStack",
+      "variant": null,
+      "title": "ViewStack",
+      "summary": "ViewStack with no variant.",
+      "file": "examples/view-stack/base.tsx"
+    },
+    {
+      "component": "ViewSwitcher",
+      "variant": null,
+      "title": "ViewSwitcher",
+      "summary": "ViewSwitcher with no variant.",
+      "file": "examples/view-switcher/base.tsx"
+    },
+    {
+      "component": "ViewSwitcherBar",
+      "variant": null,
+      "title": "ViewSwitcherBar",
+      "summary": "ViewSwitcherBar with no variant.",
+      "file": "examples/view-switcher-bar/base.tsx"
+    },
+    {
+      "component": "ViewSwitcherButton",
+      "variant": null,
+      "title": "ViewSwitcherButton",
+      "summary": "ViewSwitcherButton with no variant.",
+      "file": "examples/view-switcher-button/base.tsx"
+    },
+    {
+      "component": "ViewSwitcherSidebar",
+      "variant": null,
+      "title": "ViewSwitcherSidebar",
+      "summary": "ViewSwitcherSidebar with no variant.",
+      "file": "examples/view-switcher-sidebar/base.tsx"
+    },
+    {
+      "component": "ViewSwitcherTitle",
+      "variant": null,
+      "title": "ViewSwitcherTitle",
+      "summary": "ViewSwitcherTitle with no variant.",
+      "file": "examples/view-switcher-title/base.tsx"
+    },
+    {
+      "component": "Viewport",
+      "variant": null,
+      "title": "Viewport",
+      "summary": "Viewport with no variant.",
+      "file": "examples/viewport/base.tsx"
+    },
+    {
+      "component": "Window",
+      "variant": null,
+      "title": "Window",
+      "summary": "Window with no variant.",
+      "file": "examples/window/base.tsx"
+    },
+    {
+      "component": "Window",
+      "variant": "devel",
+      "title": "Window .devel",
+      "summary": "Stripes the window's header bar, to mark a development build.",
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/window/devel.tsx"
+    },
+    {
+      "component": "WindowControls",
+      "variant": null,
+      "title": "WindowControls",
+      "summary": "WindowControls with no variant.",
+      "file": "examples/window-controls/base.tsx"
+    },
+    {
+      "component": "WindowHandle",
+      "variant": null,
+      "title": "WindowHandle",
+      "summary": "WindowHandle with no variant.",
+      "file": "examples/window-handle/base.tsx"
+    },
+    {
+      "component": "WindowTitle",
+      "variant": null,
+      "title": "WindowTitle",
+      "summary": "WindowTitle with no variant.",
+      "file": "examples/window-title/base.tsx"
+    },
+    {
+      "component": "WrapBox",
+      "variant": null,
+      "title": "WrapBox",
+      "summary": "WrapBox with no variant.",
+      "file": "examples/wrap-box/base.tsx"
+    }
+  ]
+}
