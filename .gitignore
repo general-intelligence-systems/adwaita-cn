@@ -1,0 +1,9 @@
+node_modules
+.DS_Store
+
+# `shadcn build` output: one JSON per item plus the index, regenerated from
+# registry.json and the sources under registry/.
+/public/r
+
+# direnv
+.direnv

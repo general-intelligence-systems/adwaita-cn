@@ -1,0 +1,46 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "adwaita-cn",
+  "homepage": "https://github.com/n-at-han-k/adwaita-cn",
+  "items": [
+    {
+      "name": "adwaita-theme",
+      "type": "registry:style",
+      "title": "Adwaita theme",
+      "description": "The variables every component here reads: libadwaita's radii, easing, opacities and colours. Install this first.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        { "path": "registry/adwaita/adwaita.css", "type": "registry:file", "target": "styles/adwaita.css" },
+        { "path": "registry/adwaita/lib/utils.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Adwaita's button: 9px radius, 24px content height, 5px by 10px padding, and a focus ring which animates inward.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["adwaita-theme"],
+      "files": [{ "path": "registry/adwaita/ui/button.tsx", "type": "registry:ui" }],
+      "categories": ["controls"]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "The card style class: a 12px radius and a focus ring at offset zero.",
+      "registryDependencies": ["adwaita-theme"],
+      "files": [{ "path": "registry/adwaita/ui/card.tsx", "type": "registry:ui" }],
+      "categories": ["layout"]
+    },
+    {
+      "name": "boxed-list",
+      "type": "registry:ui",
+      "title": "Boxed list",
+      "description": "Adw.PreferencesGroup's list and Adw.ActionRow: rows in one 12px card, 8px on the end rows' own corners.",
+      "registryDependencies": ["adwaita-theme"],
+      "files": [{ "path": "registry/adwaita/ui/boxed-list.tsx", "type": "registry:ui" }],
+      "categories": ["layout", "lists"]
+    }
+  ]
+}

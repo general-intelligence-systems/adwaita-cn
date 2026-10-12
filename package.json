@@ -1,0 +1,19 @@
+{
+  "name": "adwaita-cn",
+  "version": "0.0.1",
+  "private": true,
+  "description": "shadcn registry of components built to GNOME Adwaita's geometry.",
+  "scripts": {
+    "registry:build": "shadcn build",
+    "registry:check": "shadcn build --output /tmp/adwaita-cn-check && rm -rf /tmp/adwaita-cn-check"
+  },
+  "devDependencies": {
+    "shadcn": "^3.4.0",
+    "typescript": "^5.9.0"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1"
+  }
+}

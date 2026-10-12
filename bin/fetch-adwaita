@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+
+# FETCH-ADWAITA(1)                   General Commands Manual                 FETCH-ADWAITA(1)
+#
+# NAME
+#      bin/fetch-adwaita — vendor the Adwaita and GTK stylesheets
+#
+# SYNOPSIS
+#      bin/fetch-adwaita
+#
+# DESCRIPTION
+#      Writes the two compiled stylesheets Fractal is drawn with into vendor/adwaita/, which is
+#      what bin/adwaita-tailwind reads.
+#
+#      THESE ARE EXTRACTED, NOT DOWNLOADED, and that is the point. What GNOME publishes is
+#      SCSS, which needs sass and a build to become CSS, and which carries mixins and `@if`
+#      rather than values. What a GTK application actually loads is one compiled sheet with
+#      every variable resolved, and that sheet ships inside the library's GResource bundle. So
+#      this reads it back out of the installed libraries with gresource(1), and the result is
+#      literally the CSS the running toolkit uses.
+#
+#      Two sheets, because Adwaita is only the top half:
+#
+#      adwaita.css
+#              libadwaita's, which is Adwaita proper — every Adw.* widget and style class.
+#
+#      gtk-default-light.css
+#              GTK's own Default theme, which is the base widget sheet Adwaita sits on. GTK 4
+#              no longer ships an Adwaita of its own; gtk/theme/ holds Default and Empty, and
+#              Adwaita moved out to libadwaita.
+#
+#      The versions extracted are recorded in vendor/adwaita/VERSIONS, because the metrics move
+#      between releases and a generated class list is only true of the sheet it came from.
+#
+# FILES
+#      vendor/adwaita/adwaita.css
+#      vendor/adwaita/gtk-default-light.css
+#      vendor/adwaita/VERSIONS
+#
+# EXIT STATUS
+#      The bin/fetch-adwaita utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/adwaita-tailwind, gresource(1)
+#
+# async-matrix                          October 12, 2026                     FETCH-ADWAITA(1)
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+cd "$(dirname "$0")/.."
+
+out="vendor/adwaita"
+mkdir -p "$out"
+
+# pkg-config when the devshell provides the libraries, and the store otherwise. Neither the
+# library nor the tool is a runtime dependency of this app -- they are where the stylesheet
+# comes from, so they are only needed to re-vendor it.
+locate() {
+  local module="$1" soname="$2" path
+  path="$(pkg-config --variable=libdir "$module" 2>/dev/null || true)/$soname"
+
+  if [ ! -f "$path" ]; then
+    path="$(find /nix/store -maxdepth 3 -name "$soname" -path "*$3*" 2>/dev/null | sort | tail -1)"
+  fi
+
+  if [ ! -f "$path" ]; then
+    echo "fetch-adwaita: cannot find $soname; add $3 to the devshell" >&2
+    exit 1
+  fi
+
+  echo "$path"
+}
+
+if ! command -v gresource >/dev/null; then
+  echo "fetch-adwaita: gresource is not on PATH; add glib to the devshell" >&2
+  exit 1
+fi
+
+adwaita="$(locate libadwaita-1 libadwaita-1.so.0 libadwaita)"
+gtk="$(locate gtk4 libgtk-4.so.1 gtk4)"
+
+gresource extract "$adwaita" /org/gnome/Adwaita/styles/gtk.css > "$out/adwaita.css"
+gresource extract "$gtk" /org/gtk/libgtk/theme/Default/Default-light.css > "$out/gtk-default-light.css"
+
+# The store path carries the version, which is the only place it is written down.
+{
+  echo "libadwaita $(basename "$(dirname "$(dirname "$adwaita")")")"
+  echo "gtk4       $(basename "$(dirname "$(dirname "$gtk")")")"
+} > "$out/VERSIONS"
+
+wc -c "$out"/*.css
+cat "$out/VERSIONS"

@@ -1,0 +1,64 @@
+/* The variables the components read, which are libadwaita's own names.
+ *
+ * COLOUR IS THE ONE THING A PORT SHOULD NOT TAKE FROM ADWAITA WHOLESALE, so
+ * these are here to be overridden: point them at a brand's palette and the
+ * components keep Adwaita's geometry and lose its blue. The values below are
+ * libadwaita's defaults, light above and dark below.
+ */
+:root {
+  --accent-bg-color: #3584e4;
+  --accent-fg-color: #ffffff;
+  --destructive-bg-color: #e01b24;
+  --destructive-fg-color: #ffffff;
+  --window-bg-color: #fafafb;
+  --window-fg-color: rgb(0 0 6 / 80%);
+  --view-bg-color: #ffffff;
+  --view-fg-color: rgb(0 0 6 / 80%);
+  --card-bg-color: #ffffff;
+  --card-fg-color: rgb(0 0 6 / 80%);
+  --headerbar-bg-color: #ffffff;
+  --sidebar-bg-color: #ebebed;
+  --popover-bg-color: #ffffff;
+  --dialog-bg-color: #fafafb;
+
+  /* A button's own background is a shade of whatever it sits on rather than a
+   * colour of its own, which is why it is a mix and not a hex. */
+  --button-bg: color-mix(in srgb, currentColor 10%, transparent);
+  --button-fg: currentColor;
+
+  /* The radii, as the stylesheet names them. */
+  --button-radius: 9px;
+  --card-radius: 12px;
+  --menu-radius: 9px;
+  --popover-radius: 15px;
+  --window-radius: 15px;
+
+  /* Adwaita animates on one curve at one duration, and using anything else is
+   * the difference between a port that feels right and one that does not. */
+  --adwaita-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --adwaita-duration: 200ms;
+
+  --border-opacity: 15%;
+  --dim-opacity: 55%;
+  --disabled-opacity: 50%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent-bg-color: #3584e4;
+    --accent-color: #81d0ff;
+    --destructive-bg-color: #c01c28;
+    --window-bg-color: #222226;
+    --window-fg-color: #ffffff;
+    --view-bg-color: #1d1d20;
+    --view-fg-color: #ffffff;
+    --card-bg-color: rgb(255 255 255 / 8%);
+    --card-fg-color: #ffffff;
+    --headerbar-bg-color: #2e2e32;
+    --sidebar-bg-color: #2e2e32;
+    --popover-bg-color: #36363a;
+    --dialog-bg-color: #36363a;
+    --border-opacity: 15%;
+    --dim-opacity: 55%;
+  }
+}

@@ -1,0 +1,585 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# ADWAITA-TAILWIND(1)                General Commands Manual              ADWAITA-TAILWIND(1)
+#
+# NAME
+#      bin/adwaita-tailwind — what each Adwaita widget measures, as Tailwind classes
+#
+# SYNOPSIS
+#      bin/adwaita-tailwind [--json] [--contexts] [--all] [pattern ...]
+#
+# DESCRIPTION
+#      Reads the stylesheets under vendor/adwaita/ and prints, for every widget they style, the
+#      Tailwind classes which reproduce its metrics.
+#
+#      THIS IS GEOMETRY, NOT COLOUR. A component looks like Adwaita because of its radii, its
+#      minimum heights, its padding, its focus ring and the easing on its transitions -- not
+#      because of its palette, which is a handful of variables anyone can swap. So every colour
+#      declaration is dropped on the way through and what is left is the shape.
+#
+#      A widget here is a selector's SUBJECT, which is the compound it actually styles: the rule
+#      `headerbar menubutton.suggested-action > button` styles a `button`, and is reported under
+#      `button`. Contexts are merged by default because a component is built once and used
+#      everywhere; --contexts reports each context separately for the cases where the
+#      difference matters, which is mostly headerbars and toolbars.
+#
+#      Declarations are applied in source order and the last one wins, which is the cascade for
+#      rules of equal specificity and an approximation otherwise. Rules inside `@media` are
+#      skipped: `prefers-contrast` and `print` are overrides rather than the shape.
+#
+#      With patterns, only widgets whose key matches one of them are printed.
+#
+# OPTIONS
+#      --json       Emit JSON rather than text, for whatever wants to read it.
+#      --contexts   Report each selector context separately rather than merging them.
+#      --all        Include widgets styled by a single declaration, which are mostly noise.
+#
+# FILES
+#      vendor/adwaita/adwaita.css
+#      vendor/adwaita/gtk-default-light.css
+#      vendor/adwaita/VERSIONS
+#              Which release each sheet came from. The metrics move between releases.
+#
+# EXIT STATUS
+#      The bin/adwaita-tailwind utility exits 0 on success, and >0 if an error occurs.
+#
+# EXAMPLES
+#      Everything:
+#
+#            bin/adwaita-tailwind
+#
+#      The widgets behind Fractal's sidebar rows:
+#
+#            bin/adwaita-tailwind row list
+#
+#      As JSON, for a component generator to read:
+#
+#            bin/adwaita-tailwind --json > vendor/adwaita/widgets.json
+#
+# SEE ALSO
+#      bin/fetch-adwaita
+#
+# async-matrix                          October 12, 2026                ADWAITA-TAILWIND(1)
+
+require "json"
+
+module AdwaitaTailwind
+  SHEETS = %w[vendor/adwaita/adwaita.css vendor/adwaita/gtk-default-light.css].freeze
+
+  # Colour is the one thing a port does not take from here, so it never reaches the output.
+  COLOUR = %w[
+    color background background-color background-image background-position background-size
+    background-repeat border-color border-top-color border-bottom-color border-left-color
+    border-right-color outline-color caret-color fill stroke text-decoration-color
+    -gtk-icon-palette -gtk-icon-shadow -gtk-icon-source -gtk-icon-filter background-clip
+    text-shadow filter
+  ].freeze
+
+  # Tailwind's spacing scale is 0.25rem per step, which at the default 16px root is 4px. A
+  # measurement lands on the scale when it is a whole number of quarter-steps.
+  def self.spacing(value)
+    pixels = value[/\A(-?[\d.]+)(?:px)?\z/, 1]
+
+    if pixels.nil?
+      nil
+    else
+      steps = pixels.to_f / 4
+
+      if (steps * 2) % 1 == 0
+        format("%g", steps)
+      end
+    end
+  end
+
+  # A length as Tailwind writes it: a scale step where there is one, the arbitrary form where
+  # there is not.
+  #
+  # An arbitrary value may not contain a space, because a class list is split on them. Tailwind
+  # reads an underscore back as a space, which is what makes `calc(11px_-_var(--x))` work.
+  def self.length(prefix, value)
+    step = self.spacing(value)
+
+    if step.nil?
+      "#{prefix}-[#{self.arbitrary(value)}]"
+    else
+      "#{prefix}-#{step}"
+    end
+  end
+
+  def self.arbitrary(value)
+    value.gsub(/,\s+/, ",").squeeze(" ").tr(" ", "_")
+  end
+
+  FONT_WEIGHTS = {
+    "100" => "thin", "200" => "extralight", "300" => "light", "400" => "normal",
+    "500" => "medium", "600" => "semibold", "700" => "bold", "800" => "extrabold",
+    "900" => "black", "bold" => "bold", "normal" => "normal",
+  }.freeze
+
+  SIDES = { "top" => "t", "right" => "r", "bottom" => "b", "left" => "l" }.freeze
+
+  # One declaration as the classes which reproduce it, or none when nothing does.
+  #
+  # The arbitrary form is used freely: Adwaita's measurements are its own and rounding 9px to
+  # `rounded-lg` is exactly the drift this script exists to avoid.
+  def self.classes_for(property, value)
+    case property
+    when "min-height"   then [self.length("min-h", value)]
+    when "min-width"    then [self.length("min-w", value)]
+    when "height"       then [self.length("h", value)]
+    when "width"        then [self.length("w", value)]
+    when "padding"      then self.box("p", value)
+    when "margin"       then self.box("m", value)
+    when "border-radius" then self.radius(value)
+    when "opacity"      then ["opacity-#{(value.to_f * (value.include?("%") ? 1 : 100)).round}"]
+    when "font-weight"  then ["font-#{FONT_WEIGHTS.fetch(value, value)}"]
+    when "font-size"    then ["text-[#{value}]"]
+    when "font-family"  then ["font-[#{value.tr(' ', '_')}]"]
+    when "line-height"  then ["leading-[#{value}]"]
+    when "letter-spacing" then ["tracking-[#{self.arbitrary(value)}]"]
+    when "box-shadow"   then self.shadow(value)
+    when "outline-width" then ["outline-#{value.delete_suffix('px')}"]
+    when "outline-offset" then ["outline-offset-[#{self.arbitrary(value)}]"]
+    when "outline-style" then self.style("outline", value)
+    when "border-width" then self.border(value)
+    when "border-style" then self.style("border", value)
+    when "border-spacing" then ["gap-[#{self.arbitrary(value)}]"]
+    when "transition"   then self.transition(value)
+    when "transition-duration" then ["duration-[#{self.arbitrary(value)}]"]
+    when "text-decoration-line" then ["[text-decoration-line:#{value}]"]
+    when /\Apadding-(top|right|bottom|left)\z/ then [self.length("p#{SIDES.fetch(::Regexp.last_match(1))}", value)]
+    when /\Amargin-(top|right|bottom|left)\z/ then [self.length("m#{SIDES.fetch(::Regexp.last_match(1))}", value)]
+    when /\Aborder-(top|bottom)-(left|right)-radius\z/
+      ["rounded-#{::Regexp.last_match(1)[0]}#{::Regexp.last_match(2)[0]}-[#{self.arbitrary(value)}]"]
+    when /\Aborder-(top|right|bottom|left)-width\z/
+      ["border-#{SIDES.fetch(::Regexp.last_match(1))}-[#{value}]"]
+    else []
+    end
+  end
+
+  # `padding: 6px 12px` is two classes, not one.
+  def self.box(prefix, value)
+    parts = value.split(/\s+/)
+
+    case parts.length
+    when 1 then [self.length(prefix, parts[0])]
+    when 2 then [self.length("#{prefix}y", parts[0]), self.length("#{prefix}x", parts[1])]
+    when 3
+      [
+        self.length("#{prefix}t", parts[0]),
+        self.length("#{prefix}x", parts[1]),
+        self.length("#{prefix}b", parts[2]),
+      ]
+    when 4
+      %w[t r b l].zip(parts).map{|side, part| self.length("#{prefix}#{side}", part)}
+    else []
+    end
+  end
+
+  # A style shorthand names up to four edges, and one class per edge is not a thing Tailwind
+  # has -- so the edges have to agree for there to be a class at all.
+  def self.style(prefix, value)
+    styles = value.split(/\s+/).uniq
+
+    if styles.length == 1
+      ["#{prefix}-#{styles.first}"]
+    else
+      []
+    end
+  end
+
+  # Which edges a border-width shorthand actually draws.
+  def self.border(value)
+    parts = value.split(/\s+/)
+
+    if parts.length == 1
+      [self.length("border", parts[0])]
+    else
+      sides = self.expand("border-width", value)
+
+      sides.filter_map do |property, part|
+        side = SIDES.fetch(property.delete_prefix("border-width-").delete_suffix(""))
+
+        unless part == "0" || part == "0px"
+          self.length("border-#{side}", part)
+        end
+      end
+    end
+  end
+
+  def self.radius(value)
+    parts = value.split(/\s+/)
+
+    if parts.length == 1
+      if parts[0] == "9999px" || parts[0].end_with?("%")
+        ["rounded-full"]
+      elsif parts[0] == "0" || parts[0] == "0px"
+        ["rounded-none"]
+      else
+        ["rounded-[#{self.arbitrary(parts[0])}]"]
+      end
+    else
+      ["rounded-[#{self.arbitrary(value)}]"]
+    end
+  end
+
+  # A shadow keeps its colour, because the geometry cannot be separated from it and a shadow
+  # without one is not a shadow.
+  def self.shadow(value)
+    if value == "none"
+      ["shadow-none"]
+    else
+      ["shadow-[#{self.arbitrary(value)}]"]
+    end
+  end
+
+  # Adwaita's transitions are all 200ms on one curve, so the duration and the easing are worth
+  # naming even though the property list is long.
+  def self.transition(value, duration: true)
+    with_duration = duration
+    properties = value.scan(/(?:^|,)\s*([-a-z]+)\s/).flatten.uniq
+    duration = value[/(\d+m?s)/, 1]
+    easing = value[/(cubic-bezier\([^)]*\)|ease-out|ease-in-out|ease-in|linear)/, 1]
+
+    [].tap do |found|
+      unless properties.empty?
+        found << "transition-[#{properties.join(',')}]"
+      end
+
+      unless duration.nil? || !with_duration
+        found << "duration-#{duration.delete_suffix('ms')}"
+      end
+
+      unless easing.nil?
+        found << "ease-[#{self.arbitrary(easing)}]"
+      end
+    end
+  end
+
+  # The pseudo-classes worth carrying over, and what Tailwind calls them. A GTK state with no
+  # web equivalent is dropped rather than guessed at.
+  STATES = {
+    ":hover" => "hover", ":active" => "active", ":disabled" => "disabled",
+    ":focus-visible" => "focus-visible", ":focus" => "focus", ":checked" => "data-[state=checked]",
+    ":selected" => "data-[selected]", ":indeterminate" => "indeterminate",
+    ":first-child" => "first", ":last-child" => "last", ":only-child" => "only",
+  }.freeze
+
+  # Split a selector list on the commas which are not inside brackets.
+  def self.split_selectors(list)
+    depth = 0
+    current = +""
+
+    [].tap do |found|
+      list.each_char do |character|
+        case character
+        when "(" then depth += 1
+        when ")" then depth -= 1
+        end
+
+        if character == "," && depth.zero?
+          found << current.strip
+          current = +""
+        else
+          current << character
+        end
+      end
+
+      found << current.strip
+    end
+  end
+
+  # The compound a selector actually styles, which is its last one, and the states on it.
+  #
+  # `:not(...)` goes first and whole: it narrows which elements match and says nothing about
+  # what the widget is.
+  def self.subject(selector)
+    bare = selector.gsub(/:not\([^)]*\)/, "")
+    last = bare.split(/\s*[>+~]\s*|\s+/).reject(&:empty?).last.to_s
+    states = last.scan(/::?[a-z-]+(?:\([^)]*\))?/)
+
+    [last.sub(/(::?[a-z-]+(?:\([^)]*\))?)+\z/, ""), states]
+  end
+
+  Rule = Struct.new(:subject, :context, :states, :declarations)
+
+  # A shorthand hides later overrides of one side, so it is expanded into the sides it sets.
+  def self.expand(property, value)
+    parts = value.split(/\s+/)
+
+    case parts.length
+    when 1 then sides = [parts[0]] * 4
+    when 2 then sides = [parts[0], parts[1], parts[0], parts[1]]
+    when 3 then sides = [parts[0], parts[1], parts[2], parts[1]]
+    when 4 then sides = parts
+    else sides = nil
+    end
+
+    if sides.nil?
+      { property => value }
+    else
+      %w[top right bottom left].zip(sides).to_h{|side, part| ["#{property}-#{side}", part]}
+    end
+  end
+
+  # The sides back as the fewest classes which say the same thing.
+  #
+  # `uniq.one?` is NOT the test for "all four the same": Array#one? without a block counts the
+  # TRUTHY elements, so a widget which sets only its left and right padding passes it and then
+  # formats a nil top.
+  def self.compose(prefix, sides)
+    corners = %w[top right bottom left].map{|side| sides[side]}
+    top, right, bottom, left = corners
+
+    if corners.none?(&:nil?) && corners.uniq.length == 1
+      [self.length(prefix, top)]
+    else
+      [].tap do |found|
+        if !top.nil? && top == bottom
+          found << self.length("#{prefix}y", top)
+        else
+          unless top.nil?
+            found << self.length("#{prefix}t", top)
+          end
+
+          unless bottom.nil?
+            found << self.length("#{prefix}b", bottom)
+          end
+        end
+
+        if !left.nil? && left == right
+          found << self.length("#{prefix}x", left)
+        else
+          unless left.nil?
+            found << self.length("#{prefix}l", left)
+          end
+
+          unless right.nil?
+            found << self.length("#{prefix}r", right)
+          end
+        end
+      end
+    end
+  end
+
+  # Every rule in the sheets, at the top level only.
+  def self.rules(root)
+    [].tap do |found|
+      SHEETS.each do |sheet|
+        css = File.read(File.join(root, sheet)).gsub(%r{/\*.*?\*/}m, "")
+
+        # At-rules are skipped whole: a nested block is an override for a condition this is not
+        # describing, and an unnested one (@define-color, @import) carries no declarations.
+        css = css.gsub(/@(media|supports|keyframes|container)[^{]*\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}/m, "")
+        css = css.gsub(/@[a-z-]+[^;{]*;/, "")
+
+        css.scan(/([^{}]+)\{([^{}]*)\}/) do |selectors, body|
+          declarations = body.scan(/([-a-zA-Z]+)\s*:\s*([^;]+)/).to_h do |property, value|
+            [property.strip, value.strip]
+          end
+
+          if declarations.empty?
+            next
+          end
+
+          self.split_selectors(selectors).each do |selector|
+            if selector.empty?
+              next
+            end
+
+            subject, states = self.subject(selector)
+
+            if subject.empty?
+              next
+            end
+
+            context = selector.gsub(/:not\([^)]*\)/, "").strip
+            found << Rule.new(subject, context, states, declarations)
+          end
+        end
+      end
+    end
+  end
+
+  # Fold the rules into one declaration set per widget and state, last writer winning.
+  def self.collect(rules, contexts:)
+    {}.tap do |widgets|
+      rules.each do |rule|
+        states = rule.states.filter_map{|state| STATES[state]}
+
+        if states.include?("focus-visible")
+          states -= ["focus"]
+        end
+
+        # A rule whose subject carries a state this does not translate still describes that
+        # widget, so it is kept under the plain key rather than dropped.
+        if contexts
+          key = rule.context.sub(/(::?[a-z-]+(?:\([^)]*\))?)+\z/, "")
+        else
+          key = rule.subject
+        end
+
+        variant = states.join(":")
+
+        widget = widgets[key] ||= {}
+        widget[variant] ||= {}
+
+        rule.declarations.each do |property, value|
+          if COLOUR.include?(property)
+            next
+          end
+
+          if %w[padding margin].include?(property)
+            widget[variant].merge!(self.expand(property, value))
+          else
+            widget[variant][property] = value
+          end
+        end
+      end
+    end
+  end
+
+  # What the Fractal catalog comments in app/ call these, where there is a name worth knowing.
+  WIDGETS = {
+    "row" => "Gtk.ListBoxRow / Adw.ActionRow",
+    "row.activatable" => "Adw.ActionRow, clickable",
+    "list" => "Gtk.ListBox",
+    "list.boxed-list" => "Adw.PreferencesGroup's list",
+    "headerbar" => "Adw.HeaderBar",
+    "popover" => "Gtk.Popover",
+    "popover.menu" => "Gtk.PopoverMenu",
+    "avatar" => "Adw.Avatar",
+    "button" => "Gtk.Button",
+    "button.suggested-action" => "Gtk.Button, suggested",
+    "button.destructive-action" => "Gtk.Button, destructive",
+    "button.pill" => "Gtk.Button, pill",
+    "button.circular" => "Gtk.Button, circular",
+    "entry" => "Gtk.Entry",
+    "switch" => "Gtk.Switch",
+    "check" => "Gtk.CheckButton",
+    "radio" => "Gtk.CheckButton, radio",
+    ".card" => "the card style class",
+    ".toolbar" => "Gtk.ActionBar / Adw.ToolbarView bars",
+    "statuspage" => "Adw.StatusPage",
+    "banner" => "Adw.Banner",
+    "toast" => "Adw.Toast",
+    "tabbar" => "Adw.TabBar",
+    "window" => "Adw.ApplicationWindow",
+    "scrollbar" => "Gtk.Scrollbar",
+    "separator" => "Gtk.Separator",
+    "label" => "Gtk.Label",
+    "spinner" => "Adw.Spinner",
+    "progressbar" => "Gtk.ProgressBar",
+    "tooltip" => "Gtk.Tooltip",
+    "dialog" => "Adw.Dialog",
+    "navigation-view" => "Adw.NavigationView",
+    "toggle" => "Adw.ToggleGroup's toggle",
+  }.freeze
+
+  def self.run(argv)
+    root = File.expand_path("..", __dir__)
+    json = argv.delete("--json")
+    contexts = argv.delete("--contexts")
+    all = argv.delete("--all")
+    patterns = argv
+
+    widgets = self.collect(self.rules(root), contexts: !contexts.nil?)
+
+    # A widget styled by one lone declaration is almost always a fragment of a bigger rule
+    # rather than something to build.
+    unless all
+      widgets = widgets.reject do |_key, variants|
+        variants.values.sum(&:size) < 2
+      end
+    end
+
+    unless patterns.empty?
+      widgets = widgets.select do |key, _variants|
+        patterns.any?{|pattern| key.include?(pattern)}
+      end
+    end
+
+    rendered = widgets.sort_by{|key, _variants| key}.to_h do |key, variants|
+      [
+        key,
+        variants.sort_by{|variant, _declarations| variant.length}.to_h do |variant, declarations|
+          [
+            variant.empty? ? "base" : variant,
+            self.render_declarations(declarations),
+          ]
+        end,
+      ]
+    end
+
+    if json
+      puts(JSON.pretty_generate(rendered))
+    else
+      self.report(root, rendered)
+    end
+  end
+
+  # The expanded sides recomposed, then everything else mapped one by one.
+  def self.render_declarations(declarations)
+    rest = declarations.reject{|property, _value| property =~ /\A(padding|margin)-(top|right|bottom|left)\z/}
+
+    [].tap do |found|
+      { "padding" => "p", "margin" => "m" }.each do |property, prefix|
+        sides = %w[top right bottom left].to_h do |side|
+          [side, declarations["#{property}-#{side}"]]
+        end.compact
+
+        unless sides.empty?
+          found.concat(self.compose(prefix, sides))
+        end
+      end
+
+      rest.each do |property, value|
+        if property == "transition"
+          found.concat(self.transition(value, duration: !declarations.key?("transition-duration")))
+        else
+          found.concat(self.classes_for(property, value))
+        end
+      end
+    end.uniq
+  end
+
+  def self.report(root, rendered)
+    versions = File.read(File.join(root, "vendor/adwaita/VERSIONS")).lines.map{|line| line.strip.squeeze(" ")}
+
+    puts("# Adwaita widgets as Tailwind classes")
+    puts
+    puts("Generated by bin/adwaita-tailwind from #{versions.join(', ')}.")
+    puts
+    puts("Geometry only: every colour declaration is dropped, because what makes a component")
+    puts("look like Adwaita is its radii, heights, padding, focus ring and easing.")
+    puts
+
+    rendered.each do |key, variants|
+      name = WIDGETS[key]
+
+      puts("## `#{key}`#{name ? " — #{name}" : ''}")
+      puts
+
+      variants.each do |variant, classes|
+        if classes.empty?
+          next
+        end
+
+        if variant == "base"
+          prefix = ""
+        else
+          prefix = "#{variant}:"
+        end
+
+        puts("#{variant}:")
+        puts("```")
+        puts(classes.map{|class_name| "#{prefix}#{class_name}"}.join(" "))
+        puts("```")
+        puts
+      end
+    end
+  end
+end
+
+AdwaitaTailwind.run(ARGV)
