@@ -184,6 +184,31 @@ public/r/                  `shadcn build` output, gitignored
 `registry.json` is the source of truth and `shadcn build` compiles it into `public/r/`: one
 JSON per item plus an index, which is what the CLI fetches. Serve `public/` from anything.
 
+## Generating the components
+
+```bash
+bin/08-generate-components      # one .tsx per component, props and classes derived
+```
+
+Everything that can be derived is: the prop names, their TypeScript types, the enum unions they
+are drawn from, and the `cn()` call with Adwaita's measurements in it. What is left is one
+`<div>` per file to replace with the markup it should have been.
+
+**It does not overwrite.** The moment somebody replaces that `<div>`, the file stops being
+generated output, so a file which exists is left exactly as it is. Re-running adds what is
+missing and touches nothing else, which is what makes it safe after a release bump brings new
+widgets. `--force` overwrites, and throws away hand-written markup.
+
+**Props are factored the way GTK factors them.** `Gtk.Widget` declares thirty writable
+properties — `visible`, `sensitive`, `tooltipText`, the expand and align pairs — and every
+widget has them. Repeating those in fifty-four interfaces would bury the five or ten which are
+actually the component's own, so they live in one `WidgetProps` and each component extends it:
+`ActionRow` adds thirteen, `Button` six, `Switch` two. Read-only properties are left out, since
+a prop which cannot be written is not a prop.
+
+A flags prop is an array of its union — `inputHints?: InputHints[]` — because a bitfield is
+several members at once.
+
 ## Adding a component
 
 1. Find it in `vendor/adwaita/components.json`, which carries its variants, its states and

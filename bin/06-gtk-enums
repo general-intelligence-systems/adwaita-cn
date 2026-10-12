@@ -7,7 +7,7 @@
 #      bin/06-gtk-enums — the enumerations as TypeScript
 #
 # SYNOPSIS
-#      bin/06-gtk-enums [--flags] [SCHEMAS] > enums.ts
+#      bin/06-gtk-enums [SCHEMAS] > enums.ts
 #
 # DESCRIPTION
 #      Reads vendor/gir/schemas.json and writes TypeScript: one string-literal union per
@@ -30,12 +30,11 @@
 #      Names are consolidated the way the schemas are: no Adw/Gtk prefix, Adw taking precedence.
 #      No enumeration name is claimed by both namespaces, so nothing is displaced.
 #
-#      FLAGS ARE NOT UNIONS and are left out unless asked for. A bitfield is a set -- several
-#      members at once -- so its TypeScript is an array of the union rather than the union, and
-#      a prop typed as one is almost always wrong. --flags emits them, each marked.
-#
-# OPTIONS
-#      --flags   Include the bitfields as well as the enumerations.
+#      FLAGS ARE UNIONS OF THE MEMBERS, NOT OF THE SET. A bitfield is several members at once, so
+#      a prop drawn from one is an array of its union rather than the union -- `inputHints?:
+#      InputHints[]`. They are emitted because props reference them: Gtk.Entry's `input-hints` is
+#      a bitfield, and leaving it out gave a generated component an import of a type which did
+#      not exist. Each one says so in its doc comment.
 #
 # FILES
 #      vendor/gir/schemas.json
@@ -64,13 +63,12 @@ module GtkEnums
 
   def self.run(argv)
     root = File.expand_path("..", __dir__)
-    flags = !argv.delete("--flags").nil?
     source = argv.first || File.join(root, "vendor/gir/schemas.json")
     schemas = JSON.parse(File.read(source))
 
     # Adw first, so that consolidating by bare name keeps it. No name is claimed by both, so
     # this only decides the order the file is written in.
-    wanted = schemas.fetch("enums").reject{|_name, enum| enum.fetch("flags") && !flags}
+    wanted = schemas.fetch("enums")
 
     consolidated = {}
 
@@ -109,7 +107,7 @@ module GtkEnums
 
     [].tap do |lines|
       lines << ""
-      lines << "/** #{qualified}#{enum.fetch('flags') ? ' — flags, so several at once' : ''} */"
+      lines << "/** #{qualified}#{enum.fetch('flags') ? ' — flags: a set, so a prop drawn from this is an array of it' : ''} */"
       lines << "export const #{array} = [#{values.map(&:inspect).join(', ')}] as const"
       lines << ""
       lines << "export type #{name} = (typeof #{array})[number]"

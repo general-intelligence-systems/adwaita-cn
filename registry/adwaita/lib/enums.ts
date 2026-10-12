@@ -82,6 +82,11 @@ export const animationStateValues = ["idle", "paused", "playing", "finished"] as
 
 export type AnimationState = (typeof animationStateValues)[number]
 
+/** Gtk.ApplicationInhibitFlags — flags: a set, so a prop drawn from this is an array of it */
+export const applicationInhibitFlagsValues = ["logout", "switch", "suspend", "idle"] as const
+
+export type ApplicationInhibitFlags = (typeof applicationInhibitFlagsValues)[number]
+
 /** Gtk.ArrowType */
 export const arrowTypeValues = ["up", "down", "left", "right", "none"] as const
 
@@ -117,6 +122,11 @@ export const breakpointConditionRatioTypeValues = ["min-aspect-ratio", "max-aspe
 
 export type BreakpointConditionRatioType = (typeof breakpointConditionRatioTypeValues)[number]
 
+/** Gtk.BuilderClosureFlags — flags: a set, so a prop drawn from this is an array of it */
+export const builderClosureFlagsValues = ["swapped"] as const
+
+export type BuilderClosureFlags = (typeof builderClosureFlagsValues)[number]
+
 /** Gtk.BuilderError */
 export const builderErrorValues = ["invalid-type-function", "unhandled-tag", "missing-attribute", "invalid-attribute", "invalid-tag", "missing-property-value", "invalid-value", "version-mismatch", "duplicate-id", "object-type-refused", "template-mismatch", "invalid-property", "invalid-signal", "invalid-id", "invalid-function"] as const
 
@@ -136,6 +146,11 @@ export type CellRendererAccelMode = (typeof cellRendererAccelModeValues)[number]
 export const cellRendererModeValues = ["inert", "activatable", "editable"] as const
 
 export type CellRendererMode = (typeof cellRendererModeValues)[number]
+
+/** Gtk.CellRendererState — flags: a set, so a prop drawn from this is an array of it */
+export const cellRendererStateValues = ["selected", "prelit", "insensitive", "sorted", "focused", "expandable", "expanded"] as const
+
+export type CellRendererState = (typeof cellRendererStateValues)[number]
 
 /** Adw.CenteringPolicy */
 export const centeringPolicyValues = ["loose", "strict"] as const
@@ -192,6 +207,11 @@ export const cssParserWarningValues = ["deprecated", "syntax", "unimplemented"] 
 
 export type CssParserWarning = (typeof cssParserWarningValues)[number]
 
+/** Gtk.DebugFlags — flags: a set, so a prop drawn from this is an array of it */
+export const debugFlagsValues = ["text", "tree", "keybindings", "modules", "geometry", "icontheme", "printing", "builder-trace", "size-request", "no-css-cache", "interactive", "touchscreen", "actions", "layout", "snapshot", "constraints", "builder-objects", "a11y", "iconfallback", "invert-text-dir", "css", "builder", "session"] as const
+
+export type DebugFlags = (typeof debugFlagsValues)[number]
+
 /** Gtk.DeleteType */
 export const deleteTypeValues = ["chars", "word-ends", "words", "display-lines", "display-line-ends", "paragraph-ends", "paragraphs", "whitespace"] as const
 
@@ -201,6 +221,11 @@ export type DeleteType = (typeof deleteTypeValues)[number]
 export const dialogErrorValues = ["failed", "cancelled", "dismissed"] as const
 
 export type DialogError = (typeof dialogErrorValues)[number]
+
+/** Gtk.DialogFlags — flags: a set, so a prop drawn from this is an array of it */
+export const dialogFlagsValues = ["modal", "destroy-with-parent", "use-header-bar"] as const
+
+export type DialogFlags = (typeof dialogFlagsValues)[number]
 
 /** Adw.DialogPresentationMode */
 export const dialogPresentationModeValues = ["auto", "floating", "bottom-sheet"] as const
@@ -226,6 +251,11 @@ export type EditableProperties = (typeof editablePropertiesValues)[number]
 export const entryIconPositionValues = ["primary", "secondary"] as const
 
 export type EntryIconPosition = (typeof entryIconPositionValues)[number]
+
+/** Gtk.EventControllerScrollFlags — flags: a set, so a prop drawn from this is an array of it */
+export const eventControllerScrollFlagsValues = ["none", "vertical", "horizontal", "discrete", "kinetic", "physical-direction", "both-axes"] as const
+
+export type EventControllerScrollFlags = (typeof eventControllerScrollFlagsValues)[number]
 
 /** Gtk.EventSequenceState */
 export const eventSequenceStateValues = ["none", "claimed", "denied"] as const
@@ -267,6 +297,11 @@ export const foldThresholdPolicyValues = ["minimum", "natural"] as const
 
 export type FoldThresholdPolicy = (typeof foldThresholdPolicyValues)[number]
 
+/** Gtk.FontChooserLevel — flags: a set, so a prop drawn from this is an array of it */
+export const fontChooserLevelValues = ["family", "style", "size", "variations", "features"] as const
+
+export type FontChooserLevel = (typeof fontChooserLevelValues)[number]
+
 /** Gtk.FontLevel */
 export const fontLevelValues = ["family", "face", "font", "features"] as const
 
@@ -281,6 +316,11 @@ export type FontRendering = (typeof fontRenderingValues)[number]
 export const graphicsOffloadEnabledValues = ["enabled", "disabled"] as const
 
 export type GraphicsOffloadEnabled = (typeof graphicsOffloadEnabledValues)[number]
+
+/** Gtk.IconLookupFlags — flags: a set, so a prop drawn from this is an array of it */
+export const iconLookupFlagsValues = ["none", "force-regular", "force-symbolic", "preload"] as const
+
+export type IconLookupFlags = (typeof iconLookupFlagsValues)[number]
 
 /** Gtk.IconSize */
 export const iconSizeValues = ["inherit", "normal", "large"] as const
@@ -306,6 +346,11 @@ export type ImageType = (typeof imageTypeValues)[number]
 export const inlineViewSwitcherDisplayModeValues = ["labels", "icons", "both"] as const
 
 export type InlineViewSwitcherDisplayMode = (typeof inlineViewSwitcherDisplayModeValues)[number]
+
+/** Gtk.InputHints — flags: a set, so a prop drawn from this is an array of it */
+export const inputHintsValues = ["none", "spellcheck", "no-spellcheck", "word-completion", "lowercase", "uppercase-chars", "uppercase-words", "uppercase-sentences", "inhibit-osk", "vertical-writing", "emoji", "no-emoji", "private"] as const
+
+export type InputHints = (typeof inputHintsValues)[number]
 
 /** Gtk.InputPurpose */
 export const inputPurposeValues = ["free-form", "alpha", "digits", "number", "phone", "url", "email", "name", "password", "pin", "terminal"] as const
@@ -356,6 +401,11 @@ export type LevelBarMode = (typeof levelBarModeValues)[number]
 export const licenseValues = ["unknown", "custom", "gpl-2-0", "gpl-3-0", "lgpl-2-1", "lgpl-3-0", "bsd", "mit-x11", "artistic", "gpl-2-0-only", "gpl-3-0-only", "lgpl-2-1-only", "lgpl-3-0-only", "agpl-3-0", "agpl-3-0-only", "bsd-3", "apache-2-0", "mpl-2-0", "0bsd"] as const
 
 export type License = (typeof licenseValues)[number]
+
+/** Gtk.ListScrollFlags — flags: a set, so a prop drawn from this is an array of it */
+export const listScrollFlagsValues = ["none", "focus", "select"] as const
+
+export type ListScrollFlags = (typeof listScrollFlagsValues)[number]
 
 /** Gtk.ListTabBehavior */
 export const listTabBehaviorValues = ["all", "item", "cell"] as const
@@ -437,15 +487,30 @@ export const panDirectionValues = ["left", "right", "up", "down"] as const
 
 export type PanDirection = (typeof panDirectionValues)[number]
 
+/** Gtk.PickFlags — flags: a set, so a prop drawn from this is an array of it */
+export const pickFlagsValues = ["default", "insensitive", "non-targetable"] as const
+
+export type PickFlags = (typeof pickFlagsValues)[number]
+
 /** Gtk.PolicyType */
 export const policyTypeValues = ["always", "automatic", "never", "external"] as const
 
 export type PolicyType = (typeof policyTypeValues)[number]
 
+/** Gtk.PopoverMenuFlags — flags: a set, so a prop drawn from this is an array of it */
+export const popoverMenuFlagsValues = ["sliding", "nested"] as const
+
+export type PopoverMenuFlags = (typeof popoverMenuFlagsValues)[number]
+
 /** Gtk.PositionType */
 export const positionTypeValues = ["left", "right", "top", "bottom"] as const
 
 export type PositionType = (typeof positionTypeValues)[number]
+
+/** Gtk.PrintCapabilities — flags: a set, so a prop drawn from this is an array of it */
+export const printCapabilitiesValues = ["page-set", "copies", "collate", "reverse", "scale", "generate-pdf", "generate-ps", "preview", "number-up", "number-up-layout"] as const
+
+export type PrintCapabilities = (typeof printCapabilitiesValues)[number]
 
 /** Gtk.PrintDuplex */
 export const printDuplexValues = ["simplex", "horizontal", "vertical"] as const
@@ -542,6 +607,11 @@ export const sensitivityTypeValues = ["auto", "on", "off"] as const
 
 export type SensitivityType = (typeof sensitivityTypeValues)[number]
 
+/** Gtk.ShortcutActionFlags — flags: a set, so a prop drawn from this is an array of it */
+export const shortcutActionFlagsValues = ["exclusive"] as const
+
+export type ShortcutActionFlags = (typeof shortcutActionFlagsValues)[number]
+
 /** Gtk.ShortcutScope */
 export const shortcutScopeValues = ["local", "managed", "global"] as const
 
@@ -602,15 +672,30 @@ export const stackTransitionTypeValues = ["none", "crossfade", "slide-right", "s
 
 export type StackTransitionType = (typeof stackTransitionTypeValues)[number]
 
+/** Gtk.StateFlags — flags: a set, so a prop drawn from this is an array of it */
+export const stateFlagsValues = ["normal", "active", "prelight", "selected", "insensitive", "inconsistent", "focused", "backdrop", "dir-ltr", "dir-rtl", "link", "visited", "checked", "drop-active", "focus-visible", "focus-within"] as const
+
+export type StateFlags = (typeof stateFlagsValues)[number]
+
 /** Gtk.StringFilterMatchMode */
 export const stringFilterMatchModeValues = ["exact", "substring", "prefix"] as const
 
 export type StringFilterMatchMode = (typeof stringFilterMatchModeValues)[number]
 
+/** Gtk.StyleContextPrintFlags — flags: a set, so a prop drawn from this is an array of it */
+export const styleContextPrintFlagsValues = ["none", "recurse", "show-style", "show-change"] as const
+
+export type StyleContextPrintFlags = (typeof styleContextPrintFlagsValues)[number]
+
 /** Gtk.SvgError */
 export const svgErrorValues = ["invalid-syntax", "invalid-element", "invalid-attribute", "missing-attribute", "invalid-reference", "failed-update", "failed-rendering", "ignored-element", "limits-exceeded", "not-implemented"] as const
 
 export type SvgError = (typeof svgErrorValues)[number]
+
+/** Gtk.SvgFeatures — flags: a set, so a prop drawn from this is an array of it */
+export const svgFeaturesValues = ["animations", "system-resources", "external-resources", "extensions", "traditional-symbolic"] as const
+
+export type SvgFeatures = (typeof svgFeaturesValues)[number]
 
 /** Gtk.SymbolicColor */
 export const symbolicColorValues = ["foreground", "error", "warning", "success", "accent"] as const
@@ -622,6 +707,16 @@ export const systemSettingValues = ["dpi", "font-name", "font-config", "display"
 
 export type SystemSetting = (typeof systemSettingValues)[number]
 
+/** Adw.TabViewShortcuts — flags: a set, so a prop drawn from this is an array of it */
+export const tabViewShortcutsValues = ["none", "control-tab", "control-shift-tab", "control-page-up", "control-page-down", "control-home", "control-end", "control-shift-page-up", "control-shift-page-down", "control-shift-home", "control-shift-end", "alt-digits", "alt-zero", "all-shortcuts"] as const
+
+export type TabViewShortcuts = (typeof tabViewShortcutsValues)[number]
+
+/** Gtk.TextBufferNotifyFlags — flags: a set, so a prop drawn from this is an array of it */
+export const textBufferNotifyFlagsValues = ["before-insert", "after-insert", "before-delete", "after-delete"] as const
+
+export type TextBufferNotifyFlags = (typeof textBufferNotifyFlagsValues)[number]
+
 /** Gtk.TextDirection */
 export const textDirectionValues = ["none", "ltr", "rtl"] as const
 
@@ -631,6 +726,11 @@ export type TextDirection = (typeof textDirectionValues)[number]
 export const textExtendSelectionValues = ["word", "line"] as const
 
 export type TextExtendSelection = (typeof textExtendSelectionValues)[number]
+
+/** Gtk.TextSearchFlags — flags: a set, so a prop drawn from this is an array of it */
+export const textSearchFlagsValues = ["visible-only", "text-only", "case-insensitive"] as const
+
+export type TextSearchFlags = (typeof textSearchFlagsValues)[number]
 
 /** Gtk.TextViewLayer */
 export const textViewLayerValues = ["below-text", "above-text"] as const
@@ -651,6 +751,11 @@ export type ToastPriority = (typeof toastPriorityValues)[number]
 export const toolbarStyleValues = ["flat", "raised", "raised-border"] as const
 
 export type ToolbarStyle = (typeof toolbarStyleValues)[number]
+
+/** Gtk.TreeModelFlags — flags: a set, so a prop drawn from this is an array of it */
+export const treeModelFlagsValues = ["iters-persist", "list-only"] as const
+
+export type TreeModelFlags = (typeof treeModelFlagsValues)[number]
 
 /** Gtk.TreeViewColumnSizing */
 export const treeViewColumnSizingValues = ["grow-only", "autosize", "fixed"] as const

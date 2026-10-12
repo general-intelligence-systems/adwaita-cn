@@ -35,6 +35,870 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "action-row",
+      "type": "registry:ui",
+      "title": "ActionRow",
+      "description": "Adw.ActionRow (ActionRow).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/action-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "app-notification",
+      "type": "registry:ui",
+      "title": "AppNotification",
+      "description": "an in-app notification.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/app-notification.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Adw.Avatar (Avatar).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "bottom-sheet",
+      "type": "registry:ui",
+      "title": "BottomSheet",
+      "description": "Adw.BottomSheet (BottomSheet).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/bottom-sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Gtk.Button (Button).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Gtk.Calendar (Calendar).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "the card style class.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "check-button",
+      "type": "registry:ui",
+      "title": "CheckButton",
+      "description": "Gtk.CheckButton (CheckButton).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/check-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "close",
+      "type": "registry:ui",
+      "title": "Close",
+      "description": "a close button.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/close.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "colorswatch",
+      "type": "registry:ui",
+      "title": "Colorswatch",
+      "description": "Gtk.ColorSwatch.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/colorswatch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "column-view",
+      "type": "registry:ui",
+      "title": "ColumnView",
+      "description": "Gtk.ColumnView (ColumnView).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/column-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "emoji",
+      "type": "registry:ui",
+      "title": "Emoji",
+      "description": "Gtk.EmojiChooser's emoji.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/emoji.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "entry",
+      "type": "registry:ui",
+      "title": "Entry",
+      "description": "Gtk.Entry (Entry).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/entry.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "expander",
+      "type": "registry:ui",
+      "title": "Expander",
+      "description": "Adw.ExpanderRow (Expander).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/expander.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "flow-box",
+      "type": "registry:ui",
+      "title": "FlowBox",
+      "description": "Gtk.FlowBox (FlowBox).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/flow-box.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "frame",
+      "type": "registry:ui",
+      "title": "Frame",
+      "description": "Gtk.Frame (Frame).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/frame.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "grid-view",
+      "type": "registry:ui",
+      "title": "GridView",
+      "description": "Gtk.GridView (GridView).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/grid-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "header-bar",
+      "type": "registry:ui",
+      "title": "HeaderBar",
+      "description": "Adw.HeaderBar (HeaderBar).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/header-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "keycap",
+      "type": "registry:ui",
+      "title": "Keycap",
+      "description": "a key in a shortcuts window.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/keycap.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Gtk.Label (Label).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "link-button",
+      "type": "registry:ui",
+      "title": "LinkButton",
+      "description": "a link button (LinkButton).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/link-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "list-box",
+      "type": "registry:ui",
+      "title": "ListBox",
+      "description": "Gtk.ListBox (ListBox).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/list-box.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "list-box-row",
+      "type": "registry:ui",
+      "title": "ListBoxRow",
+      "description": "Gtk.ListBoxRow / Adw.ActionRow (ListBoxRow).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/list-box-row.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "list-view",
+      "type": "registry:ui",
+      "title": "ListView",
+      "description": "Gtk.ListView (ListView).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/list-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "modelbutton",
+      "type": "registry:ui",
+      "title": "Modelbutton",
+      "description": "a row in a Gtk.PopoverMenu.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/modelbutton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navigation-split-view",
+      "type": "registry:ui",
+      "title": "NavigationSplitView",
+      "description": "Adw.NavigationSplitView's sidebar (NavigationSplitView).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/navigation-split-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "osd",
+      "type": "registry:ui",
+      "title": "Osd",
+      "description": "an on-screen-display overlay.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/osd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Gtk.Popover (Popover).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "preferences-group",
+      "type": "registry:ui",
+      "title": "PreferencesGroup",
+      "description": "Adw.PreferencesGroup's list (PreferencesGroup).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/preferences-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:ui",
+      "title": "ProgressBar",
+      "description": "Gtk.ProgressBar (ProgressBar).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/progress-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scale",
+      "type": "registry:ui",
+      "title": "Scale",
+      "description": "Gtk.Scale (Scale).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/scale.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scrollbar",
+      "type": "registry:ui",
+      "title": "Scrollbar",
+      "description": "Gtk.Scrollbar (Scrollbar).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/scrollbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Gtk.Separator (Separator).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "shortcut-label",
+      "type": "registry:ui",
+      "title": "ShortcutLabel",
+      "description": "Gtk.ShortcutLabel (ShortcutLabel).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/shortcut-label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "a sidebar pane.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spin-button",
+      "type": "registry:ui",
+      "title": "SpinButton",
+      "description": "Gtk.SpinButton (SpinButton).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/spin-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Adw.Spinner (Spinner).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "split-button",
+      "type": "registry:ui",
+      "title": "SplitButton",
+      "description": "Adw.SplitButton (SplitButton).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/split-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stack-switcher",
+      "type": "registry:ui",
+      "title": "StackSwitcher",
+      "description": "Gtk.StackSwitcher (StackSwitcher).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/stack-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "statusbar",
+      "type": "registry:ui",
+      "title": "Statusbar",
+      "description": "Gtk.Statusbar (Statusbar).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/statusbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Gtk.Switch (Switch).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tab-page",
+      "type": "registry:ui",
+      "title": "TabPage",
+      "description": "Adw.TabBar's tab (TabPage).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab-page.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabthumbnail",
+      "type": "registry:ui",
+      "title": "Tabthumbnail",
+      "description": "Adw.TabOverview's thumbnail.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tabthumbnail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "titlebar",
+      "type": "registry:ui",
+      "title": "Titlebar",
+      "description": "a window's title bar.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/titlebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Adw.Toast (Toast).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Adw.Toggle (Toggle).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "ToggleGroup",
+      "description": "Adw.ToggleGroup (ToggleGroup).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-view",
+      "type": "registry:ui",
+      "title": "ToolbarView",
+      "description": "Adw.ToolbarView's bottom bar (ToolbarView).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toolbar-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Gtk.Tooltip (Tooltip).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "view-switcher",
+      "type": "registry:ui",
+      "title": "ViewSwitcher",
+      "description": "Adw.ViewSwitcher (ViewSwitcher).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/view-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "view-switcher-title",
+      "type": "registry:ui",
+      "title": "ViewSwitcherTitle",
+      "description": "Adw.ViewSwitcherTitle (ViewSwitcherTitle).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/view-switcher-title.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "window",
+      "type": "registry:ui",
+      "title": "Window",
+      "description": "Adw.ApplicationWindow (Window).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/window.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "window-controls",
+      "type": "registry:ui",
+      "title": "WindowControls",
+      "description": "Gtk.WindowControls (WindowControls).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/window-controls.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "window-title",
+      "type": "registry:ui",
+      "title": "WindowTitle",
+      "description": "Adw.WindowTitle (WindowTitle).",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/window-title.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

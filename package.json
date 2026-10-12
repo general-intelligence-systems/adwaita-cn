@@ -6,12 +6,17 @@
   "scripts": {
     "registry:build": "shadcn build",
     "registry:check": "shadcn build --output /tmp/adwaita-cn-check && rm -rf /tmp/adwaita-cn-check",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "devDependencies": {
     "shadcn": "^3.4.0",
     "typescript": "^5.9.0",
-    "oxlint": "^1.87.0"
+    "oxlint": "^1.87.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
