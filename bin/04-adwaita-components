@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# 03-ADWAITA-COMPONENTS(1)          General Commands Manual           03-ADWAITA-COMPONENTS(1)
+# 04-ADWAITA-COMPONENTS(1)          General Commands Manual           04-ADWAITA-COMPONENTS(1)
 #
 # NAME
-#      bin/03-adwaita-components — the component list, out of the class map
+#      bin/04-adwaita-components — the component list, out of the class map
 #
 # SYNOPSIS
-#      bin/03-adwaita-components [--legacy] [MAP] > components.json
+#      bin/04-adwaita-components [--legacy] [MAP] > components.json
 #
 # DESCRIPTION
-#      Reads the selector-to-classes map bin/02-adwaita-tailwind produces and writes, as JSON on
+#      Reads the selector-to-classes map bin/03-adwaita-tailwind produces and writes, as JSON on
 #      stdout, the list of components to build: one entry per component, its variants named, its
 #      states listed, and every class it needs carried with it.
 #
@@ -42,12 +42,12 @@
 #      --legacy   Include the GTK 3 widgets, which are excluded by default.
 #
 # EXIT STATUS
-#      The bin/03-adwaita-components utility exits 0 on success, and >0 if an error occurs.
+#      The bin/04-adwaita-components utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/02-adwaita-tailwind, bin/01-fetch-adwaita
+#      bin/03-adwaita-tailwind, bin/01-fetch-adwaita
 #
-# adwaita-cn                     October 12, 2026                     03-ADWAITA-COMPONENTS(1)
+# adwaita-cn                     October 12, 2026                     04-ADWAITA-COMPONENTS(1)
 
 require "json"
 

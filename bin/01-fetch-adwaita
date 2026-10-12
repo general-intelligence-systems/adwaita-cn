@@ -10,7 +10,7 @@
 #
 # DESCRIPTION
 #      Writes the two compiled stylesheets Fractal is drawn with into vendor/adwaita/, which is
-#      what bin/02-adwaita-tailwind reads.
+#      what bin/03-adwaita-tailwind reads.
 #
 #      THESE ARE EXTRACTED, NOT DOWNLOADED, and that is the point. What GNOME publishes is
 #      SCSS, which needs sass and a build to become CSS, and which carries mixins and `@if`
@@ -46,7 +46,7 @@
 #      The bin/01-fetch-adwaita utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/02-adwaita-tailwind, gresource(1)
+#      bin/03-adwaita-tailwind, gresource(1)
 #
 # async-matrix                          October 12, 2026                     01-FETCH-ADWAITA(1)
 
@@ -97,7 +97,7 @@ gresource extract "$gtk" /org/gtk/libgtk/theme/Default/Default-light.css > "$out
 
 # AND THE TEMPLATES. A composite widget's child tree is a .ui file in the same bundle, which is
 # the toolkit stating which widgets it is built out of -- GtkBox, GtkImage, GtkLabel and their
-# style classes, in order. bin/08-component-trees reads them.
+# style classes, in order. bin/05-component-trees reads them.
 mkdir -p "$out/ui"
 for resource in $(gresource list "$adwaita" | grep "/ui/.*\.ui$"); do
   gresource extract "$adwaita" "$resource" > "$out/ui/$(basename "$resource")"

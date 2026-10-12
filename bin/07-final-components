@@ -1,0 +1,292 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 07-FINAL-COMPONENTS(1)          General Commands Manual         07-FINAL-COMPONENTS(1)
+#
+# NAME
+#      bin/07-final-components — every component, with its styles, props and tree
+#
+# SYNOPSIS
+#      bin/07-final-components > vendor/adwaita/final-components.json
+#
+# DESCRIPTION
+#      Joins the four things the earlier steps produced into the one document the rest of the
+#      pipeline is generated from: the component list, the Tailwind classes, the child trees and
+#      the widget schemas.
+#
+#      THIS IS THE AUTHORITY. bin/08-gtk-enums, bin/09-lint-rules and bin/10-generate-components
+#      all read this and nothing else, so a component exists exactly once and its props, its
+#      classes and its tree cannot disagree with each other.
+#
+#      THE SET COMES FROM THREE PLACES AND TWO OF THEM NEED NO DECISIONS:
+#
+#      A class a template is built out of is named by the template, and its name IS its class --
+#      GtkBox is Box, AdwClamp is Clamp. Nothing to map.
+#
+#      A composite widget which ships a template is the same.
+#
+#      A CSS style class is the one that needs a human. `.card` is not a widget: libadwaita
+#      applies it to a GtkOverlay in adw-tab-thumbnail.ui because a thumbnail happens to look
+#      like a card, and `.boxed-list` sits on a GtkListBox in one template and a GtkBox in
+#      another. A style class is applied to whatever wants the look, so it is not owned by a
+#      class and the mapping cannot be read off the data -- deriving it from the templates gives
+#      `Card -> Overlay`, which is wrong. lint/components.json records those decisions, and it
+#      is the only hand-written input in the pipeline.
+#
+#      KIND SAYS WHICH IT IS, and three of the four are not components to build:
+#
+#      composite   ships a .ui template, so its child tree is known
+#      widget      a widget class with no template, built in C
+#      style       a style class with no class of its own
+#      behaviour   a model, gesture or event controller: no DOM, so a prop or a hook
+#      private     referenced by a template but absent from the public API, so ours to write
+#
+#      PARTS ARE DERIVED FROM THE TREE. A node inside a composite which carries a style class
+#      the stylesheet has rules for is a position -- Box.prefixes and Box.suffixes inside
+#      ActionRow -- and it is reported with the classes bin/03-adwaita-tailwind generated for it.
+#      That is the parent/child question answered from the data rather than by taste.
+#
+# FILES
+#      vendor/adwaita/components.json     the CSS-derived list, from 04
+#      vendor/adwaita/widgets.json        the Tailwind classes, from 03
+#      vendor/adwaita/trees.json          the child trees, from 05
+#      vendor/gir/schemas.json            the props, from 06
+#      lint/components.json               the recorded decisions
+#      vendor/adwaita/final-components.json   the output
+#
+# EXIT STATUS
+#      The bin/07-final-components utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/08-gtk-enums, bin/09-lint-rules, bin/10-generate-components
+#
+# adwaita-cn                      October 12, 2026               07-FINAL-COMPONENTS(1)
+
+require "json"
+require "set"
+
+module FinalComponents
+  def self.read(root, relative)
+    JSON.parse(File.read(File.join(root, relative)))
+  end
+
+  def self.run(_argv)
+    root = File.expand_path("..", __dir__)
+    widgets = self.read(root, "vendor/adwaita/widgets.json")
+    contexts = self.read(root, "vendor/adwaita/widgets-contexts.json")
+    css = self.read(root, "vendor/adwaita/components.json").fetch("components")
+    trees = self.read(root, "vendor/adwaita/trees.json")
+    schemas = self.read(root, "vendor/gir/schemas.json")
+    declared = self.read(root, "lint/components.json")
+
+    classes = schemas.fetch("classes")
+    enums = schemas.fetch("enums")
+    shared = self.own_props(classes.fetch("Widget"), {})
+
+    components = {}
+
+    # The composites, whose trees are known.
+    trees.fetch("trees").each do |name, entry|
+      components[name] = self.entry(name, "composite", classes[name], classes, shared, enums)
+        .merge("template" => entry.fetch("template"))
+        .merge("tree" => entry.fetch("tree"))
+    end
+
+    # Every class the templates are built out of.
+    trees.fetch("referenced").each_key do |name|
+      next if components.key?(name)
+
+      kind = self.kind_of(name, classes)
+      components[name] = self.entry(name, kind, classes[name], classes, shared, enums)
+    end
+
+    # And the components the stylesheet describes, whose class is a recorded decision.
+    declared.each do |name, entry|
+      klass = entry["class"]
+      nodes = entry.fetch("nodes")
+      kind = klass.nil? ? "style" : (components.dig(name, "kind") || self.kind_of(klass, classes))
+
+      found = components[name] || self.entry(name, kind, classes[klass], classes, shared, enums)
+      components[name] = found.merge(
+        "nodes" => nodes,
+        "classes" => self.classes_for(nodes, widgets),
+        "widget" => entry["widget"],
+      )
+    end
+
+    # A component which is neither a style class nor styled by one still has whatever its own
+    # node is styled with.
+    components.each do |name, entry|
+      next if entry.key?("classes")
+
+      nodes = [name.gsub(/([a-z0-9])([A-Z])/, '\1\2').downcase]
+      entry["nodes"] = nodes.select{|node| widgets.key?(node)}
+      entry["classes"] = self.classes_for(entry["nodes"], widgets)
+    end
+
+    # The trees are annotated once the nodes are known, because a tree's root is addressed by
+    # the component's CSS node rather than by its class name.
+    components.each do |name, entry|
+      next unless entry.key?("tree")
+
+      root = entry.fetch("nodes", []).first
+      entry["tree"] = self.annotate(entry.fetch("tree"), [], contexts, widgets, root, entry["classes"])
+    end
+
+    buildable = components.reject{|_name, entry| %w[behaviour private].include?(entry.fetch("kind"))}
+
+    puts(JSON.pretty_generate({
+      "versions" => schemas.fetch("versions"),
+      "counts" => components.group_by{|_name, entry| entry.fetch("kind")}.transform_values(&:size),
+      "buildable" => buildable.keys.sort,
+      "components" => components.sort.to_h,
+    }))
+  end
+
+  # A class which does not descend from Widget renders nothing, and one the public API does not
+  # have is libadwaita's own business.
+  def self.kind_of(name, classes)
+    if !classes.key?(name)
+      "private"
+    elsif self.widget?(name, classes)
+      "widget"
+    else
+      "behaviour"
+    end
+  end
+
+  def self.widget?(name, classes)
+    seen = Set.new
+    current = name
+
+    while current && classes.key?(current) && !seen.include?(current)
+      return true if current == "Widget"
+
+      seen << current
+      current = classes.fetch(current)["parent"]
+    end
+
+    false
+  end
+
+  def self.entry(_name, kind, schema, classes, shared, enums)
+    props = schema.nil? ? {} : self.own_props(schema, shared)
+
+    {
+      "kind" => kind,
+      "gtk" => schema&.fetch("class"),
+      "parent" => schema && schema["parent"],
+      "props" => props,
+      "enums" => props.values
+        .select{|attributes| attributes.fetch("type") == "enum"}
+        .map{|attributes| attributes.fetch("enum")}
+        .uniq
+        .sort,
+      "flags" => props.values
+        .select{|attributes| attributes.fetch("type") == "enum" && enums.dig(attributes.fetch("enum"), "flags")}
+        .map{|attributes| attributes.fetch("enum")}
+        .uniq
+        .sort,
+    }
+  end
+
+  # A class's own writable props: the canonical kebab key, minus anything Gtk.Widget already
+  # gives every component.
+  def self.own_props(schema, shared)
+    {}.tap do |found|
+      schema.fetch("properties").each do |key, attributes|
+        next unless attributes.fetch("writable")
+        next if shared.key?(attributes.fetch("prop"))
+        next unless key.include?("-") || key == attributes.fetch("prop")
+
+        found[attributes.fetch("prop")] = attributes
+      end
+    end
+  end
+
+  def self.classes_for(nodes, widgets)
+    nodes.to_a.each_with_object({}) do |node, found|
+      widgets.fetch(node, {}).each do |state, list|
+        found[state] = (found.fetch(state, []) | list)
+      end
+    end
+  end
+
+  # A selector segment, split into the element it names and the classes on it. A rule may name
+  # no element at all -- `.prefixes` rather than `box.prefixes` -- which matches any element.
+  def self.segment(text)
+    element = text[/\A[a-z][a-z0-9-]*/]
+    classes = text.scan(/\.([a-z0-9-]+)/).flatten.to_set
+
+    [element, classes]
+  end
+
+  # Whether a rule's segment addresses a node: the element has to agree where the rule names
+  # one, and every class the rule asks for has to be on the node.
+  def self.addresses?(rule, node)
+    element, classes = self.segment(rule)
+    node_element, node_classes = self.segment(node)
+
+    (element.nil? || element == node_element) && classes.subset?(node_classes)
+  end
+
+  # A node's CSS path, which is how the stylesheet addresses it: `row > box.header > .prefixes`.
+  #
+  # THE CSS NODE NAME IS NOT THE CLASS NAME. AdwActionRow's node is `row`; AdwPreferencesGroup's
+  # is nothing at all. The declared list knows the node for a component, so the root takes its
+  # name from there and only the widgets inside a tree fall back to the class lowercased, which
+  # is right for the primitives the trees are built out of -- box, label, image.
+  def self.selector(node, name = nil)
+    styles = node.fetch("styles", []).map{|style| ".#{style}"}.join
+
+    "#{name || node.fetch('class').downcase}#{styles}"
+  end
+
+  # Every node in a tree, with the path it sits at and the classes that path is styled with.
+  #
+  # CONTEXTUALLY, NOT BY STYLE CLASS. `.title` on its own is whatever the stylesheet last said
+  # about anything called that -- which for ActionRow meant a 136% font from the about dialog.
+  # `row > box.header > box.title > label.title` is ActionRow's, and that is the rule that
+  # applies.
+  def self.annotate(node, ancestors, contexts, widgets, name = nil, own = nil)
+    path = ancestors + [self.selector(node, name)]
+
+    # The root is the component, whose classes are already merged per subject by
+    # bin/03-adwaita-tailwind. Only the nodes inside the tree are addressed by path.
+    classes = own || self.lookup(path, contexts, widgets)
+
+    node.merge(
+      "css" => path.join(" > "),
+      "classes" => classes,
+      "children" => node.fetch("children", []).map{|child| self.annotate(child, path, contexts, widgets)},
+      "slots" => node.fetch("slots", {}).transform_values{|slot| self.annotate(slot, path, contexts, widgets)},
+    ).reject{|_key, value| value.respond_to?(:empty?) && value.empty?}
+  end
+
+  # The rules which address this path: one whose segments are a suffix of it, matching loosely
+  # so that a rule naming no element still applies. The longest match wins, being the most
+  # specific.
+  def self.lookup(path, contexts, widgets)
+    matches = contexts.select do |selector, _states|
+      segments = selector.split(">").map(&:strip)
+
+      segments.length <= path.length &&
+        path.last(segments.length).zip(segments).all?{|node, rule| self.addresses?(rule, node)}
+    end
+
+    if matches.empty?
+      widgets.fetch(path.last, {})
+    else
+      matches.max_by{|selector, _states| selector.split(">").length}.last
+    end
+  end
+
+  def self.each_node(node, &block)
+    block.call(node)
+
+    node.fetch("children", []).each{|child| self.each_node(child, &block)}
+    node.fetch("slots", {}).each_value{|slot| self.each_node(slot, &block)}
+  end
+end
+
+FinalComponents.run(ARGV)

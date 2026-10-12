@@ -1,6 +1,6 @@
 // An oxlint plugin which checks JSX against lint/rules.json.
 //
-// THIS RULE KNOWS NOTHING. Every fact it uses is in the rule file, which bin/07-lint-rules
+// THIS RULE KNOWS NOTHING. Every fact it uses is in the rule file, which bin/09-lint-rules
 // generates from the declaration of which components exist and from GTK's own introspection
 // data. There are no heuristics here and that is deliberate: an earlier version inferred
 // whether a name was meant to be a GTK component by how much it resembled one, and reported

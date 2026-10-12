@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-# 04-FETCH-GIR(1)                   General Commands Manual                    04-FETCH-GIR(1)
+# 02-FETCH-GIR(1)                   General Commands Manual                    02-FETCH-GIR(1)
 #
 # NAME
-#      bin/04-fetch-gir — vendor GTK's and libadwaita's introspection data
+#      bin/02-fetch-gir — vendor GTK's and libadwaita's introspection data
 #
 # SYNOPSIS
-#      bin/04-fetch-gir
+#      bin/02-fetch-gir
 #
 # DESCRIPTION
-#      Writes Gtk-4.0.gir and Adw-1.gir into vendor/gir/, which is what bin/05-gtk-schemas reads.
+#      Writes Gtk-4.0.gir and Adw-1.gir into vendor/gir/, which is what bin/06-gtk-schemas reads.
 #
 #      A GIR FILE IS THE WIDGET API, stated by the toolkit rather than by its documentation.
 #      GObject introspection is what language bindings are generated from, so every class, every
@@ -28,12 +28,12 @@
 #      vendor/gir/VERSIONS
 #
 # EXIT STATUS
-#      The bin/04-fetch-gir utility exits 0 on success, and >0 if an error occurs.
+#      The bin/02-fetch-gir utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/05-gtk-schemas, bin/01-fetch-adwaita, g-ir-scanner(1)
+#      bin/06-gtk-schemas, bin/01-fetch-adwaita, g-ir-scanner(1)
 #
-# adwaita-cn                         October 12, 2026                          04-FETCH-GIR(1)
+# adwaita-cn                         October 12, 2026                          02-FETCH-GIR(1)
 
 set -o errexit
 set -o nounset

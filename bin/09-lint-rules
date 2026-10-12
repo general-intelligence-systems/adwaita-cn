@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# 07-LINT-RULES(1)                  General Commands Manual                   07-LINT-RULES(1)
+# 09-LINT-RULES(1)                  General Commands Manual                   09-LINT-RULES(1)
 #
 # NAME
-#      bin/07-lint-rules — the rule file the oxlint plugin checks against
+#      bin/09-lint-rules — the rule file the oxlint plugin checks against
 #
 # SYNOPSIS
-#      bin/07-lint-rules > lint/rules.json
+#      bin/09-lint-rules > lint/rules.json
 #
 # DESCRIPTION
 #      Joins lint/components.json, which declares which components exist, to vendor/gir/
@@ -39,12 +39,12 @@
 #      lint/rules.json         the output
 #
 # EXIT STATUS
-#      The bin/07-lint-rules utility exits 0 on success, and >0 if an error occurs.
+#      The bin/09-lint-rules utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/05-gtk-schemas, bin/03-adwaita-components, lint/adwaita-plugin.js
+#      bin/06-gtk-schemas, bin/04-adwaita-components, lint/adwaita-plugin.js
 #
-# adwaita-cn                         October 12, 2026                         07-LINT-RULES(1)
+# adwaita-cn                         October 12, 2026                         09-LINT-RULES(1)
 
 require "json"
 

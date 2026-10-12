@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# 08-COMPONENT-TREES(1)           General Commands Manual          08-COMPONENT-TREES(1)
+# 05-COMPONENT-TREES(1)           General Commands Manual          05-COMPONENT-TREES(1)
 #
 # NAME
-#      bin/08-component-trees — the child tree of every composite widget
+#      bin/05-component-trees — the child tree of every composite widget
 #
 # SYNOPSIS
-#      bin/08-component-trees > vendor/adwaita/trees.json
+#      bin/05-component-trees > vendor/adwaita/trees.json
 #
 # DESCRIPTION
 #      Reads the .ui templates under vendor/adwaita/ui/ and writes, as JSON on stdout, the tree
@@ -34,24 +34,23 @@
 #      <child> holds an ordinary child, and a parent may have many. Where the surrounding object
 #      carries a style class, that class is the position: GtkBox.prefixes and GtkBox.suffixes
 #      are AdwActionRow's two, and both already have their own Tailwind classes from
-#      bin/02-adwaita-tailwind.
+#      bin/03-adwaita-tailwind.
 #
-#      Every class a template mentions is reported in `referenced`, and the ones which are not
-#      in lint/components.json are reported in `missing`. That is the list of components still
-#      to declare, and it is a count rather than an opinion.
+#      Every class a template mentions is reported in `referenced`, with how many templates use
+#      it. What is missing is not decided here: bin/07-final-components is the step which knows
+#      the whole set, and it is the one which says.
 #
 # FILES
 #      vendor/adwaita/ui/*.ui      the templates, vendored by bin/01-fetch-adwaita
-#      lint/components.json        which components are declared so far
 #      vendor/adwaita/trees.json   the output
 #
 # EXIT STATUS
-#      The bin/08-component-trees utility exits 0 on success, and >0 if an error occurs.
+#      The bin/05-component-trees utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/01-fetch-adwaita, bin/09-generate-components
+#      bin/01-fetch-adwaita, bin/07-final-components
 #
-# adwaita-cn                      October 12, 2026                08-COMPONENT-TREES(1)
+# adwaita-cn                      October 12, 2026                05-COMPONENT-TREES(1)
 
 require "json"
 require "rexml/document"
@@ -118,8 +117,6 @@ module ComponentTrees
 
   def self.run(_argv)
     root = File.expand_path("..", __dir__)
-    declared = JSON.parse(File.read(File.join(root, "lint/components.json")))
-
     trees = {}
 
     Dir[File.join(root, "vendor/adwaita/ui/*.ui")].sort.each do |path|
@@ -140,17 +137,10 @@ module ComponentTrees
     referenced = {}
     trees.each_value{|entry| self.census(entry.fetch("tree"), referenced)}
 
-    # A class a template is built out of which nothing has declared yet. Sorted by how many
-    # templates use it, because that is the order worth building in.
-    missing = referenced
-      .reject{|name, _count| declared.key?(name) || trees.key?(name)}
-      .sort_by{|name, count| [-count, name]}
-      .to_h
 
     puts(JSON.pretty_generate({
       "templates" => trees.keys.sort,
       "referenced" => referenced.sort_by{|name, count| [-count, name]}.to_h,
-      "missing" => missing,
       "trees" => trees.sort.to_h,
     }))
   end

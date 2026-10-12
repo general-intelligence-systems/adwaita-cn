@@ -28,8 +28,8 @@ order:
 
 ```bash
 bin/01-fetch-adwaita                                                     # the stylesheets
-bin/02-adwaita-tailwind                > vendor/adwaita/widgets.json     # pass 1
-bin/03-adwaita-components widgets.json > vendor/adwaita/components.json  # pass 2
+bin/03-adwaita-tailwind                > vendor/adwaita/widgets.json     # pass 1
+bin/04-adwaita-components widgets.json > vendor/adwaita/components.json  # pass 2
 ```
 
 Two passes, two outputs. `widgets.json` is one entry per selector; `components.json` is one
@@ -45,13 +45,13 @@ because Adwaita is only the top half: libadwaita's own, and GTK's `Default` them
 GTK 4 no longer ships an Adwaita of its own — `gtk/theme/` holds `Default` and `Empty`, and
 Adwaita moved out to libadwaita.
 
-**`bin/02-adwaita-tailwind`** parses both sheets and maps every declaration to the Tailwind classes
+**`bin/03-adwaita-tailwind`** parses both sheets and maps every declaration to the Tailwind classes
 which reproduce it, dropping colour on the way through. Measurements are arbitrary-valued on
 purpose: `rounded-[9px]`, never `rounded-lg`. Tailwind's scale has 8px and 10px either side of
 Adwaita's button radius, and a button one pixel out is the most recognisable way for a port to
 look almost-but-not-Adwaita.
 
-**`bin/03-adwaita-components`** folds that map into the component list, which is the second pass
+**`bin/04-adwaita-components`** folds that map into the component list, which is the second pass
 because a selector is not a component. `button.flat`, `button.pill` and
 `button.suggested-action` are one component with three variants. `trough`, `slider` and `arrow`
 are render nodes inside a widget, and the web has no element to hang them on. `.title-1` and
@@ -67,13 +67,13 @@ in `components.json` too, each with the reason, so nothing goes missing quietly.
 The classes and their props come from the toolkit too, not from the documentation:
 
 ```bash
-bin/04-fetch-gir                               # Gtk-4.0.gir and Adw-1.gir, into vendor/gir/
-bin/05-gtk-schemas > vendor/gir/schemas.json   # 348 classes, 158 enums
+bin/02-fetch-gir                               # Gtk-4.0.gir and Adw-1.gir, into vendor/gir/
+bin/06-gtk-schemas > vendor/gir/schemas.json   # 348 classes, 158 enums
 ```
 
 A GIR file is GObject introspection data — what language bindings are generated from — so every
 class, every property, its type, its default and whether it is writable are stated by the
-library itself. `bin/05-gtk-schemas` resolves inheritance, which is the whole reason not to read
+library itself. `bin/06-gtk-schemas` resolves inheritance, which is the whole reason not to read
 the docs instead: `ActionRow` declares six properties and accepts forty-eight, with `title`
 from `Adw.PreferencesRow` and `visible` from `Gtk.Widget`. Each one records which class declared
 it.
@@ -91,10 +91,10 @@ parent. Those three already inherit everything the Gtk class has, so the parent 
 one beyond it and `parentThrough` records what was stepped over. `--qualified` turns
 consolidation off.
 
-`bin/06-gtk-enums` turns the enumerations into TypeScript:
+`bin/08-gtk-enums` turns the enumerations into TypeScript:
 
 ```bash
-bin/06-gtk-enums > registry/adwaita/lib/enums.ts     # 137 unions
+bin/08-gtk-enums > registry/adwaita/lib/enums.ts     # 137 unions
 ```
 
 A string-literal union and its value array from one source, because both are wanted and keeping
@@ -121,7 +121,7 @@ boolean, an enumeration becomes its list of values (`Adw.ToolbarStyle` → `flat
 
 ## The lint
 
-`bin/07-lint-rules` joins the component list to the schemas and writes `lint/rules.json`, which
+`bin/09-lint-rules` joins the component list to the schemas and writes `lint/rules.json`, which
 is the one file `lint/adwaita-plugin.js` reads. Two rules, both oxlint JS plugins:
 
 - **`adwaita/component-exists`** — a named import from one of the registry's sources has to be a
@@ -143,7 +143,7 @@ style class: it exists, it has no props, and the lint accepts any prop on one ra
 rejecting every prop.
 
 ```bash
-bin/07-lint-rules > lint/rules.json
+bin/09-lint-rules > lint/rules.json
 pnpm lint
 ```
 
@@ -154,7 +154,7 @@ nix develop        # or direnv, via .envrc
 pnpm install
 ```
 
-Ruby comes from `bundlerEnv` with the Gemfile — `rexml` for `bin/05-gtk-schemas`, since Ruby
+Ruby comes from `bundlerEnv` with the Gemfile — `rexml` for `bin/06-gtk-schemas`, since Ruby
 3.4 unbundled it — and the shell also carries `glib` for `gresource(1)`, `gtk4` and
 `libadwaita` with their `dev` outputs for the GIR files, `pkg-config`, and node with pnpm for
 `shadcn build` and the lint.
@@ -187,7 +187,7 @@ JSON per item plus an index, which is what the CLI fetches. Serve `public/` from
 ## The component trees
 
 ```bash
-bin/08-component-trees > vendor/adwaita/trees.json
+bin/05-component-trees > vendor/adwaita/trees.json
 ```
 
 **The toolkit ships the trees**, which is why none of this is guessed. A composite widget in GTK
@@ -221,7 +221,7 @@ both already have their own Tailwind classes from pass 02.
 ## Generating the components
 
 ```bash
-bin/09-generate-components      # one .tsx per component, props and classes derived
+bin/10-generate-components      # one .tsx per component, props and classes derived
 ```
 
 Everything that can be derived is: the prop names, their TypeScript types, the enum unions they
