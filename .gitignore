@@ -1,22 +1,10 @@
 node_modules
 .DS_Store
-
-# `shadcn build` output: one JSON per item plus the index, regenerated from
-# registry.json and the sources under registry/.
-public/r
-
-# direnv
 .direnv
 
-# React Router / Vite build output and generated route types.
-/build
-.react-router
+# `shadcn build` output, regenerated from registry.json.
+/public/r
 
-# Fumadocs MDX's generated index of content/.
-.source
-
-# The harness bundle, rebuilt by bin/15-screenshots.
+# The harness bundle and the screenshots, both rebuilt by bin/15-screenshots.
 /harness/dist
-
-# The screenshots it takes.
 /screenshots

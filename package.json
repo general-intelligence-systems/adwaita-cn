@@ -9,9 +9,7 @@
     "registry:check": "shadcn build --output /tmp/adwaita-cn-check && rm -rf /tmp/adwaita-cn-check",
     "lint": "oxlint",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "screenshots": "bin/15-screenshots",
-    "docs:dev": "pnpm --filter adwaita-cn-docs dev",
-    "docs:build": "pnpm --filter adwaita-cn-docs build"
+    "screenshots": "bin/15-screenshots"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
