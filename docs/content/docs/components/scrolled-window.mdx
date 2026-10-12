@@ -1,0 +1,48 @@
+---
+title: ScrolledWindow
+description: Gtk.ScrolledWindow, which Adwaita styles as `scrolledwindow`.
+---
+
+<Example id="scrolled-window/base" />
+
+## Props
+
+| Prop | Type | From |
+| --- | --- | --- |
+| `child` | `node` | Gtk.ScrolledWindow |
+| `hadjustment` | `node` | Gtk.ScrolledWindow |
+| `hasFrame` | `boolean` | Gtk.ScrolledWindow |
+| `hscrollbarPolicy` | `always` \| `automatic` \| `never` \| `external` | Gtk.ScrolledWindow |
+| `kineticScrolling` | `boolean` | Gtk.ScrolledWindow |
+| `maxContentHeight` | `number` | Gtk.ScrolledWindow |
+| `maxContentWidth` | `number` | Gtk.ScrolledWindow |
+| `minContentHeight` | `number` | Gtk.ScrolledWindow |
+| `minContentWidth` | `number` | Gtk.ScrolledWindow |
+| `overlayScrolling` | `boolean` | Gtk.ScrolledWindow |
+| `propagateNaturalHeight` | `boolean` | Gtk.ScrolledWindow |
+| `propagateNaturalWidth` | `boolean` | Gtk.ScrolledWindow |
+| `vadjustment` | `node` | Gtk.ScrolledWindow |
+| `vscrollbarPolicy` | `always` \| `automatic` \| `never` \| `external` | Gtk.ScrolledWindow |
+| `windowPlacement` | `top-left` \| `bottom-left` \| `top-right` \| `bottom-right` | Gtk.ScrolledWindow |
+## Variants
+
+### .undershoot-bottom
+
+A shadow at the bottom edge, indicating content scrolled out of view.
+
+<Example id="scrolled-window/undershoot-bottom" />
+### .undershoot-end
+
+A shadow at the end edge, which follows text direction.
+
+<Example id="scrolled-window/undershoot-end" />
+### .undershoot-start
+
+A shadow at the start edge, which follows text direction.
+
+<Example id="scrolled-window/undershoot-start" />
+### .undershoot-top
+
+A shadow at the top edge, indicating content scrolled out of view.
+
+<Example id="scrolled-window/undershoot-top" />

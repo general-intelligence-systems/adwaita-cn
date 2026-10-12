@@ -1,3 +1,7 @@
 {
-  "pages": ["index", "installation"]
+  "pages": [
+    "index",
+    "installation",
+    "components"
+  ]
 }

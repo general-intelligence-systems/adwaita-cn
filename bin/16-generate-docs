@@ -1,0 +1,157 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 16-GENERATE-DOCS(1)               General Commands Manual                16-GENERATE-DOCS(1)
+#
+# NAME
+#      bin/16-generate-docs — a documentation page for every component
+#
+# SYNOPSIS
+#      bin/16-generate-docs [--force]
+#
+# DESCRIPTION
+#      Writes docs/content/docs/components/<component>.mdx from vendor/adwaita/variants.json:
+#      one page per component, with its props and an <Example> for each variant.
+#
+#      <Example> is docs/app/components/example.tsx, which globs examples/ at build time, so a
+#      page names an example rather than repeating it. The preview and the code come from the
+#      same .tsx the screenshots are taken from.
+#
+#      It does not overwrite, so a page written over by hand is left alone; --force discards it.
+#
+# OPTIONS
+#      --force      Overwrite the pages which are already there.
+#
+# FILES
+#      vendor/adwaita/variants.json                   the input, from 12
+#      docs/content/docs/components/<component>.mdx   one page
+#      docs/content/docs/components/meta.json         their order in the sidebar
+#
+# EXIT STATUS
+#      The bin/16-generate-docs utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/12-component-variants, bin/13-generate-examples
+#
+# adwaita-cn                         October 12, 2026                      16-GENERATE-DOCS(1)
+
+require "fileutils"
+require "json"
+
+module GenerateDocs
+  ROOT = File.expand_path("..", __dir__)
+  PAGES = "docs/content/docs/components"
+
+  def self.run(argv)
+    force = !argv.delete("--force").nil?
+    variants = JSON.parse(File.read(File.join(ROOT, "vendor/adwaita/variants.json")))
+    components = variants.fetch("components")
+    written = 0
+    skipped = 0
+
+    components.sort.each do |name, component|
+      if self.write("#{PAGES}/#{self.kebab(name)}.mdx", self.page(name, component), force)
+        written += 1
+      else
+        skipped += 1
+      end
+    end
+
+    self.write("#{PAGES}/meta.json", "#{JSON.pretty_generate({
+      "title" => "Components",
+      "pages" => components.keys.sort.map{|name| self.kebab(name)},
+    })}\n", true)
+
+    puts("written: #{written}")
+    puts("left alone: #{skipped}")
+  end
+
+  def self.page(name, component)
+    variants = component.fetch("variants")
+
+    <<~MDX
+      ---
+      title: #{name}
+      description: #{self.description(name, component)}
+      ---
+
+      <Example id="#{self.kebab(name)}/base" />
+
+      #{self.props(component)}
+      #{variants.empty? ? '' : self.variants(name, variants)}
+    MDX
+  end
+
+  def self.description(name, component)
+    node = component["node"]
+    klass = component["gtk"]
+
+    [
+      klass ? "#{klass}," : "A widget libadwaita keeps private,",
+      node ? "which Adwaita styles as `#{node}`." : "which Adwaita gives no styling of its own.",
+    ].join(" ")
+  end
+
+  # The props the component declares, which is its own and not everything it accepts: a table of
+  # all seventy would bury the five that are its.
+  def self.props(component)
+    props = component.fetch("props")
+
+    if props.empty?
+      "It declares no props of its own, and accepts the ones every widget has."
+    else
+      rows = props.sort.map do |prop, attributes|
+        "| `#{prop}` | #{self.type(attributes)} | #{attributes.fetch('from')} |"
+      end
+
+      ["## Props", "", "| Prop | Type | From |", "| --- | --- | --- |", *rows].join("\n")
+    end
+  end
+
+  def self.type(attributes)
+    if attributes.fetch("type") == "enum"
+      attributes.fetch("values").map{|value| "`#{value}`"}.join(" \\| ")
+    else
+      "`#{attributes.fetch('type')}`"
+    end
+  end
+
+  def self.variants(name, variants)
+    sections = variants.map do |style, variant|
+      [
+        "### .#{style}",
+        "",
+        variant.fetch("summary"),
+        *(variant.key?("deprecated") ? ["", self.deprecation(variant)] : []),
+        "",
+        %(<Example id="#{self.kebab(name)}/#{style}" />),
+      ].join("\n")
+    end
+
+    ["## Variants", "", *sections].join("\n")
+  end
+
+  def self.deprecation(variant)
+    use = variant.fetch("deprecated").fetch("use")
+
+    "Deprecated. Use #{use.match?(/\A[A-Z]/) ? use : "`.#{use}`"} instead."
+  end
+
+  def self.write(relative, source, force)
+    path = File.join(ROOT, relative)
+
+    if File.exist?(path) && !force
+      false
+    else
+      FileUtils.mkdir_p(File.dirname(path))
+      File.write(path, source)
+      true
+    end
+  end
+
+  def self.kebab(name)
+    name.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
+  end
+end
+
+GenerateDocs.run(ARGV)

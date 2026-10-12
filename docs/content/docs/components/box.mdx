@@ -1,0 +1,39 @@
+---
+title: Box
+description: Gtk.Box, which Adwaita styles as `box`.
+---
+
+<Example id="box/base" />
+
+## Props
+
+| Prop | Type | From |
+| --- | --- | --- |
+| `baselineChild` | `number` | Gtk.Box |
+| `baselinePosition` | `top` \| `center` \| `bottom` | Gtk.Box |
+| `homogeneous` | `boolean` | Gtk.Box |
+| `spacing` | `number` | Gtk.Box |
+## Variants
+
+### .app-notification
+
+OSD appearance with round bottom corners, for an in-app notification.
+
+Deprecated. Use ToastOverlay instead.
+
+<Example id="box/app-notification" />
+### .card
+
+A card: rounded corners and a shadow.
+
+<Example id="box/card" />
+### .linked
+
+Makes a box's children appear as a single group. The box must have no spacing.
+
+<Example id="box/linked" />
+### .toolbar
+
+A horizontal box given a toolbar's padding and spacing.
+
+<Example id="box/toolbar" />
