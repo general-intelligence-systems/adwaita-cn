@@ -74,9 +74,22 @@ bin/gtk-schemas > vendor/gir/schemas.json         # 359 classes, 158 enums
 A GIR file is GObject introspection data — what language bindings are generated from — so every
 class, every property, its type, its default and whether it is writable are stated by the
 library itself. `bin/gtk-schemas` resolves inheritance, which is the whole reason not to read
-the docs instead: `Adw.ActionRow` declares six properties and accepts forty-eight, with `title`
+the docs instead: `ActionRow` declares six properties and accepts forty-eight, with `title`
 from `Adw.PreferencesRow` and `visible` from `Gtk.Widget`. Each one records which class declared
 it.
+
+**There is no Adw/Gtk split.** A component is one component, so the namespaces consolidate under
+the bare class name and Adw takes precedence — 348 classes, with eleven names claimed by both.
+Adw wins *outright* rather than by merging, because `Adw.Dialog` descends from `Gtk.Widget`
+rather than `Gtk.Window` and is a different API sharing a name; folding Gtk's extra properties
+in would have the schema claim props the widget does not accept. Each displaced class is named
+in `shadows`.
+
+Three of the eleven need an exception: `Window`, `ApplicationWindow` and `Application` each
+subclass the very Gtk class they shadow, so a bare parent pointer would make `Window` its own
+parent. Those three already inherit everything the Gtk class has, so the parent emitted is the
+one beyond it and `parentThrough` records what was stepped over. `--qualified` turns
+consolidation off.
 
 Types come out as something a JavaScript lint can check: `utf8` is a string, `gboolean` a
 boolean, an enumeration becomes its list of values (`Adw.ToolbarStyle` → `flat`, `raised`,

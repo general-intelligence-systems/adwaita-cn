@@ -14,6 +14,25 @@
 #      class: its properties, each with the type it takes, its default, and whether it can be
 #      written at all.
 #
+#      THERE IS NO Adw/Gtk SPLIT IN THE OUTPUT. A component is one component, so the two
+#      namespaces are consolidated under the bare class name and Adw takes precedence: 348
+#      classes out of 269 Gtk and 90 Adw, with eleven names claimed by both.
+#
+#      ADW WINS OUTRIGHT RATHER THAN BY MERGING, and that distinction is the whole point.
+#      Adw.Dialog descends from Gtk.Widget, not from Gtk.Window, so it is a different API which
+#      happens to share a name -- folding Gtk.Dialog's twenty-three extra properties in would
+#      have the schema claim props the widget does not accept, which is exactly what this is
+#      meant to stop. Adw.ShortcutsSection is the extreme case: three properties against
+#      Gtk.ShortcutsSection's forty-three. Each shadowed class is named in `shadows` so the
+#      choice is visible rather than silent.
+#
+#      THE ONE EXCEPTION IS A SELF-REFERENTIAL PARENT. Adw.Window, Adw.ApplicationWindow and
+#      Adw.Application each subclass the very Gtk class they shadow, so bare-ifying the parent
+#      would make `Window` its own parent. In those three the Adw class already inherits
+#      everything the Gtk one has -- Gtk-only property count is zero for all three -- so the
+#      parent emitted is the shadowed class's parent, one step further up, and `parentThrough`
+#      records the class stepped over.
+#
 #      INHERITANCE IS RESOLVED, which is the point of doing this rather than reading the
 #      documentation. Adw.ActionRow declares six properties of its own and accepts about sixty:
 #      `title` comes from Adw.PreferencesRow, `visible` and `sensitive` from Gtk.Widget, and a
@@ -33,7 +52,8 @@
 #      error worth reporting, and a lint cannot report what it was not told about.
 #
 # OPTIONS
-#      --own   Only the properties each class declares, without the inherited ones.
+#      --own        Only the properties each class declares, without the inherited ones.
+#      --qualified  Key by Adw.Button and Gtk.Button rather than consolidating.
 #
 # FILES
 #      vendor/gir/Gtk-4.0.gir
@@ -49,9 +69,9 @@
 #
 #            bin/gtk-schemas > vendor/gir/schemas.json
 #
-#      What Adw.ActionRow itself adds:
+#      What ActionRow itself adds:
 #
-#            bin/gtk-schemas --own | jq '."Adw.ActionRow".properties | keys'
+#            bin/gtk-schemas --own | jq '.classes.ActionRow.properties | keys'
 #
 # SEE ALSO
 #      bin/fetch-gir, bin/adwaita-components
@@ -190,23 +210,48 @@ module GtkSchemas
     end
   end
 
+  # Adw before Gtk, so that consolidating by bare name keeps the Adw class.
+  PRECEDENCE = %w[Adw Gtk].freeze
+
+  # The bare name a qualified class is consolidated under, and nil for anything outside the two
+  # namespaces -- a GObject or Gio parent stays qualified, because it is not a component.
+  def self.consolidated(qualified, classes)
+    namespace, name = qualified.to_s.split(".", 2)
+
+    if PRECEDENCE.include?(namespace) && classes.key?(qualified)
+      name
+    else
+      qualified
+    end
+  end
+
   def self.run(argv)
     root = File.expand_path("..", __dir__)
     own = !argv.delete("--own").nil?
+    qualified = !argv.delete("--qualified").nil?
     classes, enums = self.read(root)
 
-    schemas = classes.sort.to_h do |name, entry|
+    if qualified
+      keyed = classes.keys.to_h{|name| [name, name]}
+    else
+      # Gtk first and Adw second, so Adw overwrites the shared names.
+      keyed = {}
+      PRECEDENCE.reverse.each do |namespace|
+        classes.each_key do |name|
+          if name.start_with?("#{namespace}.")
+            keyed[name.split(".", 2).last] = name
+          end
+        end
+      end
+    end
+
+    schemas = keyed.sort.to_h do |key, name|
+      entry = classes.fetch(name)
       properties = self.resolve(name, classes, own: own).sort.to_h do |property, attributes|
         [property, attributes.merge(self.kind(attributes["gir"], entry[:namespace], enums))]
       end
 
-      [
-        name,
-        {
-          "parent" => entry[:parent],
-          "properties" => properties,
-        },
-      ]
+      [key, self.entry(key, name, entry, classes, qualified).merge("properties" => properties)]
     end
 
     puts(JSON.pretty_generate({
@@ -214,6 +259,34 @@ module GtkSchemas
       "enums" => enums.sort.to_h,
       "classes" => schemas,
     }))
+  end
+
+  # One class's own identity: where it came from, what it displaced, and who its parent is once
+  # the namespaces are gone.
+  def self.entry(key, name, entry, classes, qualified)
+    shadowed = "Gtk.#{key}"
+    parent = entry[:parent]
+
+    found = {
+      "class" => name,
+      "namespace" => entry[:namespace],
+      "parent" => qualified ? parent : self.consolidated(parent, classes),
+    }
+
+    if !qualified && entry[:namespace] == "Adw" && classes.key?(shadowed) && shadowed != name
+      found["shadows"] = shadowed
+    end
+
+    # THE EXCEPTION. Adw.Window's parent is Gtk.Window, which consolidates to `Window` -- the
+    # entry's own key, so the pointer would be a loop. The Adw class subclasses the one it
+    # shadows and therefore already carries its properties, so the parent emitted is the one
+    # beyond it and the class stepped over is recorded.
+    if found["parent"] == key
+      found["parentThrough"] = parent
+      found["parent"] = self.consolidated(classes.fetch(parent)[:parent], classes)
+    end
+
+    found
   end
 end
 
