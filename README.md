@@ -147,10 +147,30 @@ bin/07-lint-rules > lint/rules.json
 pnpm lint
 ```
 
+## The devshell
+
+```bash
+nix develop        # or direnv, via .envrc
+pnpm install
+```
+
+Ruby comes from `bundlerEnv` with the Gemfile — `rexml` for `bin/05-gtk-schemas`, since Ruby
+3.4 unbundled it — and the shell also carries `glib` for `gresource(1)`, `gtk4` and
+`libadwaita` with their `dev` outputs for the GIR files, `pkg-config`, and node with pnpm for
+`shadcn build` and the lint.
+
+**The shell names the four store paths it provides** (`ADWAITA_LIB`, `ADWAITA_DEV`, `GTK_LIB`,
+`GTK_DEV`) and the fetch scripts prefer them. They used to glob `/nix/store`, which sorts by
+hash rather than by version, so `01` read libadwaita 1.9.0 while `04` read 1.9.3 — the metrics
+and the props described different releases. `pkg-config` was meant to answer first but nix does
+not put a multi-output package's `.pc` files on `PKG_CONFIG_PATH` here, so the flake states them
+outright.
+
 ## Layout
 
 ```
-bin/                       the pipeline, numbered in call order
+bin/                       the pipeline, numbered in call order; each runs bare
+Gemfile, gemset.nix        the one gem the scripts need, for bundlerEnv
 vendor/adwaita/            the extracted stylesheets, the class map, the component list
 vendor/gir/                the introspection data, and the widget schemas
 lint/                      the oxlint plugin, its declaration and its generated rule file

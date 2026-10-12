@@ -7,15 +7,15 @@
 #      bin/03-adwaita-components — the component list, out of the class map
 #
 # SYNOPSIS
-#      bin/02-adwaita-tailwind | bin/03-adwaita-components [--legacy] > components.json
-#      bin/03-adwaita-components [--legacy] MAP > components.json
+#      bin/03-adwaita-components [--legacy] [MAP] > components.json
 #
 # DESCRIPTION
 #      Reads the selector-to-classes map bin/02-adwaita-tailwind produces and writes, as JSON on
 #      stdout, the list of components to build: one entry per component, its variants named, its
 #      states listed, and every class it needs carried with it.
 #
-#      This is the second of the two passes.
+#      This is the second of the two passes. MAP defaults to vendor/adwaita/widgets.json, which
+#      is what the pass before it writes.
 #
 #      THE MAP IS NOT THE LIST, which is the whole reason this is a second pass. The map has one
 #      entry per selector, and a selector is not a component three times over:
@@ -186,13 +186,9 @@ module AdwaitaComponents
 
   def self.run(argv)
     legacy = argv.delete("--legacy")
-    source = argv.first
+    source = argv.first || File.expand_path("../vendor/adwaita/widgets.json", __dir__)
 
-    if source.nil?
-      map = JSON.parse($stdin.read)
-    else
-      map = JSON.parse(File.read(source))
-    end
+    map = JSON.parse(File.read(source))
 
     grouped = {}
 

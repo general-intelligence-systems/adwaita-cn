@@ -10,6 +10,16 @@
     (utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+
+        # The Ruby the scripts run under, with the gems the Gemfile names. bin/05-gtk-schemas
+        # needs rexml, which Ruby 3.4 unbundled.
+        gems = pkgs.bundlerEnv {
+          name = "adwaita-cn";
+          ruby = pkgs.ruby_3_4;
+          gemfile = ./Gemfile;
+          lockfile = ./Gemfile.lock;
+          gemset = ./gemset.nix;
+        };
       in
       {
         devShells.default = pkgs.mkShell {
@@ -46,6 +56,12 @@
             nodejs
             pnpm
           ];
+
+          shellHook = /* bash */ ''
+            export BUNDLE_FORCE_RUBY_PLATFORM=false
+            export BUNDLE_GEMFILE="$PWD/Gemfile"
+            export BUNDLE_FROZEN=false
+          '';
         };
       }));
 }
