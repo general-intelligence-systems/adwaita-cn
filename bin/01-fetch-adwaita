@@ -24,6 +24,10 @@
 #      adwaita.css
 #              libadwaita's, which is Adwaita proper — every Adw.* widget and style class.
 #
+#      ui/*.ui
+#              The composite widgets' templates: the child tree of each Adw widget, which is the
+#              toolkit saying which widgets it is built out of rather than anybody guessing.
+#
 #      gtk-default-light.css
 #              GTK's own Default theme, which is the base widget sheet Adwaita sits on. GTK 4
 #              no longer ships an Adwaita of its own; gtk/theme/ holds Default and Empty, and
@@ -35,6 +39,7 @@
 # FILES
 #      vendor/adwaita/adwaita.css
 #      vendor/adwaita/gtk-default-light.css
+#      vendor/adwaita/ui/*.ui
 #      vendor/adwaita/VERSIONS
 #
 # EXIT STATUS
@@ -89,6 +94,14 @@ gtk="$(locate gtk4 libgtk-4.so.1 gtk4 "${GTK_LIB:-}")"
 
 gresource extract "$adwaita" /org/gnome/Adwaita/styles/gtk.css > "$out/adwaita.css"
 gresource extract "$gtk" /org/gtk/libgtk/theme/Default/Default-light.css > "$out/gtk-default-light.css"
+
+# AND THE TEMPLATES. A composite widget's child tree is a .ui file in the same bundle, which is
+# the toolkit stating which widgets it is built out of -- GtkBox, GtkImage, GtkLabel and their
+# style classes, in order. bin/08-component-trees reads them.
+mkdir -p "$out/ui"
+for resource in $(gresource list "$adwaita" | grep "/ui/.*\.ui$"); do
+  gresource extract "$adwaita" "$resource" > "$out/ui/$(basename "$resource")"
+done
 
 # The store path carries the version, which is the only place it is written down.
 {

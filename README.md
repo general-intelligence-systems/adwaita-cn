@@ -184,10 +184,44 @@ public/r/                  `shadcn build` output, gitignored
 `registry.json` is the source of truth and `shadcn build` compiles it into `public/r/`: one
 JSON per item plus an index, which is what the CLI fetches. Serve `public/` from anything.
 
+## The component trees
+
+```bash
+bin/08-component-trees > vendor/adwaita/trees.json
+```
+
+**The toolkit ships the trees**, which is why none of this is guessed. A composite widget in GTK
+is declared in XML, and that XML is in the same GResource bundle as the stylesheet. So
+`AdwActionRow` is not a thing anybody has to work out:
+
+```
+ActionRow
+  slot child:
+    Box.header
+      Box.prefixes
+      Image.icon
+      Box.title
+        Label.title
+        Label.subtitle
+      Box.suffixes
+  GestureClick
+```
+
+**And GTK has no anonymous elements.** There is no `<div>` and no `<span>`: everything which
+renders is a widget with a name. That is what makes a complete port generable — the leaf of
+every tree is a widget we can name, so there is no point at which somebody has to decide what a
+thing "should" be.
+
+**Parent and child are two different relationships, and the templates distinguish them.**
+`<property name="child">` wraps one object: a named slot holding a single widget. `<child>` is
+an ordinary child and a parent may have many. Where the surrounding object carries a style
+class, that class *is* the position — `Box.prefixes` and `Box.suffixes` are ActionRow's two, and
+both already have their own Tailwind classes from pass 02.
+
 ## Generating the components
 
 ```bash
-bin/08-generate-components      # one .tsx per component, props and classes derived
+bin/09-generate-components      # one .tsx per component, props and classes derived
 ```
 
 Everything that can be derived is: the prop names, their TypeScript types, the enum unions they
