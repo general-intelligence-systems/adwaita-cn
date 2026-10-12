@@ -5,8 +5,12 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-base="${DOCS_BASE_PATH:-/adwaita-cn/}"
-prefix="$(echo "$base" | tr -s '/' | sed 's|^/||; s|/$||')"
+# The prefix is the one true form; the base path is rebuilt from it so that it
+# always has both slashes. actions/configure-pages reports base_path without a
+# trailing one, and Vite joins `base` to an asset path by concatenation -- so an
+# unnormalised value asks the browser for /adwaita-cnassets/entry.js.
+prefix="$(echo "${DOCS_BASE_PATH:-/adwaita-cn/}" | tr -s '/' | sed 's|^/||; s|/$||')"
+base="/${prefix:+$prefix/}"
 out=build/client
 
 DOCS_BASE_PATH="$base" pnpm run build
