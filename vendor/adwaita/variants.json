@@ -12,17 +12,24 @@
   "universal": {
     "accent": {
       "classes": {
-        "base": []
+        "base": [
+          "text-[var(--accent-color)]"
+        ]
       },
-      "colour": true,
+      "context": [],
+      "colour": false,
       "universal": true,
       "summary": "The accent colour."
     },
     "background": {
       "classes": {
-        "base": []
+        "base": [
+          "text-[var(--window-fg-color)]",
+          "bg-[var(--window-bg-color)]"
+        ]
       },
-      "colour": true,
+      "context": [],
+      "colour": false,
       "universal": true,
       "summary": "The default window background and foreground colours."
     },
@@ -30,11 +37,10 @@
       "classes": {
         "base": [
           "font-normal",
-          "leading-[140%]",
-          "px-6",
-          "px-4.5"
+          "leading-[140%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "Increased line height, for descriptions and dialog body text.",
@@ -50,6 +56,7 @@
           "leading-[140%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "Smaller text, for sub-text accompanying body text."
@@ -61,6 +68,7 @@
           "text-[82%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "Smaller text, for a heading accompanying body text."
@@ -68,22 +76,22 @@
     "card": {
       "classes": {
         "base": [
+          "bg-[var(--card-bg-color)]",
+          "text-[var(--card-fg-color)]",
           "rounded-[12px]",
           "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
           "outline-offset-[5px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
-          "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-          "shadow-none",
-          "outline-offset-[4px]",
-          "outline-2",
-          "outline-offset-[0]"
+          "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-1px]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "A card: rounded corners and a shadow.",
@@ -94,12 +102,10 @@
     "dim-label": {
       "classes": {
         "base": [
-          "opacity-0",
-          "opacity-100",
-          "py-1.5",
-          "px-0"
+          "opacity-0"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "Partially transparent.",
@@ -110,12 +116,10 @@
     "dimmed": {
       "classes": {
         "base": [
-          "opacity-0",
-          "opacity-100",
-          "py-1.5",
-          "px-0"
+          "opacity-0"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "Partially transparent, by the --dim-opacity variable."
@@ -128,6 +132,7 @@
           "leading-[140%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The document font, for the app's main content.",
@@ -137,9 +142,12 @@
     },
     "error": {
       "classes": {
-        "base": []
+        "base": [
+          "text-[var(--accent-color)]"
+        ]
       },
-      "colour": true,
+      "context": [],
+      "colour": false,
       "universal": true,
       "summary": "The error colour, and on an entry, invalid input."
     },
@@ -147,6 +155,7 @@
       "classes": {
         "base": []
       },
+      "context": [],
       "colour": true,
       "universal": true,
       "summary": "The default one-pixel border."
@@ -154,11 +163,10 @@
     "heading": {
       "classes": {
         "base": [
-          "font-bold",
-          "m-3",
-          "mt-0"
+          "font-bold"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The standard style for a UI heading at the default text size."
@@ -170,6 +178,7 @@
           "text-[24pt]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "Large thin text, for a display heading in a greeter or an assistant.",
@@ -184,6 +193,7 @@
           "text-[var(--monospace-font-size)]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The monospace font, for code, logs and shell commands."
@@ -192,15 +202,21 @@
       "classes": {
         "base": []
       },
+      "context": [],
       "colour": true,
       "universal": true,
       "summary": "Tabular figures, so columns of numbers line up."
     },
     "osd": {
       "classes": {
-        "base": []
+        "base": [
+          "text-[RGB(255_255_255/90%)]",
+          "bg-[RGB(0_0_0/70%)]",
+          "bg-clip-padding"
+        ]
       },
-      "colour": true,
+      "context": [],
+      "colour": false,
       "universal": true,
       "summary": "Dark and partially transparent, for a control overlapping content.",
       "combines": [
@@ -211,9 +227,12 @@
     },
     "success": {
       "classes": {
-        "base": []
+        "base": [
+          "text-[var(--accent-color)]"
+        ]
       },
-      "colour": true,
+      "context": [],
+      "colour": false,
       "universal": true,
       "summary": "The success colour, and on an entry, valid input."
     },
@@ -224,6 +243,7 @@
           "text-[181%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The largest of the four title levels."
@@ -235,6 +255,7 @@
           "text-[136%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The second of the four title levels."
@@ -246,6 +267,7 @@
           "text-[136%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The third of the four title levels."
@@ -257,6 +279,7 @@
           "text-[118%]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The smallest of the four title levels."
@@ -264,25 +287,35 @@
     "view": {
       "classes": {
         "base": [
-          "border-none"
+          "text-[var(--view-fg-color)]",
+          "bg-[var(--view-bg-color)]"
         ],
-        "disabled": [],
+        "disabled": [
+          "text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)]",
+          "bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]"
+        ],
         "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
           "rounded-[9px]"
         ],
         "data-[selected]:focus": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
           "rounded-[9px]"
         ]
       },
+      "context": [],
       "colour": false,
       "universal": true,
       "summary": "The default view background and foreground colours."
     },
     "warning": {
       "classes": {
-        "base": []
+        "base": [
+          "text-[var(--accent-color)]"
+        ]
       },
-      "colour": true,
+      "context": [],
+      "colour": false,
       "universal": true,
       "summary": "The warning colour, and on an entry, input needing attention."
     }
@@ -1157,6 +1190,7 @@
       "variants": {
         "devel": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Stripes the window's header bar, to mark a development build.",
@@ -1189,10 +1223,10 @@
           "classes": {
             "base": [
               "p-1.5",
-              "gap-[6px]",
-              "py-[3px]"
+              "gap-[6px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A horizontal box given a toolbar's padding and spacing.",
@@ -1208,16 +1242,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -1366,6 +1404,7 @@
       "variants": {
         "property": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
@@ -1944,9 +1983,13 @@
           "px-0",
           "m-1.5",
           "gap-[6px]",
+          "text-[inherit]",
           "shadow-none",
           "min-h-9",
+          "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+          "bg-[transparent]",
           "font-bold",
+          "bg-[var(--view-bg-color)]",
           "text-[82%]"
         ]
       },
@@ -2004,10 +2047,15 @@
           "classes": {
             "base": [
               "p-2.5",
+              "text-[RGB(255_255_255/90%)]",
+              "bg-[RGB(0_0_0/70%)]",
+              "bg-clip-padding",
               "gap-[10px]",
-              "rounded-[0_0_15px_15px]"
+              "rounded-[0_0_15px_15px]",
+              "bg-[image:linear-gradient(to_bottom,RGB(0_0_0/20%),transparent_2px)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "OSD appearance with round bottom corners, for an in-app notification.",
@@ -2018,22 +2066,22 @@
         "card": {
           "classes": {
             "base": [
+              "bg-[var(--card-bg-color)]",
+              "text-[var(--card-fg-color)]",
               "rounded-[12px]",
               "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
               "outline-offset-[5px]",
               "transition-[outline-color,outline-width,outline-offset]",
               "duration-200",
-              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-              "shadow-none",
-              "outline-offset-[4px]",
-              "outline-2",
-              "outline-offset-[0]"
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
             ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[-1px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "A card: rounded corners and a shadow.",
@@ -2043,6 +2091,7 @@
         },
         "linked": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Makes a box's children appear as a single group. The box must have no spacing.",
@@ -2063,10 +2112,10 @@
           "classes": {
             "base": [
               "p-1.5",
-              "gap-[6px]",
-              "py-[3px]"
+              "gap-[6px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A horizontal box given a toolbar's padding and spacing.",
@@ -2113,18 +2162,33 @@
           "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+          "text-[var(--accent-bg-color)]",
           "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]"
         ],
-        "hover": [],
-        "active": [],
-        "disabled": [],
+        "hover": [
+          "bg-[color-mix(in_srgb,currentColor_15%,transparent)]"
+        ],
+        "active": [
+          "bg-[color-mix(in_srgb,currentColor_30%,transparent)]"
+        ],
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[state=checked]": [],
-        "data-[state=checked]:hover": [],
-        "data-[state=checked]:active": []
+        "data-[state=checked]": [
+          "bg-[color-mix(in_srgb,currentColor_30%,transparent)]"
+        ],
+        "data-[state=checked]:hover": [
+          "bg-[color-mix(in_srgb,currentColor_35%,transparent)]"
+        ],
+        "data-[state=checked]:active": [
+          "bg-[color-mix(in_srgb,currentColor_40%,transparent)]"
+        ]
       },
       "props": {
         "canShrink": {
@@ -2198,6 +2262,7 @@
       "variants": {
         "activatable": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Gives a card hover and active states, for one that can be clicked.",
@@ -2208,31 +2273,44 @@
         "card": {
           "classes": {
             "base": [
+              "bg-[var(--card-bg-color)]",
+              "text-[var(--card-fg-color)]",
               "rounded-[12px]",
               "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
               "outline-offset-[5px]",
               "transition-[outline-color,outline-width,outline-offset]",
               "duration-200",
               "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-              "shadow-none",
               "p-0",
+              "bg-clip-padding",
               "font-inherit",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
-              "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
-              "outline-offset-[4px]",
-              "outline-2",
-              "outline-offset-[0]"
+              "text-[var(--accent-bg-color)]",
+              "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
             ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[-1px]"
             ],
-            "data-[state=checked]": [],
-            "hover": [],
-            "active": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "hover": [
+              "bg-[image:image(color-mix(in_srgb,currentColor_4%,transparent))]"
+            ],
+            "active": [
+              "bg-[image:image(color-mix(in_srgb,currentColor_8%,transparent))]"
+            ],
+            "data-[state=checked]": [
+              "bg-[var(--card-bg-color)]",
+              "bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_25%,transparent))]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_32%,transparent))]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_39%,transparent))]"
+            ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "A card: rounded corners and a shadow.",
@@ -2246,11 +2324,10 @@
               "p-0",
               "min-w-8.5",
               "min-h-8.5",
-              "rounded-full",
-              "min-w-8",
-              "min-h-8"
+              "rounded-full"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Round, for a button holding an icon or one or two characters.",
@@ -2263,14 +2340,28 @@
         },
         "destructive-action": {
           "classes": {
-            "base": [],
-            "hover": [],
-            "active": [],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "base": [
+              "text-[var(--accent-color)]",
+              "bg-[color-mix(in_srgb,currentColor_15%,transparent)]"
+            ],
+            "hover": [
+              "bg-[color-mix(in_srgb,currentColor_20%,transparent)]"
+            ],
+            "active": [
+              "bg-[color-mix(in_srgb,currentColor_35%,transparent)]"
+            ],
+            "data-[state=checked]": [
+              "bg-[color-mix(in_srgb,currentColor_35%,transparent)]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[color-mix(in_srgb,currentColor_40%,transparent)]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[color-mix(in_srgb,currentColor_45%,transparent)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Uses destructive colours, to warn of damaging consequences.",
           "combines": [
@@ -2282,35 +2373,39 @@
         "flat": {
           "classes": {
             "base": [
+              "text-[var(--accent-bg-color)]",
               "shadow-none",
+              "bg-[transparent]",
               "outline-offset-[4px]",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
               "duration-200",
-              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-              "p-0",
-              "my-1",
-              "min-w-5",
-              "min-h-5"
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
             ],
-            "hover": [],
-            "active": [],
-            "disabled": [],
+            "hover": [
+              "bg-[color-mix(in_srgb,currentColor_7%,transparent)]"
+            ],
+            "active": [
+              "bg-[color-mix(in_srgb,currentColor_16%,transparent)]"
+            ],
+            "disabled": [
+              "[filter:opacity(30%)]"
+            ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[-2px]"
             ],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": [],
-            "last": [
-              "ml-1",
-              "mr--1"
+            "data-[state=checked]": [
+              "bg-[color-mix(in_srgb,currentColor_10%,transparent)]"
             ],
-            "first": [
-              "ml--1",
-              "mr-1"
+            "data-[state=checked]:hover": [
+              "bg-[color-mix(in_srgb,currentColor_13%,transparent)]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[color-mix(in_srgb,currentColor_19%,transparent)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Looks like a label or an icon until hovered.",
@@ -2322,24 +2417,42 @@
         "osd": {
           "classes": {
             "base": [
+              "text-[RGB(255_255_255/90%)]",
+              "bg-[RGB(0_0_0/70%)]",
+              "bg-clip-padding",
               "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
               "min-w-8",
               "min-h-8",
+              "bg-[RGB(0_0_0/65%)]",
               "outline-offset-[5px]",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
               "duration-200",
               "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
             ],
-            "hover": [],
-            "active": [],
+            "hover": [
+              "text-[white]",
+              "bg-[color-mix(in_srgb,black_calc(0.85_*_65%),currentColor_calc(0.15_*_65%))]"
+            ],
+            "active": [
+              "text-[white]",
+              "bg-[color-mix(in_srgb,black_calc(0.75_*_65%),currentColor_calc(0.25_*_65%))]"
+            ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[1px]"
             ],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "data-[state=checked]": [
+              "bg-[color-mix(in_srgb,black_calc(0.8_*_65%),currentColor_calc(0.2_*_65%))]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[color-mix(in_srgb,black_calc(0.75_*_65%),currentColor_calc(0.25_*_65%))]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[color-mix(in_srgb,black_calc(0.65_*_65%),currentColor_calc(0.35_*_65%))]"
+            ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "Dark and partially transparent, for a control overlapping content.",
@@ -2357,6 +2470,7 @@
               "rounded-full"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A pill, for an important standalone button.",
@@ -2369,6 +2483,7 @@
         },
         "raised": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "The regular appearance instead of the flat one, inside a toolbar.",
@@ -2384,18 +2499,33 @@
               "outline-offset-[5px]",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
               "duration-200",
-              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+              "text-[var(--accent-fg-color)]",
+              "bg-[var(--accent-bg-color)]"
             ],
-            "hover": [],
-            "active": [],
+            "hover": [
+              "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]"
+            ],
+            "active": [
+              "bg-[image:image(RGB(0_0_6/20%))]"
+            ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[1px]"
             ],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "data-[state=checked]": [
+              "bg-[image:image(RGB(0_0_6/15%))]",
+              "bg-[var(--accent-bg-color)]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[image:image(RGB(0_0_6/5%))]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[image:image(RGB(0_0_6/30%))]"
+            ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Uses accent colours, for the affirmative button in a dialog.",
@@ -2467,16 +2597,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -2580,6 +2714,7 @@
       "variants": {
         "destructive-action": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Uses destructive colours, to warn of damaging consequences.",
@@ -2591,6 +2726,7 @@
         },
         "suggested-action": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Uses accent colours, for the affirmative button in a dialog.",
@@ -2606,7 +2742,10 @@
       "kind": "widget",
       "node": "calendar",
       "classes": {
-        "base": []
+        "base": [
+          "text-[var(--view-fg-color)]",
+          "bg-clip-padding"
+        ]
       },
       "props": {
         "date": {
@@ -2699,6 +2838,7 @@
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ]
@@ -2780,6 +2920,7 @@
               "rounded-[100px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Larger and round, for selecting items from a list or a grid."
@@ -2958,6 +3099,7 @@
           "shadow-none"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ]
@@ -3194,16 +3336,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -3453,6 +3599,7 @@
       "variants": {
         "property": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
@@ -3721,14 +3868,21 @@
           "min-h-8.5",
           "rounded-[9px]",
           "gap-[6px]",
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+          "bg-clip-padding",
+          "caret-[currentColor]",
           "outline-offset-[-2px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
+          "border-[var(--accent-bg-color)]",
           "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
         ],
-        "disabled": []
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "activatesDefault": {
@@ -4150,25 +4304,34 @@
       "variants": {
         "error": {
           "classes": {
-            "base": []
+            "base": [
+              "text-[var(--accent-color)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": true,
           "summary": "The error colour, and on an entry, invalid input."
         },
         "success": {
           "classes": {
-            "base": []
+            "base": [
+              "text-[var(--accent-color)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": true,
           "summary": "The success colour, and on an entry, valid input."
         },
         "warning": {
           "classes": {
-            "base": []
+            "base": [
+              "text-[var(--accent-color)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": true,
           "summary": "The warning colour, and on an entry, input needing attention."
         }
@@ -4180,16 +4343,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -4379,6 +4546,7 @@
               "text-[var(--monospace-font-size)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The monospace font, for code, logs and shell commands."
@@ -4486,16 +4654,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -4653,6 +4825,7 @@
       "variants": {
         "property": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
@@ -4963,9 +5136,12 @@
             "base": [
               "pt-1.5",
               "pb-1",
+              "bg-[transparent]",
+              "text-[inherit]",
               "p-[3px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Sidebar styling: a transparent background and wider rows."
@@ -4986,15 +5162,26 @@
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
-        "hover": [],
-        "active": [],
+        "hover": [
+          "bg-[color-mix(in_srgb,currentColor_4%,transparent)]"
+        ],
+        "active": [
+          "bg-[color-mix(in_srgb,currentColor_8%,transparent)]"
+        ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": [],
-        "data-[selected]:hover": [],
-        "data-[selected]:active": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ],
+        "data-[selected]:hover": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]"
+        ],
+        "data-[selected]:active": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]"
+        ]
       },
       "props": {
         "child": {
@@ -5304,9 +5491,12 @@
             "base": [
               "pt-1.5",
               "pb-1",
+              "bg-[transparent]",
+              "text-[inherit]",
               "p-[3px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Sidebar styling: a transparent background and wider rows."
@@ -5321,6 +5511,8 @@
         "base": [
           "mx-[-1px]",
           "min-h-[47px]",
+          "bg-[var(--headerbar-backdrop-color)]",
+          "text-[var(--headerbar-fg-color)]",
           "shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]",
           "transition-[background-color]",
           "duration-200",
@@ -5410,10 +5602,13 @@
         "flat": {
           "classes": {
             "base": [
+              "bg-none",
               "shadow-none",
+              "text-[inherit]",
               "min-h-11.5"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Gives the header bar a flat appearance.",
@@ -5433,10 +5628,10 @@
           "classes": {
             "base": [
               "p-1.5",
-              "gap-[6px]",
-              "py-[3px]"
+              "gap-[6px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A horizontal box given a toolbar's padding and spacing.",
@@ -5452,18 +5647,25 @@
       "node": "iconview",
       "classes": {
         "base": [
+          "bg-[var(--view-bg-color)]",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-          "shadow-none"
+          "shadow-none",
+          "text-[var(--view-fg-color)]"
         ],
-        "disabled": [],
+        "disabled": [
+          "text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)]",
+          "bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]"
+        ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
         "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
           "rounded-[9px]"
         ]
       },
@@ -5664,10 +5866,16 @@
         "base": [
           "p-1",
           "m-1.5",
+          "bg-[image:radial-gradient(farthest-side,var(--accent-color)_96%,transparent)]",
+          "bg-[size:6px_6px]",
+          "bg-no-repeat",
+          "bg-[position:left_3px]",
           "opacity-70",
           "transition-[background,box-shadow]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "[filter:drop-shadow(0px_1px_1px_RGB(0_0_6/30%))]",
+          "bg-[color-mix(in_srgb,var(--thumbnail-bg-color)_calc(0.8_*_75%),currentColor_calc(0.2_*_75%))]",
           "rounded-full",
           "min-w-6",
           "min-h-6"
@@ -5678,7 +5886,9 @@
         "active": [
           "opacity-80"
         ],
-        "disabled": []
+        "disabled": [
+          "[filter:opacity(30%)]"
+        ]
       },
       "props": {
         "file": {
@@ -5776,6 +5986,7 @@
           "classes": {
             "base": []
           },
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "The shadow a GNOME application icon needs to read on a light background."
@@ -5784,6 +5995,7 @@
           "classes": {
             "base": []
           },
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "The shadow for an application icon below 32 pixels."
@@ -5896,6 +6108,7 @@
       "variants": {
         "flat": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Looks like a label or an icon until hovered.",
@@ -5906,6 +6119,7 @@
         },
         "round": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Rounds the group and the toggles inside it.",
@@ -5929,8 +6143,12 @@
       "kind": "widget",
       "node": "label",
       "classes": {
-        "base": [],
-        "disabled": []
+        "base": [
+          "caret-[currentColor]"
+        ],
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "attributes": {
@@ -6154,11 +6372,10 @@
           "classes": {
             "base": [
               "font-normal",
-              "leading-[140%]",
-              "px-6",
-              "px-4.5"
+              "leading-[140%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "Increased line height, for descriptions and dialog body text.",
@@ -6174,6 +6391,7 @@
               "leading-[140%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "Smaller text, for sub-text accompanying body text."
@@ -6185,6 +6403,7 @@
               "text-[82%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "Smaller text, for a heading accompanying body text."
@@ -6197,6 +6416,7 @@
               "leading-[140%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The document font, for the app's main content.",
@@ -6207,11 +6427,10 @@
         "heading": {
           "classes": {
             "base": [
-              "font-bold",
-              "m-3",
-              "mt-0"
+              "font-bold"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The standard style for a UI heading at the default text size."
@@ -6223,6 +6442,7 @@
               "text-[var(--monospace-font-size)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The monospace font, for code, logs and shell commands."
@@ -6231,6 +6451,7 @@
           "classes": {
             "base": []
           },
+          "context": [],
           "colour": true,
           "universal": true,
           "summary": "Tabular figures, so columns of numbers line up."
@@ -6242,6 +6463,7 @@
               "text-[181%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The largest of the four title levels."
@@ -6253,6 +6475,7 @@
               "text-[136%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The second of the four title levels."
@@ -6264,6 +6487,7 @@
               "text-[136%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The third of the four title levels."
@@ -6275,6 +6499,7 @@
               "text-[118%]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The smallest of the four title levels."
@@ -6409,7 +6634,9 @@
       "kind": "widget",
       "node": "levelbar",
       "classes": {
-        "disabled": []
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "inverted": {
@@ -6477,6 +6704,10 @@
       "node": "list",
       "classes": {
         "base": [
+          "text-[var(--view-fg-color)]",
+          "bg-[var(--view-bg-color)]",
+          "bg-clip-padding",
+          "border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
           "shadow-none"
         ],
         "focus": [
@@ -6553,31 +6784,39 @@
         "boxed-list": {
           "classes": {
             "base": [
-              "shadow-none",
+              "bg-[var(--card-bg-color)]",
+              "text-[var(--card-fg-color)]",
               "rounded-[12px]",
               "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A boxed list. Set selection-mode to none."
         },
         "boxed-list-separate": {
           "classes": {
-            "base": []
+            "base": [
+              "bg-none",
+              "text-[var(--card-fg-color)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "A boxed list whose rows are separate cards."
         },
         "content": {
           "classes": {
             "base": [
-              "shadow-none",
+              "bg-[var(--card-bg-color)]",
+              "text-[var(--card-fg-color)]",
               "rounded-[12px]",
               "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A boxed list appearance.",
@@ -6592,6 +6831,7 @@
               "text-[var(--monospace-font-size)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "The monospace font, for code, logs and shell commands."
@@ -6600,25 +6840,22 @@
           "classes": {
             "base": [
               "pt-1.5",
-              "pb-1"
+              "pb-1",
+              "bg-[transparent]",
+              "text-[inherit]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Sidebar styling: a transparent background and wider rows."
         },
         "sidebar": {
           "classes": {
-            "base": [
-              "border-none",
-              "p-1.5",
-              "shadow-[inset_1px_0_var(--sidebar-border-color)]",
-              "transition-[background-color]",
-              "duration-200",
-              "ease-[ease-out]"
-            ]
+            "base": []
           },
-          "colour": false,
+          "context": [],
+          "colour": true,
           "universal": false,
           "summary": "A border at the end of the widget, and no background on lists inside it.",
           "deprecated": {
@@ -6633,6 +6870,10 @@
       "node": "listview",
       "classes": {
         "base": [
+          "text-[var(--view-fg-color)]",
+          "bg-[var(--view-bg-color)]",
+          "bg-clip-padding",
+          "border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
           "shadow-none"
         ],
         "focus": [
@@ -6741,25 +6982,22 @@
           "classes": {
             "base": [
               "pt-1.5",
-              "pb-1"
+              "pb-1",
+              "bg-[transparent]",
+              "text-[inherit]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Sidebar styling: a transparent background and wider rows."
         },
         "sidebar": {
           "classes": {
-            "base": [
-              "border-none",
-              "p-1.5",
-              "shadow-[inset_1px_0_var(--sidebar-border-color)]",
-              "transition-[background-color]",
-              "duration-200",
-              "ease-[ease-out]"
-            ]
+            "base": []
           },
-          "colour": false,
+          "context": [],
+          "colour": true,
           "universal": false,
           "summary": "A border at the end of the widget, and no background on lists inside it.",
           "deprecated": {
@@ -6773,7 +7011,9 @@
       "kind": "widget",
       "node": "menubutton",
       "classes": {
-        "disabled": []
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "active": {
@@ -6917,6 +7157,7 @@
       "variants": {
         "circular": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Round, for a button holding an icon or one or two characters.",
@@ -6929,6 +7170,7 @@
         },
         "destructive-action": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Uses destructive colours, to warn of damaging consequences.",
@@ -6940,9 +7182,12 @@
         },
         "flat": {
           "classes": {
-            "disabled": []
+            "disabled": [
+              "[filter:none]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Looks like a label or an icon until hovered.",
           "combines": [
@@ -6953,9 +7198,12 @@
         "opaque": {
           "classes": {
             "base": [
+              "bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))]",
+              "text-[var(--window-fg-color)]",
               "rounded-[9px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "An opaque background, to be combined with custom background and foreground colours.",
@@ -6965,6 +7213,7 @@
         },
         "raised": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "The regular appearance instead of the flat one, inside a toolbar.",
@@ -6976,9 +7225,12 @@
         "suggested-action": {
           "classes": {
             "base": [
+              "bg-[var(--accent-bg-color)]",
+              "text-[var(--accent-fg-color)]",
               "rounded-[9px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Uses accent colours, for the affirmative button in a dialog.",
@@ -7332,6 +7584,7 @@
       "variants": {
         "devel": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Stripes the window's header bar, to mark a development build.",
@@ -7558,22 +7811,38 @@
           "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+          "text-[RGB(0_0_6/75%)]",
           "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+          "border-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)]",
           "rounded-tl-[9px]",
           "rounded-tr-[9px]",
           "rounded-bl-[9px]",
           "rounded-br-[9px]"
         ],
-        "hover": [],
-        "active": [],
-        "disabled": [],
+        "hover": [
+          "bg-[color-mix(in_srgb,currentColor_15%,transparent)]"
+        ],
+        "active": [
+          "bg-[color-mix(in_srgb,currentColor_30%,transparent)]"
+        ],
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[state=checked]": [],
-        "data-[state=checked]:hover": [],
-        "data-[state=checked]:active": []
+        "data-[state=checked]": [
+          "bg-[color-mix(in_srgb,currentColor_30%,transparent)]"
+        ],
+        "data-[state=checked]:hover": [
+          "bg-[color-mix(in_srgb,currentColor_35%,transparent)]"
+        ],
+        "data-[state=checked]:active": [
+          "bg-[color-mix(in_srgb,currentColor_40%,transparent)]"
+        ]
       },
       "props": {
         "child": {
@@ -7594,10 +7863,15 @@
           "classes": {
             "base": [
               "p-2.5",
+              "text-[RGB(255_255_255/90%)]",
+              "bg-[RGB(0_0_0/70%)]",
+              "bg-clip-padding",
               "gap-[10px]",
-              "rounded-[0_0_15px_15px]"
+              "rounded-[0_0_15px_15px]",
+              "bg-[image:linear-gradient(to_bottom,RGB(0_0_0/20%),transparent_2px)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "OSD appearance with round bottom corners, for an in-app notification.",
@@ -7607,9 +7881,14 @@
         },
         "osd": {
           "classes": {
-            "base": []
+            "base": [
+              "text-[RGB(255_255_255/90%)]",
+              "bg-[RGB(0_0_0/70%)]",
+              "bg-clip-padding"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": true,
           "summary": "Dark and partially transparent, for a control overlapping content.",
           "combines": [
@@ -8068,12 +8347,13 @@
         "menu": {
           "classes": {
             "base": [
-              "pt-1.5",
-              "pt-0",
-              "pb-1",
-              "px-0"
+              "pt-1.5"
             ]
           },
+          "context": [
+            "combobox popover.menu",
+            "dropdown popover.menu"
+          ],
           "colour": false,
           "universal": false,
           "summary": "A menu-like appearance, for a popover holding a list.",
@@ -8401,16 +8681,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -8819,6 +9103,7 @@
       "variants": {
         "devel": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Stripes the window's header bar, to mark a development build.",
@@ -8833,7 +9118,9 @@
       "kind": "widget",
       "node": "progressbar",
       "classes": {
-        "disabled": []
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "ellipsize": {
@@ -8908,10 +9195,14 @@
         "osd": {
           "classes": {
             "base": [
+              "text-[RGB(255_255_255/90%)]",
+              "bg-[RGB(0_0_0/70%)]",
+              "bg-clip-padding",
               "min-w-0.5",
               "min-h-0.5"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "Dark and partially transparent, for a control overlapping content.",
@@ -9070,10 +9361,15 @@
           "classes": {
             "base": [
               "p-2.5",
+              "text-[RGB(255_255_255/90%)]",
+              "bg-[RGB(0_0_0/70%)]",
+              "bg-clip-padding",
               "gap-[10px]",
-              "rounded-[0_0_15px_15px]"
+              "rounded-[0_0_15px_15px]",
+              "bg-[image:linear-gradient(to_bottom,RGB(0_0_0/20%),transparent_2px)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "OSD appearance with round bottom corners, for an in-app notification.",
@@ -9093,7 +9389,9 @@
           "min-h-2.5",
           "min-w-2.5"
         ],
-        "disabled": []
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "adjustment": {
@@ -9233,7 +9531,11 @@
       "gtk": "Gtk.ScrolledWindow",
       "kind": "widget",
       "node": "scrolledwindow",
-      "classes": {},
+      "classes": {
+        "base": [
+          "[filter:none]"
+        ]
+      },
       "props": {
         "child": {
           "prop": "child",
@@ -9414,24 +9716,28 @@
       "variants": {
         "undershoot-bottom": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the bottom edge, indicating content scrolled out of view."
         },
         "undershoot-end": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the end edge, which follows text direction."
         },
         "undershoot-start": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the start edge, which follows text direction."
         },
         "undershoot-top": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the top edge, indicating content scrolled out of view."
@@ -9491,6 +9797,7 @@
       "variants": {
         "inline": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Removes the styling which makes the widget look part of a header bar."
@@ -9499,10 +9806,10 @@
           "classes": {
             "base": [
               "p-1.5",
-              "gap-[6px]",
-              "py-[3px]"
+              "gap-[6px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A horizontal box given a toolbar's padding and spacing.",
@@ -9624,6 +9931,7 @@
       "node": "separator",
       "classes": {
         "base": [
+          "bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
           "min-w-[1px]",
           "min-h-[1px]"
         ]
@@ -9633,16 +9941,10 @@
       "variants": {
         "sidebar": {
           "classes": {
-            "base": [
-              "border-none",
-              "p-1.5",
-              "shadow-[inset_1px_0_var(--sidebar-border-color)]",
-              "transition-[background-color]",
-              "duration-200",
-              "ease-[ease-out]"
-            ]
+            "base": []
           },
-          "colour": false,
+          "context": [],
+          "colour": true,
           "universal": false,
           "summary": "A border at the end of the widget, and no background on lists inside it.",
           "deprecated": {
@@ -9651,9 +9953,12 @@
         },
         "spacer": {
           "classes": {
-            "base": []
+            "base": [
+              "bg-none"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Makes a separator invisible, so it acts as whitespace."
         }
@@ -9673,6 +9978,7 @@
           "gap-[6px]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[1px]"
         ]
@@ -9909,14 +10215,21 @@
           "min-h-8.5",
           "rounded-[9px]",
           "gap-[0]",
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+          "bg-clip-padding",
+          "caret-[currentColor]",
           "outline-offset-[-2px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
+          "border-[var(--accent-bg-color)]",
           "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
         ],
-        "disabled": []
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "activatesDefault": {
@@ -10025,16 +10338,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -10269,6 +10586,7 @@
       "variants": {
         "property": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
@@ -10284,6 +10602,7 @@
       "node": "spinner",
       "classes": {
         "base": [
+          "bg-none",
           "opacity-0"
         ],
         "data-[state=checked]": [
@@ -10308,7 +10627,9 @@
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
-        "disabled": []
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ]
       },
       "props": {
         "canShrink": {
@@ -10422,9 +10743,12 @@
       "variants": {
         "destructive-action": {
           "classes": {
-            "base": []
+            "base": [
+              "text-[var(--accent-color)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Uses destructive colours, to warn of damaging consequences.",
           "combines": [
@@ -10435,12 +10759,21 @@
         },
         "flat": {
           "classes": {
-            "hover": [],
-            "active": [],
-            "disabled": [],
-            "data-[state=checked]": []
+            "hover": [
+              "bg-[color-mix(in_srgb,currentColor_7%,transparent)]"
+            ],
+            "active": [
+              "bg-[color-mix(in_srgb,currentColor_7%,transparent)]"
+            ],
+            "disabled": [
+              "[filter:opacity(30%)]"
+            ],
+            "data-[state=checked]": [
+              "bg-[color-mix(in_srgb,currentColor_7%,transparent)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Looks like a label or an icon until hovered.",
           "combines": [
@@ -10450,9 +10783,13 @@
         },
         "opaque": {
           "classes": {
-            "base": []
+            "base": [
+              "bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))]",
+              "text-[var(--window-fg-color)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "An opaque background, to be combined with custom background and foreground colours.",
           "deprecated": {
@@ -10461,6 +10798,7 @@
         },
         "raised": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "The regular appearance instead of the flat one, inside a toolbar.",
@@ -10471,9 +10809,13 @@
         },
         "suggested-action": {
           "classes": {
-            "base": []
+            "base": [
+              "bg-[var(--accent-bg-color)]",
+              "text-[var(--accent-fg-color)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Uses accent colours, for the affirmative button in a dialog.",
           "combines": [
@@ -10804,12 +11146,14 @@
       "variants": {
         "compact": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Takes less space, for a status page in a sidebar or a popover."
         },
         "pill": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A pill, for an important standalone button.",
@@ -10844,21 +11188,36 @@
         "base": [
           "p-[3px]",
           "rounded-[14px]",
+          "bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
           "outline-offset-[5px]",
           "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
-        "hover": [],
-        "active": [],
-        "disabled": [],
+        "hover": [
+          "bg-[color-mix(in_srgb,currentColor_20%,transparent)]"
+        ],
+        "active": [
+          "bg-[color-mix(in_srgb,currentColor_25%,transparent)]"
+        ],
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[1px]"
         ],
-        "data-[state=checked]": [],
-        "data-[state=checked]:hover": [],
-        "data-[state=checked]:active": []
+        "data-[state=checked]": [
+          "text-[var(--accent-fg-color)]",
+          "bg-[var(--accent-bg-color)]"
+        ],
+        "data-[state=checked]:hover": [
+          "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]"
+        ],
+        "data-[state=checked]:active": [
+          "bg-[image:image(RGB(0_0_6/20%))]"
+        ]
       },
       "props": {
         "active": {
@@ -10891,16 +11250,20 @@
       "node": "row",
       "classes": {
         "base": [
+          "bg-clip-padding",
           "outline-offset-[4px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
         ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[selected]": []
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]"
+        ]
       },
       "props": {
         "activatable": {
@@ -11059,6 +11422,7 @@
       "variants": {
         "property": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Deemphasises the row's title and emphasises its subtitle, for a read-only property.",
@@ -11082,25 +11446,44 @@
           "min-h-6.5",
           "min-w-7.5",
           "font-normal",
+          "outline-[transparent]",
+          "bg-none",
+          "bg-[var(--headerbar-bg-color)]",
+          "bg-[image:image(color-mix(in_srgb,currentColor_19%,transparent))]",
+          "text-[var(--headerbar-fg-color)]",
           "shadow-[0_0_0_1px_RGB(0_0_0/3%),0_1px_3px_1px_RGB(0_0_0/7%),0_2px_6px_2px_RGB(0_0_0/3%)]",
           "rounded-[9px]"
         ],
         "hover": [
-          "shadow-[inset_4px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+          "shadow-[inset_4px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+          "bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+          "bg-none"
         ],
-        "active": [],
-        "disabled": [],
-        "data-[selected]": [],
+        "active": [
+          "bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+          "bg-none"
+        ],
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ],
+        "data-[selected]": [
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)]"
+        ],
         "data-[state=checked]": [
           "outline-offset-[-2px]",
           "transition-[outline-color,outline-width,outline-offset]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "shadow-[inset_4px_0_var(--accent-bg-color)]"
         ],
-        "data-[selected]:hover": [],
-        "data-[selected]:active": []
+        "data-[selected]:hover": [
+          "bg-[color-mix(in_srgb,currentColor_13%,transparent)]"
+        ],
+        "data-[selected]:active": [
+          "bg-[color-mix(in_srgb,currentColor_19%,transparent)]"
+        ]
       },
       "props": {},
       "example": {},
@@ -11190,6 +11573,7 @@
       "variants": {
         "inline": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Removes the styling which makes the widget look part of a header bar."
@@ -11340,7 +11724,8 @@
           "transition-[box-shadow,background-color]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-          "shadow-[inset_0_0_0_2px_color-mix(in_srgb,var(--accent-bg-color)_40%,transparent)]"
+          "shadow-[inset_0_0_0_2px_color-mix(in_srgb,var(--accent-bg-color)_40%,transparent)]",
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_10%,transparent)]"
         ]
       },
       "props": {},
@@ -11430,12 +11815,18 @@
           "p-1.5",
           "min-h-7.5",
           "opacity-100",
+          "text-[inherit]",
+          "bg-[transparent]",
           "font-[var(--monospace-font-family)]",
           "text-[smaller]",
           "min-w-7.5"
         ],
-        "disabled": [],
+        "disabled": [
+          "text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)]",
+          "bg-[transparent]"
+        ],
         "data-[selected]": [
+          "bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
           "rounded-[9px]"
         ]
       },
@@ -11658,7 +12049,9 @@
       "kind": "widget",
       "node": "textview",
       "classes": {
-        "base": []
+        "base": [
+          "caret-[var(--accent-bg-color)]"
+        ]
       },
       "props": {
         "acceptsTab": {
@@ -11923,10 +12316,17 @@
       "variants": {
         "inline": {
           "classes": {
-            "base": [],
-            "disabled": []
+            "base": [
+              "bg-[transparent]",
+              "text-[inherit]"
+            ],
+            "disabled": [
+              "bg-[transparent]",
+              "text-[inherit]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Removes the styling which makes the widget look part of a header bar."
         }
@@ -11978,18 +12378,33 @@
           "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
           "duration-200",
           "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+          "text-[var(--accent-bg-color)]",
           "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]"
         ],
-        "hover": [],
-        "active": [],
-        "disabled": [],
+        "hover": [
+          "bg-[color-mix(in_srgb,currentColor_15%,transparent)]"
+        ],
+        "active": [
+          "bg-[color-mix(in_srgb,currentColor_30%,transparent)]"
+        ],
+        "disabled": [
+          "[filter:Opacity(var(--disabled-opacity))]"
+        ],
         "focus-visible": [
+          "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
           "outline-2",
           "outline-offset-[-2px]"
         ],
-        "data-[state=checked]": [],
-        "data-[state=checked]:hover": [],
-        "data-[state=checked]:active": []
+        "data-[state=checked]": [
+          "bg-[color-mix(in_srgb,currentColor_30%,transparent)]"
+        ],
+        "data-[state=checked]:hover": [
+          "bg-[color-mix(in_srgb,currentColor_35%,transparent)]"
+        ],
+        "data-[state=checked]:active": [
+          "bg-[color-mix(in_srgb,currentColor_40%,transparent)]"
+        ]
       },
       "props": {
         "active": {
@@ -12084,6 +12499,7 @@
       "variants": {
         "activatable": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Gives a card hover and active states, for one that can be clicked.",
@@ -12094,31 +12510,44 @@
         "card": {
           "classes": {
             "base": [
+              "bg-[var(--card-bg-color)]",
+              "text-[var(--card-fg-color)]",
               "rounded-[12px]",
               "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
               "outline-offset-[5px]",
               "transition-[outline-color,outline-width,outline-offset]",
               "duration-200",
               "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-              "shadow-none",
               "p-0",
+              "bg-clip-padding",
               "font-inherit",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
-              "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
-              "outline-offset-[4px]",
-              "outline-2",
-              "outline-offset-[0]"
+              "text-[var(--accent-bg-color)]",
+              "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
             ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[-1px]"
             ],
-            "data-[state=checked]": [],
-            "hover": [],
-            "active": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "hover": [
+              "bg-[image:image(color-mix(in_srgb,currentColor_4%,transparent))]"
+            ],
+            "active": [
+              "bg-[image:image(color-mix(in_srgb,currentColor_8%,transparent))]"
+            ],
+            "data-[state=checked]": [
+              "bg-[var(--card-bg-color)]",
+              "bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_25%,transparent))]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_32%,transparent))]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_39%,transparent))]"
+            ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "A card: rounded corners and a shadow.",
@@ -12132,11 +12561,10 @@
               "p-0",
               "min-w-8.5",
               "min-h-8.5",
-              "rounded-full",
-              "min-w-8",
-              "min-h-8"
+              "rounded-full"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Round, for a button holding an icon or one or two characters.",
@@ -12149,14 +12577,28 @@
         },
         "destructive-action": {
           "classes": {
-            "base": [],
-            "hover": [],
-            "active": [],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "base": [
+              "text-[var(--accent-color)]",
+              "bg-[color-mix(in_srgb,currentColor_15%,transparent)]"
+            ],
+            "hover": [
+              "bg-[color-mix(in_srgb,currentColor_20%,transparent)]"
+            ],
+            "active": [
+              "bg-[color-mix(in_srgb,currentColor_35%,transparent)]"
+            ],
+            "data-[state=checked]": [
+              "bg-[color-mix(in_srgb,currentColor_35%,transparent)]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[color-mix(in_srgb,currentColor_40%,transparent)]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[color-mix(in_srgb,currentColor_45%,transparent)]"
+            ]
           },
-          "colour": true,
+          "context": [],
+          "colour": false,
           "universal": false,
           "summary": "Uses destructive colours, to warn of damaging consequences.",
           "combines": [
@@ -12168,35 +12610,39 @@
         "flat": {
           "classes": {
             "base": [
+              "text-[var(--accent-bg-color)]",
               "shadow-none",
+              "bg-[transparent]",
               "outline-offset-[4px]",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
               "duration-200",
-              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-              "p-0",
-              "my-1",
-              "min-w-5",
-              "min-h-5"
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
             ],
-            "hover": [],
-            "active": [],
-            "disabled": [],
+            "hover": [
+              "bg-[color-mix(in_srgb,currentColor_7%,transparent)]"
+            ],
+            "active": [
+              "bg-[color-mix(in_srgb,currentColor_16%,transparent)]"
+            ],
+            "disabled": [
+              "[filter:opacity(30%)]"
+            ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[-2px]"
             ],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": [],
-            "last": [
-              "ml-1",
-              "mr--1"
+            "data-[state=checked]": [
+              "bg-[color-mix(in_srgb,currentColor_10%,transparent)]"
             ],
-            "first": [
-              "ml--1",
-              "mr-1"
+            "data-[state=checked]:hover": [
+              "bg-[color-mix(in_srgb,currentColor_13%,transparent)]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[color-mix(in_srgb,currentColor_19%,transparent)]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Looks like a label or an icon until hovered.",
@@ -12208,24 +12654,42 @@
         "osd": {
           "classes": {
             "base": [
+              "text-[RGB(255_255_255/90%)]",
+              "bg-[RGB(0_0_0/70%)]",
+              "bg-clip-padding",
               "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
               "min-w-8",
               "min-h-8",
+              "bg-[RGB(0_0_0/65%)]",
               "outline-offset-[5px]",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
               "duration-200",
               "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
             ],
-            "hover": [],
-            "active": [],
+            "hover": [
+              "text-[white]",
+              "bg-[color-mix(in_srgb,black_calc(0.85_*_65%),currentColor_calc(0.15_*_65%))]"
+            ],
+            "active": [
+              "text-[white]",
+              "bg-[color-mix(in_srgb,black_calc(0.75_*_65%),currentColor_calc(0.25_*_65%))]"
+            ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[1px]"
             ],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "data-[state=checked]": [
+              "bg-[color-mix(in_srgb,black_calc(0.8_*_65%),currentColor_calc(0.2_*_65%))]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[color-mix(in_srgb,black_calc(0.75_*_65%),currentColor_calc(0.25_*_65%))]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[color-mix(in_srgb,black_calc(0.65_*_65%),currentColor_calc(0.35_*_65%))]"
+            ]
           },
+          "context": [],
           "colour": false,
           "universal": true,
           "summary": "Dark and partially transparent, for a control overlapping content.",
@@ -12243,6 +12707,7 @@
               "rounded-full"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "A pill, for an important standalone button.",
@@ -12255,6 +12720,7 @@
         },
         "raised": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "The regular appearance instead of the flat one, inside a toolbar.",
@@ -12270,18 +12736,33 @@
               "outline-offset-[5px]",
               "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
               "duration-200",
-              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+              "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+              "text-[var(--accent-fg-color)]",
+              "bg-[var(--accent-bg-color)]"
             ],
-            "hover": [],
-            "active": [],
+            "hover": [
+              "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]"
+            ],
+            "active": [
+              "bg-[image:image(RGB(0_0_6/20%))]"
+            ],
             "focus-visible": [
+              "outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)]",
               "outline-2",
               "outline-offset-[1px]"
             ],
-            "data-[state=checked]": [],
-            "data-[state=checked]:hover": [],
-            "data-[state=checked]:active": []
+            "data-[state=checked]": [
+              "bg-[image:image(RGB(0_0_6/15%))]",
+              "bg-[var(--accent-bg-color)]"
+            ],
+            "data-[state=checked]:hover": [
+              "bg-[image:image(RGB(0_0_6/5%))]"
+            ],
+            "data-[state=checked]:active": [
+              "bg-[image:image(RGB(0_0_6/30%))]"
+            ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Uses accent colours, for the affirmative button in a dialog.",
@@ -12299,9 +12780,12 @@
       "classes": {
         "base": [
           "p-[var(---group-padding)]",
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
           "rounded-[9px]"
         ],
-        "disabled": []
+        "disabled": [
+          "bg-[color-mix(in_srgb,color-mix(in_srgb,currentColor_10%,transparent)_var(--disabled-opacity),transparent)]"
+        ]
       },
       "props": {
         "active": {
@@ -12350,9 +12834,12 @@
         "flat": {
           "classes": {
             "base": [
+              "bg-none",
+              "text-[inherit]",
               "shadow-none"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Looks like a label or an icon until hovered.",
@@ -12367,6 +12854,7 @@
               "rounded-[17px]"
             ]
           },
+          "context": [],
           "colour": false,
           "universal": false,
           "summary": "Rounds the group and the toggles inside it.",
@@ -12470,30 +12958,35 @@
       "variants": {
         "inline": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Removes the styling which makes the widget look part of a header bar."
         },
         "undershoot-bottom": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the bottom edge, indicating content scrolled out of view."
         },
         "undershoot-end": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the end edge, which follows text direction."
         },
         "undershoot-start": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the start edge, which follows text direction."
         },
         "undershoot-top": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "A shadow at the top edge, indicating content scrolled out of view."
@@ -13417,6 +13910,7 @@
       "variants": {
         "devel": {
           "classes": {},
+          "context": [],
           "colour": true,
           "universal": false,
           "summary": "Stripes the window's header bar, to mark a development build.",
@@ -13483,9 +13977,12 @@
         "base": [
           "pt-[3px]",
           "min-h-0",
+          "[filter:opacity(0.5)]",
           "transition-[filter]",
           "duration-200",
-          "ease-[ease-out]"
+          "ease-[ease-out]",
+          "bg-[image:unset]",
+          "bg-repeat"
         ]
       },
       "props": {

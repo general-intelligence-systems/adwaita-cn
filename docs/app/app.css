@@ -8,10 +8,11 @@
 /* And the registry's variables, so a component dropped into a page here looks
  * the way it will once installed. This is the same file registry.json ships as
  * the adwaita-theme item. */
-@import "../registry/adwaita/adwaita.css";
+@import "../../registry/adwaita/adwaita.css";
 
 /* Tailwind 4 discovers classes by scanning from the stylesheet outwards, which
  * would miss the registry sources it has no reason to look at. */
 @source "../app";
-@source "../registry/adwaita";
+@source "../../registry/adwaita";
+@source "../../examples";
 @source "../content";

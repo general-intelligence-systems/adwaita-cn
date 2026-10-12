@@ -60,20 +60,6 @@
 require "json"
 
 module ComponentVariants
-  # THE PROPS AN EXAMPLE WRITES, DECLARED. A component accepts around seventy and an example
-  # wants the one or two which put something on screen, and no rule over the introspection data
-  # picks them out: `title` and `decorationLayout` are both a writable string, as are `label` and
-  # `issueUrl`. The type cannot tell text from an identifier and neither can the name -- a suffix
-  # rule which caught `-url` would still take `accelerator`, `imModule` and `closeResponse`.
-  #
-  # So this is the list, and it is short because it is only the props worth demonstrating a
-  # variant with. Anything else a component accepts is in `props`, which is what the
-  # documentation tabulates.
-  SHOWN = %w[
-    label title subtitle description heading body text comments tag version
-    placeholder-text button-label alternative-text disabled-text
-  ].freeze
-
   def self.run(_argv)
     root = File.expand_path("..", __dir__)
     final = JSON.parse(File.read(File.join(root, "vendor/adwaita/final-components.json")))
@@ -105,20 +91,22 @@ module ComponentVariants
       "node" => component["node"],
       "classes" => component.fetch("classes", {}),
       "props" => props,
-      "example" => self.example(props),
+      "example" => self.example(props, component.fetch("text")),
       "variants" => component.fetch("variants"),
     }
   end
 
-  # The props an example writes, with the value it writes for each.
-  def self.example(props)
-    props.select{|prop, attributes| self.showable?(prop, attributes)}.to_h do |prop, attributes|
+  # The props an example writes, with the value it writes for each. Which props those are is
+  # bin/08-final-components' TEXT, so the placeholder a component renders and the example which
+  # exercises it cannot disagree.
+  def self.example(props, text)
+    props.select{|prop, _attributes| self.showable?(prop, text)}.to_h do |prop, attributes|
       [prop, self.value(prop, attributes)]
     end
   end
 
-  def self.showable?(prop, attributes)
-    attributes.fetch("type") == "string" && SHOWN.include?(self.kebab(prop))
+  def self.showable?(prop, text)
+    text.include?(prop)
   end
 
   # A text prop gets its own name back, which is what a placeholder in a demo should say.

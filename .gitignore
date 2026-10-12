@@ -3,14 +3,20 @@ node_modules
 
 # `shadcn build` output: one JSON per item plus the index, regenerated from
 # registry.json and the sources under registry/.
-/public/r
+public/r
 
 # direnv
 .direnv
 
 # React Router / Vite build output and generated route types.
 /build
-/.react-router
+.react-router
 
 # Fumadocs MDX's generated index of content/.
-/.source
+.source
+
+# The harness bundle, rebuilt by bin/15-screenshots.
+/harness/dist
+
+# The screenshots it takes.
+/screenshots

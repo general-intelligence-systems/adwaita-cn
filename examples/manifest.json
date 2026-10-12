@@ -198,7 +198,7 @@
       "title": "Button .destructive-action",
       "summary": "Uses destructive colours, to warn of damaging consequences.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/button/destructive-action.tsx"
     },
     {
@@ -386,7 +386,7 @@
       "title": "Entry .error",
       "summary": "The error colour, and on an entry, invalid input.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/entry/error.tsx"
     },
     {
@@ -395,7 +395,7 @@
       "title": "Entry .success",
       "summary": "The success colour, and on an entry, valid input.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/entry/success.tsx"
     },
     {
@@ -404,7 +404,7 @@
       "title": "Entry .warning",
       "summary": "The warning colour, and on an entry, input needing attention.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/entry/warning.tsx"
     },
     {
@@ -758,7 +758,7 @@
       "title": "ListBox .boxed-list-separate",
       "summary": "A boxed list whose rows are separate cards.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/list-box/boxed-list-separate.tsx"
     },
     {
@@ -794,7 +794,7 @@
       "title": "ListBox .sidebar",
       "summary": "A border at the end of the widget, and no background on lists inside it.",
       "deprecated": true,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-box/sidebar.tsx"
     },
     {
@@ -819,7 +819,7 @@
       "title": "ListView .sidebar",
       "summary": "A border at the end of the widget, and no background on lists inside it.",
       "deprecated": true,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-view/sidebar.tsx"
     },
     {
@@ -853,7 +853,7 @@
       "title": "MenuButton .flat",
       "summary": "Looks like a label or an icon until hovered.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/menu-button/flat.tsx"
     },
     {
@@ -942,7 +942,7 @@
       "title": "Overlay .osd",
       "summary": "Dark and partially transparent, for a control overlapping content.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/overlay/osd.tsx"
     },
     {
@@ -1174,7 +1174,7 @@
       "title": "Separator .sidebar",
       "summary": "A border at the end of the widget, and no background on lists inside it.",
       "deprecated": true,
-      "colour": false,
+      "colour": true,
       "file": "examples/separator/sidebar.tsx"
     },
     {
@@ -1183,7 +1183,7 @@
       "title": "Separator .spacer",
       "summary": "Makes a separator invisible, so it acts as whitespace.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/separator/spacer.tsx"
     },
     {
@@ -1250,7 +1250,7 @@
       "title": "SplitButton .destructive-action",
       "summary": "Uses destructive colours, to warn of damaging consequences.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/split-button/destructive-action.tsx"
     },
     {
@@ -1259,7 +1259,7 @@
       "title": "SplitButton .flat",
       "summary": "Looks like a label or an icon until hovered.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/split-button/flat.tsx"
     },
     {
@@ -1268,7 +1268,7 @@
       "title": "SplitButton .opaque",
       "summary": "An opaque background, to be combined with custom background and foreground colours.",
       "deprecated": true,
-      "colour": true,
+      "colour": false,
       "file": "examples/split-button/opaque.tsx"
     },
     {
@@ -1286,7 +1286,7 @@
       "title": "SplitButton .suggested-action",
       "summary": "Uses accent colours, for the affirmative button in a dialog.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/split-button/suggested-action.tsx"
     },
     {
@@ -1443,7 +1443,7 @@
       "title": "TextView .inline",
       "summary": "Removes the styling which makes the widget look part of a header bar.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/text-view/inline.tsx"
     },
     {
@@ -1500,7 +1500,7 @@
       "title": "ToggleButton .destructive-action",
       "summary": "Uses destructive colours, to warn of damaging consequences.",
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/toggle-button/destructive-action.tsx"
     },
     {

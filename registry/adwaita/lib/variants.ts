@@ -16,7 +16,7 @@ export const aboutWindow = {
 
 export const actionBar = {
   /** A horizontal box given a toolbar's padding and spacing. */
-  toolbar: "p-1.5 gap-[6px] py-[3px]",
+  toolbar: "p-1.5 gap-[6px]",
 } as const
 
 export const actionRow = {
@@ -26,16 +26,16 @@ export const actionRow = {
 
 export const box = {
   /** OSD appearance with round bottom corners, for an in-app notification. @deprecated Use ToastOverlay instead. */
-  appNotification: "p-2.5 gap-[10px] rounded-[0_0_15px_15px]",
+  appNotification: "p-2.5 text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding gap-[10px] rounded-[0_0_15px_15px] bg-[image:linear-gradient(to_bottom,RGB(0_0_0/20%),transparent_2px)]",
 
   /** A card: rounded corners and a shadow. */
-  card: "rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-none outline-offset-[4px] outline-2 outline-offset-[0]",
+  card: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
 
   /** Makes a box's children appear as a single group. The box must have no spacing. */
   linked: "",
 
   /** A horizontal box given a toolbar's padding and spacing. */
-  toolbar: "p-1.5 gap-[6px] py-[3px]",
+  toolbar: "p-1.5 gap-[6px]",
 } as const
 
 export const button = {
@@ -43,19 +43,19 @@ export const button = {
   activatable: "",
 
   /** A card: rounded corners and a shadow. */
-  card: "rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-none p-0 font-inherit transition-[outline-color,outline-width,outline-offset,background,box-shadow] shadow-[inset_0_0_0_1px_var(--accent-bg-color)] outline-offset-[4px] outline-2 outline-offset-[0]",
+  card: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 bg-clip-padding font-inherit transition-[outline-color,outline-width,outline-offset,background,box-shadow] text-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
 
   /** Round, for a button holding an icon or one or two characters. */
-  circular: "p-0 min-w-8.5 min-h-8.5 rounded-full min-w-8 min-h-8",
+  circular: "p-0 min-w-8.5 min-h-8.5 rounded-full",
 
   /** Uses destructive colours, to warn of damaging consequences. */
-  destructiveAction: "",
+  destructiveAction: "text-[var(--accent-color)] bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
 
   /** Looks like a label or an icon until hovered. */
-  flat: "shadow-none outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 my-1 min-w-5 min-h-5",
+  flat: "text-[var(--accent-bg-color)] shadow-none bg-[transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
 
   /** Dark and partially transparent, for a control overlapping content. */
-  osd: "shadow-[inset_0_0_0_2px_var(--accent-bg-color)] min-w-8 min-h-8 outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+  osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding shadow-[inset_0_0_0_2px_var(--accent-bg-color)] min-w-8 min-h-8 bg-[RGB(0_0_0/65%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
 
   /** A pill, for an important standalone button. */
   pill: "py-2.5 px-8 rounded-full",
@@ -64,7 +64,7 @@ export const button = {
   raised: "",
 
   /** Uses accent colours, for the affirmative button in a dialog. */
-  suggestedAction: "shadow-none outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+  suggestedAction: "shadow-none outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
 } as const
 
 export const buttonRow = {
@@ -87,13 +87,13 @@ export const comboRow = {
 
 export const entry = {
   /** The error colour, and on an entry, invalid input. */
-  error: "",
+  error: "text-[var(--accent-color)]",
 
   /** The success colour, and on an entry, valid input. */
-  success: "",
+  success: "text-[var(--accent-color)]",
 
   /** The warning colour, and on an entry, input needing attention. */
-  warning: "",
+  warning: "text-[var(--accent-color)]",
 } as const
 
 export const entryRow = {
@@ -108,20 +108,20 @@ export const expanderRow = {
 
 export const flowBox = {
   /** Sidebar styling: a transparent background and wider rows. */
-  navigationSidebar: "pt-1.5 pb-1 p-[3px]",
+  navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
 } as const
 
 export const gridView = {
   /** Sidebar styling: a transparent background and wider rows. */
-  navigationSidebar: "pt-1.5 pb-1 p-[3px]",
+  navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
 } as const
 
 export const headerBar = {
   /** Gives the header bar a flat appearance. @deprecated Use ToolbarView instead. */
-  flat: "shadow-none min-h-11.5",
+  flat: "bg-none shadow-none text-[inherit] min-h-11.5",
 
   /** A horizontal box given a toolbar's padding and spacing. */
-  toolbar: "p-1.5 gap-[6px] py-[3px]",
+  toolbar: "p-1.5 gap-[6px]",
 } as const
 
 export const image = {
@@ -142,7 +142,7 @@ export const inlineViewSwitcher = {
 
 export const label = {
   /** Increased line height, for descriptions and dialog body text. */
-  body: "font-normal leading-[140%] px-6 px-4.5",
+  body: "font-normal leading-[140%]",
 
   /** Smaller text, for sub-text accompanying body text. */
   caption: "font-normal text-[82%] leading-[140%]",
@@ -154,7 +154,7 @@ export const label = {
   document: "font-[var(--document-font-family)] text-[var(--document-font-size)] leading-[140%]",
 
   /** The standard style for a UI heading at the default text size. */
-  heading: "font-bold m-3 mt-0",
+  heading: "font-bold",
 
   /** The monospace font, for code, logs and shell commands. */
   monospace: "font-[var(--monospace-font-family)] text-[var(--monospace-font-size)]",
@@ -177,30 +177,30 @@ export const label = {
 
 export const listBox = {
   /** A boxed list. Set selection-mode to none. */
-  boxedList: "shadow-none rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+  boxedList: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
 
   /** A boxed list whose rows are separate cards. */
-  boxedListSeparate: "",
+  boxedListSeparate: "bg-none text-[var(--card-fg-color)]",
 
   /** A boxed list appearance. @deprecated Use .boxed-list instead. */
-  content: "shadow-none rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+  content: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
 
   /** The monospace font, for code, logs and shell commands. */
   monospace: "font-[var(--monospace-font-family)] text-[var(--monospace-font-size)]",
 
   /** Sidebar styling: a transparent background and wider rows. */
-  navigationSidebar: "pt-1.5 pb-1",
+  navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit]",
 
   /** A border at the end of the widget, and no background on lists inside it. @deprecated Use .navigation-sidebar instead. */
-  sidebar: "border-none p-1.5 shadow-[inset_1px_0_var(--sidebar-border-color)] transition-[background-color] duration-200 ease-[ease-out]",
+  sidebar: "",
 } as const
 
 export const listView = {
   /** Sidebar styling: a transparent background and wider rows. */
-  navigationSidebar: "pt-1.5 pb-1",
+  navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit]",
 
   /** A border at the end of the widget, and no background on lists inside it. @deprecated Use .navigation-sidebar instead. */
-  sidebar: "border-none p-1.5 shadow-[inset_1px_0_var(--sidebar-border-color)] transition-[background-color] duration-200 ease-[ease-out]",
+  sidebar: "",
 } as const
 
 export const menuButton = {
@@ -214,13 +214,13 @@ export const menuButton = {
   flat: "",
 
   /** An opaque background, to be combined with custom background and foreground colours. @deprecated Use .suggested-action instead. */
-  opaque: "rounded-[9px]",
+  opaque: "bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)] rounded-[9px]",
 
   /** The regular appearance instead of the flat one, inside a toolbar. */
   raised: "",
 
   /** Uses accent colours, for the affirmative button in a dialog. */
-  suggestedAction: "rounded-[9px]",
+  suggestedAction: "bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)] rounded-[9px]",
 } as const
 
 export const messageDialog = {
@@ -230,15 +230,15 @@ export const messageDialog = {
 
 export const overlay = {
   /** OSD appearance with round bottom corners, for an in-app notification. @deprecated Use ToastOverlay instead. */
-  appNotification: "p-2.5 gap-[10px] rounded-[0_0_15px_15px]",
+  appNotification: "p-2.5 text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding gap-[10px] rounded-[0_0_15px_15px] bg-[image:linear-gradient(to_bottom,RGB(0_0_0/20%),transparent_2px)]",
 
   /** Dark and partially transparent, for a control overlapping content. */
-  osd: "",
+  osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
 } as const
 
 export const popover = {
   /** A menu-like appearance, for a popover holding a list. */
-  menu: "pt-1.5 pt-0 pb-1 px-0",
+  menu: "pt-1.5",
 } as const
 
 export const preferencesWindow = {
@@ -248,12 +248,12 @@ export const preferencesWindow = {
 
 export const progressBar = {
   /** Dark and partially transparent, for a control overlapping content. */
-  osd: "min-w-0.5 min-h-0.5",
+  osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-0.5 min-h-0.5",
 } as const
 
 export const revealer = {
   /** OSD appearance with round bottom corners, for an in-app notification. @deprecated Use ToastOverlay instead. */
-  appNotification: "p-2.5 gap-[10px] rounded-[0_0_15px_15px]",
+  appNotification: "p-2.5 text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding gap-[10px] rounded-[0_0_15px_15px] bg-[image:linear-gradient(to_bottom,RGB(0_0_0/20%),transparent_2px)]",
 } as const
 
 export const scrolledWindow = {
@@ -275,15 +275,15 @@ export const searchBar = {
   inline: "",
 
   /** A horizontal box given a toolbar's padding and spacing. */
-  toolbar: "p-1.5 gap-[6px] py-[3px]",
+  toolbar: "p-1.5 gap-[6px]",
 } as const
 
 export const separator = {
   /** A border at the end of the widget, and no background on lists inside it. @deprecated Use .navigation-sidebar instead. */
-  sidebar: "border-none p-1.5 shadow-[inset_1px_0_var(--sidebar-border-color)] transition-[background-color] duration-200 ease-[ease-out]",
+  sidebar: "",
 
   /** Makes a separator invisible, so it acts as whitespace. */
-  spacer: "",
+  spacer: "bg-none",
 } as const
 
 export const spinRow = {
@@ -293,19 +293,19 @@ export const spinRow = {
 
 export const splitButton = {
   /** Uses destructive colours, to warn of damaging consequences. */
-  destructiveAction: "",
+  destructiveAction: "text-[var(--accent-color)]",
 
   /** Looks like a label or an icon until hovered. */
   flat: "",
 
   /** An opaque background, to be combined with custom background and foreground colours. @deprecated Use .suggested-action instead. */
-  opaque: "",
+  opaque: "bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)]",
 
   /** The regular appearance instead of the flat one, inside a toolbar. */
   raised: "",
 
   /** Uses accent colours, for the affirmative button in a dialog. */
-  suggestedAction: "",
+  suggestedAction: "bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)]",
 } as const
 
 export const statusPage = {
@@ -328,7 +328,7 @@ export const tabBar = {
 
 export const textView = {
   /** Removes the styling which makes the widget look part of a header bar. */
-  inline: "",
+  inline: "bg-[transparent] text-[inherit]",
 } as const
 
 export const toggleButton = {
@@ -336,19 +336,19 @@ export const toggleButton = {
   activatable: "",
 
   /** A card: rounded corners and a shadow. */
-  card: "rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-none p-0 font-inherit transition-[outline-color,outline-width,outline-offset,background,box-shadow] shadow-[inset_0_0_0_1px_var(--accent-bg-color)] outline-offset-[4px] outline-2 outline-offset-[0]",
+  card: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 bg-clip-padding font-inherit transition-[outline-color,outline-width,outline-offset,background,box-shadow] text-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
 
   /** Round, for a button holding an icon or one or two characters. */
-  circular: "p-0 min-w-8.5 min-h-8.5 rounded-full min-w-8 min-h-8",
+  circular: "p-0 min-w-8.5 min-h-8.5 rounded-full",
 
   /** Uses destructive colours, to warn of damaging consequences. */
-  destructiveAction: "",
+  destructiveAction: "text-[var(--accent-color)] bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
 
   /** Looks like a label or an icon until hovered. */
-  flat: "shadow-none outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 my-1 min-w-5 min-h-5",
+  flat: "text-[var(--accent-bg-color)] shadow-none bg-[transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
 
   /** Dark and partially transparent, for a control overlapping content. */
-  osd: "shadow-[inset_0_0_0_2px_var(--accent-bg-color)] min-w-8 min-h-8 outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+  osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding shadow-[inset_0_0_0_2px_var(--accent-bg-color)] min-w-8 min-h-8 bg-[RGB(0_0_0/65%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
 
   /** A pill, for an important standalone button. */
   pill: "py-2.5 px-8 rounded-full",
@@ -357,12 +357,12 @@ export const toggleButton = {
   raised: "",
 
   /** Uses accent colours, for the affirmative button in a dialog. */
-  suggestedAction: "shadow-none outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+  suggestedAction: "shadow-none outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
 } as const
 
 export const toggleGroup = {
   /** Looks like a label or an icon until hovered. */
-  flat: "shadow-none",
+  flat: "bg-none text-[inherit] shadow-none",
 
   /** Rounds the group and the toggles inside it. */
   round: "rounded-[17px]",
@@ -392,13 +392,13 @@ export const window = {
 
 export const universal = {
   /** The accent colour. */
-  accent: "",
+  accent: "text-[var(--accent-color)]",
 
   /** The default window background and foreground colours. */
-  background: "",
+  background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
 
   /** Increased line height, for descriptions and dialog body text. */
-  body: "font-normal leading-[140%] px-6 px-4.5",
+  body: "font-normal leading-[140%]",
 
   /** Smaller text, for sub-text accompanying body text. */
   caption: "font-normal text-[82%] leading-[140%]",
@@ -407,25 +407,25 @@ export const universal = {
   captionHeading: "font-bold text-[82%]",
 
   /** A card: rounded corners and a shadow. */
-  card: "rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-none outline-offset-[4px] outline-2 outline-offset-[0]",
+  card: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
 
   /** Partially transparent. @deprecated Use .dimmed instead. */
-  dimLabel: "opacity-0 opacity-100 py-1.5 px-0",
+  dimLabel: "opacity-0",
 
   /** Partially transparent, by the --dim-opacity variable. */
-  dimmed: "opacity-0 opacity-100 py-1.5 px-0",
+  dimmed: "opacity-0",
 
   /** The document font, for the app's main content. */
   document: "font-[var(--document-font-family)] text-[var(--document-font-size)] leading-[140%]",
 
   /** The error colour, and on an entry, invalid input. */
-  error: "",
+  error: "text-[var(--accent-color)]",
 
   /** The default one-pixel border. */
   frame: "",
 
   /** The standard style for a UI heading at the default text size. */
-  heading: "font-bold m-3 mt-0",
+  heading: "font-bold",
 
   /** Large thin text, for a display heading in a greeter or an assistant. @deprecated Use .title-1 instead. */
   largeTitle: "font-light text-[24pt]",
@@ -437,10 +437,10 @@ export const universal = {
   numeric: "",
 
   /** Dark and partially transparent, for a control overlapping content. */
-  osd: "",
+  osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
 
   /** The success colour, and on an entry, valid input. */
-  success: "",
+  success: "text-[var(--accent-color)]",
 
   /** The largest of the four title levels. */
   title1: "font-extrabold text-[181%]",
@@ -455,8 +455,8 @@ export const universal = {
   title4: "font-bold text-[118%]",
 
   /** The default view background and foreground colours. */
-  view: "border-none",
+  view: "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
 
   /** The warning colour, and on an entry, input needing attention. */
-  warning: "",
+  warning: "text-[var(--accent-color)]",
 } as const

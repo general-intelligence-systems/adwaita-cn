@@ -25,6 +25,7 @@
           ADWAITA_DEV = pkgs.libadwaita.dev;
           GTK_LIB = pkgs.gtk4;
           GTK_DEV = pkgs.gtk4.dev;
+          BROWSER_PATH = "${pkgs.chromium}/bin/chromium";
 
           buildInputs = with pkgs; [
             gems
@@ -39,6 +40,8 @@
 
             nodejs
             pnpm
+
+            chromium
           ];
 
           shellHook = /* bash */ ''

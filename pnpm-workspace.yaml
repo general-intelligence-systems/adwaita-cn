@@ -1,3 +1,10 @@
+# The registry at the root, and the documentation site beside it. The site reads
+# the registry's own sources, which is what keeps its previews honest, so it is a
+# package in the same workspace rather than a separate checkout.
+packages:
+  - "."
+  - "docs"
+
 allowBuilds:
   esbuild: true
   msw: false

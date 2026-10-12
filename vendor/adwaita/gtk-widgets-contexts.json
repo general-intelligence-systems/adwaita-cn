@@ -1,6 +1,9 @@
 {
   "coverflow cover": {
-    "base": []
+    "base": [
+      "text-[black]",
+      "bg-[#ffffff]"
+    ]
   },
   "expander-widget": {
     "base": [
@@ -13,7 +16,8 @@
   },
   "filechooserbutton": {
     "base": [
-      "shadow-none"
+      "shadow-none",
+      "border-[transparent]"
     ]
   },
   "notebook": {

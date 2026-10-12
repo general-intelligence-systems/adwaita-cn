@@ -7,6 +7,11 @@ source "https://rubygems.org"
 gem "rexml"
 
 group :development do
+  # bin/15-screenshots drives headless Chrome with it, over the devtools protocol, and serves
+  # the harness to it with webrick, which Ruby 3 unbundled.
+  gem "ferrum"
+  gem "webrick"
+
   gem "rubocop"
   # Its cops are the house style for the ruby under bin/.
   gem "rubocop-socketry"

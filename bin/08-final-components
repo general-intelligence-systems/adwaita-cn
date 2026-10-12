@@ -310,6 +310,16 @@ module FinalComponents
     }))
   end
 
+  # The props which carry text to put on screen, which is what a placeholder renders and what an
+  # example writes. Nothing in the introspection data separates them from the rest: `title` and
+  # `decorationLayout` are both a writable string, as are `label` and `issueUrl`, and a name rule
+  # which caught `-url` would still take `accelerator` and `closeResponse`. So they are listed.
+  TEXT = %w[
+    label title subtitle description heading body text comments tag version
+    placeholder-text button-label alternative-text disabled-text
+  ].freeze
+
+
   # ── What a stylesheet subject actually is ──
 
   # A selector names a CSS node, and a node is one of four things. Which one is decided by
@@ -478,10 +488,13 @@ module FinalComponents
   # and merging every `.flat` rule gave a flat HeaderBar a button's padding and minimum height.
   def self.variant(style, variant, node, contexts, name = nil)
     found = variant.slice(:summary, :combines, :contains, :affects).transform_keys(&:to_s)
-    classes = self.variant_classes(style, node, contexts)
+    own = self.variant_classes(style, node, contexts)
+    classes = self.merged(own.values)
 
     {
       "classes" => classes,
+      # Where the variant is only defined inside something else, which it is for `.raised`.
+      "context" => own.keys.reject{|selector| self.segments(selector).length == 1}.sort,
       # A variant whose every rule was a colour has nothing left once the colours are dropped.
       # `.destructive-action` is exactly that, and saying so is better than an empty entry which
       # looks like a gap in the extraction.
@@ -514,9 +527,12 @@ module FinalComponents
   # ONLY THE CLASS ITSELF, so `button.flat.circular` is left out. That is the combination, which
   # is what `combines` points at, and folding it in would make every flat button round.
   #
-  # AT ANY DEPTH, because some variants are only ever written inside a context: `.raised` is
-  # `.toolbar button.raised`, since a raised button only means anything where buttons are flat by
-  # default. Requiring a bare selector left it with no classes at all.
+  # THE SHALLOWEST RULES AND NOT ALL OF THEM. `button.flat` is the variant; `popover.menu
+  # button.flat` is what a flat button looks like in a menu, and merging both gave every flat
+  # button the menu's padding and minimum size. So a context-free rule wins outright where there
+  # is one, and where there is not -- `.raised` is only ever written `.toolbar button.raised`,
+  # because a raised button means nothing where buttons are not flat already -- the shallowest
+  # context is used and named, rather than reporting a variant with nothing in it.
   def self.variant_classes(style, node, contexts)
     own = contexts.select do |selector, _states|
       element, classes = self.segment(self.segments(selector).last.to_s)
@@ -524,7 +540,9 @@ module FinalComponents
       classes.to_a == [style] && (element.nil? || element == node)
     end
 
-    self.merged(own.values)
+    shallowest = own.keys.map{|selector| self.segments(selector).length}.min
+
+    own.select{|selector, _states| self.segments(selector).length == shallowest}
   end
 
   # The variants which go on any widget at all, whose classes are the rules naming no element.
@@ -722,6 +740,7 @@ module FinalComponents
       "parent" => schema && schema["parent"],
       "props" => props,
       "accepts" => schema.nil? ? {} : self.accepts(schema),
+      "text" => props.keys.select{|prop| TEXT.include?(self.kebab(prop))},
       "enums" => props.values
         .select{|attributes| attributes.fetch("type") == "enum"}
         .map{|attributes| attributes.fetch("enum")}
@@ -733,6 +752,10 @@ module FinalComponents
         .uniq
         .sort,
     }
+  end
+
+  def self.kebab(prop)
+    prop.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
   end
 
   # Every prop a component accepts, inherited ones included, keyed under both spellings. This

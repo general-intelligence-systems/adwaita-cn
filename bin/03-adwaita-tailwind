@@ -18,10 +18,15 @@
 #      text shadows Adwaita took out. bin/04-gtk-tailwind is the separate stage for GTK's sheet,
 #      and it covers only the nodes libadwaita never mentions.
 #
-#      THIS IS GEOMETRY, NOT COLOUR. A component looks like Adwaita because of its radii, its
-#      minimum heights, its padding, its focus ring and the easing on its transitions -- not
-#      because of its palette, which is a handful of variables anyone can swap. So every colour
-#      declaration is dropped on the way through and what is left is the shape.
+#      COLOUR COMES THROUGH AS LIBADWAITA'S OWN VARIABLES. A declaration is converted as it
+#      stands, so `background-color: var(--accent-bg-color)` becomes `bg-[var(--accent-bg-color)]`
+#      and a `color-mix()` keeps its mix. Nothing here resolves a variable to a value, so the
+#      output carries Adwaita's palette by name: point the variables at a brand's colours and
+#      every component follows, which is what makes `.suggested-action` a variant rather than a
+#      class with nothing in it.
+#
+#      GTK'S OWN PROPERTIES ARE DROPPED, being the only ones with no CSS equivalent: an icon's
+#      palette, source and filter are the toolkit recolouring a symbolic icon.
 #
 #      A widget here is a selector's SUBJECT, which is the compound it actually styles: the rule
 #      `headerbar menubutton.suggested-action > button` styles a `button`, and is reported under
@@ -79,12 +84,12 @@ module AdwaitaTailwind
   SHEET = "vendor/adwaita/adwaita.css"
 
   # Colour is the one thing a port does not take from here, so it never reaches the output.
-  COLOUR = %w[
-    color background background-color background-image background-position background-size
-    background-repeat border-color border-top-color border-bottom-color border-left-color
-    border-right-color outline-color caret-color fill stroke text-decoration-color
-    -gtk-icon-palette -gtk-icon-shadow -gtk-icon-source -gtk-icon-filter background-clip
-    text-shadow filter
+  # GTK's own properties, which are not CSS and have no equivalent. An icon's palette, source
+  # and filter are the toolkit recolouring a symbolic icon, which is a thing the web does to an
+  # <svg> rather than a declaration anything can carry over.
+  GTK_ONLY = %w[
+    -gtk-icon-palette -gtk-icon-shadow -gtk-icon-source -gtk-icon-filter -gtk-icon-transform
+    -gtk-secondary-caret-color -gtk-dpi
   ].freeze
 
   # Tailwind's spacing scale is 0.25rem per step, which at the default 16px root is 4px. A
@@ -159,6 +164,24 @@ module AdwaitaTailwind
     when "transition"   then self.transition(value)
     when "transition-duration" then ["duration-[#{self.arbitrary(value)}]"]
     when "text-decoration-line" then ["[text-decoration-line:#{value}]"]
+    when "color"            then ["text-[#{self.arbitrary(value)}]"]
+    when "background-color" then ["bg-[#{self.arbitrary(value)}]"]
+    when "background"       then self.background(value)
+    when "background-image" then ["bg-[image:#{self.arbitrary(value)}]"]
+    when "background-position" then ["bg-[position:#{self.arbitrary(value)}]"]
+    when "background-size" then ["bg-[size:#{self.arbitrary(value)}]"]
+    when "background-repeat" then [value == "no-repeat" ? "bg-no-repeat" : "bg-repeat"]
+    when "background-clip" then ["bg-clip-#{value.delete_suffix('-box')}"]
+    when "border-color"    then ["border-[#{self.arbitrary(value)}]"]
+    when "outline-color"   then ["outline-[#{self.arbitrary(value)}]"]
+    when "caret-color"     then ["caret-[#{self.arbitrary(value)}]"]
+    when "fill"            then ["fill-[#{self.arbitrary(value)}]"]
+    when "stroke"          then ["stroke-[#{self.arbitrary(value)}]"]
+    when "text-decoration-color" then ["decoration-[#{self.arbitrary(value)}]"]
+    when "text-shadow"     then ["[text-shadow:#{self.arbitrary(value)}]"]
+    when "filter"          then ["[filter:#{self.arbitrary(value)}]"]
+    when /\Aborder-(top|right|bottom|left)-color\z/
+      ["border-#{SIDES.fetch(::Regexp.last_match(1))}-[#{self.arbitrary(value)}]"]
     when /\Apadding-(top|right|bottom|left)\z/ then [self.length("p#{SIDES.fetch(::Regexp.last_match(1))}", value)]
     when /\Amargin-(top|right|bottom|left)\z/ then [self.length("m#{SIDES.fetch(::Regexp.last_match(1))}", value)]
     when /\Aborder-(top|bottom)-(left|right)-radius\z/
@@ -166,6 +189,18 @@ module AdwaitaTailwind
     when /\Aborder-(top|right|bottom|left)-width\z/
       ["border-#{SIDES.fetch(::Regexp.last_match(1))}-[#{value}]"]
     else []
+    end
+  end
+
+  # The `background` shorthand, which libadwaita writes as a colour, as `none`, or as an image.
+  # Tailwind has a utility for the first two and an arbitrary value for the third.
+  def self.background(value)
+    if value == "none"
+      ["bg-none"]
+    elsif value.match?(/\A(?:linear|radial|conic|repeating)-gradient|\Aurl\(|\Aimage\(/)
+      ["bg-[image:#{self.arbitrary(value)}]"]
+    else
+      ["bg-[#{self.arbitrary(value)}]"]
     end
   end
 
@@ -454,7 +489,7 @@ module AdwaitaTailwind
         widget[variant] ||= {}
 
         rule.declarations.each do |property, value|
-          if COLOUR.include?(property)
+          if GTK_ONLY.include?(property)
             next
           end
 

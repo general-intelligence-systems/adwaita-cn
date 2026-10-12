@@ -6,7 +6,7 @@ import { defineConfig } from "vite"
 
 // GitHub Pages serves this repository at /adwaita-cn/, not at /. The prefix is a
 // deployment detail rather than a property of the site, so it arrives as an
-// environment variable: unset for `pnpm dev`, set by bin/12-build-pages.
+// environment variable: unset for `pnpm dev`, set by bin/14-build-docs.
 //
 // Vite's `base` is also where Fumadocs picks the prefix up. Its search client
 // reads import.meta.env.BASE_URL to find the exported index, which is why this
@@ -19,10 +19,10 @@ export default defineConfig({
   plugins: [fumadocsMdx(), tailwindcss(), reactRouter()],
   resolve: {
     alias: {
-      // The two halves of the repository. `@` is what the registry's own
+      // The registry is the package above this one. `@` is what its own
       // sources import (`@/lib/utils`), so a component resolves the same here
       // as it will in whichever project installs it; `~` is the docs site.
-      "@": path.resolve(import.meta.dirname, "registry/adwaita"),
+      "@": path.resolve(import.meta.dirname, "../registry/adwaita"),
       "~": path.resolve(import.meta.dirname, "app"),
     },
   },

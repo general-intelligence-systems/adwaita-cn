@@ -13,18 +13,8 @@
     "types": ["node", "vite/client"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./registry/adwaita/*"],
-      "~/*": ["./app/*"]
-    },
-    // The docs routes import their own generated types from "./+types/docs",
-    // which `react-router typegen` writes under .react-router/types.
-    "rootDirs": [".", "./.react-router/types"]
+      "@/*": ["./registry/adwaita/*"]
+    }
   },
-  "include": [
-    "registry",
-    "examples",
-    "app",
-    "*.ts",
-    ".react-router/types/**/*"
-  ]
+  "include": ["registry", "examples", "harness", "vite.harness.config.ts"]
 }

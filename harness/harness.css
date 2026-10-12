@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* libadwaita's variables, which every component's classes refer to. */
+@import "../registry/adwaita/adwaita.css";
+
+/* Tailwind scans outwards from the stylesheet, so it has to be told where the
+ * classes are: the examples write them and the components carry them. */
+@source "../examples";
+@source "../registry/adwaita";
+@source "./harness.tsx";
+
+/* The page is the backdrop of every screenshot. */
+body {
+  margin: 0;
+  background-color: var(--window-bg-color);
+  color: var(--window-fg-color);
+}
+
+/* The box a screenshot is clipped to. inline-block, so the clip shrinks to the
+ * component rather than spanning the viewport, and padding so nothing sits
+ * against the edge.
+ *
+ * ON THE BOX AND NOT ON WHAT IS INSIDE IT. `#example > div` is the component's
+ * own element, so a rule there styles the thing being photographed. */
+#example {
+  display: inline-block;
+  padding: 24px;
+}
