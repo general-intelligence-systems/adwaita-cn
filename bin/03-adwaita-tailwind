@@ -13,21 +13,6 @@
 #      Reads libadwaita's stylesheet and writes, as JSON on stdout, the map of every selector it
 #      styles to the Tailwind classes which reproduce its metrics.
 #
-#      LIBADWAITA'S SHEET AND NOTHING ELSE. It replaces GTK's theme rather than extending it, so
-#      reading GTK's underneath does not fill gaps -- it reintroduces the gradients, radii and
-#      text shadows Adwaita took out. bin/04-gtk-tailwind is the separate stage for GTK's sheet,
-#      and it covers only the nodes libadwaita never mentions.
-#
-#      COLOUR COMES THROUGH AS LIBADWAITA'S OWN VARIABLES. A declaration is converted as it
-#      stands, so `background-color: var(--accent-bg-color)` becomes `bg-[var(--accent-bg-color)]`
-#      and a `color-mix()` keeps its mix. Nothing here resolves a variable to a value, so the
-#      output carries Adwaita's palette by name: point the variables at a brand's colours and
-#      every component follows, which is what makes `.suggested-action` a variant rather than a
-#      class with nothing in it.
-#
-#      GTK'S OWN PROPERTIES ARE DROPPED, being the only ones with no CSS equivalent: an icon's
-#      palette, source and filter are the toolkit recolouring a symbolic icon.
-#
 #      A widget here is a selector's SUBJECT, which is the compound it actually styles: the rule
 #      `headerbar menubutton.suggested-action > button` styles a `button`, and is reported under
 #      `button`. Contexts are merged by default because a component is built once and used
@@ -71,14 +56,6 @@ require "json"
 require "set"
 
 module AdwaitaTailwind
-  # ONE SHEET PER RUN, BECAUSE LIBADWAITA REPLACES GTK'S THEME RATHER THAN EXTENDING IT.
-  # Reading both at once was wrong, and not subtly: GTK's Default theme gives a headerbar a
-  # `background-image`, a `border-radius` and a `padding` which libadwaita deliberately does not
-  # have, and gives a button and a label the `text-shadow` and `-gtk-icon-shadow` of the embossed
-  # look Adwaita dropped. Those are not gaps in Adwaita for GTK to fill in underneath -- they are
-  # the other theme's answer to the same question, and layering them in makes a component look
-  # like GTK Default where Adwaita said otherwise.
-  #
   # So this converts whichever sheet it is given, and bin/04-gtk-tailwind is the separate stage
   # which handles GTK's, for the nodes libadwaita never mentions at all.
   SHEET = "vendor/adwaita/adwaita.css"

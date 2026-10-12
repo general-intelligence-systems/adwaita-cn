@@ -13,20 +13,6 @@
 #      Runs bin/03-adwaita-tailwind over GTK's Default theme instead of libadwaita's stylesheet,
 #      and keeps only the nodes libadwaita never styles.
 #
-#      THIS IS A SEPARATE STAGE BECAUSE THE TWO SHEETS ARE ALTERNATIVES, NOT LAYERS. libadwaita
-#      replaces GTK's theme: an application which links it gets its stylesheet instead of
-#      Default's, not on top of it. So a declaration GTK makes about a node libadwaita also
-#      styles is not a gap to fill -- it is the other theme's answer, and taking it reintroduces
-#      exactly what Adwaita removed. A headerbar is the plainest case: GTK gives it a
-#      background-image, a border-radius and padding, and Adwaita's has none of the three.
-#
-#      WHAT IS LEFT IS A GENUINE GAP. libadwaita styles 131 nodes and GTK's Default styles 95,
-#      and seven of GTK's are nodes libadwaita never mentions: the expander arrow and its
-#      container, a notebook, a treeview junction, a tree expander's indent, and the file
-#      chooser's button and thumbnails. Those widgets are not part of the Adwaita look because
-#      libadwaita has nothing to say about them, so GTK's theme is all there is, and a component
-#      which wraps one is better off with it than with nothing.
-#
 #      Output is the same shape as bin/03-adwaita-tailwind's and the options mean the same
 #      things, so the join reads whichever has an answer for a node, preferring Adwaita's.
 #
@@ -64,10 +50,6 @@ require "set"
 module GtkTailwind
   SHEET = "vendor/adwaita/gtk-default-light.css"
 
-  # THE CONTEXTS, NOT THE MERGED MAP. The merged map drops a subject styled by one lone
-  # declaration and keys by the compound rather than the node, so reading it as "what libadwaita
-  # styles" understates it -- `menubutton` and `stackswitcher` came out as gaps on the strength
-  # of that, when libadwaita styles both. The contexts are every selector it has a rule for.
   ADWAITA = "vendor/adwaita/widgets-contexts.json"
 
   # The converter, over GTK's sheet. It is the same code either way, which is the point: the

@@ -8,11 +8,12 @@
     "registry:build": "shadcn build",
     "registry:check": "shadcn build --output /tmp/adwaita-cn-check && rm -rf /tmp/adwaita-cn-check",
     "lint": "oxlint",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "radix-ui": "^1.7.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tailwind-merge": "^3.3.1"

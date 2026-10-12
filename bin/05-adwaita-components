@@ -17,9 +17,6 @@
 #      This is the second of the two passes. MAP defaults to vendor/adwaita/widgets.json, which
 #      is what the pass before it writes.
 #
-#      THE MAP IS NOT THE LIST, which is the whole reason this is a second pass. The map has one
-#      entry per selector, and a selector is not a component three times over:
-#
 #      `button.flat`, `button.pill` and `button.suggested-action` are one component with three
 #      variants, not three components.
 #
@@ -32,11 +29,6 @@
 #
 #      `treeview`, `iconview`, `notebook` and `menubar` are GTK 3 widgets libadwaita still
 #      styles and no new application uses.
-#
-#      WHICH IS WHICH CANNOT BE READ OFF THE CSS. A GTK node name does not say whether it is a
-#      widget or a part of one, so the tables below say instead, and anything they do not
-#      mention is reported as unclassified rather than dropped. A list which silently loses
-#      entries is worse than one which admits what it does not know.
 #
 # OPTIONS
 #      --legacy   Include the GTK 3 widgets, which are excluded by default.

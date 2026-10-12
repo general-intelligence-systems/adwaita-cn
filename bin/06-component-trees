@@ -13,21 +13,6 @@
 #      Reads the .ui templates under vendor/adwaita/ui/ and writes, as JSON on stdout, the tree
 #      of widgets each composite is built out of.
 #
-#      THE TOOLKIT SHIPS THESE TREES, which is why none of this has to be guessed. A composite
-#      widget in GTK is declared in XML -- AdwActionRow is a GtkBox holding a GtkBox.prefixes, a
-#      GtkImage.icon, a GtkBox.title wrapping two GtkLabels, and a GtkBox.suffixes -- and that
-#      XML is in the same GResource bundle as the stylesheet. So the component tree, the style
-#      class on every node, and which properties are bound to which are all stated rather than
-#      inferred.
-#
-#      AND GTK HAS NO ANONYMOUS ELEMENTS. There is no <div> and no <span>: everything which
-#      renders is a widget with a name. That is what makes a complete port generable -- the leaf
-#      of every tree is a widget we can name, so there is no point at which somebody has to
-#      decide what a thing "should" be.
-#
-#      PARENT AND CHILD ARE TWO DIFFERENT RELATIONSHIPS and the templates distinguish them,
-#      which is the question this answers:
-#
 #      <property name="child"> wraps one object. It is a named slot holding a single widget --
 #      `child` itself, or `content`, `titlebar`, `title-widget`, `header-suffix`.
 #
@@ -56,8 +41,6 @@ require "json"
 require "rexml/document"
 
 module ComponentTrees
-  # A GTK class name as the bare name the rest of this project keys by: AdwActionRow and
-  # GtkButton are both one namespace and one class.
   def self.bare(name)
     name.sub(/\A(Adw|Gtk|G)(?=[A-Z])/, "")
   end

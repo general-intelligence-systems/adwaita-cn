@@ -15,24 +15,6 @@
 #      the props its GTK class accepts and the Tailwind classes its CSS node is styled with,
 #      and registers each one in registry.json.
 #
-#      THE MARKUP IS A PLACEHOLDER AND THE REST IS NOT. What is generated is everything that
-#      can be derived -- the prop names, their types, the enum unions they are drawn from, the
-#      cn() call with Adwaita's measurements in it -- so that writing a component is a matter of
-#      replacing one <div> with the markup it should have been. Nothing a human writes has to be
-#      kept in step with the toolkit by hand.
-#
-#      IT DOES NOT OVERWRITE. A file which exists is left exactly as it is, because the moment
-#      somebody replaces that <div> the file stops being generated output. Re-running this adds
-#      what is missing and touches nothing else, so it is safe after a release bump which brings
-#      new widgets. --force overwrites, which throws away hand-written markup and is there for
-#      regenerating on purpose.
-#
-#      PROPS ARE FACTORED THE WAY GTK FACTORS THEM. Gtk.Widget declares thirty writable
-#      properties -- visible, sensitive, tooltipText, the expand and align pairs -- and every
-#      widget has them. Repeating those in fifty-four interfaces would bury the five or ten
-#      which are actually the component's own, so they live in one WidgetProps and each
-#      component extends it. ActionRow adds thirteen, Button six, Switch two.
-#
 #      Read-only properties are left out: a prop which cannot be written is not a prop.
 #
 #      A component whose class is null is a style class -- styling with no properties -- so it
@@ -210,15 +192,6 @@ module GenerateComponents
   end
 
   # The component's markup.
-  #
-  # A COMPOSITE IS ITS OWN TEMPLATE. libadwaita ships a .ui for twenty-nine of these and
-  # bin/06-component-trees read them, so the structure is not a thing to invent: AdwActionRow is
-  # a box holding a box of prefixes, an image, a box of two labels and a box of suffixes, and
-  # the template says which classes each node has and which of the component's props it is
-  # bound to.
-  #
-  # ANYTHING ELSE IS ONE ELEMENT. A widget built in C ships no template, so what is known about
-  # it is the node it renders as and the rules Adwaita has for that node.
   def self.body(name, component, components)
     if component["tree"]
       self.node(component.fetch("tree"), component, components, 4, root: true)
@@ -241,11 +214,6 @@ module GenerateComponents
   end
 
   # One node of a template, and everything under it.
-  #
-  # THE ROOT IS THE COMPONENT ITSELF, so it is the element this function returns rather than a
-  # component it renders -- a tree whose root is ActionRow cannot render an <ActionRow> without
-  # recurring forever. Every node below it is a component in the registry, which is the whole
-  # point of generating the trees: GTK has no <div>, so each node names a widget.
   def self.node(node, component, components, indent, root: false)
     pad = " " * indent
     name = node.fetch("class")
@@ -295,14 +263,6 @@ module GenerateComponents
   end
 
   # The property values a template sets on a node, as props.
-  #
-  # A BINDING IS THE COMPONENT'S OWN PROP. The template writes `label` on ActionRow's title
-  # label as `bind: title`, which is how the string a caller passes reaches the markup, and is
-  # why these components take props at all rather than being pictures.
-  #
-  # A LITERAL IS ONLY PASSED WHERE THE CHILD ACCEPTS IT. A template sets GTK properties which
-  # the registry does not model on every node, and a prop no component declares is exactly what
-  # the lint is there to catch.
   def self.properties(node, component, components)
     accepts = components.dig(node.fetch("class"), "accepts") || {}
 
@@ -317,10 +277,6 @@ module GenerateComponents
     self.by_id(node, component, accepts, found) + found
   end
 
-  # A NODE NAMED AFTER A PROP CARRIES IT. AdwActionRow's template binds its title label's text to
-  # the `title` property and leaves the subtitle one to be set from C, so the binding is there
-  # for one and missing for the other -- but the node's id is `subtitle` and the component has a
-  # `subtitle` prop, which is the same statement made another way.
   def self.by_id(node, component, accepts, found)
     id = self.camel(node.fetch("id", ""))
     text = component.fetch("text")

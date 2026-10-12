@@ -13,34 +13,6 @@
 #      Writes examples/ from vendor/adwaita/variants.json: one .tsx per component, and one more
 #      for each variant that component can carry. 118 components and 101 variants is 219 files.
 #
-#      THEY ARE REAL TSX AND NOT CODE FENCES, which is what makes them worth having. A fence in
-#      an .mdx file is a string nothing checks, and a wrong prop in one is a wrong prop the
-#      documentation teaches. These compile, so `tsc` and the oxlint plugin both read them, and
-#      an example which names a prop no widget has is a failed build rather than a page.
-#
-#      ONE FILE PER VARIANT, DEFAULT-EXPORTING ONE COMPONENT, so a harness can mount each and
-#      take one screenshot. examples/manifest.json lists them for exactly that.
-#
-#      THE CLASSES COME FROM A MODULE RATHER THAN FROM EACH FILE. An example reading
-#      `className={button.pill}` says which Adwaita style class it is demonstrating; the same
-#      example with `className="py-2.5 px-8 rounded-full"` says only what that happens to
-#      compile to. registry/adwaita/lib/variants.ts is generated beside the examples and holds
-#      the classes per component, because a variant is not the same everywhere -- `.flat` on a
-#      HeaderBar is `shadow-none min-h-11.5` and on a Button it is the whole flat-button rule.
-#
-#      HALF THE VARIANTS ARE COLOUR, which the manifest says of each. bin/03-adwaita-tailwind
-#      drops every colour declaration, so `.suggested-action` and `.destructive-action` reach
-#      here with nothing to contribute: their example is written, because the variant exists and
-#      the documentation should say so, and `colour` marks it as one a preview cannot show.
-#
-#      A CONTAINER GETS A CHILD. Three quarters of the components have no text prop to set --
-#      Box, Clamp, ScrolledWindow -- and an empty one screenshots as nothing, so an example
-#      which has no props to write renders a Label inside instead. Label itself is the exception,
-#      for obvious reasons.
-#
-#      IT DOES NOT OVERWRITE, the same as bin/11-generate-components. A generated example is a
-#      starting point and a better one may be written over it by hand; --force discards those.
-#
 # OPTIONS
 #      --force      Overwrite the examples which are already there.
 #

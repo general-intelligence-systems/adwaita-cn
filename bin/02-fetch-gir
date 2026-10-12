@@ -11,12 +11,6 @@
 # DESCRIPTION
 #      Writes Gtk-4.0.gir and Adw-1.gir into vendor/gir/, which is what bin/07-gtk-schemas reads.
 #
-#      A GIR FILE IS THE WIDGET API, stated by the toolkit rather than by its documentation.
-#      GObject introspection is what language bindings are generated from, so every class, every
-#      property, its type, its default, whether it is writable and whether it is construct-only
-#      are all in there, machine-readable and exactly as the library defines them. There is no
-#      more authoritative answer to "what props does this component have".
-#
 #      Each file ships in its library's `dev` output, under share/gir-1.0.
 #
 #      The versions are recorded in vendor/gir/VERSIONS, because properties are added and

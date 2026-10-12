@@ -1,257 +1,140 @@
 # adwaita-cn
 
-A [shadcn registry](https://ui.shadcn.com/docs/registry) of components built to GNOME
-Adwaita's geometry.
+## Components
 
-Install one with the shadcn CLI, the same as any other registry:
-
-```bash
-npx shadcn@latest add https://<host>/r/button.json
-```
-
-## What this is, and what it is not
-
-**It is the measurements.** A component looks like Adwaita because of its radii, its minimum
-heights, its padding, its focus ring and the easing on its transitions. A button's corner is
-9px, a card's is 12px, a popover's is 15px, and everything animates for 200ms on
-`cubic-bezier(0.25, 0.46, 0.45, 0.94)`. Those numbers are not approximated here: they are read
-out of libadwaita's own stylesheet.
-
-**It is not the palette.** Every colour is a CSS variable with libadwaita's default as its
-value, and the point of that is to override them. Point `--accent-bg-color` at a brand and the
-components keep Adwaita's shape and lose its blue.
-
-## Where the numbers come from
-
-Nothing here is hand-measured, and nothing is copied from a screenshot. Three scripts, run in
-order:
-
-```bash
-bin/01-fetch-adwaita                                                     # the stylesheets
-bin/03-adwaita-tailwind                > vendor/adwaita/widgets.json     # pass 1
-bin/05-adwaita-components widgets.json > vendor/adwaita/components.json  # pass 2
-```
-
-Two passes, two outputs. `widgets.json` is one entry per selector; `components.json` is one
-entry per component, which is the list to build from.
-
-**`bin/01-fetch-adwaita`** extracts the stylesheets rather than downloading them, and the reason
-is worth knowing. What GNOME publishes is SCSS, which needs a build to become CSS and which
-carries mixins and `@if` rather than values. What a GTK application actually loads is one
-compiled sheet with every variable resolved, and that sheet ships inside the library's
-GResource bundle. So the script reads it back out of the installed libraries with
-`gresource(1)`, and the result is literally the CSS the running toolkit uses. Two sheets,
-because Adwaita is only the top half: libadwaita's own, and GTK's `Default` theme underneath it.
-GTK 4 no longer ships an Adwaita of its own — `gtk/theme/` holds `Default` and `Empty`, and
-Adwaita moved out to libadwaita.
-
-**`bin/03-adwaita-tailwind`** parses both sheets and maps every declaration to the Tailwind classes
-which reproduce it, dropping colour on the way through. Measurements are arbitrary-valued on
-purpose: `rounded-[9px]`, never `rounded-lg`. Tailwind's scale has 8px and 10px either side of
-Adwaita's button radius, and a button one pixel out is the most recognisable way for a port to
-look almost-but-not-Adwaita.
-
-**`bin/05-adwaita-components`** folds that map into the component list, which is the second pass
-because a selector is not a component. `button.flat`, `button.pill` and
-`button.suggested-action` are one component with three variants. `trough`, `slider` and `arrow`
-are render nodes inside a widget, and the web has no element to hang them on. `.title-1` and
-`.monospace` are typography. The script carries the tables which say which is which, because a
-GTK node name does not, and it reports anything the tables do not mention rather than dropping
-it.
-
-From 340 selectors that leaves **57 components**, with 98 nodes set aside. The exclusions are
-in `components.json` too, each with the reason, so nothing goes missing quietly.
-
-## The widget schemas
-
-The classes and their props come from the toolkit too, not from the documentation:
-
-```bash
-bin/02-fetch-gir                               # Gtk-4.0.gir and Adw-1.gir, into vendor/gir/
-bin/07-gtk-schemas > vendor/gir/schemas.json   # 348 classes, 158 enums
-```
-
-A GIR file is GObject introspection data — what language bindings are generated from — so every
-class, every property, its type, its default and whether it is writable are stated by the
-library itself. `bin/07-gtk-schemas` resolves inheritance, which is the whole reason not to read
-the docs instead: `ActionRow` declares six properties and accepts forty-eight, with `title`
-from `Adw.PreferencesRow` and `visible` from `Gtk.Widget`. Each one records which class declared
-it.
-
-**There is no Adw/Gtk split.** A component is one component, so the namespaces consolidate under
-the bare class name and Adw takes precedence — 348 classes, with eleven names claimed by both.
-Adw wins *outright* rather than by merging, because `Adw.Dialog` descends from `Gtk.Widget`
-rather than `Gtk.Window` and is a different API sharing a name; folding Gtk's extra properties
-in would have the schema claim props the widget does not accept. Each displaced class is named
-in `shadows`.
-
-Three of the eleven need an exception: `Window`, `ApplicationWindow` and `Application` each
-subclass the very Gtk class they shadow, so a bare parent pointer would make `Window` its own
-parent. Those three already inherit everything the Gtk class has, so the parent emitted is the
-one beyond it and `parentThrough` records what was stepped over. `--qualified` turns
-consolidation off.
-
-`bin/09-gtk-enums` turns the enumerations into TypeScript:
-
-```bash
-bin/09-gtk-enums > registry/adwaita/lib/enums.ts     # 137 unions
-```
-
-A string-literal union and its value array from one source, because both are wanted and keeping
-them in step by hand is how they drift — the type annotates a prop at no runtime cost, the array
-populates a select and is what a lint checks against:
-
-```ts
-export const toolbarStyleValues = ["flat", "raised", "raised-border"] as const
-export type ToolbarStyle = (typeof toolbarStyleValues)[number]
-```
-
-**The values are GTK's nicks.** A member is written `raised_border` in the introspection data
-and the string the property system accepts is `raised-border`. Generating from the names would
-produce a type that insists on a value GTK rejects.
-
-Bitfields are left out: a flag set is several members at once, so its TypeScript is an array of
-the union rather than the union, and a prop typed as one is almost always wrong. `--flags`
-emits them, each marked.
-
-Types come out as something a JavaScript lint can check: `utf8` is a string, `gboolean` a
-boolean, an enumeration becomes its list of values (`Adw.ToolbarStyle` → `flat`, `raised`,
-`raised_border`), and a widget or model becomes `node`. Names are given both ways, GTK's
-`subtitle-lines` and React's `subtitleLines`.
-
-## The lint
-
-`bin/10-lint-rules` joins the component list to the schemas and writes `lint/rules.json`, which
-is the one file `lint/adwaita-plugin.js` reads. Two rules, both oxlint JS plugins:
-
-- **`adwaita/component-exists`** — a named import from one of the registry's sources has to be a
-  component the rule file knows.
-- **`adwaita/exact-props`** — a declared component's props have to be its GTK class's props,
-  writable, and an enum prop's literal value has to be one the enum accepts.
-
-**The plugin knows nothing**, and that is the design. An earlier version inferred whether a name
-was *meant* to be a GTK component by how much it resembled one, and reported `<ShellHeader>` as
-a misspelling of `<ListHeader>`. A lint that fires on correct code is worse than no lint, so
-existence is declared in `lint/components.json` rather than guessed, and the plugin is a dumb
-rule-checker with no opinions of its own.
-
-`lint/components.json` is hand-written and is the declaration of intent: 54 components, each
-named with the GTK class it validates against. Thirty-five map to a class by name; the rest do
-not, because a CSS node does not say which class it belongs to — `row` is `Gtk.ListBoxRow`,
-`.boxed-list` is `Adw.PreferencesGroup`, and `.card` is no class at all. A `null` class is a
-style class: it exists, it has no props, and the lint accepts any prop on one rather than
-rejecting every prop.
-
-```bash
-bin/10-lint-rules > lint/rules.json
-pnpm lint
-```
-
-## The devshell
-
-```bash
-nix develop        # or direnv, via .envrc
-pnpm install
-```
-
-Ruby comes from `bundlerEnv` with the Gemfile — `rexml` for `bin/07-gtk-schemas`, since Ruby
-3.4 unbundled it — and the shell also carries `glib` for `gresource(1)`, `gtk4` and
-`libadwaita` with their `dev` outputs for the GIR files, `pkg-config`, and node with pnpm for
-`shadcn build` and the lint.
-
-**The shell names the four store paths it provides** (`ADWAITA_LIB`, `ADWAITA_DEV`, `GTK_LIB`,
-`GTK_DEV`) and the fetch scripts prefer them. They used to glob `/nix/store`, which sorts by
-hash rather than by version, so `01` read libadwaita 1.9.0 while `04` read 1.9.3 — the metrics
-and the props described different releases. `pkg-config` was meant to answer first but nix does
-not put a multi-output package's `.pc` files on `PKG_CONFIG_PATH` here, so the flake states them
-outright.
-
-## Layout
-
-```
-bin/                       the pipeline, numbered in call order; each runs bare
-Gemfile, gemset.nix        the one gem the scripts need, for bundlerEnv
-vendor/adwaita/            the extracted stylesheets, the class map, the component list
-vendor/gir/                the introspection data, and the widget schemas
-lint/                      the oxlint plugin, its declaration and its generated rule file
-registry.json              the registry index: one entry per component
-registry/adwaita/ui/       the components
-registry/adwaita/lib/      cn()
-registry/adwaita/adwaita.css   the variables the components read
-public/r/                  `shadcn build` output, gitignored
-```
-
-`registry.json` is the source of truth and `shadcn build` compiles it into `public/r/`: one
-JSON per item plus an index, which is what the CLI fetches. Serve `public/` from anything.
-
-## The component trees
-
-```bash
-bin/06-component-trees > vendor/adwaita/trees.json
-```
-
-**The toolkit ships the trees**, which is why none of this is guessed. A composite widget in GTK
-is declared in XML, and that XML is in the same GResource bundle as the stylesheet. So
-`AdwActionRow` is not a thing anybody has to work out:
-
-```
-ActionRow
-  slot child:
-    Box.header
-      Box.prefixes
-      Image.icon
-      Box.title
-        Label.title
-        Label.subtitle
-      Box.suffixes
-  GestureClick
-```
-
-**And GTK has no anonymous elements.** There is no `<div>` and no `<span>`: everything which
-renders is a widget with a name. That is what makes a complete port generable — the leaf of
-every tree is a widget we can name, so there is no point at which somebody has to decide what a
-thing "should" be.
-
-**Parent and child are two different relationships, and the templates distinguish them.**
-`<property name="child">` wraps one object: a named slot holding a single widget. `<child>` is
-an ordinary child and a parent may have many. Where the surrounding object carries a style
-class, that class *is* the position — `Box.prefixes` and `Box.suffixes` are ActionRow's two, and
-both already have their own Tailwind classes from pass 02.
-
-## Generating the components
-
-```bash
-bin/11-generate-components      # one .tsx per component, props and classes derived
-```
-
-Everything that can be derived is: the prop names, their TypeScript types, the enum unions they
-are drawn from, and the `cn()` call with Adwaita's measurements in it. What is left is one
-`<div>` per file to replace with the markup it should have been.
-
-**It does not overwrite.** The moment somebody replaces that `<div>`, the file stops being
-generated output, so a file which exists is left exactly as it is. Re-running adds what is
-missing and touches nothing else, which is what makes it safe after a release bump brings new
-widgets. `--force` overwrites, and throws away hand-written markup.
-
-**Props are factored the way GTK factors them.** `Gtk.Widget` declares thirty writable
-properties — `visible`, `sensitive`, `tooltipText`, the expand and align pairs — and every
-widget has them. Repeating those in fifty-four interfaces would bury the five or ten which are
-actually the component's own, so they live in one `WidgetProps` and each component extends it:
-`ActionRow` adds thirteen, `Button` six, `Switch` two. Read-only properties are left out, since
-a prop which cannot be written is not a prop.
-
-A flags prop is an array of its union — `inputHints?: InputHints[]` — because a bitfield is
-several members at once.
-
-## Adding a component
-
-1. Find it in `vendor/adwaita/components.json`, which carries its variants, its states and
-   every class it needs.
-2. Cross-check against `vendor/adwaita/widgets.json` if the context matters.
-3. Write it under `registry/adwaita/ui/`, with the measurements from the map rather than from
-   taste.
-4. Add it to `registry.json`, with its `registryDependencies` on `adwaita-theme`.
-5. `pnpm registry:build`.
-
-The source ships as source. There is no bundler here on purpose: a registry distributes files
-the CLI copies into a project, and a built artefact is the one thing it cannot use.
+- [ ] AboutDialog (`about-dialog`)
+- [ ] AboutWindow (`about-window`)
+- [ ] ActionBar (`action-bar`)
+- [ ] ActionRow (`action-row`)
+- [ ] AdaptivePreview (`adaptive-preview`)
+- [ ] AlertDialog (`alert-dialog`)
+- [ ] AppChooserButton (`app-chooser-button`)
+- [ ] AppNotification (`app-notification`)
+- [ ] Avatar (`avatar`)
+- [ ] Banner (`banner`)
+- [ ] Bin (`bin`)
+- [ ] BottomSheet (`bottom-sheet`)
+- [ ] Box (`box`)
+- [ ] BreakpointBin (`breakpoint-bin`)
+- [ ] Button (`button`)
+- [ ] ButtonContent (`button-content`)
+- [ ] ButtonRow (`button-row`)
+- [ ] Calendar (`calendar`)
+- [ ] Card (`card`)
+- [ ] CheckButton (`check-button`)
+- [ ] Clamp (`clamp`)
+- [ ] ClampScrollable (`clamp-scrollable`)
+- [ ] Close (`close`)
+- [ ] ColorButton (`color-button`)
+- [ ] Colorswatch (`colorswatch`)
+- [ ] ColumnView (`column-view`)
+- [ ] ComboBox (`combo-box`)
+- [ ] ComboRow (`combo-row`)
+- [ ] Dialog (`dialog`)
+- [ ] DropDown (`drop-down`)
+- [ ] EditableLabel (`editable-label`)
+- [ ] Emoji (`emoji`)
+- [ ] Entry (`entry`)
+- [ ] EntryRow (`entry-row`)
+- [ ] Expander (`expander`)
+- [ ] ExpanderRow (`expander-row`)
+- [ ] FileChooserWidget (`file-chooser-widget`)
+- [ ] Flap (`flap`)
+- [ ] FlowBox (`flow-box`)
+- [ ] FlowBoxChild (`flow-box-child`)
+- [ ] FontButton (`font-button`)
+- [ ] Frame (`frame`)
+- [ ] Grid (`grid`)
+- [ ] GridView (`grid-view`)
+- [ ] HeaderBar (`header-bar`)
+- [ ] IconView (`icon-view`)
+- [ ] Image (`image`)
+- [ ] InfoBar (`info-bar`)
+- [ ] InlineViewSwitcher (`inline-view-switcher`)
+- [ ] InspectorPage (`inspector-page`)
+- [ ] Keycap (`keycap`)
+- [ ] Label (`label`)
+- [ ] Leaflet (`leaflet`)
+- [ ] LevelBar (`level-bar`)
+- [ ] LinkButton (`link-button`)
+- [ ] ListBox (`list-box`)
+- [ ] ListBoxRow (`list-box-row`)
+- [ ] ListView (`list-view`)
+- [ ] MenuButton (`menu-button`)
+- [ ] MessageDialog (`message-dialog`)
+- [ ] Modelbutton (`modelbutton`)
+- [ ] NavigationPage (`navigation-page`)
+- [ ] NavigationSplitView (`navigation-split-view`)
+- [ ] NavigationView (`navigation-view`)
+- [ ] Notebook (`notebook`)
+- [ ] Osd (`osd`)
+- [ ] Overlay (`overlay`)
+- [ ] OverlaySplitView (`overlay-split-view`)
+- [ ] Paned (`paned`)
+- [ ] Picture (`picture`)
+- [ ] Popover (`popover`)
+- [ ] PopoverMenuBar (`popover-menu-bar`)
+- [ ] PreferencesDialog (`preferences-dialog`)
+- [ ] PreferencesGroup (`preferences-group`)
+- [ ] PreferencesPage (`preferences-page`)
+- [ ] PreferencesRow (`preferences-row`)
+- [ ] PreferencesWindow (`preferences-window`)
+- [ ] ProgressBar (`progress-bar`)
+- [ ] Range (`range`)
+- [ ] Revealer (`revealer`)
+- [ ] Scale (`scale`)
+- [ ] Scrollbar (`scrollbar`)
+- [ ] ScrolledWindow (`scrolled-window`)
+- [ ] SearchBar (`search-bar`)
+- [ ] SearchEntry (`search-entry`)
+- [ ] Separator (`separator`)
+- [ ] ShortcutLabel (`shortcut-label`)
+- [ ] ShortcutsDialog (`shortcuts-dialog`)
+- [ ] Sidebar (`sidebar`)
+- [ ] SpinButton (`spin-button`)
+- [ ] Spinner (`spinner`)
+- [ ] SpinRow (`spin-row`)
+- [ ] SplitButton (`split-button`)
+- [ ] Squeezer (`squeezer`)
+- [ ] Stack (`stack`)
+- [ ] StackSidebar (`stack-sidebar`)
+- [ ] StackSwitcher (`stack-switcher`)
+- [ ] Statusbar (`statusbar`)
+- [ ] StatusPage (`status-page`)
+- [ ] Switch (`switch`)
+- [ ] SwitchRow (`switch-row`)
+- [ ] Tab (`tab`)
+- [ ] TabBar (`tab-bar`)
+- [ ] TabButton (`tab-button`)
+- [ ] TabOverview (`tab-overview`)
+- [ ] TabPage (`tab-page`)
+- [ ] Tabthumbnail (`tabthumbnail`)
+- [ ] TabThumbnail (`tab-thumbnail`)
+- [ ] TabView (`tab-view`)
+- [ ] Text (`text`)
+- [ ] TextView (`text-view`)
+- [ ] Titlebar (`titlebar`)
+- [ ] Toast (`toast`)
+- [ ] ToastOverlay (`toast-overlay`)
+- [ ] ToastWidget (`toast-widget`)
+- [ ] Toggle (`toggle`)
+- [ ] ToggleButton (`toggle-button`)
+- [ ] ToggleGroup (`toggle-group`)
+- [ ] ToolbarView (`toolbar-view`)
+- [ ] Tooltip (`tooltip`)
+- [ ] TreeExpander (`tree-expander`)
+- [ ] TreeView (`tree-view`)
+- [ ] Video (`video`)
+- [ ] Viewport (`viewport`)
+- [ ] ViewStack (`view-stack`)
+- [ ] ViewSwitcher (`view-switcher`)
+- [ ] ViewSwitcherBar (`view-switcher-bar`)
+- [ ] ViewSwitcherButton (`view-switcher-button`)
+- [ ] ViewSwitcherSidebar (`view-switcher-sidebar`)
+- [ ] ViewSwitcherTitle (`view-switcher-title`)
+- [ ] Widget (`widget`)
+- [ ] Window (`window`)
+- [ ] WindowControls (`window-controls`)
+- [ ] WindowHandle (`window-handle`)
+- [ ] WindowTitle (`window-title`)
+- [ ] WrapBox (`wrap-box`)

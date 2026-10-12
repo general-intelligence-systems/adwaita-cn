@@ -14,14 +14,6 @@
 #      Compiles what bin/08-final-components resolved into one flat list: every component, every
 #      variant it can carry, and the props an example of it would write.
 #
-#      NOTHING IS WORKED OUT HERE. The variants are resolved in bin/08-final-components, which is
-#      where the component list and the stylesheet both already are, and a component carries its
-#      own `variants` in final-components.json. This reads them.
-#
-#      THE PROPS ARE THE ONES AN EXAMPLE CAN SHOW. A component accepts around seventy props and
-#      an example wants the two or three which put something on screen, so `example` carries
-#      only those, with a value derived from the prop:
-#
 #      A display-text prop gets its own name, humanised -- `title="Title"`. Which props those are
 #      is declared in SHOWN rather than worked out, because nothing in the introspection data
 #      separates `title` from `decorationLayout`: both are a writable string, and a name rule
