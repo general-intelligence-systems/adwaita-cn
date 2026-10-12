@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "jsPlugins": [
+    "./lint/adwaita-plugin.js"
+  ],
+  "rules": {
+    "adwaita/component-exists": "error",
+    "adwaita/exact-props": "error"
+  }
+}

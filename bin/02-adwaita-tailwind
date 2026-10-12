@@ -1,19 +1,19 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# ADWAITA-TAILWIND(1)                General Commands Manual              ADWAITA-TAILWIND(1)
+# 02-ADWAITA-TAILWIND(1)            General Commands Manual             02-ADWAITA-TAILWIND(1)
 #
 # NAME
-#      bin/adwaita-tailwind — what each Adwaita widget measures, as Tailwind classes
+#      bin/02-adwaita-tailwind — what each Adwaita widget measures, as Tailwind classes
 #
 # SYNOPSIS
-#      bin/adwaita-tailwind [--json] [--contexts] [--all] [pattern ...]
+#      bin/02-adwaita-tailwind [--json] [--contexts] [--all] [pattern ...]
 #
 # DESCRIPTION
 #      Reads the stylesheets under vendor/adwaita/ and writes, as JSON on stdout, the map of
 #      every selector they style to the Tailwind classes which reproduce its metrics.
 #
-#      This is the first of two passes. bin/adwaita-components reads this map and folds it into
+#      This is the first of two passes. bin/03-adwaita-components reads this map and folds it into
 #      the component list.
 #
 #      THIS IS GEOMETRY, NOT COLOUR. A component looks like Adwaita because of its radii, its
@@ -44,21 +44,21 @@
 #              Which release each sheet came from. The metrics move between releases.
 #
 # EXIT STATUS
-#      The bin/adwaita-tailwind utility exits 0 on success, and >0 if an error occurs.
+#      The bin/02-adwaita-tailwind utility exits 0 on success, and >0 if an error occurs.
 #
 # EXAMPLES
 #      The map:
 #
-#            bin/adwaita-tailwind > vendor/adwaita/widgets.json
+#            bin/02-adwaita-tailwind > vendor/adwaita/widgets.json
 #
 #      Both passes:
 #
-#            bin/adwaita-tailwind | bin/adwaita-components > vendor/adwaita/components.json
+#            bin/02-adwaita-tailwind | bin/03-adwaita-components > vendor/adwaita/components.json
 #
 # SEE ALSO
-#      bin/fetch-adwaita
+#      bin/01-fetch-adwaita
 #
-# async-matrix                          October 12, 2026                ADWAITA-TAILWIND(1)
+# async-matrix                          October 12, 2026                02-ADWAITA-TAILWIND(1)
 
 require "json"
 require "set"

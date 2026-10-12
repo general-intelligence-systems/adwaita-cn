@@ -27,15 +27,15 @@ Nothing here is hand-measured, and nothing is copied from a screenshot. Three sc
 order:
 
 ```bash
-bin/fetch-adwaita                                              # the stylesheets
-bin/adwaita-tailwind                > vendor/adwaita/widgets.json     # pass 1
-bin/adwaita-components widgets.json > vendor/adwaita/components.json  # pass 2
+bin/01-fetch-adwaita                                                     # the stylesheets
+bin/02-adwaita-tailwind                > vendor/adwaita/widgets.json     # pass 1
+bin/03-adwaita-components widgets.json > vendor/adwaita/components.json  # pass 2
 ```
 
 Two passes, two outputs. `widgets.json` is one entry per selector; `components.json` is one
 entry per component, which is the list to build from.
 
-**`bin/fetch-adwaita`** extracts the stylesheets rather than downloading them, and the reason
+**`bin/01-fetch-adwaita`** extracts the stylesheets rather than downloading them, and the reason
 is worth knowing. What GNOME publishes is SCSS, which needs a build to become CSS and which
 carries mixins and `@if` rather than values. What a GTK application actually loads is one
 compiled sheet with every variable resolved, and that sheet ships inside the library's
@@ -45,13 +45,13 @@ because Adwaita is only the top half: libadwaita's own, and GTK's `Default` them
 GTK 4 no longer ships an Adwaita of its own — `gtk/theme/` holds `Default` and `Empty`, and
 Adwaita moved out to libadwaita.
 
-**`bin/adwaita-tailwind`** parses both sheets and maps every declaration to the Tailwind classes
+**`bin/02-adwaita-tailwind`** parses both sheets and maps every declaration to the Tailwind classes
 which reproduce it, dropping colour on the way through. Measurements are arbitrary-valued on
 purpose: `rounded-[9px]`, never `rounded-lg`. Tailwind's scale has 8px and 10px either side of
 Adwaita's button radius, and a button one pixel out is the most recognisable way for a port to
 look almost-but-not-Adwaita.
 
-**`bin/adwaita-components`** folds that map into the component list, which is the second pass
+**`bin/03-adwaita-components`** folds that map into the component list, which is the second pass
 because a selector is not a component. `button.flat`, `button.pill` and
 `button.suggested-action` are one component with three variants. `trough`, `slider` and `arrow`
 are render nodes inside a widget, and the web has no element to hang them on. `.title-1` and
@@ -67,13 +67,13 @@ in `components.json` too, each with the reason, so nothing goes missing quietly.
 The classes and their props come from the toolkit too, not from the documentation:
 
 ```bash
-bin/fetch-gir                                     # Gtk-4.0.gir and Adw-1.gir, into vendor/gir/
-bin/gtk-schemas > vendor/gir/schemas.json         # 359 classes, 158 enums
+bin/04-fetch-gir                               # Gtk-4.0.gir and Adw-1.gir, into vendor/gir/
+bin/05-gtk-schemas > vendor/gir/schemas.json   # 348 classes, 158 enums
 ```
 
 A GIR file is GObject introspection data — what language bindings are generated from — so every
 class, every property, its type, its default and whether it is writable are stated by the
-library itself. `bin/gtk-schemas` resolves inheritance, which is the whole reason not to read
+library itself. `bin/05-gtk-schemas` resolves inheritance, which is the whole reason not to read
 the docs instead: `ActionRow` declares six properties and accepts forty-eight, with `title`
 from `Adw.PreferencesRow` and `visible` from `Gtk.Widget`. Each one records which class declared
 it.
@@ -91,10 +91,10 @@ parent. Those three already inherit everything the Gtk class has, so the parent 
 one beyond it and `parentThrough` records what was stepped over. `--qualified` turns
 consolidation off.
 
-`bin/gtk-enums` turns the enumerations into TypeScript:
+`bin/06-gtk-enums` turns the enumerations into TypeScript:
 
 ```bash
-bin/gtk-enums > registry/adwaita/lib/enums.ts     # 137 unions
+bin/06-gtk-enums > registry/adwaita/lib/enums.ts     # 137 unions
 ```
 
 A string-literal union and its value array from one source, because both are wanted and keeping
@@ -119,12 +119,41 @@ boolean, an enumeration becomes its list of values (`Adw.ToolbarStyle` → `flat
 `raised_border`), and a widget or model becomes `node`. Names are given both ways, GTK's
 `subtitle-lines` and React's `subtitleLines`.
 
+## The lint
+
+`bin/07-lint-rules` joins the component list to the schemas and writes `lint/rules.json`, which
+is the one file `lint/adwaita-plugin.js` reads. Two rules, both oxlint JS plugins:
+
+- **`adwaita/component-exists`** — a named import from one of the registry's sources has to be a
+  component the rule file knows.
+- **`adwaita/exact-props`** — a declared component's props have to be its GTK class's props,
+  writable, and an enum prop's literal value has to be one the enum accepts.
+
+**The plugin knows nothing**, and that is the design. An earlier version inferred whether a name
+was *meant* to be a GTK component by how much it resembled one, and reported `<ShellHeader>` as
+a misspelling of `<ListHeader>`. A lint that fires on correct code is worse than no lint, so
+existence is declared in `lint/components.json` rather than guessed, and the plugin is a dumb
+rule-checker with no opinions of its own.
+
+`lint/components.json` is hand-written and is the declaration of intent: 54 components, each
+named with the GTK class it validates against. Thirty-five map to a class by name; the rest do
+not, because a CSS node does not say which class it belongs to — `row` is `Gtk.ListBoxRow`,
+`.boxed-list` is `Adw.PreferencesGroup`, and `.card` is no class at all. A `null` class is a
+style class: it exists, it has no props, and the lint accepts any prop on one rather than
+rejecting every prop.
+
+```bash
+bin/07-lint-rules > lint/rules.json
+pnpm lint
+```
+
 ## Layout
 
 ```
-bin/                       the five scripts above
+bin/                       the pipeline, numbered in call order
 vendor/adwaita/            the extracted stylesheets, the class map, the component list
 vendor/gir/                the introspection data, and the widget schemas
+lint/                      the oxlint plugin, its declaration and its generated rule file
 registry.json              the registry index: one entry per component
 registry/adwaita/ui/       the components
 registry/adwaita/lib/      cn()

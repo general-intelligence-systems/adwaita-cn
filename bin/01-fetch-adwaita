@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# FETCH-ADWAITA(1)                   General Commands Manual                 FETCH-ADWAITA(1)
+# 01-FETCH-ADWAITA(1)               General Commands Manual                01-FETCH-ADWAITA(1)
 #
 # NAME
-#      bin/fetch-adwaita — vendor the Adwaita and GTK stylesheets
+#      bin/01-fetch-adwaita — vendor the Adwaita and GTK stylesheets
 #
 # SYNOPSIS
-#      bin/fetch-adwaita
+#      bin/01-fetch-adwaita
 #
 # DESCRIPTION
 #      Writes the two compiled stylesheets Fractal is drawn with into vendor/adwaita/, which is
-#      what bin/adwaita-tailwind reads.
+#      what bin/02-adwaita-tailwind reads.
 #
 #      THESE ARE EXTRACTED, NOT DOWNLOADED, and that is the point. What GNOME publishes is
 #      SCSS, which needs sass and a build to become CSS, and which carries mixins and `@if`
@@ -38,12 +38,12 @@
 #      vendor/adwaita/VERSIONS
 #
 # EXIT STATUS
-#      The bin/fetch-adwaita utility exits 0 on success, and >0 if an error occurs.
+#      The bin/01-fetch-adwaita utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/adwaita-tailwind, gresource(1)
+#      bin/02-adwaita-tailwind, gresource(1)
 #
-# async-matrix                          October 12, 2026                     FETCH-ADWAITA(1)
+# async-matrix                          October 12, 2026                     01-FETCH-ADWAITA(1)
 
 set -o errexit
 set -o nounset

@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# GTK-SCHEMAS(1)                     General Commands Manual                   GTK-SCHEMAS(1)
+# 05-GTK-SCHEMAS(1)                 General Commands Manual                  05-GTK-SCHEMAS(1)
 #
 # NAME
-#      bin/gtk-schemas — every widget's props, out of the introspection data
+#      bin/05-gtk-schemas — every widget's props, out of the introspection data
 #
 # SYNOPSIS
-#      bin/gtk-schemas [--own] > schemas.json
+#      bin/05-gtk-schemas [--own] > schemas.json
 #
 # DESCRIPTION
 #      Reads the GIR files under vendor/gir/ and writes, as JSON on stdout, one entry per widget
@@ -62,21 +62,21 @@
 #              Which release each file came from. Properties move between releases.
 #
 # EXIT STATUS
-#      The bin/gtk-schemas utility exits 0 on success, and >0 if an error occurs.
+#      The bin/05-gtk-schemas utility exits 0 on success, and >0 if an error occurs.
 #
 # EXAMPLES
 #      The schemas:
 #
-#            bin/gtk-schemas > vendor/gir/schemas.json
+#            bin/05-gtk-schemas > vendor/gir/schemas.json
 #
 #      What ActionRow itself adds:
 #
-#            bin/gtk-schemas --own | jq '.classes.ActionRow.properties | keys'
+#            bin/05-gtk-schemas --own | jq '.classes.ActionRow.properties | keys'
 #
 # SEE ALSO
-#      bin/fetch-gir, bin/adwaita-components
+#      bin/04-fetch-gir, bin/03-adwaita-components
 #
-# adwaita-cn                            October 12, 2026                       GTK-SCHEMAS(1)
+# adwaita-cn                        October 12, 2026                         05-GTK-SCHEMAS(1)
 
 require "json"
 require "rexml/document"
