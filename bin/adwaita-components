@@ -7,12 +7,15 @@
 #      bin/adwaita-components — the component list, out of the class map
 #
 # SYNOPSIS
-#      bin/adwaita-tailwind --json | bin/adwaita-components [--json] [--legacy]
-#      bin/adwaita-components [--json] [--legacy] MAP
+#      bin/adwaita-tailwind | bin/adwaita-components [--legacy] > components.json
+#      bin/adwaita-components [--legacy] MAP > components.json
 #
 # DESCRIPTION
-#      Reads the selector-to-classes map bin/adwaita-tailwind produces and folds it into the
-#      list of components to build.
+#      Reads the selector-to-classes map bin/adwaita-tailwind produces and writes, as JSON on
+#      stdout, the list of components to build: one entry per component, its variants named, its
+#      states listed, and every class it needs carried with it.
+#
+#      This is the second of the two passes.
 #
 #      THE MAP IS NOT THE LIST, which is the whole reason this is a second pass. The map has one
 #      entry per selector, and a selector is not a component three times over:
@@ -36,7 +39,6 @@
 #      entries is worse than one which admits what it does not know.
 #
 # OPTIONS
-#      --json     Emit the component list as JSON, which is what a registry generator reads.
 #      --legacy   Include the GTK 3 widgets, which are excluded by default.
 #
 # EXIT STATUS
@@ -183,7 +185,6 @@ module AdwaitaComponents
   end
 
   def self.run(argv)
-    json = argv.delete("--json")
     legacy = argv.delete("--legacy")
     source = argv.first
 
@@ -213,16 +214,40 @@ module AdwaitaComponents
 
     components = grouped.select{|_node, group| group[:kind] == :component}
 
-    if json
-      puts(JSON.pretty_generate(self.as_items(components)))
-    else
-      self.report(grouped, components)
-    end
+    puts(JSON.pretty_generate(self.as_items(grouped, components)))
   end
 
-  # The component list as the shape a registry generator wants: one entry per component, its
-  # variants named, and every class it needs carried with it.
-  def self.as_items(components)
+  # Why each set-aside group was set aside, carried into the output so the exclusions travel
+  # with the list rather than living only in this script.
+  ASIDES = {
+    typography: "Text styles rather than components: one item carrying all of them.",
+    internal: "Nodes GTK draws inside a widget. The web builds those out of elements with no " \
+              "name of their own, so there is nothing to generate even though they carry real " \
+              "metrics -- read them off the parent in widgets.json.",
+    legacy: "GTK 3 widgets libadwaita still styles and nothing new is built with. Pass " \
+            "--legacy to include them.",
+    unclassified: "Nodes the tables in this script do not mention. Classify them rather than " \
+                  "leaving them here.",
+  }.freeze
+
+  # The component list, plus what was set aside and why. Nothing is dropped silently: a
+  # consumer which cannot see the exclusions cannot argue with them.
+  def self.as_items(grouped, components)
+    {
+      "components" => self.components(components),
+      "excluded" => %i[typography unclassified legacy internal].to_h do |kind|
+        [
+          kind.to_s,
+          {
+            "reason" => ASIDES.fetch(kind),
+            "nodes" => grouped.select{|_node, group| group[:kind] == kind}.keys.sort,
+          },
+        ]
+      end,
+    }
+  end
+
+  def self.components(components)
     components.sort.to_h do |node, group|
       [
         node,
@@ -242,45 +267,6 @@ module AdwaitaComponents
       .map{|selector| selector.delete_prefix(node).delete_prefix(".")}
   end
 
-  def self.report(grouped, components)
-    total = grouped.values.sum{|group| group[:selectors].size}
-
-    puts("# Components")
-    puts
-    puts("#{components.size} components, folded out of #{total} selectors.")
-    puts
-
-    components.sort.each do |node, group|
-      variants = self.variants_of(node, group)
-      states = group[:selectors].values.flat_map(&:keys).uniq - ["base"]
-
-      puts("## `#{node}` — #{group[:name]}")
-      puts
-
-      unless variants.empty?
-        puts("variants: #{variants.map{|variant| "`#{variant}`"}.join(', ')}")
-      end
-
-      unless states.empty?
-        puts("states: #{states.map{|state| "`#{state}`"}.join(', ')}")
-      end
-
-      puts
-    end
-
-    %i[typography unclassified legacy internal].each do |kind|
-      members = grouped.select{|_node, group| group[:kind] == kind}.keys.sort
-
-      if members.empty?
-        next
-      end
-
-      puts("## #{kind} (#{members.size}) — not components")
-      puts
-      puts(members.map{|node| "`#{node}`"}.join(", "))
-      puts
-    end
-  end
 end
 
 AdwaitaComponents.run(ARGV)

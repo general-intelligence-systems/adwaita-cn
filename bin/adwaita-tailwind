@@ -10,8 +10,11 @@
 #      bin/adwaita-tailwind [--json] [--contexts] [--all] [pattern ...]
 #
 # DESCRIPTION
-#      Reads the stylesheets under vendor/adwaita/ and prints, for every widget they style, the
-#      Tailwind classes which reproduce its metrics.
+#      Reads the stylesheets under vendor/adwaita/ and writes, as JSON on stdout, the map of
+#      every selector they style to the Tailwind classes which reproduce its metrics.
+#
+#      This is the first of two passes. bin/adwaita-components reads this map and folds it into
+#      the component list.
 #
 #      THIS IS GEOMETRY, NOT COLOUR. A component looks like Adwaita because of its radii, its
 #      minimum heights, its padding, its focus ring and the easing on its transitions -- not
@@ -31,8 +34,7 @@
 #      With patterns, only widgets whose key matches one of them are printed.
 #
 # OPTIONS
-#      --json       Emit JSON rather than text, for whatever wants to read it.
-#      --contexts   Report each selector context separately rather than merging them.
+#      --contexts   Key by each selector context separately rather than merging them.
 #      --all        Include widgets styled by a single declaration, which are mostly noise.
 #
 # FILES
@@ -45,17 +47,13 @@
 #      The bin/adwaita-tailwind utility exits 0 on success, and >0 if an error occurs.
 #
 # EXAMPLES
-#      Everything:
+#      The map:
 #
-#            bin/adwaita-tailwind
+#            bin/adwaita-tailwind > vendor/adwaita/widgets.json
 #
-#      The widgets behind Fractal's sidebar rows:
+#      Both passes:
 #
-#            bin/adwaita-tailwind row list
-#
-#      As JSON, for a component generator to read:
-#
-#            bin/adwaita-tailwind --json > vendor/adwaita/widgets.json
+#            bin/adwaita-tailwind | bin/adwaita-components > vendor/adwaita/components.json
 #
 # SEE ALSO
 #      bin/fetch-adwaita
@@ -63,9 +61,14 @@
 # async-matrix                          October 12, 2026                ADWAITA-TAILWIND(1)
 
 require "json"
+require "set"
 
 module AdwaitaTailwind
-  SHEETS = %w[vendor/adwaita/adwaita.css vendor/adwaita/gtk-default-light.css].freeze
+  # GTK'S SHEET FIRST, BECAUSE ADWAITA IS LAYERED ON TOP OF IT. Order is the cascade here, and
+  # getting it backwards hands every shared value to GTK: a button came out at GTK's 5px radius
+  # and 4px/9px padding rather than Adwaita's 9px and 5px/10px, which is most of what makes an
+  # Adwaita button look like one.
+  SHEETS = %w[vendor/adwaita/gtk-default-light.css vendor/adwaita/adwaita.css].freeze
 
   # Colour is the one thing a port does not take from here, so it never reaches the output.
   COLOUR = %w[
@@ -402,8 +405,25 @@ module AdwaitaTailwind
     end
   end
 
+  # Whether a rule styles its subject directly rather than inside something else.
+  #
+  # `button { }` is the component. `spinbutton > button { }` and `headerbar button { }` are that
+  # component somewhere particular, and folding them together is how `button` ended up claiming
+  # a 5px radius it does not have: the contexts outnumber the bare rule and the last one wins.
+  def self.bare?(rule)
+    rule.context.sub(/(::?[a-z-]+(?:\([^)]*\))?)+\z/, "") == rule.subject
+  end
+
   # Fold the rules into one declaration set per widget and state, last writer winning.
   def self.collect(rules, contexts:)
+    # A widget which is ever styled on its own is described by those rules alone. One which is
+    # only ever styled inside something else -- a row inside a boxed list, say -- has nothing
+    # else to go on, so for those the contexts are all there is.
+    unless contexts
+      direct = rules.select{|rule| self.bare?(rule)}.map(&:subject).to_set
+      rules = rules.select{|rule| !direct.include?(rule.subject) || self.bare?(rule)}
+    end
+
     {}.tap do |widgets|
       rules.each do |rule|
         states = rule.states.filter_map{|state| STATES[state]}
@@ -440,46 +460,8 @@ module AdwaitaTailwind
     end
   end
 
-  # What the Fractal catalog comments in app/ call these, where there is a name worth knowing.
-  WIDGETS = {
-    "row" => "Gtk.ListBoxRow / Adw.ActionRow",
-    "row.activatable" => "Adw.ActionRow, clickable",
-    "list" => "Gtk.ListBox",
-    "list.boxed-list" => "Adw.PreferencesGroup's list",
-    "headerbar" => "Adw.HeaderBar",
-    "popover" => "Gtk.Popover",
-    "popover.menu" => "Gtk.PopoverMenu",
-    "avatar" => "Adw.Avatar",
-    "button" => "Gtk.Button",
-    "button.suggested-action" => "Gtk.Button, suggested",
-    "button.destructive-action" => "Gtk.Button, destructive",
-    "button.pill" => "Gtk.Button, pill",
-    "button.circular" => "Gtk.Button, circular",
-    "entry" => "Gtk.Entry",
-    "switch" => "Gtk.Switch",
-    "check" => "Gtk.CheckButton",
-    "radio" => "Gtk.CheckButton, radio",
-    ".card" => "the card style class",
-    ".toolbar" => "Gtk.ActionBar / Adw.ToolbarView bars",
-    "statuspage" => "Adw.StatusPage",
-    "banner" => "Adw.Banner",
-    "toast" => "Adw.Toast",
-    "tabbar" => "Adw.TabBar",
-    "window" => "Adw.ApplicationWindow",
-    "scrollbar" => "Gtk.Scrollbar",
-    "separator" => "Gtk.Separator",
-    "label" => "Gtk.Label",
-    "spinner" => "Adw.Spinner",
-    "progressbar" => "Gtk.ProgressBar",
-    "tooltip" => "Gtk.Tooltip",
-    "dialog" => "Adw.Dialog",
-    "navigation-view" => "Adw.NavigationView",
-    "toggle" => "Adw.ToggleGroup's toggle",
-  }.freeze
-
   def self.run(argv)
     root = File.expand_path("..", __dir__)
-    json = argv.delete("--json")
     contexts = argv.delete("--contexts")
     all = argv.delete("--all")
     patterns = argv
@@ -512,11 +494,7 @@ module AdwaitaTailwind
       ]
     end
 
-    if json
-      puts(JSON.pretty_generate(rendered))
-    else
-      self.report(root, rendered)
-    end
+    puts(JSON.pretty_generate(rendered))
   end
 
   # The expanded sides recomposed, then everything else mapped one by one.
@@ -544,42 +522,6 @@ module AdwaitaTailwind
     end.uniq
   end
 
-  def self.report(root, rendered)
-    versions = File.read(File.join(root, "vendor/adwaita/VERSIONS")).lines.map{|line| line.strip.squeeze(" ")}
-
-    puts("# Adwaita widgets as Tailwind classes")
-    puts
-    puts("Generated by bin/adwaita-tailwind from #{versions.join(', ')}.")
-    puts
-    puts("Geometry only: every colour declaration is dropped, because what makes a component")
-    puts("look like Adwaita is its radii, heights, padding, focus ring and easing.")
-    puts
-
-    rendered.each do |key, variants|
-      name = WIDGETS[key]
-
-      puts("## `#{key}`#{name ? " — #{name}" : ''}")
-      puts
-
-      variants.each do |variant, classes|
-        if classes.empty?
-          next
-        end
-
-        if variant == "base"
-          prefix = ""
-        else
-          prefix = "#{variant}:"
-        end
-
-        puts("#{variant}:")
-        puts("```")
-        puts(classes.map{|class_name| "#{prefix}#{class_name}"}.join(" "))
-        puts("```")
-        puts
-      end
-    end
-  end
 end
 
 AdwaitaTailwind.run(ARGV)

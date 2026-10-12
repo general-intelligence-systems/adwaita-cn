@@ -27,10 +27,13 @@ Nothing here is hand-measured, and nothing is copied from a screenshot. Three sc
 order:
 
 ```bash
-bin/fetch-adwaita                                    # the stylesheets, into vendor/adwaita/
-bin/adwaita-tailwind --json > map.json               # selector -> Tailwind classes
-bin/adwaita-components map.json                      # the map, folded into components
+bin/fetch-adwaita                                              # the stylesheets
+bin/adwaita-tailwind                > vendor/adwaita/widgets.json     # pass 1
+bin/adwaita-components widgets.json > vendor/adwaita/components.json  # pass 2
 ```
+
+Two passes, two outputs. `widgets.json` is one entry per selector; `components.json` is one
+entry per component, which is the list to build from.
 
 **`bin/fetch-adwaita`** extracts the stylesheets rather than downloading them, and the reason
 is worth knowing. What GNOME publishes is SCSS, which needs a build to become CSS and which
@@ -56,8 +59,8 @@ are render nodes inside a widget, and the web has no element to hang them on. `.
 GTK node name does not, and it reports anything the tables do not mention rather than dropping
 it.
 
-From 348 selectors that leaves **58 components**, 20 typography classes, and 77 internal nodes
-set aside.
+From 340 selectors that leaves **57 components**, with 98 nodes set aside. The exclusions are
+in `components.json` too, each with the reason, so nothing goes missing quietly.
 
 ## Layout
 
@@ -76,8 +79,9 @@ JSON per item plus an index, which is what the CLI fetches. Serve `public/` from
 
 ## Adding a component
 
-1. Find it in the component list: `bin/adwaita-tailwind --json | bin/adwaita-components`.
-2. Read its classes out of the map: `bin/adwaita-tailwind <node>`.
+1. Find it in `vendor/adwaita/components.json`, which carries its variants, its states and
+   every class it needs.
+2. Cross-check against `vendor/adwaita/widgets.json` if the context matters.
 3. Write it under `registry/adwaita/ui/`, with the measurements from the map rather than from
    taste.
 4. Add it to `registry.json`, with its `registryDependencies` on `adwaita-theme`.

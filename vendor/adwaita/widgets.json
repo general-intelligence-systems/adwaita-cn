@@ -1,0 +1,3515 @@
+{
+  "*": {
+    "base": [
+      "py-0.5",
+      "px-1.5"
+    ]
+  },
+  ".app-notification": {
+    "base": [
+      "p-2.5",
+      "gap-[10px]",
+      "rounded-[0_0_15px_15px]"
+    ]
+  },
+  ".app-version": {
+    "base": [
+      "py-[3px]",
+      "px-4.5",
+      "mt-[3px]",
+      "rounded-[999px]"
+    ]
+  },
+  ".apply-button": {
+    "base": [
+      "mx-1.5"
+    ]
+  },
+  ".body": {
+    "base": [
+      "font-normal",
+      "text-[110%]",
+      "leading-[140%]"
+    ]
+  },
+  ".bottom-bar.raised": {
+    "base": [
+      "transition-[background-color]",
+      "duration-200",
+      "ease-[ease-out]",
+      "shadow-[0_-1px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent),0_-2px_4px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent)]"
+    ]
+  },
+  ".box": {
+    "base": [
+      "py-0",
+      "px-[1px]",
+      "shadow-none"
+    ]
+  },
+  ".boxed-list": {
+    "base": [
+      "rounded-[8px]"
+    ]
+  },
+  ".caption": {
+    "base": [
+      "font-normal",
+      "text-[82%]",
+      "leading-[140%]"
+    ]
+  },
+  ".caption-heading": {
+    "base": [
+      "font-bold",
+      "text-[82%]"
+    ]
+  },
+  ".card": {
+    "base": [
+      "rounded-[12px]",
+      "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-1px]"
+    ]
+  },
+  ".child": {
+    "base": [
+      "px-4.5",
+      "mt-2"
+    ]
+  },
+  ".close": {
+    "base": [
+      "p-1",
+      "ml-1",
+      "mr-2.5",
+      "shadow-none",
+      "min-w-4.5",
+      "min-h-4.5",
+      "rounded-full",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[state=checked]": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  ".collapse-spacing": {
+    "base": [
+      "py-[3px]"
+    ]
+  },
+  ".combo-searchbar": {
+    "base": [
+      "m-1.5"
+    ]
+  },
+  ".content-pane": {
+    "base": [
+      "transition-[background-color]",
+      "duration-200",
+      "ease-[ease-out]",
+      "shadow-[inset_1px_0_var(--secondary-sidebar-border-color)]"
+    ]
+  },
+  ".default-decoration.titlebar": {
+    "base": [
+      "p-1",
+      "min-h-7"
+    ]
+  },
+  ".device-view": {
+    "base": [
+      "pt-[var(--top-bezel)]",
+      "pb-[var(--bottom-bezel)]",
+      "px-[var(--side-bezel)]",
+      "m-0.5",
+      "shadow-[0_0_0_2px_RGB(255_255_255/15%)]",
+      "rounded-[var(--top-device-corner-radius)_var(--top-device-corner-radius)_var(--bottom-device-corner-radius)_var(--bottom-device-corner-radius)]",
+      "opacity-100"
+    ]
+  },
+  ".device-view.custom": {
+    "base": [
+      "p-0",
+      "m-0",
+      "rounded-none",
+      "shadow-[0_0_14px_2px_RGB(0_0_6/3%),0_0_5px_2px_RGB(0_0_6/10%),0_0_0_1px_RGB(0_0_0/5%)]"
+    ]
+  },
+  ".dialog-action-area": {
+    "base": [
+      "m-1.5",
+      "gap-[6px]"
+    ]
+  },
+  ".dialog-action-box": {
+    "base": [
+      "m-3",
+      "border-none"
+    ],
+    "disabled": [],
+    "data-[selected]": [
+      "rounded-[9px]"
+    ]
+  },
+  ".document": {
+    "base": [
+      "font-[var(--document-font-family)]",
+      "text-[var(--document-font-size)]",
+      "leading-[140%]"
+    ]
+  },
+  ".drawing": {
+    "base": [
+      "p-0"
+    ]
+  },
+  ".dropdown-searchbar": {
+    "base": [
+      "p-1.5"
+    ]
+  },
+  ".edit-icon": {
+    "base": [
+      "p-[5px]",
+      "mx-1.5",
+      "min-w-6",
+      "min-h-6"
+    ],
+    "disabled": [
+      "opacity-30"
+    ]
+  },
+  ".editable-area": {
+    "base": [
+      "py-0",
+      "px-1.5"
+    ]
+  },
+  ".emoji-searchbar": {
+    "base": [
+      "p-1.5",
+      "gap-[6px]"
+    ]
+  },
+  ".emoji-toolbar": {
+    "base": [
+      "p-[3px]",
+      "gap-[6px]"
+    ]
+  },
+  ".end-action": {
+    "base": [
+      "py-[3px]",
+      "px-0"
+    ]
+  },
+  ".error": {
+    "base": []
+  },
+  ".heading": {
+    "base": [
+      "font-bold",
+      "text-[110%]"
+    ]
+  },
+  ".heading-bin": {
+    "base": [
+      "px-4.5"
+    ]
+  },
+  ".icon": {
+    "base": [
+      "mt-[9px]",
+      "mb-3",
+      "mx-1.5"
+    ],
+    "disabled": [
+      "opacity-0"
+    ]
+  },
+  ".indicator": {
+    "base": [
+      "p-[5px]",
+      "mx-1.5",
+      "min-w-[1.6em]",
+      "min-h-[1.6em]",
+      "opacity-30",
+      "rounded-[999px]",
+      "font-bold",
+      "text-[smaller]"
+    ]
+  },
+  ".indicator.dot": {
+    "base": [
+      "min-w-2",
+      "min-h-2"
+    ]
+  },
+  ".keycap": {
+    "base": [
+      "p-1.5",
+      "mt-0.5",
+      "min-w-5",
+      "min-h-[25px]",
+      "rounded-[6px]",
+      "shadow-[inset_0_-2px_var(--card-shade-color)]",
+      "text-[smaller]"
+    ]
+  },
+  ".large-title": {
+    "base": [
+      "font-light",
+      "text-[24pt]"
+    ]
+  },
+  ".message-area": {
+    "base": [
+      "pt-6",
+      "pb-[9px]",
+      "gap-[18px]"
+    ]
+  },
+  ".monospace": {
+    "base": [
+      "font-[var(--monospace-font-family)]",
+      "text-[var(--monospace-font-size)]"
+    ]
+  },
+  ".navigation-sidebar": {
+    "base": [
+      "py-1.5",
+      "px-0",
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  ".new-tab-button": {
+    "base": [
+      "m-4.5"
+    ]
+  },
+  ".osd": {
+    "base": []
+  },
+  ".prefixes": {
+    "base": [
+      "mx-1.5",
+      "gap-[6px]"
+    ]
+  },
+  ".response-area": {
+    "base": [
+      "pt-[9px]",
+      "pb-4.5",
+      "px-4.5",
+      "gap-[12px]"
+    ]
+  },
+  ".row-header": {
+    "base": [
+      "p-0.5"
+    ]
+  },
+  ".shortcut-row": {
+    "base": [
+      "py-[9px]",
+      "px-3",
+      "min-h-9"
+    ]
+  },
+  ".shortcuts-search-results": {
+    "base": [
+      "m-5",
+      "gap-[24px]"
+    ]
+  },
+  ".sidebar": {
+    "base": []
+  },
+  ".sidebar-button": {
+    "base": [
+      "opacity-70"
+    ],
+    "hover": [
+      "opacity-100"
+    ],
+    "active": [
+      "opacity-100"
+    ]
+  },
+  ".sidebar-pane": {
+    "base": [
+      "transition-[background-color]",
+      "duration-200",
+      "ease-[ease-out]",
+      "shadow-[inset_1px_0_var(--sidebar-border-color)]"
+    ]
+  },
+  ".sidebar.left": {
+    "base": []
+  },
+  ".sidebar.right": {
+    "base": []
+  },
+  ".start-action": {
+    "base": [
+      "py-[3px]",
+      "px-0"
+    ]
+  },
+  ".subtitle": {
+    "base": [
+      "py-1.5",
+      "px-0",
+      "opacity-100",
+      "text-[var(--monospace-font-size)]",
+      "font-inherit",
+      "leading-[140%]",
+      "font-[var(--monospace-font-family)]"
+    ]
+  },
+  ".success": {
+    "base": []
+  },
+  ".suffixes": {
+    "base": [
+      "mx-1.5",
+      "gap-[6px]"
+    ]
+  },
+  ".tab-unpin-icon": {
+    "base": [
+      "m-1.5",
+      "min-w-6",
+      "min-h-6"
+    ]
+  },
+  ".tile": {
+    "base": [
+      "p-0",
+      "m-0.5",
+      "rounded-none"
+    ],
+    "active": [],
+    "disabled": [],
+    "data-[selected]": []
+  },
+  ".title": {
+    "base": [
+      "p-0",
+      "mt-0",
+      "mb-3",
+      "mx-3",
+      "font-inherit",
+      "opacity-100",
+      "text-[smaller]"
+    ]
+  },
+  ".title-1": {
+    "base": [
+      "font-extrabold",
+      "text-[181%]"
+    ]
+  },
+  ".title-2": {
+    "base": [
+      "font-extrabold",
+      "text-[136%]"
+    ]
+  },
+  ".title-3": {
+    "base": [
+      "font-bold",
+      "text-[136%]"
+    ]
+  },
+  ".title-4": {
+    "base": [
+      "font-bold",
+      "text-[118%]"
+    ]
+  },
+  ".titlebar": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "min-h-11.5",
+      "border-b-[1px]",
+      "border-solid",
+      "rounded-none",
+      "duration-200",
+      "ease-[ease-out]"
+    ]
+  },
+  ".toolbar": {
+    "base": [
+      "p-1.5",
+      "gap-[6px]"
+    ]
+  },
+  ".toolbar.osd": {
+    "base": [
+      "p-3",
+      "rounded-[15px]"
+    ]
+  },
+  ".top-bar.raised": {
+    "base": [
+      "transition-[background-color]",
+      "duration-200",
+      "ease-[ease-out]",
+      "shadow-[0_1px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent),0_2px_4px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent)]"
+    ]
+  },
+  ".view": {
+    "base": [],
+    "disabled": [],
+    "data-[selected]": [
+      "rounded-[9px]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-[9px]"
+    ],
+    "disabled:data-[selected]": []
+  },
+  ".view.content-view.check": {
+    "base": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ]
+  },
+  ".warning": {
+    "base": []
+  },
+  "accelerator": {
+    "base": [
+      "mx-3"
+    ]
+  },
+  "arrow": {
+    "base": [
+      "p-1",
+      "m-[-5px]",
+      "min-h-4",
+      "min-w-4",
+      "rounded-none",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-none",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "opacity-30",
+      "font-bold"
+    ],
+    "hover": [
+      "shadow-none",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "shadow-none",
+      "duration-[50ms]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:active": [
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "shadow-none",
+      "duration-[50ms]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "data-[state=checked]:hover": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:active": [
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "shadow-none"
+    ]
+  },
+  "arrow.arrow-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "arrow.flat": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "arrow.image-button": {
+    "base": [
+      "px-[5px]",
+      "min-w-6"
+    ]
+  },
+  "arrow.image-text-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "arrow.keyboard-activating": {
+    "base": [
+      "shadow-none",
+      "duration-[50ms]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "arrow.left": {
+    "base": [
+      "ml--0.5",
+      "mr-1.5"
+    ]
+  },
+  "arrow.right": {
+    "base": [
+      "ml-1.5",
+      "mr--0.5"
+    ]
+  },
+  "arrow.text-button": {
+    "base": [
+      "px-[17px]"
+    ]
+  },
+  "arrow.text-button.image-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "avatar": {
+    "base": [
+      "rounded-full",
+      "font-bold"
+    ]
+  },
+  "block": {
+    "base": [
+      "mt-[1px]",
+      "mb-0.5",
+      "ml-0",
+      "mr-0.5",
+      "min-h-6.5",
+      "rounded-none",
+      "min-w-2"
+    ],
+    "last": [
+      "mb-0",
+      "mr-0",
+      "rounded-[0_0_99px_99px]"
+    ],
+    "first": [
+      "rounded-[99px_99px_0_0]"
+    ]
+  },
+  "box": {
+    "base": [
+      "pt-1.5",
+      "pb-[3px]",
+      "px-0",
+      "m-1.5",
+      "gap-[6px]",
+      "border-b-[1px]",
+      "border-solid",
+      "shadow-none",
+      "min-h-9",
+      "font-bold",
+      "text-[82%]"
+    ]
+  },
+  "box.circular-buttons": {
+    "base": [
+      "pt-3",
+      "pb-1.5",
+      "px-3"
+    ]
+  },
+  "box.end": {
+    "base": [
+      "mx-1.5",
+      "gap-[6px]"
+    ]
+  },
+  "box.header": {
+    "base": [
+      "m-1.5",
+      "gap-[0]",
+      "min-h-12.5"
+    ]
+  },
+  "box.inline-buttons": {
+    "base": [
+      "py-0",
+      "px-3"
+    ]
+  },
+  "box.narrow": {
+    "base": [
+      "pt-1",
+      "text-[0.75rem]"
+    ]
+  },
+  "box.start": {
+    "base": [
+      "mx-1.5",
+      "gap-[6px]"
+    ]
+  },
+  "box.title": {
+    "base": [
+      "p-0",
+      "my-1.5",
+      "gap-[3px]",
+      "font-inherit"
+    ]
+  },
+  "box.vertical": {
+    "base": [
+      "my--1.5",
+      "min-h-3"
+    ]
+  },
+  "box.wide": {
+    "base": [
+      "py-0.5",
+      "px-3",
+      "gap-[6px]"
+    ]
+  },
+  "button": {
+    "base": [
+      "py-[5px]",
+      "px-2.5",
+      "min-h-6",
+      "min-w-4",
+      "rounded-[9px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "font-bold"
+    ],
+    "hover": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "shadow-none",
+      "duration-[50ms]"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:active": [
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "shadow-none",
+      "duration-[50ms]"
+    ],
+    "data-[state=checked]:hover": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:active": [
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "shadow-none"
+    ]
+  },
+  "button.arrow-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "button.arrow-button.image-button.down": {
+    "base": [
+      "px-[9px]"
+    ],
+    "last": [
+      "px-[9px]"
+    ],
+    "first": [
+      "px-[9px]"
+    ]
+  },
+  "button.arrow-button.image-button.up": {
+    "last": [
+      "px-[9px]"
+    ],
+    "last:first": [
+      "px-[9px]"
+    ]
+  },
+  "button.card": {
+    "base": [
+      "p-0",
+      "font-inherit",
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
+    ],
+    "hover": [],
+    "active": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-1px]"
+    ],
+    "data-[state=checked]": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.circular": {
+    "base": [
+      "p-0",
+      "min-w-8.5",
+      "min-h-8.5",
+      "rounded-full"
+    ]
+  },
+  "button.circular.image-button.model": {
+    "base": [
+      "p-[11px]",
+      "shadow-[inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "focus": [],
+    "active": [
+      "shadow-none"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [],
+    "data-[state=checked]": [
+      "shadow-none"
+    ],
+    "data-[selected]:active": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.color": {
+    "base": [
+      "p-[5px]"
+    ]
+  },
+  "button.combo": {
+    "base": [
+      "mt-[-1px]",
+      "ml-[-1px]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  "button.destructive-action": {
+    "base": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "shadow-none"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:active": [
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": [],
+    "disabled:data-[state=checked]": [
+      "shadow-none"
+    ]
+  },
+  "button.destructive-action.circular.image-button.model": {
+    "base": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "button.destructive-action.flat": {
+    "base": [
+      "shadow-none"
+    ],
+    "disabled": [
+      "shadow-none"
+    ]
+  },
+  "button.dnd": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ],
+    "data-[selected]": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ]
+  },
+  "button.down": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]"
+    ]
+  },
+  "button.emoji-section": {
+    "base": [
+      "pt-[3px]",
+      "pb-0",
+      "px-0",
+      "border-[3px]",
+      "rounded-none",
+      "min-w-8",
+      "min-h-7",
+      "shadow-none"
+    ],
+    "hover": [],
+    "data-[state=checked]": []
+  },
+  "button.emoji-section.image-button": {
+    "base": [
+      "p-0",
+      "shadow-none",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "min-w-8",
+      "min-h-8",
+      "rounded-full"
+    ],
+    "hover": [],
+    "active": [],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[state=checked]": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.flat": {
+    "base": [
+      "shadow-none",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "shadow-none",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "shadow-none",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[state=checked]": [
+      "shadow-none",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.flat.keyboard-activating": {
+    "base": [
+      "shadow-none",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "button.image-button": {
+    "base": [
+      "px-[5px]",
+      "min-w-6"
+    ]
+  },
+  "button.image-button.destructive-action": {
+    "base": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "button.image-button.down": {
+    "base": [
+      "p-0",
+      "m-0",
+      "min-h-4",
+      "border-solid",
+      "rounded-none",
+      "shadow-none",
+      "min-w-5.5",
+      "font-bold",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "border-l-[0]",
+      "border-r-[1px]"
+    ],
+    "last": [
+      "p-0",
+      "my-2.5",
+      "mx-0.5",
+      "rounded-[0_0_9px_9px]",
+      "min-h-7.5",
+      "min-w-7.5",
+      "font-bold",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+      "border-t-[1px]"
+    ],
+    "hover": [
+      "shadow-none"
+    ],
+    "first": [
+      "p-0",
+      "my-2.5",
+      "mx-0.5",
+      "rounded-[9px_9px_0_0]",
+      "min-h-7.5",
+      "min-w-7.5",
+      "font-bold",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+      "border-b-[1px]"
+    ],
+    "active": [
+      "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.2)]"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "hover:last": [],
+    "hover:first": [],
+    "active:last": [],
+    "active:first": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "last:disabled": [],
+    "disabled:last": [],
+    "first:disabled": [],
+    "disabled:first": [],
+    "focus-visible:last": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "focus-visible:first": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[state=checked]": [],
+    "data-[state=checked]:last": [],
+    "data-[state=checked]:first": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": [],
+    "data-[state=checked]:hover:last": [],
+    "data-[state=checked]:hover:first": [],
+    "data-[state=checked]:active:last": [],
+    "data-[state=checked]:active:first": []
+  },
+  "button.image-button.model": {
+    "base": [
+      "p-0",
+      "shadow-none",
+      "min-h-8",
+      "min-w-8",
+      "outline-offset-[4px]"
+    ],
+    "hover": [],
+    "active": [],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [],
+    "data-[state=checked]": [],
+    "data-[selected]:active": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.image-button.suggested-action": {
+    "base": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "button.image-button.up": {
+    "base": [
+      "py-0",
+      "m-0",
+      "min-h-4",
+      "border-solid",
+      "rounded-none",
+      "shadow-none",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "min-w-5.5",
+      "border-l-[0]",
+      "border-r-[1px]"
+    ],
+    "last": [
+      "p-0",
+      "my-2.5",
+      "mx-0.5",
+      "rounded-[0_0_9px_9px]",
+      "min-h-7.5",
+      "min-w-7.5",
+      "font-bold",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+      "border-t-[1px]"
+    ],
+    "hover": [
+      "shadow-none"
+    ],
+    "first": [
+      "rounded-[9px_9px_0_0]",
+      "border-b-[1px]"
+    ],
+    "active": [
+      "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.2)]"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "last:last": [
+      "p-0",
+      "my-2.5",
+      "mx-0.5",
+      "min-h-7.5",
+      "min-w-7.5",
+      "rounded-full",
+      "font-bold",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover:last": [],
+    "last:first": [
+      "p-0",
+      "my-2.5",
+      "mx-0.5",
+      "min-h-7.5",
+      "min-w-7.5",
+      "rounded-full",
+      "font-bold",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]"
+    ],
+    "active:last": [],
+    "last:disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:last": [],
+    "hover:last:first": [],
+    "active:last:first": [],
+    "focus-visible:last": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "last:last:disabled": [],
+    "last:first:disabled": [],
+    "disabled:last:first": [],
+    "data-[state=checked]": [],
+    "data-[state=checked]:last": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": [],
+    "data-[state=checked]:hover:last": [],
+    "data-[state=checked]:last:first": [],
+    "data-[state=checked]:active:last": []
+  },
+  "button.image-text-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "button.image-text-button.image-button.down": {
+    "base": [
+      "px-[9px]"
+    ],
+    "last": [
+      "px-[9px]"
+    ],
+    "first": [
+      "px-[9px]"
+    ]
+  },
+  "button.image-text-button.image-button.up": {
+    "last": [
+      "px-[9px]"
+    ],
+    "last:first": [
+      "px-[9px]"
+    ]
+  },
+  "button.keyboard-activating": {
+    "base": [
+      "shadow-none",
+      "duration-[50ms]"
+    ]
+  },
+  "button.keyboard-activating.sidebar-button": {
+    "base": [
+      "shadow-none",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "button.link": {
+    "base": [
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "font-inherit"
+    ],
+    "hover": [
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]"
+    ],
+    "active": [
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]"
+    ],
+    "disabled": [],
+    "data-[selected]": [],
+    "data-[state=checked]": [
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]"
+    ]
+  },
+  "button.opaque": {
+    "base": [
+      "shadow-none",
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [],
+    "active": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[1px]"
+    ],
+    "data-[state=checked]": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.osd": {
+    "base": [
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "shadow-none"
+    ],
+    "active": [
+      "shadow-none"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[1px]"
+    ],
+    "data-[state=checked]": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.osd.image-button": {
+    "base": [
+      "min-w-7.5"
+    ],
+    "only": [
+      "m-1",
+      "rounded-full",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+    ]
+  },
+  "button.pill": {
+    "base": [
+      "py-2.5",
+      "px-8",
+      "rounded-full"
+    ]
+  },
+  "button.sidebar-button": {
+    "base": [
+      "p-0",
+      "my-[3px]",
+      "shadow-none",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "min-h-6.5",
+      "min-w-6.5",
+      "rounded-full",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "shadow-none",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "shadow-none",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[state=checked]": [
+      "shadow-none",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "button.slider-button": {
+    "base": [
+      "px-0"
+    ]
+  },
+  "button.suggested-action": {
+    "base": [
+      "shadow-none",
+      "duration-[300ms]",
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "shadow-none"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[1px]"
+    ],
+    "disabled:active": [
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": [],
+    "disabled:data-[state=checked]": [
+      "shadow-none"
+    ]
+  },
+  "button.suggested-action.circular.image-button.model": {
+    "base": [
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "button.suggested-action.flat": {
+    "base": [
+      "shadow-none"
+    ],
+    "disabled": [
+      "shadow-none"
+    ]
+  },
+  "button.text-button": {
+    "base": [
+      "px-[17px]"
+    ]
+  },
+  "button.text-button.circular": {
+    "base": [
+      "p-0",
+      "min-w-8",
+      "min-h-8"
+    ]
+  },
+  "button.text-button.image-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "button.text-button.image-button.down": {
+    "base": [
+      "px-[9px]"
+    ],
+    "last": [
+      "px-[9px]"
+    ],
+    "first": [
+      "px-[9px]"
+    ]
+  },
+  "button.text-button.image-button.up": {
+    "last": [
+      "px-[9px]"
+    ],
+    "last:first": [
+      "px-[9px]"
+    ]
+  },
+  "button.toggle": {
+    "base": [
+      "p-0"
+    ],
+    "data-[state=checked]": [
+      "shadow-none"
+    ]
+  },
+  "button.up": {
+    "base": [
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  "button:backdrop.flat": {
+    "base": [
+      "shadow-none",
+      "duration-200",
+      "ease-[ease-out]"
+    ],
+    "active": [
+      "shadow-none"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "disabled:active": [
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "shadow-none"
+    ]
+  },
+  "calendar": {
+    "base": []
+  },
+  "cell": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "check": {
+    "base": [
+      "p-[3px]",
+      "min-h-3.5",
+      "min-w-3.5",
+      "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)]",
+      "rounded-[6px]",
+      "transition-[background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]"
+    ],
+    "active": [
+      "shadow-none"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "indeterminate": [
+      "shadow-none"
+    ],
+    "indeterminate:hover": [],
+    "data-[state=checked]": [
+      "shadow-none"
+    ],
+    "indeterminate:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
+    ],
+    "indeterminate:disabled": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
+    ],
+    "data-[state=checked]:disabled": [
+      "shadow-none"
+    ]
+  },
+  "check.left": {
+    "base": [
+      "ml--0.5",
+      "mr-1.5"
+    ]
+  },
+  "check.right": {
+    "base": [
+      "ml-1.5",
+      "mr--0.5"
+    ]
+  },
+  "checkbutton": {
+    "base": [
+      "p-[3px]",
+      "gap-[4px]",
+      "rounded-[9px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "checkbutton.text-button": {
+    "base": [
+      "p-1"
+    ]
+  },
+  "child": {
+    "base": [
+      "p-[3px]",
+      "m-[3px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "rounded-[9px]"
+    ],
+    "hover": [],
+    "active": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [],
+    "data-[selected]:hover": [],
+    "data-[selected]:active": [],
+    "disabled:data-[selected]": []
+  },
+  "color": {
+    "base": [
+      "min-w-4",
+      "min-h-4",
+      "rounded-[16px]"
+    ],
+    "disabled": [
+      "opacity-0"
+    ]
+  },
+  "colorswatch": {
+    "base": [
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[6px]",
+      "border-none",
+      "shadow-none"
+    ],
+    "last": [
+      "rounded-tr-[9.5px]",
+      "rounded-br-[9.5px]"
+    ],
+    "first": [
+      "rounded-tl-[9.5px]",
+      "rounded-bl-[9.5px]"
+    ],
+    "disabled": [
+      "opacity-50"
+    ],
+    "focus-visible": [
+      "outline-4",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "colorswatch#add-color-button": {
+    "base": [
+      "rounded-[5px_0_0_5px]"
+    ],
+    "only": [
+      "rounded-[5px]"
+    ]
+  },
+  "colorswatch.bottom": {
+    "base": [
+      "rounded-bl-[9.5px]",
+      "rounded-br-[9.5px]"
+    ]
+  },
+  "colorswatch.left": {
+    "base": [
+      "rounded-tl-[9.5px]",
+      "rounded-bl-[9.5px]"
+    ]
+  },
+  "colorswatch.right": {
+    "base": [
+      "rounded-tr-[9.5px]",
+      "rounded-br-[9.5px]"
+    ]
+  },
+  "colorswatch.top": {
+    "base": [
+      "rounded-tl-[9.5px]",
+      "rounded-tr-[9.5px]"
+    ]
+  },
+  "columnview": {
+    "base": [
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-none"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "columnview.view": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "shadow-none"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "rounded-none"
+    ],
+    "data-[selected]:focus": [
+      "rounded-none"
+    ],
+    "disabled:data-[selected]": []
+  },
+  "columnview.view.expander": {
+    "base": [
+      "min-w-4",
+      "min-h-4"
+    ],
+    "hover": [],
+    "data-[selected]": [],
+    "data-[state=checked]": [],
+    "data-[selected]:hover": []
+  },
+  "contents": {
+    "base": [
+      "p-2",
+      "m-0",
+      "shadow-none",
+      "rounded-full",
+      "min-w-5",
+      "min-h-5",
+      "rounded-tr-[0]",
+      "rounded-tl-[0]"
+    ]
+  },
+  "cursor-handle": {
+    "base": [
+      "py-6",
+      "px-5",
+      "shadow-none",
+      "border-none",
+      "min-w-5",
+      "min-h-6"
+    ]
+  },
+  "dndtarget": {
+    "base": [
+      "border-[1px]"
+    ]
+  },
+  "drag-handle": {
+    "base": [
+      "m-[15px]",
+      "min-w-13.5",
+      "min-h-1.5",
+      "rounded-[99px]"
+    ]
+  },
+  "drawing": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "emoji": {
+    "base": [
+      "p-1.5",
+      "text-[x-large]",
+      "rounded-[9px]"
+    ],
+    "focus": [],
+    "hover": [],
+    "active": []
+  },
+  "emoji-completion-row": {
+    "base": [
+      "py-1.5",
+      "px-3",
+      "mb-0.5",
+      "rounded-[9px]"
+    ],
+    "focus": [],
+    "hover": [],
+    "active": []
+  },
+  "entry": {
+    "base": [
+      "px-[9px]",
+      "min-h-8.5",
+      "rounded-[9px]",
+      "gap-[6px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2",
+      "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
+    ],
+    "disabled": []
+  },
+  "entry.error": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2"
+    ]
+  },
+  "entry.flat": {
+    "base": [
+      "p-0.5",
+      "min-h-0",
+      "rounded-none",
+      "shadow-none"
+    ],
+    "disabled": [
+      "p-0.5",
+      "min-h-0",
+      "rounded-none",
+      "shadow-none"
+    ]
+  },
+  "entry.warning": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2"
+    ]
+  },
+  "expander": {
+    "base": [
+      "min-w-4",
+      "min-h-4"
+    ],
+    "disabled": [],
+    "data-[state=checked]": []
+  },
+  "expander-widget": {
+    "base": [
+      "duration-[300ms]",
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "filelistcell": {
+    "base": [
+      "py-1.5",
+      "px-3"
+    ]
+  },
+  "fill": {
+    "base": [
+      "m-[-1px]",
+      "rounded-[99px]",
+      "transition-[background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": []
+  },
+  "flowbox.navigation-sidebar": {
+    "base": [
+      "p-[3px]"
+    ]
+  },
+  "flowboxchild": {
+    "base": [
+      "p-[3px]",
+      "m-[3px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "rounded-[9px]"
+    ],
+    "hover": [],
+    "active": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [],
+    "data-[selected]:hover": [],
+    "data-[selected]:active": [],
+    "disabled:data-[selected]": []
+  },
+  "frame": {
+    "base": [
+      "rounded-[12px]"
+    ]
+  },
+  "grid": {
+    "base": [
+      "pb-[3px]",
+      "pl-[3px]"
+    ]
+  },
+  "gridview": {
+    "base": [
+      "p-[15px]"
+    ]
+  },
+  "gridview.navigation-sidebar": {
+    "base": [
+      "p-[3px]"
+    ]
+  },
+  "header": {
+    "base": [
+      "p-[1px]",
+      "mt-0",
+      "mb-3",
+      "mx-3",
+      "border-[1px]",
+      "min-h-8",
+      "font-bold"
+    ]
+  },
+  "header.button.dnd": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ],
+    "data-[selected]": [
+      "py-0",
+      "px-1.5",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]"
+    ]
+  },
+  "headerbar": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "mx-[-1px]",
+      "min-h-[47px]",
+      "border-b-[1px]",
+      "border-solid",
+      "rounded-none",
+      "transition-[background-color]",
+      "duration-200",
+      "ease-[ease-out]",
+      "shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]"
+    ]
+  },
+  "headerbar.adaptive-mode-flat": {
+    "base": [
+      "shadow-none",
+      "min-h-11.5"
+    ]
+  },
+  "headerbar.default-decoration": {
+    "base": [
+      "p-1",
+      "min-h-[37px]"
+    ]
+  },
+  "headerbar.flat": {
+    "base": [
+      "shadow-none",
+      "min-h-11.5"
+    ]
+  },
+  "headerbar.titlebar": {
+    "base": [
+      "min-h-10",
+      "shadow-none"
+    ]
+  },
+  "highlight": {
+    "base": [
+      "m-[-1px]",
+      "rounded-[99px]",
+      "transition-[background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": []
+  },
+  "iconview": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "shadow-none",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "rounded-[9px]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-[3px]"
+    ],
+    "disabled:data-[selected]": [],
+    "disabled:data-[selected]:focus": []
+  },
+  "iconview.content-view.check": {
+    "base": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "rounded-[5px]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ]
+  },
+  "image.expander-row-arrow": {
+    "base": [
+      "py-1.5",
+      "px-0",
+      "mx-[3px]",
+      "opacity-100",
+      "transition-[-gtk-icon-transform]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": []
+  },
+  "image.osd": {
+    "base": [
+      "min-w-16",
+      "min-h-16",
+      "rounded-[32px]"
+    ]
+  },
+  "image.sidebar-icon": {
+    "base": [
+      "px-2",
+      "opacity-70"
+    ]
+  },
+  "indicator": {
+    "base": [
+      "m-0.5",
+      "min-h-[13px]",
+      "min-w-1.5",
+      "rounded-[100px]"
+    ]
+  },
+  "indicatorbin": {
+    "base": [
+      "px-[calc(11px_-_var(---group-padding))]"
+    ]
+  },
+  "item": {
+    "base": [
+      "py-1",
+      "px-2",
+      "min-h-4",
+      "rounded-[9px]"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "data-[selected]": [
+      "shadow-[inset_0_-3px_#3584e4]"
+    ]
+  },
+  "label": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [],
+    "disabled:data-[selected]": []
+  },
+  "label.day-number": {
+    "base": [
+      "p-[3px]"
+    ],
+    "data-[selected]": [
+      "rounded-[9px]"
+    ],
+    "data-[state=checked]": [
+      "rounded-[9px]"
+    ],
+    "disabled:data-[selected]": []
+  },
+  "label.sidebar-label": {
+    "base": [
+      "px-0.5"
+    ]
+  },
+  "label.subtitle": {
+    "base": [
+      "py-1.5",
+      "px-0",
+      "opacity-0",
+      "text-[smaller]"
+    ]
+  },
+  "label.title": {
+    "base": [
+      "py-1",
+      "px-8",
+      "font-bold",
+      "text-[136%]"
+    ]
+  },
+  "label.today": {
+    "base": [
+      "shadow-[inset_0px_-2px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+    ],
+    "data-[selected]": [
+      "shadow-none"
+    ]
+  },
+  "link": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "font-inherit",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [],
+    "active": [],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": []
+  },
+  "list": {
+    "base": [
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "list.boxed-list": {
+    "base": [
+      "rounded-[12px]",
+      "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]"
+    ]
+  },
+  "list.content": {
+    "base": [
+      "rounded-[12px]",
+      "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]"
+    ]
+  },
+  "list.nested": {
+    "base": [
+      "rounded-bl-[12px]",
+      "rounded-br-[12px]",
+      "border-b-[0]"
+    ]
+  },
+  "listview": {
+    "base": [
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "listview.inline": {
+    "base": [
+      "shadow-none"
+    ],
+    "disabled": []
+  },
+  "marks.bottom": {
+    "base": [
+      "mt-1.5",
+      "mb-[3px]",
+      "ml-1.5",
+      "mr-[3px]"
+    ]
+  },
+  "marks.top": {
+    "base": [
+      "mt-[3px]",
+      "mb-1.5",
+      "ml-[3px]",
+      "mr-1.5"
+    ]
+  },
+  "mask": {
+    "base": [
+      "p-0.5",
+      "min-w-1.5",
+      "min-h-[13px]",
+      "rounded-[100px]"
+    ]
+  },
+  "menubar": {
+    "base": [
+      "pt-0",
+      "pb-[1px]",
+      "px-0",
+      "shadow-[inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+    ]
+  },
+  "modelbutton": {
+    "base": [
+      "py-0",
+      "px-3",
+      "min-h-8",
+      "min-w-10",
+      "rounded-[9px]"
+    ],
+    "hover": [],
+    "active": [],
+    "data-[selected]": [],
+    "data-[selected]:active": []
+  },
+  "modelbutton.flat": {
+    "base": [
+      "px-[5px]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "min-h-6.5",
+      "rounded-[5px]"
+    ],
+    "hover": [],
+    "disabled": [],
+    "data-[selected]": [],
+    "disabled:data-[selected]": []
+  },
+  "notebook": {
+    "base": [
+      "duration-[300ms]"
+    ]
+  },
+  "outline": {
+    "base": [
+      "shadow-[inset_1px_0_RGB(255_255_255/7%),inset_-1px_0_RGB(255_255_255/7%),inset_0_1px_RGB(255_255_255/7%)]",
+      "transition-[border-radius]",
+      "duration-100",
+      "ease-[ease-out]",
+      "rounded-tl-[0]",
+      "rounded-tr-[0]"
+    ]
+  },
+  "overlay": {
+    "base": [
+      "py-[5px]",
+      "px-2.5",
+      "rounded-[9.5px]",
+      "rounded-tl-[9px]",
+      "rounded-tr-[9px]",
+      "rounded-bl-[9px]",
+      "rounded-br-[9px]",
+      "shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+      "min-h-6",
+      "min-w-4",
+      "font-bold",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [],
+    "active": [],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[state=checked]": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "overlay.arrow-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "overlay.image-button": {
+    "base": [
+      "px-[5px]",
+      "min-w-6"
+    ]
+  },
+  "overlay.image-text-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "overlay.text-button": {
+    "base": [
+      "px-[17px]"
+    ]
+  },
+  "overlay.text-button.image-button": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "overshoot.bottom": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "overshoot.left": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "overshoot.right": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "overshoot.top": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "placessidebar": {
+    "base": [
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "plane": {
+    "base": [
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[6px]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[2px]"
+    ]
+  },
+  "popover.menu": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "progress": {
+    "base": [
+      "mt-[-1px]",
+      "mb-[3px]",
+      "mx-0",
+      "rounded-[99px]",
+      "border-b-0.5",
+      "border-none",
+      "shadow-none",
+      "min-h-0.5",
+      "min-w-0.5",
+      "transition-[background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": []
+  },
+  "progress.bottom": {
+    "base": [
+      "rounded-br-[99px]",
+      "rounded-bl-[99px]"
+    ]
+  },
+  "progress.left": {
+    "base": [
+      "rounded-tl-[99px]",
+      "rounded-bl-[99px]"
+    ]
+  },
+  "progress.right": {
+    "base": [
+      "rounded-tr-[99px]",
+      "rounded-br-[99px]"
+    ]
+  },
+  "progress.top": {
+    "base": [
+      "rounded-tr-[99px]",
+      "rounded-tl-[99px]"
+    ]
+  },
+  "progressbar": {
+    "base": [
+      "text-[smaller]"
+    ],
+    "disabled": []
+  },
+  "progressbar.osd": {
+    "base": [
+      "min-w-0.5",
+      "min-h-0.5"
+    ]
+  },
+  "radio": {
+    "base": [
+      "p-[3px]",
+      "min-h-3.5",
+      "min-w-3.5",
+      "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)]",
+      "rounded-full",
+      "transition-[background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]"
+    ],
+    "active": [
+      "shadow-none"
+    ],
+    "disabled": [
+      "shadow-none"
+    ],
+    "indeterminate": [
+      "shadow-none"
+    ],
+    "indeterminate:hover": [],
+    "data-[state=checked]": [
+      "shadow-none"
+    ],
+    "indeterminate:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
+    ],
+    "indeterminate:disabled": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]"
+    ],
+    "data-[state=checked]:disabled": [
+      "shadow-none"
+    ]
+  },
+  "radio.left": {
+    "base": [
+      "ml--0.5",
+      "mr-1.5"
+    ]
+  },
+  "radio.right": {
+    "base": [
+      "ml-1.5",
+      "mr--0.5"
+    ]
+  },
+  "revealer": {
+    "base": [
+      "py-0",
+      "px-3.5"
+    ]
+  },
+  "row": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [],
+    "disabled:data-[selected]": []
+  },
+  "row.activatable": {
+    "hover": [],
+    "active": [
+      "shadow-[inset_0_2px_2px_-2px_rgba(0,0,0,0.2)]"
+    ],
+    "data-[selected]:hover": [],
+    "data-[selected]:active": [
+      "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.5)]"
+    ]
+  },
+  "row.button.destructive-action": {
+    "base": []
+  },
+  "row.button.suggested-action": {
+    "base": [
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "opacity-0"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[1px]"
+    ]
+  },
+  "row.entry": {
+    "base": [
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "row.entry.focused": {
+    "base": [
+      "outline-2",
+      "outline-offset-[-1px]"
+    ]
+  },
+  "row.entry.monospace": {
+    "base": [
+      "font-[inherit]",
+      "text-[inherit]"
+    ]
+  },
+  "row.expander": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "row.header": {
+    "base": [
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "font-[inherit]",
+      "text-[inherit]",
+      "rounded-tl-[12px]",
+      "rounded-tr-[12px]",
+      "rounded-bl-[12px]",
+      "rounded-br-[12px]",
+      "border-b-[0]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-1px]"
+    ]
+  },
+  "row.property.monospace": {
+    "base": [
+      "font-[inherit]",
+      "text-[inherit]"
+    ]
+  },
+  "row.separator": {
+    "base": []
+  },
+  "row.sidebar-placeholder-row": {
+    "base": [
+      "py-0",
+      "px-2",
+      "min-h-0.5"
+    ]
+  },
+  "row.spin": {
+    "base": [
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "row.spin.focused": {
+    "base": [
+      "outline-2",
+      "outline-offset-[-1px]"
+    ]
+  },
+  "row:last-child.expander": {
+    "last": [
+      "rounded-bl-[12px]",
+      "rounded-br-[12px]",
+      "border-b-[0]"
+    ]
+  },
+  "scale": {
+    "base": [
+      "p-3",
+      "min-h-2.5",
+      "min-w-2.5",
+      "duration-[300ms]"
+    ],
+    "disabled": []
+  },
+  "scale.color": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "scale.color.fine-tune": {
+    "base": [
+      "p-0.5"
+    ]
+  },
+  "scale.color.fine-tune.horizontal": {
+    "base": [
+      "py-0.5"
+    ]
+  },
+  "scale.color.fine-tune.vertical": {
+    "base": [
+      "px-0.5"
+    ]
+  },
+  "scrollbar.overlay-indicator": {
+    "base": [
+      "p-0",
+      "shadow-none"
+    ]
+  },
+  "scrollbar.vertical": {
+    "base": [
+      "pt-1.5",
+      "mt-[-1px]"
+    ]
+  },
+  "separator": {
+    "base": [
+      "min-w-[1px]",
+      "min-h-[1px]"
+    ]
+  },
+  "separator.horizontal": {
+    "base": [
+      "mt-[calc(9px]",
+      "mb-[var(---group-padding))]",
+      "ml-[1px]",
+      "mr-[-]"
+    ]
+  },
+  "separator.vertical": {
+    "base": [
+      "mt-[1px]",
+      "mb-[-]",
+      "ml-[var(---group-padding))]",
+      "mr-[calc(9px]"
+    ]
+  },
+  "separator.wide": {
+    "base": [
+      "p-0",
+      "m-0",
+      "min-w-[5px]",
+      "min-h-[5px]",
+      "shadow-[inset_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+    ]
+  },
+  "shadow": {
+    "base": [
+      "min-w-14",
+      "min-h-14"
+    ]
+  },
+  "sheet": {
+    "base": [
+      "mx-7.5",
+      "shadow-[0_0_14px_2px_RGB(0_0_6/3%),0_0_5px_2px_RGB(0_0_6/10%),0_0_0_1px_RGB(0_0_0/5%)]",
+      "transition-[border-radius,box-shadow]",
+      "duration-100",
+      "ease-[ease-out]",
+      "rounded-tl-[15px]",
+      "rounded-tr-[15px]",
+      "rounded-[18px]",
+      "outline-offset-[-1px]"
+    ],
+    "disabled": [],
+    "data-[selected]": [
+      "rounded-[9px]"
+    ]
+  },
+  "shortcut": {
+    "base": [
+      "gap-[6px]",
+      "rounded-[6px]",
+      "duration-[300ms]",
+      "outline-offset-[8px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[4px]"
+    ]
+  },
+  "shortcut-label": {
+    "base": [
+      "rounded-[6px]",
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "gap-[6px]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[1px]"
+    ]
+  },
+  "shortcuts-section": {
+    "base": [
+      "m-5"
+    ]
+  },
+  "slider": {
+    "base": [
+      "m--2",
+      "min-w-5",
+      "min-h-5",
+      "rounded-full",
+      "transition-[all]",
+      "duration-200",
+      "ease-[linear]",
+      "border-[1px]",
+      "shadow-[0_2px_4px_RGB(0_0_6/20%)]",
+      "border-none",
+      "opacity-80",
+      "outline-offset-[-8px]",
+      "outline-2",
+      "rounded-tl-[0]",
+      "rounded-br-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]"
+    ],
+    "hover": [
+      "my--2.5",
+      "ml--2.5",
+      "mr--3.5",
+      "shadow-none",
+      "border-none",
+      "rounded-none",
+      "min-h-5.5",
+      "min-w-6.5"
+    ],
+    "active": [
+      "my--2.5",
+      "ml--2.5",
+      "mr--3.5",
+      "shadow-none",
+      "border-none",
+      "rounded-none",
+      "min-h-5.5",
+      "min-w-6.5"
+    ],
+    "disabled": [
+      "my--2.5",
+      "ml--2.5",
+      "mr--3.5",
+      "border-none",
+      "rounded-none",
+      "min-h-5.5",
+      "min-w-6.5",
+      "shadow-[0_2px_4px_transparent]",
+      "opacity-0"
+    ],
+    "hover:active": [],
+    "data-[state=checked]": []
+  },
+  "sort-indicator": {
+    "base": [
+      "min-h-4",
+      "min-w-4"
+    ]
+  },
+  "spinbutton": {
+    "base": [
+      "p-0",
+      "min-h-8.5",
+      "rounded-[9px]",
+      "gap-[0]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2",
+      "shadow-[inset_0_0_0_1px_var(--accent-bg-color)]"
+    ],
+    "disabled": []
+  },
+  "spinbutton.error": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2"
+    ]
+  },
+  "spinbutton.flat": {
+    "base": [
+      "p-0.5",
+      "min-h-0",
+      "rounded-none",
+      "shadow-none"
+    ],
+    "disabled": [
+      "p-0.5",
+      "min-h-0",
+      "shadow-none",
+      "rounded-none"
+    ]
+  },
+  "spinbutton.warning": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2"
+    ]
+  },
+  "spinner": {
+    "base": [
+      "opacity-0"
+    ],
+    "data-[state=checked]": [
+      "opacity-100"
+    ],
+    "data-[state=checked]:disabled": [
+      "opacity-0"
+    ]
+  },
+  "splitbutton": {
+    "base": [
+      "rounded-[9px]",
+      "transition-[background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": []
+  },
+  "splitbutton.destructive-action": {
+    "base": []
+  },
+  "stackswitcher": {
+    "base": [
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "statusbar": {
+    "base": [
+      "py-1.5",
+      "px-2.5"
+    ]
+  },
+  "switch": {
+    "base": [
+      "p-[3px]",
+      "font-bold",
+      "text-[smaller]",
+      "rounded-[14px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[5px]"
+    ],
+    "hover": [],
+    "active": [],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[1px]"
+    ],
+    "data-[state=checked]": [],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": []
+  },
+  "tab": {
+    "base": [
+      "p-1",
+      "m-[25px]",
+      "transition-[background]",
+      "duration-150",
+      "ease-[ease-in-out]",
+      "min-h-6.5",
+      "min-w-7.5",
+      "font-normal",
+      "border-[1px]",
+      "shadow-[0_0_0_1px_RGB(0_0_0/3%),0_1px_3px_1px_RGB(0_0_0/7%),0_2px_6px_2px_RGB(0_0_0/3%)]",
+      "rounded-[9px]"
+    ],
+    "hover": [
+      "shadow-[inset_4px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+    ],
+    "active": [],
+    "disabled": [],
+    "data-[selected]": [],
+    "data-[state=checked]": [
+      "outline-offset-[-2px]",
+      "outline-2",
+      "shadow-[inset_4px_0_var(--accent-bg-color)]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "data-[selected]:hover": [],
+    "data-[selected]:active": []
+  },
+  "tabboxchild": {
+    "base": [
+      "rounded-[9px]",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "tabs": {
+    "base": [
+      "p-1",
+      "m-[3px]"
+    ],
+    "last": [
+      "mb-[-1px]",
+      "mr-[-1px]"
+    ],
+    "first": [
+      "mt-[-1px]",
+      "ml-[-1px]"
+    ]
+  },
+  "tabthumbnail": {
+    "base": [
+      "rounded-[16px]",
+      "transition-[box-shadow,background-color]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-[inset_0_0_0_2px_color-mix(in_srgb,var(--accent-bg-color)_40%,transparent)]"
+    ]
+  },
+  "text": {
+    "base": [
+      "p-1.5",
+      "m-0",
+      "min-h-7.5",
+      "rounded-none",
+      "gap-[6px]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2",
+      "shadow-none",
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]",
+      "min-w-7.5",
+      "opacity-100",
+      "font-[var(--monospace-font-family)]",
+      "text-[smaller]"
+    ],
+    "disabled": [],
+    "data-[selected]": [
+      "rounded-[9px]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-[3px]"
+    ],
+    "disabled:data-[selected]": [],
+    "disabled:data-[selected]:focus": []
+  },
+  "text.error": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2"
+    ]
+  },
+  "text.flat": {
+    "base": [
+      "p-0.5",
+      "min-h-0",
+      "rounded-none"
+    ]
+  },
+  "text.warning": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-2"
+    ]
+  },
+  "title": {
+    "base": [
+      "outline-offset-[-2px]",
+      "outline-2",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "rounded-[6px]"
+    ]
+  },
+  "toast": {
+    "base": [
+      "py-1.5",
+      "px-3",
+      "mt-3",
+      "mb-6",
+      "mx-3",
+      "shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+      "rounded-[150px]",
+      "gap-[6px]"
+    ]
+  },
+  "toggle": {
+    "base": [
+      "rounded-[calc(17px_-_var(---group-padding))]",
+      "font-bold",
+      "min-w-[calc(10px_+_var(---group-padding)_*_2)]",
+      "min-h-[calc(34px_-_var(---group-padding)_*_2)]",
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [],
+    "active": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[state=checked]": [
+      "shadow-none",
+      "outline-offset-[5px]",
+      "transition-[outline-color,outline-width,outline-offset,color,background,box-shadow]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "data-[state=checked]:hover": [],
+    "data-[state=checked]:active": [],
+    "data-[state=checked]:disabled": [
+      "shadow-none"
+    ],
+    "data-[state=checked]:focus-visible": [
+      "outline-2",
+      "outline-offset-[1px]"
+    ]
+  },
+  "toggle-group": {
+    "base": [
+      "p-[var(---group-padding)]",
+      "rounded-[9px]"
+    ],
+    "disabled": []
+  },
+  "toggle-group.flat": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "toggle-group.osd": {
+    "base": []
+  },
+  "toggle.image-text-button": {
+    "base": [
+      "px-[calc(15px_-_var(---group-padding))]",
+      "min-w-[calc(10px_+_var(---group-padding)_*_2)]"
+    ]
+  },
+  "toggle.text-button": {
+    "base": [
+      "px-[calc(15px_-_var(---group-padding))]",
+      "min-w-[calc(18px_+_var(---group-padding)_*_2)]"
+    ]
+  },
+  "tooltip": {
+    "base": [
+      "py-1.5",
+      "px-2.5",
+      "rounded-[9px]",
+      "shadow-none"
+    ]
+  },
+  "tooltip.csd": {
+    "base": [
+      "rounded-[5px]",
+      "shadow-none"
+    ]
+  },
+  "treeview.dialog-action-box": {
+    "base": [
+      "outline-offset-[4px]",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "shadow-none"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "rounded-none"
+    ]
+  },
+  "treeview.expander.dialog-action-box": {
+    "base": [
+      "min-w-4",
+      "min-h-4"
+    ],
+    "hover": [],
+    "active": [],
+    "disabled": [],
+    "data-[state=checked]": []
+  },
+  "treeview.navigation-sidebar": {
+    "base": [
+      "p-0"
+    ],
+    "data-[selected]": [],
+    "data-[selected]:focus": []
+  },
+  "treeview.view": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "shadow-none",
+      "transition-[outline-color,outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [],
+    "focus-visible": [
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "rounded-none"
+    ],
+    "data-[selected]:focus": [
+      "rounded-none"
+    ],
+    "disabled:data-[selected]": []
+  },
+  "treeview.view.expander": {
+    "base": [
+      "min-w-4",
+      "min-h-4"
+    ],
+    "hover": [],
+    "active": [],
+    "disabled": [],
+    "data-[selected]": [],
+    "data-[state=checked]": [],
+    "data-[selected]:hover": []
+  },
+  "trough": {
+    "base": [
+      "p-0",
+      "m-1",
+      "min-h-0.5",
+      "rounded-[99px]",
+      "outline-offset-[1px]",
+      "outline-2",
+      "transition-[all]",
+      "duration-200",
+      "ease-[linear]",
+      "min-w-0.5",
+      "border-none",
+      "shadow-none"
+    ],
+    "disabled": []
+  },
+  "undershoot.left": {
+    "base": [
+      "shadow-[inset_1px_0_color-mix(in_srgb,var(--shade-color)_75%,transparent)]"
+    ]
+  },
+  "undershoot.right": {
+    "base": [
+      "shadow-[inset_-1px_0_color-mix(in_srgb,var(--shade-color)_75%,transparent)]"
+    ]
+  },
+  "value": {
+    "base": [
+      "opacity-100"
+    ]
+  },
+  "viewport": {
+    "base": [
+      "rounded-tl-[18px]",
+      "rounded-tr-[18px]"
+    ]
+  },
+  "viewswitcher": {
+    "base": [
+      "gap-[3px]",
+      "min-h-8.5"
+    ]
+  },
+  "viewswitcher.narrow": {
+    "base": [
+      "my-[-3px]",
+      "min-h-1.5"
+    ]
+  },
+  "viewswitcher.wide": {
+    "base": [
+      "my-1.5"
+    ]
+  },
+  "viewswitchertitle": {
+    "base": [
+      "my--1.5"
+    ]
+  },
+  "widget": {
+    "base": [
+      "p-1.5",
+      "m-[3px]",
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "shadow-[0_1px_2px_color-mix(in_srgb,var(--accent-color)_40%,transparent)]",
+      "min-w-3",
+      "min-h-3",
+      "rounded-[8px]",
+      "transition-[background-color]",
+      "duration-200",
+      "ease-[ease-out]"
+    ]
+  },
+  "window.csd": {
+    "base": [
+      "m-0",
+      "shadow-[0_0_14px_5px_transparent,0_0_10px_5px_RGB(0_0_0/8%),0_0_0_1px_RGB(0_0_0/5%)]",
+      "rounded-[var(--window-radius)]",
+      "transition-[box-shadow]",
+      "duration-200",
+      "ease-[ease-out]",
+      "outline-offset-[-1px]"
+    ]
+  },
+  "window.csd.dialog.message": {
+    "base": [
+      "rounded-[8px]",
+      "shadow-[0_0_14px_2px_RGB(0_0_6/3%),0_0_5px_2px_RGB(0_0_6/10%),0_0_0_1px_RGB(0_0_0/5%)]"
+    ]
+  },
+  "window.csd.fullscreen": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "window.csd.maximized": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "window.csd.popup": {
+    "base": [
+      "rounded-[5px]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.13)]"
+    ]
+  },
+  "window.csd.ssd-frame": {
+    "base": [
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  "window.csd.tiled": {
+    "base": [
+      "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.csd.tiled-bottom": {
+    "base": [
+      "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.csd.tiled-left": {
+    "base": [
+      "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.csd.tiled-right": {
+    "base": [
+      "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.csd.tiled-top": {
+    "base": [
+      "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.dialog.message.csd.background": {
+    "base": [
+      "rounded-bl-[9px]",
+      "rounded-br-[9px]"
+    ]
+  },
+  "window.fullscreen": {
+    "base": [
+      "rounded-none",
+      "shadow-none"
+    ]
+  },
+  "window.maximized": {
+    "base": [
+      "rounded-none",
+      "shadow-none"
+    ]
+  },
+  "window.solid-csd": {
+    "base": [
+      "p-[5px]",
+      "m-0",
+      "rounded-none",
+      "shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-backdrop-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+    ]
+  },
+  "window.tiled": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-bottom": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-left": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-right": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-top": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "windowcontrols.end": {
+    "base": [
+      "mx-[7px]"
+    ]
+  },
+  "windowcontrols.start": {
+    "base": [
+      "mx-[7px]"
+    ]
+  },
+  "windowhandle": {
+    "base": [
+      "pt-[3px]",
+      "min-h-0",
+      "transition-[filter]",
+      "duration-200",
+      "ease-[ease-out]"
+    ]
+  },
+  "windowtitle": {
+    "base": [
+      "my--1.5",
+      "min-h-3"
+    ]
+  }
+}
