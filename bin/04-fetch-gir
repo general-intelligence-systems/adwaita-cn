@@ -47,10 +47,15 @@ mkdir -p "$out"
 # pkg-config names the directory when the devshell provides the library, and the store is the
 # fallback. Neither library is a runtime dependency: they are where the schema comes from.
 locate() {
-  local module="$1" file="$2" pattern="$3" dir path
+  local module="$1" file="$2" pattern="$3" given="${4:-}" dir path
 
-  dir="$(pkg-config --variable=girdir "$module" 2>/dev/null || true)"
-  path="$dir/$file"
+  # The devshell sets these, and they are the only answer which cannot be the wrong release.
+  path="$given/share/gir-1.0/$file"
+
+  if [ ! -f "$path" ]; then
+    dir="$(pkg-config --variable=girdir "$module" 2>/dev/null || true)"
+    path="$dir/$file"
+  fi
 
   if [ ! -f "$path" ]; then
     path="$(find /nix/store -maxdepth 4 -path "*$pattern*/share/gir-1.0/$file" 2>/dev/null | sort | tail -1)"
@@ -64,11 +69,13 @@ locate() {
   echo "$path"
 }
 
-gtk="$(locate gtk4 Gtk-4.0.gir gtk4)"
-adw="$(locate libadwaita-1 Adw-1.gir libadwaita)"
+gtk="$(locate gtk4 Gtk-4.0.gir gtk4 "${GTK_DEV:-}")"
+adw="$(locate libadwaita-1 Adw-1.gir libadwaita "${ADWAITA_DEV:-}")"
 
-cp "$gtk" "$out/Gtk-4.0.gir"
-cp "$adw" "$out/Adw-1.gir"
+# install rather than cp: a file copied out of the store keeps the store's read-only mode, and
+# the next run cannot overwrite it.
+install -m 644 "$gtk" "$out/Gtk-4.0.gir"
+install -m 644 "$adw" "$out/Adw-1.gir"
 
 # The store path carries the version, which is the only place it is written down.
 {

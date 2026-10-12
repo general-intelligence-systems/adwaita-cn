@@ -297,7 +297,8 @@
   },
   ".navigation-sidebar": {
     "base": [
-      "py-1.5",
+      "pt-1.5",
+      "pb-1",
       "px-0",
       "shadow-none"
     ],

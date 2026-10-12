@@ -14,7 +14,7 @@ and/or use gtk-doc annotations.  -->
   <doc:format name="gi-docgen"/>
   <namespace name="Gtk"
              version="4.0"
-             shared-library="/nix/store/hkg2i77ydzyym51dql6q375lnf29f17a-gtk4-4.22.4/lib/libgtk-4.so.1"
+             shared-library="/nix/store/0bxxqghpd81agcp6ncz5d0rn3y4axk56-gtk4-4.22.4/lib/libgtk-4.so.1"
              c:identifier-prefixes="Gtk"
              c:symbol-prefixes="gtk">
     <alias name="Allocation" c:type="GtkAllocation">
