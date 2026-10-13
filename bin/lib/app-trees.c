@@ -16,7 +16,12 @@
  * Two files of the same shape, so the comparison is a diff rather than a photograph
  * somebody has to look at.
  *
- * Built and run by bin/02-app-trees.
+ * With --png DIR it also renders each scene to DIR/<name>.png, which is the toolkit half
+ * of bin/14-app-screenshots' side-by-side. Shot here rather than in the harness because
+ * the scene is built here: the same window that was measured is the one photographed, so
+ * a shot and a measurement can never be of two different layouts.
+ *
+ * Built and run by bin/02-app-trees and bin/14-app-screenshots.
  */
 
 #include <adwaita.h>
@@ -240,6 +245,79 @@ print_paint (GskRenderNode *node, float width, float height, gboolean *first, in
     }
 }
 
+/* Where --png was told to write, or NULL when it was not given. */
+static const char *png_directory = NULL;
+
+/* Realised once and reused: realising a renderer per scene is most of the time a run
+ * takes, and one still realised at teardown is a GSK assertion failure. */
+static GskRenderer *png_renderer = NULL;
+
+/* One scene, as a PNG.
+ *
+ * THE BACKGROUND IS PAINTED FIRST, over the whole rectangle. A render node is bounded by
+ * what was painted into it, so an application which leaves its edges transparent came out
+ * cropped -- 451x515 for a window GTK had allocated at 480x640, which is a different
+ * picture rather than a smaller one. The colour is libadwaita's own window background in
+ * the light scheme, which is the scheme this run forces.
+ */
+static void
+write_png (GtkWidget  *content,
+           const char *name,
+           int         width,
+           int         height)
+{
+  if (png_directory == NULL || width <= 0 || height <= 0)
+    return;
+
+  if (png_renderer == NULL)
+    {
+      GError *error = NULL;
+
+      png_renderer = gsk_cairo_renderer_new ();
+
+      if (!gsk_renderer_realize (png_renderer, NULL, &error))
+        {
+          g_printerr ("app-trees: no renderer: %s\n", error ? error->message : "unknown");
+          g_clear_error (&error);
+          g_clear_object (&png_renderer);
+          return;
+        }
+    }
+
+  GtkSnapshot *snapshot = gtk_snapshot_new ();
+  GdkRGBA background;
+
+  gdk_rgba_parse (&background, "#fafafb");
+  gtk_snapshot_append_color (snapshot, &background,
+                             &GRAPHENE_RECT_INIT (0, 0, width, height));
+
+  GdkPaintable *paintable = gtk_widget_paintable_new (content);
+
+  gdk_paintable_snapshot (paintable, GDK_SNAPSHOT (snapshot), width, height);
+
+  GskRenderNode *node = gtk_snapshot_free_to_node (snapshot);
+
+  if (node != NULL)
+    {
+      GdkTexture *texture = gsk_renderer_render_texture (png_renderer, node, NULL);
+      char *file = g_strdup_printf ("%s.png", name);
+      char *path = g_build_filename (png_directory, file, NULL);
+
+      gdk_texture_save_to_png (texture, path);
+
+      g_free (path);
+      g_free (file);
+      g_object_unref (texture);
+      gsk_render_node_unref (node);
+    }
+  else
+    {
+      g_printerr ("app-trees: %s painted nothing\n", name);
+    }
+
+  g_object_unref (paintable);
+}
+
 static void
 print_paints (GtkWidget *widget)
 {
@@ -375,11 +453,22 @@ activate (GtkApplication *app, gpointer data)
   {
     const char *font = g_getenv ("ADW_CN_FONT");
     const char *dpi = g_getenv ("ADW_CN_DPI");
+    const char *decoration = g_getenv ("ADW_CN_DECORATION");
 
     if (font != NULL)
       g_object_set (gtk_settings_get_default (), "gtk-font-name", font, NULL);
+
+    /* The point size in the font name is resolved against this, and a bare X server has
+     * no answer, so GTK fell back on its own 96dpi and every label came out larger than
+     * the desktop draws it. GNOME keeps its text scaling here rather than in the name. */
     if (dpi != NULL)
       g_object_set (gtk_settings_get_default (), "gtk-xft-dpi", (int) (g_ascii_strtod (dpi, NULL) * 1024), NULL);
+
+    /* Which buttons the title bar carries. Unanswered, GTK shows minimise, maximise and
+     * close where the desktop may ask for close alone -- a difference in the header bar
+     * of every shot which says nothing about the components. */
+    if (decoration != NULL)
+      g_object_set (gtk_settings_get_default (), "gtk-decoration-layout", decoration, NULL);
   }
 
   fputs ("{\n \"scenes\": {\n", stdout);
@@ -415,11 +504,19 @@ activate (GtkApplication *app, gpointer data)
 
       fputs ("\n ]}", stdout);
 
+      write_png (content, one->name, one->width, one->height);
+
       gtk_window_destroy (GTK_WINDOW (window));
       settle ();
     }
 
   fputs ("\n }\n}\n", stdout);
+
+  if (png_renderer != NULL)
+    {
+      gsk_renderer_unrealize (png_renderer);
+      g_clear_object (&png_renderer);
+    }
 
   g_application_quit (G_APPLICATION (app));
 }
@@ -427,8 +524,13 @@ activate (GtkApplication *app, gpointer data)
 int
 main (int argc, char **argv)
 {
-  (void) argc;
-  (void) argv;
+  /* Parsed here rather than handed to GApplication, which is run with no arguments of
+   * its own so that it never tries to open one of them as a file. */
+  for (int i = 1; i < argc; i++)
+    {
+      if (g_str_equal (argv[i], "--png") && i + 1 < argc)
+        png_directory = argv[++i];
+    }
 
   g_log_set_always_fatal (G_LOG_LEVEL_ERROR);
 

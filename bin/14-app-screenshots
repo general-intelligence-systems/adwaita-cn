@@ -26,7 +26,8 @@
 #
 # FILES
 #      bin/apps/manifest.json        the applications
-#      bin/apps/<name>/app.rb        the toolkit's build
+#      bin/apps/<name>/app.c         the toolkit's build of each `main` scene
+#      bin/apps/<name>/app.rb        the toolkit's build of its dialogs
 #      bin/apps/<name>/App.tsx       the registry's build
 #      bin/14-app-screenshots.out/web/                 the built page, from vite
 #      bin/14-app-screenshots.out/<name>.png the output
@@ -124,18 +125,60 @@ module AppScreenshots
   # ── the toolkit ──────────────────────────────────────────────────────────
 
   # One PNG per scene, or nil where the window could not be built.
+  #
+  # TWO SOURCES, because the toolkit side is built in two languages. Each application's
+  # `main` scene is bin/apps/<name>/app.c, shot by the same C program which walks it, so a
+  # shot and a measurement are of one window rather than of two builds of it. The dialogs
+  # are scenes no app.c has yet, and those are still staged here through app.rb.
   def self.toolkit(scenes, scratch)
-    painted = {}
+    painted = compiled(scratch)
+
+    remaining = scenes.reject{|one, scene| painted.key?(Staging.shot(one, scene)) }
+
+    return painted if remaining.empty?
 
     app = Gtk::Application.new("dev.adwaita-cn.app-screenshots", :default_flags)
     app.signal_connect("activate") do
-      scenes.each{|one, scene| painted[Staging.shot(one, scene)] = paint(app, one, scene, scratch) }
+      remaining.each{|one, scene| painted[Staging.shot(one, scene)] = paint(app, one, scene, scratch) }
       renderer_done
       app.quit
     end
     app.run([])
 
     painted
+  end
+
+  # The scenes bin/apps/*/app.c builds, shot by bin/lib/app-trees.c.
+  #
+  # RUN BEFORE THE RUBY TOOLKIT SIDE, and in a process of its own. Both halves want a
+  # GtkApplication and GTK is initialised once per process, so the C cannot be a library
+  # called from here; it is a program, run on the display this script already made.
+  #
+  # The font, the scaling and the decoration layout go with it. GtkSettings is per
+  # process, so what Offscreen.match_desktop applied here reaches nothing over there, and
+  # a scene laid out in GTK's fallback font is a different width in every label.
+  def self.compiled(scratch)
+    binary = File.join(scratch, "app-trees")
+    sources = [File.join(ROOT, "bin/lib/app-trees.c"), *Dir.glob(File.join(ROOT, "bin/apps/*/app.c")).sort]
+
+    return {} if sources.length < 2
+
+    flags = `pkg-config --cflags --libs gtk4 libadwaita-1`.strip.split
+
+    unless system("gcc", "-O2", "-o", binary, *sources, *flags, out: File::NULL, err: File::NULL)
+      warn("app.c did not build; the toolkit side falls back to app.rb")
+      return {}
+    end
+
+    directory = File.join(scratch, "compiled")
+    FileUtils.mkdir_p(directory)
+
+    unless system(Offscreen.env, binary, "--png", directory, out: File::NULL)
+      warn("app-trees did not run; the toolkit side falls back to app.rb")
+      return {}
+    end
+
+    Dir.glob(File.join(directory, "*.png")).to_h{|path| [File.basename(path, ".png"), path] }
   end
 
   def self.paint(app, one, scene, scratch)

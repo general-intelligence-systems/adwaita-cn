@@ -67,6 +67,21 @@ module Offscreen
     end
   end
 
+  # The same three answers, for a CHILD PROCESS to apply to itself.
+  #
+  # bin/lib/app-trees.c builds its scenes in a process of its own, and GtkSettings is per
+  # process: what match_desktop sets here reaches nothing over there. The values are
+  # carried in the environment instead, and the C reads them back in its own activate.
+  #
+  # The DPI is in dots per inch rather than GTK's own 1024ths, because the C multiplies.
+  def self.env
+    {
+      "ADW_CN_FONT" => setting("font-name"),
+      "ADW_CN_DPI" => (96 * scaling).to_s,
+      "ADW_CN_DECORATION" => layout,
+    }.compact
+  end
+
   def self.scaling = setting("text-scaling-factor")&.to_f&.then{|one| one.positive? ? one : 1.0 } || 1.0
 
   def self.layout
