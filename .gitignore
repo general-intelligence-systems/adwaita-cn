@@ -16,3 +16,6 @@ node_modules
 /packages/adwaita_react/src/icons/*.ts
 /packages/adwaita_react/src/aliases/aliases.ts
 /packages/adwaita_react/src/dynamicIconImports.ts
+
+# The lucide checkout bin/18-vendor-lucide clones, pinned by bin/18-vendor-lucide.out/VENDOR.
+/bin/18-vendor-lucide.out/lucide

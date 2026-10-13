@@ -27,7 +27,7 @@
 #      read rather than a diff nobody can see.
 #
 #      The icons themselves are not vendored. They come from Adwaita, and
-#      bin/16-extract-icons normalises them into icons/ in the format lucide's build takes.
+#      bin/16-icons normalises them into icons/ in the format lucide's build takes.
 #
 # OPTIONS
 #      --ref REF   The lucide commit to vendor. Default is the ref in VENDOR.
@@ -45,7 +45,7 @@
 #      0 on success. 1 under --check when a vendored file has been edited by hand.
 #
 # SEE ALSO
-#      bin/16-extract-icons, bin/17-generate-icons
+#      bin/16-icons
 #
 # adwaita-cn                        October 13, 2026                 18-VENDOR-LUCIDE(1)
 

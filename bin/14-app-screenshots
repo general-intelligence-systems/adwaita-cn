@@ -95,10 +95,16 @@ module AppScreenshots
       theirs = toolkit(scenes, scratch)
       ours = components(scenes, scratch)
 
-      failed = scenes.reject do |one, scene|
-        shot = Staging.shot(one, scene)
-        compose(shot, theirs[shot], ours[shot]).then do |error|
-          error.nil? ? puts("#{shot}: #{relative(shot)}") : puts("#{shot}: #{error}")
+      # One PNG per application, not per scene: an application is one thing, and its
+      # dialogs are part of it. Each scene is a row of that application's sheet.
+      failed = wanted.reject do |one|
+        name = one.fetch("name")
+        rows = one.fetch("scenes").map do |scene|
+          Staging.shot(one, scene).then{|shot| [scene.fetch("name"), theirs[shot], ours[shot]] }
+        end
+
+        compose(name, rows).then do |error|
+          error.nil? ? puts("#{name}: #{relative(name)} (#{rows.length} #{rows.length == 1 ? 'scene' : 'scenes'})") : puts("#{name}: #{error}")
           error.nil?
         end
       end
@@ -251,24 +257,33 @@ module AppScreenshots
 
   # ── the two, side by side ────────────────────────────────────────────────
 
-  # nil when the shot was written, and the reason when it was not.
-  def self.compose(name, left, right)
-    return "the toolkit drew nothing" if left.nil?
-    return "the components rendered nothing" if right.nil?
+  # nil when the sheet was written, and the reason when it was not.
+  #
+  # One row per scene: the application's own window first, then each dialog it opens,
+  # the toolkit's on the left and the components' on the right.
+  def self.compose(name, rows)
+    drawn = rows.map{|scene, left, right| [scene, surface(left), surface(right)] }
 
-    theirs = Cairo::ImageSurface.from_png(left)
-    ours = Cairo::ImageSurface.from_png(right)
+    missing = drawn.select{|_, left, right| left.nil? || right.nil? }
+    return missing.map{|scene, left, _| "#{scene}: #{left.nil? ? 'the toolkit drew nothing' : 'the components rendered nothing'}" }.join("; ") unless missing.empty?
 
-    width = PAD + theirs.width + PAD + ours.width + PAD
-    height = LABEL + [theirs.height, ours.height].max + PAD
+    theirs = drawn.map{|_, left, _| left.width }.max
+    ours = drawn.map{|_, _, right| right.width }.max
+
+    width = PAD + theirs + PAD + ours + PAD
+    height = drawn.sum{|_, left, right| LABEL + [left.height, right.height].max + PAD }
 
     Cairo::ImageSurface.new(:argb32, width, height).then do |surface|
       Cairo::Context.new(surface).then do |cr|
         cr.set_source_rgb(1, 1, 1)
         cr.paint
 
-        half(cr, theirs, PAD, "libadwaita #{theirs.width}x#{theirs.height}")
-        half(cr, ours, PAD + theirs.width + PAD, "adwaita-cn #{ours.width}x#{ours.height}")
+        drawn.inject(0) do |y, (scene, left, right)|
+          half(cr, left, PAD, y, "#{scene} — libadwaita #{left.width}x#{left.height}")
+          half(cr, right, PAD + theirs + PAD, y, "#{scene} — adwaita-cn #{right.width}x#{right.height}")
+
+          y + LABEL + [left.height, right.height].max + PAD
+        end
       end
 
       surface.write_to_png(File.join(OUTPUT, "#{name}.png"))
@@ -279,24 +294,26 @@ module AppScreenshots
     "#{e.class}: #{e.message.lines.first.to_s.strip}"
   end
 
-  # One half: the shot, a hairline around it so its edge is visible against the page,
-  # and its name and size above it.
-  def self.half(cr, surface, x, caption)
+  def self.surface(path) = path.nil? ? nil : Cairo::ImageSurface.from_png(path)
+
+  # One half of one row: the shot, a hairline around it so its edge is visible against
+  # the page, and which half it is and what size above it.
+  def self.half(cr, surface, x, y, caption)
     cr.save
     cr.set_source_rgb(0.4, 0.4, 0.4)
     cr.select_font_face("sans-serif", Cairo::FONT_SLANT_NORMAL, Cairo::FONT_WEIGHT_NORMAL)
     cr.font_size = 12
-    cr.move_to(x, LABEL - 10)
+    cr.move_to(x, y + LABEL - 10)
     cr.show_text(caption)
     cr.restore
 
-    cr.set_source(surface, x, LABEL)
-    cr.rectangle(x, LABEL, surface.width, surface.height)
+    cr.set_source(surface, x, y + LABEL)
+    cr.rectangle(x, y + LABEL, surface.width, surface.height)
     cr.fill
 
     cr.set_source_rgb(0.75, 0.75, 0.75)
     cr.line_width = 1
-    cr.rectangle(x - 0.5, LABEL - 0.5, surface.width + 1, surface.height + 1)
+    cr.rectangle(x - 0.5, y + LABEL - 0.5, surface.width + 1, surface.height + 1)
     cr.stroke
   end
 

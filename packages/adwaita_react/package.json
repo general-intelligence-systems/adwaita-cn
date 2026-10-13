@@ -32,11 +32,11 @@
     "dynamicIconImports.d.ts"
   ],
   "scripts": {
-    "build": "pnpm clean && ../../bin/17-generate-icons && pnpm typecheck && pnpm build:bundles",
+    "build": "pnpm clean && ../../bin/16-icons && pnpm typecheck && pnpm build:bundles",
     "clean": "rm -rf dist && rm -f ./src/icons/*.ts && rm -f ./src/aliases/aliases.ts && rm -f ./src/aliases/prefixed.ts && rm -f ./src/aliases/suffixed.ts && rm -f ./src/dynamicIconImports.ts",
     "build:bundles": "rollup -c ./rollup.config.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "../../bin/17-generate-icons && vitest run"
+    "test": "../../bin/16-icons && vitest run"
   },
   "devDependencies": {
     "@adwaita/shared": "workspace:*",

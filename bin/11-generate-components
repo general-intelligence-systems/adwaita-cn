@@ -438,7 +438,7 @@ module GenerateComponents
   # whole set here as well was 800KB of data URIs for the dozen the sheet actually uses,
   # and a second copy of artwork the package already has.
   #
-  # The source is icons/, which bin/16-extract-icons normalises, rather than the raw
+  # The source is icons/, which bin/16-icons normalises, rather than the raw
   # vendored files: one tree of artwork behind both ways of drawing it.
   def self.icons_css(root, named)
     directory = File.join(root, "icons")
@@ -492,7 +492,7 @@ module GenerateComponents
     CSS
   end
 
-  # The file in icons/ an icon name resolves to. bin/16-extract-icons drops `-symbolic`,
+  # The file in icons/ an icon name resolves to. bin/16-icons drops `-symbolic`,
   # which every icon in the set carries, and keeps `-rtl`, which is a different drawing.
   def self.icon_file(name) = name.sub(/-symbolic(?=(-rtl|-ltr)?\z)/, "")
 

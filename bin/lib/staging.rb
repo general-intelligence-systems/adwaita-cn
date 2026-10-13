@@ -45,12 +45,21 @@ module Staging
     win = mode == "window" ? call(name, scene, app) : host(app, name, scene, mode)
 
     win.set_default_size(width, height)
-    # The size request rather than the default size alone: with no display a presented
-    # window settles at its minimum, and a 560x720 application was being shot at
-    # 451x548 -- which is a different layout, not a smaller picture of the same one.
-    win.set_size_request(width, height)
+
+    # The size is asked of what is going to be shot, not of the window around it. The
+    # request rather than the default size alone, because with no settings daemon a
+    # presented window settles at its minimum and a 560x720 application was shot at
+    # 451x548 -- a different layout, not a smaller picture of one.
+    #
+    # And of the content rather than the window, because an Adwaita window draws its own
+    # shadow inside the size it was given: asked for 480x640 it had a 470x630 content
+    # area, so every box in the shot was five pixels in from where the components put it
+    # and a comparison which had been matching stopped matching everywhere at once.
+    sized = mode == "window" ? win : win.content
+    sized.set_size_request(width, height)
+
     win.present
-    settle(win, width, height)
+    settle(sized, width, height)
 
     whole = mode == "overlay" ? presented(win, name, scene) : nil
     painted = whole.nil? ? subject(win, mode) : card(whole)
@@ -159,8 +168,8 @@ module Staging
     scene.fetch("name") == "main" ? one.fetch("name") : "#{one.fetch('name')}-#{scene.fetch('name')}"
   end
 
-  def self.settle(win, width, height)
-    until_true{ win.width >= width && win.height >= height }
+  def self.settle(sized, width, height)
+    until_true{ sized.width >= width && sized.height >= height }
 
     # A window at its size is not yet a window which has drawn its contents.
     pump
