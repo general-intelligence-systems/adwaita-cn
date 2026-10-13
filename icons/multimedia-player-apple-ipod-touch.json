@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "multimedia-player-apple-ipod-touch-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "multimedia-player-apple-ipod-touch-symbolic"
+    }
+  ]
+}

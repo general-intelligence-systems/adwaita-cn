@@ -1,0 +1,60 @@
+{
+  "name": "adwaita_react",
+  "description": "The Adwaita symbolic icon set as React components.",
+  "version": "0.0.1",
+  "license": "LGPL-2.1-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/async-matrix/adwaita-cn.git",
+    "directory": "packages/adwaita_react"
+  },
+  "keywords": [
+    "Adwaita",
+    "GTK",
+    "GNOME",
+    "React",
+    "Icons",
+    "Icon",
+    "SVG",
+    "Symbolic"
+  ],
+  "type": "module",
+  "main": "dist/cjs/adwaita_react.js",
+  "module": "dist/esm/adwaita_react.mjs",
+  "typings": "dist/adwaita_react.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "dynamic.js",
+    "dynamic.mjs",
+    "dynamic.d.ts",
+    "dynamic.d.mts",
+    "dynamicIconImports.d.ts"
+  ],
+  "scripts": {
+    "build": "pnpm clean && ../../bin/17-generate-icons && pnpm typecheck && pnpm build:bundles",
+    "clean": "rm -rf dist && rm -f ./src/icons/*.ts && rm -f ./src/aliases/aliases.ts && rm -f ./src/aliases/prefixed.ts && rm -f ./src/aliases/suffixed.ts && rm -f ./src/dynamicIconImports.ts",
+    "build:bundles": "rollup -c ./rollup.config.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "../../bin/17-generate-icons && vitest run"
+  },
+  "devDependencies": {
+    "@adwaita/shared": "workspace:*",
+    "@types/react": "^19.3.0",
+    "react": "^19.3.0",
+    "rollup": "^4.63.1",
+    "rollup-plugin-dts": "^6.5.1",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-preserve-directives": "^0.4.0",
+    "typescript": "^5.9.0"
+  },
+  "peerDependencies": {
+    "@types/react": "*",
+    "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  }
+}

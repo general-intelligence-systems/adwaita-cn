@@ -86,7 +86,7 @@ function Leaflet({ className, render, variant = "default", childTransitionParams
     "data-mode-transition-duration": modeTransitionDuration,
     "data-transition-type": transitionType,
     "data-visible-child-name": visibleChildName,
-    className: cn(leafletVariants({ variant }), widgetClassName, className),
+    className: cn("group/leaflet", leafletVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

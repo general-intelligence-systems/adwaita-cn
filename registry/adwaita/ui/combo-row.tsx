@@ -10,13 +10,14 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { StringFilterMatchMode } from "@/lib/enums"
 
 const comboRowVariants = cva(
   [
-    "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -35,7 +36,7 @@ const comboRowVariants = cva(
         /** .combo */
         combo: "",
         /** .entry */
-        entry: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
@@ -53,7 +54,7 @@ const comboRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "",
         /** .spin */
-        spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -155,7 +156,7 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
     "data-enable-search": enableSearch,
     "data-search-match-mode": searchMatchMode,
     "data-selectable": selectable,
-    "data-selected": selected,
+    "data-selected-value": selected,
     "data-subtitle-lines": subtitleLines,
     "data-subtitle-selectable": subtitleSelectable,
     "data-title-lines": titleLines,
@@ -163,7 +164,7 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
     "data-use-markup": useMarkup,
     "data-use-subtitle": useSubtitle,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", comboRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/combo-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", comboRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -174,7 +175,7 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
                   </ComboRowPrefixes>
                 ) : null}
                 {iconName ? (
-                  <ComboRowImage data-icon className={iconName} />
+                  <ComboRowImage name={iconName} />
                 ) : null}
                 <ComboRowTitleBox>
                   {title ? (
@@ -189,11 +190,11 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
                     <ComboRowCurrent />
                   ) : null}
                   <ComboRowArrowBox>
-                    <ComboRowImage2 data-icon className={iconName} />
+                    <ComboRowImage2 name={iconName} />
                     <ComboRowPopover>
                       <ComboRowBox>
                         <ComboRowSearchEntry>
-                          <ComboRowImage3 data-icon className={iconName} />
+                          <ComboRowImage3 name={iconName} />
                           <ComboRowProgress>
                             <ComboRowTrough>
                               <ComboRowProgress2 />
@@ -245,15 +246,15 @@ function ComboRowPrefixes({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function ComboRowImage({ className, ...props }: React.ComponentProps<"span">) {
+function ComboRowImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="combo-row-image"
         data-node="image"
         data-valign="center"
       className={cn("icon", [
         "mx-1.5",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -267,7 +268,7 @@ function ComboRowTitle({ className, ...props }: React.ComponentProps<"span">) {
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -281,7 +282,7 @@ function ComboRowSubtitle({ className, ...props }: React.ComponentProps<"span">)
         data-node="label"
       className={cn("subtitle", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -313,9 +314,9 @@ function ComboRowCurrent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function ComboRowImage2({ className, ...props }: React.ComponentProps<"span">) {
+function ComboRowImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="combo-row-image2"
         data-node="image"
       className={cn("dropdown-arrow", className)}
@@ -324,15 +325,15 @@ function ComboRowImage2({ className, ...props }: React.ComponentProps<"span">) {
   )
 }
 
-function ComboRowImage3({ className, ...props }: React.ComponentProps<"span">) {
+function ComboRowImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="combo-row-image3"
         data-node="image"
       className={cn([
         "opacity-70",
-        "hover:opacity-100",
-        "active:opacity-80",
+        "group-hover/combo-row:opacity-100",
+        "group-active/combo-row:opacity-80",
       ], className)}
       {...props}
     />
@@ -411,8 +412,8 @@ function ComboRowSearchEntry({ className, ...props }: React.ComponentProps<"div"
       data-slot="combo-row-search-entry"
         data-node="entry"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "combo-searchbar", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "software-update-available-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "software-update-available-symbolic"
+    }
+  ]
+}

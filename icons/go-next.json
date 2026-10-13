@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "go-next-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "go-next-symbolic"
+    }
+  ]
+}

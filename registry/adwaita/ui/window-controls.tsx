@@ -9,6 +9,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { PackType } from "@/lib/enums"
@@ -68,7 +69,7 @@ function WindowControls({ className, render, variant = "default", decorationLayo
     "data-decoration-layout": decorationLayout,
     "data-side": side,
     "data-use-native-controls": useNativeControls,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", windowControlsVariants({ variant }), widgetClassName, className),
+    className: cn("group/window-controls", "grid [&>*]:col-start-1 [&>*]:row-start-1", windowControlsVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -89,9 +90,9 @@ function WindowControls({ className, render, variant = "default", decorationLayo
   })
 }
 
-function WindowControlsImage({ className, ...props }: React.ComponentProps<"span">) {
+function WindowControlsImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="window-controls-image"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
@@ -106,13 +107,13 @@ function WindowControlsButton({ className, ...props }: React.ComponentProps<"but
       data-slot="window-controls-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
+        "group-hover/window-controls:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/window-controls:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/window-controls:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/window-controls:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/window-controls:group-hover/window-controls:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/window-controls:group-active/window-controls:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

@@ -41,8 +41,8 @@ function Switch({ className, render, actionTarget, actionName, active, state: _s
     "data-action-name": actionName,
     "data-state": active ? "checked" : "unchecked",
     "aria-checked": active,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-          "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    className: cn("group/switch", "grid [&>*]:col-start-1 [&>*]:row-start-1", [
+          "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "hover:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
           "disabled:[filter:Opacity(var(--disabled-opacity))]",
@@ -76,7 +76,7 @@ function SwitchSlider({ className, ...props }: React.ComponentProps<"div">) {
         data-node="slider"
       className={cn([
         "min-w-5 min-h-5 rounded-full bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_2px_4px_RGB(0_0_6/20%)]",
-        "disabled:shadow-[0_2px_4px_transparent]",
+        "group-disabled/switch:shadow-[0_2px_4px_transparent]",
       ], className)}
       {...props}
     />

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "media-optical-bd-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "media-optical-bd-symbolic"
+    }
+  ]
+}

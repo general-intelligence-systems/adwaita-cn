@@ -100,7 +100,7 @@ function Flap({ className, render, variant = "default", content, flap, orientati
     "data-swipe-to-close": swipeToClose,
     "data-swipe-to-open": swipeToOpen,
     "data-transition-type": transitionType,
-    className: cn(flapVariants({ variant }), widgetClassName, className),
+    className: cn("group/flap", flapVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

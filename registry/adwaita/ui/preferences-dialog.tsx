@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -117,7 +118,7 @@ function PreferencesDialog({ className, render, variant = "default", child, defa
     "data-search-enabled": searchEnabled,
     "data-title": title,
     "data-visible-page-name": visiblePageName,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/preferences-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -187,13 +188,13 @@ function PreferencesDialogSearchButton({ className, ...props }: React.ComponentP
         data-node="button"
         data-valign="center"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/preferences-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/preferences-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/preferences-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/preferences-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/preferences-dialog:group-hover/preferences-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/preferences-dialog:group-active/preferences-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

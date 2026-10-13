@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -20,7 +21,7 @@ const windowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .messagedialog */
         messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .solid-csd */
@@ -143,7 +144,7 @@ function Window({ className, render, variant = "default", application, child, co
     "data-resizable": resizable,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn(windowVariants({ variant }), widgetClassName, className),
+    className: cn("group/window", windowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -155,7 +156,7 @@ function Window({ className, render, variant = "default", application, child, co
                   <WindowWindowhandle />
                 </WindowHeaderbar>
               </WindowSheet>
-                  {iconName ? <span data-slot="window-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="window-icon" />
                   {content}
                   {application}
                   {child}

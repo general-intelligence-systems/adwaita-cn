@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { ArrowType } from "@/lib/enums"
@@ -99,7 +100,7 @@ function SplitButton({ className, render, variant = "default", actionTarget, chi
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="split-button-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="split-button-icon" />
                   {label === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}

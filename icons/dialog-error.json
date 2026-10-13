@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "dialog-error-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "dialog-error-symbolic"
+    }
+  ]
+}

@@ -109,7 +109,7 @@ function Scale({ className, render, variant = "default", size = "default", adjus
     "data-round-digits": roundDigits,
     "data-show-fill-level": showFillLevel,
     "data-value-pos": valuePos,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", scaleVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/scale", "grid [&>*]:col-start-1 [&>*]:row-start-1", scaleVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>
@@ -164,7 +164,7 @@ function ScaleSlider({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-slider"
         data-node="slider"
-      className={cn("-m-2 outline-offset-[6px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_0_0_1px_var(---slider-border-color),0_2px_4px_RGB(0_0_6/20%)] rounded-full min-w-5 min-h-5", className)}
+      className={cn("-m-2 [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[6px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_0_0_1px_var(---slider-border-color),0_2px_4px_RGB(0_0_6/20%)] rounded-full min-w-5 min-h-5", className)}
       {...props}
     />
   )

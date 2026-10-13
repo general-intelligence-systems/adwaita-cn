@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { FileChooserAction, WindowGravity } from "@/lib/enums"
@@ -22,7 +23,7 @@ const fileChooserDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .default */
         default: "",
         /** .dialog-window */
@@ -176,7 +177,7 @@ function FileChooserDialog({ className, render, variant = "default", application
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", fileChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/file-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", fileChooserDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -188,7 +189,7 @@ function FileChooserDialog({ className, render, variant = "default", application
                   <FileChooserDialogWindowhandle />
                 </FileChooserDialogHeaderbar>
               </FileChooserDialogSheet>
-                  {iconName ? <span data-slot="file-chooser-dialog-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="file-chooser-dialog-icon" />
                   {application}
                   {child}
                   {defaultWidget}

@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, ScrollablePolicy } from "@/lib/enums"
 
 const columnViewVariants = cva(
-  "outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+  "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
   {
     variants: {
       variant: {
@@ -102,7 +102,7 @@ function ColumnView({ className, render, variant = "default", hadjustment, heade
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn(columnViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/column-view", columnViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -151,13 +151,13 @@ function ColumnViewButton({ className, ...props }: React.ComponentProps<"button"
       data-slot="column-view-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/column-view:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/column-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/column-view:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/column-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/column-view:group-hover/column-view:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/column-view:group-active/column-view:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -192,13 +192,13 @@ function ColumnViewButton2({ className, ...props }: React.ComponentProps<"button
       data-slot="column-view-button2"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-[3px] px-1.5 bg-[transparent] rounded-none shadow-none leading-[100%] [border-left-width:1px] [border-left-style:solid] [border-left-color:transparent]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-[3px] px-1.5 bg-[transparent] rounded-none shadow-none leading-[100%] [border-left-width:1px] [border-left-style:solid] [border-left-color:transparent]",
+        "group-hover/column-view:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/column-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/column-view:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/column-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/column-view:group-hover/column-view:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/column-view:group-active/column-view:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
         "first:[border-left-width:0]",
       ], className)}
       {...props}

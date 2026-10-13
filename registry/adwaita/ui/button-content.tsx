@@ -8,6 +8,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -38,14 +39,14 @@ function ButtonContent({ className, render, iconName, label, canShrink, useUnder
     "data-node": "buttoncontent",
     "data-can-shrink": canShrink,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/button-content", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
                   <ButtonContentBox>
                 {children}
               </ButtonContentBox>
-                  {iconName ? <span data-slot="button-content-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="button-content-icon" />
                   {label === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}

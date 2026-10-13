@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "edit-copy", "size": 16, "node": [["path", { "fill": "currentColor", "d": "m 0 3 c 0 -1.644531 1.355469 -3 3 -3 h 5 c 1.644531 0 3 1.355469 3 3 c 0 0.550781 -0.449219 1 -1 1 s -1 -0.449219 -1 -1 c 0 -0.570312 -0.429688 -1 -1 -1 h -5 c -0.570312 0 -1 0.429688 -1 1 v 5 c 0 0.570312 0.429688 1 1 1 c 0.550781 0 1 0.449219 1 1 s -0.449219 1 -1 1 c -1.644531 0 -3 -1.355469 -3 -3 z m 5 5 c 0 -1.644531 1.355469 -3 3 -3 h 5 c 1.644531 0 3 1.355469 3 3 v 5 c 0 1.644531 -1.355469 3 -3 3 h -5 c -1.644531 0 -3 -1.355469 -3 -3 z m 2 0 v 5 c 0 0.570312 0.429688 1 1 1 h 5 c 0.570312 0 1 -0.429688 1 -1 v -5 c 0 -0.570312 -0.429688 -1 -1 -1 h -5 c -0.570312 0 -1 0.429688 -1 1 z m 0 0", "key": "kgaah8" }]], "aliases": ["edit-copy-symbolic"], "gtkIconName": "edit-copy-symbolic" };
+__iconData.node;
+const EditCopy = createAdwaitaIcon(__iconData);
+
+export { __iconData, EditCopy as default };
+//# sourceMappingURL=edit-copy.mjs.map

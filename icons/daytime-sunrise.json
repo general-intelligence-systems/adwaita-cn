@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "daytime-sunrise-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "daytime-sunrise-symbolic"
+    }
+  ]
+}

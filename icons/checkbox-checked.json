@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "checkbox-checked-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "checkbox-checked-symbolic"
+    }
+  ]
+}

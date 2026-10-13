@@ -91,7 +91,7 @@ function Calendar({ className, render, variant = "default", date, day, month, sh
     "data-show-heading": showHeading,
     "data-show-week-numbers": showWeekNumbers,
     "data-year": year,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", calendarVariants({ variant }), widgetClassName, className),
+    className: cn("group/calendar", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", calendarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -132,13 +132,13 @@ function CalendarButton({ className, ...props }: React.ComponentProps<"button">)
       data-slot="calendar-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none rounded-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none rounded-none",
+        "group-hover/calendar:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/calendar:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "group-active/calendar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/calendar:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))] group-disabled/calendar:[filter:opacity(30%)]",
+        "group-data-[state=checked]/calendar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/calendar:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/calendar:group-hover/calendar:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/calendar:group-hover/calendar:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/calendar:group-active/calendar:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/calendar:group-active/calendar:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />

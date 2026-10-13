@@ -1,0 +1,21 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "avatar-default",
+    "being",
+    "contact",
+    "human",
+    "person"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-avatar-default-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-avatar-default-symbolic"
+    }
+  ]
+}

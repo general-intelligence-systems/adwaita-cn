@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "drive-optical-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "drive-optical-symbolic"
+    }
+  ]
+}

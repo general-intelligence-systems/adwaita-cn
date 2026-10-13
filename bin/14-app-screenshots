@@ -44,6 +44,15 @@ require "json"
 require "tmpdir"
 require "webrick"
 
+# Written as it goes, rather than when the buffer happens to fill. A run's output is a
+# line per scene and the whole of it was being lost when stdout was a pipe: the work was
+# done and the shots were written, and what reached the terminal was nothing at all.
+$stdout.sync = true
+
+# Before the toolkit is loaded, because this picks the backend GDK will open.
+require_relative "lib/offscreen"
+Offscreen.start
+
 require "gtk4"
 require "adwaita"
 require "ferrum"
@@ -52,6 +61,7 @@ require_relative "lib/staging"
 
 # Requiring the bindings does not load libadwaita's stylesheet; adw_init() does.
 Adwaita.init
+Offscreen.match_desktop
 
 # The components render in whatever scheme the page asks for, and the toolkit otherwise
 # follows the desktop's. A dark window beside a light page is a difference which says
@@ -81,13 +91,14 @@ module AppScreenshots
     FileUtils.mkdir_p(OUTPUT)
 
     Dir.mktmpdir do |scratch|
-      theirs = toolkit(wanted, scratch)
-      ours = components(wanted, scratch)
+      scenes = Staging.scenes(wanted)
+      theirs = toolkit(scenes, scratch)
+      ours = components(scenes, scratch)
 
-      failed = wanted.reject do |one|
-        name = one.fetch("name")
-        compose(name, theirs[name], ours[name]).then do |error|
-          error.nil? ? puts("#{name}: #{relative(name)}") : puts("#{name}: #{error}")
+      failed = scenes.reject do |one, scene|
+        shot = Staging.shot(one, scene)
+        compose(shot, theirs[shot], ours[shot]).then do |error|
+          error.nil? ? puts("#{shot}: #{relative(shot)}") : puts("#{shot}: #{error}")
           error.nil?
         end
       end
@@ -100,27 +111,27 @@ module AppScreenshots
 
   # ── the toolkit ──────────────────────────────────────────────────────────
 
-  # One PNG per application, or nil where the window could not be built.
-  def self.toolkit(wanted, scratch)
-    shot = {}
+  # One PNG per scene, or nil where the window could not be built.
+  def self.toolkit(scenes, scratch)
+    painted = {}
 
     app = Gtk::Application.new("dev.adwaita-cn.app-screenshots", :default_flags)
     app.signal_connect("activate") do
-      wanted.each{|one| shot[one.fetch("name")] = paint(app, one, scratch) }
+      scenes.each{|one, scene| painted[Staging.shot(one, scene)] = paint(app, one, scene, scratch) }
       renderer_done
       app.quit
     end
     app.run([])
 
-    shot
+    painted
   end
 
-  def self.paint(app, one, scratch)
-    name = one.fetch("name")
+  def self.paint(app, one, scene, scratch)
+    name = Staging.shot(one, scene)
     path = File.join(scratch, "gtk-#{name}.png")
 
-    Staging.stage(app, one) do |content|
-      size(one, content).then do |width, height|
+    Staging.stage(app, one, scene) do |content|
+      size(one, scene, content).then do |width, height|
         Gtk::Snapshot.new.then do |snapshot|
           # The window's own background, over the whole rectangle, before the widget.
           # A render node is bounded by what was painted into it, and an application
@@ -149,8 +160,8 @@ module AppScreenshots
   # The manifest's, except in overlay mode: a dialog's card and a popover are whatever
   # size their own contents ask for, and painting one into the host window's rectangle
   # stretched it to fill a window it never covered.
-  def self.size(one, content)
-    return [one.fetch("width"), one.fetch("height")] unless one.fetch("mode", "content") == "overlay"
+  def self.size(one, scene, content)
+    return [one.fetch("width"), one.fetch("height")] unless scene.fetch("mode", "content") == "overlay"
 
     [content.width, content.height]
   end
@@ -173,19 +184,18 @@ module AppScreenshots
 
   # ── the components ───────────────────────────────────────────────────────
 
-  def self.components(wanted, scratch)
+  def self.components(scenes, scratch)
     serving do |page|
-      wanted.to_h do |one|
-        name = one.fetch("name")
-        path = File.join(scratch, "web-#{name}.png")
+      scenes.to_h do |one, scene|
+        name = Staging.shot(one, scene)
 
-        [name, shoot(page, name, path)]
+        [name, shoot(page, name, File.join(scratch, "web-#{name}.png"))]
       end
     end
   end
 
   def self.shoot(page, name, path)
-    selector = "[data-app=#{name.to_json}]"
+    selector = "[data-shot=#{name.to_json}]"
 
     return nil if page.evaluate("!!document.querySelector(#{selector.to_json})") != true
 

@@ -90,7 +90,7 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", emojiChooserVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/emoji-chooser", "grid [&>*]:col-start-1 [&>*]:row-start-1", emojiChooserVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>

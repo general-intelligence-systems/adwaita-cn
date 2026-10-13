@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "audio-speakers-rtl-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "audio-speakers-rtl-symbolic"
+    }
+  ]
+}

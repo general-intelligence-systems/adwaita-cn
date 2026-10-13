@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { WindowGravity } from "@/lib/enums"
@@ -22,7 +23,7 @@ const pageSetupUnixDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .default */
         default: "",
         /** .dialog-window */
@@ -161,7 +162,7 @@ function PageSetupUnixDialog({ className, render, variant = "default", applicati
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn(pageSetupUnixDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/page-setup-unix-dialog", pageSetupUnixDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -173,7 +174,7 @@ function PageSetupUnixDialog({ className, render, variant = "default", applicati
                   <PageSetupUnixDialogWindowhandle />
                 </PageSetupUnixDialogHeaderbar>
               </PageSetupUnixDialogSheet>
-                  {iconName ? <span data-slot="page-setup-unix-dialog-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="page-setup-unix-dialog-icon" />
                   {application}
                   {child}
                   {defaultWidget}

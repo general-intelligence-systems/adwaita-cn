@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "audio-volume-overamplified-rtl-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "audio-volume-overamplified-rtl-symbolic"
+    }
+  ]
+}

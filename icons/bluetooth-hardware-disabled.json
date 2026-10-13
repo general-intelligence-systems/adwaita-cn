@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "bluetooth-hardware-disabled-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "bluetooth-hardware-disabled-symbolic"
+    }
+  ]
+}

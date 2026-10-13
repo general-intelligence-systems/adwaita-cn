@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { WindowGravity } from "@/lib/enums"
@@ -22,7 +23,7 @@ const colorChooserDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .default */
         default: "",
         /** .dialog-window */
@@ -168,7 +169,7 @@ function ColorChooserDialog({ className, render, variant = "default", applicatio
     "data-title": title,
     "data-use-alpha": useAlpha,
     "data-use-header-bar": useHeaderBar,
-    className: cn(colorChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/color-chooser-dialog", colorChooserDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -180,7 +181,7 @@ function ColorChooserDialog({ className, render, variant = "default", applicatio
                   <ColorChooserDialogWindowhandle />
                 </ColorChooserDialogHeaderbar>
               </ColorChooserDialogSheet>
-                  {iconName ? <span data-slot="color-chooser-dialog-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="color-chooser-dialog-icon" />
                   {application}
                   {child}
                   {defaultWidget}

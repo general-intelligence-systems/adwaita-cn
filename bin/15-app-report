@@ -58,6 +58,15 @@ require "fileutils"
 require "json"
 require "webrick"
 
+# Written as it goes, rather than when the buffer happens to fill. A run's output is a
+# line per scene and the whole of it was being lost when stdout was a pipe: the work was
+# done and the shots were written, and what reached the terminal was nothing at all.
+$stdout.sync = true
+
+# Before the toolkit is loaded, because this picks the backend GDK will open.
+require_relative "lib/offscreen"
+Offscreen.start
+
 require "gtk4"
 require "adwaita"
 require "ferrum"
@@ -65,6 +74,7 @@ require "ferrum"
 require_relative "lib/staging"
 
 Adwaita.init
+Offscreen.match_desktop
 Adwaita::StyleManager.default.color_scheme = Adwaita::ColorScheme::FORCE_LIGHT
 GLib::Log.always_fatal = GLib::Log::LEVEL_ERROR
 
@@ -104,11 +114,12 @@ module AppReport
     wanted = apps.select{|one| only.nil? || one.fetch("name") == only }
     abort("no such application: #{only}") if wanted.empty?
 
-    theirs = toolkit(wanted)
-    ours = components(wanted)
+    scenes = Staging.scenes(wanted)
+    theirs = toolkit(scenes)
+    ours = components(scenes)
 
-    results = wanted.to_h do |one|
-      name = one.fetch("name")
+    results = scenes.to_h do |one, scene|
+      name = Staging.shot(one, scene)
       [name, pair(theirs.fetch(name, []), ours.fetch(name, []), tolerance)]
     end
 
@@ -116,19 +127,19 @@ module AppReport
     File.write(File.join(OUTPUT, "report.json"),
                "#{JSON.pretty_generate({ 'tolerance' => tolerance, 'apps' => results })}\n")
 
-    report(wanted, results, tolerance, differences_only)
+    report(scenes, results, tolerance, differences_only)
 
     exit(results.values.sum{|rows| rows.count{|row| row.fetch("out") } }.zero? ? 0 : 1)
   end
 
   # ── the toolkit, from the widget tree ────────────────────────────────────
 
-  def self.toolkit(wanted)
+  def self.toolkit(scenes)
     found = {}
 
     app = Gtk::Application.new("dev.adwaita-cn.app-report", :default_flags)
     app.signal_connect("activate") do
-      wanted.each{|one| found[one.fetch("name")] = measure(app, one) }
+      scenes.each{|one, scene| found[Staging.shot(one, scene)] = measure(app, one, scene) }
       app.quit
     end
     app.run([])
@@ -136,9 +147,11 @@ module AppReport
     found
   end
 
-  def self.measure(app, one)
-    Staging.stage(app, one) do |subject|
-      [].tap{|into| walk(subject, subject, into, [], one.fetch("uses")) }
+  def self.measure(app, one, scene)
+    # Walked from `whole` and measured in `subject`: the two differ for an overlay,
+    # where the dialog is painted as its card but is itself the card's ancestor.
+    Staging.stage(app, one, scene) do |subject, whole|
+      [].tap{|into| walk(whole, subject, into, [], scene.fetch("uses"), whole.equal?(subject) ? nil : whole) }
     end
   end
 
@@ -149,21 +162,27 @@ module AppReport
   # that no application wrote -- a window handle, a viewport, two scrollbars per
   # scrolled window -- and a report of those is a report about GTK rather than about
   # the components.
-  def self.walk(widget, origin, into, parts, uses)
+  def self.walk(widget, origin, into, parts, uses, overlay = nil)
     component = component_of(widget)
     # A part is not reported, but is still descended into: AdwPreferencesPage's
     # template is a scrolled window holding a clamp, and everything the application put
     # on the page is inside it.
     part = component && parts.include?(component)
 
-    into << { "component" => component, "box" => bounds(widget, origin) } if !part && uses.include?(component)
+    # An AdwDialog covers the whole window and paints a scrim over it, but what it
+    # draws of its own is the card -- which is what the shot is of and what the other
+    # side renders. Measuring the dialog's own allocation reported a 480x360 scrim
+    # against a 295x173 card and called the difference a layout fault.
+    box = widget.equal?(overlay) ? [0.0, 0.0, origin.width.to_f, origin.height.to_f] : bounds(widget, origin)
+
+    into << { "component" => component, "box" => box } if !part && uses.include?(component)
 
     composite = component && catalogue.dig("components", component, "kind") == "composite"
     inside = composite ? parts_of(component) : parts
 
     child = widget.first_child
     while child
-      walk(child, origin, into, inside, uses)
+      walk(child, origin, into, inside, uses, overlay)
       child = child.next_sibling
     end
   end
@@ -182,23 +201,42 @@ module AppReport
   # `Gtk::Button` and `Adwaita::ActionRow` are Button and ActionRow, where the registry
   # has a component of that name.
   def self.component_of(widget)
-    name = widget.class.name.to_s.split("::").last
+    name = type_name(widget)
 
     catalogue.fetch("components").key?(name) ? name : nil
   end
 
+  # THE WIDGET'S OWN GTYPE, NOT ITS RUBY CLASS. Several of the registry's components are
+  # private to libadwaita -- AdwToastWidget, AdwTab, AdwTabThumbnail, AdwIndicatorBin and
+  # AdwViewSwitcherButton have no constructor and no class in the bindings, which report
+  # the nearest ancestor they do know and so reported nothing useful at all.
+  #
+  # They are still on screen: an AdwToastOverlay builds the toast widget, an AdwTabBar
+  # builds a tab per page, and an AdwViewSwitcher builds a button and its indicator per
+  # page. Rendering the parent is how these are compared, because it is the only way
+  # they are ever drawn. The GType is exact where the Ruby class is not.
+  def self.type_name(widget)
+    widget.class.gtype.name.to_s.delete_prefix("Adw").delete_prefix("Gtk")
+  rescue StandardError
+    widget.class.name.to_s.split("::").last
+  end
+
   # ── the components, from the DOM ─────────────────────────────────────────
 
-  def self.components(wanted)
+  def self.components(scenes)
     serving do |page|
-      wanted.to_h{|one| [one.fetch("name"), read(page, one.fetch("name"), one.fetch("uses"))] }
+      scenes.to_h do |one, scene|
+        name = Staging.shot(one, scene)
+
+        [name, read(page, name, scene.fetch("uses"))]
+      end
     end
   end
 
   def self.read(page, name, uses)
     (page.evaluate(<<~JS) || []).filter_map do |one|
       (() => {
-        const app = document.querySelector('[data-app=#{name.to_json}]');
+        const app = document.querySelector('[data-shot=#{name.to_json}]');
         if (!app) return [];
         const origin = app.getBoundingClientRect();
         const round = (n) => Math.round(n * 10) / 10;
@@ -307,14 +345,14 @@ module AppReport
   HEAD = "  %-22s %-27s %-27s %s"
   BODY = "  %-22s %-27s %-27s %s"
 
-  def self.report(wanted, results, tolerance, differences_only)
-    wanted.each do |one|
-      name = one.fetch("name")
+  def self.report(scenes, results, tolerance, differences_only)
+    scenes.each do |one, scene|
+      name = Staging.shot(one, scene)
       rows = results.fetch(name)
       shown = differences_only ? rows.select{|row| row.fetch("out") } : rows
 
       puts
-      puts("#{name} — #{one.fetch('width')}x#{one.fetch('height')}")
+      puts("#{name} — #{one.fetch('width')}x#{one.fetch('height')} #{scene.fetch('mode')}")
       puts(format(HEAD, "component", "libadwaita", "adwaita-cn", "difference"))
       puts(format(HEAD, "", "x      y      w      h", "x      y      w      h", "x      y      w      h"))
 

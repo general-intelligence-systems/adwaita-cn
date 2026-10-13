@@ -76,6 +76,9 @@
       "text-[var(--card-fg-color)]",
       "rounded-[12px]",
       "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -777,6 +780,9 @@
       "[--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))]",
       "[--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))]",
       "shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,color,background,box-shadow]",
       "duration-200",
@@ -814,9 +820,11 @@
       "[border-right-width:1px]",
       "[border-right-style:solid]",
       "[border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-left-style:none]",
       "[border-left-width:1px]",
       "[border-left-style:solid]",
-      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-right-style:none]"
     ]
   },
   ".sidebar list": {
@@ -886,14 +894,16 @@
     "base": [
       "[border-right-width:1px]",
       "[border-right-style:solid]",
-      "[border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+      "[border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-left-style:none]"
     ]
   },
   ".sidebar.right": {
     "base": [
       "[border-left-width:1px]",
       "[border-left-style:solid]",
-      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-right-style:none]"
     ]
   },
   ".solid-csd popover": {
@@ -1043,6 +1053,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1071,6 +1084,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1099,6 +1115,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1179,6 +1198,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1211,6 +1233,9 @@
   ".toolbar menubutton.opaque > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1329,6 +1354,9 @@
   ".toolbar menubutton.suggested-action > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1478,6 +1506,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1512,6 +1543,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1762,6 +1796,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1790,6 +1827,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1818,6 +1858,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1898,6 +1941,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1930,6 +1976,9 @@
   "actionbar > revealer > box menubutton.opaque > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2048,6 +2097,9 @@
   "actionbar > revealer > box menubutton.suggested-action > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2197,6 +2249,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2231,6 +2286,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2503,6 +2561,9 @@
       "[font-weight:inherit]",
       "bg-none",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2649,6 +2710,9 @@
       "min-w-4",
       "rounded-[9px]",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2695,6 +2759,9 @@
       "bg-[var(--card-bg-color)]",
       "bg-clip-padding",
       "[font-weight:inherit]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2787,6 +2854,9 @@
       "p-0",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2823,6 +2893,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2955,6 +3028,9 @@
   "button.opaque": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -2984,6 +3060,9 @@
       "min-h-8",
       "text-[RGB(255_255_255/90%)]",
       "bg-[RGB(0_0_0/65%)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -3026,6 +3105,9 @@
       "my-[3px]",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -3056,6 +3138,9 @@
   "button.suggested-action": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -3140,6 +3225,9 @@
     "base": [
       "mt-[3px]",
       "mr-[3px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -3189,6 +3277,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -3249,7 +3340,9 @@
     "indeterminate": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-dash-symbolic)]"
     ],
     "indeterminate:hover": [
       "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]"
@@ -3257,7 +3350,9 @@
     "data-[state=checked]": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-check-symbolic)]"
     ],
     "indeterminate:active": [
       "bg-[image:image(RGB(0_0_6/20%))]"
@@ -3274,6 +3369,9 @@
       "p-[3px]",
       "gap-[4px]",
       "rounded-[9px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -3319,6 +3417,9 @@
   },
   "colorswatch": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[6px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -3344,6 +3445,9 @@
       "min-w-4",
       "rounded-[9px_0_0_9px]",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -3537,6 +3641,9 @@
   },
   "columnview": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -3575,13 +3682,13 @@
   },
   "columnview > header > button sort-indicator.ascending": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-up-symbolic)]"
     ]
   },
   "columnview > header > button sort-indicator.descending": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -3690,7 +3797,7 @@
   },
   "combobox arrow": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]",
       "min-h-4",
       "min-w-4"
@@ -4092,7 +4199,7 @@
   },
   "dropdown arrow": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]",
       "min-h-4",
       "min-w-4"
@@ -4158,6 +4265,9 @@
       "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
       "bg-clip-padding",
       "caret-[currentColor]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -4248,19 +4358,22 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]"
     ],
     "disabled": [
       "[filter:Opacity(var(--disabled-opacity))]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
   "expander-widget > box > title": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -4282,6 +4395,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -4315,6 +4431,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -4348,6 +4467,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -4570,6 +4692,9 @@
     "base": [
       "rounded-[15px]",
       "shadow-[0_0_14px_2px_RGB(0_0_6/3%),0_0_5px_2px_RGB(0_0_6/10%),0_0_0_1px_RGB(0_0_0/5%)]",
+      "[outline-width:1px]",
+      "[outline-style:solid]",
+      "[outline-color:RGB(255_255_255/7%)]",
       "outline-offset-[-1px]"
     ]
   },
@@ -4577,6 +4702,9 @@
     "base": [
       "p-[3px]",
       "rounded-[9px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -4625,6 +4753,9 @@
     "base": [
       "p-[3px]",
       "rounded-[9px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -4788,6 +4919,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -4816,6 +4950,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -4844,6 +4981,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -4924,6 +5064,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -4956,6 +5099,9 @@
   "headerbar menubutton.opaque > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -5074,6 +5220,9 @@
   "headerbar menubutton.suggested-action > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -5229,6 +5378,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -5263,6 +5415,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -5358,6 +5513,9 @@
   "iconview": {
     "base": [
       "bg-[var(--view-bg-color)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -5434,6 +5592,9 @@
       "p-1",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -5687,6 +5848,9 @@
     "base": [
       "text-[var(--accent-color)]",
       "[font-weight:inherit]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -5746,6 +5910,9 @@
       "[border-bottom-width:1px]",
       "[border-bottom-style:solid]",
       "[border-bottom-color:var(--card-shade-color)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -5784,6 +5951,9 @@
       "[border-bottom-width:1px]",
       "[border-bottom-style:solid]",
       "[border-bottom-color:var(--card-shade-color)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -5833,6 +6003,9 @@
     "base": [
       "mb-3",
       "[border-width:0]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -5878,6 +6051,9 @@
   "list.boxed-list-separate > row.expander row.header": {
     "base": [
       "[border-bottom-width:0]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -5931,6 +6107,9 @@
       "[border-bottom-width:1px]",
       "[border-bottom-style:solid]",
       "[border-bottom-color:var(--card-shade-color)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -5969,6 +6148,9 @@
       "[border-bottom-width:1px]",
       "[border-bottom-style:solid]",
       "[border-bottom-color:var(--card-shade-color)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -6159,31 +6341,31 @@
   },
   "menubutton arrow.down": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
   "menubutton arrow.left": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-start-symbolic)]"
     ]
   },
   "menubutton arrow.none": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-open-menu-symbolic)]"
     ]
   },
   "menubutton arrow.right": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic)]"
     ]
   },
   "menubutton arrow.up": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-up-symbolic)]"
     ]
   },
@@ -6243,6 +6425,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -6288,6 +6473,9 @@
   "menubutton.opaque > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -6340,6 +6528,9 @@
       "min-h-8",
       "text-[RGB(255_255_255/90%)]",
       "bg-[RGB(0_0_0/65%)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -6386,6 +6577,9 @@
   "menubutton.suggested-action > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -6478,6 +6672,9 @@
       "min-w-4",
       "rounded-none",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -6615,6 +6812,9 @@
       "[filter:Opacity(var(--disabled-opacity))]"
     ],
     "data-[state=checked]": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -6645,7 +6845,9 @@
     ]
   },
   "notebook > header.bottom": {
-    "base": []
+    "base": [
+      "[border-top-style:solid]"
+    ]
   },
   "notebook > header.bottom > tabs": {
     "base": [
@@ -6663,18 +6865,19 @@
   "notebook > header.bottom > tabs > arrow": {
     "base": [
       "px-1",
-      "mx-[-5px]"
+      "mx-[-5px]",
+      "[border-bottom-style:none]"
     ]
   },
   "notebook > header.bottom > tabs > arrow.down": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-start-symbolic)]"
     ]
   },
   "notebook > header.bottom > tabs > arrow.up": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic)]"
     ]
   },
@@ -6691,7 +6894,9 @@
     ]
   },
   "notebook > header.left": {
-    "base": []
+    "base": [
+      "[border-right-style:solid]"
+    ]
   },
   "notebook > header.left > tabs": {
     "base": [
@@ -6709,18 +6914,19 @@
   "notebook > header.left > tabs > arrow": {
     "base": [
       "py-1",
-      "my-[-5px]"
+      "my-[-5px]",
+      "[border-left-style:none]"
     ]
   },
   "notebook > header.left > tabs > arrow.down": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-up-symbolic)]"
     ]
   },
   "notebook > header.left > tabs > arrow.up": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -6736,7 +6942,9 @@
     ]
   },
   "notebook > header.right": {
-    "base": []
+    "base": [
+      "[border-left-style:solid]"
+    ]
   },
   "notebook > header.right > tabs": {
     "base": [
@@ -6754,18 +6962,19 @@
   "notebook > header.right > tabs > arrow": {
     "base": [
       "py-1",
-      "my-[-5px]"
+      "my-[-5px]",
+      "[border-right-style:none]"
     ]
   },
   "notebook > header.right > tabs > arrow.down": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-up-symbolic)]"
     ]
   },
   "notebook > header.right > tabs > arrow.up": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -6781,7 +6990,9 @@
     ]
   },
   "notebook > header.top": {
-    "base": []
+    "base": [
+      "[border-bottom-style:solid]"
+    ]
   },
   "notebook > header.top > tabs": {
     "base": [
@@ -6799,18 +7010,19 @@
   "notebook > header.top > tabs > arrow": {
     "base": [
       "px-1",
-      "mx-[-5px]"
+      "mx-[-5px]",
+      "[border-top-style:none]"
     ]
   },
   "notebook > header.top > tabs > arrow.down": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-start-symbolic)]"
     ]
   },
   "notebook > header.top > tabs > arrow.up": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic)]"
     ]
   },
@@ -6963,6 +7175,9 @@
   },
   "plane": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[6px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -7175,6 +7390,7 @@
       "p-[11px]",
       "bg-[transparent]",
       "shadow-[inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[outline-style:none]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -7221,6 +7437,7 @@
       "p-0",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-style:none]",
       "outline-offset-[4px]",
       "min-h-8",
       "min-w-8",
@@ -7454,13 +7671,13 @@
   },
   "popover.menu modelbutton arrow.left": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-go-previous-symbolic)]"
     ]
   },
   "popover.menu modelbutton arrow.right": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-go-next-symbolic)]"
     ]
   },
@@ -7776,7 +7993,9 @@
     "indeterminate": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-dash-symbolic)]"
     ],
     "indeterminate:hover": [
       "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]"
@@ -7784,7 +8003,9 @@
     "data-[state=checked]": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-bullet-symbolic)]"
     ],
     "indeterminate:active": [
       "bg-[image:image(RGB(0_0_6/20%))]"
@@ -7799,6 +8020,9 @@
   "row": {
     "base": [
       "bg-clip-padding",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -7956,6 +8180,9 @@
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
       "[border-bottom-width:0]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -8016,6 +8243,9 @@
   },
   "row.entry": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -8326,6 +8556,9 @@
       "[border-bottom-width:1px]",
       "[border-bottom-style:solid]",
       "[border-bottom-color:var(--card-shade-color)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -8431,6 +8664,9 @@
   },
   "row.spin": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -8441,9 +8677,12 @@
     "base": [
       "bg-none",
       "gap-[6px]",
-      "shadow-none"
+      "shadow-none",
+      "[outline-style:none]"
     ],
-    "focus": []
+    "focus": [
+      "[outline-style:none]"
+    ]
   },
   "row.spin spinbutton > button.arrow-button.image-button.down": {
     "base": [
@@ -8523,6 +8762,9 @@
       "min-w-7.5",
       "rounded-full",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -8538,6 +8780,9 @@
       "min-w-7.5",
       "rounded-full",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -8553,6 +8798,9 @@
       "min-w-7.5",
       "rounded-full",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -8603,6 +8851,9 @@
       "min-w-7.5",
       "rounded-full",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -8618,6 +8869,9 @@
       "min-w-7.5",
       "rounded-full",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -8633,6 +8887,9 @@
       "min-w-7.5",
       "rounded-full",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -9231,6 +9488,9 @@
   "scale > trough > slider": {
     "base": [
       "-m-2",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[6px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -9538,10 +9798,17 @@
     ]
   },
   "scrollbar.overlay-indicator > range > trough": {
-    "base": []
+    "base": [
+      "[outline-width:1px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]"
+    ]
   },
   "scrollbar.overlay-indicator > range > trough > slider": {
     "base": [
+      "[outline-width:1px]",
+      "[outline-style:solid]",
+      "[outline-color:color-mix(in_srgb,var(--scrollbar-outline-color)_60%,transparent)]",
       "outline-offset-[-8px]",
       "min-w-[3px]",
       "min-h-[3px]",
@@ -9690,6 +9957,9 @@
       "mr-2.5",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -9801,6 +10071,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -9829,6 +10102,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -9857,6 +10133,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -9937,6 +10216,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -9969,6 +10251,9 @@
   "searchbar > revealer > box menubutton.opaque > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10087,6 +10372,9 @@
   "searchbar > revealer > box menubutton.suggested-action > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10236,6 +10524,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10270,6 +10561,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10350,6 +10644,9 @@
     "base": [
       "gap-[6px]",
       "rounded-[6px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[8px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -10371,6 +10668,9 @@
   "shortcut-label": {
     "base": [
       "rounded-[6px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -10500,6 +10800,9 @@
       "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
       "bg-clip-padding",
       "caret-[currentColor]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -10515,6 +10818,9 @@
       "m-0",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10558,6 +10864,9 @@
       "m-0",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10718,7 +11027,7 @@
     "base": [
       "bg-none",
       "opacity-0",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-process-working-symbolic)]"
     ],
     "data-[state=checked]": [
@@ -10765,7 +11074,7 @@
   },
   "splitbutton > menubutton > button > arrow.none": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -10862,6 +11171,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10896,6 +11208,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10956,6 +11271,9 @@
   "splitbutton.opaque > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -10989,6 +11307,9 @@
   "splitbutton.opaque > menubutton > button": {
     "base": [
       "shadow-[inset_-1px_0_color-mix(in_srgb,currentColor_30%,transparent)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -11028,6 +11349,9 @@
   "splitbutton.suggested-action > button": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -11061,6 +11385,9 @@
   "splitbutton.suggested-action > menubutton > button": {
     "base": [
       "shadow-[inset_-1px_0_color-mix(in_srgb,currentColor_30%,transparent)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -11234,6 +11561,9 @@
       "p-[3px]",
       "rounded-[14px]",
       "bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -11365,6 +11695,9 @@
   "tabbar tabbox > tabboxchild": {
     "base": [
       "rounded-[9px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -11409,6 +11742,9 @@
   },
   "tabgrid > tabgridchild .card": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -11442,6 +11778,9 @@
   },
   "tabthumbnail .card picture": {
     "base": [
+      "[outline-width:1px]",
+      "[outline-style:solid]",
+      "[outline-color:RGB(255_255_255/7%)]",
       "outline-offset-[-1px]",
       "rounded-[12px]"
     ]
@@ -11624,6 +11963,9 @@
       "font-bold",
       "min-w-8.5",
       "min-h-[calc(34px_-_var(---group-padding)_*_2)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,color,background,box-shadow]",
       "duration-200",
@@ -11700,6 +12042,9 @@
   },
   "toggle-group.flat > toggle": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -11737,6 +12082,9 @@
       "[--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))]",
       "[--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))]",
       "shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,color,background,box-shadow]",
       "duration-200",
@@ -12151,6 +12499,9 @@
   },
   "treeview.view": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -12204,13 +12555,13 @@
   },
   "treeview.view > header > button sort-indicator.ascending": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-up-symbolic)]"
     ]
   },
   "treeview.view > header > button sort-indicator.descending": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -12269,7 +12620,7 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]",
       "text-[color-mix(in_srgb,currentColor_70%,transparent)]"
     ],
@@ -12283,7 +12634,7 @@
       "text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -12637,6 +12988,9 @@
       "m-0",
       "shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)]",
       "rounded-[var(--window-radius)]",
+      "[outline-width:1px]",
+      "[outline-style:solid]",
+      "[outline-color:RGB(255_255_255/7%)]",
       "outline-offset-[-1px]"
     ]
   },
@@ -12648,12 +13002,14 @@
   "window.csd.fullscreen": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-none"
     ]
   },
   "window.csd.maximized": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-none"
     ]
   },
@@ -12671,30 +13027,35 @@
   "window.csd.tiled": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-bottom": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-left": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-right": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-top": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
@@ -13116,6 +13477,9 @@
   },
   "window.print treeview.dialog-action-box": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -13166,13 +13530,13 @@
   },
   "window.print treeview.dialog-action-box > header > button sort-indicator.ascending": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-up-symbolic)]"
     ]
   },
   "window.print treeview.dialog-action-box > header > button sort-indicator.descending": {
     "base": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -13237,7 +13601,7 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]",
       "text-[color-mix(in_srgb,currentColor_70%,transparent)]"
     ],
@@ -13251,7 +13615,7 @@
       "text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },

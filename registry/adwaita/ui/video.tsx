@@ -9,6 +9,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { GraphicsOffloadEnabled } from "@/lib/enums"
@@ -44,7 +45,7 @@ function Video({ className, render, file, mediaStream, autoplay, graphicsOffload
     "data-autoplay": autoplay,
     "data-graphics-offload": graphicsOffload,
     "data-loop": loop,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/video", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
@@ -65,9 +66,9 @@ function Video({ className, render, file, mediaStream, autoplay, graphicsOffload
   })
 }
 
-function VideoImage({ className, ...props }: React.ComponentProps<"span">) {
+function VideoImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="video-image"
         data-node="image"
       className={cn(className)}

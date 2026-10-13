@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "network-vpn-disconnected-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "network-vpn-disconnected-symbolic"
+    }
+  ]
+}

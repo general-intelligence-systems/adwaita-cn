@@ -51,7 +51,7 @@ function TabBar({ className, render, endActionWidget, startActionWidget, view, a
     "data-expand-tabs": expandTabs,
     "data-extra-drag-preload": extraDragPreload,
     "data-inverted": inverted,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/tab-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>

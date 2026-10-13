@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { CenteringPolicy } from "@/lib/enums"
@@ -86,18 +87,14 @@ function HeaderBar({ className, render, variant = "default", size = "default", t
     "data-show-end-title-buttons": showEndTitleButtons,
     "data-show-start-title-buttons": showStartTitleButtons,
     "data-show-title": showTitle,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", headerBarVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/header-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", headerBarVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <HeaderBarWindowhandle>
                 <HeaderBarBox>
                   <HeaderBarStart>
                     <HeaderBarBox2>
-                      <HeaderBarWindowControls>
-                        <HeaderBarButton>
-                          <HeaderBarImage />
-                        </HeaderBarButton>
-                      </HeaderBarWindowControls>
+                      <HeaderBarWindowControls />
                       {children}
                     </HeaderBarBox2>
                   </HeaderBarStart>
@@ -108,7 +105,7 @@ function HeaderBar({ className, render, variant = "default", size = "default", t
                     <HeaderBarBox3>
                       <HeaderBarWindowControls2>
                         <HeaderBarCloseButton>
-                          <HeaderBarImage2 />
+                          <HeaderBarImage />
                         </HeaderBarCloseButton>
                       </HeaderBarWindowControls2>
                     </HeaderBarBox3>
@@ -125,36 +122,6 @@ function HeaderBar({ className, render, variant = "default", size = "default", t
     render,
     props: mergeProps<"header">(defaultProps, rest),
   })
-}
-
-function HeaderBarImage({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="header-bar-image"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function HeaderBarButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="header-bar-button"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
 }
 
 function HeaderBarWindowControls({ className, ...props }: React.ComponentProps<"div">) {
@@ -201,10 +168,11 @@ function HeaderBarTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function HeaderBarImage2({ className, ...props }: React.ComponentProps<"span">) {
+function HeaderBarImage({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="header-bar-image2"
+    <Icon
+        name={name}
+      data-slot="header-bar-image"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -218,13 +186,13 @@ function HeaderBarCloseButton({ className, ...props }: React.ComponentProps<"div
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/header-bar:bg-none group-hover/header-bar:shadow-none",
+        "group-active/header-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/header-bar:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/header-bar:bg-none group-active/header-bar:shadow-none",
+        "group-disabled/header-bar:[filter:Opacity(var(--disabled-opacity))] group-disabled/header-bar:[filter:opacity(30%)]",
+        "group-data-[state=checked]/header-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/header-bar:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/header-bar:group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/header-bar:group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/header-bar:group-active/header-bar:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/header-bar:group-active/header-bar:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -286,4 +254,4 @@ function HeaderBarWindowhandle({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-export { HeaderBar, HeaderBarImage, HeaderBarButton, HeaderBarWindowControls, HeaderBarBox2, HeaderBarStart, HeaderBarTitle, HeaderBarImage2, HeaderBarCloseButton, HeaderBarWindowControls2, HeaderBarBox3, HeaderBarEnd, HeaderBarBox, HeaderBarWindowhandle, headerBarVariants }
+export { HeaderBar, HeaderBarWindowControls, HeaderBarBox2, HeaderBarStart, HeaderBarTitle, HeaderBarImage, HeaderBarCloseButton, HeaderBarWindowControls2, HeaderBarBox3, HeaderBarEnd, HeaderBarBox, HeaderBarWindowhandle, headerBarVariants }

@@ -47,7 +47,7 @@ function WindowTitle({ className, render, variant = "default", subtitle, title, 
     "data-slot": "window-title",
     "data-node": "windowtitle",
     "data-variant": variant,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", windowTitleVariants({ variant }), widgetClassName, className),
+    className: cn("group/window-title", "grid [&>*]:col-start-1 [&>*]:row-start-1", windowTitleVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <WindowTitleBox>
@@ -78,7 +78,7 @@ function WindowTitleTitleLabel({ className, ...props }: React.ComponentProps<"sp
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] px-3 font-bold",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/window-title:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -92,7 +92,7 @@ function WindowTitleSubtitleLabel({ className, ...props }: React.ComponentProps<
         data-node="label"
       className={cn("subtitle", [
         "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/window-title:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

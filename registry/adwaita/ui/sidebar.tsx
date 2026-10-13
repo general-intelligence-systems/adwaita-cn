@@ -83,8 +83,8 @@ function Sidebar({ className, render, variant = "default", filter, menuModel, pl
     "data-variant": variant,
     "data-drop-preload": dropPreload,
     "data-mode": mode,
-    "data-selected": selected,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", sidebarVariants({ variant }), widgetClassName, className),
+    "data-selected-value": selected,
+    className: cn("group/sidebar", "grid [&>*]:col-start-1 [&>*]:row-start-1", sidebarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

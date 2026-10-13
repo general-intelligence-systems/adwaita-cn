@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -21,7 +22,7 @@ const preferencesWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .messagedialog */
         messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .preferences */
@@ -161,7 +162,7 @@ function PreferencesWindow({ className, render, variant = "default", application
     "data-startup-id": startupId,
     "data-title": title,
     "data-visible-page-name": visiblePageName,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesWindowVariants({ variant }), widgetClassName, className),
+    className: cn("group/preferences-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -186,7 +187,7 @@ function PreferencesWindow({ className, render, variant = "default", application
                   </PreferencesWindowSubpagesNavView>
                 </PreferencesWindowSubpagesLeaflet>
               </PreferencesWindowToastOverlay>
-                  {iconName ? <span data-slot="preferences-window-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="preferences-window-icon" />
                   {content}
                   {application}
                   {child}
@@ -240,13 +241,13 @@ function PreferencesWindowSearchButton({ className, ...props }: React.ComponentP
         data-node="button"
         data-valign="center"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/preferences-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/preferences-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/preferences-window:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/preferences-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/preferences-window:group-hover/preferences-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/preferences-window:group-active/preferences-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

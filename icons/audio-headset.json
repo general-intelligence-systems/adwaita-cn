@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "audio-headset-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "audio-headset-symbolic"
+    }
+  ]
+}

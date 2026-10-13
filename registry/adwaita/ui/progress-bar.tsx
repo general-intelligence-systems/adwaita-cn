@@ -84,7 +84,7 @@ function ProgressBar({ className, render, variant = "default", ellipsize, text, 
     "data-orientation": orientation,
     "data-pulse-step": pulseStep,
     "data-show-text": showText,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", progressBarVariants({ variant }), widgetClassName, className),
+    className: cn("group/progress-bar", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", progressBarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

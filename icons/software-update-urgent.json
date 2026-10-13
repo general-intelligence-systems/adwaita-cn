@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "software-update-urgent-symbolic",
+  "monochrome": false,
+  "aliases": [
+    {
+      "name": "software-update-urgent-symbolic"
+    }
+  ]
+}

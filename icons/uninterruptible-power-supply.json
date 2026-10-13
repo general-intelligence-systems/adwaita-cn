@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "uninterruptible-power-supply-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "uninterruptible-power-supply-symbolic"
+    }
+  ]
+}

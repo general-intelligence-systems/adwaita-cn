@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "auth-sim-locked-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "auth-sim-locked-symbolic"
+    }
+  ]
+}

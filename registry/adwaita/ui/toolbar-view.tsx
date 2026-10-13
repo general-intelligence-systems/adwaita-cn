@@ -85,7 +85,7 @@ function ToolbarView({ className, render, variant = "default", content, bottomBa
     "data-reveal-bottom-bars": revealBottomBars,
     "data-reveal-top-bars": revealTopBars,
     "data-top-bar-style": topBarStyle,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toolbarViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/toolbar-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toolbarViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

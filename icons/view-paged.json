@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "view-paged-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "view-paged-symbolic"
+    }
+  ]
+}

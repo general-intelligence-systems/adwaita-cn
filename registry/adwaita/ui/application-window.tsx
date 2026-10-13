@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -20,7 +21,7 @@ const applicationWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .messagedialog */
         messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .solid-csd */
@@ -147,7 +148,7 @@ function ApplicationWindow({ className, render, variant = "default", application
     "data-show-menubar": showMenubar,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn(applicationWindowVariants({ variant }), widgetClassName, className),
+    className: cn("group/application-window", applicationWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -159,7 +160,7 @@ function ApplicationWindow({ className, render, variant = "default", application
                   <ApplicationWindowWindowhandle />
                 </ApplicationWindowHeaderbar>
               </ApplicationWindowSheet>
-                  {iconName ? <span data-slot="application-window-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="application-window-icon" />
                   {content}
                   {application}
                   {child}

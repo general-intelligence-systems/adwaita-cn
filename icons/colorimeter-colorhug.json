@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "colorimeter-colorhug-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "colorimeter-colorhug-symbolic"
+    }
+  ]
+}

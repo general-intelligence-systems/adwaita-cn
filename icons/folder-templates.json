@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "folder-templates-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "folder-templates-symbolic"
+    }
+  ]
+}

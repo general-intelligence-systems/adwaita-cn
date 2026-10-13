@@ -1,0 +1,13 @@
+{
+  "name": "@adwaita/shared",
+  "version": "0.0.1",
+  "description": "The shared build and formatting helpers behind the Adwaita icon packages.",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/build/types.ts"
+  },
+  "license": "LGPL-2.1-or-later"
+}

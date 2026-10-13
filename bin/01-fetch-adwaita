@@ -128,7 +128,13 @@ find "$icons" -name "*-symbolic.svg" -exec install -m 644 {} "$out/icons/" \;
 
 # libadwaita ships icons of its own -- the entry row's apply and edit marks, the expander
 # arrow -- in its resource bundle rather than in the theme.
-for resource in $(gresource list "$adwaita" | grep "/icons/.*\.svg$"); do
+#
+# `/styles/assets/` as well as `/icons/`: the check mark, the radio bullet and the
+# indeterminate dash are not named icons at all. The stylesheet draws them with
+# `-gtk-recolor(url("assets/check-symbolic.svg"))`, which is a path into the bundle and
+# not a theme lookup, and vendoring only `/icons/` left every check button and every
+# radio in the registry an empty box with nothing drawn in it.
+for resource in $(gresource list "$adwaita" | grep -E "/(icons|styles/assets)/.*\.svg$"); do
   gresource extract "$adwaita" "$resource" > "$out/icons/$(basename "$resource")"
 done
 

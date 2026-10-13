@@ -51,6 +51,9 @@
       "text-[var(--card-fg-color)]",
       "rounded-[12px]",
       "shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -176,9 +179,11 @@
       "[border-right-width:1px]",
       "[border-right-style:solid]",
       "[border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-left-style:none]",
       "[border-left-width:1px]",
       "[border-left-style:solid]",
-      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-right-style:none]"
     ]
   },
   ".sidebar-pane": {
@@ -193,14 +198,16 @@
     "base": [
       "[border-right-width:1px]",
       "[border-right-style:solid]",
-      "[border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+      "[border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-left-style:none]"
     ]
   },
   ".sidebar.right": {
     "base": [
       "[border-left-width:1px]",
       "[border-left-style:solid]",
-      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]"
+      "[border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+      "[border-right-style:none]"
     ]
   },
   ".success": {
@@ -371,6 +378,9 @@
       "min-w-4",
       "rounded-[9px]",
       "font-bold",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -407,6 +417,9 @@
       "bg-[var(--card-bg-color)]",
       "bg-clip-padding",
       "[font-weight:inherit]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -471,6 +484,9 @@
       "p-0",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -502,6 +518,9 @@
     "base": [
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -561,6 +580,9 @@
   "button.opaque": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -590,6 +612,9 @@
       "min-h-8",
       "text-[RGB(255_255_255/90%)]",
       "bg-[RGB(0_0_0/65%)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -632,6 +657,9 @@
       "my-[3px]",
       "bg-[transparent]",
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -662,6 +690,9 @@
   "button.suggested-action": {
     "base": [
       "shadow-none",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -730,7 +761,9 @@
     "indeterminate": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-dash-symbolic)]"
     ],
     "indeterminate:hover": [
       "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]"
@@ -738,7 +771,9 @@
     "data-[state=checked]": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-check-symbolic)]"
     ],
     "indeterminate:active": [
       "bg-[image:image(RGB(0_0_6/20%))]"
@@ -755,6 +790,9 @@
       "p-[3px]",
       "gap-[4px]",
       "rounded-[9px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -768,6 +806,9 @@
   },
   "colorswatch": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[6px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -811,6 +852,9 @@
   },
   "columnview": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -851,6 +895,9 @@
       "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
       "bg-clip-padding",
       "caret-[currentColor]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -880,14 +927,14 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]"
     ],
     "disabled": [
       "[filter:Opacity(var(--disabled-opacity))]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -929,6 +976,9 @@
   "iconview": {
     "base": [
       "bg-[var(--view-bg-color)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -956,6 +1006,9 @@
     "base": [
       "text-[var(--accent-color)]",
       "[font-weight:inherit]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -1051,6 +1104,9 @@
   },
   "plane": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[6px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -1105,7 +1161,9 @@
     "indeterminate": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-dash-symbolic)]"
     ],
     "indeterminate:hover": [
       "bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]"
@@ -1113,7 +1171,9 @@
     "data-[state=checked]": [
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
-      "shadow-none"
+      "shadow-none",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-bullet-symbolic)]"
     ],
     "indeterminate:active": [
       "bg-[image:image(RGB(0_0_6/20%))]"
@@ -1128,6 +1188,9 @@
   "row": {
     "base": [
       "bg-clip-padding",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -1164,6 +1227,9 @@
       "bg-[var(--accent-bg-color)]",
       "text-[var(--accent-fg-color)]",
       "[border-bottom-width:0]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -1191,6 +1257,9 @@
   },
   "row.entry": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -1232,6 +1301,9 @@
   },
   "row.spin": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius]",
       "duration-200",
@@ -1307,6 +1379,9 @@
     "base": [
       "gap-[6px]",
       "rounded-[6px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[8px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -1316,6 +1391,9 @@
   "shortcut-label": {
     "base": [
       "rounded-[6px]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -1337,6 +1415,9 @@
       "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
       "bg-clip-padding",
       "caret-[currentColor]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -1366,7 +1447,7 @@
     "base": [
       "bg-none",
       "opacity-0",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-process-working-symbolic)]"
     ],
     "data-[state=checked]": [
@@ -1432,6 +1513,9 @@
       "p-[3px]",
       "rounded-[14px]",
       "bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[5px]",
       "transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
       "duration-200",
@@ -1551,6 +1635,9 @@
   },
   "treeview.view": {
     "base": [
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]",
       "transition-[outline-color,outline-width,outline-offset]",
       "duration-200",
@@ -1573,7 +1660,7 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]",
       "text-[color-mix(in_srgb,currentColor_70%,transparent)]"
     ],
@@ -1587,7 +1674,7 @@
       "text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -1630,18 +1717,23 @@
       "m-0",
       "shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)]",
       "rounded-[var(--window-radius)]",
+      "[outline-width:1px]",
+      "[outline-style:solid]",
+      "[outline-color:RGB(255_255_255/7%)]",
       "outline-offset-[-1px]"
     ]
   },
   "window.csd.fullscreen": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-none"
     ]
   },
   "window.csd.maximized": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-none"
     ]
   },
@@ -1654,30 +1746,35 @@
   "window.csd.tiled": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-bottom": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-left": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-right": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },
   "window.csd.tiled-top": {
     "base": [
       "[--window-radius:0px]",
+      "[outline-style:none]",
       "shadow-[0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),0_0_0_20px_transparent]"
     ]
   },

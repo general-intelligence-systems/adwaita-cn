@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "media-playback-stop-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "media-playback-stop-symbolic"
+    }
+  ]
+}

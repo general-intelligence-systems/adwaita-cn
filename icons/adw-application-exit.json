@@ -1,0 +1,23 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "application-exit",
+    "arrow",
+    "door",
+    "end",
+    "quit",
+    "stop",
+    "terminate"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-application-exit-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-application-exit-symbolic"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "camera-video-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "camera-video-symbolic"
+    }
+  ]
+}

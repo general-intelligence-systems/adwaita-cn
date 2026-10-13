@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "focus-legacy-systray-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "focus-legacy-systray-symbolic"
+    }
+  ]
+}

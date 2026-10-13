@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "folder-download-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "folder-download-symbolic"
+    }
+  ]
+}

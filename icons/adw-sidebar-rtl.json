@@ -1,0 +1,25 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw",
+    "dock",
+    "sidebar-show-right",
+    "ui",
+    "view-sidebar-end",
+    "view-sidebar-start-rtl",
+    "view-sidebar-start-symbolic-rtl",
+    "widget-split-views-rtl",
+    "widget-split-views-symbolic-rtl"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-sidebar-symbolic-rtl",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-sidebar-symbolic-rtl"
+    }
+  ]
+}

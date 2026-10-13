@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -22,7 +23,7 @@ const messageDialogVariants = cva(
         /** .compact */
         compact: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .destructive-action */
         destructiveAction: "",
         /** .has-body */
@@ -175,7 +176,7 @@ function MessageDialog({ className, render, variant = "default", application, bo
     "data-resizable": resizable,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn(messageDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/message-dialog", messageDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -195,7 +196,7 @@ function MessageDialog({ className, render, variant = "default", application, bo
                   </MessageDialogResponseArea>
                 </MessageDialogBox2>
               </MessageDialogWindowHandle>
-                  {iconName ? <span data-slot="message-dialog-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="message-dialog-icon" />
                   {application}
                   {child}
                   {defaultWidget}
@@ -236,7 +237,7 @@ function MessageDialogHeadingLabel({ className, ...props }: React.ComponentProps
         data-node="label"
       className={cn("title-2", [
         "caret-[currentColor] font-extrabold text-[136%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -250,7 +251,7 @@ function MessageDialogHeadingLabelSmall({ className, ...props }: React.Component
         data-node="label"
       className={cn("title-4", [
         "caret-[currentColor] font-bold text-[118%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -275,7 +276,7 @@ function MessageDialogBodyLabel({ className, ...props }: React.ComponentProps<"s
         data-vexpand=""
       className={cn("body", [
         "caret-[currentColor] font-normal leading-[140%] px-6",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

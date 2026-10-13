@@ -10,12 +10,13 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const toggleButtonVariants = cva(
   [
-    "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+    "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
     "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
     "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
@@ -29,7 +30,7 @@ const toggleButtonVariants = cva(
         default: "",
         /** .card */
         card: [
-          "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 bg-clip-padding [font-weight:inherit] transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+          "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 bg-clip-padding [font-weight:inherit] transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
           "hover:bg-[image:image(color-mix(in_srgb,currentColor_4%,transparent))]",
           "active:bg-[image:image(color-mix(in_srgb,currentColor_8%,transparent))]",
           "data-[state=checked]:bg-[var(--card-bg-color)] data-[state=checked]:bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_25%,transparent))]",
@@ -51,7 +52,7 @@ const toggleButtonVariants = cva(
         dnd: "",
         /** .flat */
         flat: [
-          "bg-[transparent] shadow-none outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
           "disabled:[filter:opacity(30%)]",
@@ -73,7 +74,7 @@ const toggleButtonVariants = cva(
         ],
         /** .opaque */
         opaque: [
-          "shadow-none outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)]",
+          "shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)]",
           "hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
           "active:bg-[image:image(RGB(0_0_6/20%))]",
           "data-[state=checked]:bg-[image:image(RGB(0_0_6/15%))]",
@@ -82,7 +83,7 @@ const toggleButtonVariants = cva(
         ],
         /** .osd */
         osd: [
-          "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-8 min-h-8 bg-[RGB(0_0_0/65%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-8 min-h-8 bg-[RGB(0_0_0/65%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "hover:text-[white] hover:bg-[color-mix(in_srgb,black_calc(0.85_*_65%),currentColor_calc(0.15_*_65%))]",
           "active:text-[white] active:bg-[color-mix(in_srgb,black_calc(0.75_*_65%),currentColor_calc(0.25_*_65%))]",
           "data-[state=checked]:bg-[color-mix(in_srgb,black_calc(0.8_*_65%),currentColor_calc(0.2_*_65%))]",
@@ -91,7 +92,7 @@ const toggleButtonVariants = cva(
         ],
         /** .sidebar-button */
         sidebarButton: [
-          "p-0 my-[3px] bg-[transparent] shadow-none outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-6.5 min-w-6.5 rounded-full",
+          "p-0 my-[3px] bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-6.5 min-w-6.5 rounded-full",
           "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
           "disabled:[filter:opacity(30%)]",
@@ -101,7 +102,7 @@ const toggleButtonVariants = cva(
         ],
         /** .suggested-action */
         suggestedAction: [
-          "shadow-none outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
+          "shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
           "hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
           "active:bg-[image:image(RGB(0_0_6/20%))]",
           "data-[state=checked]:bg-[image:image(RGB(0_0_6/15%))] data-[state=checked]:bg-[var(--accent-bg-color)]",
@@ -185,7 +186,7 @@ function ToggleButton({ className, render, variant = "default", size = "default"
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="toggle-button-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="toggle-button-icon" />
                   {label === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}

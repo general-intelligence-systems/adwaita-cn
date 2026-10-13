@@ -13,7 +13,7 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const shortcutLabelVariants = cva(
-  "rounded-[6px] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] gap-[6px]",
+  "rounded-[6px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] gap-[6px]",
   {
     variants: {
       variant: {
@@ -51,7 +51,7 @@ function ShortcutLabel({ className, render, variant = "default", accelerator, di
     "data-variant": variant,
     "data-accelerator": accelerator,
     "data-disabled-text": disabledText,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", shortcutLabelVariants({ variant }), widgetClassName, className),
+    className: cn("group/shortcut-label", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", shortcutLabelVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -90,7 +90,7 @@ function ShortcutLabelLabel({ className, ...props }: React.ComponentProps<"span"
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/shortcut-label:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

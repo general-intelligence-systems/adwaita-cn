@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "list-remove-all", "size": 16, "node": [["path", { "fill": "currentColor", "d": "m 15 1 v 2 h -14 v -2 z m 0 4 v 2 h -14 v -2 z m -7.875 3 c 0.492188 0 0.875 0.382812 0.875 0.875 v 6.25 c 0 0.492188 -0.382812 0.875 -0.875 0.875 h -6.25 c -0.492188 0 -0.875 -0.382812 -0.875 -0.875 v -6.25 c 0 -0.492188 0.382812 -0.875 0.875 -0.875 z m 7.875 1 v 2 h -6 v -2 z m -8.5 2 h -5 s -0.5 0 -0.5 0.5 v 1 c 0 0.5 0.5 0.5 0.5 0.5 h 5 s 0.5 0 0.5 -0.5 v -1 c 0 -0.5 -0.5 -0.5 -0.5 -0.5 z m 8.5 2 v 2 h -6 v -2 z m 0 0", "key": "18j8i0" }]], "aliases": ["list-remove-all-symbolic"], "gtkIconName": "list-remove-all-symbolic" };
+__iconData.node;
+const ListRemoveAll = createAdwaitaIcon(__iconData);
+
+export { __iconData, ListRemoveAll as default };
+//# sourceMappingURL=list-remove-all.mjs.map

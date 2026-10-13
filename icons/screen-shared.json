@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "screen-shared-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "screen-shared-symbolic"
+    }
+  ]
+}

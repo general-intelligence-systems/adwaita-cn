@@ -32,7 +32,7 @@ function ViewSwitcherBar({ className, render, stack, reveal, children, ...props 
     "data-slot": "view-switcher-bar",
     "data-node": "viewswitcherbar",
     "data-reveal": reveal,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/view-switcher-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
@@ -76,13 +76,13 @@ function ViewSwitcherBarButton({ className, ...props }: React.ComponentProps<"bu
       data-slot="view-switcher-bar-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/view-switcher-bar:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/view-switcher-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/view-switcher-bar:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/view-switcher-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/view-switcher-bar:group-hover/view-switcher-bar:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/view-switcher-bar:group-active/view-switcher-bar:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

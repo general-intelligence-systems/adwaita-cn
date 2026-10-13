@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "audio-card-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "audio-card-symbolic"
+    }
+  ]
+}

@@ -10,3 +10,9 @@ node_modules
 
 # The toolkit source bin/02-fetch-gir clones, pinned by bin/02-fetch-gir.out/src/VERSIONS.
 /bin/02-fetch-gir.out/src
+
+# bin/17-generate-icons writes these out of icons/. They are build output, the way lucide's
+# packages/lucide-react/src/icons/ is: the committed source is icons/, which bin/16 writes.
+/packages/adwaita_react/src/icons/*.ts
+/packages/adwaita_react/src/aliases/aliases.ts
+/packages/adwaita_react/src/dynamicIconImports.ts

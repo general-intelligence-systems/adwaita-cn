@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "microphone-hardware-disabled-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "microphone-hardware-disabled-symbolic"
+    }
+  ]
+}

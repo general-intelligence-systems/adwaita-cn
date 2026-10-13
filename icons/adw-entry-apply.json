@@ -1,0 +1,22 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw-entry-apply",
+    "check",
+    "checkmark",
+    "object",
+    "object-select",
+    "select"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-entry-apply-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-entry-apply-symbolic"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "applets-screenshooter-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "applets-screenshooter-symbolic"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { ScrollablePolicy, TreeViewGridLines } from "@/lib/enums"
@@ -30,7 +31,7 @@ const treeViewVariants = cva(
         ],
         /** .view */
         view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] border-l-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] border-t-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] bg-[color-mix(in_srgb,var(--accent-bg-color)_0.0001%,var(--view-bg-color))]",
+          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] border-l-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] border-t-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] bg-[color-mix(in_srgb,var(--accent-bg-color)_0.0001%,var(--view-bg-color))]",
           "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
           "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px] data-[selected]:rounded-none",
           "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px] data-[selected]:focus:rounded-none",
@@ -137,7 +138,7 @@ function TreeView({ className, render, variant = "default", expanderColumn, hadj
     "data-show-expanders": showExpanders,
     "data-tooltip-column": tooltipColumn,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn(treeViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/tree-view", treeViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -186,15 +187,15 @@ function TreeView({ className, render, variant = "default", expanderColumn, hadj
   })
 }
 
-function TreeViewImage({ className, ...props }: React.ComponentProps<"span">) {
+function TreeViewImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="tree-view-image"
         data-node="image"
       className={cn([
         "opacity-70",
-        "hover:opacity-100",
-        "active:opacity-80",
+        "group-hover/tree-view:opacity-100",
+        "group-active/tree-view:opacity-80",
       ], className)}
       {...props}
     />
@@ -273,8 +274,8 @@ function TreeViewEntry({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="tree-view-entry"
         data-node="entry"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-none bg-[image:none] bg-[var(--view-bg-color)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-none bg-[image:none] bg-[var(--view-bg-color)]",
+        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -298,8 +299,8 @@ function TreeViewSpinbutton({ className, ...props }: React.ComponentProps<"div">
       data-slot="tree-view-spinbutton"
         data-node="spinbutton"
       className={cn([
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-0 border-none rounded-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-0 border-none rounded-none",
+        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -323,13 +324,13 @@ function TreeViewButton({ className, ...props }: React.ComponentProps<"button">)
       data-slot="tree-view-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/tree-view:group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/tree-view:group-active/tree-view:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -364,13 +365,13 @@ function TreeViewButton2({ className, ...props }: React.ComponentProps<"button">
       data-slot="tree-view-button2"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/tree-view:group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/tree-view:group-active/tree-view:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -395,7 +396,7 @@ function TreeViewLabel({ className, ...props }: React.ComponentProps<"span">) {
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "channel-secure-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "channel-secure-symbolic"
+    }
+  ]
+}

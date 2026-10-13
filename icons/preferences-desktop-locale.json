@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "preferences-desktop-locale-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "preferences-desktop-locale-symbolic"
+    }
+  ]
+}

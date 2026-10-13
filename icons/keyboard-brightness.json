@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "keyboard-brightness-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "keyboard-brightness-symbolic"
+    }
+  ]
+}

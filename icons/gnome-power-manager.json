@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "gnome-power-manager-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "gnome-power-manager-symbolic"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "application-x-firmware-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "application-x-firmware-symbolic"
+    }
+  ]
+}

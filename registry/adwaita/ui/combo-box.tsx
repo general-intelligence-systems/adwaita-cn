@@ -78,7 +78,7 @@ function ComboBox({ className, render, variant = "default", child, model, active
     "data-slot": "combo-box",
     "data-node": "combobox",
     "data-variant": variant,
-    "data-active": active,
+    "data-active-value": active,
     "data-active-id": activeId,
     "data-button-sensitivity": buttonSensitivity,
     "data-editing-canceled": editingCanceled,
@@ -87,7 +87,7 @@ function ComboBox({ className, render, variant = "default", child, model, active
     "data-has-frame": hasFrame,
     "data-id-column": idColumn,
     "data-popup-fixed-width": popupFixedWidth,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", comboBoxVariants({ variant }), widgetClassName, className),
+    className: cn("group/combo-box", "grid [&>*]:col-start-1 [&>*]:row-start-1", comboBoxVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -113,7 +113,7 @@ function ComboBoxArrow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="combo-box-arrow"
         data-node="arrow"
-      className={cn("adw-icon [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4", className)}
+      className={cn("adw-icon-source [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4", className)}
       {...props}
     />
   )

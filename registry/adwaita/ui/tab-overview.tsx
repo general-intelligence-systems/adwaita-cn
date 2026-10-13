@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -80,7 +81,7 @@ function TabOverview({ className, render, variant = "default", child, secondaryM
     "data-open": open,
     "data-show-end-title-buttons": showEndTitleButtons,
     "data-show-start-title-buttons": showStartTitleButtons,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", tabOverviewVariants({ variant }), widgetClassName, className),
+    className: cn("group/tab-overview", "grid [&>*]:col-start-1 [&>*]:row-start-1", tabOverviewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -154,15 +155,15 @@ function TabOverviewScrolledWindow({ className, ...props }: React.ComponentProps
   )
 }
 
-function TabOverviewImage({ className, ...props }: React.ComponentProps<"span">) {
+function TabOverviewImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="tab-overview-image"
         data-node="image"
         data-halign="center"
       className={cn("icon", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
-        "disabled:opacity-[var(--disabled-opacity)]",
+        "group-disabled/tab-overview:opacity-[var(--disabled-opacity)]",
       ], className)}
       {...props}
     />
@@ -176,7 +177,7 @@ function TabOverviewTitleLabel({ className, ...props }: React.ComponentProps<"sp
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] font-extrabold text-[181%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -190,7 +191,7 @@ function TabOverviewDescriptionLabel({ className, ...props }: React.ComponentPro
         data-node="label"
       className={cn("body description", [
         "caret-[currentColor] font-normal leading-[140%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -258,15 +259,15 @@ function TabOverviewEmptyState({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function TabOverviewImage2({ className, ...props }: React.ComponentProps<"span">) {
+function TabOverviewImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="tab-overview-image2"
         data-node="image"
         data-halign="center"
       className={cn("icon", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
-        "disabled:opacity-[var(--disabled-opacity)]",
+        "group-disabled/tab-overview:opacity-[var(--disabled-opacity)]",
       ], className)}
       {...props}
     />
@@ -280,7 +281,7 @@ function TabOverviewTitleLabel2({ className, ...props }: React.ComponentProps<"s
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] font-extrabold text-[181%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -294,7 +295,7 @@ function TabOverviewDescriptionLabel2({ className, ...props }: React.ComponentPr
         data-node="label"
       className={cn("body description", [
         "caret-[currentColor] font-normal leading-[140%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -392,13 +393,13 @@ function TabOverviewNewTabButton({ className, ...props }: React.ComponentProps<"
         data-halign="center"
         data-valign="end"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "pill suggested-action new-tab-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-2.5 px-8 rounded-full shadow-none outline-offset-[5px] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[image:image(RGB(0_0_6/20%))]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[image:image(RGB(0_0_6/15%))] data-[state=checked]:bg-[var(--accent-bg-color)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[image:image(RGB(0_0_6/5%))]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[image:image(RGB(0_0_6/30%))]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-2.5 px-8 rounded-full shadow-none outline-offset-[5px] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
+        "group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/tab-overview:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/tab-overview:bg-[image:image(RGB(0_0_6/20%))]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/tab-overview:bg-[image:image(RGB(0_0_6/15%))] group-data-[state=checked]/tab-overview:bg-[var(--accent-bg-color)]",
+        "group-data-[state=checked]/tab-overview:group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/tab-overview:group-hover/tab-overview:bg-[image:image(RGB(0_0_6/5%))]",
+        "group-data-[state=checked]/tab-overview:group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/tab-overview:group-active/tab-overview:bg-[image:image(RGB(0_0_6/30%))]",
       ], className)}
       {...props}
     />
@@ -424,7 +425,7 @@ function TabOverviewTitleLabel3({ className, ...props }: React.ComponentProps<"s
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] px-3 font-bold",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -438,7 +439,7 @@ function TabOverviewSubtitleLabel({ className, ...props }: React.ComponentProps<
         data-node="label"
       className={cn("subtitle", [
         "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -474,13 +475,13 @@ function TabOverviewSearchButton({ className, ...props }: React.ComponentProps<"
       data-slot="tab-overview-search-button"
         data-node="button"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/tab-overview:group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/tab-overview:group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -503,7 +504,7 @@ function TabOverviewSecondaryMenuButton({ className, ...props }: React.Component
     <button
       data-slot="tab-overview-secondary-menu-button"
         data-node="menubutton"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:none]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))] group-disabled/tab-overview:[filter:none]", className)}
       {...props}
     />
   )
@@ -520,15 +521,15 @@ function TabOverviewHeaderBar({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function TabOverviewImage3({ className, ...props }: React.ComponentProps<"span">) {
+function TabOverviewImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="tab-overview-image3"
         data-node="image"
       className={cn([
         "opacity-70",
-        "hover:opacity-100",
-        "active:opacity-80",
+        "group-hover/tab-overview:opacity-100",
+        "group-active/tab-overview:opacity-80",
       ], className)}
       {...props}
     />
@@ -608,8 +609,8 @@ function TabOverviewSearchEntry({ className, ...props }: React.ComponentProps<"d
         data-node="entry"
         data-hexpand=""
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

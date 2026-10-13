@@ -9,6 +9,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -46,7 +47,7 @@ function Avatar({ className, render, customImage, iconName, showInitials, size, 
     style: { ...style, ...(size === undefined ? {} : { minWidth: size }), ...(size === undefined ? {} : { minHeight: size }) } as React.CSSProperties,
     children: (
         <>
-                  {iconName ? <span data-slot="avatar-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="avatar-icon" />
                   {customImage}
                   {children}
         </>

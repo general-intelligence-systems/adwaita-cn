@@ -40,7 +40,7 @@ function NavigationView({ className, render, animateTransitions, hhomogeneous, p
     "data-hhomogeneous": hhomogeneous,
     "data-pop-on-escape": popOnEscape,
     "data-vhomogeneous": vhomogeneous,
-    className: cn(widgetClassName, className),
+    className: cn("group/navigation-view", widgetClassName, className),
     style,
     children: (
         <>

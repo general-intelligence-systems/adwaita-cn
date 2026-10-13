@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "list-drag-handle-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "list-drag-handle-symbolic"
+    }
+  ]
+}

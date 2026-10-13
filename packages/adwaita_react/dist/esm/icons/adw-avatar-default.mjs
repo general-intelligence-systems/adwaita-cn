@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "adw-avatar-default", "size": 16, "node": [["path", { "fill": "none", "stroke": "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-dasharray": "none", "paint-order": "stroke markers fill", "d": "M 15 15 A 4 4 45 0 0 11 11 L 5 11 A 4 4 135 0 0 1 15 M 12 5 C 12 7.20914, 10.2091 9, 8 9 C 5.79086 9, 4 7.20914, 4 5 C 4 2.79086, 5.79086 1, 8 1 C 10.2091 1, 12 2.79086, 12 5 Z", "key": "1dyo28" }]], "aliases": ["adw-avatar-default-symbolic"], "gtkIconName": "adw-avatar-default-symbolic" };
+__iconData.node;
+const AdwAvatarDefault = createAdwaitaIcon(__iconData);
+
+export { __iconData, AdwAvatarDefault as default };
+//# sourceMappingURL=adw-avatar-default.mjs.map

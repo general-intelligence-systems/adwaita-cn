@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "face-cool-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "face-cool-symbolic"
+    }
+  ]
+}

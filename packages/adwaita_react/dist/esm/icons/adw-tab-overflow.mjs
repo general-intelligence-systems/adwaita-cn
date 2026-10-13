@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "adw-tab-overflow", "size": 16, "node": [["rect", { "fill": "none", "stroke": "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-opacity": "1", "x": "1", "y": "1", "width": "14", "height": "14", "rx": "2.93631", "ry": "2.93631", "key": "1e87jg" }], ["path", { "fill": "none", "stroke": "currentColor", "stroke-width": "1", "stroke-linecap": "butt", "stroke-linejoin": "miter", "stroke-opacity": "1", "d": "M 8 8 C 8 9.10456944, 8.89543056 10, 10 10 C 11.1045694 10, 12 9.10456944, 12 8 C 12 6.89543056, 11.1045694 6, 10 6 C 9.4250927 6, 9 6.28726196, 9 6.28726196 M 8 8 C 8 6.89543056, 7.10456944 6, 6 6 C 4.89543056 6, 4 6.89543056, 4 8 C 4 9.10456944, 4.89543056 10, 6 10 C 6.6464467 10, 7.11048555 9.66323662, 7.11048555 9.66323662", "key": "k4zehe" }]], "aliases": ["adw-tab-overflow-symbolic"], "gtkIconName": "adw-tab-overflow-symbolic" };
+__iconData.node;
+const AdwTabOverflow = createAdwaitaIcon(__iconData);
+
+export { __iconData, AdwTabOverflow as default };
+//# sourceMappingURL=adw-tab-overflow.mjs.map

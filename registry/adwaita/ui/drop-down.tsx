@@ -55,9 +55,9 @@ function DropDown({ className, render, expression, factory, headerFactory, listF
     "data-node": "dropdown",
     "data-enable-search": enableSearch,
     "data-search-match-mode": searchMatchMode,
-    "data-selected": selected,
+    "data-selected-value": selected,
     "data-show-arrow": showArrow,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
+    className: cn("group/drop-down", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
     style,
     children: (
         <>
@@ -93,7 +93,7 @@ function DropDownArrow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="drop-down-arrow"
         data-node="arrow"
-      className={cn("adw-icon [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4", className)}
+      className={cn("adw-icon-source [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4", className)}
       {...props}
     />
   )
@@ -104,7 +104,7 @@ function DropDownArrow2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="drop-down-arrow2"
         data-node="arrow"
-      className={cn("adw-icon [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
+      className={cn("adw-icon-source [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
       {...props}
     />
   )
@@ -138,13 +138,13 @@ function DropDownButton({ className, ...props }: React.ComponentProps<"button">)
       data-slot="drop-down-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/drop-down:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/drop-down:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/drop-down:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/drop-down:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/drop-down:group-hover/drop-down:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/drop-down:group-active/drop-down:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

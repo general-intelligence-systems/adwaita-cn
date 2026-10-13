@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "auth-smartcard-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "auth-smartcard-symbolic"
+    }
+  ]
+}

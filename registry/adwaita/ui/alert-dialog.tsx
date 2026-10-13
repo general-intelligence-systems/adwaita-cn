@@ -144,7 +144,7 @@ function AlertDialog({ className, render, variant = "default", body, child, defa
     "data-prefer-wide-layout": preferWideLayout,
     "data-presentation-mode": presentationMode,
     "data-title": title,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", alertDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/alert-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", alertDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -192,7 +192,7 @@ function AlertDialogHeadingLabel({ className, ...props }: React.ComponentProps<"
         data-node="label"
       className={cn("title-2", [
         "caret-[currentColor] font-extrabold text-[136%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/alert-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -206,7 +206,7 @@ function AlertDialogHeadingLabelSmall({ className, ...props }: React.ComponentPr
         data-node="label"
       className={cn("title-4", [
         "caret-[currentColor] font-bold text-[118%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/alert-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -231,7 +231,7 @@ function AlertDialogBodyLabel({ className, ...props }: React.ComponentProps<"spa
         data-vexpand=""
       className={cn("body", [
         "caret-[currentColor] font-normal leading-[140%] px-6",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/alert-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

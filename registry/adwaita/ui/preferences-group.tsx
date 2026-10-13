@@ -59,7 +59,7 @@ function PreferencesGroup({ className, render, variant = "default", description,
     "data-node": "preferencesgroup",
     "data-variant": variant,
     "data-separate-rows": separateRows,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesGroupVariants({ variant }), widgetClassName, className),
+    className: cn("group/preferences-group", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesGroupVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -103,7 +103,7 @@ function PreferencesGroupTitle({ className, ...props }: React.ComponentProps<"sp
         data-node="label"
       className={cn("heading h4", [
         "caret-[currentColor] font-bold",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/preferences-group:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -117,7 +117,7 @@ function PreferencesGroupDescription({ className, ...props }: React.ComponentPro
         data-node="label"
       className={cn("body dimmed", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/preferences-group:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

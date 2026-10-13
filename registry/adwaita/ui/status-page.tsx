@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -59,7 +60,7 @@ function StatusPage({ className, render, variant = "default", child, description
     "data-node": "statuspage",
     "data-variant": variant,
     role: "status",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", statusPageVariants({ variant }), widgetClassName, className),
+    className: cn("group/status-page", "grid [&>*]:col-start-1 [&>*]:row-start-1", statusPageVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -68,7 +69,7 @@ function StatusPage({ className, render, variant = "default", child, description
                   <StatusPageClamp>
                     <StatusPageBox>
                       {iconName ? (
-                        <StatusPageImage data-icon className={iconName} />
+                        <StatusPageImage name={iconName} />
                       ) : null}
                       {title ? (
                         <StatusPageTitleLabel>{title}</StatusPageTitleLabel>
@@ -96,15 +97,15 @@ function StatusPage({ className, render, variant = "default", child, description
   })
 }
 
-function StatusPageImage({ className, ...props }: React.ComponentProps<"span">) {
+function StatusPageImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="status-page-image"
         data-node="image"
         data-halign="center"
       className={cn("icon", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
-        "disabled:opacity-[var(--disabled-opacity)]",
+        "group-disabled/status-page:opacity-[var(--disabled-opacity)]",
       ], className)}
       {...props}
     />
@@ -118,7 +119,7 @@ function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"spa
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] font-extrabold text-[181%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/status-page:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -132,7 +133,7 @@ function StatusPageDescriptionLabel({ className, ...props }: React.ComponentProp
         data-node="label"
       className={cn("body description", [
         "caret-[currentColor] font-normal leading-[140%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/status-page:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

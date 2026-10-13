@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "adw-screenshot", "size": 16, "node": [["path", { "fill": "none", "stroke": "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", "d": "M 5 9 C 5 10.6568546, 6.34314585 12, 8 12 C 9.65685463 12, 11 10.6568546, 11 9 C 11 7.34314585, 9.65685463 6, 8 6 C 6.34314585 6, 5 7.34314585, 5 9 Z M 3 15 L 13 15 C 14.1045694 15, 15 14.1045694, 15 13 L 15 6 C 15 4.89543056, 14.1045694 4, 13 4 L 12 4 L 10.7103453 2.71034479 C 10.2555189 2.25551844, 9.63864231 1.99999988, 8.99542046 2 L 7.00457907 2 C 6.36135769 2, 5.74448109 2.25551867, 5.28965521 2.71034479 L 4 4 L 3 4 C 1.89543045 4, 1 4.89543056, 1 6 L 1 13 C 1 14.1045694, 1.89543045 15, 3 15 Z", "key": "m44ejh" }]], "aliases": ["adw-screenshot-symbolic"], "gtkIconName": "adw-screenshot-symbolic" };
+__iconData.node;
+const AdwScreenshot = createAdwaitaIcon(__iconData);
+
+export { __iconData, AdwScreenshot as default };
+//# sourceMappingURL=adw-screenshot.mjs.map

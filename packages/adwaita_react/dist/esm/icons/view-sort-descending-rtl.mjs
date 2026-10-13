@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "view-sort-descending-rtl", "size": 16, "node": [["path", { "fill": "currentColor", "d": "m 13 0 c 0.550781 0 1 0.449219 1 1 v 11 h 2 v 1 h -0.007812 c 0.003906 0.265625 -0.101563 0.519531 -0.285157 0.707031 l -2 2 c -0.390625 0.390625 -1.023437 0.390625 -1.414062 0 l -2 -2 c -0.183594 -0.1875 -0.289063 -0.441406 -0.289063 -0.707031 h -0.003906 v -1 h 2 v -11 c 0 -0.550781 0.449219 -1 1 -1 z m 0 0", "key": "3k6ukw" }], ["path", { "fill": "currentColor", "d": "m 9.5 10 c 0.277344 0 0.5 -0.222656 0.5 -0.5 v -1 c 0 -0.277344 -0.222656 -0.5 -0.5 -0.5 h -5 c -0.277344 0 -0.5 0.222656 -0.5 0.5 v 1 c 0 0.277344 0.222656 0.5 0.5 0.5 z m 0 -3 c 0.277344 0 0.5 -0.222656 0.5 -0.5 v -1 c 0 -0.277344 -0.222656 -0.5 -0.5 -0.5 h -7 c -0.277344 0 -0.5 0.222656 -0.5 0.5 v 1 c 0 0.277344 0.222656 0.5 0.5 0.5 z m 0 -3 c 0.277344 0 0.5 -0.222656 0.5 -0.5 v -1 c 0 -0.277344 -0.222656 -0.5 -0.5 -0.5 h -9 c -0.277344 0 -0.5 0.222656 -0.5 0.5 v 1 c 0 0.277344 0.222656 0.5 0.5 0.5 z m 0 0", "key": "9wp9h9" }]], "aliases": ["view-sort-descending-rtl-symbolic"], "gtkIconName": "view-sort-descending-rtl-symbolic" };
+__iconData.node;
+const ViewSortDescendingRtl = createAdwaitaIcon(__iconData);
+
+export { __iconData, ViewSortDescendingRtl as default };
+//# sourceMappingURL=view-sort-descending-rtl.mjs.map

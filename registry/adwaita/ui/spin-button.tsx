@@ -10,13 +10,14 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation, SpinButtonUpdatePolicy } from "@/lib/enums"
 
 const spinButtonVariants = cva(
   [
-    "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
   ],
   {
@@ -120,13 +121,17 @@ function SpinButton({ className, render, variant = "default", adjustment, activa
     "data-width-chars": widthChars,
     "data-wrap": wrap,
     "data-xalign": xalign,
-    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), spinButtonVariants({ variant }), widgetClassName, className),
+    className: cn("group/spin-button", "flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), spinButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <SpinButtonText defaultValue={text ?? value} />
-                  <SpinButtonSpinDown />
-                  <SpinButtonSpinUp />
+                  <SpinButtonSpinDown>
+                <SpinButtonImage />
+              </SpinButtonSpinDown>
+                  <SpinButtonSpinUp>
+                <SpinButtonImage2 />
+              </SpinButtonSpinUp>
                   {adjustment}
                   {children}
         </>
@@ -154,21 +159,53 @@ function SpinButtonText({ className, ...props }: React.ComponentProps<"input">) 
   )
 }
 
+function SpinButtonImage({ className, name = "value-decrease-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="spin-button-image"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "group-hover/spin-button:opacity-100",
+        "group-active/spin-button:opacity-80",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function SpinButtonSpinDown({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button down", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "group-active/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-button:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "group-disabled/spin-button:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-button:[filter:opacity(30%)]",
+        "group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
         "last:rounded-[0_9px_9px_0]",
         "first:rounded-[9px_0_0_9px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonImage2({ className, name = "value-increase-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="spin-button-image2"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "group-hover/spin-button:opacity-100",
+        "group-active/spin-button:opacity-80",
       ], className)}
       {...props}
     />
@@ -181,13 +218,13 @@ function SpinButtonSpinUp({ className, ...props }: React.ComponentProps<"div">) 
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button up", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "group-active/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-button:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "group-disabled/spin-button:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-button:[filter:opacity(30%)]",
+        "group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
         "last:rounded-[0_9px_9px_0]",
         "first:rounded-[9px_0_0_9px]",
       ], className)}
@@ -196,4 +233,4 @@ function SpinButtonSpinUp({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { SpinButton, SpinButtonText, SpinButtonSpinDown, SpinButtonSpinUp, spinButtonVariants }
+export { SpinButton, SpinButtonText, SpinButtonImage, SpinButtonSpinDown, SpinButtonImage2, SpinButtonSpinUp, spinButtonVariants }

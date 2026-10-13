@@ -1,0 +1,18 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "camera-photo",
+    "dslr"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-screenshot-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-screenshot-symbolic"
+    }
+  ]
+}

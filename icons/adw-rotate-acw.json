@@ -1,0 +1,19 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "anti-clockwise",
+    "anticlockwise",
+    "object-rotate-left"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-rotate-acw-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-rotate-acw-symbolic"
+    }
+  ]
+}

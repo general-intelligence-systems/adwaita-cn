@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "radio-mixed-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "radio-mixed-symbolic"
+    }
+  ]
+}

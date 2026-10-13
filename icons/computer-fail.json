@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "computer-fail-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "computer-fail-symbolic"
+    }
+  ]
+}

@@ -194,6 +194,8 @@ module AdwaitaTailwind
     when "border-width" then self.border(value)
     when "border", /\Aborder-(top|right|bottom|left)\z/ then self.border_shorthand(property, value)
     when "border-style" then self.style("border", value)
+    when "outline" then self.outline_shorthand(value)
+    when /\Aborder-(top|right|bottom|left)-style\z/ then self.side_style(property, value)
     when "border-spacing" then ["gap-[#{self.arbitrary(value)}]"]
     when "transition"   then self.transition(value)
     when "transition-duration" then ["duration-[#{self.arbitrary(value)}]"]
@@ -236,10 +238,19 @@ module AdwaitaTailwind
   # all: `String#to_f` reads it as 0, so every dimmed label in the registry -- every
   # subtitle, every description, the caption under every title -- was `opacity-0` and
   # drew nothing.
+  # An icon a node draws, as the mask which draws it.
+  #
+  # TWO SPELLINGS, not one. `-gtk-icontheme("name")` is a lookup in the icon theme, and
+  # `-gtk-recolor(url("assets/name.svg"))` is a file in libadwaita's own bundle --
+  # the check mark, the radio bullet, the indeterminate dash. Reading only the first
+  # returned nothing for the second, so `check:checked` set no icon and every checked
+  # box in the registry was drawn empty. Both name a vendored SVG, which bin/01 puts
+  # under the same name, so both resolve to the same variable.
   def self.icon_source(value)
-    name = value[/-gtk-icontheme\(\s*["']([a-z0-9-]+)["']\s*\)/, 1]
+    name = value[/-gtk-icontheme\(\s*["']([a-z0-9-]+)["']\s*\)/, 1] ||
+           value[%r{-gtk-recolor\(\s*url\(\s*["']?(?:[\w./-]*/)?([a-z0-9-]+)\.svg["']?\s*\)}, 1]
 
-    name.nil? ? [] : ["adw-icon", "[--adw-icon:var(--icon-#{name})]"]
+    name.nil? ? [] : ["adw-icon-source", "[--adw-icon:var(--icon-#{name})]"]
   end
 
   def self.opacity(value)
@@ -300,6 +311,32 @@ module AdwaitaTailwind
   #
   # As arbitrary properties rather than as `border-b-[...]`, because that name is a width
   # and a colour at once and which one it is depends on what is in the brackets.
+  # The `outline` shorthand, as the three properties it sets.
+  #
+  # Adwaita writes every focusable widget's rest state as `outline: 0 solid transparent`
+  # and then states only the colour and the width under `:focus-visible`. CSS defaults
+  # `outline-style` to `none`, so the shorthand is the ONLY thing which ever makes the
+  # style `solid` -- dropped as an unhandled property, a focus ring had a colour and a
+  # width and no style, and not one widget in the registry could show focus. 79
+  # declarations, which is every interactive component there is.
+  def self.outline_shorthand(value)
+    return ["[outline-style:none]"] if value.strip == "none"
+
+    self.values(value).filter_map do |part|
+      case part
+      when /\A[\d.]+(px)?\z/, "thin", "medium", "thick" then "[outline-width:#{part == '0' ? '0px' : part}]"
+      when "none", "hidden", "solid", "dashed", "dotted", "double" then "[outline-style:#{part}]"
+      else "[outline-color:#{self.arbitrary(part)}]"
+      end
+    end
+  end
+
+  # One side's border style, which the shorthand handles for the whole box but which the
+  # stylesheet also states on its own: a header bar turns three of its four sides off.
+  def self.side_style(property, value)
+    ["[#{property}:#{value}]"]
+  end
+
   def self.border_shorthand(property, value)
     side = property == "border" ? "" : "-#{property.delete_prefix('border-')}"
     parts = self.values(value)

@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "folder-pictures", "size": 16, "node": [["path", { "fill": "currentColor", "d": "m 6.015625 5.03125 c -0.550781 0 -1 0.449219 -1 1 s 0.449219 1 1 1 s 1 -0.449219 1 -1 s -0.449219 -1 -1 -1 z m 3.5 3 l -2 2 l -1.5 -1 l -2 2 v 0.5 c 0 0.5 0.5 0.5 0.5 0.5 h 7 s 0.472656 -0.035156 0.5 -0.5 v -1 z m 0 0", "key": "1cdgx9" }], ["path", { "fill": "currentColor", "d": "m 4.015625 1.03125 c -1.644531 0 -3 1.355469 -3 3 v 8 c 0 1.644531 1.355469 3 3 3 h 8 c 1.644531 0 3 -1.355469 3 -3 v -8 c 0 -1.644531 -1.355469 -3 -3 -3 z m 0 2 h 8 c 0.570313 0 1 0.429688 1 1 v 8 c 0 0.570312 -0.429687 1 -1 1 h -8 c -0.570313 0 -1 -0.429688 -1 -1 v -8 c 0 -0.570312 0.429687 -1 1 -1 z m 0 0", "key": "w6udhs" }]], "aliases": ["folder-pictures-symbolic"], "gtkIconName": "folder-pictures-symbolic" };
+__iconData.node;
+const FolderPictures = createAdwaitaIcon(__iconData);
+
+export { __iconData, FolderPictures as default };
+//# sourceMappingURL=folder-pictures.mjs.map

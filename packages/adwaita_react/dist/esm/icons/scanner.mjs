@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "scanner", "size": 16, "node": [["path", { "fill": "currentColor", "d": "m 4 0 c -1.332031 0 -2.273438 0.8125 -2.644531 1.550781 c -0.371094 0.742188 -0.355469 1.449219 -0.355469 1.449219 v 3 h 2 v -3 c 0 -0.554688 0.445312 -1 1 -1 h 8 c 0.554688 0 1 0.445312 1 1 v 3 h 2 v -3 c 0 -1.332031 -0.8125 -2.273438 -1.550781 -2.644531 c -0.742188 -0.371094 -1.449219 -0.355469 -1.449219 -0.355469 z m -4 7 v 2 h 16 v -2 z m 1 3 v 3 s -0.015625 0.707031 0.355469 1.449219 c 0.371093 0.738281 1.3125 1.550781 2.644531 1.550781 h 8 c 1.332031 0 2.273438 -0.8125 2.644531 -1.550781 c 0.371094 -0.742188 0.355469 -1.449219 0.355469 -1.449219 v -3 h -2 v 3 c 0 0.554688 -0.445312 1 -1 1 h -8 c -0.554688 0 -1 -0.445312 -1 -1 v -3 z m 0 0", "key": "16iad9" }], ["path", { "fill": "currentColor", "fill-opacity": "0.34902", "d": "m 4 6 h 8 v -2 l -8 -1 z m 0 0", "key": "kf4za4" }]], "aliases": ["scanner-symbolic"], "gtkIconName": "scanner-symbolic" };
+__iconData.node;
+const Scanner = createAdwaitaIcon(__iconData);
+
+export { __iconData, Scanner as default };
+//# sourceMappingURL=scanner.mjs.map

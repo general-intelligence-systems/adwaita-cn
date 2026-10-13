@@ -10,13 +10,14 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { InputHints, InputPurpose } from "@/lib/enums"
 
 const searchEntryVariants = cva(
   [
-    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
   ],
   {
@@ -100,7 +101,7 @@ function SearchEntry({ className, render, variant = "default", keyCaptureWidget,
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", searchEntryVariants({ variant }), widgetClassName, className),
+    className: cn("group/search-entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", searchEntryVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -126,15 +127,15 @@ function SearchEntry({ className, render, variant = "default", keyCaptureWidget,
   })
 }
 
-function SearchEntryImage({ className, ...props }: React.ComponentProps<"span">) {
+function SearchEntryImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="search-entry-image"
         data-node="image"
       className={cn([
         "opacity-70",
-        "hover:opacity-100",
-        "active:opacity-80",
+        "group-hover/search-entry:opacity-100",
+        "group-active/search-entry:opacity-80",
       ], className)}
       {...props}
     />

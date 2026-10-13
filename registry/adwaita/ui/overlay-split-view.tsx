@@ -100,7 +100,7 @@ function OverlaySplitView({ className, render, variant = "default", content, sid
     "data-sidebar-position": sidebarPosition,
     "data-sidebar-width-fraction": sidebarWidthFraction,
     "data-sidebar-width-unit": sidebarWidthUnit,
-    className: cn("grid [&>*]:min-w-0", overlaySplitViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/overlay-split-view", "grid [&>*]:min-w-0", overlaySplitViewVariants({ variant }), widgetClassName, className),
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>

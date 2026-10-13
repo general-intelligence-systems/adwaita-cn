@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "system-file-manager", "size": 16, "node": [["path", { "fill": "currentColor", "fill-rule": "evenodd", "d": "M3.187 0C1.982 0 1 1.018 1 2.219V13.78C1 14.982 1.982 16 3.187 16h9.625C14.017 16 15 14.982 15 13.781V2.22C15 1.018 14.017 0 12.812 0zM3 3h10v11H3zm1 1v4h8.031V4zm2.344 1.438a.5.5 0 01.062 0 .5.5 0 01.594.5V6h2v-.063a.5.5 0 111 0V6c0 .545-.455 1-1 1H7c-.546 0-1-.455-1-1v-.063a.5.5 0 01.344-.5zM4.03 9v4h8.031V9zm2.313 1.438a.5.5 0 01.062 0 .5.5 0 01.594.5V11h2v-.063a.5.5 0 111 0V11c0 .545-.455 1-1 1H7c-.546 0-1-.455-1-1v-.063a.5.5 0 01.344-.5z", "key": "1tjewc" }]], "aliases": ["system-file-manager-symbolic"], "gtkIconName": "system-file-manager-symbolic" };
+__iconData.node;
+const SystemFileManager = createAdwaitaIcon(__iconData);
+
+export { __iconData, SystemFileManager as default };
+//# sourceMappingURL=system-file-manager.mjs.map

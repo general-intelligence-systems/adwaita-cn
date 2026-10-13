@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "network-wireless-acquiring-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "network-wireless-acquiring-symbolic"
+    }
+  ]
+}

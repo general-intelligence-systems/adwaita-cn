@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "emote-love-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "emote-love-symbolic"
+    }
+  ]
+}

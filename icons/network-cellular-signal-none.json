@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "network-cellular-signal-none-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "network-cellular-signal-none-symbolic"
+    }
+  ]
+}

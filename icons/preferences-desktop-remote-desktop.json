@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "preferences-desktop-remote-desktop-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "preferences-desktop-remote-desktop-symbolic"
+    }
+  ]
+}

@@ -10,13 +10,14 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { SpinButtonUpdatePolicy } from "@/lib/enums"
 
 const spinRowVariants = cva(
   [
-    "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -31,7 +32,7 @@ const spinRowVariants = cva(
           "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
         ],
         /** .entry */
-        entry: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
         expander: "p-0 bg-none",
         /** .focused */
@@ -51,7 +52,7 @@ const spinRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "",
         /** .spin */
-        spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -185,7 +186,7 @@ function SpinRow({ className, render, variant = "default", actionTarget, activat
     "data-width-chars": widthChars,
     "data-wrap": wrap,
     "data-xalign": xalign,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", spinRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/spin-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", spinRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -196,7 +197,7 @@ function SpinRow({ className, render, variant = "default", actionTarget, activat
                   </SpinRowPrefixes>
                 ) : null}
                 {iconName ? (
-                  <SpinRowImage data-icon className={iconName} />
+                  <SpinRowImage name={iconName} />
                 ) : null}
                 <SpinRowTitleBox>
                   {title ? (
@@ -209,8 +210,12 @@ function SpinRow({ className, render, variant = "default", actionTarget, activat
                 <SpinRowSuffixes>
                   <SpinRowSpinButton>
                     <SpinRowText defaultValue={text ?? value} />
-                    <SpinRowSpinDown />
-                    <SpinRowSpinUp />
+                    <SpinRowSpinDown>
+                      <SpinRowImage2 name={iconName} />
+                    </SpinRowSpinDown>
+                    <SpinRowSpinUp>
+                      <SpinRowImage3 name={iconName} />
+                    </SpinRowSpinUp>
                   </SpinRowSpinButton>
                   {children}
                 </SpinRowSuffixes>
@@ -243,15 +248,15 @@ function SpinRowPrefixes({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function SpinRowImage({ className, ...props }: React.ComponentProps<"span">) {
+function SpinRowImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="spin-row-image"
         data-node="image"
         data-valign="center"
       className={cn("icon", [
         "mx-1.5",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -265,7 +270,7 @@ function SpinRowTitle({ className, ...props }: React.ComponentProps<"span">) {
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -279,7 +284,7 @@ function SpinRowSubtitle({ className, ...props }: React.ComponentProps<"span">) 
         data-node="label"
       className={cn("subtitle", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -311,21 +316,53 @@ function SpinRowText({ className, ...props }: React.ComponentProps<"input">) {
   )
 }
 
+function SpinRowImage2({ className, name = "value-decrease-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="spin-row-image2"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "group-hover/spin-row:opacity-100",
+        "group-active/spin-row:opacity-80",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function SpinRowSpinDown({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button down", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "group-active/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-row:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-row:[filter:opacity(30%)]",
+        "group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
         "last:rounded-[0_9px_9px_0]",
         "first:rounded-[9px_0_0_9px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowImage3({ className, name = "value-increase-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="spin-row-image3"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "group-hover/spin-row:opacity-100",
+        "group-active/spin-row:opacity-80",
       ], className)}
       {...props}
     />
@@ -338,13 +375,13 @@ function SpinRowSpinUp({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button up", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "group-active/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-row:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-row:[filter:opacity(30%)]",
+        "group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
         "last:rounded-[0_9px_9px_0]",
         "first:rounded-[9px_0_0_9px]",
       ], className)}
@@ -361,8 +398,8 @@ function SpinRowSpinButton({ className, ...props }: React.ComponentProps<"div">)
         data-valign="center"
         data-hexpand=""
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -392,4 +429,4 @@ function SpinRowHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { SpinRow, SpinRowPrefixes, SpinRowImage, SpinRowTitle, SpinRowSubtitle, SpinRowTitleBox, SpinRowText, SpinRowSpinDown, SpinRowSpinUp, SpinRowSpinButton, SpinRowSuffixes, SpinRowHeader, spinRowVariants }
+export { SpinRow, SpinRowPrefixes, SpinRowImage, SpinRowTitle, SpinRowSubtitle, SpinRowTitleBox, SpinRowText, SpinRowImage2, SpinRowSpinDown, SpinRowImage3, SpinRowSpinUp, SpinRowSpinButton, SpinRowSuffixes, SpinRowHeader, spinRowVariants }

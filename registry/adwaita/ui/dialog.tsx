@@ -103,7 +103,7 @@ function Dialog({ className, render, variant = "default", child, defaultWidget, 
     "data-follows-content-size": followsContentSize,
     "data-presentation-mode": presentationMode,
     "data-title": title,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", dialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", dialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

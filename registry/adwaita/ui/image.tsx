@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { IconSize } from "@/lib/enums"
@@ -108,7 +109,7 @@ function Image({ className, render, variant = "default", gicon, iconName, painta
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="image-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="image-icon" />
                   {gicon}
                   {paintable}
                   {children}

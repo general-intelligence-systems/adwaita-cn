@@ -81,7 +81,7 @@ function Notebook({ className, render, variant = "default", enablePopup, groupNa
     "data-show-border": showBorder,
     "data-show-tabs": showTabs,
     "data-tab-pos": tabPos,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", notebookVariants({ variant }), widgetClassName, className),
+    className: cn("group/notebook", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", notebookVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -128,13 +128,13 @@ function NotebookArrow({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="notebook-arrow"
         data-node="arrow"
       className={cn([
-        "py-[5px] px-2.5 min-h-4 min-w-4 rounded-none font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-4 min-w-4 rounded-none font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none",
+        "group-hover/notebook:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/notebook:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/notebook:shadow-none",
+        "group-active/notebook:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/notebook:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "group-disabled/notebook:[filter:opacity(30%)]",
+        "group-data-[state=checked]/notebook:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/notebook:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/notebook:group-hover/notebook:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/notebook:group-hover/notebook:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/notebook:group-active/notebook:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/notebook:group-active/notebook:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -147,13 +147,13 @@ function NotebookButton({ className, ...props }: React.ComponentProps<"button">)
       data-slot="notebook-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/notebook:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/notebook:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/notebook:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/notebook:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/notebook:group-hover/notebook:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/notebook:group-active/notebook:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -167,10 +167,10 @@ function NotebookTab({ className, ...props }: React.ComponentProps<"div">) {
         data-node="tab"
       className={cn([
         "py-[3px] px-3 transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-7.5 min-w-7.5 font-normal outline-[transparent]",
-        "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:outline-offset-[4px] data-[state=checked]:transition-[outline-color,outline-width,outline-offset] data-[state=checked]:duration-200 data-[state=checked]:ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/notebook:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "group-active/notebook:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "group-disabled/notebook:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/notebook:[outline-width:0px] group-data-[state=checked]/notebook:[outline-style:solid] group-data-[state=checked]/notebook:[outline-color:transparent] group-data-[state=checked]/notebook:outline-offset-[4px] group-data-[state=checked]/notebook:transition-[outline-color,outline-width,outline-offset] group-data-[state=checked]/notebook:duration-200 group-data-[state=checked]/notebook:ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       ], className)}
       {...props}
     />

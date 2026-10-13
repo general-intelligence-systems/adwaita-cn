@@ -50,7 +50,7 @@ function LevelBar({ className, render, inverted, maxValue, minValue, mode, orien
     "data-mode": mode,
     "data-orientation": orientation,
     "data-value": value,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "disabled:[filter:Opacity(var(--disabled-opacity))]", widgetClassName, className),
+    className: cn("group/level-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", "disabled:[filter:Opacity(var(--disabled-opacity))]", widgetClassName, className),
     style,
     children: (
         <>

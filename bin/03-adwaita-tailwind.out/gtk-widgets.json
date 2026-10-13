@@ -111,23 +111,27 @@
       "[border-right-width:1px]",
       "[border-right-style:solid]",
       "[border-right-color:#cdc7c2]",
+      "[border-left-style:none]",
       "[border-left-width:1px]",
       "[border-left-style:solid]",
-      "[border-left-color:#cdc7c2]"
+      "[border-left-color:#cdc7c2]",
+      "[border-right-style:none]"
     ]
   },
   ".sidebar.left": {
     "base": [
       "[border-right-width:1px]",
       "[border-right-style:solid]",
-      "[border-right-color:#cdc7c2]"
+      "[border-right-color:#cdc7c2]",
+      "[border-left-style:none]"
     ]
   },
   ".sidebar.right": {
     "base": [
       "[border-left-width:1px]",
       "[border-left-style:solid]",
-      "[border-left-color:#cdc7c2]"
+      "[border-left-color:#cdc7c2]",
+      "[border-right-style:none]"
     ]
   },
   ".title-1": {
@@ -255,7 +259,7 @@
       "duration-200",
       "shadow-none",
       "[border-width:0]",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-object-select-symbolic)]"
     ],
     "data-[state=checked]:hover": [
@@ -269,7 +273,7 @@
       "duration-200",
       "shadow-none",
       "[border-width:0]",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-object-select-symbolic)]"
     ],
     "data-[state=checked]:active": [
@@ -283,7 +287,7 @@
       "duration-200",
       "shadow-none",
       "[border-width:0]",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-object-select-symbolic)]"
     ]
   },
@@ -304,6 +308,9 @@
       "bg-[image:linear-gradient(to_top,#f6f5f4_2px,#fbfafa)]",
       "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "hover": [
@@ -382,6 +389,9 @@
       "bg-[image:linear-gradient(to_top,#d71a23_2px,#e01b24)]",
       "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "hover": [
@@ -680,6 +690,9 @@
       "bg-[image:linear-gradient(to_top,#2c7fe3_2px,#3584e4)]",
       "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "hover": [
@@ -782,7 +795,9 @@
       "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
       "border-[#1b6acb]",
       "shadow-[0_1px_rgba(0,0,0,0.05)]",
-      "text-[#ffffff]"
+      "text-[#ffffff]",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-dash-symbolic)]"
     ],
     "indeterminate:hover": [
       "bg-[image:linear-gradient(to_bottom,#5d9de9_10%,#478fe6_90%)]"
@@ -792,7 +807,9 @@
       "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
       "border-[#1b6acb]",
       "shadow-[0_1px_rgba(0,0,0,0.05)]",
-      "text-[#ffffff]"
+      "text-[#ffffff]",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-check-symbolic)]"
     ],
     "indeterminate:active": [
       "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
@@ -821,6 +838,9 @@
       "transition-[outline-width,outline-offset]",
       "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ]
   },
@@ -834,6 +854,9 @@
       "transition-[outline-width,outline-offset]",
       "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[6px]",
       "border-none"
     ],
@@ -886,6 +909,9 @@
       "border-l-[#d7d2ce]",
       "border-t-[#d7d2ce]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "disabled": [
@@ -911,7 +937,7 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]",
       "text-[#4d4d4d]"
     ],
@@ -922,7 +948,7 @@
       "text-[#c2daf7]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ],
     "data-[selected]:hover": [
@@ -998,6 +1024,9 @@
       "border-[#cdc7c2]",
       "bg-[#ffffff]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "disabled": [
@@ -1010,6 +1039,9 @@
     "base": [
       "text-[#cc0000]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ]
   },
@@ -1033,6 +1065,9 @@
     "base": [
       "text-[#f57900]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ]
   },
@@ -1040,14 +1075,14 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]"
     ],
     "disabled": [
       "text-[#929595]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ]
   },
@@ -1090,6 +1125,9 @@
       "text-[black]",
       "bg-[#ffffff]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "disabled": [
@@ -1161,7 +1199,7 @@
       "duration-200",
       "shadow-none",
       "[border-width:0]",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-object-select-symbolic)]"
     ],
     "data-[state=checked]:hover": [
@@ -1175,7 +1213,7 @@
       "duration-200",
       "shadow-none",
       "[border-width:0]",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-object-select-symbolic)]"
     ],
     "data-[state=checked]:active": [
@@ -1189,13 +1227,16 @@
       "duration-200",
       "shadow-none",
       "[border-width:0]",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-object-select-symbolic)]"
     ]
   },
   "label": {
     "base": [
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "disabled": [
@@ -1226,6 +1267,9 @@
     "base": [
       "text-[#1b6acb]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "hover": [
@@ -1296,6 +1340,9 @@
       "transition-[outline-width,outline-offset]",
       "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[6px]"
     ]
   },
@@ -1352,7 +1399,9 @@
       "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
       "border-[#1b6acb]",
       "shadow-[0_1px_rgba(0,0,0,0.05)]",
-      "text-[#ffffff]"
+      "text-[#ffffff]",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-dash-symbolic)]"
     ],
     "indeterminate:hover": [
       "bg-[image:linear-gradient(to_bottom,#5d9de9_10%,#478fe6_90%)]"
@@ -1362,7 +1411,9 @@
       "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
       "border-[#1b6acb]",
       "shadow-[0_1px_rgba(0,0,0,0.05)]",
-      "text-[#ffffff]"
+      "text-[#ffffff]",
+      "adw-icon-source",
+      "[--adw-icon:var(--icon-bullet-symbolic)]"
     ],
     "indeterminate:active": [
       "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
@@ -1387,6 +1438,9 @@
   "row": {
     "base": [
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "data-[selected]": [
@@ -1485,6 +1539,9 @@
       "gap-[6px]",
       "rounded-[5px]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ]
   },
@@ -1507,6 +1564,9 @@
       "border-[#cdc7c2]",
       "bg-[#ffffff]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "disabled": [
@@ -1519,6 +1579,9 @@
     "base": [
       "text-[#cc0000]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ]
   },
@@ -1535,6 +1598,9 @@
     "base": [
       "text-[#f57900]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ]
   },
@@ -1542,7 +1608,7 @@
     "base": [
       "bg-none",
       "opacity-0",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-process-working-symbolic)]"
     ],
     "data-[state=checked]": [
@@ -1571,6 +1637,9 @@
       "transition-[outline-width,outline-offset]",
       "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "disabled": [
@@ -1614,6 +1683,9 @@
       "border-l-[#d7d2ce]",
       "border-t-[#d7d2ce]",
       "duration-[300ms]",
+      "[outline-width:0px]",
+      "[outline-style:solid]",
+      "[outline-color:transparent]",
       "outline-offset-[4px]"
     ],
     "disabled": [
@@ -1639,7 +1711,7 @@
     "base": [
       "min-w-4",
       "min-h-4",
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-end-symbolic-rtl)]",
       "text-[#4d4d4d]"
     ],
@@ -1650,7 +1722,7 @@
       "text-[#c2daf7]"
     ],
     "data-[state=checked]": [
-      "adw-icon",
+      "adw-icon-source",
       "[--adw-icon:var(--icon-pan-down-symbolic)]"
     ],
     "data-[selected]:hover": [

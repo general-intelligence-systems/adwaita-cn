@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "process-stop-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "process-stop-symbolic"
+    }
+  ]
+}

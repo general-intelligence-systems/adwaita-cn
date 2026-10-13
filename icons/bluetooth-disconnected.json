@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "bluetooth-disconnected-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "bluetooth-disconnected-symbolic"
+    }
+  ]
+}

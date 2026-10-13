@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "network-wired-disconnected-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "network-wired-disconnected-symbolic"
+    }
+  ]
+}

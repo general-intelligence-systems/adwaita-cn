@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -64,7 +65,7 @@ function PreferencesPage({ className, render, variant = "default", banner, descr
     "data-description-centered": descriptionCentered,
     "data-title": title,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesPageVariants({ variant }), widgetClassName, className),
+    className: cn("group/preferences-page", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesPageVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -78,7 +79,7 @@ function PreferencesPage({ className, render, variant = "default", banner, descr
                   </PreferencesPageBox>
                 </PreferencesPageClamp>
               </PreferencesPageScrolledWindow>
-                  {iconName ? <span data-slot="preferences-page-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="preferences-page-icon" />
                   {banner}
         </>
       ),
@@ -100,7 +101,7 @@ function PreferencesPageDescription({ className, ...props }: React.ComponentProp
         data-node="label"
       className={cn("body dimmed description", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/preferences-page:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

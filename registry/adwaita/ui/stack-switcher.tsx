@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation } from "@/lib/enums"
@@ -55,7 +56,7 @@ function StackSwitcher({ className, render, variant = "default", stack, orientat
     "data-variant": variant,
     role: "tablist",
     "data-orientation": orientation,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", stackSwitcherVariants({ variant }), widgetClassName, className),
+    className: cn("group/stack-switcher", "grid [&>*]:col-start-1 [&>*]:row-start-1", stackSwitcherVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -78,9 +79,9 @@ function StackSwitcher({ className, render, variant = "default", stack, orientat
   })
 }
 
-function StackSwitcherImage({ className, ...props }: React.ComponentProps<"span">) {
+function StackSwitcherImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="stack-switcher-image"
         data-node="image"
       className={cn("py-[3px] px-1.5 my-[-3px] -mx-1.5", className)}
@@ -96,7 +97,7 @@ function StackSwitcherLabel({ className, ...props }: React.ComponentProps<"span"
         data-node="label"
       className={cn([
         "caret-[currentColor] py-0 px-1.5 my-0 -mx-1.5",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/stack-switcher:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -109,13 +110,13 @@ function StackSwitcherButton({ className, ...props }: React.ComponentProps<"butt
       data-slot="stack-switcher-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/stack-switcher:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/stack-switcher:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/stack-switcher:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/stack-switcher:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/stack-switcher:group-hover/stack-switcher:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/stack-switcher:group-active/stack-switcher:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

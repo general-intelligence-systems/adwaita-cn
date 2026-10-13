@@ -1,0 +1,19 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw-expander-arrow-up",
+    "arrow",
+    "down"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-expander-arrow-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-expander-arrow-symbolic"
+    }
+  ]
+}

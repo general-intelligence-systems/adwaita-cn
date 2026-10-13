@@ -1,0 +1,19 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw-tab-icon-missing",
+    "broken",
+    "image"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-tab-icon-missing-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-tab-icon-missing-symbolic"
+    }
+  ]
+}

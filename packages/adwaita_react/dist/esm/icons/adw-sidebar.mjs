@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "adw-sidebar", "size": 16, "node": [["path", { "fill": "none", "stroke": "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", "d": "M 15 4 L 15 12 C 15 13.1045694, 14.1045704 14, 13 14 L 3 14 C 1.89543056 14, 1 13.1045694, 1 12 L 1 4 C 1 2.89543056, 1.89543056 2, 3 2 L 13 2 C 14.1045704 2, 15 2.89543056, 15 4 Z", "key": "y749rn" }], ["path", { "fill": "currentColor", "fill-opacity": "0.2", "fill-rule": "nonzero", "stroke": "none", "d": "M 6.5 2 L 6.5 14 L 3 14 C 1.89543056 14, 1 13.1045694, 1 12 L 1 4 C 1 2.89543056, 1.89543056 2, 3 2 Z", "key": "7hblix" }], ["path", { "fill": "none", "stroke": "currentColor", "stroke-width": "1", "stroke-linecap": "butt", "stroke-linejoin": "round", "d": "M 6.5 2 L 6.5 14", "key": "1cjiml" }]], "aliases": ["adw-sidebar-symbolic"], "gtkIconName": "adw-sidebar-symbolic" };
+__iconData.node;
+const AdwSidebar = createAdwaitaIcon(__iconData);
+
+export { __iconData, AdwSidebar as default };
+//# sourceMappingURL=adw-sidebar.mjs.map

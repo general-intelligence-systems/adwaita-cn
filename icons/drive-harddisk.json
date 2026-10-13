@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "drive-harddisk-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "drive-harddisk-symbolic"
+    }
+  ]
+}

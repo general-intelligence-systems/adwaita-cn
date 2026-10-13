@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "media-floppy-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "media-floppy-symbolic"
+    }
+  ]
+}

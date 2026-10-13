@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { WindowGravity } from "@/lib/enums"
@@ -23,7 +24,7 @@ const assistantVariants = cva(
         /** .assistant */
         assistant: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .highlight */
         highlight: "",
         /** .messagedialog */
@@ -148,7 +149,7 @@ function Assistant({ className, render, variant = "default", application, child,
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn(assistantVariants({ variant }), widgetClassName, className),
+    className: cn("group/assistant", assistantVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -160,7 +161,7 @@ function Assistant({ className, render, variant = "default", application, child,
                   <AssistantWindowhandle />
                 </AssistantHeaderbar>
               </AssistantSheet>
-                  {iconName ? <span data-slot="assistant-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="assistant-icon" />
                   {application}
                   {child}
                   {defaultWidget}

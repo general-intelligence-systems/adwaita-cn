@@ -236,13 +236,18 @@ module FinalComponents
       "class" => "SpinButton",
       "children" => [
         { "class" => "Text", "node" => "text", "properties" => { "hexpand" => "True" } },
+        # The icon is the widget's own C and not the stylesheet: gtk_spin_button_init
+        # builds an image for each button and names it, so a tree without one drew two
+        # empty boxes where the toolkit draws a minus and a plus.
         {
           "class" => "SpinDown", "slot" => "button", "node" => "button",
           "styles" => %w[image-button down], "layout" => "bin",
+          "children" => [{ "class" => "Image", "node" => "image", "icon" => "value-decrease-symbolic" }],
         },
         {
           "class" => "SpinUp", "slot" => "button", "node" => "button",
           "styles" => %w[image-button up], "layout" => "bin",
+          "children" => [{ "class" => "Image", "node" => "image", "icon" => "value-increase-symbolic" }],
         },
       ],
     },
@@ -283,7 +288,10 @@ module FinalComponents
                     # with the wrong ones all the way down the shot.
                     "class" => "CloseButton", "slot" => "button", "node" => "button",
                     "styles" => %w[close image-button], "layout" => "bin",
-                    "children" => [{ "class" => "Image", "node" => "image" }],
+                    # gtk_window_controls sets the icon in C, the way the spin button
+                    # does: without it every window in the registry had a grey disc
+                    # where the toolkit draws a cross.
+                    "children" => [{ "class" => "Image", "node" => "image", "icon" => "window-close-symbolic" }],
                   }],
                 }],
               }],
@@ -917,6 +925,9 @@ module FinalComponents
     tree["children"] = tree.fetch("children", []) - [found]
     classes = (entry["classes"] ||= {})
     classes["base"] = classes.fetch("base", []) + self.for_children(found.fetch("classes", {}))
+    # What the component holds is now the caller's items rather than the folded node, so
+    # the generator must not read the tree it is left with as a wrapper around one thing.
+    entry["items"] = repeated
   end
 
   # Siblings cut down to the one node of each exclusive set the widget really builds.
@@ -1025,6 +1036,12 @@ module FinalComponents
     klass = node["class"]
     found = klass && components.dig(klass, "tree")
 
+    # `.empty` is the toolkit saying the node has nothing in it: gtk_window_controls
+    # draws that class on the side of the titlebar which carries no controls, and
+    # filling it from the widget's own structure put a button with a blank image at the
+    # start of every header bar in the registry -- a grey disc the toolkit does not
+    # draw, beside the back button, in every application.
+    return if node.fetch("styles", []).include?("empty")
     return if found.nil? || seen.include?(klass) || children.any?
 
     seen = seen + [klass]

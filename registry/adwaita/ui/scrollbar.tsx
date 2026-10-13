@@ -50,7 +50,7 @@ function Scrollbar({ className, render, variant = "default", adjustment, orienta
     "data-node": "scrollbar",
     "data-variant": variant,
     "data-orientation": orientation,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", scrollbarVariants({ variant }), widgetClassName, className),
+    className: cn("group/scrollbar", "grid [&>*]:col-start-1 [&>*]:row-start-1", scrollbarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -81,9 +81,9 @@ function ScrollbarSlider({ className, ...props }: React.ComponentProps<"div">) {
         data-node="slider"
       className={cn([
         "-m-2 min-w-2 min-h-2 [border-width:8px] [border-style:solid] [border-color:transparent] rounded-[99px] bg-clip-padding transition-[all] duration-200 ease-[linear] bg-[color-mix(in_srgb,currentColor_20%,transparent)] min-w-10",
-        "hover:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_60%,transparent)]",
-        "disabled:opacity-0",
+        "group-hover/scrollbar:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "group-active/scrollbar:bg-[color-mix(in_srgb,currentColor_60%,transparent)]",
+        "group-disabled/scrollbar:opacity-0",
       ], className)}
       {...props}
     />

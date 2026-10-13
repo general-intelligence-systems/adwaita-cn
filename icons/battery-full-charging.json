@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "battery-full-charging-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "battery-full-charging-symbolic"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "video-single-display-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "video-single-display-symbolic"
+    }
+  ]
+}

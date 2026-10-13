@@ -1,0 +1,41 @@
+"use strict";
+"use client";
+import { forwardRef, useState, useEffect, createElement } from 'react';
+import dynamicIconImports from './dynamicIconImports.mjs';
+import Icon from './Icon.mjs';
+
+const iconNames = Object.keys(dynamicIconImports);
+async function getIconData(name) {
+  if (!(name in dynamicIconImports)) {
+    throw new Error("[adwaita_react]: Name in Adwaita DynamicIcon not found");
+  }
+  const icon = await dynamicIconImports[name]();
+  if (icon.__iconData != null) {
+    return icon.__iconData;
+  }
+  throw new Error("[adwaita_react]: Failed to resolve icon data for DynamicIcon");
+}
+const DynamicIcon = forwardRef(
+  ({ name, fallback: Fallback, ...props }, ref) => {
+    const [iconData, setIconData] = useState();
+    useEffect(() => {
+      getIconData(name).then(setIconData).catch((error) => {
+        console.error(error);
+      });
+    }, [name]);
+    if (iconData == null) {
+      if (Fallback == null) {
+        return null;
+      }
+      return createElement(Fallback);
+    }
+    return createElement(Icon, {
+      ref,
+      ...props,
+      icon: iconData
+    });
+  }
+);
+
+export { DynamicIcon as default, iconNames };
+//# sourceMappingURL=DynamicIcon.mjs.map

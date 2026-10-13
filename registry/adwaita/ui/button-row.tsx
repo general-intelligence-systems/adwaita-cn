@@ -10,12 +10,13 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const buttonRowVariants = cva(
   [
-    "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -32,7 +33,7 @@ const buttonRowVariants = cva(
         /** .button */
         button: "",
         /** .entry */
-        entry: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
@@ -50,7 +51,7 @@ const buttonRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "",
         /** .spin */
-        spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -113,7 +114,7 @@ function ButtonRow({ className, render, variant = "default", actionTarget, child
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", buttonRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/button-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", buttonRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -140,13 +141,13 @@ function ButtonRow({ className, render, variant = "default", actionTarget, child
   })
 }
 
-function ButtonRowStartImage({ className, ...props }: React.ComponentProps<"span">) {
+function ButtonRowStartImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="button-row-start-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon start", "disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("icon start", "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -159,20 +160,20 @@ function ButtonRowTitle({ className, ...props }: React.ComponentProps<"span">) {
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] font-bold",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function ButtonRowEndImage({ className, ...props }: React.ComponentProps<"span">) {
+function ButtonRowEndImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="button-row-end-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon end", "disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("icon end", "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )

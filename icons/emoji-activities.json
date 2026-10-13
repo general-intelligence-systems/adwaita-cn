@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "emoji-activities-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "emoji-activities-symbolic"
+    }
+  ]
+}

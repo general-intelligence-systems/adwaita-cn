@@ -57,7 +57,7 @@ function InfoBar({ className, render, variant = "default", messageType, revealed
     "data-message-type": messageType,
     "data-revealed": revealed,
     "data-show-close-button": showCloseButton,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", infoBarVariants({ variant }), widgetClassName, className),
+    className: cn("group/info-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", infoBarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <InfoBarRevealer>

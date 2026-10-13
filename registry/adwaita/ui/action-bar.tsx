@@ -48,7 +48,7 @@ function ActionBar({ className, render, variant = "default", revealed, children,
     "data-variant": variant,
     role: "toolbar",
     "data-revealed": revealed,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", actionBarVariants({ variant }), widgetClassName, className),
+    className: cn("group/action-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", actionBarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <ActionBarRevealer>

@@ -69,7 +69,7 @@ function EditableLabel({ className, render, variant = "default", editable, editi
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", editableLabelVariants({ variant }), widgetClassName, className),
+    className: cn("group/editable-label", "grid [&>*]:col-start-1 [&>*]:row-start-1", editableLabelVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <EditableLabelStack>

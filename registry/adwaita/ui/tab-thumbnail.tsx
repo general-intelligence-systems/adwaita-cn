@@ -8,6 +8,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -25,7 +26,7 @@ function TabThumbnail({ className, render, children, ...props }: TabThumbnailPro
   const defaultProps = {
     "data-slot": "tab-thumbnail",
     "data-node": "tabthumbnail",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "rounded-[16px] transition-[box-shadow,background-color] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", widgetClassName, className),
+    className: cn("group/tab-thumbnail", "grid [&>*]:col-start-1 [&>*]:row-start-1", "rounded-[16px] transition-[box-shadow,background-color] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", widgetClassName, className),
     style,
     children: (
         <>
@@ -59,9 +60,9 @@ function TabThumbnailBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function TabThumbnailImage({ className, ...props }: React.ComponentProps<"span">) {
+function TabThumbnailImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="tab-thumbnail-image"
         data-node="image"
       className={cn("m-1.5 bg-[color-mix(in_srgb,var(--thumbnail-bg-color)_75%,transparent)] min-w-6 min-h-6 rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
@@ -76,13 +77,13 @@ function TabThumbnailButton({ className, ...props }: React.ComponentProps<"butto
       data-slot="tab-thumbnail-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-[99px] bg-none shadow-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-[99px] bg-none shadow-none",
+        "group-hover/tab-thumbnail:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/tab-thumbnail:bg-none group-hover/tab-thumbnail:shadow-none",
+        "group-active/tab-thumbnail:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/tab-thumbnail:bg-none group-active/tab-thumbnail:shadow-none",
+        "group-disabled/tab-thumbnail:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/tab-thumbnail:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/tab-thumbnail:group-hover/tab-thumbnail:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/tab-thumbnail:group-active/tab-thumbnail:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

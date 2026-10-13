@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "semi-starred-rtl-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "semi-starred-rtl-symbolic"
+    }
+  ]
+}

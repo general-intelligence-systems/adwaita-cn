@@ -1,0 +1,17 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw-tab-counter"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-tab-counter-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-tab-counter-symbolic"
+    }
+  ]
+}

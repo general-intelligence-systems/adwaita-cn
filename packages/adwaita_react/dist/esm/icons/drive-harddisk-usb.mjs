@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "drive-harddisk-usb", "size": 16, "node": [["path", { "fill": "currentColor", "d": "m 8.5 0 h -1 l -2 4 h 1.5 v 5 h -3 v -1.269531 c 0.617188 -0.359375 1 -1.015625 1 -1.730469 c 0 -1.105469 -0.894531 -2 -2 -2 s -2 0.894531 -2 2 c 0 0.714844 0.382812 1.375 1 1.730469 v 1.269531 c 0 2 2 2 2 2 h 3 v 1.269531 c -0.617188 0.359375 -1 1.015625 -1 1.730469 c 0 1.105469 0.894531 2 2 2 s 2 -0.894531 2 -2 c 0 -0.714844 -0.382812 -1.375 -1 -1.730469 v -1.269531 h 3 s 2 0 2 -2 v -1 s 1.125 -0.1875 1 -1 v -2 c 0.125 -1.125 -1 -1 -1 -1 h -2 c -1.0625 0 -1 1 -1 1 v 2 c 0 1 1 1 1 1 v 1 h -3 v -5 h 1.5 z m 0 0", "key": "11q8ey" }]], "aliases": ["drive-harddisk-usb-symbolic"], "gtkIconName": "drive-harddisk-usb-symbolic" };
+__iconData.node;
+const DriveHarddiskUsb = createAdwaitaIcon(__iconData);
+
+export { __iconData, DriveHarddiskUsb as default };
+//# sourceMappingURL=drive-harddisk-usb.mjs.map

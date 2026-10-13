@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "task-past-due-symbolic",
+  "monochrome": false,
+  "aliases": [
+    {
+      "name": "task-past-due-symbolic"
+    }
+  ]
+}

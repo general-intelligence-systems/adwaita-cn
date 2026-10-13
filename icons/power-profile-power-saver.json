@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "power-profile-power-saver-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "power-profile-power-saver-symbolic"
+    }
+  ]
+}

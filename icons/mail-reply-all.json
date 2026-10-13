@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "mail-reply-all-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "mail-reply-all-symbolic"
+    }
+  ]
+}

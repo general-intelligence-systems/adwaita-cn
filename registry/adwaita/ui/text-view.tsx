@@ -158,7 +158,7 @@ function TextView({ className, render, variant = "default", buffer, extraMenu, h
     "data-top-margin": topMargin,
     "data-vscroll-policy": vscrollPolicy,
     "data-wrap-mode": wrapMode,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/text-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -201,8 +201,8 @@ function TextViewText({ className, ...props }: React.ComponentProps<"input">) {
         data-node="text"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", [
         "text-[var(--view-fg-color)] bg-[transparent]",
-        "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[transparent]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+        "group-disabled/text-view:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] group-disabled/text-view:bg-[transparent]",
+        "group-data-[selected]/text-view:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] group-data-[selected]/text-view:rounded-[9px]",
       ], className)}
       {...props}
     />

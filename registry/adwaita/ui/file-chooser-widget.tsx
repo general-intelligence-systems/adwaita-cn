@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { FileChooserAction } from "@/lib/enums"
@@ -64,7 +65,7 @@ function FileChooserWidget({ className, render, variant = "default", filter, act
     "data-create-folders": createFolders,
     "data-search-mode": searchMode,
     "data-select-multiple": selectMultiple,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", fileChooserWidgetVariants({ variant }), widgetClassName, className),
+    className: cn("group/file-chooser-widget", "grid [&>*]:col-start-1 [&>*]:row-start-1", fileChooserWidgetVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -153,9 +154,9 @@ function FileChooserWidgetBox2({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function FileChooserWidgetImage({ className, ...props }: React.ComponentProps<"span">) {
+function FileChooserWidgetImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="file-chooser-widget-image"
         data-node="image"
       className={cn("[filter:drop-shadow(0px_1px_1px_RGB(0_0_6/30%))]", className)}
@@ -181,8 +182,8 @@ function FileChooserWidgetChild({ className, ...props }: React.ComponentProps<"d
       data-slot="file-chooser-widget-child"
         data-node="child"
       className={cn([
-        "p-[3px] rounded-[9px] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 m-[3px] rounded-[12px]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "p-[3px] rounded-[9px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 m-[3px] rounded-[12px]",
+        "group-data-[selected]/file-chooser-widget:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -227,7 +228,7 @@ function FileChooserWidgetColumnview({ className, ...props }: React.ComponentPro
     <div
       data-slot="file-chooser-widget-columnview"
         data-node="columnview"
-      className={cn("outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -272,13 +273,13 @@ function FileChooserWidgetButton({ className, ...props }: React.ComponentProps<"
       data-slot="file-chooser-widget-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[9px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[9px]",
+        "group-hover/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/file-chooser-widget:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/file-chooser-widget:group-hover/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/file-chooser-widget:group-active/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />

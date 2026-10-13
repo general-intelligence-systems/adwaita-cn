@@ -1,0 +1,188 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 18-VENDOR-LUCIDE(1)              General Commands Manual              18-VENDOR-LUCIDE(1)
+#
+# NAME
+#      bin/18-vendor-lucide — vendor lucide's packages as the Adwaita icon packages
+#
+# SYNOPSIS
+#      bin/18-vendor-lucide [--ref REF] [--check]
+#
+# DESCRIPTION
+#      Copies lucide's own source into packages/shared and packages/adwaita_react, renaming
+#      lucide to Adwaita on the way, so that the icon packages ARE lucide-react rather than
+#      something written to resemble it.
+#
+#      IT IS A COPY AND NOT A PORT. Every file under packages/shared/src and
+#      packages/adwaita_react/src comes out of the lucide checkout with one mechanical
+#      rename applied to its path and its contents. Hand-writing them produced a package
+#      that drifted from lucide in fourteen of its twenty files -- a rewrite wearing
+#      lucide's file names -- and nothing said which differences were deliberate.
+#
+#      WHAT IS GENUINELY DIFFERENT LIVES IN overrides/. Adwaita's icons are 16px and filled
+#      where lucide's are 24px and stroked, so the default attributes differ, and the class
+#      namespace is `adw` rather than `lucide`. Those files are kept beside this script and
+#      copied over the vendored tree afterwards, so the Adwaita delta is a directory one can
+#      read rather than a diff nobody can see.
+#
+#      The icons themselves are not vendored. They come from Adwaita, and
+#      bin/16-extract-icons normalises them into icons/ in the format lucide's build takes.
+#
+# OPTIONS
+#      --ref REF   The lucide commit to vendor. Default is the ref in VENDOR.
+#      --check     Report what would change and exit non-zero if anything would, without
+#                  writing. For CI, so a hand-edit to a vendored file is caught.
+#
+# FILES
+#      bin/18-vendor-lucide.overrides/   the files Adwaita genuinely differs in
+#      bin/18-vendor-lucide.out/lucide/  the checkout
+#      bin/18-vendor-lucide.out/VENDOR   the ref that was vendored
+#      packages/shared/                  lucide's packages/shared
+#      packages/adwaita_react/           lucide's packages/lucide-react
+#
+# EXIT STATUS
+#      0 on success. 1 under --check when a vendored file has been edited by hand.
+#
+# SEE ALSO
+#      bin/16-extract-icons, bin/17-generate-icons
+#
+# adwaita-cn                        October 13, 2026                 18-VENDOR-LUCIDE(1)
+
+require "fileutils"
+require "json"
+require "set"
+
+module VendorLucide
+  ROOT = File.expand_path("..", __dir__)
+  OUTPUT = "#{__FILE__}.out"
+  OVERRIDES = "#{__FILE__}.overrides"
+  REPOSITORY = "https://github.com/lucide-icons/lucide.git"
+
+  # The commit this was last vendored from. A moving target is not a vendored dependency:
+  # the registry's icons would change under it with no commit here saying so.
+  DEFAULT_REF = "440a1e1dfb1e712505308da46bead3c28b1f1398"
+
+  # Which of lucide's trees become which of ours. Only `src` is taken: the configuration
+  # around it -- rollup, tsconfig, package.json -- names our package and our entry points,
+  # so it is ours to keep.
+  TREES = {
+    "packages/shared/src" => "packages/shared/src",
+    "packages/lucide-react/src" => "packages/adwaita_react/src",
+  }.freeze
+
+  # lucide generates these into `src` and so do we, from Adwaita's icons rather than
+  # lucide's. Vendoring lucide's would be vendoring lucide's icon set.
+  GENERATED = [
+    %r{/icons/}, %r{/aliases/aliases\.}, %r{/dynamicIconImports\.},
+  ].freeze
+
+  # The rename, longest first so that `lucide-react` is not left as `adwaita-react` by the
+  # shorter rule. `adwaita_react` with an underscore is the package's own name.
+  RENAMES = [
+    ["lucide-react", "adwaita_react"],
+    ["Lucide", "Adwaita"],
+    ["lucide", "adwaita"],
+    ["LUCIDE", "ADWAITA"],
+  ].freeze
+
+  def self.run(argv)
+    check = !argv.delete("--check").nil?
+    ref = argv.each_cons(2).find{|flag, _| flag == "--ref" }&.last || DEFAULT_REF
+
+    checkout(ref)
+
+    changed = TREES.flat_map{|from, into| vendor(from, into, check) }
+    changed += overrides(check)
+
+    if check
+      changed.each{|path| warn("would change: #{path}") }
+      warn(changed.empty? ? "vendored tree matches lucide #{ref[0, 12]}" : "#{changed.length} file(s) differ")
+      exit(changed.empty? ? 0 : 1)
+    end
+
+    File.write(File.join(OUTPUT, "VENDOR"), "lucide #{ref}\n")
+    puts("vendored #{changed.length} file(s) from lucide #{ref[0, 12]}")
+  end
+
+  # ── the checkout ─────────────────────────────────────────────────────────
+
+  def self.checkout(ref)
+    FileUtils.mkdir_p(OUTPUT)
+    path = File.join(OUTPUT, "lucide")
+
+    unless Dir.exist?(File.join(path, ".git"))
+      run!("git", "clone", "--filter=blob:none", "--no-checkout", REPOSITORY, path)
+      run!("git", "-C", path, "sparse-checkout", "set", *TREES.keys)
+    end
+
+    # `fetch` by ref rather than pulling a branch: the ref is the dependency.
+    run!("git", "-C", path, "fetch", "--depth", "1", "origin", ref) unless commit?(path, ref)
+    run!("git", "-C", path, "checkout", "--detach", ref)
+  end
+
+  def self.commit?(path, ref)
+    system("git", "-C", path, "cat-file", "-e", "#{ref}^{commit}", out: File::NULL, err: File::NULL)
+  end
+
+  def self.run!(*command)
+    system(*command, out: File::NULL) || abort("#{command.join(' ')} failed")
+  end
+
+  # ── the copy ─────────────────────────────────────────────────────────────
+
+  def self.vendor(from, into, check)
+    source = File.join(OUTPUT, "lucide", from)
+    target = File.join(ROOT, into)
+
+    abort("#{from} is not in the checkout") unless Dir.exist?(source)
+
+    Dir.glob(File.join(source, "**/*")).select{|path| File.file?(path) }.filter_map do |path|
+      relative = rename(path.delete_prefix("#{source}/"))
+
+      next if GENERATED.any?{|one| "/#{relative}".match?(one) }
+
+      destination = File.join(target, relative)
+
+      # A file overrides/ replaces is vendored and then overwritten, so under --check its
+      # difference from lucide is the whole point rather than a hand-edit to report.
+      next if overridden?(destination)
+
+      write(destination, rename(File.read(path)), check)
+    end
+  end
+
+  def self.overridden?(path)
+    @overridden ||= Dir.glob(File.join(OVERRIDES, "**/*"))
+      .select{|one| File.file?(one) }
+      .map{|one| File.join(ROOT, one.delete_prefix("#{OVERRIDES}/")) }
+      .to_set
+
+    @overridden.include?(path)
+  end
+
+  # The files Adwaita genuinely differs in, over the top of the vendored ones.
+  def self.overrides(check)
+    return [] unless Dir.exist?(OVERRIDES)
+
+    Dir.glob(File.join(OVERRIDES, "**/*")).select{|path| File.file?(path) }.filter_map do |path|
+      write(File.join(ROOT, path.delete_prefix("#{OVERRIDES}/")), File.read(path), check)
+    end
+  end
+
+  # The path that changed, or nil where it already said this.
+  def self.write(path, source, check)
+    return nil if File.exist?(path) && File.read(path) == source
+
+    unless check
+      FileUtils.mkdir_p(File.dirname(path))
+      File.write(path, source)
+    end
+
+    path.delete_prefix("#{ROOT}/")
+  end
+
+  def self.rename(text) = RENAMES.reduce(text){|found, (from, into)| found.gsub(from, into) }
+end
+
+VendorLucide.run(ARGV)

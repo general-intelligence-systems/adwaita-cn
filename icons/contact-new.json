@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "contact-new-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "contact-new-symbolic"
+    }
+  ]
+}

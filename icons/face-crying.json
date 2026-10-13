@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "face-crying-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "face-crying-symbolic"
+    }
+  ]
+}

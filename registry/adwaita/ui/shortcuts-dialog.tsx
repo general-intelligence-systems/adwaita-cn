@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -106,7 +107,7 @@ function ShortcutsDialog({ className, render, variant = "default", child, defaul
     "data-follows-content-size": followsContentSize,
     "data-presentation-mode": presentationMode,
     "data-title": title,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", shortcutsDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/shortcuts-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", shortcutsDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -240,15 +241,15 @@ function ShortcutsDialogSearch({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function ShortcutsDialogImage({ className, ...props }: React.ComponentProps<"span">) {
+function ShortcutsDialogImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="shortcuts-dialog-image"
         data-node="image"
         data-halign="center"
       className={cn("icon", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
-        "disabled:opacity-[var(--disabled-opacity)]",
+        "group-disabled/shortcuts-dialog:opacity-[var(--disabled-opacity)]",
       ], className)}
       {...props}
     />
@@ -262,7 +263,7 @@ function ShortcutsDialogTitleLabel({ className, ...props }: React.ComponentProps
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] font-extrabold text-[181%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/shortcuts-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -276,7 +277,7 @@ function ShortcutsDialogDescriptionLabel({ className, ...props }: React.Componen
         data-node="label"
       className={cn("body description", [
         "caret-[currentColor] font-normal leading-[140%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/shortcuts-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -355,15 +356,15 @@ function ShortcutsDialogStack({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function ShortcutsDialogImage2({ className, ...props }: React.ComponentProps<"span">) {
+function ShortcutsDialogImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="shortcuts-dialog-image2"
         data-node="image"
       className={cn([
         "opacity-70",
-        "hover:opacity-100",
-        "active:opacity-80",
+        "group-hover/shortcuts-dialog:opacity-100",
+        "group-active/shortcuts-dialog:opacity-80",
       ], className)}
       {...props}
     />
@@ -442,8 +443,8 @@ function ShortcutsDialogSearchEntry({ className, ...props }: React.ComponentProp
       data-slot="shortcuts-dialog-search-entry"
         data-node="entry"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/shortcuts-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

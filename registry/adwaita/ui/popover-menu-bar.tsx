@@ -29,7 +29,7 @@ function PopoverMenuBar({ className, render, menuModel, children, ...props }: Po
     "data-slot": "popover-menu-bar",
     "data-node": "menubar",
     role: "menubar",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "pb-[1px] shadow-[inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
+    className: cn("group/popover-menu-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", "pb-[1px] shadow-[inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
     style,
     children: (
         <>
@@ -82,7 +82,7 @@ function PopoverMenuBarItem({ className, ...props }: React.ComponentProps<"div">
         data-node="item"
       className={cn([
         "py-1 px-2 min-h-4 rounded-[9px]",
-        "data-[selected]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[selected]/popover-menu-bar:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
       ], className)}
       {...props}
     />

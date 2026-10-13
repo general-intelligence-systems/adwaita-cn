@@ -83,7 +83,7 @@ function Popover({ className, render, variant = "default", size = "default", chi
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", popoverVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/popover", "grid [&>*]:col-start-1 [&>*]:row-start-1", popoverVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>

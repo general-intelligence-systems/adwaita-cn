@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "alarm-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "alarm-symbolic"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+import createAdwaitaIcon from '../createAdwaitaIcon.mjs';
+
+const __iconData = { "name": "preferences-system-search", "size": 16, "node": [["path", { "fill": "currentColor", "d": "m 10.804688 10 c -0.8125 0.144531 -1.105469 1.15625 -0.5 1.71875 l 3 3 c 0.957031 0.9375 2.363281 -0.5 1.40625 -1.4375 l -3 -3 c -0.238282 -0.242188 -0.578126 -0.347656 -0.90625 -0.28125 z m 0 0", "key": "voahmk" }], ["path", { "fill": "currentColor", "d": "m 6.5 0 c -3.578125 0 -6.5 2.921875 -6.5 6.5 s 2.921875 6.496094 6.5 6.496094 s 6.5 -2.917969 6.5 -6.496094 s -2.921875 -6.5 -6.5 -6.5 z m 0 2 c 2.496094 0 4.5 2.003906 4.5 4.5 s -2.003906 4.496094 -4.5 4.496094 s -4.5 -2 -4.5 -4.496094 s 2.003906 -4.5 4.5 -4.5 z m 0 0", "key": "2eb2a0" }]], "aliases": ["preferences-system-search-symbolic"], "gtkIconName": "preferences-system-search-symbolic" };
+__iconData.node;
+const PreferencesSystemSearch = createAdwaitaIcon(__iconData);
+
+export { __iconData, PreferencesSystemSearch as default };
+//# sourceMappingURL=preferences-system-search.mjs.map

@@ -1,0 +1,20 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw-adaptive-preview",
+    "cell",
+    "mobile",
+    "tablet"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-adaptive-preview-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-adaptive-preview-symbolic"
+    }
+  ]
+}

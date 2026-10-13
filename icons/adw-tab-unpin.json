@@ -1,0 +1,21 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "interest",
+    "location",
+    "of",
+    "point",
+    "view-pin"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-tab-unpin-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-tab-unpin-symbolic"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "media-optical-cd-audio-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "media-optical-cd-audio-symbolic"
+    }
+  ]
+}

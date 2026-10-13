@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "focus-windows-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "focus-windows-symbolic"
+    }
+  ]
+}

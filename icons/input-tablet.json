@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "input-tablet-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "input-tablet-symbolic"
+    }
+  ]
+}

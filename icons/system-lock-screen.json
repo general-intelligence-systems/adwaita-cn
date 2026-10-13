@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "system-lock-screen-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "system-lock-screen-symbolic"
+    }
+  ]
+}

@@ -25,7 +25,7 @@ function IndicatorBin({ className, render, children, ...props }: IndicatorBinPro
   const defaultProps = {
     "data-slot": "indicator-bin",
     "data-node": "indicatorbin",
-    className: cn(widgetClassName, className),
+    className: cn("group/indicator-bin", widgetClassName, className),
     style,
     children: (
         <>
@@ -54,7 +54,7 @@ function IndicatorBinLabel({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/indicator-bin:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

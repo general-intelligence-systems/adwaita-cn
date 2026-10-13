@@ -1,0 +1,25 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw-external-link",
+    "arrow",
+    "box",
+    "diagonal",
+    "external",
+    "external-link",
+    "http",
+    "link",
+    "web"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-external-link-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-external-link-symbolic"
+    }
+  ]
+}

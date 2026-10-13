@@ -10,13 +10,14 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { InputHints, InputPurpose } from "@/lib/enums"
 
 const entryRowVariants = cva(
   [
-    "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -31,7 +32,7 @@ const entryRowVariants = cva(
           "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
         ],
         /** .entry */
-        entry: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
         expander: "p-0 bg-none",
         /** .focused */
@@ -51,7 +52,7 @@ const entryRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "",
         /** .spin */
-        spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -160,7 +161,7 @@ function EntryRow({ className, render, variant = "default", actionTarget, attrib
     "data-use-underline": useUnderline,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", entryRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/entry-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", entryRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -219,7 +220,7 @@ function EntryRowEmptyTitle({ className, ...props }: React.ComponentProps<"span"
         data-halign="start"
       className={cn("title dimmed", [
         "caret-[currentColor] opacity-[var(--dim-opacity)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/entry-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -235,7 +236,7 @@ function EntryRowTitle({ className, ...props }: React.ComponentProps<"span">) {
         style={{ opacity: 0 }}
       className={cn("subtitle", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/entry-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -257,9 +258,9 @@ function EntryRowText({ className, ...props }: React.ComponentProps<"input">) {
   )
 }
 
-function EntryRowIndicator({ className, ...props }: React.ComponentProps<"span">) {
+function EntryRowIndicator({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="entry-row-indicator"
         data-node="image"
         data-valign="center"
@@ -276,28 +277,28 @@ function EntryRowApplyButton({ className, ...props }: React.ComponentProps<"butt
         data-node="button"
         data-valign="center"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "suggested-action circular apply-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-0 min-w-8.5 min-h-8.5 rounded-full shadow-none outline-offset-[5px] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)] mx-1.5",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[image:image(RGB(0_0_6/20%))]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[image:image(RGB(0_0_6/15%))] data-[state=checked]:bg-[var(--accent-bg-color)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[image:image(RGB(0_0_6/5%))]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[image:image(RGB(0_0_6/30%))]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-0 min-w-8.5 min-h-8.5 rounded-full shadow-none outline-offset-[5px] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)] mx-1.5",
+        "group-hover/entry-row:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/entry-row:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "group-active/entry-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/entry-row:bg-[image:image(RGB(0_0_6/20%))]",
+        "group-disabled/entry-row:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/entry-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/entry-row:bg-[image:image(RGB(0_0_6/15%))] group-data-[state=checked]/entry-row:bg-[var(--accent-bg-color)]",
+        "group-data-[state=checked]/entry-row:group-hover/entry-row:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/entry-row:group-hover/entry-row:bg-[image:image(RGB(0_0_6/5%))]",
+        "group-data-[state=checked]/entry-row:group-active/entry-row:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/entry-row:group-active/entry-row:bg-[image:image(RGB(0_0_6/30%))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function EntryRowEditIcon({ className, ...props }: React.ComponentProps<"span">) {
+function EntryRowEditIcon({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="entry-row-edit-icon"
         data-node="image"
         data-valign="center"
       className={cn("edit-icon", [
         "p-[5px] mx-1.5 min-w-6 min-h-6",
-        "disabled:opacity-30",
+        "group-disabled/entry-row:opacity-30",
       ], className)}
       {...props}
     />

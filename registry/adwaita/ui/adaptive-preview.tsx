@@ -25,7 +25,7 @@ function AdaptivePreview({ className, render, children, ...props }: AdaptivePrev
   const defaultProps = {
     "data-slot": "adaptive-preview",
     "data-node": "adaptive-preview",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/adaptive-preview", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <AdaptivePreviewHeaderbar>

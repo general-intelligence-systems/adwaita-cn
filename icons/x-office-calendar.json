@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "x-office-calendar-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "x-office-calendar-symbolic"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "location-services-active-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "location-services-active-symbolic"
+    }
+  ]
+}

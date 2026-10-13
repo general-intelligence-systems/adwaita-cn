@@ -10,12 +10,13 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const expanderRowVariants = cva(
   [
-    "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -32,7 +33,7 @@ const expanderRowVariants = cva(
         /** .empty */
         empty: "",
         /** .entry */
-        entry: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
@@ -50,7 +51,7 @@ const expanderRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "",
         /** .spin */
-        spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -133,7 +134,7 @@ function ExpanderRow({ className, render, variant = "default", actionTarget, chi
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", expanderRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/expander-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", expanderRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -148,7 +149,7 @@ function ExpanderRow({ className, render, variant = "default", actionTarget, chi
                     <ExpanderRowEnableSwitch>
                       <ExpanderRowSlider />
                     </ExpanderRowEnableSwitch>
-                    <ExpanderRowImage data-icon className={iconName} />
+                    <ExpanderRowImage name={iconName} />
                   </ExpanderRowActionRow>
                 </ExpanderRowListBox>
                 <ExpanderRowRevealer>
@@ -188,7 +189,7 @@ function ExpanderRowSlider({ className, ...props }: React.ComponentProps<"div">)
         data-node="slider"
       className={cn([
         "min-w-5 min-h-5 rounded-full bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_2px_4px_RGB(0_0_6/20%)]",
-        "disabled:shadow-[0_2px_4px_transparent]",
+        "group-disabled/expander-row:shadow-[0_2px_4px_transparent]",
       ], className)}
       {...props}
     />
@@ -202,27 +203,27 @@ function ExpanderRowEnableSwitch({ className, ...props }: React.ComponentProps<"
         data-node="switch"
         data-valign="center"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:bg-[var(--accent-bg-color)]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
+        "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/expander-row:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
+        "group-active/expander-row:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
+        "group-disabled/expander-row:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/expander-row:text-[var(--accent-fg-color)] group-data-[state=checked]/expander-row:bg-[var(--accent-bg-color)]",
+        "group-data-[state=checked]/expander-row:group-hover/expander-row:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "group-data-[state=checked]/expander-row:group-active/expander-row:bg-[image:image(RGB(0_0_6/20%))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function ExpanderRowImage({ className, ...props }: React.ComponentProps<"span">) {
+function ExpanderRowImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="expander-row-image"
         data-node="image"
       className={cn("expander-row-arrow", [
         "mx-[3px] opacity-[var(--dim-opacity)] transition-[-gtk-icon-transform] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/expander-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -235,8 +236,8 @@ function ExpanderRowActionRow({ className, ...props }: React.ComponentProps<"div
       data-slot="expander-row-action-row"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "header", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
+        "group-data-[selected]/expander-row:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />

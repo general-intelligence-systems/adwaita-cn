@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "night-light-disabled-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "night-light-disabled-symbolic"
+    }
+  ]
+}

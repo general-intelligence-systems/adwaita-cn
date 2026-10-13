@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "view-sort-ascending-rtl-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "view-sort-ascending-rtl-symbolic"
+    }
+  ]
+}

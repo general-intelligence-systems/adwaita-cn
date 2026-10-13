@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "ac-adapter-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "ac-adapter-symbolic"
+    }
+  ]
+}

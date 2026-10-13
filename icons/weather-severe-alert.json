@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "weather-severe-alert-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "weather-severe-alert-symbolic"
+    }
+  ]
+}

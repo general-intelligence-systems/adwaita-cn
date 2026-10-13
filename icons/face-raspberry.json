@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "face-raspberry-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "face-raspberry-symbolic"
+    }
+  ]
+}

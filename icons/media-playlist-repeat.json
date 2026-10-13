@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "media-playlist-repeat-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "media-playlist-repeat-symbolic"
+    }
+  ]
+}

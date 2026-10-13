@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { ArrowType } from "@/lib/enums"
@@ -108,12 +109,12 @@ function MenuButton({ className, render, variant = "default", child, iconName, m
     "data-label": label,
     "data-primary": primary,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", menuButtonVariants({ variant }), widgetClassName, className),
+    className: cn("group/menu-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", menuButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <MenuButtonArrow />
-                  {iconName ? <span data-slot="menu-button-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="menu-button-icon" />
                   {child}
                   {menuModel}
                   {popover}

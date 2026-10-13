@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -192,7 +193,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
     "data-translator-credits": translatorCredits,
     "data-version": version,
     "data-website": website,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", aboutDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/about-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", aboutDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -360,11 +361,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox11>
                             <AboutDialogStart>
                               <AboutDialogBox12>
-                                <AboutDialogWindowControls>
-                                  <AboutDialogButton4>
-                                    <AboutDialogImage13 />
-                                  </AboutDialogButton4>
-                                </AboutDialogWindowControls>
+                                <AboutDialogWindowControls />
                                 {children}
                               </AboutDialogBox12>
                             </AboutDialogStart>
@@ -373,7 +370,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox13>
                                 <AboutDialogWindowControls2>
                                   <AboutDialogCloseButton>
-                                    <AboutDialogImage14 />
+                                    <AboutDialogImage13 />
                                   </AboutDialogCloseButton>
                                 </AboutDialogWindowControls2>
                               </AboutDialogBox13>
@@ -395,11 +392,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox14>
                             <AboutDialogStart2>
                               <AboutDialogBox15>
-                                <AboutDialogWindowControls3>
-                                  <AboutDialogButton5>
-                                    <AboutDialogImage15 />
-                                  </AboutDialogButton5>
-                                </AboutDialogWindowControls3>
+                                <AboutDialogWindowControls3 />
                               </AboutDialogBox15>
                             </AboutDialogStart2>
                             <AboutDialogTitle3>{title}</AboutDialogTitle3>
@@ -407,7 +400,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox16>
                                 <AboutDialogWindowControls4>
                                   <AboutDialogCloseButton2>
-                                    <AboutDialogImage16 />
+                                    <AboutDialogImage14 />
                                   </AboutDialogCloseButton2>
                                 </AboutDialogWindowControls4>
                               </AboutDialogBox16>
@@ -428,17 +421,17 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                             <AboutDialogLinksGroup>
                               <AboutDialogDetailsWebsiteRow>
                                 <AboutDialogBox18 />
-                                <AboutDialogImage17 />
+                                <AboutDialogImage15 />
                                 <AboutDialogLabel7 />
                                 <AboutDialogListview4 />
                                 <AboutDialogPopover4>
                                   <AboutDialogArrow4 />
                                 </AboutDialogPopover4>
                                 <AboutDialogSpinbutton4>
-                                  <AboutDialogButton6>
+                                  <AboutDialogButton4>
                                     <AboutDialogBox19 />
                                     <AboutDialogLabel8 />
-                                  </AboutDialogButton6>
+                                  </AboutDialogButton4>
                                   <AboutDialogText13>
                                     <AboutDialogPlaceholder7 />
                                   </AboutDialogText13>
@@ -449,7 +442,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                   <AboutDialogValue4 />
                                 </AboutDialogScale4>
                                 <AboutDialogRow4>
-                                  <AboutDialogImage18 />
+                                  <AboutDialogImage16 />
                                 </AboutDialogRow4>
                                 <AboutDialogProgressbar4>
                                   <AboutDialogText15 />
@@ -469,11 +462,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox20>
                             <AboutDialogStart3>
                               <AboutDialogBox21>
-                                <AboutDialogWindowControls5>
-                                  <AboutDialogButton7>
-                                    <AboutDialogImage19 />
-                                  </AboutDialogButton7>
-                                </AboutDialogWindowControls5>
+                                <AboutDialogWindowControls5 />
                               </AboutDialogBox21>
                             </AboutDialogStart3>
                             <AboutDialogTitle4>{title}</AboutDialogTitle4>
@@ -481,7 +470,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox22>
                                 <AboutDialogWindowControls6>
                                   <AboutDialogCloseButton3>
-                                    <AboutDialogImage20 />
+                                    <AboutDialogImage17 />
                                   </AboutDialogCloseButton3>
                                 </AboutDialogWindowControls6>
                               </AboutDialogBox22>
@@ -499,7 +488,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                             <AboutDialogLabel9 />
                             <AboutDialogPreferencesGroup>
                               <AboutDialogActionRow4>
-                                <AboutDialogImage21 />
+                                <AboutDialogImage18 />
                               </AboutDialogActionRow4>
                             </AboutDialogPreferencesGroup>
                           </AboutDialogBox23>
@@ -510,11 +499,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox24>
                             <AboutDialogStart4>
                               <AboutDialogBox25>
-                                <AboutDialogWindowControls7>
-                                  <AboutDialogButton8>
-                                    <AboutDialogImage22 />
-                                  </AboutDialogButton8>
-                                </AboutDialogWindowControls7>
+                                <AboutDialogWindowControls7 />
                               </AboutDialogBox25>
                             </AboutDialogStart4>
                             <AboutDialogTitle5>{title}</AboutDialogTitle5>
@@ -522,7 +507,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox26>
                                 <AboutDialogWindowControls8>
                                   <AboutDialogCloseButton4>
-                                    <AboutDialogImage23 />
+                                    <AboutDialogImage19 />
                                   </AboutDialogCloseButton4>
                                 </AboutDialogWindowControls8>
                               </AboutDialogBox26>
@@ -544,11 +529,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox27>
                             <AboutDialogStart5>
                               <AboutDialogBox28>
-                                <AboutDialogWindowControls9>
-                                  <AboutDialogButton9>
-                                    <AboutDialogImage24 />
-                                  </AboutDialogButton9>
-                                </AboutDialogWindowControls9>
+                                <AboutDialogWindowControls9 />
                               </AboutDialogBox28>
                             </AboutDialogStart5>
                             <AboutDialogTitle6>{title}</AboutDialogTitle6>
@@ -556,7 +537,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox29>
                                 <AboutDialogWindowControls10>
                                   <AboutDialogCloseButton5>
-                                    <AboutDialogImage25 />
+                                    <AboutDialogImage20 />
                                   </AboutDialogCloseButton5>
                                 </AboutDialogWindowControls10>
                               </AboutDialogBox29>
@@ -565,8 +546,8 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                         </AboutDialogWindowhandle5>
                       </AboutDialogHeaderBar4>
                       <AboutDialogActionBar>
-                        <AboutDialogButton10 />
-                        <AboutDialogButton11 />
+                        <AboutDialogButton5 />
+                        <AboutDialogButton6 />
                       </AboutDialogActionBar>
                     </AboutDialogToolbarView5>
                   </AboutDialogDebugInfoPage>
@@ -580,11 +561,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox30>
                             <AboutDialogStart6>
                               <AboutDialogBox31>
-                                <AboutDialogWindowControls11>
-                                  <AboutDialogButton12>
-                                    <AboutDialogImage26 />
-                                  </AboutDialogButton12>
-                                </AboutDialogWindowControls11>
+                                <AboutDialogWindowControls11 />
                               </AboutDialogBox31>
                             </AboutDialogStart6>
                             <AboutDialogTitle7>{title}</AboutDialogTitle7>
@@ -592,7 +569,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox32>
                                 <AboutDialogWindowControls12>
                                   <AboutDialogCloseButton6>
-                                    <AboutDialogImage27 />
+                                    <AboutDialogImage21 />
                                   </AboutDialogCloseButton6>
                                 </AboutDialogWindowControls12>
                               </AboutDialogBox32>
@@ -612,11 +589,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox33>
                             <AboutDialogStart7>
                               <AboutDialogBox34>
-                                <AboutDialogWindowControls13>
-                                  <AboutDialogButton13>
-                                    <AboutDialogImage28 />
-                                  </AboutDialogButton13>
-                                </AboutDialogWindowControls13>
+                                <AboutDialogWindowControls13 />
                               </AboutDialogBox34>
                             </AboutDialogStart7>
                             <AboutDialogTitle8>{title}</AboutDialogTitle8>
@@ -624,7 +597,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox35>
                                 <AboutDialogWindowControls14>
                                   <AboutDialogCloseButton7>
-                                    <AboutDialogImage29 />
+                                    <AboutDialogImage22 />
                                   </AboutDialogCloseButton7>
                                 </AboutDialogWindowControls14>
                               </AboutDialogBox35>
@@ -644,11 +617,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                           <AboutDialogBox36>
                             <AboutDialogStart8>
                               <AboutDialogBox37>
-                                <AboutDialogWindowControls15>
-                                  <AboutDialogButton14>
-                                    <AboutDialogImage30 />
-                                  </AboutDialogButton14>
-                                </AboutDialogWindowControls15>
+                                <AboutDialogWindowControls15 />
                               </AboutDialogBox37>
                             </AboutDialogStart8>
                             <AboutDialogTitle9>{title}</AboutDialogTitle9>
@@ -656,7 +625,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                               <AboutDialogBox38>
                                 <AboutDialogWindowControls16>
                                   <AboutDialogCloseButton8>
-                                    <AboutDialogImage31 />
+                                    <AboutDialogImage23 />
                                   </AboutDialogCloseButton8>
                                 </AboutDialogWindowControls16>
                               </AboutDialogBox38>
@@ -688,9 +657,9 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
   })
 }
 
-function AboutDialogAppIconImage({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogAppIconImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-app-icon-image"
         data-node="image"
       className={cn("icon-dropshadow", className)}
@@ -706,7 +675,7 @@ function AboutDialogAppNameLabel({ className, ...props }: React.ComponentProps<"
         data-node="label"
       className={cn("title-1", [
         "caret-[currentColor] font-extrabold text-[181%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -720,7 +689,7 @@ function AboutDialogDeveloperNameLabel({ className, ...props }: React.ComponentP
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -734,22 +703,22 @@ function AboutDialogVersionButton({ className, ...props }: React.ComponentProps<
         data-node="button"
         data-halign="center"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "app-version", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-[3px] px-4.5 mt-[3px] text-[var(--accent-color)] rounded-[999px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-[3px] px-4.5 mt-[3px] text-[var(--accent-color)] rounded-[999px]",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image"
         data-node="image"
       className={cn(className)}
@@ -764,17 +733,17 @@ function AboutDialogWhatsNewRow({ className, ...props }: React.ComponentProps<"d
       data-slot="about-dialog-whats-new-row"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage2({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image2"
         data-node="image"
       className={cn(className)}
@@ -789,8 +758,8 @@ function AboutDialogDetailsRow({ className, ...props }: React.ComponentProps<"di
       data-slot="about-dialog-details-row"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -808,9 +777,9 @@ function AboutDialogBox3({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogImage3({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image3"
         data-node="image"
       className={cn(className)}
@@ -826,7 +795,7 @@ function AboutDialogLabel({ className, ...props }: React.ComponentProps<"span">)
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -884,7 +853,7 @@ function AboutDialogLabel2({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -897,13 +866,13 @@ function AboutDialogButton({ className, ...props }: React.ComponentProps<"button
       data-slot="about-dialog-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -938,8 +907,8 @@ function AboutDialogSpinbutton({ className, ...props }: React.ComponentProps<"di
       data-slot="about-dialog-spinbutton"
         data-node="spinbutton"
       className={cn([
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -986,16 +955,16 @@ function AboutDialogScale({ className, ...props }: React.ComponentProps<"div">) 
         data-node="scale"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage4({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage4({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image4"
         data-node="image"
       className={cn(className)}
@@ -1010,8 +979,8 @@ function AboutDialogRow({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="about-dialog-row"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1034,7 +1003,7 @@ function AboutDialogProgressbar({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="about-dialog-progressbar"
         data-node="progressbar"
-      className={cn("disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -1068,8 +1037,8 @@ function AboutDialogEntry({ className, ...props }: React.ComponentProps<"div">) 
       data-slot="about-dialog-entry"
         data-node="entry"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1082,8 +1051,8 @@ function AboutDialogWebsiteRow({ className, ...props }: React.ComponentProps<"di
       data-slot="about-dialog-website-row"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1112,9 +1081,9 @@ function AboutDialogBox5({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogImage5({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image5"
         data-node="image"
       className={cn(className)}
@@ -1130,7 +1099,7 @@ function AboutDialogLabel3({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1188,7 +1157,7 @@ function AboutDialogLabel4({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1201,13 +1170,13 @@ function AboutDialogButton2({ className, ...props }: React.ComponentProps<"butto
       data-slot="about-dialog-button2"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1242,8 +1211,8 @@ function AboutDialogSpinbutton2({ className, ...props }: React.ComponentProps<"d
       data-slot="about-dialog-spinbutton2"
         data-node="spinbutton"
       className={cn([
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1290,16 +1259,16 @@ function AboutDialogScale2({ className, ...props }: React.ComponentProps<"div">)
         data-node="scale"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage6({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage6({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image6"
         data-node="image"
       className={cn(className)}
@@ -1314,8 +1283,8 @@ function AboutDialogRow2({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="about-dialog-row2"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1338,7 +1307,7 @@ function AboutDialogProgressbar2({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-dialog-progressbar2"
         data-node="progressbar"
-      className={cn("disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -1372,8 +1341,8 @@ function AboutDialogEntry2({ className, ...props }: React.ComponentProps<"div">)
       data-slot="about-dialog-entry2"
         data-node="entry"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1386,8 +1355,8 @@ function AboutDialogSupportRow({ className, ...props }: React.ComponentProps<"di
       data-slot="about-dialog-support-row"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1405,9 +1374,9 @@ function AboutDialogBox7({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogImage7({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage7({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image7"
         data-node="image"
       className={cn(className)}
@@ -1423,7 +1392,7 @@ function AboutDialogLabel5({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1481,7 +1450,7 @@ function AboutDialogLabel6({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1494,13 +1463,13 @@ function AboutDialogButton3({ className, ...props }: React.ComponentProps<"butto
       data-slot="about-dialog-button3"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1535,8 +1504,8 @@ function AboutDialogSpinbutton3({ className, ...props }: React.ComponentProps<"d
       data-slot="about-dialog-spinbutton3"
         data-node="spinbutton"
       className={cn([
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1583,16 +1552,16 @@ function AboutDialogScale3({ className, ...props }: React.ComponentProps<"div">)
         data-node="scale"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage8({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage8({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image8"
         data-node="image"
       className={cn(className)}
@@ -1607,8 +1576,8 @@ function AboutDialogRow3({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="about-dialog-row3"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1631,7 +1600,7 @@ function AboutDialogProgressbar3({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-dialog-progressbar3"
         data-node="progressbar"
-      className={cn("disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -1665,8 +1634,8 @@ function AboutDialogEntry3({ className, ...props }: React.ComponentProps<"div">)
       data-slot="about-dialog-entry3"
         data-node="entry"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1679,17 +1648,17 @@ function AboutDialogIssueRow({ className, ...props }: React.ComponentProps<"div"
       data-slot="about-dialog-issue-row"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage9({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage9({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image9"
         data-node="image"
       className={cn(className)}
@@ -1704,8 +1673,8 @@ function AboutDialogTroubleshootingRow({ className, ...props }: React.ComponentP
       data-slot="about-dialog-troubleshooting-row"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1723,9 +1692,9 @@ function AboutDialogSupportGroup({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogImage10({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage10({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image10"
         data-node="image"
       className={cn(className)}
@@ -1740,17 +1709,17 @@ function AboutDialogActionRow({ className, ...props }: React.ComponentProps<"div
       data-slot="about-dialog-action-row"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage11({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage11({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image11"
         data-node="image"
       className={cn(className)}
@@ -1765,17 +1734,17 @@ function AboutDialogActionRow2({ className, ...props }: React.ComponentProps<"di
       data-slot="about-dialog-action-row2"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage12({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage12({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="about-dialog-image12"
         data-node="image"
       className={cn(className)}
@@ -1790,8 +1759,8 @@ function AboutDialogActionRow3({ className, ...props }: React.ComponentProps<"di
       data-slot="about-dialog-action-row3"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -1816,7 +1785,7 @@ function AboutDialogTitle({ className, ...props }: React.ComponentProps<"span">)
         data-node="label"
       className={cn("heading h4", [
         "caret-[currentColor] font-bold",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1830,7 +1799,7 @@ function AboutDialogDescription({ className, ...props }: React.ComponentProps<"s
         data-node="label"
       className={cn("body dimmed", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -1953,36 +1922,6 @@ function AboutDialogMainScrolledWindow({ className, ...props }: React.ComponentP
   )
 }
 
-function AboutDialogImage13({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image13"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton4({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button4"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2027,10 +1966,11 @@ function AboutDialogTitle2({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage14({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage13({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image14"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image13"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -2044,13 +1984,13 @@ function AboutDialogCloseButton({ className, ...props }: React.ComponentProps<"d
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -2182,36 +2122,6 @@ function AboutDialogScrolledWindow({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogImage15({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image15"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton5({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button5"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2256,10 +2166,11 @@ function AboutDialogTitle3({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage16({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage14({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image16"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image14"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -2273,13 +2184,13 @@ function AboutDialogCloseButton2({ className, ...props }: React.ComponentProps<"
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -2381,7 +2292,7 @@ function AboutDialogCommentsLabel({ className, ...props }: React.ComponentProps<
         data-node="label"
       className={cn("body", [
         "caret-[currentColor] font-normal leading-[140%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -2399,10 +2310,10 @@ function AboutDialogBox18({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutDialogImage17({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage15({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image17"
+    <Icon
+      data-slot="about-dialog-image15"
         data-node="image"
       className={cn(className)}
       {...props}
@@ -2417,7 +2328,7 @@ function AboutDialogLabel7({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -2475,26 +2386,26 @@ function AboutDialogLabel8({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn([
         "caret-[currentColor]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogButton6({ className, ...props }: React.ComponentProps<"button">) {
+function AboutDialogButton4({ className, ...props }: React.ComponentProps<"button">) {
   return (
     <button
-      data-slot="about-dialog-button6"
+      data-slot="about-dialog-button4"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -2529,8 +2440,8 @@ function AboutDialogSpinbutton4({ className, ...props }: React.ComponentProps<"d
       data-slot="about-dialog-spinbutton4"
         data-node="spinbutton"
       className={cn([
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -2577,17 +2488,17 @@ function AboutDialogScale4({ className, ...props }: React.ComponentProps<"div">)
         data-node="scale"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage18({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage16({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image18"
+    <Icon
+      data-slot="about-dialog-image16"
         data-node="image"
       className={cn(className)}
       {...props}
@@ -2601,8 +2512,8 @@ function AboutDialogRow4({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="about-dialog-row4"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -2625,7 +2536,7 @@ function AboutDialogProgressbar4({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-dialog-progressbar4"
         data-node="progressbar"
-      className={cn("disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -2659,8 +2570,8 @@ function AboutDialogEntry4({ className, ...props }: React.ComponentProps<"div">)
       data-slot="about-dialog-entry4"
         data-node="entry"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -2673,8 +2584,8 @@ function AboutDialogDetailsWebsiteRow({ className, ...props }: React.ComponentPr
       data-slot="about-dialog-details-website-row"
         data-node="row"
       className={cn([
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -2729,36 +2640,6 @@ function AboutDialogScrolledWindow2({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogImage19({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image19"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton7({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button7"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2803,10 +2684,11 @@ function AboutDialogTitle4({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage20({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage17({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image20"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image17"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -2820,13 +2702,13 @@ function AboutDialogCloseButton3({ className, ...props }: React.ComponentProps<"
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -2928,17 +2810,17 @@ function AboutDialogLabel9({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn("body", [
         "caret-[currentColor] font-normal leading-[140%]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogImage21({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage18({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image21"
+    <Icon
+      data-slot="about-dialog-image18"
         data-node="image"
       className={cn(className)}
       {...props}
@@ -2952,8 +2834,8 @@ function AboutDialogActionRow4({ className, ...props }: React.ComponentProps<"di
       data-slot="about-dialog-action-row4"
         data-node="row"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/about-dialog:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
@@ -3008,36 +2890,6 @@ function AboutDialogScrolledWindow3({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogImage22({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image22"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton8({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button8"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -3082,10 +2934,11 @@ function AboutDialogTitle5({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage23({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage19({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image23"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image19"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -3099,13 +2952,13 @@ function AboutDialogCloseButton4({ className, ...props }: React.ComponentProps<"
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -3237,36 +3090,6 @@ function AboutDialogScrolledWindow4({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogImage24({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image24"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton9({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button9"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -3311,10 +3134,11 @@ function AboutDialogTitle6({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage25({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage20({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image25"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image20"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -3328,13 +3152,13 @@ function AboutDialogCloseButton5({ className, ...props }: React.ComponentProps<"
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -3407,38 +3231,38 @@ function AboutDialogHeaderBar4({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutDialogButton10({ className, ...props }: React.ComponentProps<"button">) {
+function AboutDialogButton5({ className, ...props }: React.ComponentProps<"button">) {
   return (
     <button
-      data-slot="about-dialog-button10"
+      data-slot="about-dialog-button5"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
   )
 }
 
-function AboutDialogButton11({ className, ...props }: React.ComponentProps<"button">) {
+function AboutDialogButton6({ className, ...props }: React.ComponentProps<"button">) {
   return (
     <button
-      data-slot="about-dialog-button11"
+      data-slot="about-dialog-button6"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -3515,36 +3339,6 @@ function AboutDialogScrolledWindow5({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogImage26({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image26"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton12({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button12"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls11({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -3589,10 +3383,11 @@ function AboutDialogTitle7({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage27({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage21({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image27"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image21"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -3606,13 +3401,13 @@ function AboutDialogCloseButton6({ className, ...props }: React.ComponentProps<"
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -3744,36 +3539,6 @@ function AboutDialogScrolledWindow6({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogImage28({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image28"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton13({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button13"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls13({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -3818,10 +3583,11 @@ function AboutDialogTitle8({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage29({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage22({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image29"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image22"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -3835,13 +3601,13 @@ function AboutDialogCloseButton7({ className, ...props }: React.ComponentProps<"
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -3973,36 +3739,6 @@ function AboutDialogScrolledWindow7({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogImage30({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-image30"
-        data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton14({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button14"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogWindowControls15({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -4047,10 +3783,11 @@ function AboutDialogTitle9({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogImage31({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogImage23({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
-      data-slot="about-dialog-image31"
+    <Icon
+        name={name}
+      data-slot="about-dialog-image23"
         data-node="image"
       className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
@@ -4064,13 +3801,13 @@ function AboutDialogCloseButton8({ className, ...props }: React.ComponentProps<"
       data-slot="button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:bg-none hover:shadow-none",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] active:bg-none active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
+        "group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-dialog:bg-none group-hover/about-dialog:shadow-none",
+        "group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-dialog:bg-none group-active/about-dialog:shadow-none",
+        "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-dialog:[filter:opacity(30%)]",
+        "group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-dialog:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-dialog:group-hover/about-dialog:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-dialog:group-active/about-dialog:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
       ], className)}
       {...props}
     />
@@ -4187,4 +3924,4 @@ function AboutDialogToastOverlay({ className, ...props }: React.ComponentProps<"
   )
 }
 
-export { AboutDialog, AboutDialogAppIconImage, AboutDialogAppNameLabel, AboutDialogDeveloperNameLabel, AboutDialogVersionButton, AboutDialogImage, AboutDialogWhatsNewRow, AboutDialogImage2, AboutDialogDetailsRow, AboutDialogBox3, AboutDialogImage3, AboutDialogLabel, AboutDialogListview, AboutDialogArrow, AboutDialogPopover, AboutDialogBox4, AboutDialogLabel2, AboutDialogButton, AboutDialogPlaceholder, AboutDialogText, AboutDialogSpinbutton, AboutDialogList, AboutDialogText2, AboutDialogValue, AboutDialogScale, AboutDialogImage4, AboutDialogRow, AboutDialogText3, AboutDialogProgressbar, AboutDialogPlaceholder2, AboutDialogText4, AboutDialogEntry, AboutDialogWebsiteRow, AboutDialogDetailsGroup, AboutDialogBox5, AboutDialogImage5, AboutDialogLabel3, AboutDialogListview2, AboutDialogArrow2, AboutDialogPopover2, AboutDialogBox6, AboutDialogLabel4, AboutDialogButton2, AboutDialogPlaceholder3, AboutDialogText5, AboutDialogSpinbutton2, AboutDialogList2, AboutDialogText6, AboutDialogValue2, AboutDialogScale2, AboutDialogImage6, AboutDialogRow2, AboutDialogText7, AboutDialogProgressbar2, AboutDialogPlaceholder4, AboutDialogText8, AboutDialogEntry2, AboutDialogSupportRow, AboutDialogBox7, AboutDialogImage7, AboutDialogLabel5, AboutDialogListview3, AboutDialogArrow3, AboutDialogPopover3, AboutDialogBox8, AboutDialogLabel6, AboutDialogButton3, AboutDialogPlaceholder5, AboutDialogText9, AboutDialogSpinbutton3, AboutDialogList3, AboutDialogText10, AboutDialogValue3, AboutDialogScale3, AboutDialogImage8, AboutDialogRow3, AboutDialogText11, AboutDialogProgressbar3, AboutDialogPlaceholder6, AboutDialogText12, AboutDialogEntry3, AboutDialogIssueRow, AboutDialogImage9, AboutDialogTroubleshootingRow, AboutDialogSupportGroup, AboutDialogImage10, AboutDialogActionRow, AboutDialogImage11, AboutDialogActionRow2, AboutDialogImage12, AboutDialogActionRow3, AboutDialogCreditsLegalGroup, AboutDialogTitle, AboutDialogDescription, AboutDialogBox10, AboutDialogHeaderBox, AboutDialogListbox, AboutDialogListboxBox, AboutDialogBox9, AboutDialogOtherAppsGroup, AboutDialogBox2, AboutDialogBox, AboutDialogClamp, AboutDialogMainScrolledWindow, AboutDialogImage13, AboutDialogButton4, AboutDialogWindowControls, AboutDialogBox12, AboutDialogStart, AboutDialogTitle2, AboutDialogImage14, AboutDialogCloseButton, AboutDialogWindowControls2, AboutDialogBox13, AboutDialogEnd, AboutDialogBox11, AboutDialogWindowhandle, AboutDialogMainHeaderbar, AboutDialogToolbarView, AboutDialogNavigationPage, AboutDialogTextView, AboutDialogClampScrollable, AboutDialogScrolledWindow, AboutDialogImage15, AboutDialogButton5, AboutDialogWindowControls3, AboutDialogBox15, AboutDialogStart2, AboutDialogTitle3, AboutDialogImage16, AboutDialogCloseButton2, AboutDialogWindowControls4, AboutDialogBox16, AboutDialogEnd2, AboutDialogBox14, AboutDialogWindowhandle2, AboutDialogHeaderBar, AboutDialogToolbarView2, AboutDialogWhatsnewPage, AboutDialogCommentsLabel, AboutDialogBox18, AboutDialogImage17, AboutDialogLabel7, AboutDialogListview4, AboutDialogArrow4, AboutDialogPopover4, AboutDialogBox19, AboutDialogLabel8, AboutDialogButton6, AboutDialogPlaceholder7, AboutDialogText13, AboutDialogSpinbutton4, AboutDialogList4, AboutDialogText14, AboutDialogValue4, AboutDialogScale4, AboutDialogImage18, AboutDialogRow4, AboutDialogText15, AboutDialogProgressbar4, AboutDialogPlaceholder8, AboutDialogText16, AboutDialogEntry4, AboutDialogDetailsWebsiteRow, AboutDialogLinksGroup, AboutDialogBox17, AboutDialogClamp2, AboutDialogScrolledWindow2, AboutDialogImage19, AboutDialogButton7, AboutDialogWindowControls5, AboutDialogBox21, AboutDialogStart3, AboutDialogTitle4, AboutDialogImage20, AboutDialogCloseButton3, AboutDialogWindowControls6, AboutDialogBox22, AboutDialogEnd3, AboutDialogBox20, AboutDialogWindowhandle3, AboutDialogHeaderBar2, AboutDialogToolbarView3, AboutDialogNavigationPage2, AboutDialogLabel9, AboutDialogImage21, AboutDialogActionRow4, AboutDialogPreferencesGroup, AboutDialogBox23, AboutDialogClamp3, AboutDialogScrolledWindow3, AboutDialogImage22, AboutDialogButton8, AboutDialogWindowControls7, AboutDialogBox25, AboutDialogStart4, AboutDialogTitle5, AboutDialogImage23, AboutDialogCloseButton4, AboutDialogWindowControls8, AboutDialogBox26, AboutDialogEnd4, AboutDialogBox24, AboutDialogWindowhandle4, AboutDialogHeaderBar3, AboutDialogToolbarView4, AboutDialogNavigationPage3, AboutDialogTextView2, AboutDialogClampScrollable2, AboutDialogScrolledWindow4, AboutDialogImage24, AboutDialogButton9, AboutDialogWindowControls9, AboutDialogBox28, AboutDialogStart5, AboutDialogTitle6, AboutDialogImage25, AboutDialogCloseButton5, AboutDialogWindowControls10, AboutDialogBox29, AboutDialogEnd5, AboutDialogBox27, AboutDialogWindowhandle5, AboutDialogHeaderBar4, AboutDialogButton10, AboutDialogButton11, AboutDialogActionBar, AboutDialogToolbarView5, AboutDialogDebugInfoPage, AboutDialogCreditsBox, AboutDialogClamp4, AboutDialogScrolledWindow5, AboutDialogImage26, AboutDialogButton12, AboutDialogWindowControls11, AboutDialogBox31, AboutDialogStart6, AboutDialogTitle7, AboutDialogImage27, AboutDialogCloseButton6, AboutDialogWindowControls12, AboutDialogBox32, AboutDialogEnd6, AboutDialogBox30, AboutDialogWindowhandle6, AboutDialogHeaderBar5, AboutDialogToolbarView6, AboutDialogNavigationPage4, AboutDialogLegalBox, AboutDialogClamp5, AboutDialogScrolledWindow6, AboutDialogImage28, AboutDialogButton13, AboutDialogWindowControls13, AboutDialogBox34, AboutDialogStart7, AboutDialogTitle8, AboutDialogImage29, AboutDialogCloseButton7, AboutDialogWindowControls14, AboutDialogBox35, AboutDialogEnd7, AboutDialogBox33, AboutDialogWindowhandle7, AboutDialogHeaderBar6, AboutDialogToolbarView7, AboutDialogNavigationPage5, AboutDialogAcknowledgementsBox, AboutDialogClamp6, AboutDialogScrolledWindow7, AboutDialogImage30, AboutDialogButton14, AboutDialogWindowControls15, AboutDialogBox37, AboutDialogStart8, AboutDialogTitle9, AboutDialogImage31, AboutDialogCloseButton8, AboutDialogWindowControls16, AboutDialogBox38, AboutDialogEnd8, AboutDialogBox36, AboutDialogWindowhandle8, AboutDialogHeaderBar7, AboutDialogToolbarView8, AboutDialogNavigationPage6, AboutDialogNavigationView, AboutDialogToastOverlay, aboutDialogVariants }
+export { AboutDialog, AboutDialogAppIconImage, AboutDialogAppNameLabel, AboutDialogDeveloperNameLabel, AboutDialogVersionButton, AboutDialogImage, AboutDialogWhatsNewRow, AboutDialogImage2, AboutDialogDetailsRow, AboutDialogBox3, AboutDialogImage3, AboutDialogLabel, AboutDialogListview, AboutDialogArrow, AboutDialogPopover, AboutDialogBox4, AboutDialogLabel2, AboutDialogButton, AboutDialogPlaceholder, AboutDialogText, AboutDialogSpinbutton, AboutDialogList, AboutDialogText2, AboutDialogValue, AboutDialogScale, AboutDialogImage4, AboutDialogRow, AboutDialogText3, AboutDialogProgressbar, AboutDialogPlaceholder2, AboutDialogText4, AboutDialogEntry, AboutDialogWebsiteRow, AboutDialogDetailsGroup, AboutDialogBox5, AboutDialogImage5, AboutDialogLabel3, AboutDialogListview2, AboutDialogArrow2, AboutDialogPopover2, AboutDialogBox6, AboutDialogLabel4, AboutDialogButton2, AboutDialogPlaceholder3, AboutDialogText5, AboutDialogSpinbutton2, AboutDialogList2, AboutDialogText6, AboutDialogValue2, AboutDialogScale2, AboutDialogImage6, AboutDialogRow2, AboutDialogText7, AboutDialogProgressbar2, AboutDialogPlaceholder4, AboutDialogText8, AboutDialogEntry2, AboutDialogSupportRow, AboutDialogBox7, AboutDialogImage7, AboutDialogLabel5, AboutDialogListview3, AboutDialogArrow3, AboutDialogPopover3, AboutDialogBox8, AboutDialogLabel6, AboutDialogButton3, AboutDialogPlaceholder5, AboutDialogText9, AboutDialogSpinbutton3, AboutDialogList3, AboutDialogText10, AboutDialogValue3, AboutDialogScale3, AboutDialogImage8, AboutDialogRow3, AboutDialogText11, AboutDialogProgressbar3, AboutDialogPlaceholder6, AboutDialogText12, AboutDialogEntry3, AboutDialogIssueRow, AboutDialogImage9, AboutDialogTroubleshootingRow, AboutDialogSupportGroup, AboutDialogImage10, AboutDialogActionRow, AboutDialogImage11, AboutDialogActionRow2, AboutDialogImage12, AboutDialogActionRow3, AboutDialogCreditsLegalGroup, AboutDialogTitle, AboutDialogDescription, AboutDialogBox10, AboutDialogHeaderBox, AboutDialogListbox, AboutDialogListboxBox, AboutDialogBox9, AboutDialogOtherAppsGroup, AboutDialogBox2, AboutDialogBox, AboutDialogClamp, AboutDialogMainScrolledWindow, AboutDialogWindowControls, AboutDialogBox12, AboutDialogStart, AboutDialogTitle2, AboutDialogImage13, AboutDialogCloseButton, AboutDialogWindowControls2, AboutDialogBox13, AboutDialogEnd, AboutDialogBox11, AboutDialogWindowhandle, AboutDialogMainHeaderbar, AboutDialogToolbarView, AboutDialogNavigationPage, AboutDialogTextView, AboutDialogClampScrollable, AboutDialogScrolledWindow, AboutDialogWindowControls3, AboutDialogBox15, AboutDialogStart2, AboutDialogTitle3, AboutDialogImage14, AboutDialogCloseButton2, AboutDialogWindowControls4, AboutDialogBox16, AboutDialogEnd2, AboutDialogBox14, AboutDialogWindowhandle2, AboutDialogHeaderBar, AboutDialogToolbarView2, AboutDialogWhatsnewPage, AboutDialogCommentsLabel, AboutDialogBox18, AboutDialogImage15, AboutDialogLabel7, AboutDialogListview4, AboutDialogArrow4, AboutDialogPopover4, AboutDialogBox19, AboutDialogLabel8, AboutDialogButton4, AboutDialogPlaceholder7, AboutDialogText13, AboutDialogSpinbutton4, AboutDialogList4, AboutDialogText14, AboutDialogValue4, AboutDialogScale4, AboutDialogImage16, AboutDialogRow4, AboutDialogText15, AboutDialogProgressbar4, AboutDialogPlaceholder8, AboutDialogText16, AboutDialogEntry4, AboutDialogDetailsWebsiteRow, AboutDialogLinksGroup, AboutDialogBox17, AboutDialogClamp2, AboutDialogScrolledWindow2, AboutDialogWindowControls5, AboutDialogBox21, AboutDialogStart3, AboutDialogTitle4, AboutDialogImage17, AboutDialogCloseButton3, AboutDialogWindowControls6, AboutDialogBox22, AboutDialogEnd3, AboutDialogBox20, AboutDialogWindowhandle3, AboutDialogHeaderBar2, AboutDialogToolbarView3, AboutDialogNavigationPage2, AboutDialogLabel9, AboutDialogImage18, AboutDialogActionRow4, AboutDialogPreferencesGroup, AboutDialogBox23, AboutDialogClamp3, AboutDialogScrolledWindow3, AboutDialogWindowControls7, AboutDialogBox25, AboutDialogStart4, AboutDialogTitle5, AboutDialogImage19, AboutDialogCloseButton4, AboutDialogWindowControls8, AboutDialogBox26, AboutDialogEnd4, AboutDialogBox24, AboutDialogWindowhandle4, AboutDialogHeaderBar3, AboutDialogToolbarView4, AboutDialogNavigationPage3, AboutDialogTextView2, AboutDialogClampScrollable2, AboutDialogScrolledWindow4, AboutDialogWindowControls9, AboutDialogBox28, AboutDialogStart5, AboutDialogTitle6, AboutDialogImage20, AboutDialogCloseButton5, AboutDialogWindowControls10, AboutDialogBox29, AboutDialogEnd5, AboutDialogBox27, AboutDialogWindowhandle5, AboutDialogHeaderBar4, AboutDialogButton5, AboutDialogButton6, AboutDialogActionBar, AboutDialogToolbarView5, AboutDialogDebugInfoPage, AboutDialogCreditsBox, AboutDialogClamp4, AboutDialogScrolledWindow5, AboutDialogWindowControls11, AboutDialogBox31, AboutDialogStart6, AboutDialogTitle7, AboutDialogImage21, AboutDialogCloseButton6, AboutDialogWindowControls12, AboutDialogBox32, AboutDialogEnd6, AboutDialogBox30, AboutDialogWindowhandle6, AboutDialogHeaderBar5, AboutDialogToolbarView6, AboutDialogNavigationPage4, AboutDialogLegalBox, AboutDialogClamp5, AboutDialogScrolledWindow6, AboutDialogWindowControls13, AboutDialogBox34, AboutDialogStart7, AboutDialogTitle8, AboutDialogImage22, AboutDialogCloseButton7, AboutDialogWindowControls14, AboutDialogBox35, AboutDialogEnd7, AboutDialogBox33, AboutDialogWindowhandle7, AboutDialogHeaderBar6, AboutDialogToolbarView7, AboutDialogNavigationPage5, AboutDialogAcknowledgementsBox, AboutDialogClamp6, AboutDialogScrolledWindow7, AboutDialogWindowControls15, AboutDialogBox37, AboutDialogStart8, AboutDialogTitle9, AboutDialogImage23, AboutDialogCloseButton8, AboutDialogWindowControls16, AboutDialogBox38, AboutDialogEnd8, AboutDialogBox36, AboutDialogWindowhandle8, AboutDialogHeaderBar7, AboutDialogToolbarView8, AboutDialogNavigationPage6, AboutDialogNavigationView, AboutDialogToastOverlay, aboutDialogVariants }

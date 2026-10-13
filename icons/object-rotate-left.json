@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "object-rotate-left-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "object-rotate-left-symbolic"
+    }
+  ]
+}

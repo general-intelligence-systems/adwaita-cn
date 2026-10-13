@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "dialog-information-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "dialog-information-symbolic"
+    }
+  ]
+}

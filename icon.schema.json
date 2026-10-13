@@ -1,0 +1,67 @@
+{
+  "$id": "https://github.com/async-matrix/adwaita-cn/icon.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adwaita icon schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "contributors",
+    "tags",
+    "categories",
+    "gtkIconName",
+    "monochrome"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "contributors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gtkIconName": {
+      "type": "string",
+      "description": "The name GTK draws this icon by, which is what an `icon-name` property holds."
+    },
+    "monochrome": {
+      "type": "boolean",
+      "description": "False for the status icons, whose colour is part of what they mean."
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "deprecated": {
+            "const": true
+          },
+          "deprecationReason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

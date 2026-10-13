@@ -133,7 +133,7 @@ function ScrolledWindow({ className, render, variant = "default", child, hadjust
     "data-propagate-natural-width": propagateNaturalWidth,
     "data-vscrollbar-policy": vscrollbarPolicy,
     "data-window-placement": windowPlacement,
-    className: cn(scrolledWindowVariants({ variant }), widgetClassName, className),
+    className: cn("group/scrolled-window", scrolledWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

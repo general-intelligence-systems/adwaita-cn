@@ -1,0 +1,426 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 16-EXTRACT-ICONS(1)              General Commands Manual               16-EXTRACT-ICONS(1)
+#
+# NAME
+#      bin/16-extract-icons — normalise the vendored Adwaita icons into an icon source tree
+#
+# SYNOPSIS
+#      bin/16-extract-icons
+#
+# DESCRIPTION
+#      Reads the symbolic icons bin/01-fetch-adwaita vendored and writes each one out twice,
+#      into icons/ at the root of the repository: once as a normalised SVG and once as a JSON
+#      sidecar of its metadata. That pair is the input format lucide's build-icons takes, and
+#      icons/ is the directory lucide keeps its own icon source in, so packages/adwaita_react
+#      is built out of this the way lucide-react is built out of lucide/icons.
+#
+#      The vendored files are not that format. They are what three decades of icon authoring
+#      left behind: Inkscape's sodipodi and RDF furniture, `<g>` wrappers carrying the fill
+#      their children inherit, grappa's multi-state annotations, presentation stuffed into a
+#      `style` attribute beside the attribute that means the same thing, font-family on a
+#      path, and the theme's own hex in place of a colour the widget could set. So each icon
+#      is rewritten:
+#
+#      the tree is flattened
+#              A `<g>`'s presentation attributes are resolved onto the shapes inside it and
+#              the group is dropped, because an icon node is a flat list of shapes. 179 of
+#              the vendored icons are wrapped in a group that only exists to hold a fill.
+#
+#      the furniture is dropped
+#              <metadata>, <title>, <defs>, <style>, and every sodipodi:, inkscape:, gpa:
+#              and RDF attribute. The one <style> block in the set defines
+#              `.not-initial-state { display: none }` for grappa's state machine, and no
+#              path in the set carries that class, so dropping it changes nothing drawn.
+#
+#      the colour becomes the widget's
+#              A symbolic icon is one colour -- the foreground of whatever draws it -- but
+#              the vendored files hardcode the theme's: #2e3436, #2e3434, #474747, #222222.
+#              Those become `currentColor`, which is what makes an icon in a suggested
+#              button white without the button knowing anything about icons.
+#
+#              The status icons are the exception. A battery at 0% is red because it is
+#              urgent, not because the theme is, and the set says so itself: those paths
+#              carry `class="error"`, `"warning"` or `"success"` beside the hex. Their
+#              colour is kept, and the sidecar records `monochrome: false` so a consumer can
+#              tell a status icon from an ordinary one.
+#
+#      the strokes are kept as strokes
+#              libadwaita's own icons are drawn by grappa and are stroked, not filled:
+#              `stroke="url(#gpa:foreground) rgb(0,0,0)"` with `fill="none"`. Those keep
+#              their stroke geometry and take `currentColor` too, which is why the package's
+#              root attributes set `color` rather than lucide's `stroke` -- `currentColor`
+#              resolves against `color` for a fill and a stroke alike, so one prop drives
+#              both kinds of icon.
+#
+#      the name loses its suffix
+#              Every icon in the set ends `-symbolic`, so the suffix distinguishes nothing.
+#              `ac-adapter-symbolic` is written as `ac-adapter`, and the GTK icon name is
+#              kept as an alias, so `icon-name="ac-adapter-symbolic"` out of a .ui file
+#              still resolves. `-symbolic-rtl` becomes `-rtl`, which stays a distinct icon.
+#
+#      Two of the 609 are not symbolic icons and are skipped rather than mangled:
+#      preferences-desktop-appearance-symbolic is a base64 PNG behind a feColorMatrix mask,
+#      and devel-symbolic is a 64x64 gradient wedge. Both are reported on stderr.
+#
+# FILES
+#      icons/<name>.svg
+#      icons/<name>.json
+#      icon.schema.json
+#
+# EXIT STATUS
+#      The bin/16-extract-icons utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/01-fetch-adwaita, tools/build-icons, packages/adwaita_react
+#
+# async-matrix                          October 13, 2026                   16-EXTRACT-ICONS(1)
+
+require "rexml/document"
+require "json"
+require "fileutils"
+
+module ExtractIcons
+  ROOT = File.expand_path("..", __dir__)
+  SOURCE = File.join(ROOT, "bin/01-fetch-adwaita.out/icons")
+  OUTPUT = File.join(ROOT, "icons")
+
+  # The shapes an icon node can be. Anything else in the tree is furniture: a <defs>, a
+  # <metadata>, a grappa <style>, the <image> and <mask> of the one icon that is a bitmap.
+  SHAPES = %w[path rect circle ellipse line polyline polygon].freeze
+
+  # Groups are flattened rather than kept, so a group's presentation has to be resolved onto
+  # the shapes inside it. These are the attributes that inherit; geometry does not.
+  INHERITED = %w[
+    fill fill-opacity fill-rule stroke stroke-width stroke-linecap stroke-linejoin
+    stroke-dasharray stroke-opacity opacity paint-order
+  ].freeze
+
+  # What a shape is allowed to carry out of the vendored file. Everything else -- id, class,
+  # overflow, font-family, the `-inkscape-font-specification` in a style, every gpa: -- is
+  # dropped, because none of it draws anything.
+  KEPT = (INHERITED + %w[
+    d x y width height rx ry cx cy r points x1 y1 x2 y2 transform
+  ]).freeze
+
+  # `color` is dropped rather than inherited, and it is worth saying why, because it is the
+  # one attribute whose junk value does damage. Inkscape writes `color="#bebebe"` and
+  # `style="color:#000"` onto paths that never reference it -- but `currentColor` resolves
+  # against `color`, so carrying it through would quietly repaint every icon that has it the
+  # colour Inkscape happened to leave behind instead of the widget's.
+  DROPPED = %w[color].freeze
+
+  # The theme's foreground, hardcoded. A symbolic icon has no business naming a colour, so
+  # each of these becomes currentColor. `foreground` and the url() are grappa's spelling of
+  # the same thing.
+  FOREGROUND = [
+    "#2e3436", "#2e3434", "#2d3336", "#474747", "#222222", "#000000", "#bebebe",
+    "rgb(0,0,0)", "foreground",
+  ].freeze
+
+  # The colours that mean something. A battery at 0% is red because it is urgent, not because
+  # the theme is, so these are kept rather than handed to the widget, and the icon is marked
+  # as not monochrome.
+  #
+  # This is decided by the colour and not by the `class="error"` the set also carries, because
+  # the class is not reliable: battery-level-100-plugged-in has `class="success"` on a path
+  # painted the ordinary foreground grey, and trusting the class there would leave a
+  # hardcoded #2e3434 in an icon that should take the widget's colour.
+  STATUS = %w[#33d17a #ff7800 #e01b24 #ed333b].freeze
+
+  # The icons that are not icons. Converting these would mean inventing them.
+  UNCONVERTIBLE = {
+    "preferences-desktop-appearance-symbolic" =>
+      "a base64 PNG behind an feColorMatrix mask, not vector geometry",
+    "devel-symbolic" => "a 64x64 gradient wedge, not a 16x16 symbolic icon",
+  }.freeze
+
+  # The root attributes every written icon carries, and the defaults the package repeats in
+  # its own defaultAttributes. Adwaita is 16px and filled where lucide is 24px and stroked.
+  ROOT_ATTRIBUTES = {
+    "xmlns" => "http://www.w3.org/2000/svg",
+    "width" => "16",
+    "height" => "16",
+    "viewBox" => "0 0 16 16",
+    "fill" => "currentColor",
+  }.freeze
+
+  def self.call
+    FileUtils.mkdir_p(OUTPUT)
+    Dir.glob(File.join(OUTPUT, "*.{svg,json}")).each{|stale| File.delete(stale) }
+
+    written = {}
+    skipped = []
+
+    Dir.glob(File.join(SOURCE, "*.svg")).sort.each do |path|
+      source = File.basename(path, ".svg")
+
+      if UNCONVERTIBLE.key?(source)
+        skipped << [source, UNCONVERTIBLE.fetch(source)]
+        next
+      end
+
+      icon = self.convert(path, source)
+
+      if icon.nil?
+        skipped << [source, "no geometry survived normalisation"]
+        next
+      end
+
+      name = self.icon_name(source)
+
+      if written.key?(name)
+        raise "#{source} and #{written.fetch(name)} both normalise to #{name}"
+      end
+
+      written[name] = source
+
+      File.write(File.join(OUTPUT, "#{name}.svg"), self.render(icon))
+      File.write(File.join(OUTPUT, "#{name}.json"), self.sidecar(icon, source))
+    end
+
+    self.write_schema
+
+    $stderr.puts("Skipped #{skipped.length} icons:") unless skipped.empty?
+    skipped.each{|source, reason| $stderr.puts("  #{source}: #{reason}") }
+    puts("Successfully extracted #{written.length} icons into icons/.")
+  end
+
+  # An icon, as the shapes it draws plus what the file said about itself. Returns nil when
+  # nothing drawable is left, which is how a file that is all furniture is caught.
+  def self.convert(path, source)
+    document = REXML::Document.new(File.read(path))
+    root = document.root
+
+    shapes = self.flatten(root, {})
+    return nil if shapes.empty?
+
+    {
+      shapes: shapes,
+      monochrome: shapes.none?{|shape| shape[:status] },
+      view_box: self.view_box(root),
+      tags: self.tags(root),
+      contributors: self.contributors(root),
+      source: source,
+    }
+  end
+
+  # Walk the tree, carrying each group's inherited presentation down to the shapes under it,
+  # and come back with a flat list. A group is only ever a fill in this set, but nesting is
+  # cheap to handle and the alternative is silently dropping whatever it holds.
+  def self.flatten(element, inherited, transforms = [])
+    element.elements.flat_map do |child|
+      name = child.expanded_name
+
+      # The attributes this element contributes, with `style` folded in. CSS says a style
+      # declaration beats the presentation attribute spelling the same property, and the
+      # vendored files rely on it: a path with `fill="#2e3434"` and
+      # `style="fill:#33d17a;fill-opacity:1"` is green.
+      own = inherited.merge(self.presentation(child))
+
+      # A group's transform has to come with it. Dropping it is not a cosmetic loss: Inkscape
+      # leaves the drawing where it sat on its canvas and puts the translation back on the
+      # group, so battery-level-100-plugged-in draws at x=687 inside two groups translated by
+      # (-620,-180) and (-62), and flattening the groups without their transforms would move
+      # it 682 units off a 16-unit viewBox -- a blank icon, not a wrong one.
+      #
+      # They compose by concatenation rather than by multiplying matrices out, because that is
+      # what a transform list already means: `transform="a b"` applies a then b, which is
+      # exactly what nesting b inside a does.
+      nested = transforms + [child.attributes["transform"]].compact
+
+      if name == "g"
+        self.flatten(child, own, nested)
+      elsif SHAPES.include?(name)
+        [self.shape(name, child, own, transforms)]
+      else
+        # <defs>, <metadata>, <style>, <mask>, <clipPath>, <filter>, <image>, sodipodi:*.
+        []
+      end
+    end
+  end
+
+  # One shape, as the tag and the attributes it keeps, with its colour resolved and whatever
+  # transforms it inherited folded into its own.
+  def self.shape(name, element, inherited, transforms)
+    attributes = inherited.merge(self.geometry(element))
+    composed = (transforms + [attributes["transform"]].compact).join(" ")
+    attributes = attributes.merge("transform" => composed).reject{|_, value| value == "" }
+
+    recoloured = self.recolour(attributes.slice(*KEPT))
+
+    {
+      tag: name,
+      attributes: recoloured,
+      status: recoloured.values_at("fill", "stroke").compact.any?{|paint| STATUS.include?(paint) },
+    }
+  end
+
+  # The presentation half of an element's attributes, which is what inherits.
+  def self.presentation(element)
+    declared = element.attributes.each_attribute.to_h{|attribute| [attribute.expanded_name, attribute.value] }
+    declared.slice(*INHERITED).merge(self.style(element.attributes["style"]))
+  end
+
+  # The geometry half, which does not inherit and so is read off the shape itself.
+  def self.geometry(element)
+    declared = element.attributes.each_attribute.to_h{|attribute| [attribute.expanded_name, attribute.value] }
+    declared.slice(*(KEPT - INHERITED))
+  end
+
+  # A `style` attribute as the properties it sets, keeping only the ones that are also
+  # presentation attributes. The rest of what Inkscape put there -- line-height, text-indent,
+  # `-inkscape-font-specification` -- describes text, and there is no text in an icon.
+  def self.style(declaration)
+    return {} if declaration.nil?
+
+    declaration.split(";").filter_map do |property|
+      key, value = property.split(":", 2)
+      next if value.nil?
+
+      key = key.strip
+      next unless INHERITED.include?(key)
+
+      [key, value.strip]
+    end.to_h
+  end
+
+  # The colour, resolved. A status icon keeps what it was given; everything else hands its
+  # colour back to whatever draws it.
+  def self.recolour(attributes)
+    attributes.to_h do |key, value|
+      if !%w[fill stroke].include?(key) || value == "none"
+        [key, value]
+      else
+        # grappa writes a paint server and a fallback together:
+        # `url(#gpa:foreground) rgb(0,0,0)`. Either half of it means the foreground.
+        [key, self.foreground?(value) ? "currentColor" : self.expand(value)]
+      end
+    end
+  end
+
+  def self.foreground?(value)
+    FOREGROUND.include?(self.expand(value)) || value.include?("gpa:foreground")
+  end
+
+  # `#222` and `#222222` are the same colour, and the set writes both, so a paint is compared
+  # and written in one spelling.
+  def self.expand(value)
+    normalised = value.strip.downcase
+    short = normalised.match(/\A#(\h)(\h)(\h)\z/)
+    short ? "##{short[1] * 2}#{short[2] * 2}#{short[3] * 2}" : normalised
+  end
+
+  # The viewBox to write. 98 of the vendored files have none at all (grappa gives width and
+  # height only), and ten have one that missed 16 by a rounding error -- `0 0 15.984375 16`.
+  # Every icon in the set is a 16px grid, so that is what is written.
+  def self.view_box(root)
+    declared = root.attributes["viewBox"]
+    return "0 0 16 16" if declared.nil?
+
+    numbers = declared.split(/[\s,]+/).map(&:to_f)
+    return "0 0 16 16" unless numbers.length == 4
+
+    rounded = numbers.map{|number| number.round }
+    rounded == [0, 0, 16, 16] ? "0 0 16 16" : declared
+  end
+
+  # What the icon says it is for. Adwaita's RDF carries a `dc:subject` bag of keywords, which
+  # is the same thing lucide's `tags` is, so it is worth keeping rather than regenerating.
+  def self.tags(root)
+    REXML::XPath.match(root, ".//rdf:li", "rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+      .flat_map{|node| node.text.to_s.split }
+      .map(&:strip)
+      .reject(&:empty?)
+      .uniq
+      .sort
+  end
+
+  # Who drew it. The same field lucide's `contributors` is, and the same reason to keep it.
+  def self.contributors(root)
+    REXML::XPath.match(root, ".//cc:Agent/dc:title",
+      "cc" => "http://creativecommons.org/ns#",
+      "dc" => "http://purl.org/dc/elements/1.1/")
+      .map{|node| node.text.to_s.strip }
+      .reject(&:empty?)
+      .uniq
+  end
+
+  # The name the icon is published under. Every icon is `-symbolic`, so the suffix is noise;
+  # the direction suffix is not, because `-rtl` is a different drawing.
+  def self.icon_name(source)
+    source.sub(/-symbolic(?=(-rtl|-ltr)?\z)/, "")
+  end
+
+  # The icon, as the SVG lucide's build-icons reads: root attributes, then one shape a line.
+  # Written in lucide's own formatting, because that is the format being copied.
+  def self.render(icon)
+    attributes = ROOT_ATTRIBUTES.merge("viewBox" => icon.fetch(:view_box))
+    header = attributes.map{|key, value| "  #{key}=\"#{value}\"" }.join("\n")
+
+    shapes = icon.fetch(:shapes).map do |shape|
+      pairs = shape.fetch(:attributes).map{|key, value| " #{key}=\"#{value}\"" }.join
+      "  <#{shape.fetch(:tag)}#{pairs} />"
+    end
+
+    "<svg\n#{header}\n>\n#{shapes.join("\n")}\n</svg>\n"
+  end
+
+  # The sidecar, which is lucide's icon JSON plus the two things an Adwaita icon knows that a
+  # lucide icon does not: the name GTK calls it, and whether it is really one colour.
+  def self.sidecar(icon, source)
+    JSON.pretty_generate({
+      "$schema" => "../icon.schema.json",
+      "contributors" => icon.fetch(:contributors),
+      "tags" => icon.fetch(:tags),
+      "categories" => [],
+      "gtkIconName" => source,
+      "monochrome" => icon.fetch(:monochrome),
+      "aliases" => [{"name" => source}],
+    }) + "\n"
+  end
+
+  # The schema the sidecars point at, so the generated tree validates on its own terms.
+  def self.write_schema
+    schema = {
+      "$id" => "https://github.com/async-matrix/adwaita-cn/icon.schema.json",
+      "$schema" => "https://json-schema.org/draft/2020-12/schema",
+      "title" => "Adwaita icon schema",
+      "type" => "object",
+      "additionalProperties" => false,
+      "required" => ["$schema", "contributors", "tags", "categories", "gtkIconName", "monochrome"],
+      "properties" => {
+        "$schema" => {"type" => "string"},
+        "contributors" => {"type" => "array", "items" => {"type" => "string"}},
+        "tags" => {"type" => "array", "items" => {"type" => "string"}},
+        "categories" => {"type" => "array", "items" => {"type" => "string"}},
+        "gtkIconName" => {
+          "type" => "string",
+          "description" => "The name GTK draws this icon by, which is what an `icon-name` property holds.",
+        },
+        "monochrome" => {
+          "type" => "boolean",
+          "description" => "False for the status icons, whose colour is part of what they mean.",
+        },
+        "aliases" => {
+          "type" => "array",
+          "items" => {
+            "type" => "object",
+            "additionalProperties" => false,
+            "required" => ["name"],
+            "properties" => {
+              "name" => {"type" => "string"},
+              "deprecated" => {"const" => true},
+              "deprecationReason" => {"type" => "string"},
+            },
+          },
+        },
+      },
+    }
+
+    File.write(File.join(ROOT, "icon.schema.json"), JSON.pretty_generate(schema) + "\n")
+  end
+end
+
+ExtractIcons.call

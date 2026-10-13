@@ -1,0 +1,21 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "document",
+    "document-edit",
+    "edit",
+    "pencil",
+    "write"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-entry-edit-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-entry-edit-symbolic"
+    }
+  ]
+}

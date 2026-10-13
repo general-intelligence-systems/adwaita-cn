@@ -10,12 +10,13 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const switchRowVariants = cva(
   [
-    "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -30,7 +31,7 @@ const switchRowVariants = cva(
           "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
         ],
         /** .entry */
-        entry: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
@@ -48,7 +49,7 @@ const switchRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "",
         /** .spin */
-        spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -132,7 +133,7 @@ function SwitchRow({ className, render, variant = "default", actionTarget, activ
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", switchRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/switch-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", switchRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -143,7 +144,7 @@ function SwitchRow({ className, render, variant = "default", actionTarget, activ
                   </SwitchRowPrefixes>
                 ) : null}
                 {iconName ? (
-                  <SwitchRowImage data-icon className={iconName} />
+                  <SwitchRowImage name={iconName} />
                 ) : null}
                 <SwitchRowTitleBox>
                   {title ? (
@@ -186,15 +187,15 @@ function SwitchRowPrefixes({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function SwitchRowImage({ className, ...props }: React.ComponentProps<"span">) {
+function SwitchRowImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="switch-row-image"
         data-node="image"
         data-valign="center"
       className={cn("icon", [
         "mx-1.5",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -208,7 +209,7 @@ function SwitchRowTitle({ className, ...props }: React.ComponentProps<"span">) {
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -222,7 +223,7 @@ function SwitchRowSubtitle({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn("subtitle", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

@@ -1,0 +1,18 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "Jakub Steiner"
+  ],
+  "tags": [
+    "adw",
+    "widget-dialog"
+  ],
+  "categories": [],
+  "gtkIconName": "adw-tab-overflow-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "adw-tab-overflow-symbolic"
+    }
+  ]
+}

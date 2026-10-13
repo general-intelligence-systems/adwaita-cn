@@ -81,7 +81,7 @@ function Paned({ className, render, variant = "default", endChild, startChild, o
     "data-shrink-end-child": shrinkEndChild,
     "data-shrink-start-child": shrinkStartChild,
     "data-wide-handle": wideHandle,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", panedVariants({ variant }), widgetClassName, className),
+    className: cn("group/paned", "grid [&>*]:col-start-1 [&>*]:row-start-1", panedVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "battery-level-60-plugged-in-symbolic",
+  "monochrome": false,
+  "aliases": [
+    {
+      "name": "battery-level-60-plugged-in-symbolic"
+    }
+  ]
+}

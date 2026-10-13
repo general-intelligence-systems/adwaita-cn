@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "microphone-sensitivity-low-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "microphone-sensitivity-low-symbolic"
+    }
+  ]
+}

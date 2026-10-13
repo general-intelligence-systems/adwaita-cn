@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "orientation-landscape-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "orientation-landscape-symbolic"
+    }
+  ]
+}

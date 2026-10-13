@@ -10,6 +10,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { WindowGravity } from "@/lib/enums"
@@ -21,7 +22,7 @@ const shortcutsWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .dim-label */
         dimLabel: "opacity-[var(--dim-opacity)]",
         /** .flat */
@@ -160,7 +161,7 @@ function ShortcutsWindow({ className, render, variant = "default", size = "defau
     "data-startup-id": startupId,
     "data-title": title,
     "data-view-name": viewName,
-    className: cn(shortcutsWindowVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/shortcuts-window", shortcutsWindowVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>
@@ -172,7 +173,7 @@ function ShortcutsWindow({ className, render, variant = "default", size = "defau
                   <ShortcutsWindowWindowhandle />
                 </ShortcutsWindowHeaderbar>
               </ShortcutsWindowSheet>
-                  {iconName ? <span data-slot="shortcuts-window-icon" data-icon className={iconName} aria-hidden /> : null}
+                  <Icon name={iconName} data-slot="shortcuts-window-icon" />
                   {application}
                   {child}
                   {defaultWidget}

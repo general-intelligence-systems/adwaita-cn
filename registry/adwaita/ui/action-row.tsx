@@ -10,12 +10,13 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const actionRowVariants = cva(
   [
-    "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -30,7 +31,7 @@ const actionRowVariants = cva(
           "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
         ],
         /** .entry */
-        entry: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
@@ -48,7 +49,7 @@ const actionRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "",
         /** .spin */
-        spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -127,7 +128,7 @@ function ActionRow({ className, render, variant = "default", actionTarget, activ
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", actionRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/action-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", actionRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -138,7 +139,7 @@ function ActionRow({ className, render, variant = "default", actionTarget, activ
                   </ActionRowPrefixes>
                 ) : null}
                 {iconName ? (
-                  <ActionRowImage data-icon className={iconName} />
+                  <ActionRowImage name={iconName} />
                 ) : null}
                 <ActionRowTitleBox>
                   {title ? (
@@ -181,15 +182,15 @@ function ActionRowPrefixes({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function ActionRowImage({ className, ...props }: React.ComponentProps<"span">) {
+function ActionRowImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <span
+    <Icon
       data-slot="action-row-image"
         data-node="image"
         data-valign="center"
       className={cn("icon", [
         "mx-1.5",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -203,7 +204,7 @@ function ActionRowTitle({ className, ...props }: React.ComponentProps<"span">) {
         data-node="label"
       className={cn("title", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />
@@ -217,7 +218,7 @@ function ActionRowSubtitle({ className, ...props }: React.ComponentProps<"span">
         data-node="label"
       className={cn("subtitle", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
     />

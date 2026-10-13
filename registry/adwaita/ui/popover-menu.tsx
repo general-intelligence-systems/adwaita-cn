@@ -94,7 +94,7 @@ function PopoverMenu({ className, render, variant = "default", size = "default",
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
     "data-visible-submenu": visibleSubmenu,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", popoverMenuVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/popover-menu", "grid [&>*]:col-start-1 [&>*]:row-start-1", popoverMenuVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>

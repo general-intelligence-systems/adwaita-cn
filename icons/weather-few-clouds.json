@@ -1,0 +1,13 @@
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [],
+  "tags": [],
+  "categories": [],
+  "gtkIconName": "weather-few-clouds-symbolic",
+  "monochrome": true,
+  "aliases": [
+    {
+      "name": "weather-few-clouds-symbolic"
+    }
+  ]
+}

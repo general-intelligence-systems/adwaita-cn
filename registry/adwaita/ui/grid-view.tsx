@@ -96,7 +96,7 @@ function GridView({ className, render, variant = "default", factory, hadjustment
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", gridViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/grid-view", "grid [&>*]:col-start-1 [&>*]:row-start-1", gridViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -125,8 +125,8 @@ function GridViewChild({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="grid-view-child"
         data-node="child"
       className={cn([
-        "p-[3px] rounded-[9px] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "p-[3px] rounded-[9px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-data-[selected]/grid-view:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
       {...props}
     />
