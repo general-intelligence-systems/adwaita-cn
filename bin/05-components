@@ -1,0 +1,169 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 05-COMPONENTS(1)                General Commands Manual               05-COMPONENTS(1)
+#
+# NAME
+#      bin/05-components — a .tsx per widget, rendered from templates
+#
+# SYNOPSIS
+#      bin/05-components [--into DIR]
+#
+# DESCRIPTION
+#      Renders one component per widget from bin/templates/*.erb, out of the two files
+#      the rest of the pipeline already wrote: what a running GTK said every widget in
+#      Gtk and Adw builds, and what libadwaita's stylesheet says about every name it
+#      addresses.
+#
+#      THERE IS NO INTERMEDIATE STAGE. The one that used to sit between these two and
+#      the components took 23 minutes to produce a blob whose every field is derivable
+#      from its own inputs; this derives them in under a second and renders from
+#      templates, so what a component looks like is a file somebody can read rather
+#      than 3,700 lines of string interpolation.
+#
+#      A style class the stylesheet states for a widget's node becomes a cva option:
+#      the ones whose every utility only moves or sizes a box are sizes, and the rest
+#      are variants. The classes a widget puts on itself according to what it was given
+#      -- `text-button` on a button with a label -- are not offered, because they are
+#      not a choice a caller makes.
+#
+# OPTIONS
+#      --into DIR   Write under DIR instead of bin/05-components.out.
+#
+# FILES
+#      bin/01-fetch-adwaita.out/widgets.json         what each widget builds
+#      bin/03-adwaita-tailwind.out/scss-widgets.json what the stylesheet addresses
+#      bin/templates/component.tsx.erb               the component
+#      bin/templates/widget-props.ts.erb             the properties every widget has
+#      bin/05-components.out/ui/                     the output
+#
+# EXIT STATUS
+#      The bin/05-components utility exits 0 on success, and >0 if an error occurs.
+#
+# SEE ALSO
+#      bin/01-fetch-adwaita, bin/03-adwaita-tailwind
+#
+# adwaita-cn                       October 14, 2026                     05-COMPONENTS(1)
+
+require "erb"
+require "fileutils"
+
+require_relative "lib/components"
+require_relative "lib/markup"
+
+module Stage
+  ROOT = File.expand_path("..", __dir__)
+
+  def self.template(name)
+    ERB.new(File.read(File.join(ROOT, "bin/templates", name)), trim_mode: "-")
+  end
+
+  def self.run(argv)
+    into = argv.include?("--into") ? argv[argv.index("--into") + 1] : "bin/05-components.out"
+    out = File.expand_path(into, ROOT)
+
+    model = Components.load(ROOT)
+    component = template("component.tsx.erb")
+    props = template("widget-props.ts.erb")
+    enums = template("enums.ts.erb")
+
+    FileUtils.mkdir_p(File.join(out, "ui"))
+
+    model[:components].each do |c|
+      File.write(File.join(out, c.file), render(component, c))
+    end
+
+    shared = model[:shared]
+    File.write(
+      File.join(out, "widget-props.ts"),
+      props.result_with_hash(
+        props: shared,
+        enums: shared.map(&:type).select { |t| t.match?(/\A[A-Z]/) }.uniq.sort,
+      ),
+    )
+
+    File.write(File.join(out, "enums.ts"), enums.result_with_hash(enums: model[:enums]))
+
+    puts("#{model[:components].size} components, #{model[:components].count(&:cva?)} with variants → #{into}")
+  end
+
+  # The bindings the template reads. Named here rather than computed in the template,
+  # because a template which calculates is one that has to be debugged as code.
+  def self.render(template, c)
+    children, parts, consumed = Markup.for(c)
+    rendered = consumed.map { |name| Components.camel(name) }.to_set
+
+    # A prop drawn into the component's own markup is destructured out rather than
+    # spread: handed to mergeProps it would land on the element as an attribute too,
+    # and the label would be both the text inside the button and a `label=` on it.
+    names = c.props.map(&:name)
+
+    template.result_with_hash(
+      c: c,
+      camel: Components.camel(c.slug),
+      icon: parts.any? { |p| p.element == "Icon" },
+      children: children,
+      parts: parts,
+      variant_defaults: variant_names(c).map { |n| %(#{n}: "default") }.join(", "),
+      style_extra: style_extra(c),
+      destructured: (names + (c.cva? ? variant_names(c) : [])).map { |n| "#{n}, " }.join,
+      omitted: names.map { |n| %( | "#{n}") }.join,
+      data_attributes: attributes(c, rendered),
+      classes: classes(c),
+    )
+  end
+
+  def self.variant_names(c)
+    [c.variants.empty? ? nil : "variant", c.sizes.empty? ? nil : "size"].compact
+  end
+
+  # What the DOM carries of a property it has no element for. A boolean, a string or a
+  # number says what it was given; anything else is a value the browser cannot hold and
+  # is accepted without being written.
+  def self.attributes(c, rendered)
+    c.props
+     .reject { |p| rendered.include?(p.name) }
+     .select { |p| %w[string boolean number].include?(p.type) }
+     .map { |p| %("data-#{p.gtk}": #{p.name}) }
+  end
+
+  # What the root element is addressed by: the node, what arranges its children, the
+  # variant the caller chose, and the classes the widget puts on itself according to what
+  # it was given. A node with no layout utility does not lay out at all, which is a
+  # composite drawn as a pile in the corner.
+  def self.classes(c)
+    chosen = c.cva? ? %(#{Components.camel(c.slug)}Variants({ #{variant_names(c).join(", ")} })) : nil
+    arranged = Markup.arrangement(c.tree).compact.map { |k| %("#{k}") }
+
+    [%("#{c.node}"), *arranged, %("gtk-alignment"), chosen, *automatic(c)].compact.join(", ")
+  end
+
+  # A class the widget puts on itself according to what it was given rather than one a
+  # caller chooses. A button with a label IS a `.text-button` and one with only an icon
+  # is an `.image-button`, and the padding Adwaita gives each of them is different.
+  def self.automatic(c)
+    names = c.props.map(&:gtk).to_set
+    found = []
+
+    if names.include?("label") && names.include?("icon-name")
+      found << %(label !== undefined && iconName === undefined && "text-button")
+      found << %(iconName !== undefined && label === undefined && "image-button")
+      found << %(label !== undefined && iconName !== undefined && "image-text-button")
+    elsif names.include?("label")
+      found << %(label !== undefined && "text-button")
+    end
+
+    found << %(orientation === "vertical" ? "vertical" : "horizontal") if names.include?("orientation")
+    found
+  end
+
+  # `spacing` is a GtkBox's gap and the DOM has a property for it, so it is written as
+  # style rather than handed over as a data attribute nothing reads.
+  def self.style_extra(c)
+    return "" unless c.props.any? { |p| p.gtk == "spacing" }
+
+    ": { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties"
+  end
+end
+
+Stage.run(ARGV)
