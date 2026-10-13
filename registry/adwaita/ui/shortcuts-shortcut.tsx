@@ -90,7 +90,7 @@ function ShortcutsShortcut({ className, render, variant = "default", subtitle, a
                 {children}
               </ShortcutsShortcutBox>
                   {subtitle === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {subtitle}
                 </span>
               )}

@@ -141,7 +141,7 @@ function Text({ className, render, variant = "default", placeholderText, attribu
         <>
                   <TextPlaceholder />
                   {placeholderText === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {placeholderText}
                 </span>
               )}

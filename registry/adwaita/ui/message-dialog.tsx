@@ -260,7 +260,7 @@ function MessageDialogHeadingLabel({ className, ...props }: React.ComponentProps
     <span
       data-slot="message-dialog-heading-label"
         data-node="label"
-      className={cn("title-2", [
+      className={cn("title-2 flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[136%]",
         "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -301,7 +301,7 @@ function MessageDialogHeadingLabelSmall({ className, ...props }: React.Component
     <span
       data-slot="message-dialog-heading-label-small"
         data-node="label"
-      className={cn("title-4", [
+      className={cn("title-4 flex justify-center items-center text-center", [
         "caret-[currentColor] font-bold text-[118%]",
         "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -353,7 +353,7 @@ function MessageDialogBodyLabel({ className, ...props }: React.ComponentProps<"s
       data-slot="message-dialog-body-label"
         data-node="label"
         data-vexpand=""
-      className={cn("body", [
+      className={cn("body flex justify-center items-center text-center", [
         "caret-[currentColor] font-normal leading-[140%] px-6",
         "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

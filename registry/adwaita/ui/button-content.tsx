@@ -42,18 +42,11 @@ function ButtonContent({ className, render, iconName, label, canShrink, useUnder
     className: cn("group/button-content", "grid [&>*]:col-start-1 [&>*]:row-start-1", label && iconName && "image-text-button", widgetClassName, className),
     style,
     children: (
-        <>
-                  <ButtonContentBox>
+        <ButtonContentBox>
                 <ButtonContentImage name={iconName} />
-                <ButtonContentLabel />
+                <ButtonContentLabel>{label}</ButtonContentLabel>
                 {children}
               </ButtonContentBox>
-                  {label === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
-                  {label}
-                </span>
-              )}
-        </>
       ),
     ...widgetAttributes,
   }
@@ -71,7 +64,7 @@ function ButtonContentImage({ className, ...props }: React.ComponentProps<typeof
     <Icon
       data-slot="button-content-image"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -109,7 +102,7 @@ function ButtonContentLabel({ className, ...props }: React.ComponentProps<"span"
     <span
       data-slot="button-content-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center", [
         "caret-[currentColor] px-0.5 font-bold",
         "group-disabled/button-content:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

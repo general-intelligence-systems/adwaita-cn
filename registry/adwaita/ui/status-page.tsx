@@ -102,7 +102,7 @@ function StatusPageImage({ className, ...props }: React.ComponentProps<typeof Ic
       data-slot="status-page-image"
         data-node="image"
         data-halign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
         "group-disabled/status-page:opacity-[var(--disabled-opacity)]",
       ], className)}
@@ -143,7 +143,7 @@ function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"spa
     <span
       data-slot="status-page-title-label"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[181%]",
         "group-disabled/status-page:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -184,7 +184,7 @@ function StatusPageDescriptionLabel({ className, ...props }: React.ComponentProp
     <span
       data-slot="status-page-description-label"
         data-node="label"
-      className={cn("body description", [
+      className={cn("body description flex justify-center items-center text-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/status-page:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

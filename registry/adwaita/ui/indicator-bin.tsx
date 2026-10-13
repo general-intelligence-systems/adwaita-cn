@@ -14,25 +14,34 @@ import type { WidgetProps } from "@/lib/widget-props"
 export interface IndicatorBinProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps>,
     WidgetProps {
+  /** AdwViewStackPage:badge-number. The indicator is drawn when it is not zero. */
+  badgeNumber?: number
+
+  /** AdwViewStackPage:needs-attention. The indicator is drawn as a dot. */
+  needsAttention?: boolean
 }
 
-function IndicatorBin({ className, render, children, ...props }: IndicatorBinProps) {
+function IndicatorBin({ className, render, badgeNumber, needsAttention, children, ...props }: IndicatorBinProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  const badge = badgeNumber !== undefined && badgeNumber !== 0
+  const shown = badge || needsAttention === true
+
   const defaultProps = {
     "data-slot": "indicator-bin",
     "data-node": "indicatorbin",
-    className: cn("group/indicator-bin", widgetClassName, className),
+    className: cn("group/indicator-bin", "grid [&>*]:col-start-1 [&>*]:row-start-1", badge && "badge", needsAttention && "needs-attention", widgetClassName, className),
     style,
     children: (
-        <>
-                  <IndicatorBinIndicator />
-                  {children}
-        </>
-      ),
+      <>
+        {shown ? (
+          <IndicatorBinIndicator>
+            {badge ? <span data-slot="label" data-node="label" className="numeric">{badgeNumber}</span> : null}
+          </IndicatorBinIndicator>
+        ) : null}
+        {children}
+      </>
+    ),
     ...widgetAttributes,
   }
 

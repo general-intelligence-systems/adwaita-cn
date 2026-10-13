@@ -192,7 +192,7 @@ function Button({ className, render, variant = "default", size = "default", chil
                 <Icon name={iconName} data-slot="button-icon" />
               )}
                   {label === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {label}
                 </span>
               )}

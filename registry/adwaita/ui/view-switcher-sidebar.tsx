@@ -75,11 +75,16 @@ function ViewSwitcherSidebar({ className, render, stack: _stack, filter, mode, p
       <div data-slot="view-switcher-sidebar-sidebar" data-node="sidebar" className="flex flex-col grow min-h-0">
         <div data-slot="view-switcher-sidebar-scrolled-window" data-node="scrolledwindow" className="flex flex-col grow min-h-0 overflow-auto">
           <div data-slot="view-switcher-sidebar-viewport" data-node="viewport" className="flex flex-col grow min-h-0">
-            <div data-slot="view-switcher-sidebar-list" data-node="list" className="navigation-sidebar flex flex-col">
+            {/* A LIST BOX AND LIST BOX ROWS, by their own slots: the toolkit builds a
+                GtkListBox here and the comparison walks both sides in order, so a list
+                under a slot of its own went uncounted on this side while the toolkit's
+                was counted -- and every row after it in the application paired with
+                the wrong one. */}
+            <div data-slot="list-box" data-node="list" className="navigation-sidebar flex flex-col">
               {shown.map((page) => (
                 <div
                   key={page.name}
-                  data-slot="view-switcher-sidebar-row"
+                  data-slot="list-box-row"
                   data-node="row"
                   role="tab"
                   aria-selected={page.name === selected}
@@ -88,8 +93,11 @@ function ViewSwitcherSidebar({ className, render, stack: _stack, filter, mode, p
                 >
                   <div data-node="box" className="horizontal flex flex-row items-center grow gap-3 px-3">
                     {page.iconName === undefined ? null : <Icon name={page.iconName} className="icon" />}
-                    <div data-node="box" className="vertical flex flex-col grow">
+                    <div data-node="box" className="vertical flex flex-col grow justify-center">
                       <span data-slot="label" data-node="label" className="title">{page.title}</span>
+                      {/* The toolkit's row has a subtitle label whether or not there is
+                          a subtitle, and measures it at nothing when there is not. */}
+                      <span data-slot="label" data-node="label" className="subtitle" />
                     </div>
                   </div>
                 </div>
@@ -143,7 +151,7 @@ function ViewSwitcherSidebarDescription({ className, ...props }: React.Component
     <span
       data-slot="view-switcher-sidebar-description"
         data-node="label"
-      className={cn("body dimmed description", [
+      className={cn("body dimmed description flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
         "group-disabled/view-switcher-sidebar:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

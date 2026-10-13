@@ -317,7 +317,7 @@ function EntryImage({ className, ...props }: React.ComponentProps<typeof Icon>) 
     <Icon
       data-slot="entry-image"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/entry:opacity-100",
         "group-active/entry:opacity-80",

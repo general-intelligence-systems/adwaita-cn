@@ -43,7 +43,7 @@ const aboutWindowVariants = cva(
 )
 
 export interface AboutWindowProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adaptivePreview" | "application" | "applicationIcon" | "applicationName" | "artists" | "child" | "comments" | "content" | "copyright" | "debugInfo" | "debugInfoFilename" | "decorated" | "defaultHeight" | "defaultWidget" | "defaultWidth" | "deletable" | "designers" | "destroyWithParent" | "developerName" | "developers" | "display" | "documenters" | "focusVisible" | "focusWidget" | "fullscreened" | "gravity" | "handleMenubarAccel" | "hideOnClose" | "iconName" | "issueUrl" | "license" | "licenseType" | "maximized" | "mnemonicsVisible" | "modal" | "releaseNotes" | "releaseNotesVersion" | "resizable" | "startupId" | "supportUrl" | "title" | "titlebar" | "transientFor" | "translatorCredits" | "version" | "website" | "titleWidget" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adaptivePreview" | "application" | "applicationIcon" | "applicationName" | "artists" | "child" | "comments" | "content" | "copyright" | "debugInfo" | "debugInfoFilename" | "decorated" | "defaultHeight" | "defaultWidget" | "defaultWidth" | "deletable" | "designers" | "destroyWithParent" | "developerName" | "developers" | "display" | "documenters" | "focusVisible" | "focusWidget" | "fullscreened" | "gravity" | "handleMenubarAccel" | "hideOnClose" | "iconName" | "issueUrl" | "license" | "licenseType" | "maximized" | "mnemonicsVisible" | "modal" | "releaseNotes" | "releaseNotesVersion" | "resizable" | "startupId" | "supportUrl" | "title" | "titlebar" | "transientFor" | "translatorCredits" | "version" | "website" | "titleWidget" | "packEnd" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof aboutWindowVariants> {
   /** gboolean, from Adw.Window */
@@ -151,6 +151,9 @@ export interface AboutWindowProps
   /** gboolean, from Gtk.Window */
   modal?: boolean
 
+  /** Gtk.Widget, from Adw.AboutWindow */
+  packEnd?: ReactNode
+
   /** utf8, from Adw.AboutWindow */
   releaseNotes?: string
 
@@ -188,7 +191,7 @@ export interface AboutWindowProps
   website?: string
 }
 
-function AboutWindow({ className, render, variant = "default", applicationName, child, comments, content, developerName, iconName, titleWidget, titlebar, application: _application, artists: _artists, defaultWidget: _defaultWidget, designers: _designers, developers: _developers, display: _display, documenters: _documenters, focusWidget: _focusWidget, transientFor: _transientFor, adaptivePreview, applicationIcon, copyright, debugInfo, debugInfoFilename, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, issueUrl, license, licenseType, maximized, mnemonicsVisible, modal, releaseNotes, releaseNotesVersion, resizable, startupId, supportUrl, title, translatorCredits, version, website, children, ...props }: AboutWindowProps) {
+function AboutWindow({ className, render, variant = "default", applicationName, child, comments, content, developerName, iconName, packEnd, titleWidget, titlebar, application: _application, artists: _artists, defaultWidget: _defaultWidget, designers: _designers, developers: _developers, display: _display, documenters: _documenters, focusWidget: _focusWidget, transientFor: _transientFor, adaptivePreview, applicationIcon, copyright, debugInfo, debugInfoFilename, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, issueUrl, license, licenseType, maximized, mnemonicsVisible, modal, releaseNotes, releaseNotesVersion, resizable, startupId, supportUrl, title, translatorCredits, version, website, children, ...props }: AboutWindowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -298,6 +301,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage7 name={iconName} />
                                   </AboutWindowCloseButton>
                                 </AboutWindowWindowControls2>
+                                {packEnd}
                               </AboutWindowBox5>
                             </AboutWindowEnd>
                           </AboutWindowBox3>
@@ -328,6 +332,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage8 name={iconName} />
                                   </AboutWindowCloseButton2>
                                 </AboutWindowWindowControls4>
+                                {packEnd}
                               </AboutWindowBox8>
                             </AboutWindowEnd2>
                           </AboutWindowBox6>
@@ -363,6 +368,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage9 name={iconName} />
                                   </AboutWindowCloseButton3>
                                 </AboutWindowWindowControls6>
+                                {packEnd}
                               </AboutWindowBox12>
                             </AboutWindowEnd3>
                           </AboutWindowBox10>
@@ -400,6 +406,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage11 name={iconName} />
                                   </AboutWindowCloseButton4>
                                 </AboutWindowWindowControls8>
+                                {packEnd}
                               </AboutWindowBox16>
                             </AboutWindowEnd4>
                           </AboutWindowBox14>
@@ -430,6 +437,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage12 name={iconName} />
                                   </AboutWindowCloseButton5>
                                 </AboutWindowWindowControls10>
+                                {packEnd}
                               </AboutWindowBox19>
                             </AboutWindowEnd5>
                           </AboutWindowBox17>
@@ -462,6 +470,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage13 name={iconName} />
                                   </AboutWindowCloseButton6>
                                 </AboutWindowWindowControls12>
+                                {packEnd}
                               </AboutWindowBox22>
                             </AboutWindowEnd6>
                           </AboutWindowBox20>
@@ -490,6 +499,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage14 name={iconName} />
                                   </AboutWindowCloseButton7>
                                 </AboutWindowWindowControls14>
+                                {packEnd}
                               </AboutWindowBox25>
                             </AboutWindowEnd7>
                           </AboutWindowBox23>
@@ -518,6 +528,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                                     <AboutWindowImage15 name={iconName} />
                                   </AboutWindowCloseButton8>
                                 </AboutWindowWindowControls16>
+                                {packEnd}
                               </AboutWindowBox28>
                             </AboutWindowEnd8>
                           </AboutWindowBox26>
@@ -548,7 +559,7 @@ function AboutWindowAppIconImage({ className, ...props }: React.ComponentProps<t
     <Icon
       data-slot="about-window-app-icon-image"
         data-node="image"
-      className={cn("icon-dropshadow", className)}
+      className={cn("icon-dropshadow self-center", className)}
       {...props}
     />
   )
@@ -586,7 +597,7 @@ function AboutWindowAppNameLabel({ className, ...props }: React.ComponentProps<"
     <span
       data-slot="about-window-app-name-label"
         data-node="label"
-      className={cn("title-1", [
+      className={cn("title-1 flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[181%]",
         "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -627,7 +638,7 @@ function AboutWindowDeveloperNameLabel({ className, ...props }: React.ComponentP
     <span
       data-slot="about-window-developer-name-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center text-center", [
         "caret-[currentColor]",
         "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -661,7 +672,7 @@ function AboutWindowImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="about-window-image"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -686,7 +697,7 @@ function AboutWindowImage2({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image2"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -764,7 +775,7 @@ function AboutWindowImage3({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image3"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -800,7 +811,7 @@ function AboutWindowImage4({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image4"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -825,7 +836,7 @@ function AboutWindowImage5({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image5"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -850,7 +861,7 @@ function AboutWindowImage6({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image6"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -979,7 +990,7 @@ function AboutWindowImage7({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-window-image7"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -1179,7 +1190,7 @@ function AboutWindowImage8({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-window-image8"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -1324,7 +1335,7 @@ function AboutWindowCommentsLabel({ className, ...props }: React.ComponentProps<
     <span
       data-slot="about-window-comments-label"
         data-node="label"
-      className={cn("body", [
+      className={cn("body flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1445,7 +1456,7 @@ function AboutWindowImage9({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-window-image9"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -1590,7 +1601,7 @@ function AboutWindowLabel({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="about-window-label"
         data-node="label"
-      className={cn("body", [
+      className={cn("body flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1604,7 +1615,7 @@ function AboutWindowImage10({ className, ...props }: React.ComponentProps<typeof
     <Icon
       data-slot="about-window-image10"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -1722,7 +1733,7 @@ function AboutWindowImage11({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image11"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -1922,7 +1933,7 @@ function AboutWindowImage12({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image12"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -2171,7 +2182,7 @@ function AboutWindowImage13({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image13"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -2371,7 +2382,7 @@ function AboutWindowImage14({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image14"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -2571,7 +2582,7 @@ function AboutWindowImage15({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image15"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )

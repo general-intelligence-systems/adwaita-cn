@@ -51,12 +51,12 @@ function FontChooserWidget({ className, render, font, previewText, fontDesc: _fo
     children: (
         <>
                   {font === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {font}
                 </span>
               )}
                   {previewText === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {previewText}
                 </span>
               )}

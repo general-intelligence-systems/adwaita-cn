@@ -144,7 +144,7 @@ function SidebarDescription({ className, ...props }: React.ComponentProps<"span"
     <span
       data-slot="sidebar-description"
         data-node="label"
-      className={cn("body dimmed description", [
+      className={cn("body dimmed description flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
         "group-disabled/sidebar:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

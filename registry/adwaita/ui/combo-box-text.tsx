@@ -198,7 +198,7 @@ function ComboBoxTextImage({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="combo-box-text-image"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/combo-box-text:opacity-100",
         "group-active/combo-box-text:opacity-80",

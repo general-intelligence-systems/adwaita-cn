@@ -161,7 +161,7 @@ function TabOverviewImage({ className, ...props }: React.ComponentProps<typeof I
       data-slot="tab-overview-image"
         data-node="image"
         data-halign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
         "group-disabled/tab-overview:opacity-[var(--disabled-opacity)]",
       ], className)}
@@ -202,7 +202,7 @@ function TabOverviewTitleLabel({ className, ...props }: React.ComponentProps<"sp
     <span
       data-slot="tab-overview-title-label"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[181%]",
         "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -243,7 +243,7 @@ function TabOverviewDescriptionLabel({ className, ...props }: React.ComponentPro
     <span
       data-slot="tab-overview-description-label"
         data-node="label"
-      className={cn("body description", [
+      className={cn("body description flex justify-center items-center text-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -319,7 +319,7 @@ function TabOverviewImage2({ className, ...props }: React.ComponentProps<typeof 
       data-slot="tab-overview-image2"
         data-node="image"
         data-halign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
         "group-disabled/tab-overview:opacity-[var(--disabled-opacity)]",
       ], className)}
@@ -360,7 +360,7 @@ function TabOverviewTitleLabel2({ className, ...props }: React.ComponentProps<"s
     <span
       data-slot="tab-overview-title-label2"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[181%]",
         "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -401,7 +401,7 @@ function TabOverviewDescriptionLabel2({ className, ...props }: React.ComponentPr
     <span
       data-slot="tab-overview-description-label2"
         data-node="label"
-      className={cn("body description", [
+      className={cn("body description flex justify-center items-center text-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -476,7 +476,7 @@ function TabOverviewImage3({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="tab-overview-image3"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -514,7 +514,7 @@ function TabOverviewLabel({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="tab-overview-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center", [
         "caret-[currentColor] px-0.5 font-bold",
         "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -610,7 +610,7 @@ function TabOverviewTitleLabel3({ className, ...props }: React.ComponentProps<"s
     <span
       data-slot="tab-overview-title-label3"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center", [
         "caret-[currentColor] px-3 font-bold",
         "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -651,7 +651,7 @@ function TabOverviewSubtitleLabel({ className, ...props }: React.ComponentProps<
     <span
       data-slot="tab-overview-subtitle-label"
         data-node="label"
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-center items-center", [
         "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
         "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -806,7 +806,7 @@ function TabOverviewImage4({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="tab-overview-image4"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/tab-overview:opacity-100",
         "group-active/tab-overview:opacity-80",

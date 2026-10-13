@@ -181,7 +181,7 @@ function ExpanderRowImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="expander-row-image"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -226,7 +226,7 @@ function ExpanderRowImage2({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="expander-row-image2"
         data-node="image"
-      className={cn("expander-row-arrow", [
+      className={cn("expander-row-arrow self-center", [
         "mx-[3px] opacity-[var(--dim-opacity)] transition-[-gtk-icon-transform] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "group-disabled/expander-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

@@ -196,7 +196,7 @@ function SearchEntryImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="search-entry-image"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/search-entry:opacity-100",
         "group-active/search-entry:opacity-80",

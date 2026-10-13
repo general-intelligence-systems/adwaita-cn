@@ -65,7 +65,7 @@ function SwitchImage({ className, ...props }: React.ComponentProps<typeof Icon>)
     <Icon
       data-slot="switch-image"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )

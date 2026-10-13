@@ -109,7 +109,7 @@ function SplitButton({ className, render, variant = "default", child, iconName, 
                 <Icon name={iconName} data-slot="split-button-icon" />
               )}
                   {label === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {label}
                 </span>
               )}

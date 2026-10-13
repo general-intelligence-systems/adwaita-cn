@@ -45,7 +45,7 @@ const headerBarVariants = cva(
 )
 
 export interface HeaderBarProps
-  extends Omit<useRender.ComponentProps<"header">, keyof WidgetProps | "centeringPolicy" | "decorationLayout" | "showBackButton" | "showEndTitleButtons" | "showStartTitleButtons" | "showTitle" | "titleWidget" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"header">, keyof WidgetProps | "centeringPolicy" | "decorationLayout" | "showBackButton" | "showEndTitleButtons" | "showStartTitleButtons" | "showTitle" | "titleWidget" | "packEnd" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof headerBarVariants> {
   /** CenteringPolicy, from Adw.HeaderBar */
@@ -53,6 +53,9 @@ export interface HeaderBarProps
 
   /** utf8, from Adw.HeaderBar */
   decorationLayout?: string
+
+  /** Gtk.Widget, from Adw.HeaderBar */
+  packEnd?: ReactNode
 
   /** gboolean, from Adw.HeaderBar */
   showBackButton?: boolean
@@ -70,7 +73,7 @@ export interface HeaderBarProps
   titleWidget?: ReactNode
 }
 
-function HeaderBar({ className, render, variant = "default", size = "default", titleWidget, centeringPolicy, decorationLayout, showBackButton, showEndTitleButtons, showStartTitleButtons, showTitle, children, ...props }: HeaderBarProps) {
+function HeaderBar({ className, render, variant = "default", size = "default", packEnd, titleWidget, centeringPolicy, decorationLayout, showBackButton, showEndTitleButtons, showStartTitleButtons, showTitle, children, ...props }: HeaderBarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -108,6 +111,7 @@ function HeaderBar({ className, render, variant = "default", size = "default", t
                           <HeaderBarImage />
                         </HeaderBarCloseButton>
                       </HeaderBarWindowControls2>
+                      {packEnd}
                     </HeaderBarBox3>
                   </HeaderBarEnd>
                 </HeaderBarBox>
@@ -174,7 +178,7 @@ function HeaderBarImage({ className, name = "window-close-symbolic", ...props }:
         name={name}
       data-slot="header-bar-image"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )

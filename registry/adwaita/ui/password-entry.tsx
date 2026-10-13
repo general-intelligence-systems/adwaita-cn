@@ -187,7 +187,7 @@ function PasswordEntryImage({ className, ...props }: React.ComponentProps<typeof
     <Icon
       data-slot="password-entry-image"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/password-entry:opacity-100",
         "group-active/password-entry:opacity-80",

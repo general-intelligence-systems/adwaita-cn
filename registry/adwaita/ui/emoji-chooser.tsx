@@ -203,7 +203,7 @@ function EmojiChooserImage({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="emoji-chooser-image"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/emoji-chooser:opacity-100",
         "group-active/emoji-chooser:opacity-80",

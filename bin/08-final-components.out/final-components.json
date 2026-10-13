@@ -3436,6 +3436,11 @@
           "type": "node",
           "gir": "Gtk.Widget",
           "from": "Adw.AboutDialog"
+        },
+        "packEnd": {
+          "type": "node",
+          "gir": "Gtk.Widget",
+          "from": "Adw.AboutDialog"
         }
       },
       "accepts": {
@@ -4247,6 +4252,11 @@
           "from": "Gtk.Widget"
         },
         "titleWidget": {
+          "type": "node",
+          "from": "Adw.AboutDialog",
+          "writable": true
+        },
+        "packEnd": {
           "type": "node",
           "from": "Adw.AboutDialog",
           "writable": true
@@ -5588,6 +5598,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -5907,6 +5918,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -6330,6 +6342,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -6751,6 +6764,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -7072,6 +7086,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -7483,6 +7498,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -7782,6 +7798,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -8081,6 +8098,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -8819,6 +8837,11 @@
           "type": "string"
         },
         "titleWidget": {
+          "type": "node",
+          "gir": "Gtk.Widget",
+          "from": "Adw.AboutWindow"
+        },
+        "packEnd": {
           "type": "node",
           "gir": "Gtk.Widget",
           "from": "Adw.AboutWindow"
@@ -9774,6 +9797,11 @@
           "from": "Gtk.Widget"
         },
         "titleWidget": {
+          "type": "node",
+          "from": "Adw.AboutWindow",
+          "writable": true
+        },
+        "packEnd": {
           "type": "node",
           "from": "Adw.AboutWindow",
           "writable": true
@@ -10754,6 +10782,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -11073,6 +11102,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -11496,6 +11526,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -11917,6 +11948,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -12238,6 +12270,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -12649,6 +12682,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -12948,6 +12982,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -13247,6 +13282,7 @@
                                               "orientation": "horizontal",
                                               "spacing": "6"
                                             },
+                                            "takes": "packEnd",
                                             "children": [
                                               {
                                                 "class": "WindowControls",
@@ -81696,6 +81732,18 @@
           "from": "Adw.HeaderBar",
           "type": "node",
           "gobject": "Gtk.Widget"
+        },
+        "packEnd": {
+          "prop": "packEnd",
+          "gir": "Gtk.Widget",
+          "array": false,
+          "writable": true,
+          "constructOnly": false,
+          "default": null,
+          "deprecated": false,
+          "from": "Adw.HeaderBar",
+          "type": "node",
+          "gobject": "Gtk.Widget"
         }
       },
       "accepts": {
@@ -82468,6 +82516,7 @@
                           "orientation": "horizontal",
                           "spacing": "6"
                         },
+                        "takes": "packEnd",
                         "children": [
                           {
                             "class": "WindowControls",

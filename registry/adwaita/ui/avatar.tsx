@@ -119,7 +119,7 @@ function AvatarLabel({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="avatar-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center", [
         "caret-[currentColor]",
         "group-disabled/avatar:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -133,7 +133,7 @@ function AvatarImage({ className, ...props }: React.ComponentProps<typeof Icon>)
     <Icon
       data-slot="avatar-image"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -144,7 +144,7 @@ function AvatarImage2({ className, ...props }: React.ComponentProps<typeof Icon>
     <Icon
       data-slot="avatar-image2"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )

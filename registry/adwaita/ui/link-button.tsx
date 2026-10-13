@@ -188,7 +188,7 @@ function LinkButton({ className, render, variant = "default", size = "default", 
                 <Icon name={iconName} data-slot="link-button-icon" />
               )}
                   {label === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {label}
                 </span>
               )}

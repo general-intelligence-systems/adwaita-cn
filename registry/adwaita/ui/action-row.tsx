@@ -181,7 +181,7 @@ function ActionRowImage({ className, ...props }: React.ComponentProps<typeof Ico
       data-slot="action-row-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mx-1.5",
         "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -222,7 +222,7 @@ function ActionRowTitle({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="action-row-title"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-start items-center", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
         "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -263,7 +263,7 @@ function ActionRowSubtitle({ className, ...props }: React.ComponentProps<"span">
     <span
       data-slot="action-row-subtitle"
         data-node="label"
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
         "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

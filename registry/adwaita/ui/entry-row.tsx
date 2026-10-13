@@ -238,7 +238,7 @@ function EntryRowEmptyTitle({ className, ...props }: React.ComponentProps<"span"
       data-slot="entry-row-empty-title"
         data-node="label"
         data-halign="start"
-      className={cn("title dimmed", [
+      className={cn("title dimmed flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)]",
         "group-disabled/entry-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -281,7 +281,7 @@ function EntryRowTitle({ className, ...props }: React.ComponentProps<"span">) {
         data-node="label"
         data-halign="start"
         style={{ opacity: 0 }}
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller]",
         "group-disabled/entry-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -377,7 +377,7 @@ function EntryRowIndicator({ className, ...props }: React.ComponentProps<typeof 
       data-slot="entry-row-indicator"
         data-node="image"
         data-valign="center"
-      className={cn("indicator", "p-[5px] mx-1.5 min-w-6 min-h-6 opacity-30", className)}
+      className={cn("indicator self-center", "p-[5px] mx-1.5 min-w-6 min-h-6 opacity-30", className)}
       {...props}
     />
   )
@@ -409,7 +409,7 @@ function EntryRowEditIcon({ className, ...props }: React.ComponentProps<typeof I
       data-slot="entry-row-edit-icon"
         data-node="image"
         data-valign="center"
-      className={cn("edit-icon", [
+      className={cn("edit-icon self-center", [
         "p-[5px] mx-1.5 min-w-6 min-h-6",
         "group-disabled/entry-row:opacity-30",
       ], className)}

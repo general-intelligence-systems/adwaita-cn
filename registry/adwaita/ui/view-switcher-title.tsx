@@ -125,7 +125,7 @@ function ViewSwitcherTitleTitleLabel({ className, ...props }: React.ComponentPro
     <span
       data-slot="view-switcher-title-title-label"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center", [
         "caret-[currentColor] px-3 font-bold",
         "group-disabled/view-switcher-title:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -166,7 +166,7 @@ function ViewSwitcherTitleSubtitleLabel({ className, ...props }: React.Component
     <span
       data-slot="view-switcher-title-subtitle-label"
         data-node="label"
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-center items-center", [
         "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
         "group-disabled/view-switcher-title:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

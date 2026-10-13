@@ -254,6 +254,17 @@ module FinalComponents
   # top bar: bin/apps/mail's view switcher bar was drawn under the header instead of at
   # the foot of the window.
   ADDED_PROPS = {
+    # `gtk_header_bar_pack_end` is a method as much as add_bottom_bar is, and without a
+    # prop for it everything a header bar carries went to the start: bin/apps/software's
+    # Install button was drawn at the left of the bar where the toolkit draws it at the
+    # right.
+    "HeaderBar" => {
+      "packEnd" => {
+        "prop" => "packEnd", "gir" => "Gtk.Widget", "array" => false, "writable" => true,
+        "constructOnly" => false, "default" => nil, "deprecated" => false,
+        "from" => "Adw.HeaderBar", "type" => "node", "gobject" => "Gtk.Widget"
+      },
+    },
     "ToolbarView" => {
       "bottomBars" => {
         "prop" => "bottomBars", "gir" => "Gtk.Widget", "array" => false, "writable" => true,
@@ -350,6 +361,7 @@ module FinalComponents
               "children" => [{
                 "class" => "Box", "node" => "box", "styles" => ["end"], "layout" => "box",
                 "properties" => { "orientation" => "horizontal", "spacing" => "6" },
+                "takes" => "packEnd",
                 "children" => [{
                   "class" => "WindowControls", "node" => "windowcontrols", "styles" => ["end"],
                   "layout" => "box",

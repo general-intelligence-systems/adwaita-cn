@@ -234,7 +234,7 @@ function SpinButtonImage({ className, name = "value-decrease-symbolic", ...props
         name={name}
       data-slot="spin-button-image"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/spin-button:opacity-100",
         "group-active/spin-button:opacity-80",
@@ -271,7 +271,7 @@ function SpinButtonImage2({ className, name = "value-increase-symbolic", ...prop
         name={name}
       data-slot="spin-button-image2"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/spin-button:opacity-100",
         "group-active/spin-button:opacity-80",

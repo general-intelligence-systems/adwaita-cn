@@ -254,7 +254,7 @@ function SpinRowImage({ className, ...props }: React.ComponentProps<typeof Icon>
       data-slot="spin-row-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mx-1.5",
         "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -295,7 +295,7 @@ function SpinRowTitle({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="spin-row-title"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-start items-center", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
         "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -336,7 +336,7 @@ function SpinRowSubtitle({ className, ...props }: React.ComponentProps<"span">) 
     <span
       data-slot="spin-row-subtitle"
         data-node="label"
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
         "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -442,7 +442,7 @@ function SpinRowImage2({ className, name = "value-decrease-symbolic", ...props }
         name={name}
       data-slot="spin-row-image2"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/spin-row:opacity-100",
         "group-active/spin-row:opacity-80",
@@ -479,7 +479,7 @@ function SpinRowImage3({ className, name = "value-increase-symbolic", ...props }
         name={name}
       data-slot="spin-row-image3"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/spin-row:opacity-100",
         "group-active/spin-row:opacity-80",

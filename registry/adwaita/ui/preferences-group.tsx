@@ -128,7 +128,7 @@ function PreferencesGroupTitle({ className, ...props }: React.ComponentProps<"sp
     <span
       data-slot="preferences-group-title"
         data-node="label"
-      className={cn("heading h4", [
+      className={cn("heading h4 flex justify-start items-center", [
         "caret-[currentColor] font-bold",
         "group-disabled/preferences-group:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -169,7 +169,7 @@ function PreferencesGroupDescription({ className, ...props }: React.ComponentPro
     <span
       data-slot="preferences-group-description"
         data-node="label"
-      className={cn("body dimmed", [
+      className={cn("body dimmed flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
         "group-disabled/preferences-group:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

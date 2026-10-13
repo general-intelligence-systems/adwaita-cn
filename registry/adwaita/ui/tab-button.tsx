@@ -81,7 +81,7 @@ function TabButtonIcon({ className, ...props }: React.ComponentProps<typeof Icon
     <Icon
       data-slot="tab-button-icon"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -120,7 +120,7 @@ function TabButtonLabel({ className, ...props }: React.ComponentProps<"span">) {
       data-slot="tab-button-label"
         data-node="label"
         data-halign="center"
-      className={cn("numeric", [
+      className={cn("numeric flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[10.5px]",
         "group-disabled/tab-button:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

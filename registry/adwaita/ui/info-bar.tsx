@@ -9,6 +9,8 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
+import { Button } from "@/ui/button"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { MessageType } from "@/lib/enums"
@@ -46,20 +48,32 @@ export interface InfoBarProps
 function InfoBar({ className, render, variant = "default", messageType, revealed, showCloseButton, children, ...props }: InfoBarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "info-bar",
     "data-node": "infobar",
     "data-variant": variant,
-    role: "alert",
+    role: "status",
     "data-message-type": messageType,
-    "data-revealed": revealed,
     "data-show-close-button": showCloseButton,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", infoBarVariants({ variant }), widgetClassName, className),
+    // `message-type` IS the style class: gtk_info_bar_set_message_type adds
+    // `.warning` and the rest, and `other` adds none.
+    className: cn("flex flex-col", infoBarVariants({ variant }), messageType !== undefined && messageType !== "other" && messageType, widgetClassName, className),
     style,
-    children: children,
+    children: (
+      <div data-slot="info-bar-revealer" data-node="revealer" className={cn("flex flex-col", revealed === false && "hidden")}>
+        <div data-slot="info-bar-box" data-node="box" className="horizontal flex flex-row items-center">
+          <div data-slot="info-bar-content" data-node="box" className="horizontal flex flex-row items-center grow">
+            {children}
+          </div>
+          <div data-slot="info-bar-actions" data-node="box" className="horizontal flex flex-row items-center" />
+          {showCloseButton ? (
+            <Button variant="flat" className="close image-button">
+              <Icon name="window-close-symbolic" />
+            </Button>
+          ) : null}
+        </div>
+      </div>
+    ),
     ...widgetAttributes,
   }
 

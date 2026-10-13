@@ -184,7 +184,7 @@ function AppChooserDialog({ className, render, variant = "default", child, headi
                 <Icon name={iconName} data-slot="app-chooser-dialog-icon" />
               )}
                   {heading === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {heading}
                 </span>
               )}

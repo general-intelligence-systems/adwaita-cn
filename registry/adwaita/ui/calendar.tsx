@@ -176,7 +176,7 @@ function CalendarLabel({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="calendar-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center", [
         "caret-[currentColor]",
         "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -228,7 +228,7 @@ function CalendarLabel2({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="calendar-label2"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center", [
         "caret-[currentColor] mt-[3px] mr-[3px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))]",
         "group-focus/calendar:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] group-focus/calendar:outline-2 group-focus/calendar:outline-offset-[-2px]",

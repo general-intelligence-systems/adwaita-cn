@@ -233,7 +233,7 @@ function ComboRowImage({ className, ...props }: React.ComponentProps<typeof Icon
       data-slot="combo-row-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mx-1.5",
         "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -274,7 +274,7 @@ function ComboRowTitle({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="combo-row-title"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-start items-center", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
         "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -315,7 +315,7 @@ function ComboRowSubtitle({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="combo-row-subtitle"
         data-node="label"
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
         "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -379,7 +379,7 @@ function ComboRowImage2({ className, ...props }: React.ComponentProps<typeof Ico
     <Icon
       data-slot="combo-row-image2"
         data-node="image"
-      className={cn("dropdown-arrow", className)}
+      className={cn("dropdown-arrow self-center", className)}
       {...props}
     />
   )
@@ -467,7 +467,7 @@ function ComboRowImage3({ className, ...props }: React.ComponentProps<typeof Ico
     <Icon
       data-slot="combo-row-image3"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/combo-row:opacity-100",
         "group-active/combo-row:opacity-80",

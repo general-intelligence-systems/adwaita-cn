@@ -103,7 +103,7 @@ function WindowTitleTitleLabel({ className, ...props }: React.ComponentProps<"sp
     <span
       data-slot="window-title-title-label"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center", [
         "caret-[currentColor] px-3 font-bold",
         "group-disabled/window-title:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -144,7 +144,7 @@ function WindowTitleSubtitleLabel({ className, ...props }: React.ComponentProps<
     <span
       data-slot="window-title-subtitle-label"
         data-node="label"
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-center items-center", [
         "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
         "group-disabled/window-title:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

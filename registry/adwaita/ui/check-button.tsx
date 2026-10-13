@@ -79,7 +79,7 @@ function CheckButton({ className, render, size = "default", child, label, action
         <>
                   <CheckButtonCheck />
                   {label === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {label}
                 </span>
               )}
@@ -125,7 +125,7 @@ function CheckButtonLabel({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="check-button-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center", [
         "caret-[currentColor]",
         "group-disabled/check-button:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

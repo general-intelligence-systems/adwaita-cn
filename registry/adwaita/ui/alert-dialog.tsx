@@ -215,7 +215,7 @@ function AlertDialogHeadingLabel({ className, ...props }: React.ComponentProps<"
     <span
       data-slot="alert-dialog-heading-label"
         data-node="label"
-      className={cn("title-2", [
+      className={cn("title-2 flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[136%]",
         "group-disabled/alert-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -256,7 +256,7 @@ function AlertDialogHeadingLabelSmall({ className, ...props }: React.ComponentPr
     <span
       data-slot="alert-dialog-heading-label-small"
         data-node="label"
-      className={cn("title-4", [
+      className={cn("title-4 flex justify-center items-center text-center", [
         "caret-[currentColor] font-bold text-[118%]",
         "group-disabled/alert-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -308,7 +308,7 @@ function AlertDialogBodyLabel({ className, ...props }: React.ComponentProps<"spa
       data-slot="alert-dialog-body-label"
         data-node="label"
         data-vexpand=""
-      className={cn("body", [
+      className={cn("body flex justify-center items-center text-center", [
         "caret-[currentColor] font-normal leading-[140%] px-6",
         "group-disabled/alert-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

@@ -126,7 +126,7 @@ function PreferencesPageDescription({ className, ...props }: React.ComponentProp
     <span
       data-slot="preferences-page-description"
         data-node="label"
-      className={cn("body dimmed description", [
+      className={cn("body dimmed description flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
         "group-disabled/preferences-page:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

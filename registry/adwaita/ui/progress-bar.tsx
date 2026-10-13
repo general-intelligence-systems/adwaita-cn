@@ -92,7 +92,7 @@ function ProgressBar({ className, render, variant = "default", text, ellipsize, 
                 <ProgressBarProgress style={{ [orientation === "vertical" ? "blockSize" : "inlineSize"]: `${Math.max(0, Math.min(100, (fraction ?? 0) * 100))}%`, [orientation === "vertical" ? "inlineSize" : "blockSize"]: "100%" }} />
               </ProgressBarTrough>
                   {text === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
                   {text}
                 </span>
               )}

@@ -84,7 +84,7 @@ function WindowControlsImage({ className, ...props }: React.ComponentProps<typeo
     <Icon
       data-slot="window-controls-image"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )

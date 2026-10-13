@@ -8,31 +8,46 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
+import { Button } from "@/ui/button"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 export interface ToastWidgetProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps>,
     WidgetProps {
+  /** AdwToast:title, which the toast shows as its heading. */
+  title?: string
+
+  /** AdwToast:button-label. The action button is drawn when there is one. */
+  buttonLabel?: string
 }
 
-function ToastWidget({ className, render, children, ...props }: ToastWidgetProps) {
+function ToastWidget({ className, render, title, buttonLabel, children, ...props }: ToastWidgetProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "toast-widget",
     "data-node": "toast",
-    className: cn("group/toast-widget", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    role: "status",
+    // `justify-self`/`self-end` rather than the overlay's stretch: AdwToastOverlay
+    // allocates the toast its natural size, centred, against the bottom edge.
+    className: cn("group/toast-widget", "flex flex-row items-center justify-self-center self-end", widgetClassName, className),
     style,
     children: (
-        <>
-                  <ToastWidgetWidget />
-                  {children}
-        </>
-      ),
+      <>
+        <ToastWidgetWidget className="flex items-center">
+          <span data-slot="label" data-node="label" className="heading whitespace-nowrap">{title}</span>
+        </ToastWidgetWidget>
+        {/* The action button is in the toolkit's tree whether or not the toast has
+            one, and measures almost nothing when it does not. */}
+        <Button variant="flat" className="text-button" label={buttonLabel} />
+        <Button variant="flat" className="circular image-button">
+          <Icon name="window-close-symbolic" />
+        </Button>
+        {children}
+      </>
+    ),
     ...widgetAttributes,
   }
 

@@ -121,7 +121,7 @@ function EditableLabelLabel({ className, ...props }: React.ComponentProps<"span"
     <span
       data-slot="editable-label-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center", [
         "caret-[currentColor]",
         "group-disabled/editable-label:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

@@ -125,7 +125,7 @@ function BannerTitle({ className, ...props }: React.ComponentProps<"span">) {
       data-slot="banner-title"
         data-node="label"
         data-hexpand=""
-      className={cn("heading", [
+      className={cn("heading flex justify-center items-center text-center", [
         "caret-[currentColor] font-bold",
         "group-disabled/banner:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

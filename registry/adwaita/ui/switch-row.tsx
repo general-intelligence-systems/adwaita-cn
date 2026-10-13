@@ -187,7 +187,7 @@ function SwitchRowImage({ className, ...props }: React.ComponentProps<typeof Ico
       data-slot="switch-row-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mx-1.5",
         "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -228,7 +228,7 @@ function SwitchRowTitle({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="switch-row-title"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-start items-center", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
         "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -269,7 +269,7 @@ function SwitchRowSubtitle({ className, ...props }: React.ComponentProps<"span">
     <span
       data-slot="switch-row-subtitle"
         data-node="label"
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
         "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -296,7 +296,7 @@ function SwitchRowImage2({ className, ...props }: React.ComponentProps<typeof Ic
     <Icon
       data-slot="switch-row-image2"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )

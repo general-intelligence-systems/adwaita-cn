@@ -238,7 +238,7 @@ function ShortcutsDialogImage({ className, ...props }: React.ComponentProps<type
       data-slot="shortcuts-dialog-image"
         data-node="image"
         data-halign="center"
-      className={cn("icon", [
+      className={cn("icon self-center", [
         "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
         "group-disabled/shortcuts-dialog:opacity-[var(--disabled-opacity)]",
       ], className)}
@@ -279,7 +279,7 @@ function ShortcutsDialogTitleLabel({ className, ...props }: React.ComponentProps
     <span
       data-slot="shortcuts-dialog-title-label"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[181%]",
         "group-disabled/shortcuts-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -320,7 +320,7 @@ function ShortcutsDialogDescriptionLabel({ className, ...props }: React.Componen
     <span
       data-slot="shortcuts-dialog-description-label"
         data-node="label"
-      className={cn("body description", [
+      className={cn("body description flex justify-center items-center text-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/shortcuts-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -483,7 +483,7 @@ function ShortcutsDialogImage2({ className, ...props }: React.ComponentProps<typ
     <Icon
       data-slot="shortcuts-dialog-image2"
         data-node="image"
-      className={cn([
+      className={cn("self-center", [
         "opacity-70",
         "group-hover/shortcuts-dialog:opacity-100",
         "group-active/shortcuts-dialog:opacity-80",

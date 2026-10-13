@@ -47,15 +47,17 @@ export default function SoftwareApp() {
             </PreferencesGroup>
           </Box>
           </ScrolledWindow>
-          <ToastWidget />
+          <ToastWidget title="Inkscape installed" />
         </ToastOverlay>
       }
     >
-      <HeaderBar>
-        <Button variant="suggestedAction">
-          <ButtonContent iconName="folder-download-symbolic" label="Install" />
-        </Button>
-      </HeaderBar>
+      <HeaderBar
+        packEnd={
+          <Button variant="suggestedAction">
+            <ButtonContent iconName="folder-download-symbolic" label="Install" />
+          </Button>
+        }
+      />
     </ToolbarView>
   )
 }

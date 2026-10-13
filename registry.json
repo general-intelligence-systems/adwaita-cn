@@ -1057,6 +1057,156 @@
       ]
     },
     {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:lib",
+      "title": "Icon",
+      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
+      "dependencies": [
+        "adwaita_react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "widget-props",
       "type": "registry:lib",
       "title": "Widget props",

@@ -7709,4 +7709,13 @@
   :where([data-node="row"].spin.warning) :where([data-node="row"].property.expander) > :where([data-node="box"]) > :where([data-node="list"]) > :where([data-node="row"].header) > :where([data-node="box"].header) > :where([data-node="box"].title) > :where(.title) {
     @apply opacity-100;
   }
+  :where([data-node="button"]):has(> :where([data-node="buttoncontent"].image-button)) {
+    @apply px-[5px] min-w-6;
+  }
+  :where([data-node="button"]):has(> :where([data-node="buttoncontent"].image-text-button)) {
+    @apply px-[9px];
+  }
+  :where([data-node="button"]):has(> :where([data-node="buttoncontent"].text-button)) {
+    @apply px-[17px];
+  }
 }

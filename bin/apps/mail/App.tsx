@@ -40,9 +40,10 @@ const PAGES: ViewPage[] = [
 export default function MailApp() {
   return (
     <Box orientation="horizontal">
-      <ViewSwitcherSidebar className="w-[200px]" pages={PAGES} />
+      <ViewSwitcherSidebar widthRequest={200} pages={PAGES} />
       <ToolbarView
         className="grow"
+        bottomBars={<ViewSwitcherBar reveal pages={PAGES} />}
         content={
           <Box orientation="vertical">
             <Banner title="You are working offline" buttonLabel="Reconnect" revealed />
@@ -69,7 +70,6 @@ export default function MailApp() {
           <InlineViewSwitcher pages={PAGES} />
           <Button variant="flat" iconName="mail-message-new-symbolic" />
         </HeaderBar>
-        <ViewSwitcherBar reveal pages={PAGES} />
       </ToolbarView>
     </Box>
   )

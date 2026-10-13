@@ -65,7 +65,7 @@ const aboutDialogVariants = cva(
 )
 
 export interface AboutDialogProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "appdataResourcePath" | "applicationIcon" | "applicationName" | "artists" | "canClose" | "child" | "comments" | "contentHeight" | "contentWidth" | "copyright" | "debugInfo" | "debugInfoFilename" | "defaultWidget" | "designers" | "developerName" | "developers" | "documenters" | "focusWidget" | "followsContentSize" | "issueUrl" | "license" | "licenseType" | "presentationMode" | "releaseNotes" | "releaseNotesVersion" | "supportUrl" | "title" | "translatorCredits" | "version" | "website" | "titleWidget" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "appdataResourcePath" | "applicationIcon" | "applicationName" | "artists" | "canClose" | "child" | "comments" | "contentHeight" | "contentWidth" | "copyright" | "debugInfo" | "debugInfoFilename" | "defaultWidget" | "designers" | "developerName" | "developers" | "documenters" | "focusWidget" | "followsContentSize" | "issueUrl" | "license" | "licenseType" | "presentationMode" | "releaseNotes" | "releaseNotesVersion" | "supportUrl" | "title" | "translatorCredits" | "version" | "website" | "titleWidget" | "packEnd" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof aboutDialogVariants> {
   /** utf8, from Adw.AboutDialog */
@@ -134,6 +134,9 @@ export interface AboutDialogProps
   /** Gtk.License, from Adw.AboutDialog */
   licenseType?: License
 
+  /** Gtk.Widget, from Adw.AboutDialog */
+  packEnd?: ReactNode
+
   /** DialogPresentationMode, from Adw.Dialog */
   presentationMode?: DialogPresentationMode
 
@@ -162,7 +165,7 @@ export interface AboutDialogProps
   website?: string
 }
 
-function AboutDialog({ className, render, variant = "default", applicationName, child, comments, developerName, titleWidget, artists: _artists, defaultWidget: _defaultWidget, designers: _designers, developers: _developers, documenters: _documenters, focusWidget: _focusWidget, appdataResourcePath, applicationIcon, canClose, contentHeight, contentWidth, copyright, debugInfo, debugInfoFilename, followsContentSize, issueUrl, license, licenseType, presentationMode, releaseNotes, releaseNotesVersion, supportUrl, title, translatorCredits, version, website, children, ...props }: AboutDialogProps) {
+function AboutDialog({ className, render, variant = "default", applicationName, child, comments, developerName, packEnd, titleWidget, artists: _artists, defaultWidget: _defaultWidget, designers: _designers, developers: _developers, documenters: _documenters, focusWidget: _focusWidget, appdataResourcePath, applicationIcon, canClose, contentHeight, contentWidth, copyright, debugInfo, debugInfoFilename, followsContentSize, issueUrl, license, licenseType, presentationMode, releaseNotes, releaseNotesVersion, supportUrl, title, translatorCredits, version, website, children, ...props }: AboutDialogProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -271,6 +274,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage7 />
                                   </AboutDialogCloseButton>
                                 </AboutDialogWindowControls2>
+                                {packEnd}
                               </AboutDialogBox7>
                             </AboutDialogEnd>
                           </AboutDialogBox5>
@@ -301,6 +305,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage8 />
                                   </AboutDialogCloseButton2>
                                 </AboutDialogWindowControls4>
+                                {packEnd}
                               </AboutDialogBox10>
                             </AboutDialogEnd2>
                           </AboutDialogBox8>
@@ -336,6 +341,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage9 />
                                   </AboutDialogCloseButton3>
                                 </AboutDialogWindowControls6>
+                                {packEnd}
                               </AboutDialogBox14>
                             </AboutDialogEnd3>
                           </AboutDialogBox12>
@@ -373,6 +379,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage11 />
                                   </AboutDialogCloseButton4>
                                 </AboutDialogWindowControls8>
+                                {packEnd}
                               </AboutDialogBox18>
                             </AboutDialogEnd4>
                           </AboutDialogBox16>
@@ -403,6 +410,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage12 />
                                   </AboutDialogCloseButton5>
                                 </AboutDialogWindowControls10>
+                                {packEnd}
                               </AboutDialogBox21>
                             </AboutDialogEnd5>
                           </AboutDialogBox19>
@@ -435,6 +443,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage13 />
                                   </AboutDialogCloseButton6>
                                 </AboutDialogWindowControls12>
+                                {packEnd}
                               </AboutDialogBox24>
                             </AboutDialogEnd6>
                           </AboutDialogBox22>
@@ -463,6 +472,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage14 />
                                   </AboutDialogCloseButton7>
                                 </AboutDialogWindowControls14>
+                                {packEnd}
                               </AboutDialogBox27>
                             </AboutDialogEnd7>
                           </AboutDialogBox25>
@@ -491,6 +501,7 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                     <AboutDialogImage15 />
                                   </AboutDialogCloseButton8>
                                 </AboutDialogWindowControls16>
+                                {packEnd}
                               </AboutDialogBox30>
                             </AboutDialogEnd8>
                           </AboutDialogBox28>
@@ -519,7 +530,7 @@ function AboutDialogAppIconImage({ className, ...props }: React.ComponentProps<t
     <Icon
       data-slot="about-dialog-app-icon-image"
         data-node="image"
-      className={cn("icon-dropshadow", className)}
+      className={cn("icon-dropshadow self-center", className)}
       {...props}
     />
   )
@@ -557,7 +568,7 @@ function AboutDialogAppNameLabel({ className, ...props }: React.ComponentProps<"
     <span
       data-slot="about-dialog-app-name-label"
         data-node="label"
-      className={cn("title-1", [
+      className={cn("title-1 flex justify-center items-center text-center", [
         "caret-[currentColor] font-extrabold text-[181%]",
         "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -598,7 +609,7 @@ function AboutDialogDeveloperNameLabel({ className, ...props }: React.ComponentP
     <span
       data-slot="about-dialog-developer-name-label"
         data-node="label"
-      className={cn([
+      className={cn("flex justify-center items-center text-center", [
         "caret-[currentColor]",
         "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -632,7 +643,7 @@ function AboutDialogImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="about-dialog-image"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -657,7 +668,7 @@ function AboutDialogImage2({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-dialog-image2"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -735,7 +746,7 @@ function AboutDialogImage3({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-dialog-image3"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -771,7 +782,7 @@ function AboutDialogImage4({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-dialog-image4"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -796,7 +807,7 @@ function AboutDialogImage5({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-dialog-image5"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -821,7 +832,7 @@ function AboutDialogImage6({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-dialog-image6"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -884,7 +895,7 @@ function AboutDialogTitle({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="about-dialog-title"
         data-node="label"
-      className={cn("heading h4", [
+      className={cn("heading h4 flex justify-start items-center", [
         "caret-[currentColor] font-bold",
         "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -925,7 +936,7 @@ function AboutDialogDescription({ className, ...props }: React.ComponentProps<"s
     <span
       data-slot="about-dialog-description"
         data-node="label"
-      className={cn("body dimmed", [
+      className={cn("body dimmed flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
         "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1100,7 +1111,7 @@ function AboutDialogImage7({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-dialog-image7"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -1300,7 +1311,7 @@ function AboutDialogImage8({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-dialog-image8"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -1445,7 +1456,7 @@ function AboutDialogCommentsLabel({ className, ...props }: React.ComponentProps<
     <span
       data-slot="about-dialog-comments-label"
         data-node="label"
-      className={cn("body", [
+      className={cn("body flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1566,7 +1577,7 @@ function AboutDialogImage9({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-dialog-image9"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -1711,7 +1722,7 @@ function AboutDialogLabel({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="about-dialog-label"
         data-node="label"
-      className={cn("body", [
+      className={cn("body flex justify-start items-center", [
         "caret-[currentColor] font-normal leading-[140%]",
         "group-disabled/about-dialog:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1725,7 +1736,7 @@ function AboutDialogImage10({ className, ...props }: React.ComponentProps<typeof
     <Icon
       data-slot="about-dialog-image10"
         data-node="image"
-      className={cn(className)}
+      className={cn("self-center", className)}
       {...props}
     />
   )
@@ -1843,7 +1854,7 @@ function AboutDialogImage11({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-dialog-image11"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -2043,7 +2054,7 @@ function AboutDialogImage12({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-dialog-image12"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -2292,7 +2303,7 @@ function AboutDialogImage13({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-dialog-image13"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -2492,7 +2503,7 @@ function AboutDialogImage14({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-dialog-image14"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )
@@ -2692,7 +2703,7 @@ function AboutDialogImage15({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-dialog-image15"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
       {...props}
     />
   )

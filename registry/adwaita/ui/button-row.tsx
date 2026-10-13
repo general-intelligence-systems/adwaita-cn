@@ -141,7 +141,7 @@ function ButtonRowStartImage({ className, ...props }: React.ComponentProps<typeo
       data-slot="button-row-start-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon start", "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("icon start self-center", "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -179,7 +179,7 @@ function ButtonRowTitle({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="button-row-title"
         data-node="label"
-      className={cn("title", [
+      className={cn("title flex justify-center items-center text-center", [
         "caret-[currentColor] font-bold",
         "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -194,7 +194,7 @@ function ButtonRowEndImage({ className, ...props }: React.ComponentProps<typeof 
       data-slot="button-row-end-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon end", "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]", className)}
+      className={cn("icon end self-center", "group-disabled/button-row:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )

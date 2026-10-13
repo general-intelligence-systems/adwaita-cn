@@ -240,7 +240,7 @@ function PasswordEntryRowEmptyTitle({ className, ...props }: React.ComponentProp
       data-slot="password-entry-row-empty-title"
         data-node="label"
         data-halign="start"
-      className={cn("title dimmed", [
+      className={cn("title dimmed flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)]",
         "group-disabled/password-entry-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -283,7 +283,7 @@ function PasswordEntryRowTitle({ className, ...props }: React.ComponentProps<"sp
         data-node="label"
         data-halign="start"
         style={{ opacity: 0 }}
-      className={cn("subtitle", [
+      className={cn("subtitle flex justify-start items-center", [
         "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller]",
         "group-disabled/password-entry-row:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -379,7 +379,7 @@ function PasswordEntryRowIndicator({ className, ...props }: React.ComponentProps
       data-slot="password-entry-row-indicator"
         data-node="image"
         data-valign="center"
-      className={cn("indicator", "p-[5px] mx-1.5 min-w-6 min-h-6 opacity-30", className)}
+      className={cn("indicator self-center", "p-[5px] mx-1.5 min-w-6 min-h-6 opacity-30", className)}
       {...props}
     />
   )
@@ -411,7 +411,7 @@ function PasswordEntryRowEditIcon({ className, ...props }: React.ComponentProps<
       data-slot="password-entry-row-edit-icon"
         data-node="image"
         data-valign="center"
-      className={cn("edit-icon", [
+      className={cn("edit-icon self-center", [
         "p-[5px] mx-1.5 min-w-6 min-h-6",
         "group-disabled/password-entry-row:opacity-30",
       ], className)}
