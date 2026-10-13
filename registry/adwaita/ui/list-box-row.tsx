@@ -64,7 +64,7 @@ function ListBoxRow({ className, render, actionName, actionTarget, activatable, 
     "data-action-name": actionName,
     "data-activatable": activatable,
     "data-selectable": selectable,
-    className: cn("row", "bin-layout", "gtk-alignment", listBoxRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "activatable", "bin-layout", "gtk-alignment", listBoxRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

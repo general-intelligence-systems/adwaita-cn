@@ -93,7 +93,7 @@ function SpinButton({ className, render, editable, editingCanceled, enableUndo, 
     "data-numeric": numeric,
     "data-wrap": wrap,
     "data-value": value,
-    className: cn("spinbutton", "box-layout", "horizontal", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("spinbutton", "horizontal", "box-layout", "horizontal", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     ...widgetAttributes,
   }

@@ -127,7 +127,7 @@ function TreeView({ className, render, hadjustment, hscrollPolicy, vadjustment, 
     "data-enable-tree-lines": enableTreeLines,
     "data-tooltip-column": tooltipColumn,
     "data-activate-on-single-click": activateOnSingleClick,
-    className: cn("treeview", "gtk-alignment", treeViewVariants({ variant, size }), widgetClassName, className),
+    className: cn("treeview", "view", "gtk-alignment", treeViewVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
       <>

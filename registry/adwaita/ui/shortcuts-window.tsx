@@ -144,7 +144,7 @@ function ShortcutsWindow({ className, render, title, resizable, modal, defaultWi
     "data-fullscreened": fullscreened,
     "data-section-name": sectionName,
     "data-view-name": viewName,
-    className: cn("window", "bin-layout", "gtk-alignment", shortcutsWindowVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "solid-csd", "shortcuts", "bin-layout", "gtk-alignment", shortcutsWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

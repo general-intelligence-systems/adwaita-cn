@@ -46,7 +46,7 @@ function Box({ className, render, orientation, spacing, homogeneous, baselineChi
     "data-spacing": spacing,
     "data-homogeneous": homogeneous,
     "data-baseline-child": baselineChild,
-    className: cn("box", "box-layout", "horizontal", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("box", "horizontal", "box-layout", "horizontal", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style: { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties,
     children: (
       <>

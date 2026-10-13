@@ -137,7 +137,7 @@ function Assistant({ className, render, title, resizable, modal, defaultWidth, d
     "data-focus-visible": focusVisible,
     "data-maximized": maximized,
     "data-fullscreened": fullscreened,
-    className: cn("window", "bin-layout", "gtk-alignment", assistantVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "assistant", "bin-layout", "gtk-alignment", assistantVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

@@ -151,7 +151,7 @@ function FileChooserDialog({ className, render, action, createFolders, filter, s
     "data-focus-visible": focusVisible,
     "data-maximized": maximized,
     "data-fullscreened": fullscreened,
-    className: cn("window", "bin-layout", "gtk-alignment", fileChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "dialog", "filechooser", "bin-layout", "gtk-alignment", fileChooserDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

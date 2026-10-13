@@ -87,7 +87,7 @@ function PopoverMenu({ className, render, pointingTo, position, autohide, defaul
     "data-mnemonics-visible": mnemonicsVisible,
     "data-cascade-popdown": cascadePopdown,
     "data-visible-submenu": visibleSubmenu,
-    className: cn("popover", "bin-layout", "gtk-alignment", popoverMenuVariants({ variant }), widgetClassName, className),
+    className: cn("popover", "background", "menu", "bin-layout", "gtk-alignment", popoverMenuVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

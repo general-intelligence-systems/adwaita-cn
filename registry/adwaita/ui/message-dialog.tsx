@@ -164,7 +164,7 @@ function MessageDialog({ className, render, title, resizable, modal, defaultWidt
     "data-body-use-markup": bodyUseMarkup,
     "data-default-response": defaultResponse,
     "data-close-response": closeResponse,
-    className: cn("window", "bin-layout", "gtk-alignment", messageDialogVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "solid-csd", "messagedialog", "bin-layout", "gtk-alignment", messageDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

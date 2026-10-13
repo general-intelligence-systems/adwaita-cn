@@ -141,7 +141,7 @@ function AppChooserDialog({ className, render, title, resizable, modal, defaultW
     "data-maximized": maximized,
     "data-fullscreened": fullscreened,
     "data-heading": heading,
-    className: cn("window", "bin-layout", "gtk-alignment", appChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "dialog", "appchooser", "bin-layout", "gtk-alignment", appChooserDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

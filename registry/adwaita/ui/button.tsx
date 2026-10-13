@@ -96,7 +96,7 @@ function Button({ className, render, actionName, actionTarget, label, hasFrame, 
     "data-use-underline": useUnderline,
     "data-icon-name": iconName,
     "data-can-shrink": canShrink,
-    className: cn("button", "bin-layout", "gtk-alignment", buttonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
+    className: cn("button", "text-button", "bin-layout", "gtk-alignment", buttonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
     style,
     children: (
       <>

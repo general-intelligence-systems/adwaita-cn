@@ -79,7 +79,7 @@ function FlowBox({ className, render, orientation, homogeneous, columnSpacing, r
     "data-max-children-per-line": maxChildrenPerLine,
     "data-activate-on-single-click": activateOnSingleClick,
     "data-accept-unpaired-release": acceptUnpairedRelease,
-    className: cn("flowbox", "gtk-alignment", flowBoxVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("flowbox", "horizontal", "gtk-alignment", flowBoxVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

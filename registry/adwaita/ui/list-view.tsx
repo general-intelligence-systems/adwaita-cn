@@ -67,7 +67,7 @@ function ListView({ className, render, hadjustment, hscrollPolicy, vadjustment, 
     "data-enable-rubberband": enableRubberband,
     "data-show-separators": showSeparators,
     "data-single-click-activate": singleClickActivate,
-    className: cn("listview", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("listview", "view", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

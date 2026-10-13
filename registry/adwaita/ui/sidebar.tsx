@@ -48,7 +48,7 @@ function Sidebar({ className, render, mode, selected, filter, placeholder, dropP
     "data-node": "sidebar",
     "data-selected": selected,
     "data-drop-preload": dropPreload,
-    className: cn("sidebar", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("sidebar", "empty", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

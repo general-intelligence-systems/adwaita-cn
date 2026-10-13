@@ -77,7 +77,7 @@ function Popover({ className, render, pointingTo, position, autohide, defaultWid
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-cascade-popdown": cascadePopdown,
-    className: cn("popover", "bin-layout", "gtk-alignment", popoverVariants({ variant }), widgetClassName, className),
+    className: cn("popover", "background", "bin-layout", "gtk-alignment", popoverVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

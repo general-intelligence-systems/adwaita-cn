@@ -85,7 +85,7 @@ function GridView({ className, render, hadjustment, hscrollPolicy, vadjustment, 
     "data-max-columns": maxColumns,
     "data-min-columns": minColumns,
     "data-single-click-activate": singleClickActivate,
-    className: cn("gridview", "gtk-alignment", gridViewVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("gridview", "view", "gtk-alignment", gridViewVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

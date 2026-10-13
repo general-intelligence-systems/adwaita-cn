@@ -39,7 +39,7 @@ function InfoBar({ className, render, messageType, showCloseButton, revealed, ch
     "data-node": "infobar",
     "data-show-close-button": showCloseButton,
     "data-revealed": revealed,
-    className: cn("infobar", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("infobar", "info", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

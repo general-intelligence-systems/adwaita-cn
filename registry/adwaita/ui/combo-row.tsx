@@ -132,7 +132,7 @@ function ComboRow({ className, render, actionName, actionTarget, activatable, se
     "data-selected": selected,
     "data-use-subtitle": useSubtitle,
     "data-enable-search": enableSearch,
-    className: cn("row", "bin-layout", "gtk-alignment", comboRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "combo", "bin-layout", "gtk-alignment", comboRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

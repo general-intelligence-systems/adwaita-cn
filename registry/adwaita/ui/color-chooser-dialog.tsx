@@ -148,7 +148,7 @@ function ColorChooserDialog({ className, render, rgba, useAlpha, title, resizabl
     "data-maximized": maximized,
     "data-fullscreened": fullscreened,
     "data-show-editor": showEditor,
-    className: cn("window", "bin-layout", "gtk-alignment", colorChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "dialog", "colorchooser", "bin-layout", "gtk-alignment", colorChooserDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

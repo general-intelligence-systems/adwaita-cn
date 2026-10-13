@@ -144,7 +144,7 @@ function Window({ className, render, title, resizable, modal, defaultWidth, defa
     "data-maximized": maximized,
     "data-fullscreened": fullscreened,
     "data-adaptive-preview": adaptivePreview,
-    className: cn("window", "bin-layout", "gtk-alignment", windowVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "solid-csd", "bin-layout", "gtk-alignment", windowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

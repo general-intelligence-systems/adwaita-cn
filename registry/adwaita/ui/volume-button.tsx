@@ -49,7 +49,7 @@ function VolumeButton({ className, render, orientation, value, adjustment, icons
     "data-value": value,
     "data-has-frame": hasFrame,
     "data-use-symbolic": useSymbolic,
-    className: cn("scalebutton", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("scalebutton", "scale", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

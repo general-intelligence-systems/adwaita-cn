@@ -135,7 +135,7 @@ function AboutDialog({ className, render, child, title, canClose, contentWidth, 
     "data-translator-credits": translatorCredits,
     "data-copyright": copyright,
     "data-license": license,
-    className: cn("dialog", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("dialog", "about", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

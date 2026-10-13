@@ -92,7 +92,7 @@ function MenuButton({ className, render, menuModel, direction, popover, iconName
     "data-primary": primary,
     "data-active": active,
     "data-can-shrink": canShrink,
-    className: cn("menubutton", "bin-layout", "gtk-alignment", menuButtonVariants({ variant }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
+    className: cn("menubutton", "popup", "bin-layout", "gtk-alignment", menuButtonVariants({ variant }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
     style,
     children: (
       <>

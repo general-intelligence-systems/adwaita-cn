@@ -129,7 +129,7 @@ function PasswordEntryRow({ className, render, actionName, actionTarget, editabl
     "data-enable-emoji-completion": enableEmojiCompletion,
     "data-activates-default": activatesDefault,
     "data-max-length": maxLength,
-    className: cn("row", "bin-layout", "gtk-alignment", passwordEntryRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "entry", "password", "activatable", "bin-layout", "gtk-alignment", passwordEntryRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

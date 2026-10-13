@@ -83,7 +83,7 @@ function PasswordEntry({ className, render, editable, enableUndo, maxWidthChars,
     "data-placeholder-text": placeholderText,
     "data-activates-default": activatesDefault,
     "data-show-peek-icon": showPeekIcon,
-    className: cn("entry", "bin-layout", "gtk-alignment", passwordEntryVariants({ variant }), widgetClassName, className),
+    className: cn("entry", "password", "bin-layout", "gtk-alignment", passwordEntryVariants({ variant }), widgetClassName, className),
     style,
     ...widgetAttributes,
   }

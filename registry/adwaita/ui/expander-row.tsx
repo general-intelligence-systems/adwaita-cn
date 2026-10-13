@@ -106,7 +106,7 @@ function ExpanderRow({ className, render, actionName, actionTarget, activatable,
     "data-show-enable-switch": showEnableSwitch,
     "data-title-lines": titleLines,
     "data-subtitle-lines": subtitleLines,
-    className: cn("row", "bin-layout", "gtk-alignment", expanderRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "empty", "expander", "bin-layout", "gtk-alignment", expanderRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

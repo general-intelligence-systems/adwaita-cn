@@ -51,7 +51,7 @@ function Scrollbar({ className, render, orientation, adjustment, variant, childr
   const defaultProps = {
     "data-slot": "scrollbar",
     "data-node": "scrollbar",
-    className: cn("scrollbar", "box-layout", "horizontal", "gtk-alignment", scrollbarVariants({ variant }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("scrollbar", "horizontal", "box-layout", "horizontal", "gtk-alignment", scrollbarVariants({ variant }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

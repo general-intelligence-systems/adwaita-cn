@@ -39,7 +39,7 @@ function WindowControls({ className, render, side, decorationLayout, useNativeCo
     "data-node": "windowcontrols",
     "data-decoration-layout": decorationLayout,
     "data-use-native-controls": useNativeControls,
-    className: cn("windowcontrols", "box-layout", "horizontal", "gtk-alignment", widgetClassName, className),
+    className: cn("windowcontrols", "empty", "start", "box-layout", "horizontal", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

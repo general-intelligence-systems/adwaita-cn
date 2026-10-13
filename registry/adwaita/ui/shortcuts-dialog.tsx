@@ -60,7 +60,7 @@ function ShortcutsDialog({ className, render, child, title, canClose, contentWid
     "data-content-width": contentWidth,
     "data-content-height": contentHeight,
     "data-follows-content-size": followsContentSize,
-    className: cn("dialog", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("dialog", "shortcuts", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

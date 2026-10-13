@@ -45,7 +45,7 @@ function ScaleButton({ className, render, orientation, value, adjustment, icons,
     "data-node": "scalebutton",
     "data-value": value,
     "data-has-frame": hasFrame,
-    className: cn("scalebutton", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("scalebutton", "scale", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

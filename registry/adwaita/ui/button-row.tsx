@@ -87,7 +87,7 @@ function ButtonRow({ className, render, actionName, actionTarget, activatable, s
     "data-use-markup": useMarkup,
     "data-start-icon-name": startIconName,
     "data-end-icon-name": endIconName,
-    className: cn("row", "bin-layout", "gtk-alignment", buttonRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "button", "activatable", "bin-layout", "gtk-alignment", buttonRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

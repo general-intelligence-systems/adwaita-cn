@@ -30,7 +30,7 @@ function StackSidebar({ className, render, stack, children, ...props }: StackSid
   const defaultProps = {
     "data-slot": "stack-sidebar",
     "data-node": "stacksidebar",
-    className: cn("stacksidebar", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("stacksidebar", "sidebar", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

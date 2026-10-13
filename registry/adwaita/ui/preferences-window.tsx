@@ -158,7 +158,7 @@ function PreferencesWindow({ className, render, title, resizable, modal, default
     "data-visible-page-name": visiblePageName,
     "data-search-enabled": searchEnabled,
     "data-can-navigate-back": canNavigateBack,
-    className: cn("window", "bin-layout", "gtk-alignment", preferencesWindowVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "solid-csd", "preferences", "bin-layout", "gtk-alignment", preferencesWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

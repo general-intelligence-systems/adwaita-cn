@@ -74,7 +74,7 @@ function CheckButton({ className, render, actionName, actionTarget, active, grou
     "data-active": active,
     "data-inconsistent": inconsistent,
     "data-use-underline": useUnderline,
-    className: cn("checkbutton", "box-layout", "horizontal", "gtk-alignment", checkButtonVariants({ size }), label !== undefined && "text-button", widgetClassName, className),
+    className: cn("checkbutton", "text-button", "box-layout", "horizontal", "gtk-alignment", checkButtonVariants({ size }), label !== undefined && "text-button", widgetClassName, className),
     style,
     children: (
       <>

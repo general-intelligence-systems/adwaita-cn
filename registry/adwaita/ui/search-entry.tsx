@@ -90,7 +90,7 @@ function SearchEntry({ className, render, editable, enableUndo, maxWidthChars, t
     "data-placeholder-text": placeholderText,
     "data-activates-default": activatesDefault,
     "data-search-delay": searchDelay,
-    className: cn("entry", "box-layout", "horizontal", "gtk-alignment", searchEntryVariants({ variant }), widgetClassName, className),
+    className: cn("entry", "search", "box-layout", "horizontal", "gtk-alignment", searchEntryVariants({ variant }), widgetClassName, className),
     style,
     ...widgetAttributes,
   }

@@ -71,7 +71,7 @@ function PreferencesDialog({ className, render, child, title, canClose, contentW
     "data-follows-content-size": followsContentSize,
     "data-visible-page-name": visiblePageName,
     "data-search-enabled": searchEnabled,
-    className: cn("dialog", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("dialog", "preferences", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

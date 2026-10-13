@@ -54,7 +54,7 @@ function Calendar({ className, render, date, year, month, day, showHeading, show
     "data-show-heading": showHeading,
     "data-show-day-names": showDayNames,
     "data-show-week-numbers": showWeekNumbers,
-    className: cn("calendar", "box-layout", "vertical", "gtk-alignment", widgetClassName, className),
+    className: cn("calendar", "view", "box-layout", "vertical", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

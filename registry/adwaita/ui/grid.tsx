@@ -51,7 +51,7 @@ function Grid({ className, render, orientation, rowSpacing, columnSpacing, rowHo
     "data-row-homogeneous": rowHomogeneous,
     "data-column-homogeneous": columnHomogeneous,
     "data-baseline-row": baselineRow,
-    className: cn("grid", "grid-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("grid", "horizontal", "grid-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

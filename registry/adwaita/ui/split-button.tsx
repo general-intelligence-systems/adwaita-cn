@@ -87,7 +87,7 @@ function SplitButton({ className, render, actionName, actionTarget, label, useUn
     "data-icon-name": iconName,
     "data-can-shrink": canShrink,
     "data-dropdown-tooltip": dropdownTooltip,
-    className: cn("splitbutton", "box-layout", "horizontal", "gtk-alignment", splitButtonVariants({ variant }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
+    className: cn("splitbutton", "text-button", "box-layout", "horizontal", "gtk-alignment", splitButtonVariants({ variant }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
     style,
     children: (
       <>

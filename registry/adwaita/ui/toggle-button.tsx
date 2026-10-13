@@ -103,7 +103,7 @@ function ToggleButton({ className, render, actionName, actionTarget, label, hasF
     "data-icon-name": iconName,
     "data-can-shrink": canShrink,
     "data-active": active,
-    className: cn("button", "bin-layout", "gtk-alignment", toggleButtonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
+    className: cn("button", "text-button", "toggle", "bin-layout", "gtk-alignment", toggleButtonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
     style,
     children: (
       <>
