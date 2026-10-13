@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { NavigationPage } from "@/ui/navigation-page"
+import { Label } from "@/ui/label"
 
 export default function NavigationPageBase() {
   return (
-    <NavigationPage tag="Tag" title="Title" />
+    <NavigationPage>
+      <Label label="Label" />
+    </NavigationPage>
   )
 }

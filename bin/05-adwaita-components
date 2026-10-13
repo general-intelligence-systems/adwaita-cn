@@ -1,258 +1,368 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# 05-ADWAITA-COMPONENTS(1)          General Commands Manual           05-ADWAITA-COMPONENTS(1)
+# 05-ADWAITA-COMPONENTS(1)         General Commands Manual         05-ADWAITA-COMPONENTS(1)
 #
 # NAME
-#      bin/05-adwaita-components — the component list, out of the class map
+#      bin/05-adwaita-components — the catalogue of widgets, nodes and style classes
 #
 # SYNOPSIS
-#      bin/05-adwaita-components [--legacy] [MAP] > components.json
+#      bin/05-adwaita-components > bin/05-adwaita-components.out/components.json
 #
 # DESCRIPTION
-#      Reads the selector-to-classes map bin/03-adwaita-tailwind produces and writes, as JSON on
-#      stdout, the list of components to build: one entry per component, its variants named, its
-#      states listed, and every class it needs carried with it.
+#      Reads the toolkit's own source from bin/02-fetch-gir.out/src and the selector map from
+#      bin/03-adwaita-tailwind, and writes the catalogue every later pass builds from:
+#      every widget the toolkit defines, the CSS node it renders as, the style classes it
+#      puts on itself, and which of the stylesheet's nodes belong to which.
 #
-#      This is the second of the two passes. MAP defaults to vendor/adwaita/widgets.json, which
-#      is what the pass before it writes.
+#      NOTHING HERE IS A LIST SOMEBODY TYPED. A widget's node is where the source calls
+#      gtk_widget_class_set_css_name; a node is internal where the source makes it with a
+#      gizmo, a builtin icon or gtk_css_node_set_name; a style class is one the source
+#      hands to gtk_widget_add_css_class. Every fact carries the file it was read from, so
+#      a wrong answer can be checked against the line that produced it.
 #
-#      `button.flat`, `button.pill` and `button.suggested-action` are one component with three
-#      variants, not three components.
+#      A NODE THE SOURCE DOES NOT ACCOUNT FOR IS REPORTED RATHER THAN DROPPED. The
+#      stylesheet styles nodes no widget creates -- rules left behind by GTK 3 -- and
+#      those belong in the output as unowned, with the selectors that mention them, so
+#      that a gap is visible instead of being quietly filtered away.
 #
-#      `trough`, `slider`, `arrow` and `contents` are render nodes inside a widget. GTK styles
-#      its internals as CSS nodes; the web builds them out of elements with no name of their
-#      own, so there is nothing to generate.
-#
-#      `.title-1`, `.heading`, `.dim-label` and `.monospace` are typography, which is one item
-#      carrying text styles rather than a component each.
-#
-#      `treeview`, `iconview`, `notebook` and `menubar` are GTK 3 widgets libadwaita still
-#      styles and no new application uses.
-#
-# OPTIONS
-#      --legacy   Include the GTK 3 widgets, which are excluded by default.
+# FILES
+#      bin/02-fetch-gir.out/src/gtk/              GTK's sources, from bin/02-fetch-gir
+#      bin/02-fetch-gir.out/src/libadwaita/       libadwaita's sources, from bin/02-fetch-gir
+#      bin/03-adwaita-tailwind.out/widgets.json  the selector map, from bin/03-adwaita-tailwind
+#      bin/05-adwaita-components.out/components.json  the output
 #
 # EXIT STATUS
-#      The bin/05-adwaita-components utility exits 0 on success, and >0 if an error occurs.
+#      The bin/05-adwaita-components utility exits 0 on success, and >0 if an error
+#      occurs.
 #
 # SEE ALSO
-#      bin/03-adwaita-tailwind, bin/01-fetch-adwaita
+#      bin/02-fetch-gir, bin/03-adwaita-tailwind, bin/08-final-components
 #
-# adwaita-cn                     October 12, 2026                     05-ADWAITA-COMPONENTS(1)
+# adwaita-cn                        October 13, 2026                05-ADWAITA-COMPONENTS(1)
 
 require "json"
+require "set"
 
 module AdwaitaComponents
-  # A widget, and what it is called where it is documented. The key is the GTK CSS node; a
-  # component is built once per entry here and its variants become its props.
-  COMPONENTS = {
-    "button" => "Gtk.Button",
-    "splitbutton" => "Adw.SplitButton",
-    "menubutton" => "Gtk.MenuButton",
-    "modelbutton" => "a row in a Gtk.PopoverMenu",
-    "toggle" => "Adw.Toggle",
-    "toggle-group" => "Adw.ToggleGroup",
-    "entry" => "Gtk.Entry",
-    "spinbutton" => "Gtk.SpinButton",
-    "check" => "Gtk.CheckButton",
-    "radio" => "Gtk.CheckButton, radio",
-    "checkbutton" => "Gtk.CheckButton with its label",
-    "switch" => "Gtk.Switch",
-    "scale" => "Gtk.Scale",
-    "progressbar" => "Gtk.ProgressBar",
-    "levelbar" => "Gtk.LevelBar",
-    "spinner" => "Adw.Spinner",
-    "row" => "Gtk.ListBoxRow / Adw.ActionRow",
-    "list" => "Gtk.ListBox",
-    "listview" => "Gtk.ListView",
-    "gridview" => "Gtk.GridView",
-    "columnview" => "Gtk.ColumnView",
-    "flowbox" => "Gtk.FlowBox",
-    "expander" => "Adw.ExpanderRow",
-    "headerbar" => "Adw.HeaderBar",
-    "windowcontrols" => "Gtk.WindowControls",
-    "windowtitle" => "Adw.WindowTitle",
-    "window" => "Adw.ApplicationWindow",
-    "sheet" => "Adw.BottomSheet",
-    "popover" => "Gtk.Popover",
-    "tooltip" => "Gtk.Tooltip",
-    "toast" => "Adw.Toast",
-    "banner" => "Adw.Banner",
-    "statuspage" => "Adw.StatusPage",
-    "tab" => "Adw.TabBar's tab",
-    "tabbar" => "Adw.TabBar",
-    "tabthumbnail" => "Adw.TabOverview's thumbnail",
-    "viewswitcher" => "Adw.ViewSwitcher",
-    "viewswitchertitle" => "Adw.ViewSwitcherTitle",
-    "stackswitcher" => "Gtk.StackSwitcher",
-    "separator" => "Gtk.Separator",
-    "scrollbar" => "Gtk.Scrollbar",
-    "avatar" => "Adw.Avatar",
-    "calendar" => "Gtk.Calendar",
-    "colorswatch" => "Gtk.ColorSwatch",
-    "emoji" => "Gtk.EmojiChooser's emoji",
-    "frame" => "Gtk.Frame",
-    "label" => "Gtk.Label",
-    "link" => "a link button",
-    "shortcut-label" => "Gtk.ShortcutLabel",
-    "statusbar" => "Gtk.Statusbar",
-  }.freeze
+  ROOT = File.expand_path("..", __dir__)
 
-  # Style classes which are components in their own right rather than a variant of a node.
-  CLASS_COMPONENTS = {
-    ".card" => "the card style class",
-    ".toolbar" => "Adw.ToolbarView's bars",
-    ".boxed-list" => "Adw.PreferencesGroup's list",
-    ".navigation-sidebar" => "Adw.NavigationSplitView's sidebar",
-    ".sidebar" => "a sidebar pane",
-    ".osd" => "an on-screen-display overlay",
-    ".keycap" => "a key in a shortcuts window",
-    ".app-notification" => "an in-app notification",
-    ".titlebar" => "a window's title bar",
-    ".top-bar" => "Adw.ToolbarView's top bar",
-    ".bottom-bar" => "Adw.ToolbarView's bottom bar",
-    ".close" => "a close button",
-  }.freeze
+  # Where each library's widgets live, and what to call it.
+  LIBRARIES = { "gtk" => "bin/02-fetch-gir.out/src/gtk/gtk", "libadwaita" => "bin/02-fetch-gir.out/src/libadwaita/src" }.freeze
 
-  # Typography, which is one item of text styles rather than a component each.
-  TYPOGRAPHY = %w[
-    .title-1 .title-2 .title-3 .title-4 .large-title .heading .caption .caption-heading .body
-    .document .monospace .numeric .dim-label .dimmed .accent .error .warning .success .title
-    .subtitle .icon .edit-icon
+  # G_DEFINE_TYPE (GtkButton, gtk_button, GTK_TYPE_WIDGET) and its variants. The three
+  # captures are the type, the function prefix its methods take, and its parent.
+  TYPE = /
+    G_DEFINE_(?:ABSTRACT_)?(?:FINAL_|DERIVABLE_)?TYPE(?:_WITH_CODE|_WITH_PRIVATE)?
+    \s*\(\s*([A-Z]\w*)\s*,\s*(\w+)\s*,\s*([A-Z_]+)
+  /x
+  ABSTRACT = /G_DEFINE_ABSTRACT_TYPE/
+
+  # A class_init is where a widget declares what it is, and a file may hold several.
+  CLASS_INIT = /^(\w+)_class_init\s*\(/
+
+  # The node a widget renders as.
+  OWN_NODE = /gtk_widget_class_set_css_name\s*\(\s*\w+\s*,\s*(?:I_\s*\()?\s*"([a-z][\w-]*)"/
+
+  # How a widget arranges its children. The stylesheet says what a widget looks like and
+  # says nothing at all about this: a GtkBox is a row or a column because its layout
+  # manager is a GtkBoxLayout, not because of any rule. A component built from the
+  # measurements alone has every child stacked in the document's default flow, which is
+  # why `Appearance` and `How the window looks.` come out on the same line.
+  LAYOUT = /gtk_widget_class_set_layout_manager_type\s*\([^;]*?,\s*([A-Z_]+_TYPE_[A-Z_]+)/
+
+  # A widget which sets no layout manager lays its children out in C, and the direction
+  # it does it in is the box it builds to hold them: AdwToolbarView sets none, measures
+  # everything along GTK_ORIENTATION_VERTICAL, and makes a vertical box for its bars.
+  INTERNAL_BOX = /gtk_box_new\s*\(\s*GTK_ORIENTATION_(VERTICAL|HORIZONTAL)/
+
+  # Nodes the toolkit makes inside a widget. These are render nodes: they have metrics
+  # but no class of their own, and no component is built for them.
+  INTERNAL_NODE = [
+    /(?:gtk|adw)_gizmo_new(?:_with_role)?\s*\(\s*"([a-z][\w-]*)"/,
+    /gtk_builtin_icon_new\s*\(\s*"([a-z][\w-]*)"/,
+    /gtk_icon_new\s*\(\s*"([a-z][\w-]*)"/,
+    /gtk_css_node_set_name\s*\([^;]*?"([a-z][\w-]*)"/,
+    /gtk_widget_set_css_name\s*\([^;]*?"([a-z][\w-]*)"/,
   ].freeze
 
-  # Nodes GTK draws inside a widget. A web component has no element to hang these on, so there
-  # is nothing to generate even though they carry real metrics.
-  INTERNAL = %w[
-    * widget box grid child block text contents trough slider arrow highlight mask plane fill
-    value cell shadow dimming overlay image picture revealer viewport windowhandle header
-    outline item tabbox tabs tabboxchild sort-indicator cursor-handle drag-handle dndtarget
-    accelerator color marks indicator indicatorbin progress undershoot overshoot flowboxchild
-    expander-widget drawing selection popup decoration nothing paintable
-    shortcut shortcuts-section emoji-completion-row title
-  ].freeze
+  # A style class the widget puts on itself. GtkButton applies `.text-button` through a
+  # local helper rather than the public call, so a bare literal counts too -- but only
+  # when the stylesheet styles that name, which is what makes it a style class rather
+  # than any other string in the file.
+  APPLIED = /gtk_widget_(?:add|remove)_css_class\s*\([^;]*?"([a-z][\w-]*)"/
+  LITERAL = /"([a-z][a-z0-9-]*)"/
 
-  # GTK 3 widgets libadwaita still styles and nothing new is built with.
-  LEGACY = %w[treeview iconview notebook menubar placessidebar filelistcell].freeze
+  # A property setter, and the calls which mean the property it sets is shown to the
+  # reader as text. `adw_action_row_set_subtitle` hands its argument to
+  # gtk_label_set_label, so `subtitle` is text; `set_subtitle_lines` hands a number to
+  # gtk_label_set_lines, so it is not.
+  SETTER = /^(\w+?)_set_([a-z0-9_]+)\s*\(/
+  SHOWS_TEXT = /gtk_(?:label|button|editable|inscription)_set_(?:label|text|markup)\s*\(/
 
-  # Style classes which belong to one GTK dialog or chooser rather than to a component anyone
-  # would install.
-  INTERNAL_CLASSES = %w[
-    .box .view .apply-button .collapse-spacing .combo-searchbar .content-pane .default-decoration
-    .dialog-action-area .dialog-action-box .dropdown-searchbar .editable-area .emoji-searchbar
-    .emoji-toolbar .end-action .start-action .heading-bin .message-area .new-tab-button .prefixes
-    .suffixes .response-area .row-header .shortcut-row .shortcuts-search-results .sidebar-button
-    .sidebar-pane .tab-unpin-icon .tile .device-view .app-version .child .indicator .drawing
-    .shortcuts-section .shortcut .emoji-completion-row .sidebar-label .sidebar-icon .day-number
-    .separator .wide .osd-toolbar
-  ].freeze
+  # GTK_TYPE_TOGGLE_BUTTON is GtkToggleButton.
+  NAMESPACES = { "GTK" => "Gtk", "ADW" => "Adw", "GDK" => "Gdk", "GSK" => "Gsk" }.freeze
 
-  # The node a selector is about. `*` is the universal selector and names no node at all, so
-  # it keeps its own name rather than becoming the empty string.
-  def self.node_of(selector)
-    node = selector[/\A[a-z][a-z0-9-]*/]
+  def self.run(_argv)
+    widgets = {}
+    internal = Hash.new{|found, key| found[key] = [] }
+    applied = Hash.new{|found, key| found[key] = [] }
 
-    if !node.nil?
-      node
-    elsif selector.start_with?(".")
-      selector[/\A\.[a-z0-9-]+/].to_s
-    else
-      selector
+    LIBRARIES.each do |library, directory|
+      self.read_sources(library, directory, widgets, internal, applied)
     end
+
+    styled = self.styled
+    self.resolve(widgets)
+    self.confirm(widgets)
+
+    owners = widgets.each_with_object(Hash.new{|found, key| found[key] = [] }) do |(name, widget), found|
+      found[widget.fetch("node")] << name if widget.fetch("node")
+    end
+
+    File.write(self.output("components.json"), "#{JSON.pretty_generate({
+      "versions" => self.versions,
+      "counts" => self.counts(widgets, owners, internal, applied, styled),
+      "widgets" => widgets.sort.to_h,
+      "nodes" => self.nodes(owners, internal, styled),
+      "classes" => self.classes(applied, styled),
+      "unowned" => self.unowned(owners, internal, applied, styled),
+    })}\n")
+    warn("wrote bin/05-adwaita-components.out/components.json")
   end
 
-  def self.classify(node)
-    if COMPONENTS.key?(node) || CLASS_COMPONENTS.key?(node)
-      :component
-    elsif TYPOGRAPHY.include?(node)
-      :typography
-    elsif INTERNAL.include?(node) || INTERNAL_CLASSES.include?(node)
-      :internal
-    elsif LEGACY.include?(node)
-      :legacy
-    else
-      :unclassified
-    end
-  end
+  def self.read_sources(library, directory, widgets, internal, applied)
+    prefixes = {}
 
-  def self.run(argv)
-    legacy = argv.delete("--legacy")
-    source = argv.first || File.expand_path("../vendor/adwaita/widgets.json", __dir__)
+    Dir.glob(File.join(ROOT, directory, "**", "*.c")).sort.each do |path|
+      source = File.read(path, encoding: "UTF-8", invalid: :replace, undef: :replace)
+      relative = path.delete_prefix("#{ROOT}/bin/02-fetch-gir.out/src/")
 
-    map = JSON.parse(File.read(source))
-
-    grouped = {}
-
-    map.each do |selector, states|
-      node = self.node_of(selector)
-      kind = self.classify(node)
-
-      if kind == :legacy && legacy.nil?
-        next
+      source.scan(TYPE) do |name, prefix, parent|
+        prefixes[prefix] = name
+        widgets[name] ||= {
+          "library" => library,
+          "source" => relative,
+          "parent" => self.type_of(parent),
+          "abstract" => !source[ABSTRACT].nil?,
+          "node" => nil,
+          "ownNode" => false,
+          "layout" => nil,
+          "applies" => [],
+          "declared" => [],
+        }
       end
 
-      group = grouped[node] ||= {
-        kind: kind,
-        name: COMPONENTS[node] || CLASS_COMPONENTS[node],
-        selectors: {},
-      }
-      group[:selectors][selector] = states
+      self.nodes_in(source, prefixes, widgets, source.scan(TYPE).map(&:first))
+      INTERNAL_NODE.each{|pattern| source.scan(pattern){|node| internal[node.first] << relative } }
+
+      self.text_in(source, prefixes, widgets)
+
+      # The style classes this file writes belong to the types it defines.
+      self.classes_in(source, relative, applied).then do |found, declared|
+        source.scan(TYPE) do |name, _prefix, _parent|
+          widgets[name]["applies"] = (widgets[name].fetch("applies") | found).sort
+          widgets[name]["declared"] = (widgets[name].fetch("declared", []) | declared).sort
+        end
+      end
     end
-
-    components = grouped.select{|_node, group| group[:kind] == :component}
-
-    puts(JSON.pretty_generate(self.as_items(grouped, components)))
   end
 
-  # Why each set-aside group was set aside, carried into the output so the exclusions travel
-  # with the list rather than living only in this script.
-  ASIDES = {
-    typography: "Text styles rather than components: one item carrying all of them.",
-    internal: "Nodes GTK draws inside a widget. The web builds those out of elements with no " \
-              "name of their own, so there is nothing to generate even though they carry real " \
-              "metrics -- read them off the parent in widgets.json.",
-    legacy: "GTK 3 widgets libadwaita still styles and nothing new is built with. Pass " \
-            "--legacy to include them.",
-    unclassified: "Nodes the tables in this script do not mention. Classify them rather than " \
-                  "leaving them here.",
-  }.freeze
+  # The node a class_init sets, attributed to the type whose class_init it is: one file
+  # can define several types, and taking the first of each pairs them wrongly.
+  def self.nodes_in(source, prefixes, widgets, own)
+    inits = source.enum_for(:scan, CLASS_INIT).map{ [Regexp.last_match(1), Regexp.last_match.begin(0)] }
 
-  # The component list, plus what was set aside and why. Nothing is dropped silently: a
-  # consumer which cannot see the exclusions cannot argue with them.
-  def self.as_items(grouped, components)
+    inits.each_with_index do |(prefix, start), index|
+      finish = inits.dig(index + 1, 1) || source.length
+      body = source[start...finish]
+      name = prefixes[prefix]
+
+      next if name.nil? || widgets[name].nil?
+
+      body[OWN_NODE, 1].then do |node|
+        if node
+          widgets[name]["node"] = node
+          widgets[name]["ownNode"] = true
+        end
+      end
+
+      body[LAYOUT, 1].then{|layout| widgets[name]["layout"] = self.layout_of(layout) if layout }
+    end
+
+    # Only where the class declared no manager of its own, because a manager is the
+    # answer and an internal box is only evidence -- and only for the types this file
+    # defines, because the box is evidence about them and about nothing else. Reading
+    # it across every type seen so far gave GtkListBox, which builds no box at all, the
+    # direction of the first box built in whichever file came after it.
+    source[INTERNAL_BOX, 1].then do |direction|
+      next if direction.nil?
+
+      own.each do |name|
+        next if widgets[name].nil? || widgets[name]["layout"]
+
+        widgets[name]["layout"] = "box"
+        widgets[name]["direction"] = direction.downcase
+      end
+    end
+  end
+
+  # `GTK_TYPE_BOX_LAYOUT` is a box layout.
+  def self.layout_of(macro)
+    macro.sub(/\A[A-Z]+_TYPE_/, "").downcase.sub(/_layout\z/, "")
+  end
+
+  # The style classes a file writes: the ones it hands to the public call, and any other
+  # literal which the stylesheet styles as a class. The second is needed because the
+  # toolkit does not always use the public call -- gtkbutton.c applies `.text-button`
+  # through a local helper -- and is safe because a literal has to be a name the
+  # stylesheet styles before it counts.
+  def self.classes_in(source, relative, applied)
+    declared = source.scan(APPLIED).flatten.uniq
+    found = declared | source.scan(LITERAL).flatten.select{|style| self.styled.include?(style) }
+
+    found.each{|style| applied[style] << relative }
+
+    [found.uniq.sort, declared.sort]
+  end
+
+  # The properties a widget shows as text: the ones whose setter puts them into a label.
+  def self.text_in(source, prefixes, widgets)
+    setters = source.enum_for(:scan, SETTER).map do
+      [Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match.begin(0)]
+    end
+
+    setters.each_with_index do |(prefix, property, start), index|
+      finish = setters.dig(index + 1, 2) || source.length
+      name = prefixes[prefix]
+
+      next if name.nil? || widgets[name].nil?
+      next unless source[start...finish][SHOWS_TEXT]
+
+      widgets[name]["showsText"] = (widgets[name].fetch("showsText", []) | [self.camel(property)]).sort
+    end
+  end
+
+  def self.camel(property)
+    parts = property.split("_")
+
+    parts.first + parts.drop(1).map(&:capitalize).join
+  end
+
+  # A literal is only kept as a style class of this widget once the stylesheet styles it
+  # ON THIS WIDGET'S NODE. `"button"` and `"child"` appear as strings in gtkbutton.c and
+  # are styled names, but there is no `button.button` rule, so neither is a class the
+  # button carries. A class handed to the public call is kept either way, because that
+  # call is not ambiguous.
+  def self.confirm(widgets)
+    widgets.each_value do |widget|
+      node = widget["node"]
+
+      widget["applies"] = widget.fetch("applies").select do |style|
+        widget.fetch("declared").include?(style) || (node && self.map.key?("#{node}.#{style}"))
+      end
+    end
+  end
+
+  # A widget with no node of its own renders as the nearest ancestor's: GtkLinkButton
+  # sets none and is a `button`.
+  def self.resolve(widgets)
+    widgets.each_key do |name|
+      next if widgets.fetch(name).fetch("node")
+
+      current = widgets.fetch(name)["parent"]
+      seen = Set.new([name])
+
+      while current && widgets.key?(current) && !seen.include?(current)
+        seen << current
+        found = widgets.fetch(current)["node"]
+
+        if found
+          widgets[name]["node"] = found
+          widgets[name]["inheritedFrom"] = current
+          break
+        end
+
+        current = widgets.fetch(current)["parent"]
+      end
+    end
+  end
+
+  def self.type_of(macro)
+    parts = macro.split("_")
+    namespace = NAMESPACES[parts.first]
+
+    namespace && parts[1] == "TYPE" ? namespace + parts.drop(2).map(&:capitalize).join : nil
+  end
+
+  # Every element and every class the stylesheet names, which is what decides whether a
+  # string in the source is a style class or just a string.
+  def self.map
+    @map ||= JSON.parse(File.read(File.join(ROOT, "bin/03-adwaita-tailwind.out/widgets.json")))
+  end
+
+  def self.styled
+    @styled ||= self.map.keys
+      .flat_map{|selector| selector.scan(/\.([a-z][\w-]*)/).flatten }
+      .uniq.to_set
+  end
+
+  def self.elements
+    @elements ||= self.map.keys.filter_map{|selector| selector[/\A([a-z][\w-]*)/, 1] }.uniq.to_set
+  end
+
+  def self.nodes(owners, internal, _styled)
+    (owners.keys | internal.keys).sort.to_h do |node|
+      [node, {
+        "kind" => owners.key?(node) ? "widget" : "internal",
+        "widgets" => owners.fetch(node, []).sort,
+        "madeIn" => internal.fetch(node, []).uniq.sort.first(4),
+        "styled" => self.elements.include?(node),
+      }]
+    end
+  end
+
+  def self.classes(applied, styled)
+    (applied.keys.to_set & styled).sort.to_h do |style|
+      [style, { "appliedIn" => applied.fetch(style).uniq.sort.first(6) }]
+    end
+  end
+
+  # What the stylesheet styles and the source does not account for.
+  def self.unowned(owners, internal, applied, styled)
+    (self.elements - owners.keys.to_set - internal.keys.to_set).sort.to_h do |node|
+      [node, {
+        "selectors" => self.map.keys.select{|one| one[/\A([a-z][\w-]*)/, 1] == node }.sort.first(4),
+        "alsoAStyleClass" => styled.include?(node) || applied.key?(node),
+      }]
+    end
+  end
+
+  def self.counts(widgets, owners, internal, applied, styled)
     {
-      "components" => self.components(components),
-      "excluded" => %i[typography unclassified legacy internal].to_h do |kind|
-        [
-          kind.to_s,
-          {
-            "reason" => ASIDES.fetch(kind),
-            "nodes" => grouped.select{|_node, group| group[:kind] == kind}.keys.sort,
-          },
-        ]
-      end,
+      "widgets" => widgets.size,
+      "withOwnNode" => widgets.count{|_name, one| one.fetch("ownNode") },
+      "withInheritedNode" => widgets.count{|_name, one| one.key?("inheritedFrom") },
+      "nodes" => owners.size,
+      "internalNodes" => internal.size,
+      "styleClasses" => (applied.keys.to_set & styled).size,
+      "styledElements" => self.elements.size,
+      "unowned" => (self.elements - owners.keys.to_set - internal.keys.to_set).size,
     }
   end
 
-  def self.components(components)
-    components.sort.to_h do |node, group|
-      [
-        node,
-        {
-          "widget" => group[:name],
-          "variants" => self.variants_of(node, group),
-          "states" => group[:selectors].values.flat_map(&:keys).uniq,
-          "classes" => group[:selectors],
-        },
-      ]
-    end
+  def self.versions
+    path = File.join(ROOT, "bin/02-fetch-gir.out/src/VERSIONS")
+
+    File.exist?(path) ? File.read(path).lines.to_h{|line| line.split(/\s+/, 2).map(&:strip) } : {}
   end
 
-  def self.variants_of(node, group)
-    group[:selectors].keys
-      .reject{|selector| selector == node}
-      .map{|selector| selector.delete_prefix(node).delete_prefix(".")}
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "05-adwaita-components.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
+    end
   end
 end
 

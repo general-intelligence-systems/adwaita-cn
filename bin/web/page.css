@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import "../../registry/adwaita/adwaita.css";
+
+/* The page the shots are taken from. Each case sits alone in a box the
+ * screenshotter measures, on the window background Adwaita would give it, so
+ * that a component which is a tint of what it sits on is tinted against the
+ * same thing the toolkit tinted it against. */
+/* No font is named here on purpose. The toolkit renders in the system font and
+ * so should the page: naming one makes every width a comparison of two fonts
+ * rather than of two components.
+ *
+ * Naming none was not enough. Tailwind's preflight puts a stack of its own on
+ * `html` -- -apple-system, Segoe UI, Roboto, Arial, sans-serif -- so the page was
+ * being laid out in Arial while the toolkit laid itself out in the desktop's font,
+ * and every width was that comparison rather than this one.
+ *
+ * The font named here is the one the toolkit is rendering in: GTK reads
+ * `gtk-font-name` off the desktop, which on this machine is ComicShannsMono Nerd
+ * Font 11, and the page has to be laid out in the same face or the shots beside
+ * each other are a comparison of two fonts. */
+html,
+body {
+  font-family: "ComicShannsMono Nerd Font", monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--window-bg-color);
+  color: var(--window-fg-color);
+}
+
+/* An application is shot whole, at the size its manifest gives it, so the shot is
+ * the same kind of thing as the window beside it. */
+[data-app] {
+  display: block;
+  margin: 0 0 24px;
+}

@@ -9,7 +9,7 @@
 #      bin/01-fetch-adwaita
 #
 # DESCRIPTION
-#      Writes the two compiled stylesheets Fractal is drawn with into vendor/adwaita/, which is
+#      Writes the two compiled stylesheets Fractal is drawn with into bin/01-fetch-adwaita.out/, which is
 #      what bin/03-adwaita-tailwind reads.
 #
 #      Two sheets, because Adwaita is only the top half:
@@ -26,14 +26,14 @@
 #              no longer ships an Adwaita of its own; gtk/theme/ holds Default and Empty, and
 #              Adwaita moved out to libadwaita.
 #
-#      The versions extracted are recorded in vendor/adwaita/VERSIONS, because the metrics move
+#      The versions extracted are recorded in bin/01-fetch-adwaita.out/VERSIONS, because the metrics move
 #      between releases and a generated class list is only true of the sheet it came from.
 #
 # FILES
-#      vendor/adwaita/adwaita.css
-#      vendor/adwaita/gtk-default-light.css
-#      vendor/adwaita/ui/*.ui
-#      vendor/adwaita/VERSIONS
+#      bin/01-fetch-adwaita.out/adwaita.css
+#      bin/01-fetch-adwaita.out/gtk-default-light.css
+#      bin/01-fetch-adwaita.out/ui/*.ui
+#      bin/01-fetch-adwaita.out/VERSIONS
 #
 # EXIT STATUS
 #      The bin/01-fetch-adwaita utility exits 0 on success, and >0 if an error occurs.
@@ -49,7 +49,7 @@ set -o pipefail
 
 cd "$(dirname "$0")/.."
 
-out="vendor/adwaita"
+out="bin/01-fetch-adwaita.out"
 mkdir -p "$out"
 
 # pkg-config when the devshell provides the libraries, and the store otherwise. Neither the

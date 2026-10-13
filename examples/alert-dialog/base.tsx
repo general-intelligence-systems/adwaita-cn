@@ -9,6 +9,6 @@ import { AlertDialog } from "@/ui/alert-dialog"
 
 export default function AlertDialogBase() {
   return (
-    <AlertDialog body="Body" heading="Heading" title="Title" />
+    <AlertDialog body="Body" heading="Heading" />
   )
 }

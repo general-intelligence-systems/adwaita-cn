@@ -9,6 +9,6 @@ import { AboutDialog } from "@/ui/about-dialog"
 
 export default function AboutDialogBase() {
   return (
-    <AboutDialog comments="Comments" title="Title" version="Version" />
+    <AboutDialog applicationName="Application name" comments="Comments" developerName="Developer name" />
   )
 }

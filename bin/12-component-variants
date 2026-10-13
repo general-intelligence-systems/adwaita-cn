@@ -8,7 +8,7 @@
 #      them with
 #
 # SYNOPSIS
-#      bin/12-component-variants > vendor/adwaita/variants.json
+#      bin/12-component-variants > bin/12-component-variants.out/variants.json
 #
 # DESCRIPTION
 #      Compiles what bin/08-final-components resolved into one flat list: every component, every
@@ -23,8 +23,8 @@
 #      documentation.
 #
 # FILES
-#      vendor/adwaita/final-components.json  the components and their variants, from 08
-#      vendor/adwaita/variants.json          the output
+#      bin/08-final-components.out/final-components.json  the components and their variants, from 08
+#      bin/12-component-variants.out/variants.json          the output
 #
 # EXIT STATUS
 #      The bin/12-component-variants utility exits 0 on success, and >0 if an error occurs.
@@ -32,7 +32,7 @@
 # EXAMPLES
 #      The list:
 #
-#            bin/12-component-variants > vendor/adwaita/variants.json
+#            bin/12-component-variants > bin/12-component-variants.out/variants.json
 #
 #      What a button can be:
 #
@@ -54,14 +54,14 @@ require "json"
 module ComponentVariants
   def self.run(_argv)
     root = File.expand_path("..", __dir__)
-    final = JSON.parse(File.read(File.join(root, "vendor/adwaita/final-components.json")))
+    final = JSON.parse(File.read(File.join(root, "bin/08-final-components.out/final-components.json")))
     components = final.fetch("components")
 
     entries = final.fetch("buildable").sort.to_h do |name|
       [name, self.entry(components.fetch(name))]
     end
 
-    puts(JSON.pretty_generate({
+    File.write(self.output("variants.json"), "#{JSON.pretty_generate({
       "versions" => final.fetch("versions"),
       "counts" => {
         "components" => entries.length,
@@ -71,7 +71,8 @@ module ComponentVariants
       },
       "universal" => final.fetch("universal"),
       "components" => entries,
-    }))
+    })}\n")
+    warn("wrote bin/12-component-variants.out/variants.json")
   end
 
   def self.entry(component)
@@ -113,6 +114,14 @@ module ComponentVariants
   # `subtitleLines` -> `Subtitle lines`.
   def self.humanise(prop)
     self.kebab(prop).tr("-", " ").capitalize
+  end
+
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "12-component-variants.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
+    end
   end
 end
 

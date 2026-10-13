@@ -9,6 +9,6 @@ import { PreferencesPage } from "@/ui/preferences-page"
 
 export default function PreferencesPageBase() {
   return (
-    <PreferencesPage description="Description" title="Title" />
+    <PreferencesPage description="Description" />
   )
 }

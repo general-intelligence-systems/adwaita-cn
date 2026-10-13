@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { PreferencesWindow } from "@/ui/preferences-window"
+import { Label } from "@/ui/label"
 
 export default function PreferencesWindowBase() {
   return (
-    <PreferencesWindow title="Title" />
+    <PreferencesWindow>
+      <Label label="Label" />
+    </PreferencesWindow>
   )
 }

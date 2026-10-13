@@ -1,0 +1,83 @@
+{
+  "comment": "The apps both sides build. One entry per app: the window it is shot at, and the components it puts on screen. Both renderers read this, so neither has a list of its own.",
+  "apps": [
+    {
+      "name": "preferences",
+      "title": "Preferences",
+      "width": 480,
+      "height": 640,
+      "uses": [
+        "PreferencesPage",
+        "PreferencesGroup",
+        "ActionRow",
+        "SwitchRow",
+        "ComboRow",
+        "EntryRow",
+        "SpinRow",
+        "ToolbarView",
+        "HeaderBar",
+        "WindowTitle",
+        "Button"
+      ]
+    },
+    {
+      "name": "library",
+      "title": "Library",
+      "width": 900,
+      "height": 600,
+      "uses": [
+        "NavigationSplitView",
+        "NavigationPage",
+        "ToolbarView",
+        "HeaderBar",
+        "ListBox",
+        "ActionRow",
+        "Avatar",
+        "SearchEntry",
+        "StatusPage",
+        "Button",
+        "Separator"
+      ]
+    },
+    {
+      "name": "controls",
+      "title": "Controls",
+      "width": 560,
+      "height": 720,
+      "uses": [
+        "Clamp",
+        "PreferencesGroup",
+        "Box",
+        "Label",
+        "Button",
+        "ToggleGroup",
+        "Entry",
+        "SearchEntry",
+        "Scale",
+        "Switch",
+        "CheckButton",
+        "DropDown",
+        "ProgressBar",
+        "LevelBar",
+        "SpinButton",
+        "Separator"
+      ]
+    },
+    {
+      "name": "feedback",
+      "title": "Feedback",
+      "width": 560,
+      "height": 420,
+      "uses": [
+        "ToastOverlay",
+        "Banner",
+        "StatusPage",
+        "Button",
+        "Box",
+        "Label",
+        "HeaderBar",
+        "ToolbarView"
+      ]
+    }
+  ]
+}

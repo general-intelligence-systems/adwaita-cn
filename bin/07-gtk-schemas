@@ -10,9 +10,15 @@
 #      bin/07-gtk-schemas [--own] > schemas.json
 #
 # DESCRIPTION
-#      Reads the GIR files under vendor/gir/ and writes, as JSON on stdout, one entry per widget
+#      Reads the GIR files under bin/02-fetch-gir.out/ and writes, as JSON on stdout, one entry per widget
 #      class: its properties, each with the type it takes, its default, and whether it can be
 #      written at all.
+#
+#      An implemented interface's properties are a class's own: `orientation` is declared
+#      by Gtk.Orientable, and every box and scrollbar has it from there rather than from a
+#      parent class. What a widget renders as is not read here -- bin/05-adwaita-components
+#      reads that from the toolkit's source, where it is set, rather than from the
+#      sentences the documentation happens to contain.
 #
 #      Read-only properties are included and flagged rather than dropped: passing one is an
 #      error worth reporting, and a lint cannot report what it was not told about.
@@ -22,9 +28,9 @@
 #      --qualified  Key by Adw.Button and Gtk.Button rather than consolidating.
 #
 # FILES
-#      vendor/gir/Gtk-4.0.gir
-#      vendor/gir/Adw-1.gir
-#      vendor/gir/VERSIONS
+#      bin/02-fetch-gir.out/Gtk-4.0.gir
+#      bin/02-fetch-gir.out/Adw-1.gir
+#      bin/02-fetch-gir.out/VERSIONS
 #              Which release each file came from. Properties move between releases.
 #
 # EXIT STATUS
@@ -33,7 +39,7 @@
 # EXAMPLES
 #      The schemas:
 #
-#            bin/07-gtk-schemas > vendor/gir/schemas.json
+#            bin/07-gtk-schemas > bin/07-gtk-schemas.out/schemas.json
 #
 #      What ActionRow itself adds:
 #
@@ -49,8 +55,8 @@ require "rexml/document"
 
 module GtkSchemas
   GIR = {
-    "Gtk" => "vendor/gir/Gtk-4.0.gir",
-    "Adw" => "vendor/gir/Adw-1.gir",
+    "Gtk" => "bin/02-fetch-gir.out/Gtk-4.0.gir",
+    "Adw" => "bin/02-fetch-gir.out/Adw-1.gir",
   }.freeze
 
   # The GIR type names which are a JavaScript primitive, and which one.
@@ -83,6 +89,7 @@ module GtkSchemas
   def self.read(root)
     classes = {}
     enums = {}
+    interfaces = {}
 
     GIR.each do |namespace, relative|
       document = REXML::Document.new(File.read(File.join(root, relative)))
@@ -102,6 +109,13 @@ module GtkSchemas
         }
       end
 
+      # An interface declares properties too, and a widget which implements one has them
+      # as surely as it has its parent's: `orientation` is Gtk.Orientable's, and every box,
+      # scrollbar and separator in the toolkit gets it from there rather than from a class.
+      REXML::XPath.each(document, "//namespace/interface") do |node|
+        interfaces["#{namespace}.#{node.attribute('name')}"] = self.properties(node)
+      end
+
       REXML::XPath.each(document, "//namespace/class") do |node|
         name = node.attribute("name").to_s
         parent = node.attribute("parent")&.to_s
@@ -111,8 +125,18 @@ module GtkSchemas
           # A parent in the same namespace is written bare, so it is qualified here.
           parent: self.qualify(parent, namespace),
           properties: self.properties(node),
-          css: self.css(node),
+          implements: REXML::XPath.match(node, "implements")
+            .map{|one| self.qualify(one.attribute("name").to_s, namespace) },
         }
+      end
+    end
+
+    # The properties an implemented interface brings, which the class does not repeat.
+    classes.each_value do |entry|
+      entry.fetch(:implements).each do |name|
+        interfaces.fetch(name, {}).each do |property, attributes|
+          entry[:properties][property] ||= attributes
+        end
       end
     end
 
@@ -222,103 +246,16 @@ module GtkSchemas
   # The rest say the same thing in a sentence -- "has a single CSS node with name button", "has a
   # main node `expander-widget`, and subnode `box`" -- so both forms are read.
 
-  # A sentence naming the node the widget itself is.
-  ROOTS = [
-    /\b(?:main|single)\s+(?:CSS\s+)?nodes?\s+(?:with\s+)?(?:the\s+)?(?:name|named|called)\s+[`']?([a-z][a-z0-9-]*)/,
-    /\b(?:main|single)\s+(?:CSS\s+)?nodes?\s+[`']([a-z][a-z0-9-]*)[`']/,
-  ].freeze
 
-  # A sentence naming a node the widget draws inside itself.
-  PARTS = [
-    /\bsub-?nodes?\s+(?:with\s+)?(?:the\s+)?(?:names?|named|called)\s+[`']?([a-z][a-z0-9-]*)/,
-    /\bsub-?nodes?\s+[`']([a-z][a-z0-9-]*)[`']/,
-    /\bnodes?\s+with\s+the\s+names?\s+[`']([a-z][a-z0-9-]*)[`']/,
-    /\bcontains\s+nodes?\s+[`']([a-z][a-z0-9-]*)[`']/,
-  ].freeze
 
-  # A style class the class documents itself as taking, in a sentence or as a link into
-  # libadwaita's style-classes page.
-  STYLES = [
-    /\.([a-z][a-z0-9-]*)\s+style\s+class/,
-    /\[`\.([a-z][a-z0-9-]*)`\]\(style-classes/,
-  ].freeze
 
-  # The bases every widget descends from, which name no component.
-  UNIVERSAL = ["GObject.Object", "GObject.InitiallyUnowned", "Gtk.Widget"].freeze
 
-  # What one class's documentation says it renders as.
-  def self.css(node)
-    documentation = REXML::XPath.first(node, "doc")&.text.to_s
-    section = documentation[/^#+\s*CSS\s+nodes?\s*$(.*?)(?=^#+\s|\z)/m, 1]
 
-    self.drawn(section.to_s).merge("styles" => self.matches(STYLES, section.to_s))
-  end
 
-  # The tree if one is drawn, and the sentences otherwise. A class which draws its tree says
-  # everything in it, so the prose beside it is not read for nodes -- GtkEmojiChooser draws a
-  # popover whose parts include `entry.search`, and reading its sentence as well would have the
-  # Entry class claim to render it.
-  def self.drawn(section)
-    fenced = section[/```\n(.*?)```/m, 1]
 
-    if fenced
-      lines = fenced.lines.map{|line| self.line(line)}.compact
-      { "root" => lines.first, "parts" => lines.drop(1).uniq - [lines.first] }
-    else
-      { "root" => self.matches(ROOTS, section).first, "parts" => self.matches(PARTS, section) }
-    end
-  end
 
-  # One line of a drawn tree. The box-drawing prefix is dropped, an optional node is unwrapped,
-  # and a `<child>` placeholder is not a node name at all.
-  def self.line(line)
-    line.sub(/\A[^a-zA-Z\[]*/, "").sub(/\A\[/, "")[/\A[a-z][a-z0-9-]*/]
-  end
 
-  def self.matches(patterns, text)
-    patterns.flat_map{|pattern| text.scan(pattern)}.flatten.uniq
-  end
 
-  # Every documented node name, against the one class it belongs to. A root node is the class
-  # itself; a part is something the class draws inside itself and is no component of its own, so
-  # which it is comes out of the index rather than being left for a reader to work out.
-  def self.index(classes, keyed)
-    roots = self.documenters(classes){|css| [css["root"]].compact}
-    parts = self.documenters(classes){|css| css["parts"]}
-
-    (roots.keys | parts.keys).sort.to_h do |node|
-      owners = roots.fetch(node, parts[node])
-
-      [node, {
-        "kind" => roots.key?(node) ? "root" : "part",
-        "widget" => self.owner(node, owners, classes, keyed),
-        "documented" => owners.map{|name| self.bare(name, classes, keyed)}.uniq.sort,
-      }]
-    end
-  end
-
-  # Which class a node name means. Two things say so and they agree, which is what makes this
-  # safe to automate: GTK names a widget's node after the widget, lowercased and with the
-  # hyphens gone, and the documentation draws that same node at the top of the class's tree. Of
-  # the 86 documented root nodes 85 are also the name of a class, and the one which is not --
-  # `dialog`, drawn by AboutDialog and PreferencesDialog -- is Adw.Dialog, which both descend
-  # from. So the name is read first, and the tree is what corroborates it.
-  def self.owner(node, owners, classes, keyed)
-    named = keyed.keys.find{|key| key.downcase.delete("-") == node.delete("-")}
-
-    named || self.bare(self.common(owners, classes), classes, keyed)
-  end
-
-  # The class a node's documenters have in common, for a node named after no class. Several
-  # classes document the same node when they inherit it -- `row` is every AdwPreferencesRow
-  # subclass -- so the one they share is the one which draws it.
-  def self.common(owners, classes)
-    found = owners.map{|name| self.ancestry(name, classes)}.reduce do |left, right|
-      left.take_while.with_index{|name, index| right[index] == name}
-    end.last
-
-    UNIVERSAL.include?(found) ? nil : found
-  end
 
   # Furthest ancestor first, so a common prefix is a common ancestry.
   def self.ancestry(name, classes)
@@ -333,28 +270,8 @@ module GtkSchemas
     chain
   end
 
-  # Every style class a widget documents itself as taking. A STYLE CLASS IS A MODIFIER RATHER
-  # THAN A WIDGET -- `.card` is something a box or a button can be, not a class of its own -- so
-  # this records which widgets accept it and nothing is made to claim it is one.
-  def self.styles(classes, keyed)
-    self.documenters(classes){|css| css["styles"]}.sort.to_h do |style, owners|
-      [style, owners.map{|name| self.bare(name, classes, keyed)}.uniq.sort]
-    end
-  end
 
-  # Each name against the classes which named it.
-  def self.documenters(classes)
-    classes.each_with_object({}) do |(name, entry), found|
-      yield(entry[:css]).each{|value| (found[value] ||= []) << name}
-    end
-  end
 
-  # The key a class is consolidated under, which for a shadowed Gtk class is the Adw class's.
-  def self.bare(name, classes, keyed)
-    key = self.consolidated(name, classes)
-
-    keyed.key?(key) ? key : name
-  end
 
   def self.run(argv)
     root = File.expand_path("..", __dir__)
@@ -382,19 +299,15 @@ module GtkSchemas
         [property, attributes.merge(self.kind(attributes["gir"], entry[:namespace], enums))]
       end
 
-      [key, self.entry(key, name, entry, classes, qualified).merge(
-        "properties" => properties,
-        "css" => entry[:css],
-      )]
+      [key, self.entry(key, name, entry, classes, qualified).merge("properties" => properties)]
     end
 
-    puts(JSON.pretty_generate({
-      "versions" => File.read(File.join(root, "vendor/gir/VERSIONS")).lines.map{|line| line.strip.squeeze(" ")},
+    File.write(self.output("schemas.json"), "#{JSON.pretty_generate({
+      "versions" => File.read(File.join(root, "bin/02-fetch-gir.out/VERSIONS")).lines.map{|line| line.strip.squeeze(" ")},
       "enums" => enums.sort.to_h,
       "classes" => schemas,
-      "nodes" => self.index(classes, keyed),
-      "styles" => self.styles(classes, keyed),
-    }))
+    })}\n")
+    warn("wrote bin/07-gtk-schemas.out/schemas.json")
   end
 
   # One class's own identity: where it came from, what it displaced, and who its parent is once
@@ -419,6 +332,14 @@ module GtkSchemas
     end
 
     found
+  end
+
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "07-gtk-schemas.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
+    end
   end
 end
 

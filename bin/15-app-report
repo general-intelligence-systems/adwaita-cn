@@ -1,0 +1,375 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 15-APP-REPORT(1)                 General Commands Manual                 15-APP-REPORT(1)
+#
+# NAME
+#      bin/15-app-report — every component in every application, and where each side puts it
+#
+# SYNOPSIS
+#      bin/15-app-report [--tolerance PX] [--app NAME] [--differences]
+#
+# DESCRIPTION
+#      Builds each application in bin/apps/ twice -- once with libadwaita and
+#      once from the registry's components -- and prints one row per component with its
+#      x, y, width and height on both sides and the difference between them.
+#
+#      THE TOOLKIT'S SIDE IS THE WIDGET TREE, not a render node. A widget knows the box
+#      it was allocated, and gtk_widget_compute_bounds states it in any ancestor's
+#      coordinates, so the window's own space costs one call per widget. Reading it out
+#      of a serialised frame instead reported a header bar as 24x24, because what a
+#      header bar paints of its own is the icon in its button.
+#
+#      THE COMPONENTS' SIDE IS THE DOM. Every component carries a data-slot, so one
+#      getBoundingClientRect each gives the same four numbers in the same space.
+#
+#      BOTH SIDES ARE WALKED IN ORDER AND PAIRED IN ORDER, within a kind: the two are
+#      the same screen built twice, so the third ActionRow on one side is the third
+#      ActionRow on the other. Pairing by whichever is nearest made a component which
+#      is in the wrong place steal the match of one which is not.
+#
+#      A composite's template children are not components. AdwActionRow is built from a
+#      box and two labels, and the components render those as parts of the row rather
+#      than as a Box and two Labels, so the toolkit's side does not count them either.
+#      What the application itself put inside a row -- a switch, a button -- is counted,
+#      because both sides have it.
+#
+# OPTIONS
+#      --tolerance PX   How far out a box may be before the row is marked. Default 2.
+#      --app NAME       One application rather than all of them.
+#      --differences    Only the rows which are out, rather than every component.
+#
+# FILES
+#      bin/apps/manifest.json    the applications
+#      bin/apps/<name>/app.rb    the toolkit's build
+#      bin/apps/<name>/App.tsx   the registry's build
+#      bin/14-app-screenshots.out/web/             the built page, from vite
+#      bin/15-app-report.out/report.json every row, as data
+#
+# EXIT STATUS
+#      0 when every component is within the tolerance on both sides, 1 when any is not.
+#
+# SEE ALSO
+#      bin/14-app-screenshots
+#
+# adwaita-cn                        October 13, 2026                     15-APP-REPORT(1)
+
+require "fileutils"
+require "json"
+require "webrick"
+
+require "gtk4"
+require "adwaita"
+require "ferrum"
+
+Adwaita.init
+Adwaita::StyleManager.default.color_scheme = Adwaita::ColorScheme::FORCE_LIGHT
+GLib::Log.always_fatal = GLib::Log::LEVEL_ERROR
+
+module AppReport
+  ROOT = File.expand_path("..", __dir__)
+  PORT = 7417
+
+  # A script's output sits beside it, under its own name: bin/15-app-report.out.
+  OUTPUT = "#{__FILE__}.out"
+
+  # A composite's template says which kinds are its parts: adw-action-row.ui is a box
+  # and two labels, and the components render those as `action-row-title` and the rest
+  # rather than as a Box and two Labels. A part is not reported and is not descended
+  # into. What the application itself put in a row -- the Button in `Last synchronised`
+  # -- is not in the template, so it is kept.
+
+  def self.parts_of(component)
+    @parts ||= {}
+    @parts[component] ||= kinds_in(catalogue.dig("components", component, "tree")) - [component]
+  end
+
+  def self.kinds_in(node, found = [])
+    return found unless node.is_a?(Hash)
+
+    found << node["class"] if node["class"]
+    (node.fetch("children", []) + node.fetch("slots", {}).values)
+      .each{|child| kinds_in(child, found) }
+
+    found
+  end
+
+  def self.run(argv)
+    tolerance = argv.each_cons(2).find{|flag, _| flag == "--tolerance" }&.last&.to_f || 2.0
+    only = argv.each_cons(2).find{|flag, _| flag == "--app" }&.last
+    differences_only = argv.include?("--differences")
+
+    wanted = apps.select{|one| only.nil? || one.fetch("name") == only }
+    abort("no such application: #{only}") if wanted.empty?
+
+    theirs = toolkit(wanted)
+    ours = components(wanted)
+
+    results = wanted.to_h do |one|
+      name = one.fetch("name")
+      [name, pair(theirs.fetch(name, []), ours.fetch(name, []), tolerance)]
+    end
+
+    FileUtils.mkdir_p(OUTPUT)
+    File.write(File.join(OUTPUT, "report.json"),
+               "#{JSON.pretty_generate({ 'tolerance' => tolerance, 'apps' => results })}\n")
+
+    report(wanted, results, tolerance, differences_only)
+
+    exit(results.values.sum{|rows| rows.count{|row| row.fetch("out") } }.zero? ? 0 : 1)
+  end
+
+  # ── the toolkit, from the widget tree ────────────────────────────────────
+
+  def self.toolkit(wanted)
+    found = {}
+
+    app = Gtk::Application.new("dev.adwaita-cn.app-report", :default_flags)
+    app.signal_connect("activate") do
+      wanted.each{|one| found[one.fetch("name")] = measure(app, one) }
+      app.quit
+    end
+    app.run([])
+
+    found
+  end
+
+  def self.measure(app, one)
+    name = one.fetch("name")
+    width = one.fetch("width")
+    height = one.fetch("height")
+
+    win = Adwaita::ApplicationWindow.new(app)
+    win.set_default_size(width, height)
+    win.content = build(name)
+    win.set_size_request(width, height)
+    win.present
+    settle(win, width, height)
+
+    [].tap{|into| walk(win.content, win.content, into, [], one.fetch("uses")) }
+  ensure
+    win&.destroy
+    pump(20)
+  end
+
+  # Depth first, in the order the tree is built, which is the order the document is in.
+  #
+  # `parts` is the template of the composite this widget is inside, if any. `uses` is
+  # what the application's manifest says it puts on screen: GTK builds a great deal
+  # that no application wrote -- a window handle, a viewport, two scrollbars per
+  # scrolled window -- and a report of those is a report about GTK rather than about
+  # the components.
+  def self.walk(widget, origin, into, parts, uses)
+    component = component_of(widget)
+    # A part is not reported, but is still descended into: AdwPreferencesPage's
+    # template is a scrolled window holding a clamp, and everything the application put
+    # on the page is inside it.
+    part = component && parts.include?(component)
+
+    into << { "component" => component, "box" => bounds(widget, origin) } if !part && uses.include?(component)
+
+    composite = component && catalogue.dig("components", component, "kind") == "composite"
+    inside = composite ? parts_of(component) : parts
+
+    child = widget.first_child
+    while child
+      walk(child, origin, into, inside, uses)
+      child = child.next_sibling
+    end
+  end
+
+  # The box the widget was allocated, in the window's own coordinates.
+  def self.bounds(widget, origin)
+    ok, rect = widget.compute_bounds(origin)
+
+    return [0.0, 0.0, 0.0, 0.0] unless ok
+
+    [rect.x.round(1), rect.y.round(1), rect.width.round(1), rect.height.round(1)]
+  rescue StandardError
+    [0.0, 0.0, 0.0, 0.0]
+  end
+
+  # `Gtk::Button` and `Adwaita::ActionRow` are Button and ActionRow, where the registry
+  # has a component of that name.
+  def self.component_of(widget)
+    name = widget.class.name.to_s.split("::").last
+
+    catalogue.fetch("components").key?(name) ? name : nil
+  end
+
+  def self.build(name)
+    require(File.join(ROOT, "bin/apps", name, "app.rb"))
+
+    Object.const_get("#{name.split(/[-_]/).map(&:capitalize).join}App").new.build
+  end
+
+  def self.settle(win, width, height, limit = 800)
+    limit.times do |index|
+      break if win.width >= width && win.height >= height
+
+      GLib::MainContext.default.iteration(false)
+      sleep(0.002) if (index % 10).zero?
+    end
+
+    pump(60)
+  end
+
+  def self.pump(times)
+    times.times do |index|
+      GLib::MainContext.default.iteration(false)
+      sleep(0.002) if (index % 10).zero?
+    end
+  end
+
+  # ── the components, from the DOM ─────────────────────────────────────────
+
+  def self.components(wanted)
+    serving do |page|
+      wanted.to_h{|one| [one.fetch("name"), read(page, one.fetch("name"), one.fetch("uses"))] }
+    end
+  end
+
+  def self.read(page, name, uses)
+    (page.evaluate(<<~JS) || []).filter_map do |one|
+      (() => {
+        const app = document.querySelector('[data-app=#{name.to_json}]');
+        if (!app) return [];
+        const origin = app.getBoundingClientRect();
+        const round = (n) => Math.round(n * 10) / 10;
+        return [...app.querySelectorAll('[data-slot]')].map((node) => {
+          const box = node.getBoundingClientRect();
+          return {
+            slot: node.dataset.slot,
+            box: [round(box.x - origin.x), round(box.y - origin.y), round(box.width), round(box.height)],
+          };
+        });
+      })()
+    JS
+      component_of_slot(one.fetch("slot")).then do |component|
+        uses.include?(component) && { "component" => component, "box" => one.fetch("box") }
+      end
+    end
+  end
+
+  # `action-row-title` is a part of ActionRow and not a component of its own.
+  def self.component_of_slot(slot)
+    @by_slot ||= catalogue.fetch("components").keys.to_h{|name| [kebab(name), name] }
+    @by_slot[slot]
+  end
+
+  def self.kebab(name) = name.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
+
+  def self.serving
+    server = WEBrick::HTTPServer.new(
+      Port: PORT,
+      DocumentRoot: File.join(ROOT, "bin/14-app-screenshots.out/web"),
+      Logger: WEBrick::Log.new(File::NULL),
+      AccessLog: [],
+    )
+    Thread.new{server.start}
+
+    browser = Ferrum::Browser.new(
+      browser_path: ENV.fetch("BROWSER_PATH", nil),
+      headless: true,
+      window_size: [1600, 20_000],
+      timeout: 60,
+      browser_options: { "force-device-scale-factor" => "1", "hide-scrollbars" => nil },
+    )
+
+    begin
+      browser.go_to("http://127.0.0.1:#{PORT}/")
+      browser.network.wait_for_idle(timeout: 30)
+      yield(browser)
+    ensure
+      browser.quit
+      server.shutdown
+    end
+  end
+
+  # ── the two, paired ──────────────────────────────────────────────────────
+
+  # One row per component, in the order the toolkit builds them, with whatever the
+  # components render in that position. A component on one side and not the other is a
+  # row too, with the other side empty.
+  def self.pair(theirs, ours, tolerance)
+    queues = ours.group_by{|one| one.fetch("component") }
+    rows = []
+
+    theirs.each do |widget|
+      found = queues[widget.fetch("component")]&.shift
+
+      rows << row(widget.fetch("component"), widget.fetch("box"), found&.fetch("box"), tolerance)
+    end
+
+    queues.each_value do |left|
+      left.each{|one| rows << row(one.fetch("component"), nil, one.fetch("box"), tolerance) }
+    end
+
+    rows
+  end
+
+  def self.row(component, theirs, ours, tolerance)
+    delta = theirs && ours ? theirs.zip(ours).map{|a, b| (b - a).round(1) } : nil
+
+    {
+      "component" => component,
+      "toolkit" => theirs,
+      "components" => ours,
+      "delta" => delta,
+      "out" => delta.nil? || delta.any?{|one| one.abs > tolerance },
+    }
+  end
+
+  # ── printing ─────────────────────────────────────────────────────────────
+
+  HEAD = "  %-22s %-27s %-27s %s"
+  BODY = "  %-22s %-27s %-27s %s"
+
+  def self.report(wanted, results, tolerance, differences_only)
+    wanted.each do |one|
+      name = one.fetch("name")
+      rows = results.fetch(name)
+      shown = differences_only ? rows.select{|row| row.fetch("out") } : rows
+
+      puts
+      puts("#{name} — #{one.fetch('width')}x#{one.fetch('height')}")
+      puts(format(HEAD, "component", "libadwaita", "adwaita-cn", "difference"))
+      puts(format(HEAD, "", "x      y      w      h", "x      y      w      h", "x      y      w      h"))
+
+      shown.each{|row| puts(line(row)) }
+      puts("  (every component is within #{tolerance}px)") if shown.empty?
+
+      out = rows.count{|row| row.fetch("out") }
+      puts("  #{rows.length} components, #{rows.length - out} matching, #{out} out")
+    end
+
+    puts
+    puts("tolerance #{tolerance}px; " \
+         "#{results.values.sum(&:length)} components, " \
+         "#{results.values.sum{|rows| rows.count{|row| row.fetch('out') } }} out")
+  end
+
+  def self.line(row)
+    format(BODY,
+           "#{row.fetch('out') ? '!' : ' '} #{row.fetch('component')}",
+           box(row["toolkit"]),
+           box(row["components"]),
+           box(row["delta"], signed: true))
+  end
+
+  def self.box(one, signed: false)
+    return "—      —      —      —" if one.nil?
+
+    one.map{|value| format(signed ? "%+g" : "%g", value).ljust(6) }.join(" ").rstrip
+  end
+
+  def self.catalogue
+    @catalogue ||= JSON.parse(File.read(File.join(ROOT, "bin/08-final-components.out/final-components.json")))
+  end
+
+  def self.apps
+    @apps ||= JSON.parse(File.read(File.join(ROOT, "bin/apps/manifest.json"))).fetch("apps")
+  end
+end
+
+AppReport.run(ARGV)

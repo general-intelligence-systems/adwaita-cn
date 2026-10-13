@@ -1,0 +1,314 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 14-APP-SCREENSHOTS(1)            General Commands Manual            14-APP-SCREENSHOTS(1)
+#
+# NAME
+#      bin/14-app-screenshots — each application, the toolkit beside the components
+#
+# SYNOPSIS
+#      bin/14-app-screenshots [--app NAME]
+#
+# DESCRIPTION
+#      Builds every application in bin/apps/ twice -- once with libadwaita and
+#      once from the registry's components -- and writes one PNG per application with
+#      the two beside each other.
+#
+#      THE SIDE-BY-SIDE IS THE ONLY OUTPUT. Neither side's own PNG is kept: a shot of
+#      one half on its own is not a comparison, and the pair of directories they used
+#      to go in were two more things to keep in step.
+#
+#      Both sides are drawn at the size the manifest gives the application, so the two
+#      halves of a shot are the same window twice.
+#
+# OPTIONS
+#      --app NAME   One application rather than all of them.
+#
+# FILES
+#      bin/apps/manifest.json        the applications
+#      bin/apps/<name>/app.rb        the toolkit's build
+#      bin/apps/<name>/App.tsx       the registry's build
+#      bin/14-app-screenshots.out/web/                 the built page, from vite
+#      bin/14-app-screenshots.out/<name>.png the output
+#
+# EXIT STATUS
+#      0 when every application was shot on both sides, 1 when any was not.
+#
+# SEE ALSO
+#      bin/15-app-report
+#
+# adwaita-cn                        October 13, 2026                14-APP-SCREENSHOTS(1)
+
+require "fileutils"
+require "json"
+require "tmpdir"
+require "webrick"
+
+require "gtk4"
+require "adwaita"
+require "ferrum"
+
+# Requiring the bindings does not load libadwaita's stylesheet; adw_init() does.
+Adwaita.init
+
+# The components render in whatever scheme the page asks for, and the toolkit otherwise
+# follows the desktop's. A dark window beside a light page is a difference which says
+# nothing about either.
+Adwaita::StyleManager.default.color_scheme = Adwaita::ColorScheme::FORCE_LIGHT
+
+# A GTK critical is not a reason to lose the run.
+GLib::Log.always_fatal = GLib::Log::LEVEL_ERROR
+
+module AppScreenshots
+  ROOT = File.expand_path("..", __dir__)
+  PORT = 7416
+  # A script's output sits beside it, under its own name: bin/14-app-screenshots.out.
+  OUTPUT = "#{__FILE__}.out"
+
+  # The gutter around and between the halves, and the strip above them which says
+  # which half is which.
+  PAD = 16
+  LABEL = 28
+
+  def self.run(argv)
+    only = argv.each_cons(2).find{|flag, _| flag == "--app" }&.last
+    wanted = apps.select{|one| only.nil? || one.fetch("name") == only }
+
+    abort("no such application: #{only}") if wanted.empty?
+
+    FileUtils.mkdir_p(OUTPUT)
+
+    Dir.mktmpdir do |scratch|
+      theirs = toolkit(wanted, scratch)
+      ours = components(wanted, scratch)
+
+      failed = wanted.reject do |one|
+        name = one.fetch("name")
+        compose(name, theirs[name], ours[name]).then do |error|
+          error.nil? ? puts("#{name}: #{relative(name)}") : puts("#{name}: #{error}")
+          error.nil?
+        end
+      end
+
+      exit(failed.empty? ? 0 : 1)
+    end
+  end
+
+  def self.relative(name) = File.join(OUTPUT, "#{name}.png").delete_prefix("#{ROOT}/")
+
+  # ── the toolkit ──────────────────────────────────────────────────────────
+
+  # One PNG per application, or nil where the window could not be built.
+  def self.toolkit(wanted, scratch)
+    shot = {}
+
+    app = Gtk::Application.new("dev.adwaita-cn.app-screenshots", :default_flags)
+    app.signal_connect("activate") do
+      wanted.each{|one| shot[one.fetch("name")] = paint(app, one, scratch) }
+      renderer_done
+      app.quit
+    end
+    app.run([])
+
+    shot
+  end
+
+  def self.paint(app, one, scratch)
+    name = one.fetch("name")
+    width = one.fetch("width")
+    height = one.fetch("height")
+    path = File.join(scratch, "gtk-#{name}.png")
+
+    window(app, width, height, name) do |content|
+      Gtk::Snapshot.new.then do |snapshot|
+        # The window's own background, over the whole rectangle, before the widget.
+        # A render node is bounded by what was painted into it, and an application
+        # which leaves its edges transparent came out cropped -- 451x515 for a window
+        # GTK had allocated at 480x640, which is a different picture, not a smaller
+        # one.
+        snapshot.append_color(background, Graphene::Rect.new(0, 0, width, height))
+
+        Gtk::WidgetPaintable.new(content).snapshot(snapshot, width, height)
+
+        node = snapshot.to_node
+        return nil if node.nil?
+
+        renderer.render_texture(node, nil).save_to_png(path)
+        path
+      end
+    end
+  rescue StandardError => e
+    warn("#{name}: #{e.class}: #{e.message.lines.first.to_s.strip}")
+    nil
+  end
+
+  # The window the application is built in, handed to the block and torn down after.
+  #
+  # The size request rather than the default size alone: with no display a presented
+  # window settles at its minimum, and a 560x720 application was being shot at 451x548
+  # -- which is a different layout, not a smaller picture of the same one.
+  def self.window(app, width, height, name)
+    win = Adwaita::ApplicationWindow.new(app)
+    win.set_default_size(width, height)
+    win.content = build(name)
+    win.set_size_request(width, height)
+    win.present
+    settle(win, width, height)
+
+    yield(win.content)
+  ensure
+    win&.destroy
+    pump(20)
+  end
+
+  # `preferences` is PreferencesApp in bin/apps/preferences/app.rb.
+  def self.build(name)
+    require(File.join(ROOT, "bin/apps", name, "app.rb"))
+
+    Object.const_get("#{name.split(/[-_]/).map(&:capitalize).join}App").new.build
+  end
+
+  def self.settle(win, width, height, limit = 800)
+    limit.times do |index|
+      break if win.width >= width && win.height >= height
+
+      GLib::MainContext.default.iteration(false)
+      sleep(0.002) if (index % 10).zero?
+    end
+
+    # A window at its size is not yet a window which has drawn its contents.
+    pump(60)
+  end
+
+  def self.pump(times)
+    times.times do |index|
+      GLib::MainContext.default.iteration(false)
+      sleep(0.002) if (index % 10).zero?
+    end
+  end
+
+  # The window background, as libadwaita's stylesheet gives it. Read off a realised
+  # window rather than written down, so it follows the scheme the run forces.
+  def self.background
+    @background ||= Gdk::RGBA.parse("#fafafb")
+  end
+
+  # Realised once and reused: realising a renderer per shot is most of the time a run
+  # takes. One still realised at teardown is a GSK assertion failure, after every shot
+  # has already been taken.
+  def self.renderer = @renderer ||= Gsk::CairoRenderer.new.tap{|one| one.realize(nil) }
+
+  def self.renderer_done
+    @renderer&.unrealize
+    @renderer = nil
+  end
+
+  # ── the components ───────────────────────────────────────────────────────
+
+  def self.components(wanted, scratch)
+    serving do |page|
+      wanted.to_h do |one|
+        name = one.fetch("name")
+        path = File.join(scratch, "web-#{name}.png")
+
+        [name, shoot(page, name, path)]
+      end
+    end
+  end
+
+  def self.shoot(page, name, path)
+    selector = "[data-app=#{name.to_json}]"
+
+    return nil if page.evaluate("!!document.querySelector(#{selector.to_json})") != true
+
+    page.screenshot(path: path, selector: selector, scale: 1)
+    path
+  rescue StandardError => e
+    warn("#{name}: #{e.message.lines.first.to_s.strip}")
+    nil
+  end
+
+  def self.serving
+    server = WEBrick::HTTPServer.new(
+      Port: PORT,
+      DocumentRoot: File.join(ROOT, "bin/14-app-screenshots.out/web"),
+      Logger: WEBrick::Log.new(File::NULL),
+      AccessLog: [],
+    )
+    Thread.new{server.start}
+
+    browser = Ferrum::Browser.new(
+      browser_path: ENV.fetch("BROWSER_PATH", nil),
+      headless: true,
+      window_size: [1600, 20_000],
+      timeout: 60,
+      browser_options: { "force-device-scale-factor" => "1", "hide-scrollbars" => nil },
+    )
+
+    begin
+      browser.go_to("http://127.0.0.1:#{PORT}/")
+      browser.network.wait_for_idle(timeout: 30)
+      yield(browser)
+    ensure
+      browser.quit
+      server.shutdown
+    end
+  end
+
+  # ── the two, side by side ────────────────────────────────────────────────
+
+  # nil when the shot was written, and the reason when it was not.
+  def self.compose(name, left, right)
+    return "the toolkit drew nothing" if left.nil?
+    return "the components rendered nothing" if right.nil?
+
+    theirs = Cairo::ImageSurface.from_png(left)
+    ours = Cairo::ImageSurface.from_png(right)
+
+    width = PAD + theirs.width + PAD + ours.width + PAD
+    height = LABEL + [theirs.height, ours.height].max + PAD
+
+    Cairo::ImageSurface.new(:argb32, width, height).then do |surface|
+      Cairo::Context.new(surface).then do |cr|
+        cr.set_source_rgb(1, 1, 1)
+        cr.paint
+
+        half(cr, theirs, PAD, "libadwaita #{theirs.width}x#{theirs.height}")
+        half(cr, ours, PAD + theirs.width + PAD, "adwaita-cn #{ours.width}x#{ours.height}")
+      end
+
+      surface.write_to_png(File.join(OUTPUT, "#{name}.png"))
+    end
+
+    nil
+  rescue StandardError => e
+    "#{e.class}: #{e.message.lines.first.to_s.strip}"
+  end
+
+  # One half: the shot, a hairline around it so its edge is visible against the page,
+  # and its name and size above it.
+  def self.half(cr, surface, x, caption)
+    cr.save
+    cr.set_source_rgb(0.4, 0.4, 0.4)
+    cr.select_font_face("sans-serif", Cairo::FONT_SLANT_NORMAL, Cairo::FONT_WEIGHT_NORMAL)
+    cr.font_size = 12
+    cr.move_to(x, LABEL - 10)
+    cr.show_text(caption)
+    cr.restore
+
+    cr.set_source(surface, x, LABEL)
+    cr.rectangle(x, LABEL, surface.width, surface.height)
+    cr.fill
+
+    cr.set_source_rgb(0.75, 0.75, 0.75)
+    cr.line_width = 1
+    cr.rectangle(x - 0.5, LABEL - 0.5, surface.width + 1, surface.height + 1)
+    cr.stroke
+  end
+
+  def self.apps
+    @apps ||= JSON.parse(File.read(File.join(ROOT, "bin/apps/manifest.json"))).fetch("apps")
+  end
+end
+
+AppScreenshots.run(ARGV)

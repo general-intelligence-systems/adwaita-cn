@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { ViewSwitcherTitle } from "@/ui/view-switcher-title"
+import { Label } from "@/ui/label"
 
 export default function ViewSwitcherTitleBase() {
   return (
-    <ViewSwitcherTitle subtitle="Subtitle" title="Title" />
+    <ViewSwitcherTitle>
+      <Label label="Label" />
+    </ViewSwitcherTitle>
   )
 }

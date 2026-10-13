@@ -3,31 +3,50 @@
 # 02-FETCH-GIR(1)                   General Commands Manual                    02-FETCH-GIR(1)
 #
 # NAME
-#      bin/02-fetch-gir — vendor GTK's and libadwaita's introspection data
+#      bin/02-fetch-gir — vendor what GTK and libadwaita say about themselves
 #
 # SYNOPSIS
-#      bin/02-fetch-gir
+#      bin/02-fetch-gir [--no-source]
 #
 # DESCRIPTION
-#      Writes Gtk-4.0.gir and Adw-1.gir into vendor/gir/, which is what bin/07-gtk-schemas reads.
+#      Writes Gtk-4.0.gir and Adw-1.gir into bin/02-fetch-gir.out/, and clones the toolkit's own
+#      source into bin/02-fetch-gir.out/src/, which is what bin/05-adwaita-components reads.
 #
-#      Each file ships in its library's `dev` output, under share/gir-1.0.
+#      Each .gir ships in its library's `dev` output, under share/gir-1.0.
 #
-#      The versions are recorded in vendor/gir/VERSIONS, because properties are added and
-#      deprecated between releases and a lint built on one release is only true of that one.
+#      THE SOURCE IS THE ONLY COMPLETE ANSWER. Introspection data carries properties and
+#      signals but not a widget's CSS node, and the documentation only mentions a node
+#      where somebody wrote a sentence about it. The node is set in C, by
+#      gtk_widget_class_set_css_name, and the style classes a widget puts on itself are
+#      written in C too -- GtkButton adds `.text-button` or `.image-button` from whatever
+#      child it is given, in gtkbutton.c. Neither is derivable from anything else we
+#      vendor, and both decide what a component is.
+#
+#      The clone is pinned to the version of the library the stylesheet was extracted
+#      from, because a node renamed between releases would otherwise be read against the
+#      wrong sheet. The tag is the version in the store path, and a missing tag is a
+#      failed run rather than a silent fall back to main.
+#
+#      Only the directories holding widget sources are checked out, and blobs are fetched
+#      on demand, which is 40MB rather than 400MB.
+#
+# OPTIONS
+#      --no-source   Fetch the introspection data only, and leave bin/02-fetch-gir.out/src alone.
 #
 # FILES
-#      vendor/gir/Gtk-4.0.gir
-#      vendor/gir/Adw-1.gir
-#      vendor/gir/VERSIONS
+#      bin/02-fetch-gir.out/Gtk-4.0.gir
+#      bin/02-fetch-gir.out/Adw-1.gir
+#      bin/02-fetch-gir.out/VERSIONS
+#      bin/02-fetch-gir.out/src/gtk/          GTK's widget sources, at the pinned tag
+#      bin/02-fetch-gir.out/src/libadwaita/   libadwaita's widget sources, at the pinned tag
 #
 # EXIT STATUS
 #      The bin/02-fetch-gir utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/07-gtk-schemas, bin/01-fetch-adwaita, g-ir-scanner(1)
+#      bin/05-adwaita-components, bin/07-gtk-schemas, bin/01-fetch-adwaita
 #
-# adwaita-cn                         October 12, 2026                          02-FETCH-GIR(1)
+# adwaita-cn                         October 13, 2026                          02-FETCH-GIR(1)
 
 set -o errexit
 set -o nounset
@@ -35,8 +54,12 @@ set -o pipefail
 
 cd "$(dirname "$0")/.."
 
-out="vendor/gir"
+out="bin/02-fetch-gir.out"
+src="bin/02-fetch-gir.out/src"
 mkdir -p "$out"
+
+source_wanted=1
+[ "${1:-}" = "--no-source" ] && source_wanted=0
 
 # pkg-config names the directory when the devshell provides the library, and the store is the
 # fallback. Neither library is a runtime dependency: they are where the schema comes from.
@@ -72,10 +95,63 @@ install -m 644 "$gtk" "$out/Gtk-4.0.gir"
 install -m 644 "$adw" "$out/Adw-1.gir"
 
 # The store path carries the version, which is the only place it is written down.
+gtk_store="$(basename "$(dirname "$(dirname "$(dirname "$gtk")")")")"
+adw_store="$(basename "$(dirname "$(dirname "$(dirname "$adw")")")")"
+
 {
-  echo "gtk4       $(basename "$(dirname "$(dirname "$(dirname "$gtk")")")")"
-  echo "libadwaita $(basename "$(dirname "$(dirname "$(dirname "$adw")")")")"
+  echo "gtk4       $gtk_store"
+  echo "libadwaita $adw_store"
 } > "$out/VERSIONS"
+
+# `…-gtk4-4.22.4-dev` is 4.22.4.
+version_of() {
+  echo "$1" | sed -E 's/.*-([0-9]+(\.[0-9]+)+)(-[a-z]+)?$/\1/'
+}
+
+# A shallow, blobless, sparse clone at the tag: the widget sources and nothing else.
+#
+# One `local` per line, because bash expands every word of a `local` before it
+# assigns any of them: `local name="$1" dir="$root/$name"` reads whatever `name`
+# the environment already had, and nix develop sets one.
+clone() {
+  local project="$1"
+  local url="$2"
+  local tag="$3"
+  local paths="$4"
+  local dir="$src/$project"
+
+  if [ -d "$dir/.git" ] && [ "$(git -C "$dir" describe --tags --exact-match 2>/dev/null || true)" = "$tag" ]; then
+    echo "fetch-gir: $project already at $tag"
+    return
+  fi
+
+  rm -rf "$dir"
+  mkdir -p "$src"
+
+  if ! git ls-remote --exit-code --tags "$url" "refs/tags/$tag" >/dev/null 2>&1; then
+    echo "fetch-gir: $url has no tag $tag; the stylesheet and the source would not match" >&2
+    exit 1
+  fi
+
+  git clone --quiet --depth 1 --branch "$tag" --filter=blob:none --sparse "$url" "$dir"
+  # shellcheck disable=SC2086
+  git -C "$dir" sparse-checkout set $paths
+}
+
+if [ "$source_wanted" = "1" ]; then
+  clone gtk https://gitlab.gnome.org/GNOME/gtk.git "$(version_of "$gtk_store")" "gtk"
+  clone libadwaita https://gitlab.gnome.org/GNOME/libadwaita.git "$(version_of "$adw_store")" "src"
+
+  {
+    echo "gtk        $(git -C "$src/gtk" rev-parse HEAD)"
+    echo "libadwaita $(git -C "$src/libadwaita" rev-parse HEAD)"
+  } > "$src/VERSIONS"
+fi
 
 wc -c "$out"/*.gir
 cat "$out/VERSIONS"
+
+if [ "$source_wanted" = "1" ]; then
+  echo "source: $(find "$src" -name '*.c' -not -path '*/.git/*' | wc -l) .c files"
+  cat "$src/VERSIONS"
+fi

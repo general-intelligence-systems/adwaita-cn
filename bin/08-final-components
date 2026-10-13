@@ -1,526 +1,167 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# 08-FINAL-COMPONENTS(1)          General Commands Manual         08-FINAL-COMPONENTS(1)
+# 08-FINAL-COMPONENTS(1)           General Commands Manual           08-FINAL-COMPONENTS(1)
 #
 # NAME
-#      bin/08-final-components — every component, with its styles, props and tree
+#      bin/08-final-components — the component list, joined from the passes before it
 #
 # SYNOPSIS
-#      bin/08-final-components > vendor/adwaita/final-components.json
+#      bin/08-final-components > bin/08-final-components.out/final-components.json
 #
 # DESCRIPTION
-#      Joins the four things the earlier steps produced into the one document the rest of the
-#      pipeline is generated from: the component list, the Tailwind classes, the child trees and
-#      the widget schemas.
+#      Loads the catalogue from bin/05-adwaita-components, the templates from
+#      bin/06-component-trees, the introspection schemas from bin/07-gtk-schemas and the
+#      selector map from bin/03-adwaita-tailwind, and joins them into one entry per
+#      component: what it is, what it accepts, what it renders as, and what the stylesheet
+#      draws it with.
 #
-#      A class a template is built out of is named by the template, and its name IS its class --
-#      GtkBox is Box, AdwClamp is Clamp. Nothing to map.
+#      IT DECIDES NOTHING ON ITS OWN. Which widgets exist, which CSS node each renders as
+#      and which style classes it carries are read from the toolkit's source by
+#      bin/05-adwaita-components. Properties, enumerations and parentage are read from the
+#      introspection data by bin/07-gtk-schemas. The measurements are read from the
+#      stylesheet by bin/03-adwaita-tailwind. This pass looks nothing up for itself.
 #
-#      A composite widget which ships a template is the same.
-#
-#      composite   ships a .ui template, so its child tree is known
-#      widget      a widget class with no template, built in C
-#      style       a style class with no class of its own
-#      abstract    a base class, which is styling and inheritance rather than a component
-#      behaviour   a model, gesture or event controller: no DOM, so a prop or a hook
-#      private     referenced by a template but absent from the public API, so ours to write
+#      A variant is a style class the stylesheet draws on a component's node, or one the
+#      widget puts on itself. `.text-button` is the second kind: no application writes it
+#      and no page documents it, and GtkButton adds it to every button holding a label.
 #
 # FILES
-#      vendor/adwaita/components.json     the CSS-derived list, from 05
-#      vendor/adwaita/widgets.json        the Tailwind classes, from 03
-#      vendor/adwaita/gtk-widgets.json    GTK's, for what Adwaita leaves unstyled, from 04
-#      vendor/adwaita/trees.json          the child trees, from 06
-#      vendor/gir/schemas.json            the props and the CSS nodes, from 07
+#      bin/05-adwaita-components.out/components.json         the catalogue, from 05
+#      bin/06-component-trees.out/trees.json              the templates, from 06
+#      bin/07-gtk-schemas.out/schemas.json                the schemas, from 07
+#      bin/03-adwaita-tailwind.out/widgets.json            the selector map, from 03
+#      bin/03-adwaita-tailwind.out/widgets-contexts.json   the same, keyed by context
+#      bin/08-final-components.out/final-components.json   the output
 #
 # EXIT STATUS
 #      The bin/08-final-components utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/09-gtk-enums, bin/10-lint-rules, bin/11-generate-components
+#      bin/05-adwaita-components, bin/06-component-trees, bin/07-gtk-schemas
 #
-# adwaita-cn                      October 12, 2026               08-FINAL-COMPONENTS(1)
+# adwaita-cn                         October 13, 2026                08-FINAL-COMPONENTS(1)
 
 require "json"
 require "set"
 
 module FinalComponents
-  # ── The variants, which are declared rather than derived ──
+  ROOT = File.expand_path("..", __dir__)
 
-  # `widgets` is the classes the page names, and a variant reaches their subclasses too, because
-  # a subclass renders the same CSS node: `.flat` is documented for Gtk.Button and so is a
-  # variant of ToggleButton. `:any` is the page saying "can be used with any widget".
-  #
-  # Every name here is checked against the introspection data on the way through, so a typo is a
-  # failed run rather than a variant which silently never applies.
-  VARIANTS = {
-    # Buttons.
-    "suggested-action" => { summary: "Uses accent colours, for the affirmative button in a dialog.", widgets: %w[Button MenuButton SplitButton ButtonRow], combines: %w[circular pill] },
-    "destructive-action" => { summary: "Uses destructive colours, to warn of damaging consequences.", widgets: %w[Button MenuButton SplitButton ButtonRow], combines: %w[flat circular pill] },
-    "flat" => { summary: "Looks like a label or an icon until hovered.", widgets: %w[Button MenuButton SplitButton ToggleGroup InlineViewSwitcher], combines: %w[destructive-action round], deprecated: { widgets: %w[HeaderBar], use: "ToolbarView", summary: "Gives the header bar a flat appearance." } },
-    "raised" => { summary: "The regular appearance instead of the flat one, inside a toolbar.", widgets: %w[Button MenuButton SplitButton], combines: %w[circular pill] },
-    "circular" => { summary: "Round, for a button holding an icon or one or two characters.", widgets: %w[Button MenuButton], combines: %w[suggested-action destructive-action flat osd] },
-    "pill" => { summary: "A pill, for an important standalone button.", widgets: %w[Button StatusPage], combines: %w[suggested-action destructive-action flat osd] },
+  # Classes which show text, for reading a template's bindings.
+  LABELS = %w[Label FadingLabel Inscription].freeze
 
-    # Toggle groups.
-    "round" => { summary: "Rounds the group and the toggles inside it.", widgets: %w[ToggleGroup InlineViewSwitcher], combines: %w[flat] },
-
-    # Linked controls. The box carries the class; the page lists what may go inside it.
-    "linked" => { summary: "Makes a box's children appear as a single group. The box must have no spacing.", widgets: %w[Box], contains: %w[Button MenuButton DropDown ColorDialogButton FontDialogButton TabButton Entry PasswordEntry SearchEntry SpinButton] },
-
-    # Toolbars. HeaderBar, ActionBar and SearchBar have the appearance already.
-    "toolbar" => { summary: "A horizontal box given a toolbar's padding and spacing.", widgets: %w[Box], combines: %w[osd], shared: %w[HeaderBar ActionBar SearchBar] },
-
-    # Spacers.
-    "spacer" => { summary: "Makes a separator invisible, so it acts as whitespace.", widgets: %w[Separator] },
-
-    # Dimmed, and the colours, which the page says go on any widget.
-    "dimmed" => { summary: "Partially transparent, by the --dim-opacity variable.", widgets: :any },
-    "accent" => { summary: "The accent colour.", widgets: :any },
-    "success" => { summary: "The success colour, and on an entry, valid input.", widgets: :any, also: %w[Entry] },
-    "warning" => { summary: "The warning colour, and on an entry, input needing attention.", widgets: :any, also: %w[Entry] },
-    "error" => { summary: "The error colour, and on an entry, invalid input.", widgets: :any, also: %w[Entry] },
-
-    # Typography. "Can be applied to any widgets, but mostly used for Gtk.Label."
-    "title-1" => { summary: "The largest of the four title levels.", widgets: :any, mostly: %w[Label] },
-    "title-2" => { summary: "The second of the four title levels.", widgets: :any, mostly: %w[Label] },
-    "title-3" => { summary: "The third of the four title levels.", widgets: :any, mostly: %w[Label] },
-    "title-4" => { summary: "The smallest of the four title levels.", widgets: :any, mostly: %w[Label] },
-    "heading" => { summary: "The standard style for a UI heading at the default text size.", widgets: :any, mostly: %w[Label] },
-    "document" => { summary: "The document font, for the app's main content.", widgets: :any, mostly: %w[Label], combines: %w[body] },
-    "body" => { summary: "Increased line height, for descriptions and dialog body text.", widgets: :any, mostly: %w[Label], combines: %w[document] },
-    "caption-heading" => { summary: "Smaller text, for a heading accompanying body text.", widgets: :any, mostly: %w[Label] },
-    "caption" => { summary: "Smaller text, for sub-text accompanying body text.", widgets: :any, mostly: %w[Label] },
-    "monospace" => { summary: "The monospace font, for code, logs and shell commands.", widgets: :any, mostly: %w[Label], also: %w[EntryRow ListBox] },
-    "numeric" => { summary: "Tabular figures, so columns of numbers line up.", widgets: :any, mostly: %w[Label] },
-
-    # Boxed lists and cards.
-    "boxed-list" => { summary: "A boxed list. Set selection-mode to none.", widgets: %w[ListBox] },
-    "boxed-list-separate" => { summary: "A boxed list whose rows are separate cards.", widgets: %w[ListBox] },
-    "card" => { summary: "A card: rounded corners and a shadow.", widgets: :any, mostly: %w[Box Button], combines: %w[activatable] },
-    "activatable" => { summary: "Gives a card hover and active states, for one that can be clicked.", widgets: %w[Button], combines: %w[card] },
-
-    # Sidebars.
-    "navigation-sidebar" => { summary: "Sidebar styling: a transparent background and wider rows.", widgets: %w[ListBox ListView FlowBox GridView] },
-
-    # App icons.
-    "icon-dropshadow" => { summary: "The shadow a GNOME application icon needs to read on a light background.", widgets: %w[Image] },
-    "lowres-icon" => { summary: "The shadow for an application icon below 32 pixels.", widgets: %w[Image] },
-
-    # Selection mode check buttons.
-    "selection-mode" => { summary: "Larger and round, for selecting items from a list or a grid.", widgets: %w[CheckButton] },
-
-    # OSD, whose meaning depends on what carries it.
-    "osd" => { summary: "Dark and partially transparent, for a control overlapping content.", widgets: :any, mostly: %w[Button ProgressBar Overlay], combines: %w[toolbar circular pill] },
-
-    # The three which give a widget a default background, view or border.
-    "background" => { summary: "The default window background and foreground colours.", widgets: :any },
-    "view" => { summary: "The default view background and foreground colours.", widgets: :any },
-    "frame" => { summary: "The default one-pixel border.", widgets: :any },
-
-    # One-widget variants.
-    "compact" => { summary: "Takes less space, for a status page in a sidebar or a popover.", widgets: %w[StatusPage] },
-    "menu" => { summary: "A menu-like appearance, for a popover holding a list.", widgets: %w[Popover], contains: %w[ListBox ListView] },
-    "devel" => { summary: "Stripes the window's header bar, to mark a development build.", widgets: %w[Window], affects: %w[HeaderBar] },
-    "inline" => { summary: "Removes the styling which makes the widget look part of a header bar.", widgets: %w[SearchBar TabBar TextView ToolbarView] },
-
-    # Undershoot indicators.
-    "undershoot-top" => { summary: "A shadow at the top edge, indicating content scrolled out of view.", widgets: %w[ScrolledWindow ToolbarView] },
-    "undershoot-bottom" => { summary: "A shadow at the bottom edge, indicating content scrolled out of view.", widgets: %w[ScrolledWindow ToolbarView] },
-    "undershoot-start" => { summary: "A shadow at the start edge, which follows text direction.", widgets: %w[ScrolledWindow ToolbarView] },
-    "undershoot-end" => { summary: "A shadow at the end edge, which follows text direction.", widgets: %w[ScrolledWindow ToolbarView] },
-
-    # Property rows.
-    "property" => { summary: "Deemphasises the row's title and emphasises its subtitle, for a read-only property.", widgets: %w[ActionRow ExpanderRow], combines: %w[monospace] },
-
-    # Deprecated, kept because an application may still carry them.
-    "content" => { summary: "A boxed list appearance.", widgets: %w[ListBox], deprecated: { use: "boxed-list" } },
-    "sidebar" => { summary: "A border at the end of the widget, and no background on lists inside it.", widgets: %w[ListBox ListView Separator], deprecated: { use: "navigation-sidebar" } },
-    "app-notification" => { summary: "OSD appearance with round bottom corners, for an in-app notification.", widgets: %w[Box Overlay Revealer], deprecated: { use: "ToastOverlay" } },
-    "large-title" => { summary: "Large thin text, for a display heading in a greeter or an assistant.", widgets: :any, deprecated: { use: "title-1" } },
-    "opaque" => { summary: "An opaque background, to be combined with custom background and foreground colours.", widgets: %w[MenuButton SplitButton], deprecated: { use: "suggested-action" } },
-    "dim-label" => { summary: "Partially transparent.", widgets: :any, deprecated: { use: "dimmed" } },
-  }.freeze
-
-  def self.read(root, relative)
-    JSON.parse(File.read(File.join(root, relative)))
-  end
+  # Classes a shared helper applies rather than any one widget's file, keyed by the
+  # property which decides them. gtk_widget_update_orientation in gtkwidget.c puts
+  # `.horizontal` or `.vertical` on any widget implementing Gtk.Orientable, so no
+  # widget's own source mentions them and the property is what says who carries them.
+  BY_PROPERTY = { "orientation" => %w[horizontal vertical] }.freeze
 
   def self.run(_argv)
-    root = File.expand_path("..", __dir__)
-    widgets = self.read(root, "vendor/adwaita/gtk-widgets.json")
-      .merge(self.read(root, "vendor/adwaita/widgets.json"))
-    contexts = self.read(root, "vendor/adwaita/gtk-widgets-contexts.json")
-      .merge(self.read(root, "vendor/adwaita/widgets-contexts.json"))
-    css = self.read(root, "vendor/adwaita/components.json").fetch("components")
-    trees = self.read(root, "vendor/adwaita/trees.json")
-    schemas = self.read(root, "vendor/gir/schemas.json")
+    catalogue = self.read("bin/05-adwaita-components.out/components.json")
+    trees = self.read("bin/06-component-trees.out/trees.json")
+    schemas = self.read("bin/07-gtk-schemas.out/schemas.json")
+    widgets = self.read("bin/04-gtk-tailwind.out/gtk-widgets.json").merge(self.read("bin/03-adwaita-tailwind.out/widgets.json"))
+    contexts = self.read("bin/04-gtk-tailwind.out/gtk-widgets-contexts.json")
+      .merge(self.read("bin/03-adwaita-tailwind.out/widgets-contexts.json"))
 
     classes = schemas.fetch("classes")
     enums = schemas.fetch("enums")
-    nodes = schemas.fetch("nodes")
-    parents = self.parentage(contexts)
-    applied = self.applications(trees.fetch("trees"))
-    modifiers = {}
     shared = self.own_props(classes.fetch("Widget"), {})
+    source = catalogue.fetch("widgets")
 
-    components = {}
+    # `Button` in the schemas is `GtkButton` in the source: one is the name the
+    # documentation uses and the other the name the C defines.
+    qualified = classes.to_h{|name, schema| [name, schema.fetch("class").sub(".", "")] }
 
-    # The composites, whose trees are known.
-    trees.fetch("trees").each do |name, entry|
-      components[name] = self.entry(name, "composite", classes[name], classes, shared, enums)
-        .merge("template" => entry.fetch("template"))
-        .merge("tree" => entry.fetch("tree"))
+    self.read_templates(trees)
+
+    names = classes.keys | trees.fetch("referenced").keys | trees.fetch("trees").keys
+
+    components = names.sort.to_h do |name|
+      [name, self.entry(name, qualified[name], classes, source, shared, enums, widgets, contexts, trees)]
     end
 
-    # Every class the templates are built out of.
-    trees.fetch("referenced").each_key do |name|
-      next if components.key?(name)
+    self.annotate_trees(components, contexts, widgets)
 
-      kind = self.kind_of(name, classes)
-      components[name] = self.entry(name, kind, classes[name], classes, shared, enums)
+    buildable = components.reject do |_name, entry|
+      %w[abstract behaviour private].include?(entry.fetch("kind"))
     end
 
-    # And everything the stylesheet styles, each resolved to what it is.
-    parts = {}
-
-    self.styles(contexts, schemas.fetch("styles")).each do |style|
-      modifiers[style] = self.modifier(style, widgets, contexts, schemas.fetch("styles"), applied)
-    end
-
-    self.subjects(contexts).each do |key|
-      found = self.resolve(key, nodes, classes, parents)
-
-      if found.fetch("kind") == "part"
-        parts[key] = found.merge("classes" => self.classes_for([key], widgets, contexts))
-        next
-      end
-
-      name = found["widget"] || self.component(key, trees.fetch("referenced"))
-      kind = found.fetch("kind") == "private" ? "private" : self.kind_of(name, classes)
-      entry = components[name] || self.entry(name, kind, classes[name], classes, shared, enums)
-
-      components[name] = entry.merge(
-        "node" => key,
-        "nodes" => [key],
-        "classes" => self.classes_for([key], widgets, contexts),
-      )
-    end
-
-    # A component which is neither a style class nor styled by one still has whatever its own
-    # node is styled with.
-    components.each do |name, entry|
-      next if entry.key?("classes")
-
-      own = self.rendered(name, nodes, classes)
-
-      unless own.nil?
-        entry["node"] = own
-      end
-
-      entry["nodes"] = [own || name.downcase].select{|node| widgets.key?(node)}
-      entry["classes"] = self.classes_for(entry["nodes"], widgets, contexts)
-    end
-
-    # The trees are annotated once the nodes are known, because a tree's root is addressed by
-    # the component's CSS node rather than by its class name.
-    components.each do |name, entry|
-      next unless entry.key?("tree")
-
-      root = entry["node"] || entry.fetch("nodes", []).first
-      entry["tree"] = self.annotate(entry.fetch("tree"), [], contexts, widgets, root, entry["classes"])
-    end
-
-    self.check(classes, modifiers)
-
-    # The variants each component can carry, which is the component side of the modifiers above.
-    components.each do |name, entry|
-      entry["variants"] = self.component_variants(name, self.ancestry(name, classes), entry["node"], contexts)
-    end
-
-    buildable = components.reject{|_name, entry| %w[abstract behaviour private].include?(entry.fetch("kind"))}
-
-    puts(JSON.pretty_generate({
+    File.write(self.output("final-components.json"), "#{JSON.pretty_generate({
       "versions" => schemas.fetch("versions"),
-      "counts" => components.group_by{|_name, entry| entry.fetch("kind")}.transform_values(&:size)
-        .merge("variants" => components.values.sum{|entry| entry.fetch("variants").length}),
+      "counts" => components.group_by{|_name, entry| entry.fetch("kind") }.transform_values(&:size)
+        .merge("variants" => components.values.sum{|entry| entry.fetch("variants").length }),
       "buildable" => buildable.keys.sort,
       "enums" => self.referenced(buildable, enums),
       "widget" => shared,
-      "components" => components.sort.to_h,
-      "universal" => self.universal_variants(contexts),
-      "modifiers" => modifiers.sort.to_h,
-      "parts" => parts.sort.to_h,
-    }))
+      "components" => components,
+      "universal" => self.universal(contexts),
+    })}\n")
+    warn("wrote bin/08-final-components.out/final-components.json")
   end
 
-  # The props which carry text to put on screen, which is what a placeholder renders and what an
-  # example writes. Nothing in the introspection data separates them from the rest: `title` and
-  # `decorationLayout` are both a writable string, as are `label` and `issueUrl`, and a name rule
-  # which caught `-url` would still take `accelerator` and `closeResponse`. So they are listed.
-  TEXT = %w[
-    label title subtitle description heading body text comments tag version
-    placeholder-text button-label alternative-text disabled-text
-  ].freeze
+  def self.read(relative) = JSON.parse(File.read(File.join(ROOT, relative)))
 
-
-  # ── What a stylesheet subject actually is ──
-
-  # A selector names a CSS node, and a node is one of four things. Which one is decided by
-  # evidence, in the order the evidence is trustworthy:
-  def self.resolve(key, nodes, classes, parents)
-    documented = nodes[key]
-    named = classes.keys.find{|name| name.downcase.delete("-") == key.delete("-")}
-
-    if documented&.fetch("kind") == "root" && documented["widget"]
-      { "kind" => "widget", "widget" => documented.fetch("widget") }
-    elsif named
-      { "kind" => "widget", "widget" => named }
-    elsif documented
-      { "kind" => "part", "hosts" => [documented["widget"]].compact, "source" => "documented" }
-    elsif parents.key?(key)
-      { "kind" => "part", "hosts" => self.hosts(parents.fetch(key), nodes, classes), "source" => "stylesheet" }
-    else
-      { "kind" => "private" }
-    end
-  end
-
-  # The class name of a private node. A private widget is named the same way a public one is,
-  # so a template which references AdwTabThumbnail names the class whose node is `tabthumbnail`.
-  # One which no template references has no name to take, and the node's own is used.
-  def self.component(key, referenced)
-    referenced.keys.find{|name| name.downcase.delete("-") == key.delete("-")} ||
-      key.split("-").map(&:capitalize).join
-  end
-
-  # Which nodes the stylesheet puts each node under. A selector's last segment is its subject
-  # and the one before it is what the subject sits inside, so the selectors say where an
-  # undocumented node lives -- and where it lives in more than one place, they say that too.
-  def self.parentage(contexts)
-    counted = {}
-
-    contexts.each_key do |selector|
-      segments = self.segments(selector).map{|segment| self.segment(segment).first}.compact
-
-      if segments.length > 1
-        found = (counted[segments.last] ||= {})
-        found[segments[-2]] = found.fetch(segments[-2], 0) + 1
-      end
-    end
-
-    counted.transform_values{|found| found.sort_by{|node, count| [-count, node]}.map(&:first)}
-  end
-
-  # The widgets which draw a part, from the nodes the stylesheet puts it under. A parent which is
-  # itself a part or a private widget resolves to nothing and is left out: it is a position
-  # inside some other widget rather than a widget of its own.
-  def self.hosts(parents, nodes, classes)
-    parents.filter_map{|parent| self.resolve(parent, nodes, classes, {})["widget"]}.uniq
-  end
-
-  # A descendant combinator is a space, and a child one is `>`. Both say the same thing here.
-  def self.segments(selector)
-    selector.split(/\s*>\s*|\s+/).reject(&:empty?)
-  end
-
-  # documented   the classes whose doc comment names it, from the GIR
-  # elements     the element names the stylesheet attaches it to, `*` where it attaches to none
-  # applied      the widget classes libadwaita's own templates put it on
-  #
-  # A modifier whose elements are `*` goes on anything, and that is a fact about it rather than a
-  # gap in the data -- `.osd` has 133 rules which name no element at all.
-  def self.modifier(style, widgets, contexts, documented, applied)
-    {
-      "classes" => self.contributes(style, widgets, contexts),
-      "documented" => documented.fetch(style, []),
-      "elements" => self.elements(style, contexts),
-      "applied" => applied.fetch(style, []).uniq.sort,
-    }
-  end
-
-  # Every node the stylesheet mentions at all.
-  #
-  # The ones which are noise resolve to a part or to nothing and are not built either way.
-  def self.subjects(contexts)
-    contexts.each_key.flat_map do |selector|
-      self.segments(selector).filter_map{|segment| self.segment(segment).first}
-    end.uniq.sort
-  end
-
-
-  # Which declared variants a component can carry. A variant names the classes it goes on and
-  # reaches their subclasses, so ToggleButton is offered `.flat` because Gtk.Button is.
-  def self.component_variants(name, ancestry, node, contexts)
-    found = VARIANTS.filter_map do |style, variant|
-      named = self.named(variant) & ancestry
-
-      [style, self.variant(style, variant, node, contexts, name)] unless named.empty?
-    end
-
-    found.to_h.sort.to_h
-  end
-
-  # The classes a variant declaration names, whatever it names them for. `mostly` is the page
-  # saying a class goes on anything but is meant for these; `also` is a second use with its own
-  # meaning, like `.error` on an Entry; `shared` is a widget which has the appearance already,
-  # as HeaderBar does a toolbar's.
-  def self.named(variant)
-    widgets = variant.fetch(:widgets)
-
-    (widgets == :any ? [] : widgets) |
-      variant.fetch(:mostly, []) |
-      variant.fetch(:also, []) |
-      variant.fetch(:shared, []) |
-      variant.fetch(:deprecated, {}).fetch(:widgets, [])
-  end
-
-  # One variant, with the classes the stylesheet gives it ON THIS COMPONENT. The declaration says
-  # which variants exist and what they go on; the stylesheet says what they look like, and it
-  # does not say the same thing everywhere -- `.flat` on a headerbar is not `.flat` on a button,
-  # and merging every `.flat` rule gave a flat HeaderBar a button's padding and minimum height.
-  def self.variant(style, variant, node, contexts, name = nil)
-    found = variant.slice(:summary, :combines, :contains, :affects).transform_keys(&:to_s)
-    own = self.variant_classes(style, node, contexts)
-    classes = self.merged(own.values)
+  # One component, joined. Everything here is looked up; nothing is decided.
+  def self.entry(name, qualified, classes, source, shared, enums, widgets, contexts, trees)
+    schema = classes[name]
+    own = self.source_for(name, qualified, source)
+    props = schema.nil? ? {} : self.own_props(schema, shared)
+    node = own && own["node"]
+    tree = self.tree_for(name, classes, trees)
+    found = self.enums_of(props)
 
     {
-      "classes" => classes,
-      # Where the variant is only defined inside something else, which it is for `.raised`.
-      "context" => own.keys.reject{|selector| self.segments(selector).length == 1}.sort,
-      # A variant whose every rule was a colour has nothing left once the colours are dropped.
-      # `.destructive-action` is exactly that, and saying so is better than an empty entry which
-      # looks like a gap in the extraction.
-      "colour" => classes.values.all?(&:empty?),
-      "universal" => variant.fetch(:widgets) == :any,
-    }.merge(found).merge(self.deprecation(variant, name))
+      "kind" => self.kind(name, schema, classes, tree),
+      "gtk" => schema&.fetch("class"),
+      "parent" => schema && schema["parent"],
+      "props" => props,
+      "accepts" => schema.nil? ? {} : self.accepts(schema),
+      "text" => self.text(name, props, source, qualified, classes, tree, trees),
+      "enums" => found,
+      "flags" => found.select{|one| enums.dig(one, "flags") },
+      "node" => node,
+      "nodes" => [node].compact,
+      "source" => own && own["source"],
+      "layout" => own && own["layout"],
+      "direction" => own && own["direction"],
+      "classes" => node ? self.classes_for([node], widgets, contexts) : {},
+      "variants" => self.variants(name, node, own, source, classes, contexts, props),
+    }.merge(tree ? { "template" => tree.fetch("template"), "tree" => tree.fetch("tree") } : {})
   end
 
-  # The deprecation, WHERE IT APPLIES TO THIS COMPONENT. `.flat` is deprecated on a HeaderBar and
-  # current on a Button, so a deprecation naming widgets reaches only those; one which names none
-  # is the whole style class being deprecated, and reaches every component carrying it.
-  def self.deprecation(variant, name)
-    deprecated = variant.fetch(:deprecated, nil)
-    widgets = deprecated&.fetch(:widgets, nil)
+  # The template a component is built from. A subclass with none of its own is built
+  # from its parent's: AdwSwitchRow ships no .ui and is an AdwActionRow with a switch in
+  # its suffixes, so without this it renders its title and subtitle loose.
+  def self.tree_for(name, classes, trees)
+    self.ancestry(name, classes).filter_map{|one| trees.fetch("trees")[one] }.first
+  end
 
-    if deprecated.nil? || (widgets && !widgets.include?(name))
-      {}
+  def self.source_for(name, qualified, source)
+    source[qualified] || source["Adw#{name}"] || source["Gtk#{name}"]
+  end
+
+  # Gtk.Widget is the one every component inherits from and nothing renders; a class the
+  # introspection data does not carry is the library's own business; the rest is a widget
+  # when it descends from Widget, and a plain object when it does not.
+  def self.kind(name, schema, classes, tree)
+    if name == "Widget"
+      "abstract"
+    elsif tree
+      # libadwaita ships a template for it, so it is something it builds, whether or not
+      # the introspection data carries a class anyone can instantiate: AdwTab and
+      # AdwToastWidget are built from .ui files and exported by neither.
+      "composite"
+    elsif schema.nil?
+      "private"
+    elsif self.ancestry(name, classes).include?("Widget")
+      "widget"
     else
-      { "deprecated" => deprecated.transform_keys(&:to_s) }
-        .merge(deprecated.slice(:summary).transform_keys(&:to_s))
+      "behaviour"
     end
   end
 
-  # The rules which style a node carrying this class. The subject has to be the node -- a rule
-  # about another element is about that one, and a rule naming no element applies to any.
-  def self.variant_classes(style, node, contexts)
-    own = contexts.select do |selector, _states|
-      element, classes = self.segment(self.segments(selector).last.to_s)
-
-      classes.to_a == [style] && (element.nil? || element == node)
-    end
-
-    shallowest = own.keys.map{|selector| self.segments(selector).length}.min
-
-    own.select{|selector, _states| self.segments(selector).length == shallowest}
-  end
-
-  # The variants which go on any widget at all, whose classes are the rules naming no element.
-  def self.universal_variants(contexts)
-    VARIANTS.select{|_style, variant| variant.fetch(:widgets) == :any}.sort.to_h do |style, variant|
-      [style, self.variant(style, variant, nil, contexts)]
-    end
-  end
-
-  def self.check(classes, modifiers)
-    unknown = VARIANTS.flat_map do |style, variant|
-      wanted = self.named(variant) |
-        variant.fetch(:contains, []) |
-        variant.fetch(:affects, []) |
-        variant.fetch(:deprecated, {}).fetch(:widgets, [])
-
-      wanted.reject{|name| classes.key?(name)}.map{|name| "#{style}: #{name}"}
-    end
-
-    unstyled = VARIANTS.keys.reject{|style| modifiers.key?(style)}
-    undescribed = VARIANTS.reject{|_style, variant| variant.key?(:summary)}.keys
-
-    unless undescribed.empty?
-      warn("final-components: variants with no summary: #{undescribed.join(', ')}")
-      exit(1)
-    end
-
-    unless unknown.empty?
-      warn("final-components: variants name classes which do not exist: #{unknown.join(', ')}")
-      exit(1)
-    end
-
-    unless unstyled.empty?
-      warn("final-components: variants the stylesheet has no rules for: #{unstyled.join(', ')}")
-      exit(1)
-    end
-  end
-
-  # Every style class there is, which is two sources because neither is complete on its own.
-  def self.styles(contexts, documented)
-    found = contexts.each_key.flat_map do |selector|
-      self.segments(selector).flat_map{|segment| self.segment(segment).last.to_a}
-    end
-
-    (found | documented.keys).sort
-  end
-
-  # What a style class contributes on its own. A rule which names the class and nothing else is
-  # the class's own styling; one which puts it in a structure -- `list.boxed-list > row` -- is
-  # the styling of whatever that structure ends in, and annotate() reports it there instead.
-  def self.contributes(style, widgets, contexts)
-    own = contexts.select do |selector, _states|
-      segments = self.segments(selector)
-
-      segments.length == 1 && self.segment(segments.first).last.to_a == [style]
-    end
-
-    widgets.fetch(".#{style}", {}).merge(self.merged(own.values))
-  end
-
-  # Several rules' classes, per state, merged into one set.
-  def self.merged(states)
-    states.each_with_object({}) do |one, found|
-      one.each{|state, list| found[state] = found.fetch(state, []) | list}
-    end
-  end
-
-  # The element names a style class is attached to across the stylesheet, counted, with `*` for
-  # the rules which name no element and so address any widget at all.
-  def self.elements(style, contexts)
-    counted = {}
-
-    contexts.each_key do |selector|
-      self.segments(selector).each do |segment|
-        element, classes = self.segment(segment)
-
-        if classes.include?(style)
-          key = element || "*"
-          counted[key] = counted.fetch(key, 0) + 1
-        end
-      end
-    end
-
-    counted.sort_by{|element, count| [-count, element]}.to_h
-  end
-
-  # Which widget class each style class is put on, by libadwaita's own templates.
-  def self.applications(trees)
-    {}.tap do |found|
-      trees.each_value do |entry|
-        self.each_node(entry.fetch("tree")) do |node|
-          node.fetch("styles", []).each{|style| (found[style] ||= []) << node.fetch("class")}
-        end
-      end
-    end
-  end
-
-  # A class and the classes it descends from, so that a variant documented for Gtk.Button is
-  # offered on ToggleButton too.
   def self.ancestry(name, classes)
     [].tap do |found|
       current = name
@@ -532,97 +173,167 @@ module FinalComponents
     end
   end
 
-  # Which CSS node a component renders as.
-  def self.rendered(name, nodes, classes)
-    found = nil
-    current = name
+  # The style classes a component can carry: the ones the stylesheet draws on its node,
+  # and the ones the widget or an ancestor puts on itself.
+  def self.variants(name, node, own, source, classes, contexts, props = {})
+    return {} if node.nil?
 
-    while current && found.nil?
-      found = nodes.find{|_node, entry| entry["kind"] == "root" && entry["widget"] == current}
-      current = classes.dig(current, "parent")
-    end
+    by_property = BY_PROPERTY.filter_map{|prop, styles| styles if props.key?(prop) }.flatten
 
-    found&.first
-  end
+    applied = self.ancestry(name, classes).flat_map do |ancestor|
+      entry = self.source_for(ancestor, classes.dig(ancestor, "class")&.sub(".", ""), source)
 
-  # Every enumeration a buildable component's props draw from, so that what is generated as
-  # TypeScript is what something imports rather than all 158 of them.
-  #
-  # FROM `accepts` RATHER THAN FROM `props`, because a component is annotated with its own props
-  # and checked against every prop it takes, and the second set is the larger one. Narrowing it
-  # to the declared props is what had a generated entry.tsx import an InputHints which nothing
-  # had written.
-  def self.referenced(buildable, enums)
-    found = buildable.values.flat_map do |entry|
-      entry.fetch("accepts").values.filter_map{|rule| rule["enum"]}
-    end
+      entry ? entry.fetch("applies", []) : []
+    end.uniq
 
-    found.uniq.sort.to_h{|name| [name, enums.fetch(name)]}
-  end
+    # A rule naming no element -- `.card`, `.dim-label` -- can go on any widget, so it is
+    # not a variant of a particular one; those are listed once under `universal`. What is
+    # a variant here is what the stylesheet names on this node, what the widget puts on
+    # itself, and what a template puts on a widget of this class.
+    candidates = self.styled_on(node, contexts) | applied | by_property |
+      self.templated.fetch(name, [])
 
-  # The bases every widget descends from, which name no component. `widget` is a CSS node
-  # libadwaita styles -- AdwNavigationSplitView renders its two panes as bare GtkWidgets and
-  # addresses them `widget.sidebar-pane` and `widget.content-view` -- but GtkWidget is abstract,
-  # and a Widget component would be a base class with a placeholder div in it. What those rules
-  # actually describe is the two style classes, which are modifiers like any other.
-  ABSTRACT = %w[Widget].freeze
+    candidates.uniq.sort.to_h do |style|
+      rules = self.variant_classes(style, node, contexts)
+      merged = self.merged(rules.values)
 
-  # A class which does not descend from Widget renders nothing, and one the public API does not
-  # have is libadwaita's own business.
-  def self.kind_of(name, classes)
-    if ABSTRACT.include?(name)
-      "abstract"
-    elsif !classes.key?(name)
-      "private"
-    elsif self.widget?(name, classes)
-      "widget"
-    else
-      "behaviour"
+      [style, {
+        "classes" => merged,
+        "context" => rules.keys.reject{|selector| self.segments(selector).length == 1 }.sort,
+        "colour" => merged.values.all?(&:empty?),
+        "applied" => applied.include?(style) || by_property.include?(style),
+        "universal" => self.unscoped(contexts).include?(style),
+      }]
     end
   end
 
-  def self.widget?(name, classes)
-    seen = Set.new
-    current = name
+  # The classes libadwaita's own templates put on a widget of each class: a .ui saying
+  # `<style><class name="card"/></style>` on a box is the toolkit stating that a box
+  # carries `.card`.
+  def self.templated = @templated ||= {}
 
-    while current && classes.key?(current) && !seen.include?(current)
-      seen << current
-      current = classes.fetch(current)["parent"]
+  def self.read_templates(trees)
+    @templated = Hash.new{|found, key| found[key] = [] }
+
+    trees.fetch("trees").each_value do |entry|
+      self.each_node(entry.fetch("tree")) do |node|
+        @templated[node.fetch("class")] |= node.fetch("styles", [])
+      end
+    end
+  end
+
+  # Every class the stylesheet draws on this node, from a selector whose subject is it.
+  def self.styled_on(node, contexts)
+    contexts.keys.filter_map do |selector|
+      element, styles = self.segment(self.segments(selector).last.to_s)
+
+      styles.to_a.first if styles.length == 1 && element == node
+    end.uniq
+  end
+
+  # The rules which style a node carrying this class, taken at the shallowest context the
+  # stylesheet states them in: `.flat` on a headerbar is not `.flat` on a button, and
+  # merging every `.flat` rule gives a flat HeaderBar a button's padding.
+  def self.variant_classes(style, node, contexts)
+    own = contexts.select do |selector, _states|
+      element, styles = self.segment(self.segments(selector).last.to_s)
+
+      styles.to_a == [style] && (element.nil? || element == node)
     end
 
-    seen.include?("Widget")
+    shallowest = own.keys.map{|selector| self.segments(selector).length }.min
+
+    own.select{|selector, _states| self.segments(selector).length == shallowest }
   end
 
-  def self.entry(_name, kind, schema, classes, shared, enums)
-    props = schema.nil? ? {} : self.own_props(schema, shared)
+  # The classes the stylesheet states without naming an element.
+  def self.unscoped(contexts)
+    @unscoped ||= contexts.keys.filter_map do |selector|
+      element, styles = self.segment(selector)
 
-    {
-      "kind" => kind,
-      "gtk" => schema&.fetch("class"),
-      "parent" => schema && schema["parent"],
-      "props" => props,
-      "accepts" => schema.nil? ? {} : self.accepts(schema),
-      "text" => props.keys.select{|prop| TEXT.include?(self.kebab(prop))},
-      "enums" => props.values
-        .select{|attributes| attributes.fetch("type") == "enum"}
-        .map{|attributes| attributes.fetch("enum")}
-        .uniq
-        .sort,
-      "flags" => props.values
-        .select{|attributes| attributes.fetch("type") == "enum" && enums.dig(attributes.fetch("enum"), "flags")}
-        .map{|attributes| attributes.fetch("enum")}
-        .uniq
-        .sort,
-    }
+      styles.to_a.first if element.nil? && styles.length == 1 && self.segments(selector).length == 1
+    end.uniq
   end
 
-  def self.kebab(prop)
-    prop.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
+  # The classes which go on any widget at all, which are the rules naming no element.
+  def self.universal(contexts)
+    self.unscoped(contexts).sort.to_h do |style|
+      rules = self.variant_classes(style, nil, contexts)
+      merged = self.merged(rules.values)
+
+      [style, {
+        "classes" => merged,
+        "context" => [],
+        "colour" => merged.values.all?(&:empty?),
+        "applied" => false,
+        "universal" => true,
+      }]
+    end
   end
 
-  # Every prop a component accepts, inherited ones included, keyed under both spellings. This
-  # is what a lint tests an attribute against, and it is a different question from what the
-  # component declares: `<ActionRow visible>` is correct and `visible` is GtkWidget's.
+  # The props a component shows as text. bin/05 reads the setters which put a property
+  # into a label; a template binds the rest, which is where AdwAboutDialog's `version`
+  # comes from.
+  def self.text(name, props, source, qualified, classes, tree, trees = nil)
+    from_source = self.ancestry(name, classes).flat_map do |ancestor|
+      entry = self.source_for(
+        ancestor,
+        ancestor == name ? qualified : classes.dig(ancestor, "class")&.sub(".", ""),
+        source,
+      )
+
+      entry ? entry.fetch("showsText", []) : []
+    end
+
+    # Text is a string by definition: a template node whose id happens to match a boolean
+    # property is not the component showing that property as text.
+    # A template an ancestor ships shows this component's properties too, because the
+    # component is built from it: `title` is AdwPreferencesRow's and AdwActionRow's
+    # template is what puts it on screen.
+    inherited = trees.nil? ? [] : self.ancestry(name, classes).flat_map do |ancestor|
+      self.bound(trees.fetch("trees")[ancestor])
+    end
+
+    (from_source | self.bound(tree) | inherited)
+      .select{|prop| props.dig(prop, "type") == "string" }
+      .sort
+  end
+
+  # The props a template binds to something which shows text.
+  def self.bound(tree)
+    return [] if tree.nil?
+
+    [].tap do |found|
+      self.each_node(tree.fetch("tree")) do |node|
+        next unless LABELS.include?(node.fetch("class"))
+
+        node.fetch("properties", {}).each do |property, value|
+          found << self.camel(value.fetch("bind")) if value.is_a?(Hash) && %w[label text].include?(property)
+        end
+
+        found << self.camel(node["id"]) if node["id"]
+      end
+    end.uniq
+  end
+
+  def self.camel(name)
+    parts = name.to_s.split("-")
+
+    parts.first.to_s + parts.drop(1).map(&:capitalize).join
+  end
+
+  def self.enums_of(props)
+    props.values
+      .select{|attributes| attributes.fetch("type") == "enum" }
+      .map{|attributes| attributes.fetch("enum") }
+      .uniq
+      .sort
+  end
+
+  # Every prop a component accepts, inherited ones included, keyed under both spellings.
+  # This is what a lint tests an attribute against, and it is a different question from
+  # what the component declares: `<ActionRow visible>` is correct and `visible` is
+  # GtkWidget's.
   def self.accepts(schema)
     {}.tap do |found|
       schema.fetch("properties").each do |gtk, attributes|
@@ -634,7 +345,7 @@ module FinalComponents
     end
   end
 
-  # A class's own writable props: the canonical kebab key, minus anything Gtk.Widget already
+  # A class's own writable props: the canonical key, minus anything Gtk.Widget already
   # gives every component.
   def self.own_props(schema, shared)
     {}.tap do |found|
@@ -648,95 +359,136 @@ module FinalComponents
     end
   end
 
-  # What a node is styled with on its own. The merged map answers most of them, and for the
-  # rest -- a node libadwaita only ever addresses inside a context, like `windowcontrols` -- the
-  # contexts do, which is the same fall back the modifiers use.
+  # Every enumeration a buildable component's props draw from, taken from `accepts`.
+  def self.referenced(buildable, enums)
+    found = buildable.values.flat_map do |entry|
+      entry.fetch("accepts").values.filter_map{|rule| rule["enum"] }
+    end
+
+    enums.slice(*found.uniq.sort)
+  end
+
+  # What a node is styled with on its own.
   def self.classes_for(nodes, widgets, contexts)
     nodes.to_a.each_with_object({}) do |node, found|
       own = widgets.fetch(node, nil) || self.addressed(node, contexts)
 
-      own.each{|state, list| found[state] = found.fetch(state, []) | list}
+      own.each{|state, list| found[state] = found.fetch(state, []) | list }
     end
   end
 
-  # The rules which address a node and nothing else about it: one segment, no style classes. A
-  # rule which puts the node in a structure is that structure's styling and annotate() reports
-  # it there.
+  # The rules which address a node and nothing else about it: one segment, no classes.
   def self.addressed(node, contexts)
     own = contexts.select do |selector, _states|
       segments = self.segments(selector)
-      element, classes = self.segment(segments.first.to_s)
+      element, styles = self.segment(segments.first.to_s)
 
-      segments.length == 1 && element == node && classes.empty?
+      segments.length == 1 && element == node && styles.empty?
     end
 
     self.merged(own.values)
   end
 
-  # A selector segment, split into the element it names and the classes on it. A rule may name
-  # no element at all -- `.prefixes` rather than `box.prefixes` -- which matches any element.
+  def self.merged(states)
+    states.each_with_object({}) do |one, found|
+      one.each{|state, list| found[state] = found.fetch(state, []) | list }
+    end
+  end
+
+  def self.segments(selector) = selector.split(/\s*>\s*|\s+/).reject(&:empty?)
+
+  # A selector segment, split into the element it names and the classes on it. A rule may
+  # name no element at all -- `.prefixes` rather than `box.prefixes` -- which matches any.
   def self.segment(text)
-    element = text[/\A[a-z][a-z0-9-]*/]
-    classes = text.scan(/\.([a-z0-9-]+)/).flatten.to_set
-
-    [element, classes]
+    [text[/\A[a-z][a-z0-9-]*/], text.scan(/\.([a-z0-9-]+)/).flatten.to_set]
   end
 
-  # Whether a rule's segment addresses a node: the element has to agree where the rule names
-  # one, and every class the rule asks for has to be on the node.
+  # Whether a rule's segment addresses a node: the element has to agree where the rule
+  # names one, and every class the rule asks for has to be on the node.
   def self.addresses?(rule, node)
-    element, classes = self.segment(rule)
-    node_element, node_classes = self.segment(node)
+    element, styles = self.segment(rule)
+    node_element, node_styles = self.segment(node)
 
-    (element.nil? || element == node_element) && classes.subset?(node_classes)
+    (element.nil? || element == node_element) && styles.subset?(node_styles)
   end
 
-  # A node's CSS path, which is how the stylesheet addresses it: `row > box.header > .prefixes`.
+  # A node's CSS path, which is how the stylesheet addresses it.
   def self.selector(node, name = nil)
-    styles = node.fetch("styles", []).map{|style| ".#{style}"}.join
+    styles = node.fetch("styles", []).map{|style| ".#{style}" }.join
+    klass = node.fetch("class")
 
-    "#{name || node.fetch('class').downcase}#{styles}"
+    "#{name || self.nodes.fetch(klass, klass.downcase)}#{styles}"
   end
 
-  # Every node in a tree, with the path it sits at and the classes that path is styled with.
+  # The trees are annotated once the nodes are known, because a tree's root is addressed
+  # by the component's CSS node rather than by its class name.
+  def self.annotate_trees(components, contexts, widgets)
+    # How each class arranges its children, so that a template's boxes carry it too: a
+    # composite is built out of other widgets, and a box inside a template is as much a
+    # box as one a caller makes.
+    @layouts = components.transform_values{|entry| entry["layout"] }.compact
+
+    # The CSS node each class renders as. A template names classes and the stylesheet
+    # names nodes, and the two are not the same word: GtkListBox is `list`, and a path
+    # built from the class name addresses nothing, so `.boxed-list` never reaches it.
+    @nodes = components.transform_values{|entry| entry["node"] }.compact
+
+    components.each_value do |entry|
+      next unless entry.key?("tree")
+
+      root = entry["node"] || entry.fetch("nodes", []).first
+      entry["tree"] = self.annotate(entry.fetch("tree"), [], contexts, widgets, root, entry["classes"])
+    end
+  end
+
+  def self.layouts = @layouts ||= {}
+  def self.nodes = @nodes ||= {}
+
+  # Every node in a tree, with the path it sits at and the classes that path is styled
+  # with.
   def self.annotate(node, ancestors, contexts, widgets, name = nil, own = nil)
     path = ancestors + [self.selector(node, name)]
-
-    # The root is the component, whose classes are already merged per subject by
-    # bin/03-adwaita-tailwind. Only the nodes inside the tree are addressed by path.
     classes = own || self.lookup(path, contexts, widgets)
 
     node.merge(
       "css" => path.join(" > "),
       "classes" => classes,
-      "children" => node.fetch("children", []).map{|child| self.annotate(child, path, contexts, widgets)},
-      "slots" => node.fetch("slots", {}).transform_values{|slot| self.annotate(slot, path, contexts, widgets)},
-    ).reject{|_key, value| value.respond_to?(:empty?) && value.empty?}
+      "layout" => self.layouts[node.fetch("class")],
+      "children" => node.fetch("children", []).map{|child| self.annotate(child, path, contexts, widgets) },
+      "slots" => node.fetch("slots", {}).transform_values{|slot| self.annotate(slot, path, contexts, widgets) },
+    ).reject{|_key, value| value.respond_to?(:empty?) && value.empty? }
   end
 
-  # The rules which address this path: one whose segments are a suffix of it, matching loosely
-  # so that a rule naming no element still applies. The longest match wins, being the most
-  # specific.
+  # The rules which address this path: one whose segments are a suffix of it, matching
+  # loosely so that a rule naming no element still applies. The longest match wins.
   def self.lookup(path, contexts, widgets)
     matches = contexts.select do |selector, _states|
       segments = selector.split(">").map(&:strip)
 
       segments.length <= path.length &&
-        path.last(segments.length).zip(segments).all?{|node, rule| self.addresses?(rule, node)}
+        path.last(segments.length).zip(segments).all?{|node, rule| self.addresses?(rule, node) }
     end
 
     if matches.empty?
       widgets.fetch(path.last, {})
     else
-      matches.max_by{|selector, _states| selector.split(">").length}.last
+      matches.max_by{|selector, _states| selector.split(">").length }.last
     end
   end
 
   def self.each_node(node, &block)
     block.call(node)
 
-    node.fetch("children", []).each{|child| self.each_node(child, &block)}
-    node.fetch("slots", {}).each_value{|slot| self.each_node(slot, &block)}
+    node.fetch("children", []).each{|child| self.each_node(child, &block) }
+    node.fetch("slots", {}).each_value{|slot| self.each_node(slot, &block) }
+  end
+
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "08-final-components.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
+    end
   end
 end
 

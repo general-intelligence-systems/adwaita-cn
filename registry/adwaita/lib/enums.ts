@@ -7,6 +7,11 @@
 //
 // Do not edit. Run bin/09-gtk-enums.
 
+/** Gtk.AccessibleRole */
+export const accessibleRoleValues = ["alert", "alert-dialog", "banner", "button", "caption", "cell", "checkbox", "column-header", "combo-box", "command", "composite", "dialog", "document", "feed", "form", "generic", "grid", "grid-cell", "group", "heading", "img", "input", "label", "landmark", "legend", "link", "list", "list-box", "list-item", "log", "main", "marquee", "math", "meter", "menu", "menu-bar", "menu-item", "menu-item-checkbox", "menu-item-radio", "navigation", "none", "note", "option", "presentation", "progress-bar", "radio", "radio-group", "range", "region", "row", "row-group", "row-header", "scrollbar", "search", "search-box", "section", "section-head", "select", "separator", "slider", "spin-button", "status", "structure", "switch", "tab", "table", "tab-list", "tab-panel", "text-box", "time", "timer", "toolbar", "tooltip", "tree", "tree-grid", "tree-item", "widget", "window", "toggle-button", "application", "paragraph", "block-quote", "article", "comment", "terminal"] as const
+
+export type AccessibleRole = (typeof accessibleRoleValues)[number]
+
 /** Gtk.Align */
 export const alignValues = ["fill", "start", "end", "center", "baseline-fill", "baseline", "baseline-center"] as const
 
@@ -47,6 +52,11 @@ export const dialogPresentationModeValues = ["auto", "floating", "bottom-sheet"]
 
 export type DialogPresentationMode = (typeof dialogPresentationModeValues)[number]
 
+/** Gtk.FileChooserAction */
+export const fileChooserActionValues = ["open", "save", "select-folder"] as const
+
+export type FileChooserAction = (typeof fileChooserActionValues)[number]
+
 /** Adw.FlapFoldPolicy */
 export const flapFoldPolicyValues = ["never", "always", "auto"] as const
 
@@ -61,6 +71,16 @@ export type FlapTransitionType = (typeof flapTransitionTypeValues)[number]
 export const foldThresholdPolicyValues = ["minimum", "natural"] as const
 
 export type FoldThresholdPolicy = (typeof foldThresholdPolicyValues)[number]
+
+/** Gtk.FontChooserLevel — flags: a set, so a prop drawn from this is an array of it */
+export const fontChooserLevelValues = ["family", "style", "size", "variations", "features"] as const
+
+export type FontChooserLevel = (typeof fontChooserLevelValues)[number]
+
+/** Gtk.FontLevel */
+export const fontLevelValues = ["family", "face", "font", "features"] as const
+
+export type FontLevel = (typeof fontLevelValues)[number]
 
 /** Gtk.GraphicsOffloadEnabled */
 export const graphicsOffloadEnabledValues = ["enabled", "disabled"] as const
@@ -91,6 +111,11 @@ export type InputHints = (typeof inputHintsValues)[number]
 export const inputPurposeValues = ["free-form", "alpha", "digits", "number", "phone", "url", "email", "name", "password", "pin", "terminal"] as const
 
 export type InputPurpose = (typeof inputPurposeValues)[number]
+
+/** Gtk.InscriptionOverflow */
+export const inscriptionOverflowValues = ["clip", "ellipsize-start", "ellipsize-middle", "ellipsize-end"] as const
+
+export type InscriptionOverflow = (typeof inscriptionOverflowValues)[number]
 
 /** Gtk.Justification */
 export const justificationValues = ["left", "right", "center", "fill"] as const
@@ -162,15 +187,30 @@ export const policyTypeValues = ["always", "automatic", "never", "external"] as 
 
 export type PolicyType = (typeof policyTypeValues)[number]
 
+/** Gtk.PopoverMenuFlags — flags: a set, so a prop drawn from this is an array of it */
+export const popoverMenuFlagsValues = ["sliding", "nested"] as const
+
+export type PopoverMenuFlags = (typeof popoverMenuFlagsValues)[number]
+
 /** Gtk.PositionType */
 export const positionTypeValues = ["left", "right", "top", "bottom"] as const
 
 export type PositionType = (typeof positionTypeValues)[number]
 
+/** Gtk.PrintCapabilities — flags: a set, so a prop drawn from this is an array of it */
+export const printCapabilitiesValues = ["page-set", "copies", "collate", "reverse", "scale", "generate-pdf", "generate-ps", "preview", "number-up", "number-up-layout"] as const
+
+export type PrintCapabilities = (typeof printCapabilitiesValues)[number]
+
 /** Gtk.RevealerTransitionType */
 export const revealerTransitionTypeValues = ["none", "crossfade", "slide-right", "slide-left", "slide-up", "slide-down", "swing-right", "swing-left", "swing-up", "swing-down", "fade-slide-right", "fade-slide-left", "fade-slide-up", "fade-slide-down"] as const
 
 export type RevealerTransitionType = (typeof revealerTransitionTypeValues)[number]
+
+/** Gtk.ScrollablePolicy */
+export const scrollablePolicyValues = ["minimum", "natural"] as const
+
+export type ScrollablePolicy = (typeof scrollablePolicyValues)[number]
 
 /** Gtk.SelectionMode */
 export const selectionModeValues = ["none", "single", "browse", "multiple"] as const
@@ -181,6 +221,11 @@ export type SelectionMode = (typeof selectionModeValues)[number]
 export const sensitivityTypeValues = ["auto", "on", "off"] as const
 
 export type SensitivityType = (typeof sensitivityTypeValues)[number]
+
+/** Gtk.ShortcutType */
+export const shortcutTypeValues = ["accelerator", "gesture-pinch", "gesture-stretch", "gesture-rotate-clockwise", "gesture-rotate-counterclockwise", "gesture-two-finger-swipe-left", "gesture-two-finger-swipe-right", "gesture", "gesture-swipe-left", "gesture-swipe-right"] as const
+
+export type ShortcutType = (typeof shortcutTypeValues)[number]
 
 /** Adw.SidebarMode */
 export const sidebarModeValues = ["sidebar", "page"] as const
@@ -212,6 +257,11 @@ export const tabViewShortcutsValues = ["none", "control-tab", "control-shift-tab
 
 export type TabViewShortcuts = (typeof tabViewShortcutsValues)[number]
 
+/** Gtk.TextDirection */
+export const textDirectionValues = ["none", "ltr", "rtl"] as const
+
+export type TextDirection = (typeof textDirectionValues)[number]
+
 /** Adw.ToolbarStyle */
 export const toolbarStyleValues = ["flat", "raised", "raised-border"] as const
 
@@ -226,6 +276,11 @@ export type TreeViewGridLines = (typeof treeViewGridLinesValues)[number]
 export const viewSwitcherPolicyValues = ["narrow", "wide"] as const
 
 export type ViewSwitcherPolicy = (typeof viewSwitcherPolicyValues)[number]
+
+/** Gtk.WindowGravity */
+export const windowGravityValues = ["top-left", "top", "top-right", "left", "center", "right", "bottom-left", "bottom", "bottom-right", "top-start", "top-end", "start", "end", "bottom-start", "bottom-end"] as const
+
+export type WindowGravity = (typeof windowGravityValues)[number]
 
 /** Gtk.WrapMode */
 export const wrapModeValues = ["none", "char", "word", "word-char"] as const

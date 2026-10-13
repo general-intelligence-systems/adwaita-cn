@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { ExpanderRow } from "@/ui/expander-row"
+import { Label } from "@/ui/label"
 
 export default function ExpanderRowBase() {
   return (
-    <ExpanderRow subtitle="Subtitle" title="Title" />
+    <ExpanderRow>
+      <Label label="Label" />
+    </ExpanderRow>
   )
 }

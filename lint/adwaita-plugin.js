@@ -1,4 +1,4 @@
-// An oxlint plugin which checks JSX against lint/rules.json.
+// An oxlint plugin which checks JSX against bin/10-lint-rules.out/rules.json.
 //
 // THIS RULE KNOWS NOTHING. Every fact it uses is in the rule file, which bin/10-lint-rules
 // generates from the declaration of which components exist and from GTK's own introspection

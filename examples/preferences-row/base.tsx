@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { PreferencesRow } from "@/ui/preferences-row"
+import { Label } from "@/ui/label"
 
 export default function PreferencesRowBase() {
   return (
-    <PreferencesRow title="Title" />
+    <PreferencesRow>
+      <Label label="Label" />
+    </PreferencesRow>
   )
 }

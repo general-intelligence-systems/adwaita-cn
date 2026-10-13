@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { ShortcutLabel } from "@/ui/shortcut-label"
+import { Label } from "@/ui/label"
 
 export default function ShortcutLabelBase() {
   return (
-    <ShortcutLabel disabledText="Disabled text" />
+    <ShortcutLabel>
+      <Label label="Label" />
+    </ShortcutLabel>
   )
 }

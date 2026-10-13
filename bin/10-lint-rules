@@ -7,18 +7,22 @@
 #      bin/10-lint-rules — the rule file the oxlint plugin checks against
 #
 # SYNOPSIS
-#      bin/10-lint-rules > lint/rules.json
+#      bin/10-lint-rules > bin/10-lint-rules.out/rules.json
 #
 # DESCRIPTION
-#      Projects vendor/adwaita/final-components.json into the one file the oxlint plugin reads:
+#      Projects bin/08-final-components.out/final-components.json into the one file the oxlint plugin reads:
 #      every buildable component, and every prop it accepts.
 #
 #      Props are carried under both spellings, GTK's `subtitle-lines` and React's
 #      `subtitleLines`, so a component may use either.
 #
+#      React's own props and the registry's own -- `asChild`, and the `variant` and `size`
+#      a component's style classes became -- are listed as passthrough, because no GTK
+#      class declares them.
+#
 # FILES
-#      vendor/adwaita/final-components.json  the components and their props, from 07
-#      lint/rules.json                       the output
+#      bin/08-final-components.out/final-components.json  the components and their props, from 07
+#      bin/10-lint-rules.out/rules.json                       the output
 #
 # EXIT STATUS
 #      The bin/10-lint-rules utility exits 0 on success, and >0 if an error occurs.
@@ -34,13 +38,17 @@ module LintRules
   # React's own, which no GTK class declares and every component takes.
   REACT = %w[key ref children className style id slot].freeze
 
+  # The registry's own API, which every generated component takes: Base UI's
+  # `render`, and the cva props a component's Adwaita style classes became.
+  REGISTRY = %w[render variant size].freeze
+
   # Where a component is imported from. A named import from one of these must be a component in
   # this file, which is how existence is checked without the plugin guessing from the name.
   SOURCES = %w[@/ui/ @/components/ui/ @/components/adwaita/ adwaita-cn].freeze
 
   def self.run(_argv)
     root = File.expand_path("..", __dir__)
-    final = JSON.parse(File.read(File.join(root, "vendor/adwaita/final-components.json")))
+    final = JSON.parse(File.read(File.join(root, "bin/08-final-components.out/final-components.json")))
     components = final.fetch("components")
 
     rules = final.fetch("buildable").sort.to_h do |name|
@@ -53,12 +61,21 @@ module LintRules
       }]
     end
 
-    puts(JSON.pretty_generate({
+    File.write(self.output("rules.json"), "#{JSON.pretty_generate({
       "versions" => final.fetch("versions"),
-      "react" => REACT,
+      "react" => REACT + REGISTRY,
       "sources" => SOURCES,
       "components" => rules,
-    }))
+    })}\n")
+    warn("wrote bin/10-lint-rules.out/rules.json")
+  end
+
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "10-lint-rules.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
+    end
   end
 end
 

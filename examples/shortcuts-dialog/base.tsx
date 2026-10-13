@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { ShortcutsDialog } from "@/ui/shortcuts-dialog"
+import { Label } from "@/ui/label"
 
 export default function ShortcutsDialogBase() {
   return (
-    <ShortcutsDialog title="Title" />
+    <ShortcutsDialog>
+      <Label label="Label" />
+    </ShortcutsDialog>
   )
 }

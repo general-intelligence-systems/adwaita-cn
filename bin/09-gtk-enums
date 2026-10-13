@@ -10,7 +10,7 @@
 #      bin/09-gtk-enums [FINAL] > enums.ts
 #
 # DESCRIPTION
-#      Reads vendor/adwaita/final-components.json and writes TypeScript: one string-literal
+#      Reads bin/08-final-components.out/final-components.json and writes TypeScript: one string-literal
 #      union per enumeration, with the array of its values beside it.
 #
 #          export const toolbarStyleValues = ["flat", "raised", "raised-border"] as const
@@ -24,7 +24,7 @@
 #      No enumeration name is claimed by both namespaces, so nothing is displaced.
 #
 # FILES
-#      vendor/adwaita/final-components.json
+#      bin/08-final-components.out/final-components.json
 #              The input, from bin/08-final-components.
 #
 # EXIT STATUS
@@ -50,7 +50,7 @@ module GtkEnums
 
   def self.run(argv)
     root = File.expand_path("..", __dir__)
-    source = argv.first || File.join(root, "vendor/adwaita/final-components.json")
+    source = argv.first || File.join(root, "bin/08-final-components.out/final-components.json")
     schemas = JSON.parse(File.read(source))
 
     # Adw first, so that consolidating by bare name keeps it. No name is claimed by both, so
@@ -67,10 +67,19 @@ module GtkEnums
       end
     end
 
-    puts(self.header(schemas))
+    [self.header(schemas)]
+      .concat(consolidated.sort.map{|name, (qualified, enum)| self.enumeration(name, qualified, enum) })
+      .join("\n")
+      .then{|contents| File.write(self.output("enums.ts"), "#{contents}\n") }
 
-    consolidated.sort.each do |name, (qualified, enum)|
-      puts(self.enumeration(name, qualified, enum))
+    warn("wrote bin/09-gtk-enums.out/enums.ts")
+  end
+
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "09-gtk-enums.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
     end
   end
 

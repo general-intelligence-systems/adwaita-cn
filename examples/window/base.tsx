@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { Window } from "@/ui/window"
+import { Label } from "@/ui/label"
 
 export default function WindowBase() {
   return (
-    <Window title="Title" />
+    <Window>
+      <Label label="Label" />
+    </Window>
   )
 }

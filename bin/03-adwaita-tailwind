@@ -31,21 +31,20 @@
 #      --sheet      Convert another stylesheet instead. bin/04-gtk-tailwind uses this.
 #
 # FILES
-#      vendor/adwaita/adwaita.css
-#      vendor/adwaita/VERSIONS
+#      bin/01-fetch-adwaita.out/adwaita.css
+#      bin/01-fetch-adwaita.out/VERSIONS
 #              Which release each sheet came from. The metrics move between releases.
 #
 # EXIT STATUS
 #      The bin/03-adwaita-tailwind utility exits 0 on success, and >0 if an error occurs.
 #
 # EXAMPLES
-#      The map:
+#      Both sheets, each read twice:
 #
-#            bin/03-adwaita-tailwind > vendor/adwaita/widgets.json
+#            bin/03-adwaita-tailwind
 #
-#      The contexts, which is what the join reads:
-#
-#            bin/03-adwaita-tailwind --contexts --all > vendor/adwaita/widgets-contexts.json
+#      writes widgets.json, widgets-contexts.json, gtk-widgets.json and
+#      gtk-widgets-contexts.json into bin/03-adwaita-tailwind.out/.
 #
 # SEE ALSO
 #      bin/01-fetch-adwaita, bin/04-gtk-tailwind
@@ -58,7 +57,8 @@ require "set"
 module AdwaitaTailwind
   # So this converts whichever sheet it is given, and bin/04-gtk-tailwind is the separate stage
   # which handles GTK's, for the nodes libadwaita never mentions at all.
-  SHEET = "vendor/adwaita/adwaita.css"
+  SHEET = "bin/01-fetch-adwaita.out/adwaita.css"
+  GTK_SHEET = "bin/01-fetch-adwaita.out/gtk-default-light.css"
 
   # Colour is the one thing a port does not take from here, so it never reaches the output.
   # GTK's own properties, which are not CSS and have no equivalent. An icon's palette, source
@@ -90,11 +90,16 @@ module AdwaitaTailwind
   #
   # An arbitrary value may not contain a space, because a class list is split on them. Tailwind
   # reads an underscore back as a space, which is what makes `calc(11px_-_var(--x))` work.
+  # Tailwind writes a negative step as a negative class, `-ml-0.5`, and not as a negative
+  # step on a positive one: `ml--0.5` is not a class and Tailwind emits nothing for it.
+  # An arbitrary value keeps its own sign, because `mt-[-3px]` is how that one is written.
   def self.length(prefix, value)
     step = self.spacing(value)
 
     if step.nil?
       "#{prefix}-[#{self.arbitrary(value)}]"
+    elsif step.start_with?("-")
+      "-#{prefix}-#{step.delete_prefix('-')}"
     else
       "#{prefix}-#{step}"
     end
@@ -112,6 +117,38 @@ module AdwaitaTailwind
 
   SIDES = { "top" => "t", "right" => "r", "bottom" => "b", "left" => "l" }.freeze
 
+  # `font-<keyword>` is Tailwind's family scale, so a weight it has no name for takes the
+  # arbitrary-property form rather than becoming an invalid `font-inherit`.
+  def self.weight(value)
+    named = FONT_WEIGHTS[value]
+
+    named ? "font-#{named}" : "[font-weight:#{value}]"
+  end
+
+  # The one to four values of a box property, split on the spaces between them and not on
+  # the spaces inside them. `margin: 1px calc(6px - var(---group-padding))` is two values;
+  # splitting it on every space makes four, three of which are fragments of the third, and
+  # the fragments reach the output as `mr-[calc(6px]` and `mb-[-]`.
+  def self.values(value)
+    found = [+""]
+    depth = 0
+
+    value.each_char do |char|
+      case char
+      when "(" then depth += 1
+      when ")" then depth -= 1
+      end
+
+      if char.match?(/\s/) && depth.zero?
+        found << +"" unless found.last.empty?
+      else
+        found.last << char
+      end
+    end
+
+    found.reject(&:empty?)
+  end
+
   # One declaration as the classes which reproduce it, or none when nothing does.
   #
   # The arbitrary form is used freely: Adwaita's measurements are its own and rounding 9px to
@@ -126,7 +163,7 @@ module AdwaitaTailwind
     when "margin"       then self.box("m", value)
     when "border-radius" then self.radius(value)
     when "opacity"      then ["opacity-#{(value.to_f * (value.include?("%") ? 1 : 100)).round}"]
-    when "font-weight"  then ["font-#{FONT_WEIGHTS.fetch(value, value)}"]
+    when "font-weight"  then [self.weight(value)]
     when "font-size"    then ["text-[#{value}]"]
     when "font-family"  then ["font-[#{value.tr(' ', '_')}]"]
     when "line-height"  then ["leading-[#{value}]"]
@@ -183,7 +220,7 @@ module AdwaitaTailwind
 
   # `padding: 6px 12px` is two classes, not one.
   def self.box(prefix, value)
-    parts = value.split(/\s+/)
+    parts = self.values(value)
 
     case parts.length
     when 1 then [self.length(prefix, parts[0])]
@@ -329,7 +366,7 @@ module AdwaitaTailwind
 
   # A shorthand hides later overrides of one side, so it is expanded into the sides it sets.
   def self.expand(property, value)
-    parts = value.split(/\s+/)
+    parts = self.values(value)
 
     case parts.length
     when 1 then sides = [parts[0]] * 4
@@ -488,14 +525,36 @@ module AdwaitaTailwind
     argv.slice!(index, 2).last if index
   end
 
-  def self.run(argv)
-    root = File.expand_path("..", __dir__)
-    contexts = argv.delete("--contexts")
-    all = argv.delete("--all")
-    sheet = self.option(argv, "--sheet") || SHEET
-    patterns = argv
+  # The four readings, written as four files.
+  #
+  # Both sheets, because the conversion is the same code and only the sheet differs, and
+  # bin/04-gtk-tailwind reads GTK's from here rather than converting it again: a pass
+  # reads files and writes files, and does not run another pass to get at its working.
+  #
+  # Each sheet twice, because the contexts are a different reading of it -- what styles a
+  # node, rather than what a node is styled as -- and two readings are two files.
+  SHEETS = {
+    "widgets.json" => [:adwaita, false],
+    "widgets-contexts.json" => [:adwaita, true],
+    "gtk-widgets.json" => [:gtk, false],
+    "gtk-widgets-contexts.json" => [:gtk, true],
+  }.freeze
 
-    widgets = self.collect(self.rules(root, sheet), contexts: !contexts.nil?)
+  PATHS = { adwaita: SHEET, gtk: GTK_SHEET }.freeze
+
+  def self.run(_argv)
+    SHEETS.each do |name, (which, contexts)|
+      File.write(self.output(name),
+                 "#{JSON.pretty_generate(self.widgets(PATHS.fetch(which), contexts: contexts, all: contexts))}\n")
+      warn("wrote bin/03-adwaita-tailwind.out/#{name}")
+    end
+  end
+
+  # The conversion, over whichever sheet is named.
+  def self.widgets(sheet, contexts:, all:, patterns: [])
+    root = File.expand_path("..", __dir__)
+
+    widgets = self.collect(self.rules(root, sheet), contexts: contexts)
 
     # A widget styled by one lone declaration is almost always a fragment of a bigger rule
     # rather than something to build.
@@ -523,7 +582,15 @@ module AdwaitaTailwind
       ]
     end
 
-    puts(JSON.pretty_generate(rendered))
+    rendered
+  end
+
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "03-adwaita-tailwind.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
+    end
   end
 
   # The expanded sides recomposed, then everything else mapped one by one.

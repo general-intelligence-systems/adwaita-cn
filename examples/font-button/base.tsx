@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { FontButton } from "@/ui/font-button"
+import { Label } from "@/ui/label"
 
 export default function FontButtonBase() {
   return (
-    <FontButton title="Title" />
+    <FontButton>
+      <Label label="Label" />
+    </FontButton>
   )
 }

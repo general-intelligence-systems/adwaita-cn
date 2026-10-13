@@ -21,9 +21,9 @@
 #      --all        Include widgets styled by a single declaration.
 #
 # FILES
-#      vendor/adwaita/gtk-default-light.css   the input
-#      vendor/adwaita/widgets-contexts.json   what libadwaita already answers, from 03
-#      vendor/adwaita/gtk-widgets.json        the output
+#      bin/01-fetch-adwaita.out/gtk-default-light.css   the input
+#      bin/03-adwaita-tailwind.out/widgets-contexts.json   what libadwaita already answers, from 03
+#      bin/04-gtk-tailwind.out/gtk-widgets.json        the output
 #
 # EXIT STATUS
 #      The bin/04-gtk-tailwind utility exits 0 on success, and >0 if an error occurs.
@@ -31,8 +31,8 @@
 # EXAMPLES
 #      The map, and the contexts beside it:
 #
-#            bin/04-gtk-tailwind > vendor/adwaita/gtk-widgets.json
-#            bin/04-gtk-tailwind --contexts --all > vendor/adwaita/gtk-widgets-contexts.json
+#            bin/04-gtk-tailwind > bin/04-gtk-tailwind.out/gtk-widgets.json
+#            bin/04-gtk-tailwind --contexts --all > bin/04-gtk-tailwind.out/gtk-widgets-contexts.json
 #
 #      What GTK styles and libadwaita does not:
 #
@@ -44,26 +44,25 @@
 # adwaita-cn                         October 12, 2026                       04-GTK-TAILWIND(1)
 
 require "json"
-require "open3"
 require "set"
 
 module GtkTailwind
-  SHEET = "vendor/adwaita/gtk-default-light.css"
+  # GTK's sheet as bin/03-adwaita-tailwind converted it, and the name each reading is
+  # kept under here once the selectors libadwaita answers have been taken out.
+  GTK = {
+    "gtk-widgets.json" => "bin/03-adwaita-tailwind.out/gtk-widgets.json",
+    "gtk-widgets-contexts.json" => "bin/03-adwaita-tailwind.out/gtk-widgets-contexts.json",
+  }.freeze
 
-  ADWAITA = "vendor/adwaita/widgets-contexts.json"
+  ADWAITA = "bin/03-adwaita-tailwind.out/widgets-contexts.json"
 
   # The converter, over GTK's sheet. It is the same code either way, which is the point: the
   # sheets differ, the conversion does not.
-  def self.convert(root, argv)
-    command = [File.join(root, "bin/03-adwaita-tailwind"), "--sheet", SHEET, *argv]
-    output, status = Open3.capture2(*command)
-
-    unless status.success?
-      warn("gtk-tailwind: bin/03-adwaita-tailwind failed")
-      exit(1)
-    end
-
-    JSON.parse(output)
+  # GTK's sheet, already converted by bin/03-adwaita-tailwind. This pass reads that file
+  # and keeps what libadwaita never answers; converting the sheet a second time here
+  # would be the same code reading the same stylesheet to the same end.
+  def self.convert(root, name)
+    JSON.parse(File.read(File.join(root, name)))
   end
 
   # A selector GTK styles and libadwaita does not. The node is what decides it rather than the
@@ -88,12 +87,24 @@ module GtkTailwind
     selector.split(/\s*>\s*|\s+/).filter_map{|segment| segment[/\A[a-z][a-z0-9-]*/]}
   end
 
-  def self.run(argv)
+  def self.run(_argv)
     root = File.expand_path("..", __dir__)
     styled = self.styled(root)
-    widgets = self.convert(root, argv).select{|selector, _variants| self.gap?(selector, styled)}
 
-    puts(JSON.pretty_generate(widgets))
+    GTK.each do |name, source|
+      widgets = self.convert(root, source).select{|selector, _variants| self.gap?(selector, styled) }
+
+      File.write(self.output(name), "#{JSON.pretty_generate(widgets)}\n")
+      warn("wrote bin/04-gtk-tailwind.out/#{name}")
+    end
+  end
+
+  # Beside the script, in a directory named after it.
+  def self.output(name)
+    File.join(__dir__, "04-gtk-tailwind.out").then do |directory|
+      Dir.mkdir(directory) unless Dir.exist?(directory)
+      File.join(directory, name)
+    end
   end
 end
 

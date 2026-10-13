@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { PreferencesDialog } from "@/ui/preferences-dialog"
+import { Label } from "@/ui/label"
 
 export default function PreferencesDialogBase() {
   return (
-    <PreferencesDialog title="Title" />
+    <PreferencesDialog>
+      <Label label="Label" />
+    </PreferencesDialog>
   )
 }

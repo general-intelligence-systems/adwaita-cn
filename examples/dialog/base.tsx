@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { Dialog } from "@/ui/dialog"
+import { Label } from "@/ui/label"
 
 export default function DialogBase() {
   return (
-    <Dialog title="Title" />
+    <Dialog>
+      <Label label="Label" />
+    </Dialog>
   )
 }

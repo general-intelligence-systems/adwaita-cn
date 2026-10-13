@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { SearchEntry } from "@/ui/search-entry"
+import { Label } from "@/ui/label"
 
 export default function SearchEntryBase() {
   return (
-    <SearchEntry placeholderText="Placeholder text" />
+    <SearchEntry>
+      <Label label="Label" />
+    </SearchEntry>
   )
 }

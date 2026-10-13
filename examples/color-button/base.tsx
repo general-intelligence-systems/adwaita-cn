@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { ColorButton } from "@/ui/color-button"
+import { Label } from "@/ui/label"
 
 export default function ColorButtonBase() {
   return (
-    <ColorButton title="Title" />
+    <ColorButton>
+      <Label label="Label" />
+    </ColorButton>
   )
 }

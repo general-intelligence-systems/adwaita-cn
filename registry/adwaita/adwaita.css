@@ -62,3 +62,18 @@
     --dim-opacity: 55%;
   }
 }
+
+/* GTK's CSS sizes the content box, and the web's default — and Tailwind's
+ * preflight — size the border box. The difference is not cosmetic: Adwaita
+ * gives a button `min-height: 24px` and `padding: 5px 10px`, which is 34px tall
+ * in GTK and 24px tall under border-box, so every measurement read out of the
+ * stylesheet comes out short by its own padding.
+ *
+ * Scoped to the registry's own elements, which all carry a data-slot, so a
+ * project's other components keep whatever box model they were written for.
+ *
+ * Verified against the toolkit: comparison/shots/apps puts a screenshot of the
+ * real widget beside a screenshot of the component. */
+[data-slot] {
+  box-sizing: content-box;
+}

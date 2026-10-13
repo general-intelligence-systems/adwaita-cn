@@ -9,6 +9,6 @@ import { AboutWindow } from "@/ui/about-window"
 
 export default function AboutWindowBase() {
   return (
-    <AboutWindow comments="Comments" title="Title" version="Version" />
+    <AboutWindow applicationName="Application name" comments="Comments" developerName="Developer name" />
   )
 }

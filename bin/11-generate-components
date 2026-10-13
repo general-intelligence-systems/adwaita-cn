@@ -11,38 +11,45 @@
 #
 # DESCRIPTION
 #      Writes one .tsx under registry/adwaita/ui/ for every buildable component in
-#      vendor/adwaita/final-components.json, with
-#      the props its GTK class accepts and the Tailwind classes its CSS node is styled with,
-#      and registers each one in registry.json.
+#      bin/08-final-components.out/final-components.json, and registers each one in registry.json.
+#
+#      The shape is shadcn/ui's, on the Base UI base: a real element rather than a div,
+#      `data-slot`, the element replaceable through Base UI's `render`, props merged onto
+#      it with mergeProps, the classes in a cva when the component has style classes and
+#      in a cn() when it does not, and a composite's parts as sibling functions in the
+#      same file.
+#
+#      The classes are Adwaita's, including the states -- hover, active, disabled,
+#      focus-visible, checked, selected -- which become Tailwind's state prefixes. A
+#      component's style classes become cva variants: the ones which only change geometry
+#      are sizes, and the rest are variants.
 #
 #      Read-only properties are left out: a prop which cannot be written is not a prop.
-#
-#      A component whose class is null is a style class -- styling with no properties -- so it
-#      gets the classes and no props beyond WidgetProps.
 #
 # OPTIONS
 #      --force   Overwrite files which already exist.
 #
 # FILES
-#      vendor/adwaita/final-components.json  which components exist, and what each accepts
-#      vendor/adwaita/widgets.json  the Tailwind classes per CSS node
+#      bin/08-final-components.out/final-components.json  which components exist, and what each accepts
 #      registry/adwaita/ui/         the output
-#      registry.json                gains an item per component
+#      registry/adwaita/lib/        widget-props.ts, and widget.ts beside it
+#      registry.json                one item per component
 #
 # EXIT STATUS
 #      The bin/11-generate-components utility exits 0 on success, and >0 if an error occurs.
 #
 # SEE ALSO
-#      bin/10-lint-rules, bin/03-adwaita-tailwind
+#      bin/10-lint-rules, bin/12-component-variants
 #
 # adwaita-cn                       October 12, 2026             11-GENERATE-COMPONENTS(1)
 
 require "json"
 require "set"
+require "fileutils"
+
+require_relative "lib/classes"
 
 module GenerateComponents
-  # The GIR type as the TypeScript a prop is annotated with. A widget-valued property is a
-  # ReactNode, because that is what it is once it is a prop.
   TYPES = {
     "string" => "string",
     "boolean" => "boolean",
@@ -51,15 +58,138 @@ module GenerateComponents
     "void" => "void",
   }.freeze
 
+  # The element a CSS node is, where the DOM has one that means the same thing. Anything
+  # not named here is a div, which is what a GTK container is.
+  ELEMENTS = {
+    "appchooserbutton" => "button", "button" => "button", "checkbutton" => "button",
+    "colorbutton" => "button", "fontbutton" => "button", "menubutton" => "button",
+    "splitbutton" => "button", "switch" => "button", "tabbutton" => "button",
+    "editablelabel" => "input", "entry" => "input", "range" => "input",
+    "scale" => "input", "spinbutton" => "input", "text" => "input",
+    "textview" => "textarea",
+    "buttoncontent" => "span", "image" => "span", "label" => "span",
+    "windowtitle" => "span",
+    "shortcut-label" => "kbd",
+    "picture" => "img", "video" => "video",
+    "separator" => "hr",
+    "flowbox" => "ul", "gridview" => "ul", "iconview" => "ul", "list" => "ul",
+    "listview" => "ul",
+    "flowboxchild" => "li",
+    "headerbar" => "header", "statusbar" => "footer",
+  }.freeze
+
+  # The GTK class a template node is, as an element, for the parts generated beside a
+  # composite.
+  PARTS = {
+    "Button" => "button", "ToggleButton" => "button", "CheckButton" => "button",
+    "MenuButton" => "button", "Label" => "span", "Image" => "span",
+    "Picture" => "img", "Separator" => "hr", "Entry" => "input", "Text" => "input",
+    "TextView" => "textarea", "ListBox" => "ul", "ListBoxRow" => "li",
+    "ProgressBar" => "div", "Spinner" => "span",
+  }.freeze
+
+  # The classes a template uses to hold other widgets. A composite's children go
+  # into one of these rather than beside the template, which is where GTK puts
+  # them: a PreferencesGroup's rows belong in its listbox, and an ActionRow's
+  # suffixes in its suffixes box.
+  CONTAINERS = %w[
+    Bin Box Clamp ClampScrollable FlowBox Gizmo Grid ListBox Overlay Revealer
+    ScrolledWindow Stack ToolbarView WrapBox
+  ].to_set
+
+  # A template holds more than widgets: a gesture, an event controller, an adjustment or a
+  # list model is a child object rather than markup, so it is not a part.
+  NOT_WIDGETS = %w[
+    Adjustment Breakpoint EnumListModel ListStore SignalListItemFactory StackPage
+    StringList TextBuffer TreeListModel
+  ].to_set
+
+  NOT_WIDGET_PREFIXES = %w[Gesture EventController Drop Shortcut].freeze
+
+  # The classes a widget puts on itself from what it is holding. bin/08 marks them
+  # `applied`, because the toolkit's source applies them rather than any application:
+  # gtkbutton.c adds `.text-button` to every button whose child is a label. A component
+  # which waited to be told would be the one shape no real button ever has -- every
+  # button in a running application wears one of these -- so they are applied here from
+  # the same thing the toolkit uses: whether it was given text, an icon, or both.
+  # Each one as what it needs and what it rules out. The terms are dropped where the
+  # component has no such prop: Gtk.CheckButton takes a label and no icon, so it is a
+  # `.text-button` whenever it has a label and there is nothing to rule out.
+  CONTENT = {
+    "text-button" => { needs: :text, without: :icon },
+    "image-button" => { needs: :icon, without: :text },
+    "image-text-button" => { needs: %i[text icon], without: nil },
+  }.freeze
+
+  # Classes a property decides rather than the content: GTK gives an orientable widget
+  # `.horizontal` unless it is vertical, which is the branch gtkwidget.c takes and the
+  # default the property carries.
+  BY_PROPERTY = {
+    "horizontal" => { prop: "orientation", when: 'orientation !== "vertical"' },
+    "vertical" => { prop: "orientation", when: 'orientation === "vertical"' },
+  }.freeze
+
+  # A layout manager, as the CSS which arranges children the same way.
+  #
+  # The stylesheet says nothing about this -- a GtkBox is a row because its layout
+  # manager is a GtkBoxLayout, not because of any rule -- so without it every child of
+  # every component falls into the document's default flow and a title and its
+  # description come out on one line.
+  LAYOUTS = {
+    # Children in a line. Which way is the orientation property, handled below.
+    "box" => "flex",
+    # The child is given the whole allocation, and several children overlap.
+    "bin" => "grid [&>*]:col-start-1 [&>*]:row-start-1",
+    "overlay" => "grid [&>*]:col-start-1 [&>*]:row-start-1",
+    "center" => "flex items-center justify-between",
+    "clamp" => "mx-auto w-full",
+    "grid" => "grid",
+    "fixed" => "relative [&>*]:absolute",
+    "wrap" => "flex flex-wrap",
+  }.freeze
+
+  # An element which cannot have children, so the text and the children are not rendered
+  # into it.
+  VOID = %w[input hr img].to_set
+
+  # What the element does not say on its own.
+  ROLES = {
+    "actionbar" => "toolbar", "banner" => "status", "bottom-sheet" => "dialog",
+    "calendar" => "grid", "columnview" => "grid", "dialog" => "dialog",
+    "infobar" => "alert", "inline-view-switcher" => "tablist", "levelbar" => "meter",
+    "menubar" => "menubar", "notebook" => "tablist", "popover" => "dialog",
+    "progressbar" => "progressbar", "spinner" => "status", "stackswitcher" => "tablist",
+    "statuspage" => "status", "switch" => "switch", "tabbar" => "tablist",
+    "toggle-group" => "group", "toolbarview" => "toolbar", "treeview" => "treegrid",
+    "viewswitcher" => "tablist", "window" => "dialog",
+  }.freeze
+
+  # A property the DOM has an attribute for under another name.
+  PLAIN = {
+    "placeholderText" => "placeholder",
+    "editable" => "contentEditable",
+  }.freeze
+
+  # `data-[state=checked]` is what Adwaita's checked rules select on, and GTK calls that
+  # property `active`; `selected` is the same statement about a row. Both only when the
+  # property is a boolean: Gtk.ComboBox's `active` is the index of a row.
+  STATES = {
+    "active" => ['"data-state": active ? "checked" : "unchecked"', '"aria-checked": active'],
+    "selected" => ['"data-selected": selected ? "" : undefined', '"aria-selected": selected'],
+  }.freeze
+
+  TYPE_ATTRS = {
+    "editablelabel" => "text", "entry" => "text", "range" => "range",
+    "scale" => "range", "spinbutton" => "number", "text" => "text",
+  }.freeze
+
   def self.run(argv)
     root = File.expand_path("..", __dir__)
     force = !argv.delete("--force").nil?
-    final = JSON.parse(File.read(File.join(root, "vendor/adwaita/final-components.json")))
+    final = JSON.parse(File.read(File.join(root, "bin/08-final-components.out/final-components.json")))
     flags = final.fetch("enums").select{|_name, enum| enum.fetch("flags")}.keys.to_set
     components = final.fetch("components").slice(*final.fetch("buildable"))
 
-    # Gtk.Widget's own, which every component extends rather than repeats. bin/08-final-components
-    # has already subtracted them from each component's own props.
     shared = final.fetch("widget")
     self.write(root, "lib/widget-props.ts", self.widget_props(shared, flags), force)
 
@@ -68,7 +198,7 @@ module GenerateComponents
 
     components.sort.each do |name, component|
       file = "ui/#{self.kebab(name)}.tsx"
-      source = self.component(name, component, flags, components)
+      source = self.component(name, component, flags)
 
       if self.write(root, file, source, force)
         written << name
@@ -100,11 +230,27 @@ module GenerateComponents
     name.gsub(/([a-z0-9])([A-Z])/, '\1-\2').downcase
   end
 
+  # `subtitle-lines` -> `subtitleLines`.
+  def self.camel(name)
+    parts = name.to_s.split(/[-_]/)
+
+    parts.first.to_s + parts.drop(1).map(&:capitalize).join
+  end
+
+  # `Button` -> `buttonVariants`.
+  def self.variants_name(name)
+    "#{name.sub(/\A./, &:downcase)}Variants"
+  end
+
+  # `suggested-action` -> `SuggestedAction`.
+  def self.pascal(name)
+    name.to_s.split(/[-_]/).map{|part| part.sub(/\A./, &:upcase)}.join
+  end
+
   def self.annotation(attributes, flags)
     if attributes.fetch("type") == "enum"
       name = attributes.fetch("enum").split(".").last
 
-      # A bitfield is several members at once, so the prop is an array of its union.
       flags.include?(attributes.fetch("enum")) ? "#{name}[]" : name
     else
       TYPES.fetch(attributes.fetch("type"), "unknown")
@@ -123,9 +269,8 @@ module GenerateComponents
     <<~TS
       // Generated by bin/11-generate-components. Do not edit.
       //
-      // Gtk.Widget's own writable properties, which every widget has. They live here rather
-      // than in all fifty-four component interfaces so that each component's file shows the
-      // five or ten props which are actually its own.
+      // Gtk.Widget's own writable properties, which every widget has. lib/widget.ts
+      // resolves them to the className, style and attributes which say the same thing.
 
       import type { ReactNode } from "react"
       #{enums.empty? ? '' : "import type { #{enums.join(', ')} } from \"./enums\"\n"}
@@ -143,218 +288,480 @@ module GenerateComponents
       .sort
   end
 
-  # The classes the component's CSS node is styled with, base state only: a state is a variant
-  # the markup has to opt into and there is no markup yet.
-  def self.classes_for(component)
-    component.dig("classes", "base").to_a
+  # The style classes a caller chooses between. The ones the toolkit applies from the
+  # component's own content are not a choice, so they are not props.
+  def self.offered(component)
+    self.content(component).then do |applied|
+      component.fetch("variants", {}).reject{|style, _| applied.key?(style) }
+    end
   end
 
-  def self.component(name, component, flags, components)
-    klass = component["gtk"]
+  # How the component arranges its children, read from the layout manager its source
+  # sets. A box also takes its direction from its orientation and its gap from its
+  # spacing, which are properties rather than rules.
+  def self.layout(component)
+    found = LAYOUTS[component["layout"]]
+
+    return "" if found.nil?
+
+    props = component.fetch("props", {})
+    parts = [found.inspect]
+
+    if component["layout"] == "box"
+      parts << if props.key?("orientation")
+                 '(orientation === "vertical" ? "flex-col" : "flex-row")'
+               else
+                 (component["direction"] == "vertical" ? '"flex-col"' : '"flex-row"')
+               end
+      parts << 'spacing !== undefined && `gap-[${spacing}px]`' if props.key?("spacing")
+    end
+
+    "#{parts.join(', ')}, "
+  end
+
+  # The content classes, as the conditional they are: a button holding only a label is
+  # `.text-button`, and the stylesheet gives that 17px of horizontal padding where a bare
+  # button has 10px.
+  def self.content_classes(component)
+    props = component.fetch("props", {})
+    text = (component.fetch("text", []) & props.keys).first
+    icon = props.key?("iconName") ? "iconName" : nil
+    named = { text: text, icon: icon }
+
+    found = self.content(component).filter_map do |style, variant|
+      value = AdwaitaClasses.expression(variant["classes"], 8)
+
+      if BY_PROPERTY.key?(style)
+        rule = BY_PROPERTY.fetch(style)
+
+        next if value.nil? || !props.key?(rule.fetch(:prop))
+
+        next "#{rule.fetch(:when)} && #{value}"
+      end
+
+      rule = CONTENT.fetch(style)
+      needs = Array(rule.fetch(:needs)).map{|one| named[one] }
+
+      next if value.nil? || needs.any?(&:nil?)
+
+      without = named[rule[:without]]
+      terms = needs + (without ? ["!#{without}"] : [])
+
+      "#{terms.join(' && ')} && #{value}"
+    end
+
+    found.empty? ? "" : "#{found.join(', ')}, "
+  end
+
+  # The classes this component applies itself: the ones its content decides, and the ones
+  # a property decides. Neither is a prop, because neither is the caller's to choose.
+  def self.content(component)
+    component.fetch("variants", {}).select do |style, variant|
+      (CONTENT.key?(style) || BY_PROPERTY.key?(style)) && variant.fetch("applied", false)
+    end
+  end
+
+  def self.element(component)
+    ELEMENTS.fetch(component["node"], "div")
+  end
+
+  def self.component(name, component, flags)
     props = component.fetch("props")
-    body = self.body(name, component, components)
+    appearance, sizes = AdwaitaClasses.split(self.offered(component))
+    cva = !appearance.empty? || !sizes.empty?
+    parts = component["tree"] ? self.parts(name, component) : []
+    element = self.element(component)
     enums = self.enums_used(props)
-    used = self.elements(body)
 
     <<~TS
-      // #{name}#{klass ? " — #{klass}" : ''}
+      // #{name}#{component['gtk'] ? " — #{component['gtk']}" : ''}
       //
-      // Generated by bin/11-generate-components, which does not overwrite.
-      //
-      // #{self.provenance(component)}
+      // Generated by bin/11-generate-components. The measurements are Adwaita's, read out
+      // of its stylesheet#{component['template'] ? " and out of #{component['template']}" : ''}. The shape is shadcn/ui's, on Base UI.
 
-      import type { ReactNode } from "react"
+      import * as React from "react"
+      #{props.values.any?{|one| one.fetch('type') == 'node'} ? "import type { ReactNode } from \"react\"\n" : ''}#{cva ? "import { cva, type VariantProps } from \"class-variance-authority\"\n" : ''}import { mergeProps } from "@base-ui/react/merge-props"
+      import { useRender } from "@base-ui/react/use-render"
 
       import { cn } from "@/lib/utils"
+      import { widget } from "@/lib/widget"
       import type { WidgetProps } from "@/lib/widget-props"
-      #{used.map{|element| "import { #{element} } from \"@/ui/#{self.kebab(element)}\"\n"}.join}#{enums.empty? ? '' : "import type { #{enums.join(', ')} } from \"@/lib/enums\"\n"}
-      export interface #{name}Props extends WidgetProps {
-        className?: string
-        children?: ReactNode
-      #{props.sort.map{|prop, attributes| self.declaration(prop, attributes, flags)}.join("\n\n")}
-      }
+      #{enums.empty? ? '' : "import type { #{enums.join(', ')} } from \"@/lib/enums\"\n"}#{cva ? "\n#{self.cva(name, component, appearance, sizes)}\n" : ''}
+      #{self.interface(name, component, props, flags, cva, element)}
 
-      export function #{name}({ #{self.parameters(component, body)} }: #{name}Props) {
+      #{self.root(name, component, props, cva, element, parts)}#{parts.map{|part| "\n\n#{part.fetch(:source)}"}.join}
+
+      export { #{([name] + parts.map{|part| part.fetch(:name)} + (cva ? ["#{self.variants_name(name)}"] : [])).join(', ')} }
+    TS
+  end
+
+  def self.cva(name, component, appearance, sizes)
+    base = AdwaitaClasses.expression(component["classes"], 2) || '""'
+    keys = []
+
+    unless appearance.empty?
+      entries = appearance.sort.map do |style, variant|
+        value = AdwaitaClasses.expression(variant["classes"], 8) || '""'
+        "        /** .#{style}#{variant['summary'] ? " — #{variant['summary']}" : ''} */\n        #{self.camel(style)}: #{value},"
+      end
+      keys << "      variant: {\n#{appearance.key?('default') ? '' : "        default: \"\",\n"}#{entries.join("\n")}\n      },"
+    end
+
+    unless sizes.empty?
+      entries = sizes.sort.map do |style, variant|
+        value = AdwaitaClasses.expression(variant["classes"], 8) || '""'
+        "        /** .#{style}#{variant['summary'] ? " — #{variant['summary']}" : ''} */\n        #{self.camel(style)}: #{value},"
+      end
+      keys << "      size: {\n#{sizes.key?('default') ? '' : "        default: \"\",\n"}#{entries.join("\n")}\n      },"
+    end
+
+    defaults = []
+    defaults << "variant: \"default\"" unless appearance.empty?
+    defaults << "size: \"default\"" unless sizes.empty?
+
+    <<~TS.chomp
+      const #{self.variants_name(name)} = cva(
+        #{base},
+        {
+          variants: {
+      #{keys.join("\n")}
+          },
+          defaultVariants: { #{defaults.join(', ')} },
+        },
+      )
+    TS
+  end
+
+  def self.interface(name, component, props, flags, cva, element)
+    # `variant` and `size` are the cva's, and the element may have its own of the same
+    # name: `<input size>` is a number, and extending both at once is a type error.
+    own = props.keys + (cva ? %w[variant size] : [])
+    omit = own.map(&:inspect).join(" | ")
+    extends = [
+      "Omit<useRender.ComponentProps<#{element.inspect}>, keyof WidgetProps#{own.empty? ? '' : " | #{omit}"}>",
+      "WidgetProps",
+    ]
+    extends << "VariantProps<typeof #{self.variants_name(name)}>" if cva
+
+    declarations = props.sort.map{|prop, attributes| self.declaration(prop, attributes, flags)}
+
+    <<~TS.chomp
+      export interface #{name}Props
+        extends #{extends.join(",\n    ")} {#{declarations.empty? ? '' : "\n#{declarations.join("\n\n")}"}
+      }
+    TS
+  end
+
+  # The component itself.
+  #
+  # Base UI's useRender is what gives every component its element: `render` puts
+  # a different one in its place, `enabled` is GTK's `visible` property, and the
+  # props are merged rather than overwritten so a caller's handler runs beside
+  # the component's own.
+  #
+  # Everything a GTK widget has that the DOM does not is resolved by widget();
+  # the component's own properties become markup where they are markup and data
+  # attributes where they are state, so none of them reaches the DOM as an
+  # unknown attribute.
+  def self.root(name, component, props, cva, element, parts)
+    void = VOID.include?(element)
+    appearance, sizes = AdwaitaClasses.split(self.offered(component))
+    slug = self.kebab(name)
+
+    text = void ? [] : component.fetch("text", []) & props.keys
+    nodes = void ? [] : props.select{|_prop, one| one.fetch("type") == "node"}.keys
+    icons = props.keys.select{|prop| prop == "iconName"}
+    markup = text + nodes + icons
+    data = props.keys - markup
+
+    attributes = ["\"data-slot\": #{slug.inspect}"]
+    attributes << '"data-variant": variant' unless appearance.empty?
+    attributes << '"data-size": size' unless sizes.empty?
+    role = ROLES[component["node"]]
+    attributes << "role: #{role.inspect}" if role
+    type = TYPE_ATTRS[component["node"]]
+    attributes << "type: #{type.inspect}" if type
+
+    data.sort.each do |prop|
+      if STATES.key?(prop) && props.fetch(prop).fetch("type") == "boolean"
+        attributes.concat(STATES.fetch(prop))
+      elsif PLAIN.key?(prop)
+        attributes << "#{PLAIN.fetch(prop)}: #{prop}"
+      else
+        attributes << "\"data-#{self.kebab(prop)}\": #{prop}"
+      end
+    end
+
+    # Two properties can want the same attribute -- Gtk.Switch has `state` of its
+    # own as well as `active` -- and an object literal cannot name one twice, so
+    # the first to claim it keeps it.
+    attributes = attributes.uniq{|one| one[/\A[^:]+/] }
+    written = attributes.join(" | ")
+
+    taken = ["className", "render"]
+    taken << "variant = \"default\"" unless appearance.empty?
+    taken << "size = \"default\"" unless sizes.empty?
+    taken.concat(markup.sort)
+    taken.concat(data.sort.map do |prop|
+      # A property whose attribute another one claimed is still destructured, so
+      # that it does not reach the DOM, and named as the unused value it now is.
+      written.match?(/[:\s]#{Regexp.escape(prop)}\b/) ? prop : "#{prop}: _#{prop}"
+    end)
+    taken << (void ? "children: _children" : "children")
+
+    arguments = []
+    arguments << "variant" unless appearance.empty?
+    arguments << "size" unless sizes.empty?
+    classes =
+      if cva
+        "#{self.variants_name(name)}({ #{arguments.join(', ')} })"
+      else
+        AdwaitaClasses.expression(component["classes"], 8)
+      end
+
+    inner = []
+
+    slot = component["tree"] ? self.slot(component.fetch("tree")) : nil
+
+    if component["tree"]
+      children = (component.fetch("tree").fetch("slots", {}).values +
+        component.fetch("tree").fetch("children", []))
+        .select{|child| self.widget_node?(child)}
+      inner.concat(children.map{|child| self.tree(child, props, 14, slot)})
+      bound = parts.map{|part| part.fetch(:bound)}.compact
+      text -= bound
+      icons -= bound
+      nodes -= bound
+    end
+
+    icons.each do |prop|
+      inner << "              {#{prop} ? <span data-slot=#{"#{slug}-icon".inspect} className={#{prop}} aria-hidden /> : null}"
+    end
+    inner.concat(text.sort.map{|prop| "              {#{prop}}"})
+
+    # `content` is the main area and anything else is packed around it, which is what
+    # add_top_bar means, so the children come first and the content after them.
+    inner << "              {children}" if nodes.include?("content") && !void && slot.nil?
+    inner.concat(nodes.sort.map{|prop| "              {#{prop}}"})
+    inner << "              {children}" unless void || slot || nodes.include?("content")
+
+    fields = attributes.dup
+    fields << "className: cn(#{self.layout(component)}#{classes ? "#{classes}, " : ''}#{self.content_classes(component)}widgetClassName, className)"
+    fields << "style"
+    # One child needs no fragment; several do. A lone `{expr}` is the expression
+    # itself, because an object literal's value is not JSX.
+    unless inner.empty?
+      only = inner.first.strip
+
+      fields <<
+        if inner.length == 1 && only.match?(/\A\{.+\}\z/)
+          "children: #{only[1..-2]}"
+        elsif inner.length == 1
+          "children: (\n        #{only}\n      )"
+        else
+          "children: (\n        <>\n#{inner.map{|one| "    #{one}" }.join("\n")}\n        </>\n      )"
+        end
+    end
+
+    <<~TS.chomp
+      function #{name}({ #{taken.join(', ')}, ...props }: #{name}Props) {
+        const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+        // Named rather than passed inline: a fresh object literal handed straight
+        // to mergeProps is excess-property checked against the element's props,
+        // which no data attribute of ours is one of.
+        const defaultProps = {
+      #{fields.map{|field| "    #{field},"}.join("\n")}
+          ...widgetAttributes,
+        }
+
+        return useRender({
+          defaultTagName: #{element.inspect},
+          enabled: !hidden,
+          render,
+          props: mergeProps<#{element.inspect}>(defaultProps, rest),
+        })
+      }
+    TS
+  end
+
+  # A composite's parts, as sibling functions in the same file: libadwaita ships a .ui
+  # for twenty-nine of these and bin/06-component-trees read them, so each widget under
+  # the root becomes one function, named for the id the template gave it.
+  def self.parts(name, component)
+    found = []
+    self.walk(component.fetch("tree"), name, component, found, Set.new, root: true)
+    found
+  end
+
+  def self.widget_node?(node)
+    klass = node.fetch("class")
+
+    !NOT_WIDGETS.include?(klass) && NOT_WIDGET_PREFIXES.none?{|one| klass.start_with?(one)}
+  end
+
+  def self.walk(node, parent, component, found, seen, root: false)
+    children = (node.fetch("slots", {}).values + node.fetch("children", []))
+      .select{|child| self.widget_node?(child)}
+
+    unless root
+      label = self.pascal(node["id"] || node.fetch("class"))
+      base = "#{parent}#{label}"
+      suffix = 1
+      suffix += 1 while seen.include?(suffix == 1 ? base : "#{base}#{suffix}")
+      node["part"] = suffix == 1 ? base : "#{base}#{suffix}"
+      seen << node.fetch("part")
+    end
+
+    children.each{|child| self.walk(child, parent, component, found, seen)}
+
+    unless root
+      found << {
+        name: node.fetch("part"),
+        bound: self.bound(node, component.fetch("props")),
+        source: self.part(node, PARTS.fetch(node.fetch("class"), "div")),
+      }
+    end
+  end
+
+  def self.part(node, element)
+    classes = AdwaitaClasses.expression(node["classes"], 6)
+    layout = self.part_layout(node)
+
+    <<~TS.chomp
+      function #{node.fetch('part')}({ className, ...props }: React.ComponentProps<#{element.inspect}>) {
         return (
-      #{body}
+          <#{element}
+            data-slot=#{self.kebab(node.fetch('part')).inspect}
+            className={cn(#{layout}#{classes ? "#{classes}, " : ''}className)}
+            {...props}
+          />
         )
       }
     TS
   end
 
-  # Where this component's markup came from, which is one of two places.
-  def self.provenance(component)
-    if component["tree"]
-      "The markup is #{component.fetch('template')}, which libadwaita ships, and the classes are\n  // Adwaita's own rules for each node in it."
-    else
-      "It ships no template, so the markup is the one element its CSS node is, carrying what\n  // Adwaita styles #{component['node'] || 'it'} with."
+  # Where a composite's children go: the last container the template leaves
+  # empty, which is the slot it keeps for them; failing that the innermost
+  # container it does fill; failing that the root.
+  def self.slot(node)
+    found = []
+    self.containers(node, found, 0)
+
+    found.select{|one| one.fetch(:empty) }.last&.fetch(:node) ||
+      found.max_by{|one| one.fetch(:depth) }&.fetch(:node)
+  end
+
+  def self.containers(node, found, depth)
+    children = (node.fetch("slots", {}).values + node.fetch("children", []))
+      .select{|child| self.widget_node?(child) }
+
+    if depth.positive? && CONTAINERS.include?(node.fetch("class"))
+      found << { node: node, depth: depth, empty: children.empty? }
+    end
+
+    children.each{|child| self.containers(child, found, depth + 1) }
+  end
+
+  # A template node's layout, with the direction and spacing the template sets on it.
+  def self.part_layout(node)
+    found = LAYOUTS[node["layout"]]
+
+    return "" if found.nil?
+
+    properties = node.fetch("properties", {})
+    parts = [found]
+
+    if node["layout"] == "box"
+      parts << (properties["orientation"] == "vertical" ? "flex-col" : "flex-row")
+      properties["spacing"].then{|gap| parts << "gap-[#{gap}px]" if gap.is_a?(String) && gap.match?(/\A\d+\z/) }
+    end
+
+    "#{parts.join(' ').inspect}, "
+  end
+
+  # The text a template node shows: the property it binds to `label`, or the component
+  # prop its id is named after.
+  def self.bound(node, props)
+    label = node.fetch("properties", {})["label"]
+
+    if label.is_a?(Hash) && props.key?(self.camel(label.fetch("bind")))
+      self.camel(label.fetch("bind"))
+    elsif props.key?(self.camel(node["id"]))
+      self.camel(node["id"])
+    elsif props.key?(self.camel(node["id"].to_s.delete_suffix("_label")))
+      # A template names the widget which shows a property after the property:
+      # AdwWindowTitle's `title` is shown by the label whose id is `title_label`.
+      self.camel(node["id"].to_s.delete_suffix("_label"))
+    elsif node.fetch("class") == "Image" && props.key?("iconName")
+      "iconName"
     end
   end
 
-  # The component's markup.
-  def self.body(name, component, components)
-    if component["tree"]
-      self.node(component.fetch("tree"), component, components, 4, root: true)
-    else
-      self.leaf(component, 4)
-    end
-  end
-
-  # One element, for a component with no template: its own classes, its text, and its children.
-  def self.leaf(component, indent)
+  # A composite's tree, as the parts which were generated for it.
+  def self.tree(node, props, indent, slot = nil)
     pad = " " * indent
-    text = component.fetch("text").map{|prop| "#{pad}  {#{prop}}"}
+    children = (node.fetch("slots", {}).values + node.fetch("children", []))
+      .select{|child| self.widget_node?(child)}
+    inner = children.map{|child| self.tree(child, props, indent + 2, slot)}
+    inner << "#{pad}  {children}" if node.equal?(slot)
+    text = self.bound(node, props)
 
-    [
-      "#{pad}<div className={cn(#{self.classes(component.fetch('classes', {}))}className)}>",
-      *text,
-      "#{pad}  {children}",
-      "#{pad}</div>",
-    ].join("\n")
-  end
-
-  # One node of a template, and everything under it.
-  def self.node(node, component, components, indent, root: false)
-    pad = " " * indent
-    name = node.fetch("class")
-    inner = self.children(node, component, components, indent + 2)
-    element = root || !components.key?(name) ? "div" : name
-    attributes = self.attributes(node, component, components, root: root)
-    opening = "#{pad}<#{element}#{attributes}"
-
-    if inner.empty?
-      "#{opening} />"
+    if text && node.fetch("class") == "Image"
+      "#{pad}<#{node.fetch('part')} className={#{text}} />"
+    elsif text
+      "#{pad}<#{node.fetch('part')}>{#{text}}</#{node.fetch('part')}>"
+    elsif inner.empty?
+      "#{pad}<#{node.fetch('part')} />"
     else
-      ["#{opening}>", inner, "#{pad}</#{element}>"].join("\n")
+      ["#{pad}<#{node.fetch('part')}>", *inner, "#{pad}</#{node.fetch('part')}>"].join("\n")
     end
-  end
-
-  # A node's children, which a template writes as `children` in order and as named `slots`.
-  def self.children(node, component, components, indent)
-    pad = " " * indent
-    slots = node.fetch("slots", {}).values
-    found = (slots + node.fetch("children", [])).map do |child|
-      self.node(child, component, components, indent)
-    end
-
-    if node.fetch("class") == component["gtk"]&.split(".")&.last
-      found
-    else
-      found
-    end.push(node.equal?(component["tree"]) ? "#{pad}{children}" : nil).compact.join("\n")
-  end
-
-  # A node's attributes: its classes, and the template's own property values.
-  # THE ROOT TAKES ONLY ITS CLASSES. It is a plain element rather than a component, so the
-  # template's `activatable="False"` has nowhere to go on it: those are the component's own
-  # props, which is its API rather than something to set on its outermost div.
-  def self.attributes(node, component, components, root: false)
-    classes = self.classes(node.fetch("classes", {}))
-
-    if root
-      " className={cn(#{classes}className)}"
-    else
-      found = classes.empty? ? [] : ["className={cn(#{classes.delete_suffix(', ')})}"]
-
-      found.concat(self.properties(node, component, components))
-
-      found.empty? ? "" : " #{found.join(' ')}"
-    end
-  end
-
-  # The property values a template sets on a node, as props.
-  def self.properties(node, component, components)
-    accepts = components.dig(node.fetch("class"), "accepts") || {}
-
-    found = node.fetch("properties", {}).filter_map do |property, value|
-      rule = accepts[property]
-
-      next if rule.nil? || !rule.fetch("writable")
-
-      self.value(self.camel(property), value, rule, component)
-    end
-
-    self.by_id(node, component, accepts, found) + found
-  end
-
-  def self.by_id(node, component, accepts, found)
-    id = self.camel(node.fetch("id", ""))
-    text = component.fetch("text")
-
-    if text.include?(id) && accepts.key?("label") && found.none?{|one| one.start_with?("label=")}
-      ["label={#{id}}"]
-    else
-      []
-    end
-  end
-
-  def self.value(prop, value, rule, component)
-    if value.is_a?(Hash)
-      bound = self.camel(value.fetch("bind"))
-
-      component.fetch("props").key?(bound) ? "#{prop}={#{bound}}" : nil
-    else
-      self.literal(prop, value, rule)
-    end
-  end
-
-  # A template writes every value as a string, so the type says what it means.
-  def self.literal(prop, value, rule)
-    case rule.fetch("type")
-    when "boolean" then "#{prop}={#{value.downcase == 'true'}}"
-    when "number" then value.match?(/\A-?\d+(\.\d+)?\z/) ? "#{prop}={#{value}}" : nil
-    when "string" then "#{prop}=#{value.inspect}"
-    when "enum" then rule.fetch("values").include?(value) ? "#{prop}=#{value.inspect}" : nil
-    end
-  end
-
-  # The classes a node carries, as the first arguments to cn().
-  def self.classes(classes)
-    classes.fetch("base", []).map(&:inspect).join(", ").then{|list| list.empty? ? "" : "#{list}, "}
-  end
-
-  # Which of the component's props the markup actually reads, so the signature destructures
-  # those and nothing else: an unused parameter is a lint error.
-  def self.parameters(component, body)
-    used = component.fetch("props").keys.select{|prop| body.match?(/[{=]#{Regexp.escape(prop)}[}\s]/)}
-
-    (["className", "children"] + used.sort).join(", ")
-  end
-
-  # The components the markup renders, which is what it has to import.
-  def self.elements(body)
-    body.scan(/<([A-Z][A-Za-z0-9]*)/).flatten.uniq.sort
-  end
-
-  # `subtitle-lines` -> `subtitleLines`.
-  def self.camel(name)
-    parts = name.split("-")
-
-    parts.first.to_s + parts.drop(1).map(&:capitalize).join
   end
 
   def self.register(root, components)
     path = File.join(root, "registry.json")
     registry = JSON.parse(File.read(path))
-    existing = registry.fetch("items").map{|item| item.fetch("name")}
+    generated = components.keys.map{|name| self.kebab(name)}.to_set
+
+    # The items this script does not own, kept in the order they were in.
+    items = registry.fetch("items").reject do |item|
+      item.fetch("type") == "registry:ui" ||
+        generated.include?(item.fetch("name")) ||
+        item.fetch("name") == "widget-props"
+    end
+
+    # Gtk.Widget's properties and the function which resolves them, which this script
+    # generates and every component it generates imports.
+    items << {
+      "name" => "widget-props",
+      "type" => "registry:lib",
+      "title" => "Widget props",
+      "description" => "Gtk.Widget's writable properties, which every component accepts, " \
+        "and the function which resolves them to the className, style and attributes " \
+        "the DOM carries.",
+      "files" => [
+        { "path" => "registry/adwaita/lib/widget-props.ts", "type" => "registry:lib" },
+        { "path" => "registry/adwaita/lib/widget.ts", "type" => "registry:lib" },
+      ],
+    }
 
     components.sort.each do |name, component|
       slug = self.kebab(name)
-      next if existing.include?(slug)
 
-      registry["items"] << {
+      items << {
         "name" => slug,
         "type" => "registry:ui",
         "title" => name,
-        "description" => "#{component['widget']}#{component['class'] ? " (#{component['class']})" : ''}.",
-        "registryDependencies" => ["adwaita-theme", "gtk-enums"],
+        "description" => "#{name}#{component['gtk'] ? " (#{component['gtk']})" : ''}.",
+        "registryDependencies" => ["adwaita-theme", "gtk-enums", "widget-props"],
+        "dependencies" => ["class-variance-authority", "@base-ui/react"],
         "files" => [{ "path" => "registry/adwaita/ui/#{slug}.tsx", "type" => "registry:ui" }],
       }
     end
 
+    registry["items"] = items
     File.write(path, "#{JSON.pretty_generate(registry)}\n")
   end
 end
 
-require "fileutils"
 GenerateComponents.run(ARGV)

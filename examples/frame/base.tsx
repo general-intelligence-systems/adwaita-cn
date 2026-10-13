@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { Frame } from "@/ui/frame"
+import { Label } from "@/ui/label"
 
 export default function FrameBase() {
   return (
-    <Frame label="Label" />
+    <Frame>
+      <Label label="Label" />
+    </Frame>
   )
 }

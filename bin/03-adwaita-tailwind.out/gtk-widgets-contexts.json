@@ -1,0 +1,8204 @@
+{
+  "*:selected button.link": {
+    "base": [
+      "text-[#d1e1f5]"
+    ],
+    "hover": [
+      "text-[#ebf3fc]"
+    ],
+    "active": [
+      "text-[#d1e1f5]"
+    ]
+  },
+  "*:selected link": {
+    "base": [
+      "text-[#d1e1f5]"
+    ],
+    "hover": [
+      "text-[#ebf3fc]"
+    ],
+    "active": [
+      "text-[#d1e1f5]"
+    ]
+  },
+  ".app-notification": {
+    "base": [
+      "p-2.5",
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "gap-[10px]",
+      "rounded-[0_0_5px_5px]",
+      "bg-[image:linear-gradient(to_bottom,rgba(0,0,0,0.2),transparent_2px)]"
+    ]
+  },
+  ".app-notification border": {
+    "base": []
+  },
+  ".app-notification button": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".app-notification button.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".background": {
+    "base": [
+      "text-[#2e3436]",
+      "bg-[#f6f5f4]",
+      "[text-shadow:none]"
+    ]
+  },
+  ".body": {
+    "base": [
+      "font-normal",
+      "text-[110%]"
+    ]
+  },
+  ".boxed-list": {
+    "base": [
+      "rounded-[8px]"
+    ]
+  },
+  ".boxed-list > row": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[5px]",
+      "border-b-[rgba(213,208,204,0.5)]"
+    ],
+    "last": [
+      "rounded-bl-[8px]",
+      "rounded-br-[8px]"
+    ],
+    "first": [
+      "rounded-tl-[8px]",
+      "rounded-tr-[8px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-1px]"
+    ]
+  },
+  ".caption": {
+    "base": [
+      "font-normal",
+      "text-[90%]"
+    ]
+  },
+  ".caption-heading": {
+    "base": [
+      "font-bold",
+      "text-[90%]"
+    ]
+  },
+  ".content-view": {
+    "base": [
+      "bg-[#e6e3e0]"
+    ],
+    "hover": []
+  },
+  ".content-view .tile": {
+    "base": [
+      "p-0",
+      "m-0.5",
+      "bg-[transparent]",
+      "rounded-none"
+    ],
+    "active": [
+      "bg-[transparent]"
+    ],
+    "disabled": [
+      "bg-[transparent]"
+    ],
+    "data-[selected]": [
+      "bg-[transparent]"
+    ]
+  },
+  ".content-view .tile check": {
+    "base": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#8d8d8d]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[rgba(238,238,236,0.8)]",
+      "bg-[#8d8d8d]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[#eeeeec]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[#eeeeec]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ]
+  },
+  ".content-view > rubberband": {
+    "base": [
+      "bg-[rgba(27,106,203,0.2)]"
+    ]
+  },
+  ".default-decoration.titlebar": {
+    "base": [
+      "p-1",
+      "min-h-7"
+    ]
+  },
+  ".default-decoration.titlebar windowcontrols button": {
+    "base": [
+      "p-0",
+      "m-0",
+      "min-h-6.5",
+      "min-w-6.5"
+    ]
+  },
+  ".default-decoration.titlebar windowcontrols menubutton": {
+    "base": [
+      "p-0",
+      "m-0",
+      "min-h-6.5",
+      "min-w-6.5"
+    ]
+  },
+  ".default-decoration.titlebar windowcontrols menubutton button": {
+    "base": [
+      "p-1",
+      "m-0",
+      "min-h-5",
+      "min-w-5"
+    ]
+  },
+  ".dim-label": {
+    "base": [
+      "opacity-55",
+      "[text-shadow:none]"
+    ]
+  },
+  ".emoji-searchbar": {
+    "base": [
+      "p-1.5",
+      "gap-[6px]"
+    ]
+  },
+  ".emoji-toolbar": {
+    "base": [
+      "p-1.5",
+      "gap-[6px]"
+    ]
+  },
+  ".frame": {
+    "base": []
+  },
+  ".fullscreen .titlebar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".fullscreen headerbar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".heading": {
+    "base": [
+      "font-bold",
+      "text-[110%]"
+    ]
+  },
+  ".icon-dropshadow": {
+    "base": []
+  },
+  ".large-icons": {
+    "base": []
+  },
+  ".large-title": {
+    "base": [
+      "font-light",
+      "text-[240%]"
+    ]
+  },
+  ".linked > appchooserbutton > combobox:dir(ltr) > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > appchooserbutton > combobox:dir(rtl) > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > colorbutton:dir(ltr) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > colorbutton:dir(rtl) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > combobox:dir(ltr) > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > combobox:dir(rtl) > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > dropdown:dir(ltr) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > dropdown:dir(rtl) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > entry": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > entry:drop(active) + button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + colorbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + combobox > box > button.combo": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + dropdown > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + entry": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + filechooserbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + fontbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + menubutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > entry:drop(active) + spinbutton": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > filechooserbutton > combobox:dir(ltr) > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > filechooserbutton > combobox:dir(rtl) > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > filechooserbutton:dir(ltr) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > filechooserbutton:dir(rtl) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > fontbutton:dir(ltr) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > fontbutton:dir(rtl) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > menubutton:dir(ltr) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > menubutton:dir(rtl) > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > spinbutton": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + colorbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + combobox > box > button.combo": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + dropdown > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + entry": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + filechooserbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + fontbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + menubutton > button": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked > spinbutton:drop(active) + spinbutton": {
+    "base": [
+      "border-l-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > appchooserbutton > combobox > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > colorbutton > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > combobox > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > dropdown > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > entry": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > entry + entry": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry + spinbutton": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:disabled + entry": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  ".linked.vertical > entry:disabled + spinbutton": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + colorbutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + combobox > box > button.combo": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + dropdown > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + entry": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + filechooserbutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + fontbutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + menubutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > entry:drop(active) + spinbutton": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > filechooserbutton > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > filechooserbutton > combobox > box > button.combo": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > fontbutton > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > menubutton > button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > spinbutton": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]",
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  ".linked.vertical > spinbutton + entry": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton + spinbutton": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:disabled + entry": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  ".linked.vertical > spinbutton:disabled + spinbutton": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + colorbutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + combobox > box > button.combo": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + dropdown > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + entry": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + filechooserbutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + fontbutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + menubutton > button": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".linked.vertical > spinbutton:drop(active) + spinbutton": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  ".lowres-icon": {
+    "base": []
+  },
+  ".maximized .titlebar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".maximized headerbar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".monospace": {
+    "base": [
+      "font-[monospace]"
+    ]
+  },
+  ".navigation-sidebar": {
+    "base": [
+      "py-[5px]",
+      "px-0",
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  ".navigation-sidebar > row": {
+    "base": [
+      "py-0",
+      "px-2",
+      "mt-0",
+      "mb-0.5",
+      "mx-[5px]",
+      "min-h-9",
+      "rounded-[5px]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "bg-[#ddd9d5]"
+    ],
+    "disabled": [
+      "text-[#929595]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "bg-[#e8e6e3]",
+      "text-[inherit]"
+    ],
+    "data-[selected]:hover": [
+      "bg-[#ddd9d5]"
+    ]
+  },
+  ".navigation-sidebar > separator": {
+    "base": [
+      "m-[5px]"
+    ]
+  },
+  ".normal-icons": {
+    "base": []
+  },
+  ".osd": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd .scale-popup": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd .scale-popup button.flat": {
+    "base": [
+      "border-none",
+      "rounded-[5px]"
+    ]
+  },
+  ".osd .toolbar": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  ".osd button": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".osd button.color > colorswatch": {
+    "only": [
+      "shadow-none"
+    ]
+  },
+  ".osd button.color:active colorswatch": {
+    "only": [
+      "shadow-none"
+    ]
+  },
+  ".osd button.color:checked colorswatch": {
+    "only": [
+      "shadow-none"
+    ]
+  },
+  ".osd button.color:disabled colorswatch": {
+    "only": [
+      "shadow-none"
+    ]
+  },
+  ".osd button.destructive-action": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(224,27,36,0.5))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(224,27,36,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(#e01b24)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(#e01b24)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".osd button.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".osd button.suggested-action": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,132,228,0.5))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,132,228,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(#3584e4)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(#3584e4)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".osd check": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd entry": {
+    "base": [
+      "text-[white]",
+      "border-[#3584e4]",
+      "bg-[rgba(0,0,0,0.5)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[rgba(71,71,71,0.5)]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd popover.background": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  ".osd popover.background > arrow": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".osd popover.background > contents": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  ".osd progressbar > trough": {
+    "base": [
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[rgba(0,0,0,0.5)]"
+    ],
+    "disabled": [
+      "bg-[rgba(71,71,71,0.5)]"
+    ]
+  },
+  ".osd progressbar > trough > progress": {
+    "base": [
+      "border-[rgba(0,0,0,0.7)]"
+    ],
+    "disabled": [
+      "border-[transparent]"
+    ]
+  },
+  ".osd radio": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd scale > trough": {
+    "base": [
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[rgba(0,0,0,0.5)]"
+    ],
+    "disabled": [
+      "bg-[rgba(71,71,71,0.5)]"
+    ]
+  },
+  ".osd scale > trough > fill": {
+    "base": [
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[rgba(91,91,90,0.775)]"
+    ],
+    "disabled": [
+      "bg-[transparent]",
+      "border-[transparent]"
+    ]
+  },
+  ".osd scale > trough > highlight": {
+    "base": [
+      "border-[rgba(0,0,0,0.7)]"
+    ],
+    "disabled": [
+      "border-[transparent]"
+    ]
+  },
+  ".osd scale > trough > slider": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[#353535]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[#353535]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[#353535]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[#353535]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd spinbutton": {
+    "base": [
+      "text-[white]",
+      "border-[#3584e4]",
+      "bg-[rgba(0,0,0,0.5)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[rgba(71,71,71,0.5)]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd spinbutton > button.image-button.down": {
+    "base": [
+      "border-[rgba(0,0,0,0.4)]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#eeeeec]",
+      "rounded-none"
+    ],
+    "last": [
+      "rounded-[0_5px_5px_0]"
+    ],
+    "hover": [
+      "border-[rgba(0,0,0,0.5)]",
+      "bg-[rgba(27,27,27,0.7)]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#eeeeec]"
+    ],
+    "first": [
+      "rounded-[5px_0_0_5px]"
+    ],
+    "disabled": [
+      "border-[rgba(0,0,0,0.5)]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#919190]"
+    ]
+  },
+  ".osd spinbutton > button.image-button.up": {
+    "base": [
+      "border-[rgba(0,0,0,0.4)]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#eeeeec]",
+      "rounded-none"
+    ],
+    "last": [
+      "rounded-[0_5px_5px_0]"
+    ],
+    "hover": [
+      "border-[rgba(0,0,0,0.5)]",
+      "bg-[rgba(27,27,27,0.7)]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#eeeeec]"
+    ],
+    "first": [
+      "rounded-[5px_0_0_5px]"
+    ],
+    "disabled": [
+      "border-[rgba(0,0,0,0.5)]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#919190]"
+    ]
+  },
+  ".osd spinbutton > text": {
+    "base": [
+      "p-1.5",
+      "m-0",
+      "min-w-7",
+      "bg-none",
+      "bg-[transparent]",
+      "rounded-none",
+      "shadow-none"
+    ],
+    "disabled": [
+      "bg-[transparent]"
+    ]
+  },
+  ".osd spinbutton.vertical > button": {
+    "first": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "first:hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "first:active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "first:disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ]
+  },
+  ".osd spinbutton.vertical > text": {
+    "base": [
+      "text-[white]",
+      "border-[#3584e4]",
+      "bg-[rgba(0,0,0,0.5)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[rgba(71,71,71,0.5)]",
+      "bg-clip-padding"
+    ]
+  },
+  ".rich-list > header": {
+    "base": [
+      "py-2",
+      "px-3",
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "min-h-8",
+      "font-bold"
+    ]
+  },
+  ".rich-list > header > box": {
+    "base": [
+      "gap-[12px]"
+    ]
+  },
+  ".rich-list > row": {
+    "base": [
+      "py-2",
+      "px-3",
+      "min-h-8"
+    ]
+  },
+  ".rich-list > row > box": {
+    "base": [
+      "gap-[12px]"
+    ]
+  },
+  ".scale-popup button": {
+    "hover": [
+      "bg-[rgba(46,52,54,0.1)]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]",
+      "rounded-[5px]"
+    ]
+  },
+  ".shortcuts-search-results": {
+    "base": [
+      "m-5",
+      "gap-[24px]"
+    ]
+  },
+  ".sidebar": {
+    "base": [
+      "bg-[#fbfafa]"
+    ]
+  },
+  ".sidebar list": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  ".sidebar listview.view": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  ".sidebar.left": {
+    "base": []
+  },
+  ".sidebar.right": {
+    "base": []
+  },
+  ".solid-csd .titlebar": {
+    "base": [
+      "mt-[-1px]",
+      "mx-[-1px]",
+      "rounded-none",
+      "shadow-none"
+    ]
+  },
+  ".solid-csd headerbar": {
+    "base": [
+      "mt-[-1px]",
+      "mx-[-1px]",
+      "rounded-none",
+      "shadow-none"
+    ]
+  },
+  ".tiled .titlebar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled headerbar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-bottom .titlebar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-bottom headerbar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-left .titlebar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-left headerbar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-right .titlebar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-right headerbar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-top .titlebar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".tiled-top headerbar": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".title-1": {
+    "base": [
+      "font-extrabold",
+      "text-[200%]"
+    ]
+  },
+  ".title-2": {
+    "base": [
+      "font-extrabold",
+      "text-[150%]"
+    ]
+  },
+  ".title-3": {
+    "base": [
+      "font-bold",
+      "text-[150%]"
+    ]
+  },
+  ".title-4": {
+    "base": [
+      "font-bold",
+      "text-[130%]"
+    ]
+  },
+  ".titlebar": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "min-h-11.5",
+      "border-b-[1px]",
+      "border-solid",
+      "border-[#d5d0cc]",
+      "rounded-none",
+      "bg-[#dfdcd8_linear-gradient(to_top,#dad6d2,#e1dedb)]",
+      "bg-[#f6f5f4]",
+      "bg-[image:none]",
+      "duration-200",
+      "ease-[ease-out]"
+    ]
+  },
+  ".titlebar .subtitle": {
+    "base": [
+      "px-3",
+      "opacity-55",
+      "[text-shadow:none]",
+      "text-[smaller]"
+    ]
+  },
+  ".titlebar .title": {
+    "base": [
+      "px-3",
+      "font-bold"
+    ]
+  },
+  ".titlebar button.toggle": {
+    "data-[state=checked]": [
+      "bg-[image:image(#cfcac4)]",
+      "border-[#d5d0cc]",
+      "border-t-[#bab3ab]",
+      "text-[#929595]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ]
+  },
+  ".titlebar separator": {
+    "base": [
+      "bg-[#cdc7c2]"
+    ]
+  },
+  ".titlebar stackswitcher > button": {
+    "data-[state=checked]": [
+      "bg-[image:image(#cfcac4)]",
+      "border-[#d5d0cc]",
+      "border-t-[#bab3ab]",
+      "text-[#929595]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ]
+  },
+  ".titlebar:backdrop .title": {
+    "base": [
+      "[filter:opacity(0.5)]"
+    ]
+  },
+  ".toolbar": {
+    "base": [
+      "p-1",
+      "gap-[4px]",
+      "bg-[#f6f5f4]"
+    ]
+  },
+  ".toolbar  > appchooserbutton > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > appchooserbutton > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > colorbutton > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > colorbutton > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > combobox > box > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > combobox > box > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > dropdown > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > dropdown > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > fontbutton > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > fontbutton > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > menubutton > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > menubutton > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > scalebutton > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar  > scalebutton > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar >  > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar >  > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar > button": {
+    "base": [
+      "m-[1px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bfb8b1]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar > button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  ".toolbar.horizontal > separator": {
+    "base": [
+      "my-1",
+      "mx-0"
+    ]
+  },
+  ".toolbar.osd": {
+    "base": [
+      "p-[13px]",
+      "rounded-[5px]",
+      "bg-[rgba(53,53,53,0.7)]"
+    ]
+  },
+  ".toolbar.osd.bottom": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".toolbar.osd.left": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".toolbar.osd.right": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".toolbar.osd.top": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  ".toolbar.vertical > separator": {
+    "base": [
+      "my-0",
+      "mx-1"
+    ]
+  },
+  ".view": {
+    "base": [
+      "text-[black]",
+      "bg-[#ffffff]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "bg-[#faf9f8]"
+    ],
+    "data-[selected]": [
+      "rounded-[3px]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-[3px]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  ".view.content-view.check": {
+    "base": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#8d8d8d]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[rgba(238,238,236,0.8)]",
+      "bg-[#8d8d8d]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[#eeeeec]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[#eeeeec]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ]
+  },
+  "actionbar > revealer > box": {
+    "base": [
+      "p-1.5",
+      "gap-[6px]"
+    ]
+  },
+  "actionbar > revealer > box > box.end": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "actionbar > revealer > box > box.start": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "button": {
+    "base": [
+      "py-1",
+      "px-[9px]",
+      "min-h-6",
+      "min-w-4",
+      "rounded-[5px]",
+      "ease-[ease-out]",
+      "text-[#2ec27e]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[#2ec27e]",
+      "bg-[image:image(#f6f5f4)]",
+      "shadow-[inset_0_0_0_1px_#2ec27e]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none",
+      "duration-[50ms]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#faf9f8)]",
+      "shadow-none"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:active": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none",
+      "duration-[50ms]"
+    ],
+    "data-[state=checked]:hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#d1ccc7)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]:active": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#c8c2bc)]",
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ]
+  },
+  "button label": {
+    "disabled": [
+      "text-[inherit]"
+    ]
+  },
+  "button.arrow-button": {
+    "base": [
+      "px-2.5"
+    ]
+  },
+  "button.arrow-button > box": {
+    "base": [
+      "gap-[4px]"
+    ]
+  },
+  "button.circular": {
+    "base": [
+      "p-0",
+      "min-w-8",
+      "min-h-8",
+      "rounded-full"
+    ]
+  },
+  "button.circular label": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "button.color": {
+    "base": [
+      "p-1"
+    ]
+  },
+  "button.color > colorswatch": {
+    "only": [
+      "shadow-[0_1px_rgba(0,0,0,0.1)]",
+      "rounded-none"
+    ]
+  },
+  "button.color > colorswatch:only-child > overlay": {
+    "base": [
+      "rounded-none"
+    ]
+  },
+  "button.color:active colorswatch": {
+    "only": [
+      "shadow-none"
+    ]
+  },
+  "button.color:checked colorswatch": {
+    "only": [
+      "shadow-none"
+    ]
+  },
+  "button.color:disabled colorswatch": {
+    "only": [
+      "shadow-none"
+    ]
+  },
+  "button.destructive-action": {
+    "base": [
+      "text-[white]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#851015]",
+      "bg-[image:linear-gradient(to_top,#d71a23_2px,#e01b24)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[#9c1319]",
+      "bg-[image:linear-gradient(to_top,#971218,#bc171e_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[#9c1319]",
+      "bg-[image:image(#a0131a)]",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#faf9f8)]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:active": [
+      "text-[#f1a5a8]",
+      "border-[#9c1319]",
+      "bg-[image:image(#dc1d27)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[#9c1319]",
+      "bg-[image:image(#a0131a)]",
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "text-[#f1a5a8]",
+      "border-[#9c1319]",
+      "bg-[image:image(#dc1d27)]",
+      "shadow-none"
+    ]
+  },
+  "button.destructive-action.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#e01b24]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[rgba(224,27,36,0.8)]"
+    ]
+  },
+  "button.emoji-section": {
+    "base": [
+      "pt-[3px]",
+      "pb-0",
+      "px-0",
+      "border-[transparent]",
+      "border-[3px]",
+      "rounded-none",
+      "min-w-8",
+      "min-h-7",
+      "bg-none",
+      "shadow-none",
+      "[text-shadow:none]"
+    ],
+    "hover": [
+      "border-[#cdc7c2]"
+    ],
+    "data-[state=checked]": [
+      "border-[#3584e4]"
+    ]
+  },
+  "button.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#dad6d2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "button.flat.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "button.font > box": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "button.font > box > box > label": {
+    "base": [
+      "font-bold"
+    ]
+  },
+  "button.font separator": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  "button.image-button": {
+    "base": [
+      "px-[5px]",
+      "min-w-6"
+    ]
+  },
+  "button.keyboard-activating": {
+    "base": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#dad6d2)]",
+      "shadow-none",
+      "duration-[50ms]"
+    ]
+  },
+  "button.keyboard-activating.sidebar-button": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "button.link": {
+    "base": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]",
+      "text-[#15539e]"
+    ],
+    "hover": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]",
+      "text-[#3584e4]"
+    ],
+    "active": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]",
+      "text-[#1b6acb]"
+    ],
+    "disabled": [
+      "text-[rgba(115,115,115,0.8)]"
+    ],
+    "data-[selected]": [
+      "text-[#d1e1f5]"
+    ],
+    "data-[state=checked]": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]"
+    ]
+  },
+  "button.link > label": {
+    "base": []
+  },
+  "button.osd": {
+    "base": [
+      "min-w-6.5",
+      "min-h-8",
+      "text-[#eeeeec]",
+      "rounded-[5px]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "button.osd.image-button": {
+    "base": [
+      "min-w-7.5"
+    ],
+    "only": [
+      "m-1",
+      "rounded-full",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+    ]
+  },
+  "button.sidebar-button": {
+    "base": [
+      "p-0",
+      "my-[3px]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "min-h-6.5",
+      "min-w-6.5",
+      "rounded-full"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#dad6d2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "button.suggested-action": {
+    "base": [
+      "text-[white]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#15539e]",
+      "bg-[image:linear-gradient(to_top,#2c7fe3_2px,#3584e4)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[#185fb4]",
+      "bg-[image:linear-gradient(to_top,#185cb0,#1c6fd4_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[#185fb4]",
+      "bg-[image:image(#1961b9)]",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#faf9f8)]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:active": [
+      "text-[#acccf4]",
+      "border-[#185fb4]",
+      "bg-[image:image(#2f80e3)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[#185fb4]",
+      "bg-[image:image(#1961b9)]",
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "text-[#acccf4]",
+      "border-[#185fb4]",
+      "bg-[image:image(#2f80e3)]",
+      "shadow-none"
+    ]
+  },
+  "button.suggested-action.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[#3584e4]"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "text-[rgba(53,132,228,0.8)]"
+    ]
+  },
+  "button.text-button": {
+    "base": [
+      "px-4"
+    ]
+  },
+  "button.text-button.image-button": {
+    "base": [
+      "px-2"
+    ]
+  },
+  "button.text-button.image-button label": {
+    "base": [
+      "px-2"
+    ]
+  },
+  "button:backdrop.flat": {
+    "base": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#f6f5f4)]",
+      "shadow-none",
+      "duration-200",
+      "ease-[ease-out]"
+    ],
+    "active": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#d4cfca]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#faf9f8)]",
+      "shadow-none"
+    ],
+    "disabled:active": [
+      "text-[#d4cfca]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "text-[#d4cfca]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ]
+  },
+  "calendar": {
+    "base": [
+      "text-[black]"
+    ]
+  },
+  "calendar > grid > label": {
+    "focus": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-offset-[-2px]",
+      "outline-2",
+      "outline-solid"
+    ]
+  },
+  "calendar > grid > label.day-number": {
+    "base": [
+      "p-1"
+    ],
+    "data-[selected]": [
+      "rounded-[3px]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "data-[state=checked]": [
+      "bg-[rgb(from_#3584e4_r_g_b_/_calc(alpha_*_0.3))]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "calendar > grid > label.day-number.other-month": {
+    "base": [
+      "text-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.3))]"
+    ]
+  },
+  "calendar > grid > label.today": {
+    "base": [
+      "shadow-[inset_0px_-2px_#cdc7c2]"
+    ],
+    "data-[selected]": [
+      "shadow-none"
+    ]
+  },
+  "calendar > header": {
+    "base": []
+  },
+  "calendar > header > button": {
+    "base": [
+      "shadow-none",
+      "bg-none",
+      "rounded-none"
+    ]
+  },
+  "check": {
+    "base": [
+      "min-h-3.5",
+      "min-w-3.5",
+      "bg-clip-padding",
+      "bg-[image:linear-gradient(to_bottom,white_20%,white_90%)]",
+      "border-[#bfb8b1]",
+      "shadow-[0_1px_rgba(0,0,0,0.05)]",
+      "text-[#ffffff]",
+      "rounded-[3px]"
+    ],
+    "hover": [
+      "bg-[image:image(#f2f2f2)]"
+    ],
+    "active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
+      "bg-[image:image(#d9d9d9)]"
+    ],
+    "disabled": [
+      "shadow-none",
+      "text-[rgba(255,255,255,0.7)]"
+    ],
+    "indeterminate": [
+      "bg-clip-border",
+      "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
+      "border-[#1b6acb]",
+      "shadow-[0_1px_rgba(0,0,0,0.05)]",
+      "text-[#ffffff]"
+    ],
+    "indeterminate:hover": [
+      "bg-[image:linear-gradient(to_bottom,#5d9de9_10%,#478fe6_90%)]"
+    ],
+    "data-[state=checked]": [
+      "bg-clip-border",
+      "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
+      "border-[#1b6acb]",
+      "shadow-[0_1px_rgba(0,0,0,0.05)]",
+      "text-[#ffffff]"
+    ],
+    "indeterminate:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
+      "bg-[image:image(#1f76e1)]"
+    ],
+    "indeterminate:disabled": [
+      "shadow-none",
+      "text-[rgba(255,255,255,0.7)]"
+    ],
+    "data-[state=checked]:hover": [
+      "bg-[image:linear-gradient(to_bottom,#5d9de9_10%,#478fe6_90%)]"
+    ],
+    "data-[state=checked]:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
+      "bg-[image:image(#1f76e1)]"
+    ],
+    "data-[state=checked]:disabled": [
+      "shadow-none",
+      "text-[rgba(255,255,255,0.7)]"
+    ]
+  },
+  "checkbutton": {
+    "base": [
+      "gap-[4px]",
+      "rounded-[5px]",
+      "transition-[outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "checkbutton.text-button": {
+    "base": [
+      "p-1"
+    ]
+  },
+  "colorchooser .popover.osd": {
+    "base": [
+      "rounded-[5px]"
+    ]
+  },
+  "colorswatch": {
+    "base": [
+      "transition-[outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[6px]",
+      "border-none",
+      "shadow-none"
+    ],
+    "last": [
+      "rounded-tr-[5.5px]",
+      "rounded-br-[5.5px]"
+    ],
+    "first": [
+      "rounded-tl-[5.5px]",
+      "rounded-bl-[5.5px]"
+    ],
+    "disabled": [
+      "opacity-50"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-4",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "colorswatch > overlay": {
+    "base": []
+  },
+  "colorswatch#add-color-button": {
+    "base": [
+      "rounded-[5px_0_0_5px]"
+    ],
+    "only": [
+      "rounded-[5px]"
+    ]
+  },
+  "colorswatch#add-color-button > overlay": {
+    "base": [
+      "text-[#2e3436]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#f6f5f4_2px,#fbfafa)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ]
+  },
+  "colorswatch#add-color-button.activatable:hover > overlay": {
+    "base": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ]
+  },
+  "colorswatch#editor-color-sample": {
+    "base": [
+      "rounded-[4px]"
+    ]
+  },
+  "colorswatch#editor-color-sample > overlay": {
+    "base": [
+      "rounded-[4.5px]"
+    ]
+  },
+  "colorswatch.activatable:hover > overlay": {
+    "base": [
+      "shadow-[inset_0_1px_rgba(255,255,255,0.4),inset_0_-1px_rgba(0,0,0,0.2)]"
+    ]
+  },
+  "colorswatch.bottom": {
+    "base": [
+      "rounded-bl-[5.5px]",
+      "rounded-br-[5.5px]"
+    ]
+  },
+  "colorswatch.bottom > overlay": {
+    "base": [
+      "rounded-bl-[5px]",
+      "rounded-br-[5px]"
+    ]
+  },
+  "colorswatch.dark > overlay": {
+    "base": [
+      "text-[white]"
+    ]
+  },
+  "colorswatch.dark.activatable:hover > overlay": {
+    "base": [
+      "border-[rgba(0,0,0,0.8)]"
+    ]
+  },
+  "colorswatch.left": {
+    "base": [
+      "rounded-tl-[5.5px]",
+      "rounded-bl-[5.5px]"
+    ]
+  },
+  "colorswatch.left > overlay": {
+    "base": [
+      "rounded-tl-[5px]",
+      "rounded-bl-[5px]"
+    ]
+  },
+  "colorswatch.light > overlay": {
+    "base": [
+      "text-[black]"
+    ]
+  },
+  "colorswatch.light.activatable:hover > overlay": {
+    "base": [
+      "border-[rgba(0,0,0,0.5)]"
+    ]
+  },
+  "colorswatch.right": {
+    "base": [
+      "rounded-tr-[5.5px]",
+      "rounded-br-[5.5px]"
+    ]
+  },
+  "colorswatch.right > overlay": {
+    "base": [
+      "rounded-tr-[5px]",
+      "rounded-br-[5px]"
+    ]
+  },
+  "colorswatch.top": {
+    "base": [
+      "rounded-tl-[5.5px]",
+      "rounded-tr-[5.5px]"
+    ]
+  },
+  "colorswatch.top > overlay": {
+    "base": [
+      "rounded-tl-[5px]",
+      "rounded-tr-[5px]"
+    ]
+  },
+  "colorswatch:disabled > overlay": {
+    "base": [
+      "border-[rgba(0,0,0,0.6)]",
+      "shadow-none"
+    ]
+  },
+  "colorswatch:drop(active).dark > overlay": {
+    "base": [
+      "border-[#2ec27e]",
+      "shadow-[inset_0_0_0_2px_rgba(0,0,0,0.3),inset_0_0_0_1px_#2ec27e]"
+    ]
+  },
+  "colorswatch:drop(active).light > overlay": {
+    "base": [
+      "border-[#2ec27e]",
+      "shadow-[inset_0_0_0_2px_#27a56b,inset_0_0_0_1px_#2ec27e]"
+    ]
+  },
+  "colorswatch:first-child > overlay": {
+    "base": [
+      "rounded-tl-[5px]",
+      "rounded-bl-[5px]"
+    ]
+  },
+  "colorswatch:last-child > overlay": {
+    "base": [
+      "rounded-tr-[5px]",
+      "rounded-br-[5px]"
+    ]
+  },
+  "columnview > listview > row": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "columnview > listview > row > cell": {
+    "base": [
+      "py-2",
+      "px-1.5"
+    ]
+  },
+  "columnview row cell editablelabel": {
+    "base": []
+  },
+  "columnview row cell editablelabel.editing": {
+    "base": []
+  },
+  "columnview row cell editablelabel.editing text selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]",
+      "text-[#2e3436]"
+    ]
+  },
+  "columnview.column-separators > listview > row > cell": {
+    "base": [
+      "border-l-[#d7d2ce]"
+    ]
+  },
+  "columnview.complex > listview > row > cell": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "columnview.complex > listview > row > cell > *": {
+    "base": [
+      "py-2",
+      "px-1.5"
+    ]
+  },
+  "columnview.complex.data-table > listview > row > cell": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "columnview.complex.data-table > listview > row > cell > *": {
+    "base": [
+      "py-0.5"
+    ]
+  },
+  "columnview.data-table > listview > row > cell": {
+    "base": [
+      "py-0.5"
+    ]
+  },
+  "columnview.view": {
+    "base": [
+      "border-l-[#ddd9d6]",
+      "border-t-[#d7d2ce]",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#929595]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "rounded-none",
+      "outline-[rgba(255,255,255,0.8)]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-none",
+      "outline-[rgba(255,255,255,0.8)]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "columnview.view > dndtarget": {
+    "base": [
+      "border-[1px]",
+      "border-[#185fb4]"
+    ]
+  },
+  "columnview.view > dndtarget:drop(active).after": {
+    "base": []
+  },
+  "columnview.view > dndtarget:drop(active).before": {
+    "base": []
+  },
+  "columnview.view > header > button": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "text-[#979a9b]",
+      "bg-[#ffffff]",
+      "font-bold",
+      "[text-shadow:none]",
+      "shadow-none",
+      "bg-[image:none]",
+      "border-[#d7d2ce]",
+      "rounded-none"
+    ],
+    "last": [],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "text-[#636769]",
+      "shadow-none",
+      "bg-[image:none]",
+      "border-[#d7d2ce]",
+      "rounded-none",
+      "[text-shadow:none]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "text-[#2e3436]",
+      "bg-[image:none]",
+      "border-[#d7d2ce]",
+      "rounded-none",
+      "[text-shadow:none]"
+    ],
+    "disabled": [
+      "border-[#f6f5f4]",
+      "bg-[image:none]"
+    ]
+  },
+  "columnview.view > header > button sort-indicator": {
+    "base": [
+      "min-h-4",
+      "min-w-4"
+    ]
+  },
+  "columnview.view > header > button sort-indicator.ascending": {
+    "base": []
+  },
+  "columnview.view > header > button sort-indicator.descending": {
+    "base": []
+  },
+  "columnview.view > rubberband": {
+    "base": [
+      "bg-[rgba(27,106,203,0.2)]"
+    ]
+  },
+  "columnview.view acceleditor > label": {
+    "base": [
+      "bg-[#3584e4]"
+    ]
+  },
+  "columnview.view button.dnd": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "data-[selected]": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ]
+  },
+  "columnview.view header.button.dnd": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "data-[selected]": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ]
+  },
+  "columnview.view.expander": {
+    "base": [
+      "min-w-4",
+      "min-h-4",
+      "text-[#4d4d4d]"
+    ],
+    "hover": [
+      "text-[black]"
+    ],
+    "data-[selected]": [
+      "text-[#c2daf7]"
+    ],
+    "data-[state=checked]": [],
+    "data-[selected]:hover": [
+      "text-[#ffffff]"
+    ]
+  },
+  "columnview.view.progressbar": {
+    "base": [
+      "text-[#ffffff]",
+      "bg-[#3584e4]",
+      "bg-[image:image(#3584e4)]",
+      "shadow-none"
+    ],
+    "data-[selected]": [
+      "text-[#3584e4]",
+      "bg-[image:image(#ffffff)]",
+      "bg-[#fcfcfc]"
+    ],
+    "data-[selected]:focus": [
+      "text-[#3584e4]",
+      "bg-[image:image(#ffffff)]",
+      "bg-[#fcfcfc]"
+    ]
+  },
+  "columnview.view.separator": {
+    "base": [
+      "min-h-0.5",
+      "text-[#d7d2ce]"
+    ]
+  },
+  "columnview.view.trough": {
+    "base": [
+      "bg-[rgba(46,52,54,0.1)]"
+    ],
+    "data-[selected]": [
+      "bg-[rgba(255,255,255,0.3)]"
+    ],
+    "data-[selected]:focus": [
+      "bg-[rgba(255,255,255,0.3)]"
+    ]
+  },
+  "combobox": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "combobox > popover.menu > contents modelbutton": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "combobox arrow": {
+    "base": [
+      "min-h-4",
+      "min-w-4"
+    ]
+  },
+  "combobox popover": {
+    "base": [
+      "p-0",
+      "mt-1.5"
+    ]
+  },
+  "combobox popover .dropdown-searchbar": {
+    "base": [
+      "p-1.5"
+    ]
+  },
+  "combobox popover listview": {
+    "base": [
+      "m-2"
+    ]
+  },
+  "combobox popover listview > row.activatable": {
+    "base": [
+      "p-2"
+    ],
+    "data-[selected]": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "text-[black]",
+      "bg-[#e8e6e3]",
+      "shadow-none",
+      "rounded-[5px]"
+    ],
+    "data-[selected]:hover": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "text-[black]",
+      "bg-[#e8e6e3]",
+      "shadow-none",
+      "rounded-[5px]"
+    ]
+  },
+  "combobox.linked button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  "combobox:drop(active) button.combo": {
+    "base": [
+      "text-[#2ec27e]",
+      "border-[#2ec27e]",
+      "shadow-[inset_0_0_0_1px_#2ec27e]"
+    ]
+  },
+  "coverflow cover": {
+    "base": [
+      "text-[black]",
+      "bg-[#ffffff]"
+    ]
+  },
+  "cursor-handle": {
+    "base": [
+      "py-6",
+      "px-5",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "border-none",
+      "min-w-5",
+      "min-h-6"
+    ]
+  },
+  "cursor-handle.bottom": {
+    "base": [],
+    "hover": [],
+    "active": []
+  },
+  "cursor-handle.insertion-cursor": {
+    "base": [],
+    "hover": [],
+    "active": []
+  },
+  "cursor-handle.top": {
+    "base": [],
+    "hover": [],
+    "active": []
+  },
+  "dnd": {
+    "base": [
+      "text-[#2e3436]"
+    ]
+  },
+  "dropdown": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "dropdown > button > box": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "dropdown > button > box > stack > row.activatable": {
+    "hover": [
+      "bg-none",
+      "shadow-none"
+    ]
+  },
+  "dropdown > popover.menu > contents modelbutton": {
+    "base": [
+      "px-[9px]"
+    ]
+  },
+  "dropdown > popover.menu.background > contents": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "dropdown arrow": {
+    "base": [
+      "min-h-4",
+      "min-w-4"
+    ]
+  },
+  "dropdown popover": {
+    "base": [
+      "p-0",
+      "mt-1.5"
+    ]
+  },
+  "dropdown popover .dropdown-searchbar": {
+    "base": [
+      "p-1.5"
+    ]
+  },
+  "dropdown popover listview": {
+    "base": [
+      "m-2"
+    ]
+  },
+  "dropdown popover listview > row.activatable": {
+    "base": [
+      "p-2"
+    ],
+    "data-[selected]": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "text-[black]",
+      "bg-[#e8e6e3]",
+      "shadow-none",
+      "rounded-[5px]"
+    ],
+    "data-[selected]:hover": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "text-[black]",
+      "bg-[#e8e6e3]",
+      "shadow-none",
+      "rounded-[5px]"
+    ]
+  },
+  "dropdown.linked button": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  "dropdown:drop(active) button.combo": {
+    "base": [
+      "text-[#2ec27e]",
+      "border-[#2ec27e]",
+      "shadow-[inset_0_0_0_1px_#2ec27e]"
+    ]
+  },
+  "editablelabel > stack > text": {
+    "base": [
+      "text-[black]",
+      "border-[#cdc7c2]",
+      "bg-[#ffffff]"
+    ]
+  },
+  "editablelabel > stack > text > selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]",
+      "text-[#2e3436]"
+    ]
+  },
+  "emoji-completion-row": {
+    "focus": [
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "hover": [
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ]
+  },
+  "emoji-completion-row > box": {
+    "base": [
+      "py-0.5",
+      "px-2.5",
+      "gap-[10px]"
+    ]
+  },
+  "emoji-completion-row emoji": {
+    "focus": [
+      "bg-[#e8e6e3]"
+    ],
+    "hover": [
+      "bg-[#e8e6e3]"
+    ]
+  },
+  "entry": {
+    "base": [
+      "px-2",
+      "min-h-8",
+      "rounded-[5px]",
+      "gap-[6px]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "text-[black]",
+      "border-[#2ec27e]",
+      "bg-[#ffffff]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "shadow-[inset_0_0_0_1px_#2ec27e]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#cdc7c2]",
+      "bg-[#faf9f8]"
+    ]
+  },
+  "entry > image": {
+    "base": [
+      "text-[#585d5e]"
+    ],
+    "hover": [
+      "text-[#2e3436]"
+    ],
+    "active": [
+      "text-[#3584e4]"
+    ]
+  },
+  "entry > image.left": {
+    "base": [
+      "mr-1.5"
+    ]
+  },
+  "entry > image.right": {
+    "base": [
+      "ml-1.5"
+    ]
+  },
+  "entry > progress": {
+    "base": [
+      "mb-0.5"
+    ]
+  },
+  "entry > progress > trough": {
+    "base": [
+      "min-h-0.5"
+    ]
+  },
+  "entry > progress > trough > progress": {
+    "base": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "rounded-none",
+      "border-b-0.5",
+      "border-[#3584e4]",
+      "border-solid",
+      "shadow-none"
+    ]
+  },
+  "entry > text > block-cursor": {
+    "base": [
+      "text-[#ffffff]",
+      "bg-[black]"
+    ]
+  },
+  "entry > text > placeholder": {
+    "base": [
+      "opacity-55",
+      "[text-shadow:none]"
+    ]
+  },
+  "entry > text > selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]",
+      "text-[#2e3436]"
+    ]
+  },
+  "entry.error": {
+    "base": [
+      "text-[#cc0000]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(204,0,0,0.5)]",
+      "outline-2"
+    ]
+  },
+  "entry.error > selection": {
+    "base": [
+      "bg-[#cc0000]"
+    ]
+  },
+  "entry.flat": {
+    "base": [
+      "p-0.5",
+      "min-h-0",
+      "bg-[transparent]",
+      "border-[transparent]",
+      "rounded-none"
+    ],
+    "disabled": [
+      "p-0.5",
+      "min-h-0",
+      "bg-[transparent]",
+      "border-[transparent]",
+      "rounded-none"
+    ]
+  },
+  "entry.password image.caps-lock-indicator": {
+    "base": [
+      "text-[#a7aaaa]"
+    ]
+  },
+  "entry.warning": {
+    "base": [
+      "text-[#f57900]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(245,121,0,0.5)]",
+      "outline-2"
+    ]
+  },
+  "entry.warning > selection": {
+    "base": [
+      "bg-[#f57900]"
+    ]
+  },
+  "entry:focus-within > placeholder": {
+    "base": [
+      "opacity-0"
+    ]
+  },
+  "expander": {
+    "base": [
+      "min-w-4",
+      "min-h-4"
+    ],
+    "disabled": [
+      "text-[#929595]"
+    ],
+    "data-[state=checked]": []
+  },
+  "expander-widget": {
+    "base": [
+      "duration-[300ms]",
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "expander-widget > box > title": {
+    "base": [
+      "outline-offset-[4px]",
+      "transition-[outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "rounded-[5px]"
+    ]
+  },
+  "expander-widget > box > title:hover > expander": {
+    "base": [
+      "text-[#748489]"
+    ]
+  },
+  "expander-widget:focus:focus-visible > box > title": {
+    "base": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "filechooser #pathbarbox": {
+    "base": []
+  },
+  "filechooser .dialog-action-box": {
+    "base": []
+  },
+  "filechooser gridview child": {
+    "base": [
+      "m-3",
+      "rounded-[12px]"
+    ],
+    "hover": [
+      "bg-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.04))]"
+    ],
+    "active": [
+      "bg-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.08))]"
+    ],
+    "data-[selected]": [
+      "bg-[rgb(from_#3584e4_r_g_b_/_calc(alpha_*_0.15))]",
+      "text-[inherit]"
+    ],
+    "data-[selected]:hover": [
+      "bg-[rgb(from_#3584e4_r_g_b_/_calc(alpha_*_0.2))]"
+    ],
+    "data-[selected]:active": [
+      "bg-[rgb(from_#3584e4_r_g_b_/_calc(alpha_*_0.25))]"
+    ]
+  },
+  "filechooser gridview child filethumbnail image": {
+    "base": [
+      "[filter:drop-shadow(0px_1px_1px_rgba(0,0,0,0.3))]"
+    ]
+  },
+  "filechooserbutton": {
+    "base": [
+      "shadow-none",
+      "border-[transparent]"
+    ]
+  },
+  "filechooserbutton > button > box": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "flowbox > flowboxchild": {
+    "base": [
+      "p-[3px]",
+      "transition-[outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "flowbox > rubberband": {
+    "base": [
+      "bg-[rgba(27,106,203,0.2)]"
+    ]
+  },
+  "frame": {
+    "base": [
+      "rounded-[8px]"
+    ]
+  },
+  "frame > label": {
+    "base": [
+      "m-1"
+    ]
+  },
+  "gridview > child": {
+    "base": [
+      "p-[3px]",
+      "transition-[outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "gridview > child box": {
+    "base": [
+      "m-3",
+      "gap-[8px]"
+    ]
+  },
+  "gridview > rubberband": {
+    "base": [
+      "bg-[rgba(27,106,203,0.2)]"
+    ]
+  },
+  "headerbar": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "min-h-11.5",
+      "border-b-[1px]",
+      "border-solid",
+      "border-[#d5d0cc]",
+      "rounded-none",
+      "bg-[#dfdcd8_linear-gradient(to_top,#dad6d2,#e1dedb)]",
+      "bg-[#f6f5f4]",
+      "bg-[image:none]",
+      "duration-200",
+      "ease-[ease-out]"
+    ]
+  },
+  "headerbar .subtitle": {
+    "base": [
+      "px-3",
+      "opacity-55",
+      "[text-shadow:none]",
+      "text-[smaller]"
+    ]
+  },
+  "headerbar .title": {
+    "base": [
+      "px-3",
+      "font-bold"
+    ]
+  },
+  "headerbar > windowhandle > box": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "headerbar > windowhandle > box > box.end": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "headerbar > windowhandle > box > box.start": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "headerbar button": {
+    "base": [
+      "my-1.5"
+    ]
+  },
+  "headerbar button.toggle": {
+    "data-[state=checked]": [
+      "bg-[image:image(#cfcac4)]",
+      "border-[#d5d0cc]",
+      "border-t-[#bab3ab]",
+      "text-[#929595]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ]
+  },
+  "headerbar entry": {
+    "base": [
+      "my-1.5"
+    ]
+  },
+  "headerbar menubutton": {
+    "base": [
+      "my-1.5"
+    ]
+  },
+  "headerbar menubutton > button": {
+    "base": [
+      "my-0"
+    ]
+  },
+  "headerbar progressbar > trough": {
+    "base": [
+      "bg-[#cecac5]"
+    ]
+  },
+  "headerbar scale > trough": {
+    "base": [
+      "bg-[#cecac5]"
+    ]
+  },
+  "headerbar scale > trough > fill": {
+    "base": [
+      "bg-[#cecac5]"
+    ]
+  },
+  "headerbar separator": {
+    "base": [
+      "my-1.5"
+    ]
+  },
+  "headerbar spinbutton": {
+    "base": [
+      "my-1.5"
+    ]
+  },
+  "headerbar stackswitcher > button": {
+    "data-[state=checked]": [
+      "bg-[image:image(#cfcac4)]",
+      "border-[#d5d0cc]",
+      "border-t-[#bab3ab]",
+      "text-[#929595]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ]
+  },
+  "headerbar switch": {
+    "base": [
+      "my-2.5",
+      "bg-[#cecac5]"
+    ]
+  },
+  "headerbar windowcontrols > button": {
+    "base": [
+      "m-0"
+    ]
+  },
+  "headerbar windowcontrols.end": {
+    "base": [
+      "-mr-1.5"
+    ]
+  },
+  "headerbar windowcontrols.end > button": {
+    "last": [
+      "pr-1.5"
+    ]
+  },
+  "headerbar windowcontrols.start > image.icon": {
+    "base": []
+  },
+  "headerbar.default-decoration": {
+    "base": [
+      "p-1",
+      "min-h-7"
+    ]
+  },
+  "headerbar.default-decoration windowcontrols button": {
+    "base": [
+      "p-0",
+      "m-0",
+      "min-h-6.5",
+      "min-w-6.5"
+    ]
+  },
+  "headerbar.default-decoration windowcontrols menubutton": {
+    "base": [
+      "p-0",
+      "m-0",
+      "min-h-6.5",
+      "min-w-6.5"
+    ]
+  },
+  "headerbar.default-decoration windowcontrols menubutton button": {
+    "base": [
+      "p-1",
+      "m-0",
+      "min-h-5",
+      "min-w-5"
+    ]
+  },
+  "headerbar:backdrop .title": {
+    "base": [
+      "[filter:opacity(0.5)]"
+    ]
+  },
+  "iconview": {
+    "base": [
+      "text-[black]",
+      "bg-[#ffffff]",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "bg-[#faf9f8]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "rounded-[3px]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-[3px]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ],
+    "disabled:data-[selected]:focus": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "iconview > dndtarget": {
+    "base": [
+      "border-solid",
+      "border-[1px]",
+      "border-[#185fb4]"
+    ]
+  },
+  "iconview.content-view.check": {
+    "base": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#8d8d8d]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[transparent]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[rgba(238,238,236,0.8)]",
+      "bg-[#8d8d8d]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:hover": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[#eeeeec]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ],
+    "data-[state=checked]:active": [
+      "m-1",
+      "min-w-8",
+      "min-h-8",
+      "text-[#eeeeec]",
+      "bg-[#3584e4]",
+      "rounded-[5px]",
+      "bg-[image:none]",
+      "duration-200",
+      "shadow-none",
+      "border-0"
+    ]
+  },
+  "image": {
+    "disabled": []
+  },
+  "infobar .close": {
+    "base": [
+      "p-1",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "min-w-4",
+      "min-h-4",
+      "rounded-full"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ]
+  },
+  "infobar > revealer > box": {
+    "base": [
+      "p-2",
+      "gap-[12px]"
+    ]
+  },
+  "infobar.action:hover > revealer > box": {
+    "base": [
+      "bg-[#f4ebe1]"
+    ]
+  },
+  "infobar.error > revealer > box": {
+    "base": [
+      "bg-[#f1e6d9]"
+    ]
+  },
+  "infobar.info > revealer > box": {
+    "base": [
+      "bg-[#f1e6d9]"
+    ]
+  },
+  "infobar.question > revealer > box": {
+    "base": [
+      "bg-[#f1e6d9]"
+    ]
+  },
+  "infobar.warning > revealer > box": {
+    "base": [
+      "bg-[#f1e6d9]"
+    ]
+  },
+  "label": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "disabled": [
+      "text-[#929595]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "label > selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]",
+      "text-[transparent]"
+    ]
+  },
+  "label.error": {
+    "base": [
+      "text-[#cc0000]"
+    ],
+    "disabled": [
+      "text-[rgba(204,0,0,0.5)]"
+    ]
+  },
+  "label.separator": {
+    "base": [
+      "opacity-55",
+      "[text-shadow:none]"
+    ]
+  },
+  "label:disabled > selection": {
+    "base": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "levelbar > trough": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "levelbar > trough > block": {
+    "base": [
+      "border-[#3584e4]",
+      "bg-[#3584e4]"
+    ]
+  },
+  "levelbar > trough > block.empty": {
+    "base": [
+      "bg-[#ebe8e6]",
+      "border-[#ebe8e6]"
+    ]
+  },
+  "levelbar > trough > block.full": {
+    "base": [
+      "border-[#33d17a]",
+      "bg-[#33d17a]"
+    ]
+  },
+  "levelbar > trough > block.high": {
+    "base": [
+      "border-[#3584e4]",
+      "bg-[#3584e4]"
+    ]
+  },
+  "levelbar > trough > block.low": {
+    "base": [
+      "border-[#f57900]",
+      "bg-[#f57900]"
+    ]
+  },
+  "levelbar.horizontal trough > block": {
+    "base": [
+      "min-h-[9px]",
+      "rounded-[5px_0_0_5px]"
+    ]
+  },
+  "levelbar.horizontal trough > block.empty": {
+    "base": [
+      "rounded-[5px]"
+    ]
+  },
+  "levelbar.horizontal trough > block.full": {
+    "base": [
+      "rounded-[5px]"
+    ]
+  },
+  "levelbar.horizontal.discrete trough > block": {
+    "base": [
+      "m-[1px]",
+      "min-h-0.5",
+      "min-w-6",
+      "rounded-none"
+    ],
+    "last": [
+      "rounded-[0_2px_2px_0]"
+    ],
+    "first": [
+      "rounded-[2px_0_0_2px]"
+    ]
+  },
+  "levelbar.vertical trough > block": {
+    "base": [
+      "min-w-[9px]",
+      "rounded-[5px]"
+    ]
+  },
+  "levelbar.vertical.discrete > trough > block": {
+    "base": [
+      "my-[1px]",
+      "mx-0",
+      "min-w-0.5",
+      "min-h-8"
+    ]
+  },
+  "link": {
+    "base": [
+      "text-[#15539e]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "hover": [
+      "text-[#3584e4]"
+    ],
+    "active": [
+      "text-[#1b6acb]"
+    ],
+    "disabled": [
+      "text-[rgba(115,115,115,0.8)]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "text-[#d1e1f5]"
+    ]
+  },
+  "list": {
+    "base": [
+      "text-[black]",
+      "bg-[#fcfcfc]",
+      "border-[#d5d0cc]"
+    ]
+  },
+  "list > row": {
+    "base": [
+      "p-0.5"
+    ]
+  },
+  "list > row button.image-button": {
+    "base": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#dad6d2)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#dad6d2)]",
+      "shadow-none"
+    ]
+  },
+  "list > row button.image-button.destructive-action": {
+    "base": [
+      "text-[white]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#851015]",
+      "bg-[image:linear-gradient(to_top,#d71a23_2px,#e01b24)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "list > row button.image-button.suggested-action": {
+    "base": [
+      "text-[white]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#15539e]",
+      "bg-[image:linear-gradient(to_top,#2c7fe3_2px,#3584e4)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "list > row.expander": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "list > row.expander .row-header": {
+    "base": [
+      "p-0.5"
+    ]
+  },
+  "list row.separator": {
+    "base": []
+  },
+  "list.horizontal row.separator": {
+    "base": []
+  },
+  "list.separators > row": {
+    "base": []
+  },
+  "list.separators.horizontal > row": {
+    "base": []
+  },
+  "listview": {
+    "base": [
+      "text-[black]",
+      "bg-[#fcfcfc]",
+      "border-[#d5d0cc]"
+    ]
+  },
+  "listview > row": {
+    "base": [
+      "p-0.5"
+    ],
+    "data-[selected]": [
+      "bg-[rgba(141,141,141,0.5)]"
+    ]
+  },
+  "listview > row.expander": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "listview > row.expander .row-header": {
+    "base": [
+      "p-0.5"
+    ]
+  },
+  "listview row.separator": {
+    "base": []
+  },
+  "listview.horizontal row.separator": {
+    "base": []
+  },
+  "listview.separators > row": {
+    "base": []
+  },
+  "listview.separators.horizontal > row": {
+    "base": []
+  },
+  "magnifier": {
+    "base": [
+      "bg-[#ffffff]"
+    ]
+  },
+  "menubar": {
+    "base": [
+      "p-0",
+      "shadow-[inset_0_-1px_rgba(0,0,0,0.1)]"
+    ]
+  },
+  "menubar > item": {
+    "base": [
+      "py-1",
+      "px-2",
+      "min-h-4"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "shadow-none"
+    ],
+    "data-[selected]": [
+      "shadow-[inset_0_-3px_#3584e4]",
+      "text-[#1b6acb]"
+    ]
+  },
+  "menubar > item popover.menu popover.menu": {
+    "base": [
+      "pt-0",
+      "pb-1",
+      "px-0"
+    ]
+  },
+  "menubar > item popover.menu.background > contents": {
+    "base": [
+      "p-[5px]"
+    ]
+  },
+  "menubar > item popover.menu.background popover.menu.background > contents": {
+    "base": [
+      "m-0",
+      "rounded-[9px]"
+    ]
+  },
+  "menubutton > button > box": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "menubutton arrow": {
+    "base": [
+      "min-h-4",
+      "min-w-4"
+    ]
+  },
+  "menubutton arrow.down": {
+    "base": []
+  },
+  "menubutton arrow.left": {
+    "base": []
+  },
+  "menubutton arrow.none": {
+    "base": []
+  },
+  "menubutton arrow.right": {
+    "base": []
+  },
+  "menubutton arrow.up": {
+    "base": []
+  },
+  "menubutton.circular button": {
+    "base": [
+      "p-0",
+      "min-w-8",
+      "min-h-8",
+      "rounded-full"
+    ]
+  },
+  "menubutton.circular button label": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "modelbutton.flat": {
+    "base": [
+      "px-[5px]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]",
+      "min-h-6.5",
+      "rounded-[5px]"
+    ],
+    "hover": [
+      "bg-[#e8e6e3]"
+    ],
+    "disabled": [
+      "text-[#929595]"
+    ],
+    "data-[selected]": [
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "modelbutton.flat arrow": {
+    "base": [
+      "bg-none",
+      "min-w-4",
+      "min-h-4",
+      "opacity-30"
+    ],
+    "hover": [
+      "bg-none"
+    ]
+  },
+  "modelbutton.flat arrow.left": {
+    "base": []
+  },
+  "modelbutton.flat arrow.right": {
+    "base": []
+  },
+  "notebook": {
+    "base": [
+      "duration-[300ms]"
+    ]
+  },
+  "notebook > header": {
+    "base": [
+      "p-[1px]",
+      "border-[#cdc7c2]",
+      "border-[1px]",
+      "bg-[#e1dedb]"
+    ]
+  },
+  "notebook > header > tabs": {
+    "base": [
+      "m-[-1px]"
+    ]
+  },
+  "notebook > header > tabs > arrow": {
+    "base": [
+      "py-1",
+      "px-[9px]",
+      "min-h-4",
+      "min-w-4",
+      "rounded-none",
+      "text-[#2ec27e]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[#2ec27e]",
+      "bg-[image:none]",
+      "shadow-[inset_0_0_0_1px_#2ec27e]",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "bg-[transparent]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[rgba(255,255,255,0.3)]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[#929595]",
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "duration-[50ms]",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[transparent]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "disabled:active": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[#929595]",
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "duration-[50ms]",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "data-[state=checked]:hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#d1ccc7)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]:active": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#c8c2bc)]",
+      "shadow-none"
+    ],
+    "disabled:data-[state=checked]": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#e9e9e3)]",
+      "shadow-none"
+    ]
+  },
+  "notebook > header > tabs > arrow.arrow-button": {
+    "base": [
+      "px-2.5"
+    ]
+  },
+  "notebook > header > tabs > arrow.arrow-button > box": {
+    "base": [
+      "gap-[4px]"
+    ]
+  },
+  "notebook > header > tabs > arrow.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ]
+  },
+  "notebook > header > tabs > arrow.image-button": {
+    "base": [
+      "px-[5px]",
+      "min-w-6"
+    ]
+  },
+  "notebook > header > tabs > arrow.keyboard-activating": {
+    "base": [
+      "text-[#2e3436]",
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "duration-[50ms]",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "notebook > header > tabs > arrow.text-button": {
+    "base": [
+      "px-4"
+    ]
+  },
+  "notebook > header > tabs > arrow.text-button.image-button": {
+    "base": [
+      "px-2"
+    ]
+  },
+  "notebook > header > tabs > arrow.text-button.image-button label": {
+    "base": [
+      "px-2"
+    ]
+  },
+  "notebook > header > tabs > tab": {
+    "base": [
+      "py-[3px]",
+      "px-3",
+      "transition-[outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "min-h-7.5",
+      "min-w-7.5",
+      "text-[#2e3436]",
+      "font-normal",
+      "border-[1px]",
+      "border-[transparent]",
+      "outline-[transparent]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "bg-[#d8d4d0]"
+    ],
+    "data-[state=checked]": [
+      "outline-offset-[4px]",
+      "text-[#2e3436]"
+    ]
+  },
+  "notebook > header > tabs > tab button.flat": {
+    "base": [
+      "p-0",
+      "my-1",
+      "text-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.3))]",
+      "min-w-5",
+      "min-h-5"
+    ],
+    "last": [
+      "ml-1",
+      "-mr-1"
+    ],
+    "hover": [
+      "text-[currentColor]"
+    ],
+    "first": [
+      "-ml-1",
+      "mr-1"
+    ]
+  },
+  "notebook > header > tabs > tab:checked.reorderable-page": {
+    "data-[state=checked]": [
+      "border-[rgba(205,199,194,0.5)]",
+      "bg-[rgba(246,245,244,0.5)]"
+    ],
+    "data-[state=checked]:hover": [
+      "bg-[rgba(246,245,244,0.7)]"
+    ]
+  },
+  "notebook > header > tabs > tab:hover.reorderable-page": {
+    "hover": [
+      "border-[rgba(205,199,194,0.3)]",
+      "bg-[rgba(246,245,244,0.2)]"
+    ]
+  },
+  "notebook > header.bottom": {
+    "base": []
+  },
+  "notebook > header.bottom > tabs": {
+    "base": [
+      "px-1",
+      "-mt-0.5",
+      "mx-[3px]"
+    ],
+    "last": [
+      "mr-[-1px]"
+    ],
+    "first": [
+      "ml-[-1px]"
+    ]
+  },
+  "notebook > header.bottom > tabs > arrow": {
+    "base": [
+      "px-1",
+      "mx-[-5px]"
+    ]
+  },
+  "notebook > header.bottom > tabs > arrow.down": {
+    "base": []
+  },
+  "notebook > header.bottom > tabs > arrow.up": {
+    "base": []
+  },
+  "notebook > header.bottom > tabs > tab": {
+    "base": [
+      "pt-1",
+      "mx-1"
+    ],
+    "hover": [
+      "shadow-[inset_0_4px_#cdc7c2]"
+    ],
+    "data-[state=checked]": [
+      "shadow-[inset_0_4px_#3584e4]"
+    ]
+  },
+  "notebook > header.bottom > tabs > tab.reorderable-page": {
+    "base": []
+  },
+  "notebook > header.left": {
+    "base": []
+  },
+  "notebook > header.left > tabs": {
+    "base": [
+      "py-1",
+      "my-[3px]",
+      "-mr-0.5"
+    ],
+    "last": [
+      "mb-[-1px]"
+    ],
+    "first": [
+      "mt-[-1px]"
+    ]
+  },
+  "notebook > header.left > tabs > arrow": {
+    "base": [
+      "py-1",
+      "my-[-5px]"
+    ]
+  },
+  "notebook > header.left > tabs > arrow.down": {
+    "base": []
+  },
+  "notebook > header.left > tabs > arrow.up": {
+    "base": []
+  },
+  "notebook > header.left > tabs > tab": {
+    "base": [
+      "my-1"
+    ],
+    "hover": [
+      "shadow-[inset_-4px_0_#cdc7c2]"
+    ],
+    "data-[state=checked]": [
+      "shadow-[inset_-4px_0_#3584e4]"
+    ]
+  },
+  "notebook > header.left > tabs > tab.reorderable-page": {
+    "base": []
+  },
+  "notebook > header.right": {
+    "base": []
+  },
+  "notebook > header.right > tabs": {
+    "base": [
+      "py-1",
+      "my-[3px]",
+      "-ml-0.5"
+    ],
+    "last": [
+      "mb-[-1px]"
+    ],
+    "first": [
+      "mt-[-1px]"
+    ]
+  },
+  "notebook > header.right > tabs > arrow": {
+    "base": [
+      "py-1",
+      "my-[-5px]"
+    ]
+  },
+  "notebook > header.right > tabs > arrow.down": {
+    "base": []
+  },
+  "notebook > header.right > tabs > arrow.up": {
+    "base": []
+  },
+  "notebook > header.right > tabs > tab": {
+    "base": [
+      "my-1"
+    ],
+    "hover": [
+      "shadow-[inset_4px_0_#cdc7c2]"
+    ],
+    "data-[state=checked]": [
+      "shadow-[inset_4px_0_#3584e4]"
+    ]
+  },
+  "notebook > header.right > tabs > tab.reorderable-page": {
+    "base": []
+  },
+  "notebook > header.top": {
+    "base": []
+  },
+  "notebook > header.top > tabs": {
+    "base": [
+      "px-1",
+      "-mb-0.5",
+      "mx-[3px]"
+    ],
+    "last": [
+      "mr-[-1px]"
+    ],
+    "first": [
+      "ml-[-1px]"
+    ]
+  },
+  "notebook > header.top > tabs > arrow": {
+    "base": [
+      "px-1",
+      "mx-[-5px]"
+    ]
+  },
+  "notebook > header.top > tabs > arrow.down": {
+    "base": []
+  },
+  "notebook > header.top > tabs > arrow.up": {
+    "base": []
+  },
+  "notebook > header.top > tabs > tab": {
+    "base": [
+      "pb-1",
+      "mx-1"
+    ],
+    "hover": [
+      "shadow-[inset_0_-4px_#cdc7c2]"
+    ],
+    "data-[state=checked]": [
+      "shadow-[inset_0_-4px_#3584e4]"
+    ]
+  },
+  "notebook > header.top > tabs > tab.reorderable-page": {
+    "base": []
+  },
+  "notebook > stack": {
+    "base": [
+      "bg-[#ffffff]"
+    ]
+  },
+  "notebook:focus:focus-visible > header > tabs > tab": {
+    "data-[state=checked]": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "paned .sidebar": {
+    "base": [
+      "border-none"
+    ]
+  },
+  "paned .sidebar.left": {
+    "base": [
+      "border-none"
+    ]
+  },
+  "paned .sidebar.right": {
+    "base": [
+      "border-none"
+    ]
+  },
+  "paned > separator": {
+    "base": [
+      "min-w-[1px]",
+      "min-h-[1px]",
+      "border-none",
+      "bg-[transparent]",
+      "bg-[image:image(#cdc7c2)]",
+      "bg-[size:1px_1px]"
+    ],
+    "data-[selected]": [
+      "bg-[image:image(#3584e4)]"
+    ]
+  },
+  "paned > separator.wide": {
+    "base": [
+      "min-w-[5px]",
+      "min-h-[5px]",
+      "bg-[#f6f5f4]",
+      "bg-[image:image(#cdc7c2),image(#cdc7c2)]",
+      "bg-[size:1px_1px,1px_1px]"
+    ]
+  },
+  "paned.horizontal > separator": {
+    "base": [
+      "py-0",
+      "pl-2",
+      "pr-0",
+      "my-0",
+      "-ml-2",
+      "mr-0",
+      "bg-repeat",
+      "bg-[position:right]"
+    ]
+  },
+  "paned.horizontal > separator.wide": {
+    "base": [
+      "p-0",
+      "m-0",
+      "bg-repeat",
+      "bg-[position:left,right]"
+    ]
+  },
+  "paned.vertical > separator": {
+    "base": [
+      "pt-0",
+      "pb-2",
+      "px-0",
+      "mt-0",
+      "-mb-2",
+      "mx-0",
+      "bg-repeat",
+      "bg-[position:top]"
+    ]
+  },
+  "paned.vertical > separator.wide": {
+    "base": [
+      "p-0",
+      "m-0",
+      "bg-repeat",
+      "bg-[position:bottom,top]"
+    ]
+  },
+  "pathbar button": {
+    "base": [
+      "px-1"
+    ]
+  },
+  "pathbar button image": {
+    "base": [
+      "px-1"
+    ]
+  },
+  "pathbar button label": {
+    "last": [
+      "pr-2"
+    ],
+    "first": [
+      "pl-2"
+    ]
+  },
+  "pathbar button.image-button": {
+    "base": [
+      "px-1"
+    ]
+  },
+  "pathbar button.slider-button": {
+    "base": [
+      "px-0"
+    ]
+  },
+  "pathbar button.text-button": {
+    "base": [
+      "px-1"
+    ]
+  },
+  "pathbar button.text-button.image-button label": {
+    "base": [
+      "px-0"
+    ],
+    "last": [
+      "pr-2"
+    ],
+    "first": [
+      "pl-2"
+    ]
+  },
+  "pathbar scrolledwindow undershoot.left": {
+    "base": []
+  },
+  "pathbar scrolledwindow undershoot.right": {
+    "base": []
+  },
+  "picture": {
+    "disabled": [
+      "opacity-50"
+    ]
+  },
+  "placessidebar": {
+    "base": [
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "placessidebar .navigation-sidebar > row": {
+    "base": [
+      "p-0",
+      "text-[#2ec27e]",
+      "shadow-[inset_0_1px_#2ec27e,inset_0_-1px_#2ec27e]"
+    ],
+    "data-[selected]": [
+      "text-[#ffffff]",
+      "bg-[#2ec27e]"
+    ],
+    "data-[selected]:active": [
+      "shadow-none"
+    ]
+  },
+  "placessidebar .navigation-sidebar > row > revealer": {
+    "base": [
+      "py-0",
+      "px-3.5"
+    ]
+  },
+  "placessidebar .navigation-sidebar > row image.sidebar-icon": {
+    "base": [
+      "px-2"
+    ]
+  },
+  "placessidebar .navigation-sidebar > row label.sidebar-label": {
+    "base": [
+      "px-0.5"
+    ]
+  },
+  "placessidebar .navigation-sidebar > row.sidebar-new-bookmark-row": {
+    "base": [
+      "text-[#3584e4]"
+    ]
+  },
+  "placessidebar .navigation-sidebar > row.sidebar-placeholder-row": {
+    "base": [
+      "py-0",
+      "px-2",
+      "min-h-0.5",
+      "bg-[image:image(#2ec27e)]",
+      "bg-clip-content"
+    ]
+  },
+  "placesview .server-list-button > image": {
+    "base": [
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "placesview .server-list-button:checked > image": {
+    "base": [
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "placesview > actionbar > revealer > box > box": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "plane": {
+    "base": [
+      "transition-[outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[6px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[2px]"
+    ]
+  },
+  "popover.background": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  "popover.background > arrow": {
+    "base": [
+      "bg-[#ffffff]",
+      "bg-clip-padding",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.3)]"
+    ]
+  },
+  "popover.background > contents": {
+    "base": [
+      "p-2",
+      "bg-[#ffffff]",
+      "bg-clip-padding",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.3)]",
+      "rounded-[9px]"
+    ]
+  },
+  "popover.background > contents > .toolbar": {
+    "base": [
+      "border-none",
+      "bg-[transparent]"
+    ]
+  },
+  "popover.background > contents > .view": {
+    "base": [
+      "border-none",
+      "bg-[transparent]"
+    ]
+  },
+  "popover.background > contents > iconview": {
+    "base": [
+      "border-none",
+      "bg-[transparent]"
+    ]
+  },
+  "popover.background > contents > list": {
+    "base": [
+      "border-none",
+      "bg-[transparent]"
+    ]
+  },
+  "popover.background > contents list separator": {
+    "base": [
+      "m-0"
+    ]
+  },
+  "popover.background > contents separator": {
+    "base": [
+      "m-[3px]",
+      "bg-[#d9d5d1]"
+    ]
+  },
+  "popover.background.magnifier": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  "popover.background.magnifier > arrow": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.background.magnifier > contents": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.background.magnifier button": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.background.magnifier button.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.background.touch-selection": {
+    "base": [
+      "bg-[transparent]"
+    ]
+  },
+  "popover.background.touch-selection > arrow": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.background.touch-selection > contents": {
+    "base": [
+      "text-[#eeeeec]",
+      "bg-[rgba(53,53,53,0.7)]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.background.touch-selection button": {
+    "base": [
+      "text-[#eeeeec]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(53,53,53,0.7))]",
+      "bg-clip-padding"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(71,71,71,0.5))]",
+      "bg-clip-padding"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.background.touch-selection button.flat": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "hover": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(27,27,27,0.7))]",
+      "bg-clip-padding"
+    ],
+    "active": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#919190]",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "bg-clip-padding",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[white]",
+      "border-[rgba(0,0,0,0.7)]",
+      "bg-[transparent]",
+      "bg-[image:image(rgba(2,2,2,0.7))]",
+      "bg-clip-padding",
+      "shadow-none"
+    ]
+  },
+  "popover.emoji-picker > contents": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "popover.emoji-picker emoji": {
+    "base": [
+      "p-1.5",
+      "text-[x-large]",
+      "rounded-[6px]"
+    ],
+    "focus": [
+      "bg-[#3584e4]"
+    ],
+    "hover": [
+      "bg-[#3584e4]"
+    ]
+  },
+  "popover.entry-completion > contents": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "popover.menu": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "popover.menu > arrow": {
+    "base": [
+      "p-[5px]",
+      "bg-[#ffffff]"
+    ]
+  },
+  "popover.menu accelerator": {
+    "base": [
+      "mx-3",
+      "text-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.55))]"
+    ]
+  },
+  "popover.menu arrow.left": {
+    "base": [
+      "-ml-0.5",
+      "mr-1.5"
+    ]
+  },
+  "popover.menu arrow.right": {
+    "base": [
+      "ml-1.5",
+      "-mr-0.5"
+    ]
+  },
+  "popover.menu box.circular-buttons": {
+    "base": [
+      "pt-3",
+      "pb-1.5",
+      "px-3"
+    ]
+  },
+  "popover.menu box.circular-buttons button.circular.image-button.model": {
+    "base": [
+      "p-[11px]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-[transparent]",
+      "shadow-[inset_0_1px_rgba(255,255,255,0),0_1px_rgba(255,255,255,0)]",
+      "[text-shadow:none]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "focus": [
+      "bg-[#e8e6e3]",
+      "border-[#e8e6e3]"
+    ],
+    "active": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#dad6d2)]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:image(#dad6d2)]",
+      "shadow-none"
+    ]
+  },
+  "popover.menu box.circular-buttons button.destructive-action.circular.image-button.model": {
+    "base": [
+      "text-[white]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#851015]",
+      "bg-[image:linear-gradient(to_top,#d71a23_2px,#e01b24)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "popover.menu box.circular-buttons button.suggested-action.circular.image-button.model": {
+    "base": [
+      "text-[white]",
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#15539e]",
+      "bg-[image:linear-gradient(to_top,#2c7fe3_2px,#3584e4)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "popover.menu box.inline-buttons": {
+    "base": [
+      "py-0",
+      "px-3"
+    ]
+  },
+  "popover.menu box.inline-buttons button.image-button.model": {
+    "base": [
+      "p-0",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "min-h-7.5",
+      "min-w-7.5"
+    ],
+    "data-[selected]": [
+      "bg-[image:image(#e8e6e3)]"
+    ]
+  },
+  "popover.menu check": {
+    "base": [
+      "border-[1.2px]",
+      "border-[transparent]",
+      "shadow-none",
+      "bg-[image:image(transparent)]",
+      "text-[black]"
+    ],
+    "hover": [
+      "border-[1.2px]",
+      "text-[black]",
+      "shadow-none",
+      "bg-[image:image(transparent)]"
+    ],
+    "active": [
+      "border-[1.2px]",
+      "text-[black]",
+      "shadow-none",
+      "bg-[image:image(transparent)]"
+    ]
+  },
+  "popover.menu check.left": {
+    "base": [
+      "-ml-0.5",
+      "mr-1.5"
+    ]
+  },
+  "popover.menu check.right": {
+    "base": [
+      "ml-1.5",
+      "-mr-0.5"
+    ]
+  },
+  "popover.menu label.title": {
+    "base": [
+      "py-1",
+      "px-8",
+      "font-bold"
+    ]
+  },
+  "popover.menu modelbutton": {
+    "base": [
+      "py-0",
+      "px-3",
+      "min-h-7.5",
+      "min-w-10",
+      "rounded-[5px]"
+    ],
+    "data-[selected]": [
+      "text-[black]",
+      "bg-[#e8e6e3]"
+    ],
+    "data-[selected]:active": [
+      "bg-[#d6d1cd]"
+    ]
+  },
+  "popover.menu radio": {
+    "base": [
+      "border-[1.2px]",
+      "border-[#cdc7c2]",
+      "shadow-none",
+      "bg-[image:image(transparent)]",
+      "text-[black]"
+    ],
+    "hover": [
+      "border-[1.2px]",
+      "text-[black]",
+      "shadow-none",
+      "bg-[image:image(transparent)]"
+    ],
+    "active": [
+      "border-[1.2px]",
+      "text-[black]",
+      "shadow-none",
+      "bg-[image:image(transparent)]",
+      "border-[rgba(205,199,194,0.5)]"
+    ]
+  },
+  "popover.menu radio.left": {
+    "base": [
+      "-ml-0.5",
+      "mr-1.5"
+    ]
+  },
+  "popover.menu radio.right": {
+    "base": [
+      "ml-1.5",
+      "-mr-0.5"
+    ]
+  },
+  "popover.menu.background > contents": {
+    "base": [
+      "p-[5px]",
+      "bg-[#ffffff]"
+    ]
+  },
+  "popover.menu.background separator": {
+    "base": [
+      "my-1.5",
+      "mx-0"
+    ]
+  },
+  "progressbar": {
+    "base": [
+      "text-[smaller]",
+      "text-[rgba(46,52,54,0.4)]"
+    ]
+  },
+  "progressbar > trough": {
+    "base": [
+      "rounded-[3px]",
+      "bg-[#e1dedb]"
+    ],
+    "disabled": [
+      "bg-[#faf9f8]",
+      "border-[#d5d0cc]"
+    ]
+  },
+  "progressbar > trough > progress": {
+    "base": [
+      "rounded-[1.5px]",
+      "bg-[#3584e4]"
+    ],
+    "disabled": [
+      "bg-[#929595]",
+      "border-[#929595]"
+    ]
+  },
+  "progressbar > trough > progress.bottom": {
+    "base": [
+      "rounded-br-[5px]",
+      "rounded-bl-[5px]"
+    ]
+  },
+  "progressbar > trough > progress.left": {
+    "base": [
+      "rounded-tl-[5px]",
+      "rounded-bl-[5px]"
+    ]
+  },
+  "progressbar > trough > progress.right": {
+    "base": [
+      "rounded-tr-[5px]",
+      "rounded-br-[5px]"
+    ]
+  },
+  "progressbar > trough > progress.top": {
+    "base": [
+      "rounded-tr-[5px]",
+      "rounded-tl-[5px]"
+    ]
+  },
+  "progressbar > trough.empty > progress": {
+    "base": []
+  },
+  "progressbar.horizontal > trough": {
+    "base": [
+      "min-w-37.5",
+      "min-h-0.5"
+    ]
+  },
+  "progressbar.horizontal > trough > progress": {
+    "base": [
+      "my-0",
+      "mx-[-1px]",
+      "min-h-0.5"
+    ]
+  },
+  "progressbar.osd": {
+    "base": [
+      "min-w-[3px]",
+      "min-h-[3px]",
+      "bg-[transparent]"
+    ]
+  },
+  "progressbar.osd > trough": {
+    "base": [
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "shadow-none"
+    ]
+  },
+  "progressbar.osd > trough > progress": {
+    "base": [
+      "border-none",
+      "rounded-none"
+    ]
+  },
+  "progressbar.vertical > trough": {
+    "base": [
+      "min-h-20",
+      "min-w-0.5"
+    ]
+  },
+  "progressbar.vertical > trough > progress": {
+    "base": [
+      "my-[-1px]",
+      "mx-0",
+      "min-w-0.5"
+    ]
+  },
+  "radio": {
+    "base": [
+      "min-h-3.5",
+      "min-w-3.5",
+      "bg-clip-padding",
+      "bg-[image:linear-gradient(to_bottom,white_20%,white_90%)]",
+      "border-[#bfb8b1]",
+      "shadow-[0_1px_rgba(0,0,0,0.05)]",
+      "text-[#ffffff]",
+      "rounded-full"
+    ],
+    "hover": [
+      "bg-[image:image(#f2f2f2)]"
+    ],
+    "active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
+      "bg-[image:image(#d9d9d9)]"
+    ],
+    "disabled": [
+      "shadow-none",
+      "text-[rgba(255,255,255,0.7)]"
+    ],
+    "indeterminate": [
+      "bg-clip-border",
+      "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
+      "border-[#1b6acb]",
+      "shadow-[0_1px_rgba(0,0,0,0.05)]",
+      "text-[#ffffff]"
+    ],
+    "indeterminate:hover": [
+      "bg-[image:linear-gradient(to_bottom,#5d9de9_10%,#478fe6_90%)]"
+    ],
+    "data-[state=checked]": [
+      "bg-clip-border",
+      "bg-[image:linear-gradient(to_bottom,#4b92e7_20%,#3584e4_90%)]",
+      "border-[#1b6acb]",
+      "shadow-[0_1px_rgba(0,0,0,0.05)]",
+      "text-[#ffffff]"
+    ],
+    "indeterminate:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
+      "bg-[image:image(#1f76e1)]"
+    ],
+    "indeterminate:disabled": [
+      "shadow-none",
+      "text-[rgba(255,255,255,0.7)]"
+    ],
+    "data-[state=checked]:hover": [
+      "bg-[image:linear-gradient(to_bottom,#5d9de9_10%,#478fe6_90%)]"
+    ],
+    "data-[state=checked]:active": [
+      "shadow-[inset_0_1px_rgba(0,0,0,0.2)]",
+      "bg-[image:image(#1f76e1)]"
+    ],
+    "data-[state=checked]:disabled": [
+      "shadow-none",
+      "text-[rgba(255,255,255,0.7)]"
+    ]
+  },
+  "row": {
+    "base": [
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "row image.sidebar-icon": {
+    "base": [
+      "opacity-70"
+    ]
+  },
+  "row.activatable": {
+    "hover": [
+      "bg-[rgba(46,52,54,0.05)]"
+    ],
+    "active": [
+      "shadow-[inset_0_2px_2px_-2px_rgba(0,0,0,0.2)]"
+    ],
+    "data-[selected]:hover": [
+      "bg-[#347cd3]"
+    ],
+    "data-[selected]:active": [
+      "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.5)]"
+    ]
+  },
+  "row.activatable.has-open-popup": {
+    "base": [
+      "bg-[rgba(46,52,54,0.05)]"
+    ]
+  },
+  "row.activatable:selected.has-open-popup": {
+    "data-[selected]": [
+      "bg-[#347cd3]"
+    ]
+  },
+  "row:selected button": {
+    "base": [
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected button.flat": {
+    "base": [
+      "text-[#fcfcfc]",
+      "border-[transparent]"
+    ]
+  },
+  "row:selected button.sidebar-button": {
+    "base": [
+      "text-[#fcfcfc]",
+      "border-[transparent]"
+    ]
+  },
+  "row:selected check": {
+    "base": [
+      "border-[#1b6acb]"
+    ]
+  },
+  "row:selected colorswatch": {
+    "base": [
+      "shadow-[0_0_0_2px_#ffffff]"
+    ]
+  },
+  "row:selected progressbar > trough": {
+    "base": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected progressbar > trough > progress": {
+    "base": [
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected radio": {
+    "base": [
+      "border-[#1b6acb]"
+    ]
+  },
+  "row:selected scale > trough": {
+    "base": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected scale > trough > fill": {
+    "base": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected scale > trough > highlight": {
+    "base": [
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected scale > trough > slider": {
+    "base": [
+      "border-[#185fb4]"
+    ],
+    "disabled": [
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected switch": {
+    "base": [
+      "outline-[rgba(255,255,255,0.8)]",
+      "shadow-none",
+      "border-[#185fb4]"
+    ]
+  },
+  "row:selected switch > slider": {
+    "base": [
+      "border-[#185fb4]"
+    ],
+    "data-[state=checked]": [
+      "border-[#185fb4]"
+    ]
+  },
+  "rubberband": {
+    "base": [
+      "bg-[rgba(27,106,203,0.2)]"
+    ]
+  },
+  "scale": {
+    "base": [
+      "p-3",
+      "min-h-2.5",
+      "min-w-2.5",
+      "duration-[300ms]"
+    ]
+  },
+  "scale > trough": {
+    "base": [
+      "rounded-[3px]",
+      "bg-[#e1dedb]",
+      "outline-offset-[16px]",
+      "transition-[outline-width,outline-offset]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "disabled": [
+      "bg-[#faf9f8]",
+      "border-[#d5d0cc]"
+    ]
+  },
+  "scale > trough > fill": {
+    "base": [
+      "m-[-1px]",
+      "rounded-[3px]",
+      "bg-[#e1dedb]"
+    ],
+    "disabled": [
+      "bg-[transparent]",
+      "border-[transparent]"
+    ]
+  },
+  "scale > trough > highlight": {
+    "base": [
+      "m-[-1px]",
+      "rounded-[3px]",
+      "bg-[#3584e4]"
+    ],
+    "disabled": [
+      "bg-[transparent]",
+      "border-[transparent]"
+    ]
+  },
+  "scale > trough > slider": {
+    "base": [
+      "m-[-9px]",
+      "min-h-4.5",
+      "min-w-4.5",
+      "text-[#2e3436]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#f6f5f4_2px,#fbfafa)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "border-[1px]",
+      "border-solid",
+      "rounded-full",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ],
+    "active": [
+      "border-[#185fb4]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#faf9f8)]"
+    ]
+  },
+  "scale > value": {
+    "base": [
+      "text-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.55))]"
+    ]
+  },
+  "scale.color": {
+    "base": [
+      "p-0"
+    ]
+  },
+  "scale.color > trough": {
+    "base": [
+      "bg-none",
+      "rounded-[10px]",
+      "outline-offset-[1px]"
+    ]
+  },
+  "scale.color > trough > slider": {
+    "base": [
+      "m-0",
+      "opacity-80"
+    ]
+  },
+  "scale.color.fine-tune.horizontal": {
+    "base": [
+      "py-0.5"
+    ]
+  },
+  "scale.color.fine-tune.horizontal > trough > slider": {
+    "base": [
+      "-my-0.5"
+    ]
+  },
+  "scale.color.fine-tune.vertical": {
+    "base": [
+      "px-0.5"
+    ]
+  },
+  "scale.color.fine-tune.vertical > trough > slider": {
+    "base": [
+      "-mx-0.5"
+    ]
+  },
+  "scale.fine-tune > trough": {
+    "base": [
+      "m-[-3px]",
+      "rounded-[5px]"
+    ]
+  },
+  "scale.fine-tune > trough > fill": {
+    "base": [
+      "rounded-[5px]"
+    ]
+  },
+  "scale.fine-tune > trough > highlight": {
+    "base": [
+      "rounded-[5px]"
+    ]
+  },
+  "scale.fine-tune > trough > slider": {
+    "base": [
+      "-m-1.5"
+    ]
+  },
+  "scale.horizontal > marks": {
+    "base": [
+      "text-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.55))]"
+    ]
+  },
+  "scale.horizontal > marks indicator": {
+    "base": [
+      "bg-[currentColor]",
+      "min-h-1.5",
+      "min-w-[1px]"
+    ]
+  },
+  "scale.horizontal > marks.bottom": {
+    "base": [
+      "mt-1.5"
+    ]
+  },
+  "scale.horizontal > marks.top": {
+    "base": [
+      "mb-1.5"
+    ]
+  },
+  "scale.horizontal > value.bottom": {
+    "base": [
+      "mt-3"
+    ]
+  },
+  "scale.horizontal > value.left": {
+    "base": [
+      "mr-[9px]"
+    ]
+  },
+  "scale.horizontal > value.right": {
+    "base": [
+      "ml-[9px]"
+    ]
+  },
+  "scale.horizontal > value.top": {
+    "base": [
+      "mb-3"
+    ]
+  },
+  "scale.horizontal.fine-tune > marks indicator": {
+    "base": [
+      "min-h-[3px]"
+    ]
+  },
+  "scale.horizontal.fine-tune > marks.bottom": {
+    "base": [
+      "mb-[3px]"
+    ]
+  },
+  "scale.horizontal.fine-tune > marks.top": {
+    "base": [
+      "mt-[3px]"
+    ]
+  },
+  "scale.horizontal.marks-after > trough > slider": {
+    "base": [
+      "-mt-2.5",
+      "-mb-3.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-below.png\"),url(\"assets/slider-horz-scale-has-marks-below@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "hover": [
+      "-mt-2.5",
+      "-mb-3.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-below-hover.png\"),url(\"assets/slider-horz-scale-has-marks-below-hover@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "active": [
+      "-mt-2.5",
+      "-mb-3.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-below-active.png\"),url(\"assets/slider-horz-scale-has-marks-below-active@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "disabled": [
+      "-mt-2.5",
+      "-mb-3.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-below-insensitive.png\"),url(\"assets/slider-horz-scale-has-marks-below-insensitive@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ]
+  },
+  "scale.horizontal.marks-after.fine-tune > trough > slider": {
+    "base": [
+      "mt-[-7px]",
+      "mb-[-11px]",
+      "mx-[-7px]"
+    ]
+  },
+  "scale.horizontal.marks-before > trough > slider": {
+    "base": [
+      "-mt-3.5",
+      "-mb-2.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-above.png\"),url(\"assets/slider-horz-scale-has-marks-above@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:top]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "hover": [
+      "-mt-3.5",
+      "-mb-2.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-above-hover.png\"),url(\"assets/slider-horz-scale-has-marks-above-hover@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:top]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "active": [
+      "-mt-3.5",
+      "-mb-2.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-above-active.png\"),url(\"assets/slider-horz-scale-has-marks-above-active@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:top]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "disabled": [
+      "-mt-3.5",
+      "-mb-2.5",
+      "-mx-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-horz-scale-has-marks-above-insensitive.png\"),url(\"assets/slider-horz-scale-has-marks-above-insensitive@2.png\"))]",
+      "min-h-6.5",
+      "min-w-5.5",
+      "bg-[position:top]",
+      "bg-no-repeat",
+      "shadow-none"
+    ]
+  },
+  "scale.horizontal.marks-before.fine-tune > trough > slider": {
+    "base": [
+      "mt-[-11px]",
+      "mb-[-7px]",
+      "mx-[-7px]"
+    ]
+  },
+  "scale.vertical > marks": {
+    "base": [
+      "text-[rgb(from_currentColor_r_g_b_/_calc(alpha_*_0.55))]"
+    ]
+  },
+  "scale.vertical > marks indicator": {
+    "base": [
+      "bg-[currentColor]",
+      "min-h-[1px]",
+      "min-w-1.5"
+    ]
+  },
+  "scale.vertical > marks.bottom": {
+    "base": [
+      "ml-1.5"
+    ]
+  },
+  "scale.vertical > marks.top": {
+    "base": [
+      "mr-1.5"
+    ]
+  },
+  "scale.vertical > value.bottom": {
+    "base": [
+      "mt-[9px]"
+    ]
+  },
+  "scale.vertical > value.left": {
+    "base": [
+      "mr-3"
+    ]
+  },
+  "scale.vertical > value.right": {
+    "base": [
+      "ml-3"
+    ]
+  },
+  "scale.vertical > value.top": {
+    "base": [
+      "mb-[9px]"
+    ]
+  },
+  "scale.vertical.fine-tune > marks indicator": {
+    "base": [
+      "min-w-[3px]"
+    ]
+  },
+  "scale.vertical.fine-tune > marks.bottom": {
+    "base": [
+      "mr-[3px]"
+    ]
+  },
+  "scale.vertical.fine-tune > marks.top": {
+    "base": [
+      "ml-[3px]"
+    ]
+  },
+  "scale.vertical.marks-after > trough > slider": {
+    "base": [
+      "-my-2.5",
+      "-ml-2.5",
+      "-mr-3.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-below.png\"),url(\"assets/slider-vert-scale-has-marks-below@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:right_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "hover": [
+      "-my-2.5",
+      "-ml-2.5",
+      "-mr-3.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-below-hover.png\"),url(\"assets/slider-vert-scale-has-marks-below-hover@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:right_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "active": [
+      "-my-2.5",
+      "-ml-2.5",
+      "-mr-3.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-below-active.png\"),url(\"assets/slider-vert-scale-has-marks-below-active@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:right_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "disabled": [
+      "-my-2.5",
+      "-ml-2.5",
+      "-mr-3.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-below-insensitive.png\"),url(\"assets/slider-vert-scale-has-marks-below-insensitive@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:right_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ]
+  },
+  "scale.vertical.marks-after.fine-tune > trough > slider": {
+    "base": [
+      "my-[-7px]",
+      "ml-[-7px]",
+      "mr-[-11px]"
+    ]
+  },
+  "scale.vertical.marks-before > trough > slider": {
+    "base": [
+      "-my-2.5",
+      "-ml-3.5",
+      "-mr-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-above.png\"),url(\"assets/slider-vert-scale-has-marks-above@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:left_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "hover": [
+      "-my-2.5",
+      "-ml-3.5",
+      "-mr-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-above-hover.png\"),url(\"assets/slider-vert-scale-has-marks-above-hover@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:left_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "active": [
+      "-my-2.5",
+      "-ml-3.5",
+      "-mr-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-above-active.png\"),url(\"assets/slider-vert-scale-has-marks-above-active@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:left_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ],
+    "disabled": [
+      "-my-2.5",
+      "-ml-3.5",
+      "-mr-2.5",
+      "border-none",
+      "rounded-none",
+      "bg-[transparent]",
+      "bg-[image:-gtk-scaled(url(\"assets/slider-vert-scale-has-marks-above-insensitive.png\"),url(\"assets/slider-vert-scale-has-marks-above-insensitive@2.png\"))]",
+      "min-h-5.5",
+      "min-w-6.5",
+      "bg-[position:left_bottom]",
+      "bg-no-repeat",
+      "shadow-none"
+    ]
+  },
+  "scale.vertical.marks-before.fine-tune > trough > slider": {
+    "base": [
+      "my-[-7px]",
+      "ml-[-11px]",
+      "mr-[-7px]"
+    ]
+  },
+  "scale:focus:focus-visible > trough": {
+    "base": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[10px]"
+    ]
+  },
+  "scrollbar": {
+    "base": [
+      "bg-[#cecece]",
+      "transition-[all]",
+      "duration-300",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "scrollbar > range > trough > slider": {
+    "base": [
+      "m-[-1px]",
+      "min-w-2",
+      "min-h-2",
+      "rounded-[10px]",
+      "bg-clip-padding",
+      "bg-[#7e8182]",
+      "transition-[all]",
+      "duration-300",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ],
+    "hover": [
+      "bg-[#565b5c]"
+    ],
+    "disabled": [
+      "bg-[transparent]"
+    ],
+    "hover:active": [
+      "bg-[#1b6acb]"
+    ]
+  },
+  "scrollbar > range.fine-tune > trough > slider": {
+    "base": [
+      "min-w-1.5",
+      "min-h-1.5"
+    ]
+  },
+  "scrollbar > range.fine-tune.horizontal > trough > slider": {
+    "base": [
+      "border-t-[5px]",
+      "border-r-1",
+      "border-b-[5px]",
+      "border-l-1"
+    ]
+  },
+  "scrollbar > range.fine-tune.vertical > trough > slider": {
+    "base": [
+      "border-t-1",
+      "border-r-[5px]",
+      "border-b-1",
+      "border-l-[5px]"
+    ]
+  },
+  "scrollbar.bottom": {
+    "base": []
+  },
+  "scrollbar.horizontal > range > trough > slider": {
+    "base": [
+      "min-w-10"
+    ]
+  },
+  "scrollbar.left": {
+    "base": []
+  },
+  "scrollbar.overlay-indicator": {
+    "base": [
+      "border-[transparent]",
+      "bg-[transparent]"
+    ]
+  },
+  "scrollbar.overlay-indicator > range > trough > slider": {
+    "base": [
+      "m-0",
+      "min-w-[3px]",
+      "min-h-[3px]",
+      "bg-[rgb(from_#2e3436_r_g_b_/_calc(alpha_*_0.4))]"
+    ]
+  },
+  "scrollbar.overlay-indicator.dragging": {
+    "base": [
+      "bg-[rgb(from_#cecece_r_g_b_/_calc(alpha_*_0.8))]"
+    ]
+  },
+  "scrollbar.overlay-indicator.horizontal > range > trough > slider": {
+    "base": [
+      "my-0",
+      "mx-0.5",
+      "min-w-10"
+    ]
+  },
+  "scrollbar.overlay-indicator.hovering": {
+    "base": [
+      "bg-[rgb(from_#cecece_r_g_b_/_calc(alpha_*_0.8))]"
+    ]
+  },
+  "scrollbar.overlay-indicator.vertical > range > trough > slider": {
+    "base": [
+      "my-0.5",
+      "mx-0",
+      "min-h-10"
+    ]
+  },
+  "scrollbar.right": {
+    "base": []
+  },
+  "scrollbar.top": {
+    "base": []
+  },
+  "scrollbar.vertical > range > trough > slider": {
+    "base": [
+      "min-h-10"
+    ]
+  },
+  "scrolledwindow > junction": {
+    "base": [
+      "bg-[#cdc7c2,linear-gradient(to_bottom,transparent_1px,#cecece_1px),linear-gradient(to_left,transparent_1px,#cecece_1px)]"
+    ]
+  },
+  "scrolledwindow > overshoot.bottom": {
+    "base": [
+      "bg-[image:radial-gradient(farthest-side_at_bottom,#b6aea5_85%,rgba(182,174,165,0)),radial-gradient(farthest-side_at_bottom,rgba(46,52,54,0.07),rgba(46,52,54,0))]",
+      "bg-[size:100%_3%,100%_50%]",
+      "bg-no-repeat",
+      "bg-[position:bottom]",
+      "bg-[transparent]",
+      "shadow-none"
+    ]
+  },
+  "scrolledwindow > overshoot.left": {
+    "base": [
+      "bg-[image:radial-gradient(farthest-side_at_left,#b6aea5_85%,rgba(182,174,165,0)),radial-gradient(farthest-side_at_left,rgba(46,52,54,0.07),rgba(46,52,54,0))]",
+      "bg-[size:3%_100%,50%_100%]",
+      "bg-no-repeat",
+      "bg-[position:left]",
+      "bg-[transparent]",
+      "shadow-none"
+    ]
+  },
+  "scrolledwindow > overshoot.right": {
+    "base": [
+      "bg-[image:radial-gradient(farthest-side_at_right,#b6aea5_85%,rgba(182,174,165,0)),radial-gradient(farthest-side_at_right,rgba(46,52,54,0.07),rgba(46,52,54,0))]",
+      "bg-[size:3%_100%,50%_100%]",
+      "bg-no-repeat",
+      "bg-[position:right]",
+      "bg-[transparent]",
+      "shadow-none"
+    ]
+  },
+  "scrolledwindow > overshoot.top": {
+    "base": [
+      "bg-[image:radial-gradient(farthest-side_at_top,#b6aea5_85%,rgba(182,174,165,0)),radial-gradient(farthest-side_at_top,rgba(46,52,54,0.07),rgba(46,52,54,0))]",
+      "bg-[size:100%_3%,100%_50%]",
+      "bg-no-repeat",
+      "bg-[position:top]",
+      "bg-[transparent]",
+      "shadow-none"
+    ]
+  },
+  "searchbar .close": {
+    "base": [
+      "p-1",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "min-w-4",
+      "min-h-4",
+      "rounded-full"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ]
+  },
+  "searchbar > revealer > box": {
+    "base": [
+      "p-1.5",
+      "gap-[6px]",
+      "bg-[#eae8e6]",
+      "border-b-[1px]",
+      "border-solid",
+      "border-[#d5d0cc]",
+      "shadow-none",
+      "duration-200",
+      "ease-[ease-out]"
+    ]
+  },
+  "separator": {
+    "base": [
+      "bg-[#d8d4d0]",
+      "min-w-[1px]",
+      "min-h-[1px]"
+    ]
+  },
+  "separator.sidebar": {
+    "base": [
+      "bg-[#cdc7c2]"
+    ]
+  },
+  "shortcut": {
+    "base": [
+      "gap-[6px]",
+      "rounded-[5px]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ]
+  },
+  "shortcut > .keycap": {
+    "base": [
+      "pb-[3px]",
+      "px-1.5",
+      "mt-0.5",
+      "min-w-5",
+      "min-h-[25px]",
+      "text-[#2e3436]",
+      "bg-[#ffffff]",
+      "border-[#e1dedb]",
+      "rounded-[5px]",
+      "shadow-[inset_0_-3px_#f8f7f6]",
+      "text-[smaller]"
+    ]
+  },
+  "shortcuts-section": {
+    "base": [
+      "m-5"
+    ]
+  },
+  "spinbutton": {
+    "base": [
+      "p-0",
+      "min-h-8",
+      "rounded-[5px]",
+      "gap-[0]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "text-[black]",
+      "border-[#2ec27e]",
+      "bg-[#ffffff]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "shadow-[inset_0_0_0_1px_#2ec27e]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#cdc7c2]",
+      "bg-[#faf9f8]"
+    ]
+  },
+  "spinbutton > button.image-button.down": {
+    "base": [
+      "py-0",
+      "m-0",
+      "min-h-4",
+      "text-[#43484a]",
+      "bg-[image:none]",
+      "border-[rgba(205,199,194,0.3)]",
+      "rounded-none",
+      "shadow-none"
+    ],
+    "last": [
+      "rounded-[0_5px_5px_0]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "bg-[#ebe8e6]"
+    ],
+    "first": [
+      "rounded-[5px_0_0_5px]"
+    ],
+    "active": [
+      "bg-[rgba(0,0,0,0.1)]",
+      "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.2)]"
+    ],
+    "disabled": [
+      "text-[rgba(146,149,149,0.3)]",
+      "bg-[transparent]"
+    ]
+  },
+  "spinbutton > button.image-button.up": {
+    "base": [
+      "py-0",
+      "m-0",
+      "min-h-4",
+      "text-[#43484a]",
+      "bg-[image:none]",
+      "border-[rgba(205,199,194,0.3)]",
+      "rounded-none",
+      "shadow-none"
+    ],
+    "last": [
+      "rounded-[0_5px_5px_0]"
+    ],
+    "hover": [
+      "text-[#2e3436]",
+      "bg-[#ebe8e6]"
+    ],
+    "first": [
+      "rounded-[5px_0_0_5px]"
+    ],
+    "active": [
+      "bg-[rgba(0,0,0,0.1)]",
+      "shadow-[inset_0_2px_3px_-1px_rgba(0,0,0,0.2)]"
+    ],
+    "disabled": [
+      "text-[rgba(146,149,149,0.3)]",
+      "bg-[transparent]"
+    ]
+  },
+  "spinbutton > image": {
+    "base": [
+      "text-[#585d5e]"
+    ],
+    "hover": [
+      "text-[#2e3436]"
+    ],
+    "active": [
+      "text-[#3584e4]"
+    ]
+  },
+  "spinbutton > image.left": {
+    "base": [
+      "mr-1.5"
+    ]
+  },
+  "spinbutton > image.right": {
+    "base": [
+      "ml-1.5"
+    ]
+  },
+  "spinbutton > progress": {
+    "base": [
+      "mb-0.5"
+    ]
+  },
+  "spinbutton > progress > trough": {
+    "base": [
+      "min-h-0.5"
+    ]
+  },
+  "spinbutton > progress > trough > progress": {
+    "base": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "rounded-none",
+      "border-b-0.5",
+      "border-[#3584e4]",
+      "border-solid",
+      "shadow-none"
+    ]
+  },
+  "spinbutton > text": {
+    "base": [
+      "p-1.5",
+      "m-0",
+      "min-w-7",
+      "bg-none",
+      "bg-[transparent]",
+      "rounded-none",
+      "shadow-none"
+    ],
+    "disabled": [
+      "bg-[transparent]"
+    ]
+  },
+  "spinbutton > text > block-cursor": {
+    "base": [
+      "text-[#ffffff]",
+      "bg-[black]"
+    ]
+  },
+  "spinbutton > text > placeholder": {
+    "base": [
+      "opacity-55",
+      "[text-shadow:none]"
+    ]
+  },
+  "spinbutton > text > selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]",
+      "text-[#2e3436]"
+    ]
+  },
+  "spinbutton.error": {
+    "base": [
+      "text-[#cc0000]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(204,0,0,0.5)]",
+      "outline-2"
+    ]
+  },
+  "spinbutton.error > selection": {
+    "base": [
+      "bg-[#cc0000]"
+    ]
+  },
+  "spinbutton.flat": {
+    "base": [
+      "p-0.5",
+      "min-h-0",
+      "bg-[transparent]",
+      "border-[transparent]",
+      "rounded-none"
+    ]
+  },
+  "spinbutton.password image.caps-lock-indicator": {
+    "base": [
+      "text-[#a7aaaa]"
+    ]
+  },
+  "spinbutton.vertical": {
+    "base": [
+      "border-[transparent]",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#929595]"
+    ]
+  },
+  "spinbutton.vertical > button": {
+    "base": [
+      "p-0",
+      "min-h-8",
+      "min-w-8"
+    ]
+  },
+  "spinbutton.vertical > button.down": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-tr-[0]"
+    ]
+  },
+  "spinbutton.vertical > button.up": {
+    "base": [
+      "rounded-bl-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  "spinbutton.vertical > text": {
+    "base": [
+      "p-0",
+      "min-h-8",
+      "rounded-none",
+      "gap-[6px]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "text-[black]",
+      "border-[#2ec27e]",
+      "bg-[#ffffff]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "shadow-[inset_0_0_0_1px_#2ec27e]",
+      "min-w-8"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#cdc7c2]",
+      "bg-[#faf9f8]"
+    ]
+  },
+  "spinbutton.vertical > text > block-cursor": {
+    "base": [
+      "text-[#ffffff]",
+      "bg-[black]"
+    ]
+  },
+  "spinbutton.vertical > text > image": {
+    "base": [
+      "text-[#585d5e]"
+    ],
+    "hover": [
+      "text-[#2e3436]"
+    ],
+    "active": [
+      "text-[#3584e4]"
+    ]
+  },
+  "spinbutton.vertical > text > image.left": {
+    "base": [
+      "mr-1.5"
+    ]
+  },
+  "spinbutton.vertical > text > image.right": {
+    "base": [
+      "ml-1.5"
+    ]
+  },
+  "spinbutton.vertical > text > progress": {
+    "base": [
+      "mb-0.5"
+    ]
+  },
+  "spinbutton.vertical > text > progress > trough": {
+    "base": [
+      "min-h-0.5"
+    ]
+  },
+  "spinbutton.vertical > text > progress > trough > progress": {
+    "base": [
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "rounded-none",
+      "border-b-0.5",
+      "border-[#3584e4]",
+      "border-solid",
+      "shadow-none"
+    ]
+  },
+  "spinbutton.vertical > text > selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]",
+      "text-[#2e3436]"
+    ]
+  },
+  "spinbutton.vertical > text > text > block-cursor": {
+    "base": [
+      "text-[#ffffff]",
+      "bg-[black]"
+    ]
+  },
+  "spinbutton.vertical > text > text > placeholder": {
+    "base": [
+      "opacity-55",
+      "[text-shadow:none]"
+    ]
+  },
+  "spinbutton.vertical > text > text > selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]",
+      "text-[#2e3436]"
+    ]
+  },
+  "spinbutton.vertical > text.error": {
+    "base": [
+      "text-[#cc0000]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(204,0,0,0.5)]",
+      "outline-2"
+    ]
+  },
+  "spinbutton.vertical > text.error > selection": {
+    "base": [
+      "bg-[#cc0000]"
+    ]
+  },
+  "spinbutton.vertical > text.flat": {
+    "base": [
+      "p-0.5",
+      "min-h-0",
+      "bg-[transparent]",
+      "border-[transparent]",
+      "rounded-none"
+    ]
+  },
+  "spinbutton.vertical > text.password image.caps-lock-indicator": {
+    "base": [
+      "text-[#a7aaaa]"
+    ]
+  },
+  "spinbutton.vertical > text.warning": {
+    "base": [
+      "text-[#f57900]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(245,121,0,0.5)]",
+      "outline-2"
+    ]
+  },
+  "spinbutton.vertical > text.warning > selection": {
+    "base": [
+      "bg-[#f57900]"
+    ]
+  },
+  "spinbutton.vertical > text:focus-within > placeholder": {
+    "base": [
+      "opacity-0"
+    ]
+  },
+  "spinbutton.vertical.linked > entry + text": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > entry:disabled + text": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  "spinbutton.vertical.linked > entry:drop(active) + text": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > spinbutton + text": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > spinbutton:disabled + text": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  "spinbutton.vertical.linked > spinbutton:drop(active) + text": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text": {
+    "base": [
+      "rounded-tl-[0]",
+      "rounded-bl-[0]",
+      "rounded-tr-[0]",
+      "rounded-br-[0]"
+    ]
+  },
+  "spinbutton.vertical.linked > text + entry": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text + spinbutton": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text + text": {
+    "base": [
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:disabled + entry": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:disabled + spinbutton": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:disabled + text": {
+    "disabled": [
+      "border-t-[#f0eeed]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + button": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + colorbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + combobox > box > button.combo": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + dropdown > button": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + entry": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + filechooserbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + fontbutton > button": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + menubutton > button": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + spinbutton": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.vertical.linked > text:drop(active) + text": {
+    "base": [
+      "border-l-[#2ec27e]",
+      "border-t-[#2ec27e]"
+    ]
+  },
+  "spinbutton.warning": {
+    "base": [
+      "text-[#f57900]",
+      "duration-[300ms]",
+      "outline-offset-[-2px]",
+      "outline-[rgba(245,121,0,0.5)]",
+      "outline-2"
+    ]
+  },
+  "spinbutton.warning > selection": {
+    "base": [
+      "bg-[#f57900]"
+    ]
+  },
+  "spinbutton:focus-within > placeholder": {
+    "base": [
+      "opacity-0"
+    ]
+  },
+  "spinner": {
+    "base": [
+      "bg-none",
+      "opacity-0"
+    ],
+    "data-[state=checked]": [
+      "opacity-100"
+    ],
+    "data-[state=checked]:disabled": [
+      "opacity-50"
+    ]
+  },
+  "stacksidebar list.separators > row": {
+    "base": []
+  },
+  "stacksidebar row": {
+    "base": [
+      "py-2.5",
+      "px-1",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "bg-[#e8e6e3]",
+      "rounded-[5px]",
+      "text-[#2e3436]"
+    ],
+    "data-[selected]:hover": [
+      "bg-[#ddd9d5]"
+    ]
+  },
+  "stacksidebar row > label": {
+    "base": [
+      "px-1.5"
+    ]
+  },
+  "stacksidebar row.activatable": {
+    "active": [
+      "shadow-none"
+    ],
+    "data-[selected]:active": [
+      "shadow-none"
+    ]
+  },
+  "stacksidebar row.needs-attention > label": {
+    "base": [
+      "bg-[image:radial-gradient(farthest-side,#3584e4_96%,rgba(53,132,228,0))]",
+      "bg-[size:6px_6px,0_0]",
+      "bg-no-repeat",
+      "bg-[position:left_3px,left_4px]"
+    ]
+  },
+  "stackswitcher": {
+    "base": [
+      "shadow-none"
+    ],
+    "focus": [
+      "shadow-none"
+    ]
+  },
+  "stackswitcher > button > image": {
+    "base": [
+      "py-[3px]",
+      "px-1.5",
+      "my-[-3px]",
+      "-mx-1.5"
+    ]
+  },
+  "stackswitcher > button > label": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "my-0",
+      "-mx-1.5"
+    ]
+  },
+  "stackswitcher > button.needs-attention > image": {
+    "base": [
+      "bg-[image:radial-gradient(farthest-side,#3584e4_96%,rgba(53,132,228,0))]",
+      "bg-[size:6px_6px,0_0]",
+      "bg-no-repeat",
+      "bg-[position:left_3px,left_4px]"
+    ]
+  },
+  "stackswitcher > button.needs-attention > label": {
+    "base": [
+      "bg-[image:radial-gradient(farthest-side,#3584e4_96%,rgba(53,132,228,0))]",
+      "bg-[size:6px_6px,0_0]",
+      "bg-no-repeat",
+      "bg-[position:left_3px,left_4px]"
+    ]
+  },
+  "stackswitcher > button.text-button": {
+    "base": [
+      "min-w-25"
+    ]
+  },
+  "stackswitcher.circular": {
+    "base": [
+      "gap-[12px]"
+    ]
+  },
+  "stackswitcher.circular > button.circular": {
+    "base": [
+      "p-0",
+      "min-w-8",
+      "min-h-8"
+    ]
+  },
+  "stackswitcher.circular > button.text-button.circular": {
+    "base": [
+      "p-0",
+      "min-w-8",
+      "min-h-8"
+    ]
+  },
+  "statusbar": {
+    "base": [
+      "py-1.5",
+      "px-2.5"
+    ]
+  },
+  "switch": {
+    "base": [
+      "font-bold",
+      "text-[smaller]",
+      "rounded-[14px]",
+      "text-[#2e3436]",
+      "bg-[#e1dedb]",
+      "transition-[outline-width,outline-offset]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[300ms]",
+      "outline-offset-[4px]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "border-[#cdc7c2]",
+      "bg-[#faf9f8]",
+      "[text-shadow:none]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[0]"
+    ],
+    "data-[state=checked]": [
+      "text-[#ffffff]",
+      "border-[#185fb4]",
+      "bg-[#3584e4]"
+    ]
+  },
+  "switch > slider": {
+    "base": [
+      "m-[-1px]",
+      "text-[#2e3436]",
+      "outline-[rgba(53,132,228,0.5)]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#f6f5f4_2px,#fbfafa)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]",
+      "min-w-6",
+      "min-h-6",
+      "rounded-full",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "switch:checked > slider": {
+    "base": []
+  },
+  "switch:disabled > slider": {
+    "base": [
+      "text-[#929595]",
+      "border-[#d5d0cc]",
+      "bg-[image:image(#faf9f8)]"
+    ]
+  },
+  "switch:hover > slider": {
+    "base": [
+      "text-[#2e3436]",
+      "border-[#cdc7c2]",
+      "bg-[image:linear-gradient(to_top,#d6d1cd,#e8e6e3_1px)]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.07)]"
+    ]
+  },
+  "textview": {
+    "base": [
+      "caret-[#2ec27e]"
+    ]
+  },
+  "textview > border": {
+    "base": [
+      "bg-[#fbfafa]"
+    ]
+  },
+  "textview > text": {
+    "base": [
+      "text-[black]",
+      "bg-[transparent]"
+    ],
+    "disabled": [
+      "text-[#929595]",
+      "bg-[#faf9f8]"
+    ],
+    "data-[selected]": [
+      "rounded-[3px]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-[3px]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ],
+    "disabled:data-[selected]:focus": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "textview > text > selection": {
+    "base": [
+      "bg-[rgba(53,132,228,0.3)]"
+    ]
+  },
+  "tooltip": {
+    "base": [
+      "py-1.5",
+      "px-2.5",
+      "rounded-[8px]",
+      "shadow-none"
+    ]
+  },
+  "tooltip > box": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "tooltip.background": {
+    "base": [
+      "bg-[rgba(0,0,0,0.8)]",
+      "bg-clip-padding",
+      "text-[white]"
+    ]
+  },
+  "tooltip.csd": {
+    "base": [
+      "rounded-[5px]",
+      "shadow-none"
+    ]
+  },
+  "treeexpander": {
+    "base": [
+      "gap-[4px]"
+    ]
+  },
+  "treeexpander indent": {
+    "base": []
+  },
+  "treeview entry": {
+    "base": [
+      "bg-[#ffffff]",
+      "rounded-none",
+      "bg-[image:none]",
+      "border-[#3584e4]"
+    ]
+  },
+  "treeview entry.flat": {
+    "base": [
+      "rounded-none",
+      "bg-[image:none]",
+      "bg-[#ffffff]",
+      "border-[#3584e4]"
+    ]
+  },
+  "treeview spinbutton": {
+    "base": [
+      "min-h-0",
+      "border-none",
+      "rounded-none"
+    ]
+  },
+  "treeview spinbutton > text": {
+    "base": [
+      "py-[1px]",
+      "px-0.5",
+      "min-h-0"
+    ]
+  },
+  "treeview ~ scrollbar.vertical": {
+    "base": [
+      "mt-[-1px]"
+    ]
+  },
+  "treeview.view": {
+    "base": [
+      "border-l-[#ddd9d6]",
+      "border-t-[#d7d2ce]",
+      "duration-[300ms]",
+      "outline-offset-[4px]",
+      "shadow-none"
+    ],
+    "disabled": [
+      "text-[#929595]"
+    ],
+    "focus-visible": [
+      "outline-[rgba(53,132,228,0.5)]",
+      "outline-2",
+      "outline-offset-[-2px]"
+    ],
+    "data-[selected]": [
+      "rounded-none",
+      "outline-[rgba(255,255,255,0.8)]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-none",
+      "outline-[rgba(255,255,255,0.8)]",
+      "bg-[#3584e4]",
+      "text-[#ffffff]"
+    ],
+    "disabled:data-[selected]": [
+      "text-[#9ac2f2]"
+    ]
+  },
+  "treeview.view > dndtarget": {
+    "base": [
+      "border-[1px]",
+      "border-[#185fb4]"
+    ]
+  },
+  "treeview.view > dndtarget:drop(active).after": {
+    "base": []
+  },
+  "treeview.view > dndtarget:drop(active).before": {
+    "base": []
+  },
+  "treeview.view > header > button": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "text-[#979a9b]",
+      "bg-[#ffffff]",
+      "font-bold",
+      "[text-shadow:none]",
+      "shadow-none",
+      "bg-[image:none]",
+      "border-[#d7d2ce]",
+      "rounded-none"
+    ],
+    "last": [],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "text-[#636769]",
+      "shadow-none",
+      "bg-[image:none]",
+      "border-[#d7d2ce]",
+      "rounded-none",
+      "[text-shadow:none]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "text-[#2e3436]",
+      "bg-[image:none]",
+      "border-[#d7d2ce]",
+      "rounded-none",
+      "[text-shadow:none]"
+    ],
+    "disabled": [
+      "border-[#f6f5f4]",
+      "bg-[image:none]"
+    ]
+  },
+  "treeview.view > header > button sort-indicator": {
+    "base": [
+      "min-h-4",
+      "min-w-4"
+    ]
+  },
+  "treeview.view > header > button sort-indicator.ascending": {
+    "base": []
+  },
+  "treeview.view > header > button sort-indicator.descending": {
+    "base": []
+  },
+  "treeview.view > rubberband": {
+    "base": [
+      "bg-[rgba(27,106,203,0.2)]"
+    ]
+  },
+  "treeview.view acceleditor > label": {
+    "base": [
+      "bg-[#3584e4]"
+    ]
+  },
+  "treeview.view button.dnd": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "data-[selected]": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ]
+  },
+  "treeview.view check": {
+    "data-[selected]": [
+      "text-[#ffffff]",
+      "border-[#185fb4]"
+    ],
+    "data-[selected]:focus": [
+      "text-[#ffffff]",
+      "border-[#185fb4]"
+    ]
+  },
+  "treeview.view header.button.dnd": {
+    "base": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "hover": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "active": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ],
+    "data-[selected]": [
+      "py-0",
+      "px-1.5",
+      "text-[#ffffff]",
+      "bg-[image:none]",
+      "bg-[#3584e4]",
+      "border-none",
+      "rounded-none",
+      "shadow-[inset_0_0_0_1px_#ffffff]",
+      "[text-shadow:none]"
+    ]
+  },
+  "treeview.view radio": {
+    "data-[selected]": [
+      "rounded-full",
+      "text-[#ffffff]",
+      "border-[#185fb4]"
+    ],
+    "data-[selected]:focus": [
+      "rounded-full",
+      "text-[#ffffff]",
+      "border-[#185fb4]"
+    ],
+    "indeterminate:data-[selected]": [],
+    "data-[state=checked]:data-[selected]": []
+  },
+  "treeview.view.expander": {
+    "base": [
+      "min-w-4",
+      "min-h-4",
+      "text-[#4d4d4d]"
+    ],
+    "hover": [
+      "text-[black]"
+    ],
+    "data-[selected]": [
+      "text-[#c2daf7]"
+    ],
+    "data-[state=checked]": [],
+    "data-[selected]:hover": [
+      "text-[#ffffff]"
+    ]
+  },
+  "treeview.view.progressbar": {
+    "base": [
+      "text-[#ffffff]",
+      "bg-[#3584e4]",
+      "bg-[image:image(#3584e4)]",
+      "shadow-none"
+    ],
+    "data-[selected]": [
+      "text-[#3584e4]",
+      "bg-[image:image(#ffffff)]",
+      "bg-[#fcfcfc]"
+    ],
+    "data-[selected]:focus": [
+      "text-[#3584e4]",
+      "bg-[image:image(#ffffff)]",
+      "bg-[#fcfcfc]"
+    ]
+  },
+  "treeview.view.separator": {
+    "base": [
+      "min-h-0.5",
+      "text-[#d7d2ce]"
+    ]
+  },
+  "treeview.view.trough": {
+    "base": [
+      "bg-[rgba(46,52,54,0.1)]"
+    ],
+    "data-[selected]": [
+      "bg-[rgba(255,255,255,0.3)]"
+    ],
+    "data-[selected]:focus": [
+      "bg-[rgba(255,255,255,0.3)]"
+    ]
+  },
+  "video image.osd": {
+    "base": [
+      "min-w-16",
+      "min-h-16",
+      "rounded-[32px]"
+    ]
+  },
+  "window": {
+    "base": [
+      "border-0"
+    ]
+  },
+  "window.aboutdialog image.large-icons": {
+    "base": []
+  },
+  "window.assistant .sidebar": {
+    "base": [
+      "p-[5px]"
+    ]
+  },
+  "window.assistant .sidebar > label": {
+    "base": [
+      "py-1.5",
+      "px-3"
+    ]
+  },
+  "window.assistant .sidebar > label.highlight": {
+    "base": [
+      "bg-[#e8e6e3]",
+      "rounded-[5px]"
+    ]
+  },
+  "window.assistant.csd .sidebar": {
+    "base": []
+  },
+  "window.csd": {
+    "base": [
+      "m-0",
+      "shadow-[0_3px_9px_1px_transparent,0_2px_6px_2px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.18)]",
+      "rounded-[8px_8px_0_0]",
+      "duration-200",
+      "ease-[ease-out]"
+    ]
+  },
+  "window.csd > .titlebar": {
+    "base": [
+      "p-0",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "border-none",
+      "border-[transparent]"
+    ]
+  },
+  "window.csd.dialog.message": {
+    "base": [
+      "rounded-[8px]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.13)]"
+    ]
+  },
+  "window.csd.popup": {
+    "base": [
+      "rounded-[5px]",
+      "shadow-[0_1px_2px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.13)]"
+    ]
+  },
+  "window.devel headerbar.titlebar": {
+    "base": [
+      "bg-[#f6f5f4_cross-fade(10%_-gtk-icontheme(\"system-run-symbolic\"),image(transparent))_90%_0/256px_256px_no-repeat,image(#f6f5f4)]"
+    ]
+  },
+  "window.dialog.message .titlebar": {
+    "base": [
+      "min-h-5",
+      "bg-[image:none]",
+      "bg-[#f6f5f4]",
+      "border-none",
+      "rounded-tl-[7px]",
+      "rounded-tr-[7px]"
+    ]
+  },
+  "window.dialog.message box.dialog-vbox.vertical": {
+    "base": [
+      "gap-[10px]"
+    ]
+  },
+  "window.dialog.message label.title": {
+    "base": [
+      "font-extrabold",
+      "text-[150%]"
+    ]
+  },
+  "window.dialog.message.csd .dialog-action-area button": {
+    "base": [
+      "py-2.5",
+      "px-3.5",
+      "rounded-none"
+    ],
+    "last": [
+      "rounded-br-[7px]"
+    ],
+    "first": [
+      "rounded-bl-[7px]"
+    ]
+  },
+  "window.dialog.message.csd.background": {
+    "base": [
+      "rounded-bl-[9px]",
+      "rounded-br-[9px]"
+    ]
+  },
+  "window.dialog.print .dialog-action-box": {
+    "base": [
+      "m-3"
+    ]
+  },
+  "window.dialog.print .drawing": {
+    "base": [
+      "p-0",
+      "text-[#2e3436]",
+      "bg-none"
+    ]
+  },
+  "window.dialog.print page-thumbnail": {
+    "base": [
+      "bg-[white]",
+      "text-[#2e3436]"
+    ]
+  },
+  "window.dialog.print page-thumbnail label": {
+    "base": [
+      "text-[#2e3436]"
+    ]
+  },
+  "window.fullscreen": {
+    "base": [
+      "rounded-none",
+      "shadow-none"
+    ]
+  },
+  "window.maximized": {
+    "base": [
+      "rounded-none",
+      "shadow-none"
+    ]
+  },
+  "window.popup": {
+    "base": [
+      "shadow-none"
+    ]
+  },
+  "window.solid-csd": {
+    "base": [
+      "p-1",
+      "m-0",
+      "rounded-none",
+      "shadow-[inset_0_0_0_4px_#cdc7c2,inset_0_0_0_3px_#f6f5f4,inset_0_1px_rgba(255,255,255,0.8)]"
+    ]
+  },
+  "window.ssd": {
+    "base": [
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.23)]"
+    ]
+  },
+  "window.tiled": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-bottom": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-left": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-right": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "window.tiled-top": {
+    "base": [
+      "rounded-none",
+      "shadow-[0_0_0_1px_rgba(0,0,0,0.18),0_0_0_20px_transparent]"
+    ]
+  },
+  "windowcontrols": {
+    "base": [
+      "gap-[6px]"
+    ]
+  },
+  "windowcontrols button": {
+    "base": [
+      "p-0",
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "min-w-8.5"
+    ],
+    "hover": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#dad6d2]",
+      "transition-[all]",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "duration-[500ms]",
+      "bg-none"
+    ],
+    "active": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "bg-none"
+    ],
+    "disabled": [
+      "border-[transparent]",
+      "bg-[transparent]",
+      "bg-[image:none]",
+      "shadow-none"
+    ],
+    "data-[state=checked]": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      "bg-none"
+    ]
+  },
+  "windowcontrols button > image": {
+    "base": [
+      "rounded-full",
+      "min-h-7.5",
+      "min-w-7.5"
+    ]
+  },
+  "windowcontrols button.keyboard-activating": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#cdc7c2]",
+      "transition-[all]",
+      "duration-200",
+      "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+    ]
+  },
+  "windowcontrols button:active > image": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bab3ab]"
+    ]
+  },
+  "windowcontrols button:checked > image": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#bab3ab]"
+    ]
+  },
+  "windowcontrols button:hover > image": {
+    "base": [
+      "border-[transparent]",
+      "bg-[image:none]",
+      "shadow-none",
+      "bg-[#d1ccc7]"
+    ]
+  },
+  "windowcontrols.end": {
+    "base": [
+      "mx-[7px]"
+    ]
+  },
+  "windowcontrols.start": {
+    "base": [
+      "mx-[7px]"
+    ]
+  }
+}

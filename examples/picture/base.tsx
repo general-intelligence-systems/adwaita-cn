@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { Picture } from "@/ui/picture"
+import { Label } from "@/ui/label"
 
 export default function PictureBase() {
   return (
-    <Picture alternativeText="Alternative text" />
+    <Picture>
+      <Label label="Label" />
+    </Picture>
   )
 }

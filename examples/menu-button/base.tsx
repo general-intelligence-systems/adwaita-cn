@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { MenuButton } from "@/ui/menu-button"
+import { Label } from "@/ui/label"
 
 export default function MenuButtonBase() {
   return (
-    <MenuButton label="Label" />
+    <MenuButton>
+      <Label label="Label" />
+    </MenuButton>
   )
 }

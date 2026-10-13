@@ -9,6 +9,6 @@ import { MessageDialog } from "@/ui/message-dialog"
 
 export default function MessageDialogBase() {
   return (
-    <MessageDialog body="Body" heading="Heading" title="Title" />
+    <MessageDialog body="Body" heading="Heading" />
   )
 }

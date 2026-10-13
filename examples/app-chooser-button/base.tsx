@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { AppChooserButton } from "@/ui/app-chooser-button"
+import { Label } from "@/ui/label"
 
 export default function AppChooserButtonBase() {
   return (
-    <AppChooserButton heading="Heading" />
+    <AppChooserButton>
+      <Label label="Label" />
+    </AppChooserButton>
   )
 }

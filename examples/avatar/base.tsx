@@ -6,9 +6,12 @@
 // example and it will be left alone.
 
 import { Avatar } from "@/ui/avatar"
+import { Label } from "@/ui/label"
 
 export default function AvatarBase() {
   return (
-    <Avatar text="Text" />
+    <Avatar>
+      <Label label="Label" />
+    </Avatar>
   )
 }
