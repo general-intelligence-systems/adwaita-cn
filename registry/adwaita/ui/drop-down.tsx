@@ -46,9 +46,11 @@ export interface DropDownProps
 function DropDown({ className, render, expression: _expression, factory: _factory, headerFactory: _headerFactory, listFactory: _listFactory, model: _model, enableSearch, searchMatchMode, selected, showArrow, children, ...props }: DropDownProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  // The stack shows ONE of the items: whichever `selected` names, which is an index
+  // into what the caller wrote the same way it is an index into the model.
+  const items = React.Children.toArray(children)
+  const shown = items.length > 1 ? items[selected ?? 0] : items
+
   const defaultProps = {
     "data-slot": "drop-down",
     "data-node": "dropdown",
@@ -59,11 +61,13 @@ function DropDown({ className, render, expression: _expression, factory: _factor
     className: cn("dropdown", "group/drop-down", "bin", widgetClassName, className),
     style,
     children: (
-        <>
-                  <DropDownArrow />
-                  {children}
-        </>
-      ),
+      <DropDownButton>
+        <DropDownBox>
+          <DropDownStack>{shown}</DropDownStack>
+          {showArrow === false ? null : <DropDownArrow />}
+        </DropDownBox>
+      </DropDownButton>
+    ),
     ...widgetAttributes,
   }
 
@@ -73,6 +77,41 @@ function DropDown({ className, render, expression: _expression, factory: _factor
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function DropDownButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      type="button"
+      data-slot="drop-down-button"
+      data-node="button"
+      aria-haspopup="listbox"
+      className={cn("button", "box", "toggle", className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-box"
+      data-node="box"
+      className={cn("box", "box", "horizontal", "grow", "items-center", className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-stack"
+      data-node="stack"
+      className={cn("stack", "grow", className)}
+      {...props}
+    />
+  )
 }
 
 function DropDownArrow({ className, ...props }: React.ComponentProps<"div">) {
@@ -86,4 +125,4 @@ function DropDownArrow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { DropDown, DropDownArrow }
+export { DropDown, DropDownArrow, DropDownButton, DropDownBox, DropDownStack }

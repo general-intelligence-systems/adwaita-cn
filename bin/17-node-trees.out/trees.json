@@ -1,487 +1,434 @@
 {
   "toolkit": {
-    "software": {
+    "controls": {
       "node": "toolbarview",
       "classes": [
         "undershoot-top"
       ],
       "children": [
         {
-          "node": "toastoverlay",
+          "node": "clamp",
           "classes": [],
           "children": [
             {
-              "node": "scrolledwindow",
-              "classes": [],
+              "node": "box",
+              "classes": [
+                "large",
+                "vertical"
+              ],
               "children": [
                 {
-                  "node": "viewport",
-                  "classes": [],
+                  "node": "box",
+                  "classes": [
+                    "horizontal"
+                  ],
                   "children": [
                     {
-                      "node": "box",
+                      "node": "button",
                       "classes": [
-                        "vertical"
+                        "text-button"
                       ],
                       "children": [
                         {
-                          "node": "infobar",
-                          "classes": [
-                            "warning"
-                          ],
-                          "children": [
-                            {
-                              "node": "revealer",
-                              "classes": [],
-                              "children": [
-                                {
-                                  "node": "box",
-                                  "classes": [
-                                    "horizontal"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "horizontal"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "label",
-                                          "classes": [],
-                                          "children": []
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "horizontal"
-                                      ],
-                                      "children": []
-                                    },
-                                    {
-                                      "node": "button",
-                                      "classes": [
-                                        "close",
-                                        "image-button"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "image",
-                                          "classes": [],
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "node": "statuspage",
+                          "node": "label",
                           "classes": [],
-                          "children": [
-                            {
-                              "node": "scrolledwindow",
-                              "classes": [],
-                              "children": [
-                                {
-                                  "node": "viewport",
-                                  "classes": [],
-                                  "children": [
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "vertical"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "clamp",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "box",
-                                              "classes": [
-                                                "medium",
-                                                "vertical"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "image",
-                                                  "classes": [
-                                                    "icon"
-                                                  ],
-                                                  "children": []
-                                                },
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "title"
-                                                  ],
-                                                  "children": []
-                                                },
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "body",
-                                                    "description"
-                                                  ],
-                                                  "children": []
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "box",
-                                          "classes": [
-                                            "horizontal"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "button",
-                                              "classes": [
-                                                "pill",
-                                                "suggested-action",
-                                                "text-button"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "label",
-                                                  "classes": [],
-                                                  "children": []
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "node": "button",
-                                              "classes": [
-                                                "flat",
-                                                "link",
-                                                "text-button"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "label",
-                                                  "classes": [],
-                                                  "children": []
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "node": "scrollbar",
-                                  "classes": [
-                                    "bottom",
-                                    "horizontal",
-                                    "overlay-indicator"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "range",
-                                      "classes": [
-                                        "horizontal"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "trough",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "slider",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "node": "scrollbar",
-                                  "classes": [
-                                    "overlay-indicator",
-                                    "right",
-                                    "vertical"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "range",
-                                      "classes": [
-                                        "vertical"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "trough",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "slider",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "suggested-action",
+                        "text-button"
+                      ],
+                      "children": [
                         {
-                          "node": "preferencesgroup",
+                          "node": "label",
                           "classes": [],
-                          "children": [
-                            {
-                              "node": "box",
-                              "classes": [
-                                "vertical"
-                              ],
-                              "children": [
-                                {
-                                  "node": "box",
-                                  "classes": [
-                                    "header",
-                                    "horizontal",
-                                    "single-line"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "labels",
-                                        "vertical"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "label",
-                                          "classes": [
-                                            "h4",
-                                            "heading"
-                                          ],
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "node": "box",
-                                  "classes": [
-                                    "vertical"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "list",
-                                      "classes": [
-                                        "boxed-list"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "row",
-                                          "classes": [
-                                            "activatable",
-                                            "button"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "box",
-                                              "classes": [
-                                                "horizontal"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "image",
-                                                  "classes": [
-                                                    "icon",
-                                                    "start"
-                                                  ],
-                                                  "children": []
-                                                },
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "title"
-                                                  ],
-                                                  "children": []
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "progressbar",
-                                      "classes": [
-                                        "horizontal"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "text",
-                                          "classes": [],
-                                          "children": []
-                                        },
-                                        {
-                                          "node": "trough",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "progress",
-                                              "classes": [
-                                                "left"
-                                              ],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "levelbar",
-                                      "classes": [
-                                        "continuous",
-                                        "horizontal"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "trough",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "block",
-                                              "classes": [
-                                                "filled",
-                                                "high"
-                                              ],
-                                              "children": []
-                                            },
-                                            {
-                                              "node": "block",
-                                              "classes": [
-                                                "empty"
-                                              ],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "spinner",
-                                      "classes": [],
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "destructive-action",
+                        "text-button"
+                      ],
+                      "children": [
+                        {
+                          "node": "label",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "flat",
+                        "text-button"
+                      ],
+                      "children": [
+                        {
+                          "node": "label",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "circular",
+                        "image-button"
+                      ],
+                      "children": [
+                        {
+                          "node": "image",
+                          "classes": [],
+                          "children": []
                         }
                       ]
                     }
                   ]
                 },
                 {
-                  "node": "scrollbar",
-                  "classes": [
-                    "bottom",
-                    "horizontal",
-                    "overlay-indicator"
-                  ],
+                  "node": "toggle-group",
+                  "classes": [],
                   "children": [
                     {
-                      "node": "range",
+                      "node": "toggle",
+                      "classes": [
+                        "text-button",
+                        "toggle"
+                      ],
+                      "children": [
+                        {
+                          "node": "label",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "separator",
+                      "classes": [
+                        "hidden",
+                        "horizontal"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "node": "toggle",
+                      "classes": [
+                        "text-button",
+                        "toggle"
+                      ],
+                      "children": [
+                        {
+                          "node": "label",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "separator",
                       "classes": [
                         "horizontal"
                       ],
+                      "children": []
+                    },
+                    {
+                      "node": "toggle",
+                      "classes": [
+                        "text-button",
+                        "toggle"
+                      ],
                       "children": [
                         {
-                          "node": "trough",
+                          "node": "label",
                           "classes": [],
-                          "children": [
-                            {
-                              "node": "slider",
-                              "classes": [],
-                              "children": []
-                            }
-                          ]
+                          "children": []
                         }
                       ]
                     }
                   ]
                 },
                 {
-                  "node": "scrollbar",
-                  "classes": [
-                    "overlay-indicator",
-                    "right",
-                    "vertical"
-                  ],
-                  "children": [
-                    {
-                      "node": "range",
-                      "classes": [
-                        "vertical"
-                      ],
-                      "children": [
-                        {
-                          "node": "trough",
-                          "classes": [],
-                          "children": [
-                            {
-                              "node": "slider",
-                              "classes": [],
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "node": "toast",
-              "classes": [],
-              "children": [
-                {
-                  "node": "widget",
+                  "node": "entry",
                   "classes": [],
                   "children": [
                     {
-                      "node": "label",
-                      "classes": [
-                        "heading"
-                      ],
-                      "children": []
+                      "node": "text",
+                      "classes": [],
+                      "children": [
+                        {
+                          "node": "placeholder",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
                     }
                   ]
                 },
                 {
-                  "node": "button",
+                  "node": "entry",
                   "classes": [
-                    "circular",
-                    "flat",
-                    "image-button"
+                    "search"
                   ],
                   "children": [
                     {
                       "node": "image",
                       "classes": [],
                       "children": []
+                    },
+                    {
+                      "node": "text",
+                      "classes": [],
+                      "children": [
+                        {
+                          "node": "placeholder",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "image",
+                      "classes": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "scale",
+                  "classes": [
+                    "horizontal"
+                  ],
+                  "children": [
+                    {
+                      "node": "trough",
+                      "classes": [],
+                      "children": [
+                        {
+                          "node": "highlight",
+                          "classes": [
+                            "top"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "node": "slider",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "box",
+                  "classes": [
+                    "horizontal"
+                  ],
+                  "children": [
+                    {
+                      "node": "label",
+                      "classes": [],
+                      "children": []
+                    },
+                    {
+                      "node": "switch",
+                      "classes": [],
+                      "children": [
+                        {
+                          "node": "image",
+                          "classes": [],
+                          "children": []
+                        },
+                        {
+                          "node": "image",
+                          "classes": [],
+                          "children": []
+                        },
+                        {
+                          "node": "slider",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "checkbutton",
+                  "classes": [
+                    "text-button"
+                  ],
+                  "children": [
+                    {
+                      "node": "check",
+                      "classes": [],
+                      "children": []
+                    },
+                    {
+                      "node": "label",
+                      "classes": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "dropdown",
+                  "classes": [],
+                  "children": [
+                    {
+                      "node": "button",
+                      "classes": [
+                        "toggle"
+                      ],
+                      "children": [
+                        {
+                          "node": "box",
+                          "classes": [
+                            "horizontal"
+                          ],
+                          "children": [
+                            {
+                              "node": "stack",
+                              "classes": [],
+                              "children": [
+                                {
+                                  "node": "label",
+                                  "classes": [],
+                                  "children": []
+                                },
+                                {
+                                  "node": "row",
+                                  "classes": [
+                                    "activatable"
+                                  ],
+                                  "children": [
+                                    {
+                                      "node": "box",
+                                      "classes": [
+                                        "horizontal"
+                                      ],
+                                      "children": [
+                                        {
+                                          "node": "label",
+                                          "classes": [],
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "node": "arrow",
+                              "classes": [],
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "progressbar",
+                  "classes": [
+                    "horizontal"
+                  ],
+                  "children": [
+                    {
+                      "node": "trough",
+                      "classes": [],
+                      "children": [
+                        {
+                          "node": "progress",
+                          "classes": [
+                            "left"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "levelbar",
+                  "classes": [
+                    "continuous",
+                    "horizontal"
+                  ],
+                  "children": [
+                    {
+                      "node": "trough",
+                      "classes": [],
+                      "children": [
+                        {
+                          "node": "block",
+                          "classes": [
+                            "filled",
+                            "high"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "node": "block",
+                          "classes": [
+                            "empty"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "spinbutton",
+                  "classes": [
+                    "horizontal"
+                  ],
+                  "children": [
+                    {
+                      "node": "text",
+                      "classes": [],
+                      "children": []
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "down",
+                        "image-button"
+                      ],
+                      "children": [
+                        {
+                          "node": "image",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "image-button",
+                        "up"
+                      ],
+                      "children": [
+                        {
+                          "node": "image",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
                     }
                   ]
                 }
@@ -527,11 +474,32 @@
                                   "classes": [],
                                   "children": [
                                     {
-                                      "node": "label",
-                                      "classes": [
-                                        "title"
-                                      ],
-                                      "children": []
+                                      "node": "windowtitle",
+                                      "classes": [],
+                                      "children": [
+                                        {
+                                          "node": "box",
+                                          "classes": [
+                                            "vertical"
+                                          ],
+                                          "children": [
+                                            {
+                                              "node": "label",
+                                              "classes": [
+                                                "title"
+                                              ],
+                                              "children": []
+                                            },
+                                            {
+                                              "node": "label",
+                                              "classes": [
+                                                "subtitle"
+                                              ],
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
                                     }
                                   ]
                                 },
@@ -546,39 +514,6 @@
                                         "horizontal"
                                       ],
                                       "children": [
-                                        {
-                                          "node": "button",
-                                          "classes": [
-                                            "image-text-button",
-                                            "suggested-action"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "buttoncontent",
-                                              "classes": [],
-                                              "children": [
-                                                {
-                                                  "node": "box",
-                                                  "classes": [
-                                                    "horizontal"
-                                                  ],
-                                                  "children": [
-                                                    {
-                                                      "node": "image",
-                                                      "classes": [],
-                                                      "children": []
-                                                    },
-                                                    {
-                                                      "node": "label",
-                                                      "classes": [],
-                                                      "children": []
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        },
                                         {
                                           "node": "windowcontrols",
                                           "classes": [
@@ -639,78 +574,59 @@
           ]
         }
       ]
-    },
-    "software-install": {
-      "node": "window",
+    }
+  },
+  "components": {
+    "controls": {
+      "node": "toolbarview",
       "classes": [
-        "assistant",
-        "background"
+        "box-layout",
+        "flex-col"
       ],
       "children": [
         {
-          "node": "box",
+          "node": "clamp",
           "classes": [
-            "horizontal"
+            "clamp-layout",
+            "m-6"
           ],
           "children": [
             {
               "node": "box",
               "classes": [
-                "sidebar",
+                "box-layout",
+                "flex-col",
                 "vertical"
               ],
               "children": [
-                {
-                  "node": "label",
-                  "classes": [
-                    "highlight"
-                  ],
-                  "children": []
-                },
-                {
-                  "node": "label",
-                  "classes": [],
-                  "children": []
-                }
-              ]
-            },
-            {
-              "node": "box",
-              "classes": [
-                "vertical"
-              ],
-              "children": [
-                {
-                  "node": "stack",
-                  "classes": [],
-                  "children": [
-                    {
-                      "node": "label",
-                      "classes": [],
-                      "children": []
-                    },
-                    {
-                      "node": "label",
-                      "classes": [],
-                      "children": []
-                    }
-                  ]
-                },
                 {
                   "node": "box",
                   "classes": [
+                    "box-layout",
+                    "flex-row",
+                    "gap-2",
                     "horizontal"
                   ],
                   "children": [
                     {
                       "node": "button",
                       "classes": [
+                        "bin-layout",
+                        "duration-200",
+                        "font-bold",
+                        "gtk-alignment",
+                        "min-h-6",
+                        "min-w-4",
                         "text-button"
                       ],
                       "children": [
                         {
                           "node": "label",
-                          "classes": [],
+                          "classes": [
+                            "bin-layout",
+                            "flex",
+                            "gtk-alignment"
+                          ],
                           "children": []
                         }
                       ]
@@ -718,683 +634,460 @@
                     {
                       "node": "button",
                       "classes": [
+                        "bin-layout",
+                        "duration-200",
+                        "font-bold",
+                        "gtk-alignment",
+                        "min-h-6",
+                        "min-w-4",
+                        "shadow-none",
+                        "suggested-action",
                         "text-button"
                       ],
                       "children": [
                         {
                           "node": "label",
-                          "classes": [],
+                          "classes": [
+                            "bin-layout",
+                            "flex",
+                            "gtk-alignment"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "bin-layout",
+                        "destructive-action",
+                        "duration-200",
+                        "font-bold",
+                        "gtk-alignment",
+                        "min-h-6",
+                        "min-w-4",
+                        "text-accent",
+                        "text-button"
+                      ],
+                      "children": [
+                        {
+                          "node": "label",
+                          "classes": [
+                            "bin-layout",
+                            "flex",
+                            "gtk-alignment"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "bin-layout",
+                        "duration-200",
+                        "flat",
+                        "font-bold",
+                        "gtk-alignment",
+                        "min-h-6",
+                        "min-w-4",
+                        "shadow-none",
+                        "text-button"
+                      ],
+                      "children": [
+                        {
+                          "node": "label",
+                          "classes": [
+                            "bin-layout",
+                            "flex",
+                            "gtk-alignment"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "bin-layout",
+                        "circular",
+                        "duration-200",
+                        "font-bold",
+                        "gtk-alignment",
+                        "image-button",
+                        "min-w-6",
+                        "p-0",
+                        "rounded-full"
+                      ],
+                      "children": [
+                        {
+                          "node": "image",
+                          "classes": [
+                            "adw",
+                            "adw-list-add",
+                            "adw-list-add-symbolic",
+                            "self-center",
+                            "shrink-0"
+                          ],
                           "children": []
                         }
                       ]
                     }
                   ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  },
-  "components": {
-    "software": {
-      "node": "toolbarview",
-      "classes": [
-        "flex",
-        "flex-col"
-      ],
-      "children": [
-        {
-          "node": "toastoverlay",
-          "classes": [
-            "grid"
-          ],
-          "children": [
-            {
-              "node": "scrolledwindow",
-              "classes": [
-                "flex",
-                "flex-col",
-                "grow",
-                "min-h-0",
-                "overflow-auto"
-              ],
-              "children": [
+                },
                 {
-                  "node": "viewport",
+                  "node": "toggle-group",
                   "classes": [
-                    "flex",
-                    "flex-col",
+                    "box-layout",
+                    "flex-row",
                     "grow",
-                    "min-h-0"
+                    "items-center"
                   ],
                   "children": [
                     {
-                      "node": "box",
+                      "node": "button",
                       "classes": [
-                        "flex",
+                        "box-layout",
+                        "duration-200",
                         "flex-col",
-                        "gap-3",
-                        "m-3",
-                        "vertical"
+                        "font-bold",
+                        "min-h-6",
+                        "min-w-4",
+                        "text-button",
+                        "toggle"
                       ],
                       "children": [
                         {
-                          "node": "infobar",
+                          "node": "label",
                           "classes": [
-                            "flex-col",
-                            "grid",
-                            "warning"
+                            "bin-layout",
+                            "flex",
+                            "gtk-alignment"
                           ],
-                          "children": [
-                            {
-                              "node": "revealer",
-                              "classes": [
-                                "flex-col"
-                              ],
-                              "children": [
-                                {
-                                  "node": "box",
-                                  "classes": [
-                                    "flex",
-                                    "flex-row",
-                                    "horizontal",
-                                    "items-center"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "flex",
-                                        "flex-row",
-                                        "grow",
-                                        "horizontal",
-                                        "items-center"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "label",
-                                          "classes": [
-                                            "flex"
-                                          ],
-                                          "children": []
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "flex",
-                                        "flex-row",
-                                        "horizontal",
-                                        "items-center"
-                                      ],
-                                      "children": []
-                                    },
-                                    {
-                                      "node": "button",
-                                      "classes": [
-                                        "close",
-                                        "duration-200",
-                                        "flat",
-                                        "font-bold",
-                                        "grid",
-                                        "image-button",
-                                        "min-h-6",
-                                        "min-w-6",
-                                        "shadow-none"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "image",
-                                          "classes": [
-                                            "adw",
-                                            "adw-window-close",
-                                            "adw-window-close-symbolic",
-                                            "self-center",
-                                            "shrink-0"
-                                          ],
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "box-layout",
+                        "duration-200",
+                        "flex-col",
+                        "font-bold",
+                        "min-h-6",
+                        "min-w-4",
+                        "text-button",
+                        "toggle"
+                      ],
+                      "children": [
                         {
-                          "node": "statuspage",
+                          "node": "label",
                           "classes": [
-                            "grid"
+                            "bin-layout",
+                            "flex",
+                            "gtk-alignment"
                           ],
-                          "children": [
-                            {
-                              "node": "scrolledwindow",
-                              "classes": [
-                                "flex",
-                                "flex-col",
-                                "grow",
-                                "min-h-0",
-                                "overflow-auto"
-                              ],
-                              "children": [
-                                {
-                                  "node": "viewport",
-                                  "classes": [
-                                    "flex",
-                                    "flex-col",
-                                    "grow",
-                                    "min-h-0"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "flex",
-                                        "flex-col",
-                                        "vertical"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "clamp",
-                                          "classes": [
-                                            "grid"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "box",
-                                              "classes": [
-                                                "flex",
-                                                "flex-col",
-                                                "vertical"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "image",
-                                                  "classes": [
-                                                    "adw",
-                                                    "adw-application-x-executable",
-                                                    "adw-application-x-executable-symbolic",
-                                                    "icon",
-                                                    "self-center",
-                                                    "shrink-0"
-                                                  ],
-                                                  "children": []
-                                                },
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "flex",
-                                                    "title"
-                                                  ],
-                                                  "children": []
-                                                },
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "body",
-                                                    "description",
-                                                    "flex",
-                                                    "font-normal"
-                                                  ],
-                                                  "children": []
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "box",
-                                          "classes": [
-                                            "flex",
-                                            "flex-row",
-                                            "gap-3",
-                                            "horizontal",
-                                            "self-center"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "button",
-                                              "classes": [
-                                                "duration-200",
-                                                "font-bold",
-                                                "grid",
-                                                "min-h-6",
-                                                "min-w-4",
-                                                "pill",
-                                                "rounded-full",
-                                                "shadow-none",
-                                                "suggested-action",
-                                                "text-button"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "flex"
-                                                  ],
-                                                  "children": []
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "node": "button",
-                                              "classes": [
-                                                "duration-200",
-                                                "font-bold",
-                                                "min-h-6",
-                                                "min-w-4",
-                                                "text-button"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "flex"
-                                                  ],
-                                                  "children": []
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "node": "scrollbar",
-                                  "classes": [
-                                    "bg-none",
-                                    "bottom",
-                                    "horizontal",
-                                    "overlay-indicator",
-                                    "p-0",
-                                    "shadow-none"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "range",
-                                      "classes": [
-                                        "flex-row",
-                                        "grid",
-                                        "horizontal"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "trough",
-                                          "classes": [
-                                            "flex",
-                                            "relative"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "slider",
-                                              "classes": [
-                                                "flex"
-                                              ],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "node": "scrollbar",
-                                  "classes": [
-                                    "bg-none",
-                                    "overlay-indicator",
-                                    "p-0",
-                                    "right",
-                                    "shadow-none",
-                                    "vertical"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "range",
-                                      "classes": [
-                                        "flex-col",
-                                        "grid",
-                                        "vertical"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "trough",
-                                          "classes": [
-                                            "flex",
-                                            "relative"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "slider",
-                                              "classes": [
-                                                "flex"
-                                              ],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "box-layout",
+                        "duration-200",
+                        "flex-col",
+                        "font-bold",
+                        "min-h-6",
+                        "min-w-4",
+                        "text-button",
+                        "toggle"
+                      ],
+                      "children": [
                         {
-                          "node": "preferencesgroup",
+                          "node": "label",
                           "classes": [
-                            "grid"
+                            "bin-layout",
+                            "flex",
+                            "gtk-alignment"
                           ],
-                          "children": [
-                            {
-                              "node": "box",
-                              "classes": [
-                                "flex",
-                                "flex-col",
-                                "vertical"
-                              ],
-                              "children": [
-                                {
-                                  "node": "box",
-                                  "classes": [
-                                    "flex",
-                                    "flex-row",
-                                    "header",
-                                    "horizontal"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "box",
-                                      "classes": [
-                                        "flex",
-                                        "flex-col",
-                                        "labels",
-                                        "vertical"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "label",
-                                          "classes": [
-                                            "flex",
-                                            "font-bold",
-                                            "h4",
-                                            "heading"
-                                          ],
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "node": "box",
-                                  "classes": [
-                                    "flex",
-                                    "flex-col",
-                                    "vertical"
-                                  ],
-                                  "children": [
-                                    {
-                                      "node": "list",
-                                      "classes": [
-                                        "bg-clip-padding",
-                                        "boxed-list",
-                                        "flex",
-                                        "flex-col"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "row",
-                                          "classes": [
-                                            "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
-                                            "grid"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "box",
-                                              "classes": [
-                                                "flex",
-                                                "flex-row",
-                                                "horizontal"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "label",
-                                                  "classes": [
-                                                    "flex",
-                                                    "title"
-                                                  ],
-                                                  "children": []
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "progressbar",
-                                      "classes": [
-                                        "flex",
-                                        "flex-col",
-                                        "horizontal"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "trough",
-                                          "classes": [
-                                            "flex",
-                                            "relative"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "progress",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "levelbar",
-                                      "classes": [
-                                        "grid",
-                                        "horizontal"
-                                      ],
-                                      "children": [
-                                        {
-                                          "node": "trough",
-                                          "classes": [
-                                            "flex",
-                                            "relative"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "block",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "node": "image",
-                                      "classes": [
-                                        "self-center"
-                                      ],
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
+                          "children": []
                         }
                       ]
                     }
                   ]
                 },
                 {
-                  "node": "scrollbar",
+                  "node": "entry",
                   "classes": [
-                    "bg-none",
-                    "bottom",
+                    "bg-clip-padding",
+                    "duration-200"
+                  ],
+                  "children": [
+                    {
+                      "node": "text",
+                      "classes": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "entry",
+                  "classes": [
+                    "bg-clip-padding",
+                    "duration-200",
+                    "search"
+                  ],
+                  "children": [
+                    {
+                      "node": "text",
+                      "classes": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "scale",
+                  "classes": [
+                    "bin-layout",
+                    "gtk-alignment",
                     "horizontal",
-                    "overlay-indicator",
-                    "p-0",
-                    "shadow-none"
+                    "p-3"
                   ],
                   "children": [
                     {
-                      "node": "range",
+                      "node": "trough",
                       "classes": [
-                        "flex-row",
-                        "grid",
-                        "horizontal"
+                        "box-layout",
+                        "relative"
                       ],
                       "children": [
                         {
-                          "node": "trough",
+                          "node": "highlight",
+                          "classes": [],
+                          "children": []
+                        },
+                        {
+                          "node": "slider",
                           "classes": [
-                            "flex",
-                            "relative"
+                            "absolute",
+                            "box-layout"
                           ],
-                          "children": [
-                            {
-                              "node": "slider",
-                              "classes": [
-                                "flex"
-                              ],
-                              "children": []
-                            }
-                          ]
+                          "children": []
                         }
                       ]
                     }
                   ]
                 },
                 {
-                  "node": "scrollbar",
+                  "node": "box",
                   "classes": [
-                    "bg-none",
-                    "overlay-indicator",
-                    "p-0",
-                    "right",
-                    "shadow-none",
-                    "vertical"
-                  ],
-                  "children": [
-                    {
-                      "node": "range",
-                      "classes": [
-                        "flex-col",
-                        "grid",
-                        "vertical"
-                      ],
-                      "children": [
-                        {
-                          "node": "trough",
-                          "classes": [
-                            "flex",
-                            "relative"
-                          ],
-                          "children": [
-                            {
-                              "node": "slider",
-                              "classes": [
-                                "flex"
-                              ],
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "node": "toast",
-              "classes": [
-                "flex",
-                "flex-row",
-                "items-center",
-                "justify-self-center",
-                "mb-6",
-                "mt-3",
-                "mx-3",
-                "px-3",
-                "self-end"
-              ],
-              "children": [
-                {
-                  "node": "widget",
-                  "classes": [
-                    "flex",
+                    "box-layout",
+                    "flex-row",
+                    "gap-3",
+                    "horizontal",
                     "items-center"
                   ],
                   "children": [
                     {
                       "node": "label",
                       "classes": [
-                        "heading",
-                        "whitespace-nowrap"
+                        "bin-layout",
+                        "flex",
+                        "grow",
+                        "gtk-alignment",
+                        "text-left"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "node": "switch",
+                      "classes": [
+                        "bin-layout",
+                        "duration-200",
+                        "gtk-alignment"
+                      ],
+                      "children": [
+                        {
+                          "node": "slider",
+                          "classes": [
+                            "box-layout",
+                            "justify-self-start",
+                            "self-center"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "checkbutton",
+                  "classes": [
+                    "box-layout",
+                    "duration-200",
+                    "flex-row",
+                    "p-1",
+                    "text-button"
+                  ],
+                  "children": [
+                    {
+                      "node": "check",
+                      "classes": [
+                        "duration-200"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "node": "label",
+                      "classes": [
+                        "bin-layout",
+                        "flex",
+                        "gtk-alignment"
                       ],
                       "children": []
                     }
                   ]
                 },
                 {
-                  "node": "button",
+                  "node": "dropdown",
                   "classes": [
-                    "duration-200",
-                    "flat",
-                    "font-bold",
-                    "grid",
-                    "min-h-6",
-                    "min-w-4",
-                    "shadow-none",
-                    "text-button"
-                  ],
-                  "children": []
-                },
-                {
-                  "node": "button",
-                  "classes": [
-                    "circular",
-                    "duration-200",
-                    "flat",
-                    "font-bold",
-                    "grid",
-                    "image-button",
-                    "min-w-6",
-                    "p-0",
-                    "rounded-full",
-                    "shadow-none"
+                    "bin-layout",
+                    "gtk-alignment"
                   ],
                   "children": [
                     {
-                      "node": "image",
+                      "node": "arrow",
+                      "classes": [],
+                      "children": []
+                    },
+                    {
+                      "node": "label",
                       "classes": [
-                        "adw",
-                        "adw-window-close",
-                        "adw-window-close-symbolic",
-                        "self-center",
-                        "shrink-0"
+                        "bin-layout",
+                        "flex",
+                        "gtk-alignment"
                       ],
                       "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "progressbar",
+                  "classes": [
+                    "box-layout",
+                    "flex-col",
+                    "horizontal"
+                  ],
+                  "children": [
+                    {
+                      "node": "trough",
+                      "classes": [
+                        "box-layout",
+                        "relative"
+                      ],
+                      "children": [
+                        {
+                          "node": "progress",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "levelbar",
+                  "classes": [
+                    "bin-layout",
+                    "gtk-alignment",
+                    "horizontal"
+                  ],
+                  "children": [
+                    {
+                      "node": "trough",
+                      "classes": [
+                        "box-layout",
+                        "relative"
+                      ],
+                      "children": [
+                        {
+                          "node": "block",
+                          "classes": [],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "spinbutton",
+                  "classes": [
+                    "bg-clip-padding",
+                    "box-layout",
+                    "duration-200",
+                    "flex-row",
+                    "horizontal",
+                    "p-0"
+                  ],
+                  "children": [
+                    {
+                      "node": "text",
+                      "classes": [],
+                      "children": []
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "bin-layout",
+                        "down",
+                        "duration-200",
+                        "font-bold",
+                        "gtk-alignment",
+                        "image-button",
+                        "min-h-6",
+                        "min-w-6"
+                      ],
+                      "children": [
+                        {
+                          "node": "image",
+                          "classes": [
+                            "adw",
+                            "adw-value-decrease",
+                            "adw-value-decrease-symbolic",
+                            "self-center",
+                            "shrink-0"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "button",
+                      "classes": [
+                        "bin-layout",
+                        "duration-200",
+                        "font-bold",
+                        "gtk-alignment",
+                        "image-button",
+                        "min-h-6",
+                        "min-w-6",
+                        "up"
+                      ],
+                      "children": [
+                        {
+                          "node": "image",
+                          "classes": [
+                            "adw",
+                            "adw-value-increase",
+                            "adw-value-increase-symbolic",
+                            "self-center",
+                            "shrink-0"
+                          ],
+                          "children": []
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1412,13 +1105,14 @@
             {
               "node": "windowhandle",
               "classes": [
-                "grid"
+                "bin-layout",
+                "gtk-alignment"
               ],
               "children": [
                 {
                   "node": "box",
                   "classes": [
-                    "flex",
+                    "box-layout",
                     "flex-col",
                     "vertical"
                   ],
@@ -1426,22 +1120,25 @@
                     {
                       "node": "headerbar",
                       "classes": [
-                        "grid"
+                        "bg-headerbar-bg",
+                        "bin-layout",
+                        "gtk-alignment",
+                        "text-headerbar-fg"
                       ],
                       "children": [
                         {
                           "node": "windowhandle",
                           "classes": [
-                            "grid"
+                            "bin-layout",
+                            "gtk-alignment"
                           ],
                           "children": [
                             {
                               "node": "box",
                               "classes": [
+                                "center-layout",
                                 "flex-row",
-                                "grid",
-                                "horizontal",
-                                "items-center"
+                                "horizontal"
                               ],
                               "children": [
                                 {
@@ -1451,7 +1148,7 @@
                                     {
                                       "node": "box",
                                       "classes": [
-                                        "flex",
+                                        "box-layout",
                                         "flex-row",
                                         "horizontal"
                                       ],
@@ -1459,9 +1156,10 @@
                                         {
                                           "node": "windowcontrols",
                                           "classes": [
+                                            "box-layout",
                                             "empty",
-                                            "flex",
-                                            "flex-row"
+                                            "flex-row",
+                                            "order-last"
                                           ],
                                           "children": []
                                         }
@@ -1472,7 +1170,48 @@
                                 {
                                   "node": "widget",
                                   "classes": [],
-                                  "children": []
+                                  "children": [
+                                    {
+                                      "node": "windowtitle",
+                                      "classes": [
+                                        "bin-layout",
+                                        "gtk-alignment",
+                                        "min-h-3"
+                                      ],
+                                      "children": [
+                                        {
+                                          "node": "box",
+                                          "classes": [
+                                            "box-layout",
+                                            "flex-col",
+                                            "vertical"
+                                          ],
+                                          "children": [
+                                            {
+                                              "node": "label",
+                                              "classes": [
+                                                "bin-layout",
+                                                "flex",
+                                                "gtk-alignment",
+                                                "title"
+                                              ],
+                                              "children": []
+                                            },
+                                            {
+                                              "node": "label",
+                                              "classes": [
+                                                "bin-layout",
+                                                "flex",
+                                                "gtk-alignment",
+                                                "subtitle"
+                                              ],
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 },
                                 {
                                   "node": "widget",
@@ -1481,7 +1220,7 @@
                                     {
                                       "node": "box",
                                       "classes": [
-                                        "flex",
+                                        "box-layout",
                                         "flex-row",
                                         "horizontal",
                                         "justify-self-end"
@@ -1490,18 +1229,20 @@
                                         {
                                           "node": "windowcontrols",
                                           "classes": [
-                                            "flex",
+                                            "box-layout",
                                             "flex-row",
-                                            "justify-self-end"
+                                            "justify-self-end",
+                                            "order-last"
                                           ],
                                           "children": [
                                             {
                                               "node": "button",
                                               "classes": [
+                                                "bin-layout",
                                                 "close",
                                                 "duration-200",
                                                 "font-bold",
-                                                "grid",
+                                                "gtk-alignment",
                                                 "image-button",
                                                 "min-h-6",
                                                 "min-w-6"
@@ -1517,57 +1258,6 @@
                                                     "shrink-0"
                                                   ],
                                                   "children": []
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "button",
-                                          "classes": [
-                                            "duration-200",
-                                            "font-bold",
-                                            "grid",
-                                            "min-h-6",
-                                            "min-w-4",
-                                            "shadow-none",
-                                            "suggested-action"
-                                          ],
-                                          "children": [
-                                            {
-                                              "node": "buttoncontent",
-                                              "classes": [
-                                                "grid",
-                                                "image-text-button"
-                                              ],
-                                              "children": [
-                                                {
-                                                  "node": "box",
-                                                  "classes": [
-                                                    "flex",
-                                                    "flex-row",
-                                                    "horizontal"
-                                                  ],
-                                                  "children": [
-                                                    {
-                                                      "node": "image",
-                                                      "classes": [
-                                                        "adw",
-                                                        "adw-folder-download",
-                                                        "adw-folder-download-symbolic",
-                                                        "self-center",
-                                                        "shrink-0"
-                                                      ],
-                                                      "children": []
-                                                    },
-                                                    {
-                                                      "node": "label",
-                                                      "classes": [
-                                                        "flex"
-                                                      ],
-                                                      "children": []
-                                                    }
-                                                  ]
                                                 }
                                               ]
                                             }
@@ -1599,13 +1289,14 @@
             {
               "node": "windowhandle",
               "classes": [
-                "grid"
+                "bin-layout",
+                "gtk-alignment"
               ],
               "children": [
                 {
                   "node": "box",
                   "classes": [
-                    "flex",
+                    "box-layout",
                     "flex-col",
                     "vertical"
                   ],
@@ -1614,39 +1305,6 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    "software-install": {
-      "node": "window",
-      "classes": [
-        "assistant",
-        "background",
-        "grid"
-      ],
-      "children": [
-        {
-          "node": "sheet",
-          "classes": [],
-          "children": []
-        },
-        {
-          "node": "drawing",
-          "classes": [],
-          "children": [
-            {
-              "node": "paper",
-              "classes": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "node": "label",
-          "classes": [
-            "flex"
-          ],
-          "children": []
         }
       ]
     }

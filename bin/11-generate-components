@@ -192,10 +192,6 @@ module GenerateComponents
   # the child asked for. Without this an AdwButtonRow's contents, which the template sets to
   # `halign=center`, sat against the left edge of every row.
   GRID_ALIGNMENT = [
-    # A grid track is as tall as its tallest child unless the child may shrink, and GTK's
-    # children all may: an overlay in a window is the window's height and what it holds
-    # scrolls inside it.
-    "[&>*]:min-h-0",
     "[&>[data-halign=start]]:justify-self-start",
     "[&>[data-halign=center]]:justify-self-center",
     "[&>[data-halign=end]]:justify-self-end",
@@ -357,10 +353,6 @@ module GenerateComponents
       "child-hstart:self-start",
       "child-hcenter:self-center",
       "child-hend:self-end",
-      # A FLEX CHILD WILL NOT SHRINK BELOW ITS CONTENT unless it is told it may, and GTK's
-      # children all may: a window gives its child the window's height and the child scrolls
-      # inside it.
-      "[&>*]:min-h-0",
       # The main axis, which is down, and so is margin.
       "child-vstart:mb-auto",
       "child-vcenter:my-auto",
@@ -1144,7 +1136,11 @@ module GenerateComponents
     "toast" => "items-center justify-self-center self-end",
     "separator" => "self-stretch my-1.5",
     "viewswitcher" => "my-[-3px] min-h-1.5",
-    "toggle-group" => "items-center grow",
+    "toggle-group" => "items-center",
+    # A toggle fills its share of the group: AdwToggleGroup gives every toggle the same
+    # extra width on top of its own, which is `flex-grow` and a basis of its natural size.
+    # `homogeneous` makes the share itself equal, which the group writes as `basis-0`.
+    "toggle" => "flex items-center justify-center grow",
     "info-bar-box" => "items-center",
     "info-bar-content" => "items-center grow",
     "toast-widget-inner" => "flex items-center",
@@ -1233,7 +1229,12 @@ module GenerateComponents
     components.each do |name, component|
       node = component["node"]
 
-      unless node.to_s.empty? || LEAVES.include?(self.element(component)) || leaves.include?(node)
+      # THE COMPONENT'S OWN ELEMENT DECIDES, not whether the name is an <input> somewhere
+      # else. `entry` is an <input> inside an entry row's template and a <div> with a text
+      # node and two icons in it as GtkEntry itself, and excluding the name everywhere left
+      # every entry in the registry with no arrangement at all: the search entry's magnifier
+      # sat on the line above its own placeholder.
+      unless node.to_s.empty? || LEAVES.include?(self.element(component))
         kind = self.layout_kind(name, component)
         found[node] << [self.manager(kind), self.layout_utilities(kind)]
       end
@@ -1428,6 +1429,241 @@ module GenerateComponents
   # The body here REPLACES the generated one. It is the last resort and the table is
   # meant to stay short: anything which can be read out of a source belongs in bin/08.
   OWN_BEHAVIOUR = {
+    # A GtkSearchEntry DRAWS THE MAGNIFIER ITSELF. gtksearchentry.c packs an image before
+    # the text and another after it for the clear button, which is why Adwaita states
+    # `entry > image.left` and `entry > image.right` and never says which entry has one.
+    # Without it the search entry in every application was an ordinary pill with a
+    # placeholder in it.
+    "SearchEntry" => {
+      body: <<~'TSX'.chomp,
+        function SearchEntry({ className, render, variant = "default", keyCaptureWidget: _keyCaptureWidget, activatesDefault, editable, enableUndo, inputHints, inputPurpose, maxWidthChars, placeholderText, searchDelay, text, widthChars, xalign, children, ...props }: SearchEntryProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          const defaultProps = {
+            "data-slot": "search-entry",
+            "data-node": "entry",
+            "data-variant": variant,
+            "data-activates-default": activatesDefault,
+            "data-editable": editable,
+            "data-enable-undo": enableUndo,
+            "data-input-hints": inputHints,
+            "data-input-purpose": inputPurpose,
+            "data-max-width-chars": maxWidthChars,
+            "data-placeholder-text": placeholderText,
+            "data-search-delay": searchDelay,
+            "data-text": text,
+            "data-width-chars": widthChars,
+            "data-xalign": xalign,
+            className: cn("entry", "group/search-entry", searchEntryVariants({ variant }), "search", widgetClassName, className),
+            style,
+            children: (
+              <>
+                <SearchEntryImage name="edit-find-symbolic" className={cn("left")} />
+                <SearchEntryText placeholder={placeholderText} defaultValue={text} />
+                {children}
+              </>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+      TSX
+    },
+    # A GtkDropDown IS A BUTTON. gtkdropdown.ui puts a toggle button in it with a box, the
+    # selected item's label in a stack and the arrow after it, and every measurement a drop
+    # down has -- the pill, the padding, the grey -- is Adwaita's `button`. Drawn as the bare
+    # `dropdown > arrow` the stylesheet mentions, it was a line of text with a chevron at the
+    # end of it and no button anywhere.
+    "DropDown" => {
+      body: <<~'TSX'.chomp,
+        function DropDown({ className, render, expression: _expression, factory: _factory, headerFactory: _headerFactory, listFactory: _listFactory, model: _model, enableSearch, searchMatchMode, selected, showArrow, children, ...props }: DropDownProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          // The stack shows ONE of the items: whichever `selected` names, which is an index
+          // into what the caller wrote the same way it is an index into the model.
+          const items = React.Children.toArray(children)
+          const shown = items.length > 1 ? items[selected ?? 0] : items
+
+          const defaultProps = {
+            "data-slot": "drop-down",
+            "data-node": "dropdown",
+            "data-enable-search": enableSearch,
+            "data-search-match-mode": searchMatchMode,
+            "data-selected-value": selected,
+            "data-show-arrow": showArrow,
+            className: cn("dropdown", "group/drop-down", "bin", widgetClassName, className),
+            style,
+            children: (
+              <DropDownButton>
+                <DropDownBox>
+                  <DropDownStack>{shown}</DropDownStack>
+                  {showArrow === false ? null : <DropDownArrow />}
+                </DropDownBox>
+              </DropDownButton>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+
+        function DropDownButton({ className, ...props }: React.ComponentProps<"button">) {
+          return (
+            <button
+              type="button"
+              data-slot="drop-down-button"
+              data-node="button"
+              aria-haspopup="listbox"
+              className={cn("button", "box", "toggle", className)}
+              {...props}
+            />
+          )
+        }
+
+        function DropDownBox({ className, ...props }: React.ComponentProps<"div">) {
+          return (
+            <div
+              data-slot="drop-down-box"
+              data-node="box"
+              className={cn("box", "box", "horizontal", "grow", "items-center", className)}
+              {...props}
+            />
+          )
+        }
+
+        function DropDownStack({ className, ...props }: React.ComponentProps<"div">) {
+          return (
+            <div
+              data-slot="drop-down-stack"
+              data-node="stack"
+              className={cn("stack", "grow", className)}
+              {...props}
+            />
+          )
+        }
+      TSX
+      parts: %w[DropDownButton DropDownBox DropDownStack],
+    },
+    # AN ADWTOGGLE IS NOT A WIDGET and what a toggle group draws for one is a `toggle`
+    # node, not a button: gtk's tree is `toggle-group > toggle.text-button.toggle > label`
+    # and every measurement Adwaita states about a segmented control -- the inset radius,
+    # the white card the active one sits on, the padding which is the group's own padding
+    # subtracted -- is keyed by that node. Rendered as the buttons they were written as,
+    # the three segments came out as three ordinary buttons in a grey box.
+    #
+    # So the group reads what each child was given and draws the toggle itself, with the
+    # separator the toolkit puts between each pair -- hidden before the first, which is
+    # how libadwaita keeps the spacing even.
+    "ToggleGroup" => {
+      imports: ['import { Icon } from "@/lib/icon"'],
+      body: <<~'TSX'.chomp,
+        function ToggleGroup({ className, render, variant = "default", size = "default", active, activeName, canShrink, homogeneous, orientation, children, ...props }: ToggleGroupProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          // What the caller wrote: one element per toggle, each carrying the label, the
+          // icon and whether it is the active one.
+          type ToggleChild = { label?: string; iconName?: string; active?: boolean; name?: string; sensitive?: boolean; tooltip?: string }
+          const items = React.Children.toArray(children).filter(React.isValidElement) as React.ReactElement<ToggleChild>[]
+          const loose = React.Children.toArray(children).filter((one) => !React.isValidElement(one))
+
+          // `active` is an index and `active-name` is a name; a child which says so itself
+          // is the third way, and is what an application which writes the group out by hand
+          // uses.
+          const chosen = (one: ToggleChild, index: number) =>
+            activeName !== undefined ? one.name === activeName : active !== undefined ? index === active : one.active === true
+
+          const defaultProps = {
+            "data-slot": "toggle-group",
+            "data-node": "toggle-group",
+            "data-variant": variant,
+            "data-size": size,
+            role: "group",
+            "data-active-value": active,
+            "data-active-name": activeName,
+            "data-can-shrink": canShrink,
+            "data-homogeneous": homogeneous,
+            "data-orientation": orientation,
+            className: cn("toggle-group", (orientation === "vertical" ? "lay-col" : "lay-row"), toggleGroupVariants({ variant, size }), widgetClassName, className),
+            style,
+            children: (
+              <>
+                {items.map((one, index) => {
+                  const given = one.props
+                  const label = given.label
+                  const icon = given.iconName
+                  const content = label !== undefined && icon !== undefined ? "image-text-button" : icon !== undefined ? "image-button" : "text-button"
+
+                  return (
+                    <React.Fragment key={given.name ?? label ?? index}>
+                      <ToggleGroupSeparator className={cn(orientation === "vertical" ? "vertical" : "horizontal", index === 0 && "hidden")} />
+                      <ToggleGroupToggle
+                        data-state={chosen(given, index) ? "checked" : "unchecked"}
+                        aria-checked={chosen(given, index)}
+                        disabled={given.sensitive === false || undefined}
+                        className={cn(content, homogeneous ? "basis-0" : undefined)}
+                      >
+                        {icon === undefined ? null : <Icon name={icon} data-slot="toggle-image" data-node="image" className={cn("image")} />}
+                        {label === undefined ? null : (
+                          <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
+                            {label}
+                          </span>
+                        )}
+                      </ToggleGroupToggle>
+                    </React.Fragment>
+                  )
+                })}
+                {loose}
+              </>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+
+        function ToggleGroupToggle({ className, ...props }: React.ComponentProps<"button">) {
+          return (
+            <button
+              type="button"
+              data-slot="toggle-group-toggle"
+              data-node="toggle"
+              role="radio"
+              className={cn("toggle", "toggle", className)}
+              {...props}
+            />
+          )
+        }
+
+        function ToggleGroupSeparator({ className, ...props }: React.ComponentProps<"div">) {
+          return (
+            <div
+              data-slot="toggle-group-separator"
+              data-node="separator"
+              aria-hidden="true"
+              className={cn("separator", className)}
+              {...props}
+            />
+          )
+        }
+      TSX
+      parts: %w[ToggleGroupToggle ToggleGroupSeparator],
+    },
     # `adw_preferences_group_add` sorts what it is given: an AdwPreferencesRow goes into
     # the group's list box -- which is the card the rows are drawn in -- and anything else
     # is appended to the group's own box BELOW that card. bin/apps/software adds a
@@ -2030,7 +2266,7 @@ module GenerateComponents
 
       #{(OWN_BEHAVIOUR[name] || {})[:body] || self.root(name, component, props, cva, element, parts)}#{parts.map{|part| "\n\n#{part.fetch(:source)}"}.join}
 
-      export { #{([name] + parts.map{|part| part.fetch(:name)} + (cva ? ["#{self.variants_name(name)}"] : [])).join(', ')} }#{self.row_mark(name, component)}
+      export { #{([name] + parts.map{|part| part.fetch(:name)} + (OWN_BEHAVIOUR[name] || {})[:parts].to_a + (cva ? ["#{self.variants_name(name)}"] : [])).join(', ')} }#{self.row_mark(name, component)}
     TS
   end
 

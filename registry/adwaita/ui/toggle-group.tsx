@@ -9,6 +9,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation } from "@/lib/enums"
@@ -59,9 +60,18 @@ export interface ToggleGroupProps
 function ToggleGroup({ className, render, variant = "default", size = "default", active, activeName, canShrink, homogeneous, orientation, children, ...props }: ToggleGroupProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  // What the caller wrote: one element per toggle, each carrying the label, the
+  // icon and whether it is the active one.
+  type ToggleChild = { label?: string; iconName?: string; active?: boolean; name?: string; sensitive?: boolean; tooltip?: string }
+  const items = React.Children.toArray(children).filter(React.isValidElement) as React.ReactElement<ToggleChild>[]
+  const loose = React.Children.toArray(children).filter((one) => !React.isValidElement(one))
+
+  // `active` is an index and `active-name` is a name; a child which says so itself
+  // is the third way, and is what an application which writes the group out by hand
+  // uses.
+  const chosen = (one: ToggleChild, index: number) =>
+    activeName !== undefined ? one.name === activeName : active !== undefined ? index === active : one.active === true
+
   const defaultProps = {
     "data-slot": "toggle-group",
     "data-node": "toggle-group",
@@ -75,7 +85,36 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
     "data-orientation": orientation,
     className: cn("toggle-group", (orientation === "vertical" ? "lay-col" : "lay-row"), toggleGroupVariants({ variant, size }), widgetClassName, className),
     style,
-    children: children,
+    children: (
+      <>
+        {items.map((one, index) => {
+          const given = one.props
+          const label = given.label
+          const icon = given.iconName
+          const content = label !== undefined && icon !== undefined ? "image-text-button" : icon !== undefined ? "image-button" : "text-button"
+
+          return (
+            <React.Fragment key={given.name ?? label ?? index}>
+              <ToggleGroupSeparator className={cn(orientation === "vertical" ? "vertical" : "horizontal", index === 0 && "hidden")} />
+              <ToggleGroupToggle
+                data-state={chosen(given, index) ? "checked" : "unchecked"}
+                aria-checked={chosen(given, index)}
+                disabled={given.sensitive === false || undefined}
+                className={cn(content, homogeneous ? "basis-0" : undefined)}
+              >
+                {icon === undefined ? null : <Icon name={icon} data-slot="toggle-image" data-node="image" className={cn("image")} />}
+                {label === undefined ? null : (
+                  <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
+                    {label}
+                  </span>
+                )}
+              </ToggleGroupToggle>
+            </React.Fragment>
+          )
+        })}
+        {loose}
+      </>
+    ),
     ...widgetAttributes,
   }
 
@@ -87,4 +126,29 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
   })
 }
 
-export { ToggleGroup, toggleGroupVariants }
+function ToggleGroupToggle({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      type="button"
+      data-slot="toggle-group-toggle"
+      data-node="toggle"
+      role="radio"
+      className={cn("toggle", "toggle", className)}
+      {...props}
+    />
+  )
+}
+
+function ToggleGroupSeparator({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toggle-group-separator"
+      data-node="separator"
+      aria-hidden="true"
+      className={cn("separator", className)}
+      {...props}
+    />
+  )
+}
+
+export { ToggleGroup, ToggleGroupToggle, ToggleGroupSeparator, toggleGroupVariants }

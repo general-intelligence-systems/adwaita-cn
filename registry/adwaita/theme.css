@@ -277,9 +277,13 @@
 /* The states, the alignments and the node paths. */
 @custom-variant gtk-hover (&:hover);
 @custom-variant gtk-active (&:active);
-@custom-variant gtk-disabled (&:is(:disabled, [data-disabled], [aria-disabled="true"]));
-@custom-variant gtk-checked (&:is(:checked, [data-state="checked"], [aria-checked="true"]));
-@custom-variant gtk-selected (&:is([data-selected], [aria-selected="true"]));
+@custom-variant gtk-disabled (&:is(:is(:disabled, [data-disabled], [aria-disabled="true"]), :where(:is(:disabled, [data-disabled], [aria-disabled="true"])) *));
+@custom-variant gtk-checked (&:is(:is(:checked, [data-state="checked"], [aria-checked="true"]), :where(:is(:checked, [data-state="checked"], [aria-checked="true"])) *));
+@custom-variant gtk-selected (&:is(:is([data-selected], [aria-selected="true"]), :where(:is([data-selected], [aria-selected="true"])) *));
+@custom-variant gtk-indeterminate (&:is(:indeterminate, [data-state="indeterminate"], [aria-checked="mixed"], :where([data-state="indeterminate"], [aria-checked="mixed"]) *));
+@custom-variant gtk-first (&:first-child);
+@custom-variant gtk-last (&:last-child);
+@custom-variant gtk-only (&:only-child);
 @custom-variant gtk-focus (&:focus-visible);
 @custom-variant gtk-backdrop (&:where([data-backdrop] *));
 @custom-variant gtk-flat (&:where(.flat));
@@ -511,6 +515,13 @@
   /* GTK's children fill the cross axis unless they say otherwise, which is
    * `stretch` and not the `flex-start` a bare flex container would give them. */
   align-items: stretch;
+
+  /* A GTK BOX NEVER ALLOCATES A CHILD LESS THAN IT MEASURED. Short of room it
+   * overflows; it does not squeeze. Flex shrinks by default, so a row of five
+   * buttons 349px wide came out 338 -- every label a little narrower than its own
+   * text -- and the clamp around it read that back as the width to be. A child
+   * which may shrink says so for itself, the way a label which ellipsizes does. */
+  & > * { flex-shrink: 0; }
 }
 
 /* GTK_TYPE_BIN_LAYOUT -- 66 widgets: a11y, adw-adaptive-preview, adw-avatar, adw-banner… */
@@ -521,11 +532,10 @@
   display: grid;
   grid-template-areas: "bin";
 
-  & > * {
-    grid-area: bin;
-    min-width: 0;
-    min-height: 0;
-  }
+  /* A child's own minimum is honoured, the way GTK honours it: a parent never
+   * allocates a widget less than it measured. `min-height: 0` here took every
+   * measurement the stylesheet states away from every widget in a bin. */
+  & > * { grid-area: bin; }
 }
 
 /* GTK_TYPE_CENTER_LAYOUT -- 1 widget: gtkcenterbox */
@@ -547,11 +557,7 @@
   display: grid;
   grid-template-areas: "overlay";
 
-  & > * {
-    grid-area: overlay;
-    min-width: 0;
-    min-height: 0;
-  }
+  & > * { grid-area: overlay; }
 }
 
 /* GTK_TYPE_GRID_LAYOUT -- 1 widget: gtkgrid */
@@ -574,7 +580,12 @@
   display: grid;
   grid-template-columns: 1fr minmax(0, var(--container-clamp)) 1fr;
 
-  & > * { grid-column: 2; min-width: 0; }
+  /* The child's own minimum stands. AdwClampLayout gives the child the smaller of
+   * its natural width and the clamp's, and never less than its minimum -- a row of
+   * five buttons which cannot be made narrower than 349px is 349px wide in a clamp
+   * whose maximum works out at 338. `min-width: 0` here let the track squeeze it,
+   * and every button in the row came out a little narrower than its own label. */
+  & > * { grid-column: 2; }
 }
 
 /* ADW_TYPE_WRAP_LAYOUT -- 1 widget: adw-wrap-box */
@@ -634,7 +645,6 @@
 
 /* What GTK gives a container's children without being asked. */
 @utility gtk-alignment {
-  & > * { min-height: 0; }
   & > [data-halign="start"] { justify-self: start; }
   & > [data-halign="center"] { justify-self: center; }
   & > [data-halign="end"] { justify-self: end; }

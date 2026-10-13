@@ -74,9 +74,6 @@ export interface SearchEntryProps
 function SearchEntry({ className, render, variant = "default", keyCaptureWidget: _keyCaptureWidget, activatesDefault, editable, enableUndo, inputHints, inputPurpose, maxWidthChars, placeholderText, searchDelay, text, widthChars, xalign, children, ...props }: SearchEntryProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "search-entry",
     "data-node": "entry",
@@ -95,11 +92,12 @@ function SearchEntry({ className, render, variant = "default", keyCaptureWidget:
     className: cn("entry", "group/search-entry", searchEntryVariants({ variant }), "search", widgetClassName, className),
     style,
     children: (
-        <>
-                  <SearchEntryText placeholder={placeholderText} defaultValue={text} />
-                  {children}
-        </>
-      ),
+      <>
+        <SearchEntryImage name="edit-find-symbolic" className={cn("left")} />
+        <SearchEntryText placeholder={placeholderText} defaultValue={text} />
+        {children}
+      </>
+    ),
     ...widgetAttributes,
   }
 

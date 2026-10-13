@@ -45,6 +45,8 @@
 require "json"
 require "set"
 
+require_relative "lib/registry_classes"
+
 module FinalComponents
   ROOT = File.expand_path("..", __dir__)
 
@@ -1180,17 +1182,23 @@ module FinalComponents
 
   # A node's rules restated as the shape the parent gives each of its children.
   #
-  # `[&>*]:` and not a selector on the node itself: the registry has no component whose
-  # node is `toggle` -- AdwToggle is a GObject rather than a widget, so there is nothing
-  # for one to be generated from -- and what a caller puts in a group is a button. The
-  # group is the only thing which knows its children are toggles, so it is the thing
-  # which says so.
-  def self.for_children(classes)
+  # The node is NAMED rather than reached with `*`. A toggle group holds its toggles AND
+  # the separator between each pair, and a rule meant for a toggle written against every
+  # child put the toggle's 34px minimum width on each of those separators: three grey
+  # blocks where the toolkit draws three hairlines.
+  #
+  # The states go through the GTK variants for the same reason the table's do: a state is
+  # set on the widget and read on every node it draws.
+  def self.for_children(node, classes)
     base = classes.fetch("base", [])
     states = classes.reject{|state, _| state == "base" }
-      .flat_map{|state, list| list.map{|one| "#{state}:#{one}" } }
+      .flat_map do |state, list|
+        prefix = state.split(":").map{|one| RegistryClasses::VARIANTS.fetch(one, one) }.join(":")
 
-    (base + states).map{|one| "[&>*]:#{one}" }
+        list.map{|one| "#{prefix}:#{one}" }
+      end
+
+    (base + states).map{|one| "[&>:where([data-node=#{node}])]:#{one}" }
   end
 
   # The item node folded off a component's tree and onto the component itself.
@@ -1206,7 +1214,7 @@ module FinalComponents
 
     tree["children"] = tree.fetch("children", []) - [found]
     classes = (entry["classes"] ||= {})
-    classes["base"] = classes.fetch("base", []) + self.for_children(found.fetch("classes", {}))
+    classes["base"] = classes.fetch("base", []) + self.for_children(repeated, found.fetch("classes", {}))
     # What the component holds is now the caller's items rather than the folded node, so
     # the generator must not read the tree it is left with as a wrapper around one thing.
     entry["items"] = repeated

@@ -119,6 +119,11 @@
             bundix
             pkg-config
 
+            # bin/19-widget-trees is a C program: it is the toolkit itself which
+            # builds a widget's CSS nodes, so the tree is read out of a running GTK
+            # rather than guessed from a stylesheet or a doc comment.
+            gcc
+
             nodejs
             pnpm
 

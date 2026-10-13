@@ -21,11 +21,13 @@ require "set"
 
 module RegistryClasses
   STATES = {
-    "hover" => ":hover", "active" => ":active", "disabled" => ":disabled",
-    "focus" => ":focus", "focus-visible" => ":focus-visible",
-    "indeterminate" => ":indeterminate", "first" => ":first-child",
-    "last" => ":last-child", "only" => ":only-child",
-    "data-[state=checked]" => '[data-state="checked"]', "data-[selected]" => "[data-selected]",
+    "hover" => ":hover", "active" => ":active",
+    "disabled" => ":is(:disabled,[data-disabled],[aria-disabled=true])",
+    "focus" => ":focus-visible", "focus-visible" => ":focus-visible",
+    "indeterminate" => ":is(:indeterminate,[data-state=indeterminate])",
+    "first" => ":first-child", "last" => ":last-child", "only" => ":only-child",
+    "data-[state=checked]" => ":is(:checked,[data-state=checked],[aria-checked=true])",
+    "data-[selected]" => ":is([data-selected],[aria-selected=true])",
   }.freeze
 
   # A compound as a selector: the node by the attribute every component renders, the
@@ -84,11 +86,29 @@ module RegistryClasses
     utilities.map{|one| "#{variant}:#{one}" }
   end
 
+  # The state names the stylesheet is read out as, and the variant each is written with.
+  #
+  # THROUGH THE GTK VARIANTS RATHER THAN TAILWIND'S OWN. A state in GTK is set on the
+  # widget and matched on every node the widget draws -- `check:checked` is a rule about
+  # the check inside a checked check button -- and `data-[state=checked]:` is a rule about
+  # the element which carries the attribute and nothing under it. Written as Tailwind's own
+  # the checked rules reached nothing: the attribute is on the button, the measurements are
+  # on the check, and a checked check button drew an empty square.
+  VARIANTS = {
+    "hover" => "gtk-hover", "active" => "gtk-active", "disabled" => "gtk-disabled",
+    "focus" => "gtk-focus", "focus-visible" => "gtk-focus",
+    "indeterminate" => "gtk-indeterminate",
+    "first" => "gtk-first", "last" => "gtk-last", "only" => "gtk-only",
+    "data-[state=checked]" => "gtk-checked", "data-[selected]" => "gtk-selected",
+  }.freeze
+
   # The utilities a widget carries itself, each behind the prefix of the state it belongs to.
   def self.direct(state, utilities)
     return utilities if state == "base"
 
-    utilities.map{|one| "#{state}:#{one}" }
+    prefix = state.split(":").map{|one| VARIANTS.fetch(one, one) }.join(":")
+
+    utilities.map{|one| "#{prefix}:#{one}" }
   end
 
   # Merge a node's structural utilities -- what its layout manager does, which is a fact

@@ -233,6 +233,13 @@ module Theme
         /* GTK's children fill the cross axis unless they say otherwise, which is
          * `stretch` and not the `flex-start` a bare flex container would give them. */
         align-items: stretch;
+
+        /* A GTK BOX NEVER ALLOCATES A CHILD LESS THAN IT MEASURED. Short of room it
+         * overflows; it does not squeeze. Flex shrinks by default, so a row of five
+         * buttons 349px wide came out 338 -- every label a little narrower than its own
+         * text -- and the clamp around it read that back as the width to be. A child
+         * which may shrink says so for itself, the way a label which ellipsizes does. */
+        & > * { flex-shrink: 0; }
       CSS
     },
     "GTK_TYPE_BIN_LAYOUT" => {
@@ -244,11 +251,10 @@ module Theme
         display: grid;
         grid-template-areas: "bin";
 
-        & > * {
-          grid-area: bin;
-          min-width: 0;
-          min-height: 0;
-        }
+        /* A child's own minimum is honoured, the way GTK honours it: a parent never
+         * allocates a widget less than it measured. `min-height: 0` here took every
+         * measurement the stylesheet states away from every widget in a bin. */
+        & > * { grid-area: bin; }
       CSS
     },
     "GTK_TYPE_CENTER_LAYOUT" => {
@@ -272,11 +278,7 @@ module Theme
         display: grid;
         grid-template-areas: "overlay";
 
-        & > * {
-          grid-area: overlay;
-          min-width: 0;
-          min-height: 0;
-        }
+        & > * { grid-area: overlay; }
       CSS
     },
     "GTK_TYPE_GRID_LAYOUT" => {
@@ -296,7 +298,12 @@ module Theme
         display: grid;
         grid-template-columns: 1fr minmax(0, var(--container-clamp)) 1fr;
 
-        & > * { grid-column: 2; min-width: 0; }
+        /* The child's own minimum stands. AdwClampLayout gives the child the smaller of
+         * its natural width and the clamp's, and never less than its minimum -- a row of
+         * five buttons which cannot be made narrower than 349px is 349px wide in a clamp
+         * whose maximum works out at 338. `min-width: 0` here let the track squeeze it,
+         * and every button in the row came out a little narrower than its own label. */
+        & > * { grid-column: 2; }
       CSS
     },
     "ADW_TYPE_WRAP_LAYOUT" => {
@@ -362,7 +369,6 @@ module Theme
   # One utility rather than seven classes on every container: a grid track is as tall as its
   # tallest child unless the child may shrink, and GTK's children all may.
   ALIGNMENT = <<~CSS
-    & > * { min-height: 0; }
     & > [data-halign="start"] { justify-self: start; }
     & > [data-halign="center"] { justify-self: center; }
     & > [data-halign="end"] { justify-self: end; }
@@ -382,11 +388,30 @@ module Theme
     found = []
 
     # The states GTK puts on a widget, as the DOM carries them.
+    #
+    # A STATE IS SET ON THE WIDGET AND READ ON ITS NODES. gtk_widget_set_state_flags marks
+    # the widget, and every CSS node the widget draws matches on it -- which is why Adwaita
+    # states `check:checked` and not `checkbutton:checked check`. A component writes the
+    # state once, on itself, so these match the node which carries it AND the nodes under
+    # the one which does. Without the second half a checked check button drew an empty box:
+    # the rule was there, the state was on the button, and nothing on the `check` node said
+    # so.
+    checked = ':is(:checked, [data-state="checked"], [aria-checked="true"])'
+    selected = ':is([data-selected], [aria-selected="true"])'
+    disabled = ':is(:disabled, [data-disabled], [aria-disabled="true"])'
+
+    # Hover and active are NOT propagated. GTK does propagate them, and a page which did
+    # too put the pressed look on every button inside whatever the pointer was over, because
+    # the DOM nests components where GTK nests nodes.
     found << ["gtk-hover", "&:hover"]
     found << ["gtk-active", "&:active"]
-    found << ["gtk-disabled", '&:is(:disabled, [data-disabled], [aria-disabled="true"])']
-    found << ["gtk-checked", '&:is(:checked, [data-state="checked"], [aria-checked="true"])']
-    found << ["gtk-selected", '&:is([data-selected], [aria-selected="true"])']
+    found << ["gtk-disabled", "&:is(#{disabled}, :where(#{disabled}) *)"]
+    found << ["gtk-checked", "&:is(#{checked}, :where(#{checked}) *)"]
+    found << ["gtk-selected", "&:is(#{selected}, :where(#{selected}) *)"]
+    found << ["gtk-indeterminate", '&:is(:indeterminate, [data-state="indeterminate"], [aria-checked="mixed"], :where([data-state="indeterminate"], [aria-checked="mixed"]) *)']
+    found << ["gtk-first", "&:first-child"]
+    found << ["gtk-last", "&:last-child"]
+    found << ["gtk-only", "&:only-child"]
     found << ["gtk-focus", "&:focus-visible"]
     found << ["gtk-backdrop", "&:where([data-backdrop] *)"]
     found << ["gtk-flat", "&:where(.flat)"]
