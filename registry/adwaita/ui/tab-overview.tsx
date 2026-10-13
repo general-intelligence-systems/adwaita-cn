@@ -590,12 +590,12 @@ function TabOverviewPlaceholder({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function TabOverviewText({ className, ...props }: React.ComponentProps<"input">) {
+function TabOverviewText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="tab-overview-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -607,7 +607,7 @@ function TabOverviewSearchEntry({ className, ...props }: React.ComponentProps<"d
       data-slot="tab-overview-search-entry"
         data-node="entry"
         data-hexpand=""
-      className={cn([
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

@@ -197,7 +197,7 @@ function ScaleIndicator({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-indicator"
         data-node="indicator"
-      className={cn(className)}
+      className={cn("bg-[currentColor] min-h-1.5 min-w-[1px]", className)}
       {...props}
     />
   )
@@ -208,7 +208,7 @@ function ScaleMarks({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-marks"
         data-node="marks"
-      className={cn(className)}
+      className={cn("text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)]", className)}
       {...props}
     />
   )

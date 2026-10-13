@@ -186,7 +186,11 @@ function ToggleButton({ className, render, variant = "default", size = "default"
     children: (
         <>
                   {iconName ? <span data-slot="toggle-button-icon" data-icon className={iconName} aria-hidden /> : null}
+                  {label === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}
+                </span>
+              )}
                   {actionTarget}
                   {child}
                   {group}

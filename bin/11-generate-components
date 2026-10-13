@@ -80,6 +80,28 @@ module GenerateComponents
 
   # The GTK class a template node is, as an element, for the parts generated beside a
   # composite.
+  # The element a template node renders as, by the widget class it is.
+  #
+  # A node read out of a selector rather than out of a template carries `css-node`, and
+  # the name it was given is the CSS node capitalised -- which for some of them is a real
+  # widget's name. `progressbar > text` became a node of class `Text`, this map renders a
+  # Gtk.Text as an `<input>`, and a progress bar was drawn with a text field in it 13px
+  # tall above its trough.
+  #
+  # What tells the two apart is whether the widget which owns the node is editable: a
+  # GtkEntry really does build a GtkText and a GtkProgressBar really does not, and
+  # `editable` is the property every GtkEditable carries and nothing else does. Only the
+  # form controls are gated on it -- a `label`, an `image`, a `button` and a `separator`
+  # node are that element whoever paints them.
+  def self.element_for(node, props = {})
+    found = PARTS.fetch(node.fetch("class"), "div")
+
+    return "div" if node["css-node"] && VOID.include?(found) && !props.key?("editable")
+    return "div" if node["css-node"] && found == "textarea" && !props.key?("editable")
+
+    found
+  end
+
   PARTS = {
     "Button" => "button", "ToggleButton" => "button", "CheckButton" => "button",
     "MenuButton" => "button", "Label" => "span", "Image" => "span",
@@ -856,6 +878,24 @@ module GenerateComponents
   # the component's own properties become markup where they are markup and data
   # attributes where they are state, so none of them reaches the DOM as an
   # unknown attribute.
+  # A text property, as the label node GTK builds for it.
+  #
+  # `data-slot="label"` and not `<slug>-label`: this is a Gtk.Label in the toolkit's own
+  # tree, which is what bin/15-app-report pairs against, and a slot named after its
+  # parent is a part rather than the widget it actually is.
+  #
+  # The component which is itself a label renders the text into its own element, because
+  # there the root already is the node.
+  def self.text_markup(prop, component)
+    return "              {#{prop}}" if component["node"] == "label"
+
+    "              {#{prop} === undefined ? null : (\n" \
+      "                <span data-slot=\"label\" data-node=\"label\" className=\"caret-[currentColor]\">\n" \
+      "                  {#{prop}}\n" \
+      "                </span>\n" \
+      "              )}"
+  end
+
   def self.root(name, component, props, cva, element, parts)
     void = VOID.include?(element)
     appearance, sizes = AdwaitaClasses.split(self.offered(component))
@@ -945,7 +985,13 @@ module GenerateComponents
       # `<Button iconName="go-previous-symbolic" />` reach the same drawing.
       inner << "              {#{prop} ? <span data-slot=#{"#{slug}-icon".inspect} data-icon className={#{prop}} aria-hidden /> : null}"
     end
-    inner.concat(text.sort.map{|prop| "              {#{prop}}"})
+    # A widget's text is a label node, not a bare run of characters. gtk_button_set_label
+    # builds a GtkLabel inside the button and the stylesheet addresses it --
+    # `button.image-text-button > box > label` is 0.5 of padding on the label and not on
+    # the button -- so text written straight into the element was styled by none of those
+    # rules and appeared in neither tree as the label it is. The component which already
+    # IS a label is left alone, because the root is the node.
+    inner.concat(text.sort.map{|prop| self.text_markup(prop, component)})
 
     # The content first and the bars after it, because that is the order the widget tree
     # is in: AdwToolbarView parents its content before its revealers, and both sides are
@@ -1094,7 +1140,7 @@ module GenerateComponents
       found << {
         name: node.fetch("part"),
         bound: self.bound(node, component.fetch("props")),
-        source: self.part(node, PARTS.fetch(node.fetch("class"), "div")),
+        source: self.part(node, self.element_for(node, component.fetch("props", {}))),
       }
     end
   end
@@ -1246,13 +1292,32 @@ module GenerateComponents
   # made every entry row 99px tall instead of 55.
   HAND_LAID_PARTS = { "editable_area" => "overlay" }.freeze
 
+  # A node inside a template is as much the widget it is as one a caller makes.
+  #
+  # HAND_LAID says what a widget which allocates in C amounts to, and the root of a
+  # component was the only thing reading it: a node of class `ActionRow` or `Entry` or
+  # `Gizmo` inside somebody else's tree got no arrangement at all and fell into the
+  # document's own flow. 94 nodes across the registry were in that state -- which is why
+  # AdwBanner drew its title above its button, in a strip 61px tall where the toolkit's
+  # is 46.
+  def self.node_layout(node)
+    HAND_LAID_PARTS[node["id"]] || node["layout"] || HAND_LAID[node.fetch("class")]
+  end
+
   def self.part_layout(node)
+    kind = self.node_layout(node)
     found =
       if CLAMPED.include?(node.fetch("class"))
         "#{LAYOUTS.fetch('clamp')} #{CLAMP_CLASSES}"
       else
-        LAYOUTS[HAND_LAID_PARTS[node["id"]] || node["layout"]] ||
-          (self.single_child?(node) ? LAYOUTS.fetch("bin") : nil)
+        LAYOUTS[kind.to_s.sub(/-(vertical|horizontal)\z/, "")] ||
+          (self.single_child?(node) ? LAYOUTS.fetch("bin") : nil) ||
+          # A node which holds more than one thing and names no manager still arranges
+          # them: AdwGizmo sets none and the widget which built it measures and allocates
+          # in its own C, and every one of those runs its children in a line. Left to the
+          # document's flow they stacked instead -- AdwBanner drew its title above its
+          # button in a strip 61px tall rather than beside it in one 46px tall.
+          (node.fetch("class") == "Gizmo" && !self.single_child?(node) ? LAYOUTS.fetch("box") : nil)
       end
 
     return "" if found.nil?
@@ -1260,8 +1325,9 @@ module GenerateComponents
     properties = node.fetch("properties", {})
     parts = [found]
 
-    if node["layout"] == "box"
-      parts << if properties["orientation"] == "vertical"
+    if kind.to_s.start_with?("box") ||
+       (kind.nil? && node.fetch("class") == "Gizmo" && !self.single_child?(node))
+      parts << if kind == "box-vertical" || properties["orientation"] == "vertical"
                  "flex-col #{ALIGNMENT.fetch('col')}"
                else
                  "flex-row #{ALIGNMENT.fetch('row')}"
@@ -1298,10 +1364,17 @@ module GenerateComponents
 
   # A composite's tree, as the parts which were generated for it.
   # Whether this node is the element the control's own properties belong on.
-  def self.control?(node) = %w[input textarea].include?(PARTS.fetch(node.fetch("class"), "div"))
+  def self.control?(node, props = {}) = %w[input textarea].include?(self.element_for(node, props))
 
+  # One attribute per attribute. Three of a widget's properties can be the same statement
+  # to the browser -- a spin button has `value` and `text`, a progress bar has `fraction`
+  # and `text`, and all three are `defaultValue` -- and emitting one term each wrote the
+  # name twice in the same tag, which is a JSX error rather than a component that renders.
+  # Whichever of them the caller gave, in the order the map states, is the one that shows.
   def self.control_attributes(props)
-    CONTROL_PROPS.filter_map{|prop, attribute| "#{attribute}={#{prop}}" if props.key?(prop) }
+    CONTROL_PROPS.select{|prop, _attribute| props.key?(prop) }
+      .group_by{|_prop, attribute| attribute }
+      .map{|attribute, pairs| "#{attribute}={#{pairs.map(&:first).join(' ?? ')}}" }
   end
 
   def self.tree(node, props, indent, slot = nil, control = [])
@@ -1311,7 +1384,7 @@ module GenerateComponents
     # An `<input>` holds nothing: a text node's cursor and placeholder are things the
     # element draws itself, and rendering them into it is an error React refuses the
     # whole tree for rather than a part that comes out wrong.
-    children = [] if VOID.include?(PARTS.fetch(node.fetch("class"), "div"))
+    children = [] if VOID.include?(self.element_for(node, props))
     inner = children.map{|child| self.tree(child, props, indent + 2, slot, control)}.reject(&:empty?)
     inner << "#{pad}  {children}" if node.equal?(slot)
     taken = node["takes"] unless node["takes"] == "children"
@@ -1324,7 +1397,7 @@ module GenerateComponents
       elsif text
         "<#{node.fetch('part')}>{#{text}}</#{node.fetch('part')}>"
       elsif inner.empty?
-        "<#{node.fetch('part')}#{self.control?(node) && !control.empty? ? " #{control.join(' ')}" : ''} />"
+        "<#{node.fetch('part')}#{self.control?(node, props) && !control.empty? ? " #{control.join(' ')}" : ''} />"
       else
         ["<#{node.fetch('part')}>", *inner.map{|one| one.sub(/\A#{pad}/, "") }, "</#{node.fetch('part')}>"].join("\n#{pad}")
       end

@@ -100,7 +100,11 @@ function SplitButton({ className, render, variant = "default", actionTarget, chi
     children: (
         <>
                   {iconName ? <span data-slot="split-button-icon" data-icon className={iconName} aria-hidden /> : null}
+                  {label === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}
+                </span>
+              )}
                   {actionTarget}
                   {child}
                   {menuModel}

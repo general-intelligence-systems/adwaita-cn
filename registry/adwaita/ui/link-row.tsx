@@ -78,9 +78,6 @@ function LinkRow({ className, render, variant = "default", children, ...props }:
                   <LinkRowListview />
                   <LinkRowPopover>
                 <LinkRowArrow />
-                <LinkRowAccelerator />
-                <LinkRowCheck />
-                <LinkRowRadio />
               </LinkRowPopover>
                   <LinkRowSpinbutton>
                 <LinkRowButton>
@@ -89,7 +86,9 @@ function LinkRow({ className, render, variant = "default", children, ...props }:
                   </LinkRowBox2>
                   <LinkRowLabel2 />
                 </LinkRowButton>
-                <LinkRowText />
+                <LinkRowText>
+                  <LinkRowPlaceholder />
+                </LinkRowText>
               </LinkRowSpinbutton>
                   <LinkRowList />
                   <LinkRowText2 />
@@ -102,7 +101,11 @@ function LinkRow({ className, render, variant = "default", children, ...props }:
                   <LinkRowProgressbar>
                 <LinkRowText3 />
               </LinkRowProgressbar>
-                  <LinkRowEntry />
+                  <LinkRowEntry>
+                <LinkRowText4>
+                  <LinkRowPlaceholder2 />
+                </LinkRowText4>
+              </LinkRowEntry>
         </>
       ),
     ...widgetAttributes,
@@ -174,61 +177,6 @@ function LinkRowArrow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function LinkRowAccelerator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="link-row-accelerator"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function LinkRowCheck({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="link-row-check"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function LinkRowRadio({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="link-row-radio"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function LinkRowPopover({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -295,12 +243,12 @@ function LinkRowPlaceholder({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-function LinkRowText({ className, ...props }: React.ComponentProps<"input">) {
+function LinkRowText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="link-row-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -331,12 +279,12 @@ function LinkRowList({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function LinkRowText2({ className, ...props }: React.ComponentProps<"input">) {
+function LinkRowText2({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="link-row-text2"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -358,7 +306,7 @@ function LinkRowScale({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="link-row-scale"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -392,12 +340,12 @@ function LinkRowRow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function LinkRowText3({ className, ...props }: React.ComponentProps<"input">) {
+function LinkRowText3({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="link-row-text3"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -425,23 +373,23 @@ function LinkRowPlaceholder2({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function LinkRowText4({ className, ...props }: React.ComponentProps<"input">) {
+function LinkRowText4({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="link-row-text4"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function LinkRowEntry({ className, ...props }: React.ComponentProps<"input">) {
+function LinkRowEntry({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="link-row-entry"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -450,4 +398,4 @@ function LinkRowEntry({ className, ...props }: React.ComponentProps<"input">) {
   )
 }
 
-export { LinkRow, LinkRowBox, LinkRowImage, LinkRowLabel, LinkRowListview, LinkRowArrow, LinkRowAccelerator, LinkRowCheck, LinkRowRadio, LinkRowPopover, LinkRowBox2, LinkRowLabel2, LinkRowButton, LinkRowPlaceholder, LinkRowText, LinkRowSpinbutton, LinkRowList, LinkRowText2, LinkRowValue, LinkRowScale, LinkRowImage2, LinkRowRow, LinkRowText3, LinkRowProgressbar, LinkRowPlaceholder2, LinkRowText4, LinkRowEntry, linkRowVariants }
+export { LinkRow, LinkRowBox, LinkRowImage, LinkRowLabel, LinkRowListview, LinkRowArrow, LinkRowPopover, LinkRowBox2, LinkRowLabel2, LinkRowButton, LinkRowPlaceholder, LinkRowText, LinkRowSpinbutton, LinkRowList, LinkRowText2, LinkRowValue, LinkRowScale, LinkRowImage2, LinkRowRow, LinkRowText3, LinkRowProgressbar, LinkRowPlaceholder2, LinkRowText4, LinkRowEntry, linkRowVariants }

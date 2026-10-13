@@ -36,9 +36,6 @@ function PopoverMenuBar({ className, render, menuModel, children, ...props }: Po
                   <PopoverMenuBarItem>
                 <PopoverMenuBarPopover>
                   <PopoverMenuBarArrow />
-                  <PopoverMenuBarAccelerator />
-                  <PopoverMenuBarCheck />
-                  <PopoverMenuBarRadio />
                 </PopoverMenuBarPopover>
               </PopoverMenuBarItem>
                   {menuModel}
@@ -62,61 +59,6 @@ function PopoverMenuBarArrow({ className, ...props }: React.ComponentProps<"div"
       data-slot="popover-menu-bar-arrow"
         data-node="arrow"
       className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
-      {...props}
-    />
-  )
-}
-
-function PopoverMenuBarAccelerator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="popover-menu-bar-accelerator"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function PopoverMenuBarCheck({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="popover-menu-bar-check"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function PopoverMenuBarRadio({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="popover-menu-bar-radio"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
       {...props}
     />
   )
@@ -147,4 +89,4 @@ function PopoverMenuBarItem({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-export { PopoverMenuBar, PopoverMenuBarArrow, PopoverMenuBarAccelerator, PopoverMenuBarCheck, PopoverMenuBarRadio, PopoverMenuBarPopover, PopoverMenuBarItem }
+export { PopoverMenuBar, PopoverMenuBarArrow, PopoverMenuBarPopover, PopoverMenuBarItem }

@@ -265,16 +265,15 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                   <AboutWindowListview />
                                   <AboutWindowPopover>
                                     <AboutWindowArrow />
-                                    <AboutWindowAccelerator />
-                                    <AboutWindowCheck />
-                                    <AboutWindowRadio />
                                   </AboutWindowPopover>
                                   <AboutWindowSpinbutton>
                                     <AboutWindowButton>
                                       <AboutWindowBox4 />
                                       <AboutWindowLabel2 />
                                     </AboutWindowButton>
-                                    <AboutWindowText />
+                                    <AboutWindowText>
+                                      <AboutWindowPlaceholder />
+                                    </AboutWindowText>
                                   </AboutWindowSpinbutton>
                                   <AboutWindowList />
                                   <AboutWindowText2 />
@@ -287,7 +286,11 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                   <AboutWindowProgressbar>
                                     <AboutWindowText3 />
                                   </AboutWindowProgressbar>
-                                  <AboutWindowEntry />
+                                  <AboutWindowEntry>
+                                    <AboutWindowText4>
+                                      <AboutWindowPlaceholder2 />
+                                    </AboutWindowText4>
+                                  </AboutWindowEntry>
                                 </AboutWindowWebsiteRow>
                               </AboutWindowDetailsGroup>
                               <AboutWindowSupportGroup>
@@ -298,16 +301,15 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                   <AboutWindowListview2 />
                                   <AboutWindowPopover2>
                                     <AboutWindowArrow2 />
-                                    <AboutWindowAccelerator2 />
-                                    <AboutWindowCheck2 />
-                                    <AboutWindowRadio2 />
                                   </AboutWindowPopover2>
                                   <AboutWindowSpinbutton2>
                                     <AboutWindowButton2>
                                       <AboutWindowBox6 />
                                       <AboutWindowLabel4 />
                                     </AboutWindowButton2>
-                                    <AboutWindowText5 />
+                                    <AboutWindowText5>
+                                      <AboutWindowPlaceholder3 />
+                                    </AboutWindowText5>
                                   </AboutWindowSpinbutton2>
                                   <AboutWindowList2 />
                                   <AboutWindowText6 />
@@ -320,7 +322,11 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                   <AboutWindowProgressbar2>
                                     <AboutWindowText7 />
                                   </AboutWindowProgressbar2>
-                                  <AboutWindowEntry2 />
+                                  <AboutWindowEntry2>
+                                    <AboutWindowText8>
+                                      <AboutWindowPlaceholder4 />
+                                    </AboutWindowText8>
+                                  </AboutWindowEntry2>
                                 </AboutWindowSupportRow>
                                 <AboutWindowIssueRow>
                                   <AboutWindowBox7 />
@@ -329,16 +335,15 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                   <AboutWindowListview3 />
                                   <AboutWindowPopover3>
                                     <AboutWindowArrow3 />
-                                    <AboutWindowAccelerator3 />
-                                    <AboutWindowCheck3 />
-                                    <AboutWindowRadio3 />
                                   </AboutWindowPopover3>
                                   <AboutWindowSpinbutton3>
                                     <AboutWindowButton3>
                                       <AboutWindowBox8 />
                                       <AboutWindowLabel6 />
                                     </AboutWindowButton3>
-                                    <AboutWindowText9 />
+                                    <AboutWindowText9>
+                                      <AboutWindowPlaceholder5 />
+                                    </AboutWindowText9>
                                   </AboutWindowSpinbutton3>
                                   <AboutWindowList3 />
                                   <AboutWindowText10 />
@@ -351,7 +356,11 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                   <AboutWindowProgressbar3>
                                     <AboutWindowText11 />
                                   </AboutWindowProgressbar3>
-                                  <AboutWindowEntry3 />
+                                  <AboutWindowEntry3>
+                                    <AboutWindowText12>
+                                      <AboutWindowPlaceholder6 />
+                                    </AboutWindowText12>
+                                  </AboutWindowEntry3>
                                 </AboutWindowIssueRow>
                                 <AboutWindowTroubleshootingRow>
                                   <AboutWindowImage9 data-icon className={iconName} />
@@ -450,16 +459,15 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                 <AboutWindowListview4 />
                                 <AboutWindowPopover4>
                                   <AboutWindowArrow4 />
-                                  <AboutWindowAccelerator4 />
-                                  <AboutWindowCheck4 />
-                                  <AboutWindowRadio4 />
                                 </AboutWindowPopover4>
                                 <AboutWindowSpinbutton4>
                                   <AboutWindowButton6>
                                     <AboutWindowBox17 />
                                     <AboutWindowLabel8 />
                                   </AboutWindowButton6>
-                                  <AboutWindowText13 />
+                                  <AboutWindowText13>
+                                    <AboutWindowPlaceholder7 />
+                                  </AboutWindowText13>
                                 </AboutWindowSpinbutton4>
                                 <AboutWindowList4 />
                                 <AboutWindowText14 />
@@ -472,7 +480,11 @@ function AboutWindow({ className, render, variant = "default", application, appl
                                 <AboutWindowProgressbar4>
                                   <AboutWindowText15 />
                                 </AboutWindowProgressbar4>
-                                <AboutWindowEntry4 />
+                                <AboutWindowEntry4>
+                                  <AboutWindowText16>
+                                    <AboutWindowPlaceholder8 />
+                                  </AboutWindowText16>
+                                </AboutWindowEntry4>
                               </AboutWindowDetailsWebsiteRow>
                             </AboutWindowLinksGroup>
                           </AboutWindowBox15>
@@ -783,7 +795,7 @@ function AboutWindowWhatsNewRow({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="about-window-whats-new-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -808,7 +820,7 @@ function AboutWindowDetailsRow({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-details-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -870,61 +882,6 @@ function AboutWindowArrow({ className, ...props }: React.ComponentProps<"div">) 
       data-slot="about-window-arrow"
         data-node="arrow"
       className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowAccelerator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-accelerator"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCheck({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-check"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowRadio({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-radio"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
       {...props}
     />
   )
@@ -996,12 +953,12 @@ function AboutWindowPlaceholder({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutWindowText({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -1032,12 +989,12 @@ function AboutWindowList({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutWindowText2({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText2({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text2"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -1059,7 +1016,7 @@ function AboutWindowScale({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-scale"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1093,12 +1050,12 @@ function AboutWindowRow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutWindowText3({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText3({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text3"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -1126,23 +1083,23 @@ function AboutWindowPlaceholder2({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowText4({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText4({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text4"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowEntry({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowEntry({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-entry"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1234,61 +1191,6 @@ function AboutWindowArrow2({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutWindowAccelerator2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-accelerator2"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCheck2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-check2"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowRadio2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-radio2"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutWindowPopover2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1355,12 +1257,12 @@ function AboutWindowPlaceholder3({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowText5({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText5({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text5"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -1391,12 +1293,12 @@ function AboutWindowList2({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutWindowText6({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText6({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text6"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -1418,7 +1320,7 @@ function AboutWindowScale2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-scale2"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1452,12 +1354,12 @@ function AboutWindowRow2({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutWindowText7({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText7({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text7"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -1485,23 +1387,23 @@ function AboutWindowPlaceholder4({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowText8({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText8({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text8"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowEntry2({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowEntry2({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-entry2"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1582,61 +1484,6 @@ function AboutWindowArrow3({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutWindowAccelerator3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-accelerator3"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCheck3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-check3"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowRadio3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-radio3"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutWindowPopover3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1703,12 +1550,12 @@ function AboutWindowPlaceholder5({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowText9({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText9({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text9"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -1739,12 +1586,12 @@ function AboutWindowList3({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutWindowText10({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText10({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text10"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -1766,7 +1613,7 @@ function AboutWindowScale3({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-scale3"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1800,12 +1647,12 @@ function AboutWindowRow3({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutWindowText11({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText11({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text11"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -1833,23 +1680,23 @@ function AboutWindowPlaceholder6({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowText12({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText12({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text12"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowEntry3({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowEntry3({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-entry3"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1888,7 +1735,7 @@ function AboutWindowTroubleshootingRow({ className, ...props }: React.ComponentP
     <div
       data-slot="about-window-troubleshooting-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -1924,7 +1771,7 @@ function AboutWindowActionRow({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="about-window-action-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -1949,7 +1796,7 @@ function AboutWindowActionRow2({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-action-row2"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -1974,7 +1821,7 @@ function AboutWindowActionRow3({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-action-row3"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -2535,61 +2382,6 @@ function AboutWindowArrow4({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutWindowAccelerator4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-accelerator4"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCheck4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-check4"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowRadio4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-radio4"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutWindowPopover4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2656,12 +2448,12 @@ function AboutWindowPlaceholder7({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowText13({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText13({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text13"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -2692,12 +2484,12 @@ function AboutWindowList4({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutWindowText14({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText14({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text14"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -2719,7 +2511,7 @@ function AboutWindowScale4({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-scale4"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -2753,12 +2545,12 @@ function AboutWindowRow4({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutWindowText15({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText15({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text15"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -2786,23 +2578,23 @@ function AboutWindowPlaceholder8({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowText16({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowText16({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-text16"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowEntry4({ className, ...props }: React.ComponentProps<"input">) {
+function AboutWindowEntry4({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-window-entry4"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -3095,7 +2887,7 @@ function AboutWindowActionRow4({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-action-row4"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -4325,10 +4117,10 @@ function AboutWindowToastOverlay({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toast-overlay"
         data-node="toastoverlay"
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )
 }
 
-export { AboutWindow, AboutWindowAppIconImage, AboutWindowAppNameLabel, AboutWindowDeveloperNameLabel, AboutWindowVersionButton, AboutWindowImage, AboutWindowWhatsNewRow, AboutWindowImage2, AboutWindowDetailsRow, AboutWindowBox3, AboutWindowImage3, AboutWindowLabel, AboutWindowListview, AboutWindowArrow, AboutWindowAccelerator, AboutWindowCheck, AboutWindowRadio, AboutWindowPopover, AboutWindowBox4, AboutWindowLabel2, AboutWindowButton, AboutWindowPlaceholder, AboutWindowText, AboutWindowSpinbutton, AboutWindowList, AboutWindowText2, AboutWindowValue, AboutWindowScale, AboutWindowImage4, AboutWindowRow, AboutWindowText3, AboutWindowProgressbar, AboutWindowPlaceholder2, AboutWindowText4, AboutWindowEntry, AboutWindowWebsiteRow, AboutWindowDetailsGroup, AboutWindowBox5, AboutWindowImage5, AboutWindowLabel3, AboutWindowListview2, AboutWindowArrow2, AboutWindowAccelerator2, AboutWindowCheck2, AboutWindowRadio2, AboutWindowPopover2, AboutWindowBox6, AboutWindowLabel4, AboutWindowButton2, AboutWindowPlaceholder3, AboutWindowText5, AboutWindowSpinbutton2, AboutWindowList2, AboutWindowText6, AboutWindowValue2, AboutWindowScale2, AboutWindowImage6, AboutWindowRow2, AboutWindowText7, AboutWindowProgressbar2, AboutWindowPlaceholder4, AboutWindowText8, AboutWindowEntry2, AboutWindowSupportRow, AboutWindowBox7, AboutWindowImage7, AboutWindowLabel5, AboutWindowListview3, AboutWindowArrow3, AboutWindowAccelerator3, AboutWindowCheck3, AboutWindowRadio3, AboutWindowPopover3, AboutWindowBox8, AboutWindowLabel6, AboutWindowButton3, AboutWindowPlaceholder5, AboutWindowText9, AboutWindowSpinbutton3, AboutWindowList3, AboutWindowText10, AboutWindowValue3, AboutWindowScale3, AboutWindowImage8, AboutWindowRow3, AboutWindowText11, AboutWindowProgressbar3, AboutWindowPlaceholder6, AboutWindowText12, AboutWindowEntry3, AboutWindowIssueRow, AboutWindowImage9, AboutWindowTroubleshootingRow, AboutWindowSupportGroup, AboutWindowImage10, AboutWindowActionRow, AboutWindowImage11, AboutWindowActionRow2, AboutWindowImage12, AboutWindowActionRow3, AboutWindowCreditsLegalGroup, AboutWindowBox2, AboutWindowBox, AboutWindowClamp, AboutWindowMainScrolledWindow, AboutWindowImage13, AboutWindowButton4, AboutWindowWindowControls, AboutWindowBox10, AboutWindowStart, AboutWindowTitle, AboutWindowImage14, AboutWindowCloseButton, AboutWindowWindowControls2, AboutWindowBox11, AboutWindowEnd, AboutWindowBox9, AboutWindowWindowhandle, AboutWindowMainHeaderbar, AboutWindowToolbarView, AboutWindowNavigationPage, AboutWindowTextView, AboutWindowClampScrollable, AboutWindowScrolledWindow, AboutWindowImage15, AboutWindowButton5, AboutWindowWindowControls3, AboutWindowBox13, AboutWindowStart2, AboutWindowTitle2, AboutWindowImage16, AboutWindowCloseButton2, AboutWindowWindowControls4, AboutWindowBox14, AboutWindowEnd2, AboutWindowBox12, AboutWindowWindowhandle2, AboutWindowHeaderBar, AboutWindowToolbarView2, AboutWindowWhatsnewPage, AboutWindowCommentsLabel, AboutWindowBox16, AboutWindowImage17, AboutWindowLabel7, AboutWindowListview4, AboutWindowArrow4, AboutWindowAccelerator4, AboutWindowCheck4, AboutWindowRadio4, AboutWindowPopover4, AboutWindowBox17, AboutWindowLabel8, AboutWindowButton6, AboutWindowPlaceholder7, AboutWindowText13, AboutWindowSpinbutton4, AboutWindowList4, AboutWindowText14, AboutWindowValue4, AboutWindowScale4, AboutWindowImage18, AboutWindowRow4, AboutWindowText15, AboutWindowProgressbar4, AboutWindowPlaceholder8, AboutWindowText16, AboutWindowEntry4, AboutWindowDetailsWebsiteRow, AboutWindowLinksGroup, AboutWindowBox15, AboutWindowClamp2, AboutWindowScrolledWindow2, AboutWindowImage19, AboutWindowButton7, AboutWindowWindowControls5, AboutWindowBox19, AboutWindowStart3, AboutWindowTitle3, AboutWindowImage20, AboutWindowCloseButton3, AboutWindowWindowControls6, AboutWindowBox20, AboutWindowEnd3, AboutWindowBox18, AboutWindowWindowhandle3, AboutWindowHeaderBar2, AboutWindowToolbarView3, AboutWindowNavigationPage2, AboutWindowLabel9, AboutWindowImage21, AboutWindowActionRow4, AboutWindowPreferencesGroup, AboutWindowBox21, AboutWindowClamp3, AboutWindowScrolledWindow3, AboutWindowImage22, AboutWindowButton8, AboutWindowWindowControls7, AboutWindowBox23, AboutWindowStart4, AboutWindowTitle4, AboutWindowImage23, AboutWindowCloseButton4, AboutWindowWindowControls8, AboutWindowBox24, AboutWindowEnd4, AboutWindowBox22, AboutWindowWindowhandle4, AboutWindowHeaderBar3, AboutWindowToolbarView4, AboutWindowNavigationPage3, AboutWindowTextView2, AboutWindowClampScrollable2, AboutWindowScrolledWindow4, AboutWindowImage24, AboutWindowButton9, AboutWindowWindowControls9, AboutWindowBox26, AboutWindowStart5, AboutWindowTitle5, AboutWindowImage25, AboutWindowCloseButton5, AboutWindowWindowControls10, AboutWindowBox27, AboutWindowEnd5, AboutWindowBox25, AboutWindowWindowhandle5, AboutWindowHeaderBar4, AboutWindowButton10, AboutWindowButton11, AboutWindowActionBar, AboutWindowToolbarView5, AboutWindowDebugInfoPage, AboutWindowCreditsBox, AboutWindowClamp4, AboutWindowScrolledWindow5, AboutWindowImage26, AboutWindowButton12, AboutWindowWindowControls11, AboutWindowBox29, AboutWindowStart6, AboutWindowTitle6, AboutWindowImage27, AboutWindowCloseButton6, AboutWindowWindowControls12, AboutWindowBox30, AboutWindowEnd6, AboutWindowBox28, AboutWindowWindowhandle6, AboutWindowHeaderBar5, AboutWindowToolbarView6, AboutWindowNavigationPage4, AboutWindowLegalBox, AboutWindowClamp5, AboutWindowScrolledWindow6, AboutWindowImage28, AboutWindowButton13, AboutWindowWindowControls13, AboutWindowBox32, AboutWindowStart7, AboutWindowTitle7, AboutWindowImage29, AboutWindowCloseButton7, AboutWindowWindowControls14, AboutWindowBox33, AboutWindowEnd7, AboutWindowBox31, AboutWindowWindowhandle7, AboutWindowHeaderBar6, AboutWindowToolbarView7, AboutWindowNavigationPage5, AboutWindowAcknowledgementsBox, AboutWindowClamp6, AboutWindowScrolledWindow7, AboutWindowImage30, AboutWindowButton14, AboutWindowWindowControls15, AboutWindowBox35, AboutWindowStart8, AboutWindowTitle8, AboutWindowImage31, AboutWindowCloseButton8, AboutWindowWindowControls16, AboutWindowBox36, AboutWindowEnd8, AboutWindowBox34, AboutWindowWindowhandle8, AboutWindowHeaderBar7, AboutWindowToolbarView8, AboutWindowNavigationPage6, AboutWindowNavigationView, AboutWindowToastOverlay, aboutWindowVariants }
+export { AboutWindow, AboutWindowAppIconImage, AboutWindowAppNameLabel, AboutWindowDeveloperNameLabel, AboutWindowVersionButton, AboutWindowImage, AboutWindowWhatsNewRow, AboutWindowImage2, AboutWindowDetailsRow, AboutWindowBox3, AboutWindowImage3, AboutWindowLabel, AboutWindowListview, AboutWindowArrow, AboutWindowPopover, AboutWindowBox4, AboutWindowLabel2, AboutWindowButton, AboutWindowPlaceholder, AboutWindowText, AboutWindowSpinbutton, AboutWindowList, AboutWindowText2, AboutWindowValue, AboutWindowScale, AboutWindowImage4, AboutWindowRow, AboutWindowText3, AboutWindowProgressbar, AboutWindowPlaceholder2, AboutWindowText4, AboutWindowEntry, AboutWindowWebsiteRow, AboutWindowDetailsGroup, AboutWindowBox5, AboutWindowImage5, AboutWindowLabel3, AboutWindowListview2, AboutWindowArrow2, AboutWindowPopover2, AboutWindowBox6, AboutWindowLabel4, AboutWindowButton2, AboutWindowPlaceholder3, AboutWindowText5, AboutWindowSpinbutton2, AboutWindowList2, AboutWindowText6, AboutWindowValue2, AboutWindowScale2, AboutWindowImage6, AboutWindowRow2, AboutWindowText7, AboutWindowProgressbar2, AboutWindowPlaceholder4, AboutWindowText8, AboutWindowEntry2, AboutWindowSupportRow, AboutWindowBox7, AboutWindowImage7, AboutWindowLabel5, AboutWindowListview3, AboutWindowArrow3, AboutWindowPopover3, AboutWindowBox8, AboutWindowLabel6, AboutWindowButton3, AboutWindowPlaceholder5, AboutWindowText9, AboutWindowSpinbutton3, AboutWindowList3, AboutWindowText10, AboutWindowValue3, AboutWindowScale3, AboutWindowImage8, AboutWindowRow3, AboutWindowText11, AboutWindowProgressbar3, AboutWindowPlaceholder6, AboutWindowText12, AboutWindowEntry3, AboutWindowIssueRow, AboutWindowImage9, AboutWindowTroubleshootingRow, AboutWindowSupportGroup, AboutWindowImage10, AboutWindowActionRow, AboutWindowImage11, AboutWindowActionRow2, AboutWindowImage12, AboutWindowActionRow3, AboutWindowCreditsLegalGroup, AboutWindowBox2, AboutWindowBox, AboutWindowClamp, AboutWindowMainScrolledWindow, AboutWindowImage13, AboutWindowButton4, AboutWindowWindowControls, AboutWindowBox10, AboutWindowStart, AboutWindowTitle, AboutWindowImage14, AboutWindowCloseButton, AboutWindowWindowControls2, AboutWindowBox11, AboutWindowEnd, AboutWindowBox9, AboutWindowWindowhandle, AboutWindowMainHeaderbar, AboutWindowToolbarView, AboutWindowNavigationPage, AboutWindowTextView, AboutWindowClampScrollable, AboutWindowScrolledWindow, AboutWindowImage15, AboutWindowButton5, AboutWindowWindowControls3, AboutWindowBox13, AboutWindowStart2, AboutWindowTitle2, AboutWindowImage16, AboutWindowCloseButton2, AboutWindowWindowControls4, AboutWindowBox14, AboutWindowEnd2, AboutWindowBox12, AboutWindowWindowhandle2, AboutWindowHeaderBar, AboutWindowToolbarView2, AboutWindowWhatsnewPage, AboutWindowCommentsLabel, AboutWindowBox16, AboutWindowImage17, AboutWindowLabel7, AboutWindowListview4, AboutWindowArrow4, AboutWindowPopover4, AboutWindowBox17, AboutWindowLabel8, AboutWindowButton6, AboutWindowPlaceholder7, AboutWindowText13, AboutWindowSpinbutton4, AboutWindowList4, AboutWindowText14, AboutWindowValue4, AboutWindowScale4, AboutWindowImage18, AboutWindowRow4, AboutWindowText15, AboutWindowProgressbar4, AboutWindowPlaceholder8, AboutWindowText16, AboutWindowEntry4, AboutWindowDetailsWebsiteRow, AboutWindowLinksGroup, AboutWindowBox15, AboutWindowClamp2, AboutWindowScrolledWindow2, AboutWindowImage19, AboutWindowButton7, AboutWindowWindowControls5, AboutWindowBox19, AboutWindowStart3, AboutWindowTitle3, AboutWindowImage20, AboutWindowCloseButton3, AboutWindowWindowControls6, AboutWindowBox20, AboutWindowEnd3, AboutWindowBox18, AboutWindowWindowhandle3, AboutWindowHeaderBar2, AboutWindowToolbarView3, AboutWindowNavigationPage2, AboutWindowLabel9, AboutWindowImage21, AboutWindowActionRow4, AboutWindowPreferencesGroup, AboutWindowBox21, AboutWindowClamp3, AboutWindowScrolledWindow3, AboutWindowImage22, AboutWindowButton8, AboutWindowWindowControls7, AboutWindowBox23, AboutWindowStart4, AboutWindowTitle4, AboutWindowImage23, AboutWindowCloseButton4, AboutWindowWindowControls8, AboutWindowBox24, AboutWindowEnd4, AboutWindowBox22, AboutWindowWindowhandle4, AboutWindowHeaderBar3, AboutWindowToolbarView4, AboutWindowNavigationPage3, AboutWindowTextView2, AboutWindowClampScrollable2, AboutWindowScrolledWindow4, AboutWindowImage24, AboutWindowButton9, AboutWindowWindowControls9, AboutWindowBox26, AboutWindowStart5, AboutWindowTitle5, AboutWindowImage25, AboutWindowCloseButton5, AboutWindowWindowControls10, AboutWindowBox27, AboutWindowEnd5, AboutWindowBox25, AboutWindowWindowhandle5, AboutWindowHeaderBar4, AboutWindowButton10, AboutWindowButton11, AboutWindowActionBar, AboutWindowToolbarView5, AboutWindowDebugInfoPage, AboutWindowCreditsBox, AboutWindowClamp4, AboutWindowScrolledWindow5, AboutWindowImage26, AboutWindowButton12, AboutWindowWindowControls11, AboutWindowBox29, AboutWindowStart6, AboutWindowTitle6, AboutWindowImage27, AboutWindowCloseButton6, AboutWindowWindowControls12, AboutWindowBox30, AboutWindowEnd6, AboutWindowBox28, AboutWindowWindowhandle6, AboutWindowHeaderBar5, AboutWindowToolbarView6, AboutWindowNavigationPage4, AboutWindowLegalBox, AboutWindowClamp5, AboutWindowScrolledWindow6, AboutWindowImage28, AboutWindowButton13, AboutWindowWindowControls13, AboutWindowBox32, AboutWindowStart7, AboutWindowTitle7, AboutWindowImage29, AboutWindowCloseButton7, AboutWindowWindowControls14, AboutWindowBox33, AboutWindowEnd7, AboutWindowBox31, AboutWindowWindowhandle7, AboutWindowHeaderBar6, AboutWindowToolbarView7, AboutWindowNavigationPage5, AboutWindowAcknowledgementsBox, AboutWindowClamp6, AboutWindowScrolledWindow7, AboutWindowImage30, AboutWindowButton14, AboutWindowWindowControls15, AboutWindowBox35, AboutWindowStart8, AboutWindowTitle8, AboutWindowImage31, AboutWindowCloseButton8, AboutWindowWindowControls16, AboutWindowBox36, AboutWindowEnd8, AboutWindowBox34, AboutWindowWindowhandle8, AboutWindowHeaderBar7, AboutWindowToolbarView8, AboutWindowNavigationPage6, AboutWindowNavigationView, AboutWindowToastOverlay, aboutWindowVariants }

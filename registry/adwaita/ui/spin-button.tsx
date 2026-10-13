@@ -124,7 +124,7 @@ function SpinButton({ className, render, variant = "default", adjustment, activa
     style,
     children: (
         <>
-                  <SpinButtonText defaultValue={text} defaultValue={value} />
+                  <SpinButtonText defaultValue={text ?? value} />
                   <SpinButtonSpinDown />
                   <SpinButtonSpinUp />
                   {adjustment}

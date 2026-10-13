@@ -78,8 +78,11 @@ function CheckButton({ className, render, size = "default", actionTarget, child,
     children: (
         <>
                   <CheckButtonCheck />
-                  <CheckButtonRadio />
+                  {label === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}
+                </span>
+              )}
                   {actionTarget}
                   {child}
                   {group}
@@ -119,26 +122,4 @@ function CheckButtonCheck({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function CheckButtonRadio({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="check-button-radio"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { CheckButton, CheckButtonCheck, CheckButtonRadio, checkButtonVariants }
+export { CheckButton, CheckButtonCheck, checkButtonVariants }

@@ -136,7 +136,7 @@ function BannerGizmo({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="banner-gizmo"
         data-hexpand=""
-      className={cn("p-1.5 bg-[color-mix(in_srgb,var(--banner-color)_30%,var(--window-bg-color))] text-[var(--window-fg-color)]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 bg-[color-mix(in_srgb,var(--banner-color)_30%,var(--window-bg-color))] text-[var(--window-fg-color)]", className)}
       {...props}
     />
   )

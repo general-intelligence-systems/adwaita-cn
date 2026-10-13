@@ -208,7 +208,7 @@ function SpinRow({ className, render, variant = "default", actionTarget, activat
                 </SpinRowTitleBox>
                 <SpinRowSuffixes>
                   <SpinRowSpinButton>
-                    <SpinRowText defaultValue={text} defaultValue={value} />
+                    <SpinRowText defaultValue={text ?? value} />
                     <SpinRowSpinDown />
                     <SpinRowSpinUp />
                   </SpinRowSpinButton>

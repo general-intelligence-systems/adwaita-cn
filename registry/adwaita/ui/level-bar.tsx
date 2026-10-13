@@ -76,7 +76,7 @@ function LevelBarBlock({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="level-bar-block"
         data-node="block"
-      className={cn("bg-[var(--accent-bg-color)]", className)}
+      className={cn("bg-[var(--accent-bg-color)] min-h-2 rounded-[99px]", className)}
       {...props}
     />
   )

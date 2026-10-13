@@ -141,7 +141,18 @@ function TreeView({ className, render, variant = "default", expanderColumn, hadj
     style,
     children: (
         <>
-                  <TreeViewEntry />
+                  <TreeViewEntry>
+                <TreeViewImage />
+                <TreeViewProgress>
+                  <TreeViewTrough>
+                    <TreeViewProgress2 />
+                  </TreeViewTrough>
+                </TreeViewProgress>
+                <TreeViewText>
+                  <TreeViewBlockCursor />
+                  <TreeViewPlaceholder />
+                </TreeViewText>
+              </TreeViewEntry>
                   <TreeViewSpinbutton>
                 <TreeViewText2 />
               </TreeViewSpinbutton>
@@ -245,23 +256,23 @@ function TreeViewPlaceholder({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function TreeViewText({ className, ...props }: React.ComponentProps<"input">) {
+function TreeViewText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="tree-view-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function TreeViewEntry({ className, ...props }: React.ComponentProps<"input">) {
+function TreeViewEntry({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="tree-view-entry"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-none bg-[image:none] bg-[var(--view-bg-color)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -270,12 +281,12 @@ function TreeViewEntry({ className, ...props }: React.ComponentProps<"input">) {
   )
 }
 
-function TreeViewText2({ className, ...props }: React.ComponentProps<"input">) {
+function TreeViewText2({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="tree-view-text2"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7 py-[1px] px-0.5 min-h-0", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7 py-[1px] px-0.5 min-h-0", className)}
       {...props}
     />
   )

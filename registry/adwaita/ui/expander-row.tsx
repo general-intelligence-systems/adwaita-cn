@@ -201,7 +201,7 @@ function ExpanderRowEnableSwitch({ className, ...props }: React.ComponentProps<"
       data-slot="expander-row-enable-switch"
         data-node="switch"
         data-valign="center"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "hover:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
         "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
@@ -234,7 +234,7 @@ function ExpanderRowActionRow({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="expander-row-action-row"
         data-node="row"
-      className={cn("header", [
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "header", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -248,7 +248,7 @@ function ExpanderRowListBox({ className, ...props }: React.ComponentProps<"ul">)
     <ul
       data-slot="expander-row-list-box"
         data-node="list"
-      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-none text-[inherit]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-none text-[inherit]", className)}
       {...props}
     />
   )
@@ -259,7 +259,7 @@ function ExpanderRowList({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-slot="expander-row-list"
         data-node="list"
-      className={cn("nested", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-[color-mix(in_srgb,var(--card-shade-color)_50%,transparent)] text-[inherit]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "nested", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-[color-mix(in_srgb,var(--card-shade-color)_50%,transparent)] text-[inherit]", className)}
       {...props}
     />
   )

@@ -87,7 +87,11 @@ function ShortcutsShortcut({ className, render, variant = "default", accelSizeGr
     style,
     children: (
         <>
+                  {subtitle === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {subtitle}
+                </span>
+              )}
                   {accelSizeGroup}
                   {icon}
                   {titleSizeGroup}

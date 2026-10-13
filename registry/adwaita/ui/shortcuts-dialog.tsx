@@ -149,7 +149,10 @@ function ShortcutsDialog({ className, render, variant = "default", child, defaul
                           <ShortcutsDialogProgress2 />
                         </ShortcutsDialogTrough>
                       </ShortcutsDialogProgress>
-                      <ShortcutsDialogText />
+                      <ShortcutsDialogText>
+                        <ShortcutsDialogBlockCursor />
+                        <ShortcutsDialogPlaceholder />
+                      </ShortcutsDialogText>
                     </ShortcutsDialogSearchEntry>
                   </ShortcutsDialogClamp2>
                 </ShortcutsDialogHeaderBar>
@@ -209,7 +212,7 @@ function ShortcutsDialogSearchList({ className, ...props }: React.ComponentProps
     <ul
       data-slot="shortcuts-dialog-search-list"
         data-node="list"
-      className={cn("boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -422,12 +425,12 @@ function ShortcutsDialogPlaceholder({ className, ...props }: React.ComponentProp
   )
 }
 
-function ShortcutsDialogText({ className, ...props }: React.ComponentProps<"input">) {
+function ShortcutsDialogText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="shortcuts-dialog-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -438,7 +441,7 @@ function ShortcutsDialogSearchEntry({ className, ...props }: React.ComponentProp
     <div
       data-slot="shortcuts-dialog-search-entry"
         data-node="entry"
-      className={cn([
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

@@ -233,12 +233,12 @@ function FileChooserWidgetColumnview({ className, ...props }: React.ComponentPro
   )
 }
 
-function FileChooserWidgetSeparator({ className, ...props }: React.ComponentProps<"hr">) {
+function FileChooserWidgetSeparator({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <hr
+    <div
       data-slot="file-chooser-widget-separator"
         data-node="separator"
-      className={cn("bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] bg-none bg-[size:1px_1px]", className)}
+      className={cn("bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] bg-none bg-[size:1px_1px] shadow-[inset_-1px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-[inset_-1px_0_var(--sidebar-bg-color),inset_-1px_0_var(--sidebar-border-color)]", className)}
       {...props}
     />
   )

@@ -46,7 +46,11 @@ function ButtonContent({ className, render, iconName, label, canShrink, useUnder
                 {children}
               </ButtonContentBox>
                   {iconName ? <span data-slot="button-content-icon" data-icon className={iconName} aria-hidden /> : null}
+                  {label === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}
+                </span>
+              )}
         </>
       ),
     ...widgetAttributes,

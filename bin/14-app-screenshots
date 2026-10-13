@@ -48,6 +48,8 @@ require "gtk4"
 require "adwaita"
 require "ferrum"
 
+require_relative "lib/staging"
+
 # Requiring the bindings does not load libadwaita's stylesheet; adw_init() does.
 Adwaita.init
 
@@ -115,26 +117,26 @@ module AppScreenshots
 
   def self.paint(app, one, scratch)
     name = one.fetch("name")
-    width = one.fetch("width")
-    height = one.fetch("height")
     path = File.join(scratch, "gtk-#{name}.png")
 
-    window(app, width, height, name) do |content|
-      Gtk::Snapshot.new.then do |snapshot|
-        # The window's own background, over the whole rectangle, before the widget.
-        # A render node is bounded by what was painted into it, and an application
-        # which leaves its edges transparent came out cropped -- 451x515 for a window
-        # GTK had allocated at 480x640, which is a different picture, not a smaller
-        # one.
-        snapshot.append_color(background, Graphene::Rect.new(0, 0, width, height))
+    Staging.stage(app, one) do |content|
+      size(one, content).then do |width, height|
+        Gtk::Snapshot.new.then do |snapshot|
+          # The window's own background, over the whole rectangle, before the widget.
+          # A render node is bounded by what was painted into it, and an application
+          # which leaves its edges transparent came out cropped -- 451x515 for a window
+          # GTK had allocated at 480x640, which is a different picture, not a smaller
+          # one.
+          snapshot.append_color(background, Graphene::Rect.new(0, 0, width, height))
 
-        Gtk::WidgetPaintable.new(content).snapshot(snapshot, width, height)
+          Gtk::WidgetPaintable.new(content).snapshot(snapshot, width, height)
 
-        node = snapshot.to_node
-        return nil if node.nil?
+          node = snapshot.to_node
+          return nil if node.nil?
 
-        renderer.render_texture(node, nil).save_to_png(path)
-        path
+          renderer.render_texture(node, nil).save_to_png(path)
+          path
+        end
       end
     end
   rescue StandardError => e
@@ -142,49 +144,15 @@ module AppScreenshots
     nil
   end
 
-  # The window the application is built in, handed to the block and torn down after.
+  # The rectangle to paint into.
   #
-  # The size request rather than the default size alone: with no display a presented
-  # window settles at its minimum, and a 560x720 application was being shot at 451x548
-  # -- which is a different layout, not a smaller picture of the same one.
-  def self.window(app, width, height, name)
-    win = Adwaita::ApplicationWindow.new(app)
-    win.set_default_size(width, height)
-    win.content = build(name)
-    win.set_size_request(width, height)
-    win.present
-    settle(win, width, height)
+  # The manifest's, except in overlay mode: a dialog's card and a popover are whatever
+  # size their own contents ask for, and painting one into the host window's rectangle
+  # stretched it to fill a window it never covered.
+  def self.size(one, content)
+    return [one.fetch("width"), one.fetch("height")] unless one.fetch("mode", "content") == "overlay"
 
-    yield(win.content)
-  ensure
-    win&.destroy
-    pump(20)
-  end
-
-  # `preferences` is PreferencesApp in bin/apps/preferences/app.rb.
-  def self.build(name)
-    require(File.join(ROOT, "bin/apps", name, "app.rb"))
-
-    Object.const_get("#{name.split(/[-_]/).map(&:capitalize).join}App").new.build
-  end
-
-  def self.settle(win, width, height, limit = 800)
-    limit.times do |index|
-      break if win.width >= width && win.height >= height
-
-      GLib::MainContext.default.iteration(false)
-      sleep(0.002) if (index % 10).zero?
-    end
-
-    # A window at its size is not yet a window which has drawn its contents.
-    pump(60)
-  end
-
-  def self.pump(times)
-    times.times do |index|
-      GLib::MainContext.default.iteration(false)
-      sleep(0.002) if (index % 10).zero?
-    end
+    [content.width, content.height]
   end
 
   # The window background, as libadwaita's stylesheet gives it. Read off a realised

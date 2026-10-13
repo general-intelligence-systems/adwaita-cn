@@ -51,8 +51,16 @@ function FontChooserWidget({ className, render, font, fontDesc, previewText, lan
     style,
     children: (
         <>
+                  {font === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {font}
+                </span>
+              )}
+                  {previewText === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {previewText}
+                </span>
+              )}
                   {fontDesc}
                   {children}
         </>

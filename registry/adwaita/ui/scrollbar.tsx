@@ -80,7 +80,7 @@ function ScrollbarSlider({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="scrollbar-slider"
         data-node="slider"
       className={cn([
-        "-m-2 min-w-2 min-h-2 [border-width:8px] [border-style:solid] [border-color:transparent] rounded-[99px] bg-clip-padding transition-[all] duration-200 ease-[linear] bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
+        "-m-2 min-w-2 min-h-2 [border-width:8px] [border-style:solid] [border-color:transparent] rounded-[99px] bg-clip-padding transition-[all] duration-200 ease-[linear] bg-[color-mix(in_srgb,currentColor_20%,transparent)] min-w-10",
         "hover:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
         "active:bg-[color-mix(in_srgb,currentColor_60%,transparent)]",
         "disabled:opacity-0",
@@ -95,7 +95,7 @@ function ScrollbarTrough({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scrollbar-trough"
         data-node="trough"
-      className={cn("m-[9px] transition-[all] duration-200 ease-[linear] rounded-[99px]", className)}
+      className={cn("m-[9px] transition-[all] duration-200 ease-[linear] rounded-[99px] my-2", className)}
       {...props}
     />
   )

@@ -88,11 +88,15 @@ function ProgressBar({ className, render, variant = "default", ellipsize, text, 
     style,
     children: (
         <>
-                  <ProgressBarText defaultValue={text} defaultValue={fraction} />
+                  <ProgressBarText />
                   <ProgressBarTrough>
                 <ProgressBarProgress />
               </ProgressBarTrough>
+                  {text === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {text}
+                </span>
+              )}
                   {ellipsize}
                   {children}
         </>
@@ -108,12 +112,12 @@ function ProgressBar({ className, render, variant = "default", ellipsize, text, 
   })
 }
 
-function ProgressBarText({ className, ...props }: React.ComponentProps<"input">) {
+function ProgressBarText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="progress-bar-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -124,7 +128,7 @@ function ProgressBarProgress({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="progress-bar-progress"
         data-node="progress"
-      className={cn("rounded-[99px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)]", className)}
+      className={cn("rounded-[99px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)] min-h-2", className)}
       {...props}
     />
   )
@@ -135,7 +139,7 @@ function ProgressBarTrough({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="progress-bar-trough"
         data-node="trough"
-      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)]", className)}
+      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] min-w-37.5 min-h-2", className)}
       {...props}
     />
   )

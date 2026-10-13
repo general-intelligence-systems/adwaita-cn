@@ -184,7 +184,11 @@ function AppChooserDialog({ className, render, variant = "default", application,
                 </AppChooserDialogHeaderbar>
               </AppChooserDialogSheet>
                   {iconName ? <span data-slot="app-chooser-dialog-icon" data-icon className={iconName} aria-hidden /> : null}
+                  {heading === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {heading}
+                </span>
+              )}
                   {application}
                   {child}
                   {defaultWidget}

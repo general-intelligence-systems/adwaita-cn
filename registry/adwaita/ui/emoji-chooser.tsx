@@ -90,14 +90,11 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", emojiChooserVariants({ variant, size }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", emojiChooserVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>
                   <EmojiChooserArrow />
-                  <EmojiChooserAccelerator />
-                  <EmojiChooserCheck />
-                  <EmojiChooserRadio />
                   {child}
                   {defaultWidget}
                   {pointingTo}
@@ -126,59 +123,4 @@ function EmojiChooserArrow({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function EmojiChooserAccelerator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="emoji-chooser-accelerator"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function EmojiChooserCheck({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="emoji-chooser-check"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function EmojiChooserRadio({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="emoji-chooser-radio"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { EmojiChooser, EmojiChooserArrow, EmojiChooserAccelerator, EmojiChooserCheck, EmojiChooserRadio, emojiChooserVariants }
+export { EmojiChooser, EmojiChooserArrow, emojiChooserVariants }

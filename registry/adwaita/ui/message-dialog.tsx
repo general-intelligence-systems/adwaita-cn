@@ -261,7 +261,7 @@ function MessageDialogHeadingBin({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="message-dialog-heading-bin"
-      className={cn("heading-bin", "px-6", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "heading-bin", "px-6", className)}
       {...props}
     />
   )
@@ -307,7 +307,7 @@ function MessageDialogResponseArea({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="message-dialog-response-area"
-      className={cn("response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
       {...props}
     />
   )

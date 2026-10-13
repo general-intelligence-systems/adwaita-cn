@@ -62,6 +62,8 @@ require "gtk4"
 require "adwaita"
 require "ferrum"
 
+require_relative "lib/staging"
+
 Adwaita.init
 Adwaita::StyleManager.default.color_scheme = Adwaita::ColorScheme::FORCE_LIGHT
 GLib::Log.always_fatal = GLib::Log::LEVEL_ERROR
@@ -135,21 +137,9 @@ module AppReport
   end
 
   def self.measure(app, one)
-    name = one.fetch("name")
-    width = one.fetch("width")
-    height = one.fetch("height")
-
-    win = Adwaita::ApplicationWindow.new(app)
-    win.set_default_size(width, height)
-    win.content = build(name)
-    win.set_size_request(width, height)
-    win.present
-    settle(win, width, height)
-
-    [].tap{|into| walk(win.content, win.content, into, [], one.fetch("uses")) }
-  ensure
-    win&.destroy
-    pump(20)
+    Staging.stage(app, one) do |subject|
+      [].tap{|into| walk(subject, subject, into, [], one.fetch("uses")) }
+    end
   end
 
   # Depth first, in the order the tree is built, which is the order the document is in.
@@ -195,30 +185,6 @@ module AppReport
     name = widget.class.name.to_s.split("::").last
 
     catalogue.fetch("components").key?(name) ? name : nil
-  end
-
-  def self.build(name)
-    require(File.join(ROOT, "bin/apps", name, "app.rb"))
-
-    Object.const_get("#{name.split(/[-_]/).map(&:capitalize).join}App").new.build
-  end
-
-  def self.settle(win, width, height, limit = 800)
-    limit.times do |index|
-      break if win.width >= width && win.height >= height
-
-      GLib::MainContext.default.iteration(false)
-      sleep(0.002) if (index % 10).zero?
-    end
-
-    pump(60)
-  end
-
-  def self.pump(times)
-    times.times do |index|
-      GLib::MainContext.default.iteration(false)
-      sleep(0.002) if (index % 10).zero?
-    end
   end
 
   # ── the components, from the DOM ─────────────────────────────────────────

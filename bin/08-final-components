@@ -841,15 +841,100 @@ module FinalComponents
 
     return nil if paths.empty?
 
-    { "class" => name, "children" => [] }.tap do |root|
+    self.exclusive({ "class" => name, "children" => [] }.tap do |root|
       paths.sort_by(&:length).each do |path|
         path.reduce(root) do |cursor, one|
           cursor["children"].find{|child| child["node"] == one } ||
-            { "class" => self.pascal(one), "node" => one, "children" => [] }
+            # `css` marks a node read out of a selector rather than out of a template.
+            # The name is capitalised to stand in for a class, and some of those names
+            # are a real widget's: `progressbar > text` became a node of class `Text`,
+            # the generator renders a Gtk.Text as an `<input>`, and a progress bar was
+            # drawn with a text field in it 13px tall above its trough. A CSS node is a
+            # box the widget paints, not a widget, and nothing should look it up as one.
+            { "class" => self.pascal(one), "node" => one, "css-node" => true, "children" => [] }
               .tap{|child| cursor.fetch("children") << child }
         end
       end
+    end)
+  end
+
+  # The CSS nodes a widget builds exactly one of, where the stylesheet names several.
+  #
+  # A selector chain is a statement about a node which may exist, and the union of every
+  # chain rooted at a widget is not its structure -- it is every structure the widget can
+  # have at once. gtkcheckbutton.c builds ONE indicator and names it `check` or `radio`
+  # depending on whether the button is in a group, and the two rules read as two nodes:
+  # every check button in the registry was drawn with a box AND a circle beside its
+  # label. The same is true of a menu item, which is an arrow or a check or a radio or an
+  # accelerator and never more than one of them.
+  #
+  # The first of a set which the widget actually has is the one it keeps, and the rest are
+  # dropped. Which of them a particular widget is at a particular moment is a style class
+  # on it, which the variants already carry.
+  EXCLUSIVE = [
+    %w[check radio],
+    %w[arrow check radio accelerator],
+  ].freeze
+
+  # The widgets which build one of a node per thing they are given, keyed by their own
+  # node and naming the node they repeat.
+  #
+  # A node a widget builds ONCE is a part of it; a node it builds one of PER ITEM is the
+  # shape of whatever is put in. AdwToggleGroup builds a `toggle` for every AdwToggle it
+  # is handed, and reading that as structure gave the group a single toggle part with the
+  # caller's buttons nested inside it -- three buttons in one toggle, inside a
+  # buttoncontent, inside a box -- rather than three toggles side by side. The rules for
+  # the node belong on the parent, as the shape it gives its children, so that they reach
+  # whatever the caller actually put there.
+  ITEMS = { "toggle-group" => "toggle" }.freeze
+
+  # A node's rules restated as the shape the parent gives each of its children.
+  #
+  # `[&>*]:` and not a selector on the node itself: the registry has no component whose
+  # node is `toggle` -- AdwToggle is a GObject rather than a widget, so there is nothing
+  # for one to be generated from -- and what a caller puts in a group is a button. The
+  # group is the only thing which knows its children are toggles, so it is the thing
+  # which says so.
+  def self.for_children(classes)
+    base = classes.fetch("base", [])
+    states = classes.reject{|state, _| state == "base" }
+      .flat_map{|state, list| list.map{|one| "#{state}:#{one}" } }
+
+    (base + states).map{|one| "[&>*]:#{one}" }
+  end
+
+  # The item node folded off a component's tree and onto the component itself.
+  def self.fold_items(entry)
+    repeated = ITEMS[entry["node"]]
+    tree = entry["tree"]
+
+    return if repeated.nil? || tree.nil?
+
+    found = tree.fetch("children", []).find{|child| child["node"] == repeated }
+
+    return if found.nil?
+
+    tree["children"] = tree.fetch("children", []) - [found]
+    classes = (entry["classes"] ||= {})
+    classes["base"] = classes.fetch("base", []) + self.for_children(found.fetch("classes", {}))
+  end
+
+  # Siblings cut down to the one node of each exclusive set the widget really builds.
+  def self.exclusive(node)
+    children = node.fetch("children", [])
+
+    EXCLUSIVE.each do |set|
+      found = children.select{|child| set.include?(child["node"]) }
+
+      next if found.length < 2
+
+      children -= found.drop(1)
     end
+
+    node["children"] = children
+    children.each{|child| self.exclusive(child) }
+
+    node
   end
 
   def self.pascal(node) = node.split(/[-_]/).map{|part| part.capitalize }.join
@@ -923,6 +1008,8 @@ module FinalComponents
         self.annotate(entry.fetch("tree"), self.ambient(name, root), contexts, widgets, root,
                       entry["classes"], entry.fetch("hides", {}))
       self.with_slot_props(entry)
+      # After the tree is annotated, so the node carries the classes being folded.
+      self.fold_items(entry)
     end
   end
 

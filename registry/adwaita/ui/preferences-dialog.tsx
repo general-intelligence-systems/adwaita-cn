@@ -259,7 +259,7 @@ function PreferencesDialogToastOverlay({ className, ...props }: React.ComponentP
     <div
       data-slot="preferences-dialog-toast-overlay"
         data-node="toastoverlay"
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )

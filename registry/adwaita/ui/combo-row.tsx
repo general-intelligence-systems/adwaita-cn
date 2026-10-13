@@ -199,7 +199,10 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
                               <ComboRowProgress2 />
                             </ComboRowTrough>
                           </ComboRowProgress>
-                          <ComboRowText />
+                          <ComboRowText>
+                            <ComboRowBlockCursor />
+                            <ComboRowPlaceholder />
+                          </ComboRowText>
                         </ComboRowSearchEntry>
                         <ComboRowScrolledWindow>
                           <ComboRowList />
@@ -391,12 +394,12 @@ function ComboRowPlaceholder({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function ComboRowText({ className, ...props }: React.ComponentProps<"input">) {
+function ComboRowText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="combo-row-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -407,7 +410,7 @@ function ComboRowSearchEntry({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="combo-row-search-entry"
         data-node="entry"
-      className={cn("combo-searchbar", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "combo-searchbar", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}

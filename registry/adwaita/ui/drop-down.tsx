@@ -64,9 +64,6 @@ function DropDown({ className, render, expression, factory, headerFactory, listF
                   <DropDownArrow />
                   <DropDownPopover>
                 <DropDownArrow2 />
-                <DropDownAccelerator />
-                <DropDownCheck />
-                <DropDownRadio />
               </DropDownPopover>
                   <DropDownButton>
                 <DropDownBox>
@@ -113,61 +110,6 @@ function DropDownArrow2({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function DropDownAccelerator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="drop-down-accelerator"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function DropDownCheck({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="drop-down-check"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function DropDownRadio({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="drop-down-radio"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function DropDownPopover({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -209,4 +151,4 @@ function DropDownButton({ className, ...props }: React.ComponentProps<"button">)
   )
 }
 
-export { DropDown, DropDownArrow, DropDownArrow2, DropDownAccelerator, DropDownCheck, DropDownRadio, DropDownPopover, DropDownBox, DropDownButton }
+export { DropDown, DropDownArrow, DropDownArrow2, DropDownPopover, DropDownBox, DropDownButton }

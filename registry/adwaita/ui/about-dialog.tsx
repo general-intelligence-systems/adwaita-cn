@@ -227,16 +227,15 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                   <AboutDialogListview />
                                   <AboutDialogPopover>
                                     <AboutDialogArrow />
-                                    <AboutDialogAccelerator />
-                                    <AboutDialogCheck />
-                                    <AboutDialogRadio />
                                   </AboutDialogPopover>
                                   <AboutDialogSpinbutton>
                                     <AboutDialogButton>
                                       <AboutDialogBox4 />
                                       <AboutDialogLabel2 />
                                     </AboutDialogButton>
-                                    <AboutDialogText />
+                                    <AboutDialogText>
+                                      <AboutDialogPlaceholder />
+                                    </AboutDialogText>
                                   </AboutDialogSpinbutton>
                                   <AboutDialogList />
                                   <AboutDialogText2 />
@@ -249,7 +248,11 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                   <AboutDialogProgressbar>
                                     <AboutDialogText3 />
                                   </AboutDialogProgressbar>
-                                  <AboutDialogEntry />
+                                  <AboutDialogEntry>
+                                    <AboutDialogText4>
+                                      <AboutDialogPlaceholder2 />
+                                    </AboutDialogText4>
+                                  </AboutDialogEntry>
                                 </AboutDialogWebsiteRow>
                               </AboutDialogDetailsGroup>
                               <AboutDialogSupportGroup>
@@ -260,16 +263,15 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                   <AboutDialogListview2 />
                                   <AboutDialogPopover2>
                                     <AboutDialogArrow2 />
-                                    <AboutDialogAccelerator2 />
-                                    <AboutDialogCheck2 />
-                                    <AboutDialogRadio2 />
                                   </AboutDialogPopover2>
                                   <AboutDialogSpinbutton2>
                                     <AboutDialogButton2>
                                       <AboutDialogBox6 />
                                       <AboutDialogLabel4 />
                                     </AboutDialogButton2>
-                                    <AboutDialogText5 />
+                                    <AboutDialogText5>
+                                      <AboutDialogPlaceholder3 />
+                                    </AboutDialogText5>
                                   </AboutDialogSpinbutton2>
                                   <AboutDialogList2 />
                                   <AboutDialogText6 />
@@ -282,7 +284,11 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                   <AboutDialogProgressbar2>
                                     <AboutDialogText7 />
                                   </AboutDialogProgressbar2>
-                                  <AboutDialogEntry2 />
+                                  <AboutDialogEntry2>
+                                    <AboutDialogText8>
+                                      <AboutDialogPlaceholder4 />
+                                    </AboutDialogText8>
+                                  </AboutDialogEntry2>
                                 </AboutDialogSupportRow>
                                 <AboutDialogIssueRow>
                                   <AboutDialogBox7 />
@@ -291,16 +297,15 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                   <AboutDialogListview3 />
                                   <AboutDialogPopover3>
                                     <AboutDialogArrow3 />
-                                    <AboutDialogAccelerator3 />
-                                    <AboutDialogCheck3 />
-                                    <AboutDialogRadio3 />
                                   </AboutDialogPopover3>
                                   <AboutDialogSpinbutton3>
                                     <AboutDialogButton3>
                                       <AboutDialogBox8 />
                                       <AboutDialogLabel6 />
                                     </AboutDialogButton3>
-                                    <AboutDialogText9 />
+                                    <AboutDialogText9>
+                                      <AboutDialogPlaceholder5 />
+                                    </AboutDialogText9>
                                   </AboutDialogSpinbutton3>
                                   <AboutDialogList3 />
                                   <AboutDialogText10 />
@@ -313,7 +318,11 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                   <AboutDialogProgressbar3>
                                     <AboutDialogText11 />
                                   </AboutDialogProgressbar3>
-                                  <AboutDialogEntry3 />
+                                  <AboutDialogEntry3>
+                                    <AboutDialogText12>
+                                      <AboutDialogPlaceholder6 />
+                                    </AboutDialogText12>
+                                  </AboutDialogEntry3>
                                 </AboutDialogIssueRow>
                                 <AboutDialogTroubleshootingRow>
                                   <AboutDialogImage9 />
@@ -424,16 +433,15 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                 <AboutDialogListview4 />
                                 <AboutDialogPopover4>
                                   <AboutDialogArrow4 />
-                                  <AboutDialogAccelerator4 />
-                                  <AboutDialogCheck4 />
-                                  <AboutDialogRadio4 />
                                 </AboutDialogPopover4>
                                 <AboutDialogSpinbutton4>
                                   <AboutDialogButton6>
                                     <AboutDialogBox19 />
                                     <AboutDialogLabel8 />
                                   </AboutDialogButton6>
-                                  <AboutDialogText13 />
+                                  <AboutDialogText13>
+                                    <AboutDialogPlaceholder7 />
+                                  </AboutDialogText13>
                                 </AboutDialogSpinbutton4>
                                 <AboutDialogList4 />
                                 <AboutDialogText14 />
@@ -446,7 +454,11 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                                 <AboutDialogProgressbar4>
                                   <AboutDialogText15 />
                                 </AboutDialogProgressbar4>
-                                <AboutDialogEntry4 />
+                                <AboutDialogEntry4>
+                                  <AboutDialogText16>
+                                    <AboutDialogPlaceholder8 />
+                                  </AboutDialogText16>
+                                </AboutDialogEntry4>
                               </AboutDialogDetailsWebsiteRow>
                             </AboutDialogLinksGroup>
                           </AboutDialogBox17>
@@ -751,7 +763,7 @@ function AboutDialogWhatsNewRow({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="about-dialog-whats-new-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -776,7 +788,7 @@ function AboutDialogDetailsRow({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-dialog-details-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -838,61 +850,6 @@ function AboutDialogArrow({ className, ...props }: React.ComponentProps<"div">) 
       data-slot="about-dialog-arrow"
         data-node="arrow"
       className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogAccelerator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-accelerator"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCheck({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-check"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRadio({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-radio"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
       {...props}
     />
   )
@@ -964,12 +921,12 @@ function AboutDialogPlaceholder({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogText({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -1000,12 +957,12 @@ function AboutDialogList({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogText2({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText2({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text2"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -1027,7 +984,7 @@ function AboutDialogScale({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-dialog-scale"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1061,12 +1018,12 @@ function AboutDialogRow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogText3({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText3({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text3"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -1094,23 +1051,23 @@ function AboutDialogPlaceholder2({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogText4({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText4({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text4"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogEntry({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogEntry({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-entry"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1202,61 +1159,6 @@ function AboutDialogArrow2({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogAccelerator2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-accelerator2"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCheck2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-check2"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRadio2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-radio2"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogPopover2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1323,12 +1225,12 @@ function AboutDialogPlaceholder3({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogText5({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText5({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text5"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -1359,12 +1261,12 @@ function AboutDialogList2({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutDialogText6({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText6({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text6"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -1386,7 +1288,7 @@ function AboutDialogScale2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-dialog-scale2"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1420,12 +1322,12 @@ function AboutDialogRow2({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogText7({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText7({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text7"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -1453,23 +1355,23 @@ function AboutDialogPlaceholder4({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogText8({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText8({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text8"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogEntry2({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogEntry2({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-entry2"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1550,61 +1452,6 @@ function AboutDialogArrow3({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogAccelerator3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-accelerator3"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCheck3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-check3"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRadio3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-radio3"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogPopover3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1671,12 +1518,12 @@ function AboutDialogPlaceholder5({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogText9({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText9({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text9"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -1707,12 +1554,12 @@ function AboutDialogList3({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutDialogText10({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText10({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text10"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -1734,7 +1581,7 @@ function AboutDialogScale3({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-dialog-scale3"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1768,12 +1615,12 @@ function AboutDialogRow3({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogText11({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText11({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text11"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -1801,23 +1648,23 @@ function AboutDialogPlaceholder6({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogText12({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText12({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text12"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogEntry3({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogEntry3({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-entry3"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -1856,7 +1703,7 @@ function AboutDialogTroubleshootingRow({ className, ...props }: React.ComponentP
     <div
       data-slot="about-dialog-troubleshooting-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -1892,7 +1739,7 @@ function AboutDialogActionRow({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="about-dialog-action-row"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -1917,7 +1764,7 @@ function AboutDialogActionRow2({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-dialog-action-row2"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -1942,7 +1789,7 @@ function AboutDialogActionRow3({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-dialog-action-row3"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -2019,7 +1866,7 @@ function AboutDialogListbox({ className, ...props }: React.ComponentProps<"ul">)
     <ul
       data-slot="about-dialog-listbox"
         data-node="list"
-      className={cn("boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -2599,61 +2446,6 @@ function AboutDialogArrow4({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogAccelerator4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-accelerator4"
-        data-node="accelerator"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCheck4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-check4"
-        data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRadio4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-radio4"
-        data-node="radio"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
-        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
-        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
-        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
-        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogPopover4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2720,12 +2512,12 @@ function AboutDialogPlaceholder7({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogText13({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText13({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text13"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -2756,12 +2548,12 @@ function AboutDialogList4({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutDialogText14({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText14({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text14"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -2783,7 +2575,7 @@ function AboutDialogScale4({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-dialog-scale4"
         data-node="scale"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -2817,12 +2609,12 @@ function AboutDialogRow4({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogText15({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText15({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text15"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
       {...props}
     />
   )
@@ -2850,23 +2642,23 @@ function AboutDialogPlaceholder8({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogText16({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogText16({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-text16"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogEntry4({ className, ...props }: React.ComponentProps<"input">) {
+function AboutDialogEntry4({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <input
+    <div
       data-slot="about-dialog-entry4"
         data-node="entry"
-      className={cn("min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -3159,7 +2951,7 @@ function AboutDialogActionRow4({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-dialog-action-row4"
         data-node="row"
-      className={cn([
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
       ], className)}
@@ -4389,10 +4181,10 @@ function AboutDialogToastOverlay({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-dialog-toast-overlay"
         data-node="toastoverlay"
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )
 }
 
-export { AboutDialog, AboutDialogAppIconImage, AboutDialogAppNameLabel, AboutDialogDeveloperNameLabel, AboutDialogVersionButton, AboutDialogImage, AboutDialogWhatsNewRow, AboutDialogImage2, AboutDialogDetailsRow, AboutDialogBox3, AboutDialogImage3, AboutDialogLabel, AboutDialogListview, AboutDialogArrow, AboutDialogAccelerator, AboutDialogCheck, AboutDialogRadio, AboutDialogPopover, AboutDialogBox4, AboutDialogLabel2, AboutDialogButton, AboutDialogPlaceholder, AboutDialogText, AboutDialogSpinbutton, AboutDialogList, AboutDialogText2, AboutDialogValue, AboutDialogScale, AboutDialogImage4, AboutDialogRow, AboutDialogText3, AboutDialogProgressbar, AboutDialogPlaceholder2, AboutDialogText4, AboutDialogEntry, AboutDialogWebsiteRow, AboutDialogDetailsGroup, AboutDialogBox5, AboutDialogImage5, AboutDialogLabel3, AboutDialogListview2, AboutDialogArrow2, AboutDialogAccelerator2, AboutDialogCheck2, AboutDialogRadio2, AboutDialogPopover2, AboutDialogBox6, AboutDialogLabel4, AboutDialogButton2, AboutDialogPlaceholder3, AboutDialogText5, AboutDialogSpinbutton2, AboutDialogList2, AboutDialogText6, AboutDialogValue2, AboutDialogScale2, AboutDialogImage6, AboutDialogRow2, AboutDialogText7, AboutDialogProgressbar2, AboutDialogPlaceholder4, AboutDialogText8, AboutDialogEntry2, AboutDialogSupportRow, AboutDialogBox7, AboutDialogImage7, AboutDialogLabel5, AboutDialogListview3, AboutDialogArrow3, AboutDialogAccelerator3, AboutDialogCheck3, AboutDialogRadio3, AboutDialogPopover3, AboutDialogBox8, AboutDialogLabel6, AboutDialogButton3, AboutDialogPlaceholder5, AboutDialogText9, AboutDialogSpinbutton3, AboutDialogList3, AboutDialogText10, AboutDialogValue3, AboutDialogScale3, AboutDialogImage8, AboutDialogRow3, AboutDialogText11, AboutDialogProgressbar3, AboutDialogPlaceholder6, AboutDialogText12, AboutDialogEntry3, AboutDialogIssueRow, AboutDialogImage9, AboutDialogTroubleshootingRow, AboutDialogSupportGroup, AboutDialogImage10, AboutDialogActionRow, AboutDialogImage11, AboutDialogActionRow2, AboutDialogImage12, AboutDialogActionRow3, AboutDialogCreditsLegalGroup, AboutDialogTitle, AboutDialogDescription, AboutDialogBox10, AboutDialogHeaderBox, AboutDialogListbox, AboutDialogListboxBox, AboutDialogBox9, AboutDialogOtherAppsGroup, AboutDialogBox2, AboutDialogBox, AboutDialogClamp, AboutDialogMainScrolledWindow, AboutDialogImage13, AboutDialogButton4, AboutDialogWindowControls, AboutDialogBox12, AboutDialogStart, AboutDialogTitle2, AboutDialogImage14, AboutDialogCloseButton, AboutDialogWindowControls2, AboutDialogBox13, AboutDialogEnd, AboutDialogBox11, AboutDialogWindowhandle, AboutDialogMainHeaderbar, AboutDialogToolbarView, AboutDialogNavigationPage, AboutDialogTextView, AboutDialogClampScrollable, AboutDialogScrolledWindow, AboutDialogImage15, AboutDialogButton5, AboutDialogWindowControls3, AboutDialogBox15, AboutDialogStart2, AboutDialogTitle3, AboutDialogImage16, AboutDialogCloseButton2, AboutDialogWindowControls4, AboutDialogBox16, AboutDialogEnd2, AboutDialogBox14, AboutDialogWindowhandle2, AboutDialogHeaderBar, AboutDialogToolbarView2, AboutDialogWhatsnewPage, AboutDialogCommentsLabel, AboutDialogBox18, AboutDialogImage17, AboutDialogLabel7, AboutDialogListview4, AboutDialogArrow4, AboutDialogAccelerator4, AboutDialogCheck4, AboutDialogRadio4, AboutDialogPopover4, AboutDialogBox19, AboutDialogLabel8, AboutDialogButton6, AboutDialogPlaceholder7, AboutDialogText13, AboutDialogSpinbutton4, AboutDialogList4, AboutDialogText14, AboutDialogValue4, AboutDialogScale4, AboutDialogImage18, AboutDialogRow4, AboutDialogText15, AboutDialogProgressbar4, AboutDialogPlaceholder8, AboutDialogText16, AboutDialogEntry4, AboutDialogDetailsWebsiteRow, AboutDialogLinksGroup, AboutDialogBox17, AboutDialogClamp2, AboutDialogScrolledWindow2, AboutDialogImage19, AboutDialogButton7, AboutDialogWindowControls5, AboutDialogBox21, AboutDialogStart3, AboutDialogTitle4, AboutDialogImage20, AboutDialogCloseButton3, AboutDialogWindowControls6, AboutDialogBox22, AboutDialogEnd3, AboutDialogBox20, AboutDialogWindowhandle3, AboutDialogHeaderBar2, AboutDialogToolbarView3, AboutDialogNavigationPage2, AboutDialogLabel9, AboutDialogImage21, AboutDialogActionRow4, AboutDialogPreferencesGroup, AboutDialogBox23, AboutDialogClamp3, AboutDialogScrolledWindow3, AboutDialogImage22, AboutDialogButton8, AboutDialogWindowControls7, AboutDialogBox25, AboutDialogStart4, AboutDialogTitle5, AboutDialogImage23, AboutDialogCloseButton4, AboutDialogWindowControls8, AboutDialogBox26, AboutDialogEnd4, AboutDialogBox24, AboutDialogWindowhandle4, AboutDialogHeaderBar3, AboutDialogToolbarView4, AboutDialogNavigationPage3, AboutDialogTextView2, AboutDialogClampScrollable2, AboutDialogScrolledWindow4, AboutDialogImage24, AboutDialogButton9, AboutDialogWindowControls9, AboutDialogBox28, AboutDialogStart5, AboutDialogTitle6, AboutDialogImage25, AboutDialogCloseButton5, AboutDialogWindowControls10, AboutDialogBox29, AboutDialogEnd5, AboutDialogBox27, AboutDialogWindowhandle5, AboutDialogHeaderBar4, AboutDialogButton10, AboutDialogButton11, AboutDialogActionBar, AboutDialogToolbarView5, AboutDialogDebugInfoPage, AboutDialogCreditsBox, AboutDialogClamp4, AboutDialogScrolledWindow5, AboutDialogImage26, AboutDialogButton12, AboutDialogWindowControls11, AboutDialogBox31, AboutDialogStart6, AboutDialogTitle7, AboutDialogImage27, AboutDialogCloseButton6, AboutDialogWindowControls12, AboutDialogBox32, AboutDialogEnd6, AboutDialogBox30, AboutDialogWindowhandle6, AboutDialogHeaderBar5, AboutDialogToolbarView6, AboutDialogNavigationPage4, AboutDialogLegalBox, AboutDialogClamp5, AboutDialogScrolledWindow6, AboutDialogImage28, AboutDialogButton13, AboutDialogWindowControls13, AboutDialogBox34, AboutDialogStart7, AboutDialogTitle8, AboutDialogImage29, AboutDialogCloseButton7, AboutDialogWindowControls14, AboutDialogBox35, AboutDialogEnd7, AboutDialogBox33, AboutDialogWindowhandle7, AboutDialogHeaderBar6, AboutDialogToolbarView7, AboutDialogNavigationPage5, AboutDialogAcknowledgementsBox, AboutDialogClamp6, AboutDialogScrolledWindow7, AboutDialogImage30, AboutDialogButton14, AboutDialogWindowControls15, AboutDialogBox37, AboutDialogStart8, AboutDialogTitle9, AboutDialogImage31, AboutDialogCloseButton8, AboutDialogWindowControls16, AboutDialogBox38, AboutDialogEnd8, AboutDialogBox36, AboutDialogWindowhandle8, AboutDialogHeaderBar7, AboutDialogToolbarView8, AboutDialogNavigationPage6, AboutDialogNavigationView, AboutDialogToastOverlay, aboutDialogVariants }
+export { AboutDialog, AboutDialogAppIconImage, AboutDialogAppNameLabel, AboutDialogDeveloperNameLabel, AboutDialogVersionButton, AboutDialogImage, AboutDialogWhatsNewRow, AboutDialogImage2, AboutDialogDetailsRow, AboutDialogBox3, AboutDialogImage3, AboutDialogLabel, AboutDialogListview, AboutDialogArrow, AboutDialogPopover, AboutDialogBox4, AboutDialogLabel2, AboutDialogButton, AboutDialogPlaceholder, AboutDialogText, AboutDialogSpinbutton, AboutDialogList, AboutDialogText2, AboutDialogValue, AboutDialogScale, AboutDialogImage4, AboutDialogRow, AboutDialogText3, AboutDialogProgressbar, AboutDialogPlaceholder2, AboutDialogText4, AboutDialogEntry, AboutDialogWebsiteRow, AboutDialogDetailsGroup, AboutDialogBox5, AboutDialogImage5, AboutDialogLabel3, AboutDialogListview2, AboutDialogArrow2, AboutDialogPopover2, AboutDialogBox6, AboutDialogLabel4, AboutDialogButton2, AboutDialogPlaceholder3, AboutDialogText5, AboutDialogSpinbutton2, AboutDialogList2, AboutDialogText6, AboutDialogValue2, AboutDialogScale2, AboutDialogImage6, AboutDialogRow2, AboutDialogText7, AboutDialogProgressbar2, AboutDialogPlaceholder4, AboutDialogText8, AboutDialogEntry2, AboutDialogSupportRow, AboutDialogBox7, AboutDialogImage7, AboutDialogLabel5, AboutDialogListview3, AboutDialogArrow3, AboutDialogPopover3, AboutDialogBox8, AboutDialogLabel6, AboutDialogButton3, AboutDialogPlaceholder5, AboutDialogText9, AboutDialogSpinbutton3, AboutDialogList3, AboutDialogText10, AboutDialogValue3, AboutDialogScale3, AboutDialogImage8, AboutDialogRow3, AboutDialogText11, AboutDialogProgressbar3, AboutDialogPlaceholder6, AboutDialogText12, AboutDialogEntry3, AboutDialogIssueRow, AboutDialogImage9, AboutDialogTroubleshootingRow, AboutDialogSupportGroup, AboutDialogImage10, AboutDialogActionRow, AboutDialogImage11, AboutDialogActionRow2, AboutDialogImage12, AboutDialogActionRow3, AboutDialogCreditsLegalGroup, AboutDialogTitle, AboutDialogDescription, AboutDialogBox10, AboutDialogHeaderBox, AboutDialogListbox, AboutDialogListboxBox, AboutDialogBox9, AboutDialogOtherAppsGroup, AboutDialogBox2, AboutDialogBox, AboutDialogClamp, AboutDialogMainScrolledWindow, AboutDialogImage13, AboutDialogButton4, AboutDialogWindowControls, AboutDialogBox12, AboutDialogStart, AboutDialogTitle2, AboutDialogImage14, AboutDialogCloseButton, AboutDialogWindowControls2, AboutDialogBox13, AboutDialogEnd, AboutDialogBox11, AboutDialogWindowhandle, AboutDialogMainHeaderbar, AboutDialogToolbarView, AboutDialogNavigationPage, AboutDialogTextView, AboutDialogClampScrollable, AboutDialogScrolledWindow, AboutDialogImage15, AboutDialogButton5, AboutDialogWindowControls3, AboutDialogBox15, AboutDialogStart2, AboutDialogTitle3, AboutDialogImage16, AboutDialogCloseButton2, AboutDialogWindowControls4, AboutDialogBox16, AboutDialogEnd2, AboutDialogBox14, AboutDialogWindowhandle2, AboutDialogHeaderBar, AboutDialogToolbarView2, AboutDialogWhatsnewPage, AboutDialogCommentsLabel, AboutDialogBox18, AboutDialogImage17, AboutDialogLabel7, AboutDialogListview4, AboutDialogArrow4, AboutDialogPopover4, AboutDialogBox19, AboutDialogLabel8, AboutDialogButton6, AboutDialogPlaceholder7, AboutDialogText13, AboutDialogSpinbutton4, AboutDialogList4, AboutDialogText14, AboutDialogValue4, AboutDialogScale4, AboutDialogImage18, AboutDialogRow4, AboutDialogText15, AboutDialogProgressbar4, AboutDialogPlaceholder8, AboutDialogText16, AboutDialogEntry4, AboutDialogDetailsWebsiteRow, AboutDialogLinksGroup, AboutDialogBox17, AboutDialogClamp2, AboutDialogScrolledWindow2, AboutDialogImage19, AboutDialogButton7, AboutDialogWindowControls5, AboutDialogBox21, AboutDialogStart3, AboutDialogTitle4, AboutDialogImage20, AboutDialogCloseButton3, AboutDialogWindowControls6, AboutDialogBox22, AboutDialogEnd3, AboutDialogBox20, AboutDialogWindowhandle3, AboutDialogHeaderBar2, AboutDialogToolbarView3, AboutDialogNavigationPage2, AboutDialogLabel9, AboutDialogImage21, AboutDialogActionRow4, AboutDialogPreferencesGroup, AboutDialogBox23, AboutDialogClamp3, AboutDialogScrolledWindow3, AboutDialogImage22, AboutDialogButton8, AboutDialogWindowControls7, AboutDialogBox25, AboutDialogStart4, AboutDialogTitle5, AboutDialogImage23, AboutDialogCloseButton4, AboutDialogWindowControls8, AboutDialogBox26, AboutDialogEnd4, AboutDialogBox24, AboutDialogWindowhandle4, AboutDialogHeaderBar3, AboutDialogToolbarView4, AboutDialogNavigationPage3, AboutDialogTextView2, AboutDialogClampScrollable2, AboutDialogScrolledWindow4, AboutDialogImage24, AboutDialogButton9, AboutDialogWindowControls9, AboutDialogBox28, AboutDialogStart5, AboutDialogTitle6, AboutDialogImage25, AboutDialogCloseButton5, AboutDialogWindowControls10, AboutDialogBox29, AboutDialogEnd5, AboutDialogBox27, AboutDialogWindowhandle5, AboutDialogHeaderBar4, AboutDialogButton10, AboutDialogButton11, AboutDialogActionBar, AboutDialogToolbarView5, AboutDialogDebugInfoPage, AboutDialogCreditsBox, AboutDialogClamp4, AboutDialogScrolledWindow5, AboutDialogImage26, AboutDialogButton12, AboutDialogWindowControls11, AboutDialogBox31, AboutDialogStart6, AboutDialogTitle7, AboutDialogImage27, AboutDialogCloseButton6, AboutDialogWindowControls12, AboutDialogBox32, AboutDialogEnd6, AboutDialogBox30, AboutDialogWindowhandle6, AboutDialogHeaderBar5, AboutDialogToolbarView6, AboutDialogNavigationPage4, AboutDialogLegalBox, AboutDialogClamp5, AboutDialogScrolledWindow6, AboutDialogImage28, AboutDialogButton13, AboutDialogWindowControls13, AboutDialogBox34, AboutDialogStart7, AboutDialogTitle8, AboutDialogImage29, AboutDialogCloseButton7, AboutDialogWindowControls14, AboutDialogBox35, AboutDialogEnd7, AboutDialogBox33, AboutDialogWindowhandle7, AboutDialogHeaderBar6, AboutDialogToolbarView7, AboutDialogNavigationPage5, AboutDialogAcknowledgementsBox, AboutDialogClamp6, AboutDialogScrolledWindow7, AboutDialogImage30, AboutDialogButton14, AboutDialogWindowControls15, AboutDialogBox37, AboutDialogStart8, AboutDialogTitle9, AboutDialogImage31, AboutDialogCloseButton8, AboutDialogWindowControls16, AboutDialogBox38, AboutDialogEnd8, AboutDialogBox36, AboutDialogWindowhandle8, AboutDialogHeaderBar7, AboutDialogToolbarView8, AboutDialogNavigationPage6, AboutDialogNavigationView, AboutDialogToastOverlay, aboutDialogVariants }

@@ -1,5 +1,5 @@
 {
-  "comment": "The apps both sides build. One entry per app: the window it is shot at, and the components it puts on screen. Both renderers read this, so neither has a list of its own.",
+  "comment": "The apps both sides build. One entry per app: the window it is shot at, the mode it is shot in, and the components it puts on screen. Both renderers read this, so neither has a list of its own. mode is content (the app builds a widget for the window's content area), window (the app builds its own toplevel, because a GtkWindow cannot be another window's content) or overlay (the app presents a dialog or popover over a host window, because those live above the content area rather than in it).",
   "apps": [
     {
       "name": "preferences",
@@ -18,7 +18,8 @@
         "HeaderBar",
         "WindowTitle",
         "Button"
-      ]
+      ],
+      "mode": "content"
     },
     {
       "name": "library",
@@ -37,7 +38,8 @@
         "StatusPage",
         "Button",
         "Separator"
-      ]
+      ],
+      "mode": "content"
     },
     {
       "name": "controls",
@@ -60,8 +62,10 @@
         "ProgressBar",
         "LevelBar",
         "SpinButton",
-        "Separator"
-      ]
+        "Separator",
+        "ToggleButton"
+      ],
+      "mode": "content"
     },
     {
       "name": "feedback",
@@ -77,6 +81,537 @@
         "Label",
         "HeaderBar",
         "ToolbarView"
+      ],
+      "mode": "content"
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "width": 720,
+      "height": 480,
+      "mode": "content",
+      "uses": [
+        "TabView",
+        "TabBar",
+        "TabButton",
+        "TabOverview",
+        "ToolbarView",
+        "HeaderBar",
+        "WindowTitle"
+      ]
+    },
+    {
+      "name": "lists",
+      "title": "Lists",
+      "width": 720,
+      "height": 600,
+      "mode": "content",
+      "uses": [
+        "ListView",
+        "GridView",
+        "ColumnView",
+        "TreeExpander",
+        "ListBoxRow",
+        "ScrolledWindow",
+        "Viewport",
+        "Scrollbar",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "legacy",
+      "title": "Legacy",
+      "width": 720,
+      "height": 520,
+      "mode": "content",
+      "uses": [
+        "TreeView",
+        "IconView",
+        "CellView",
+        "ComboBox",
+        "ComboBoxText",
+        "Statusbar",
+        "Box",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "pickers",
+      "title": "Pickers",
+      "width": 560,
+      "height": 640,
+      "mode": "content",
+      "uses": [
+        "Calendar",
+        "ColorButton",
+        "ColorDialogButton",
+        "FontButton",
+        "FontDialogButton",
+        "ScaleButton",
+        "VolumeButton",
+        "Box",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "choosers",
+      "title": "Choosers",
+      "width": 760,
+      "height": 600,
+      "mode": "content",
+      "uses": [
+        "AppChooserWidget",
+        "FileChooserWidget",
+        "ColorChooserWidget",
+        "FontChooserWidget",
+        "Notebook",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "layout",
+      "title": "Layout",
+      "width": 680,
+      "height": 600,
+      "mode": "content",
+      "uses": [
+        "Grid",
+        "Fixed",
+        "CenterBox",
+        "Paned",
+        "Overlay",
+        "WrapBox",
+        "AspectFrame",
+        "Frame",
+        "Bin",
+        "Box",
+        "Label"
+      ]
+    },
+    {
+      "name": "navigation",
+      "title": "Navigation",
+      "width": 720,
+      "height": 560,
+      "mode": "content",
+      "uses": [
+        "NavigationView",
+        "ViewStack",
+        "ViewSwitcher",
+        "ViewSwitcherBar",
+        "ViewSwitcherTitle",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "switchers",
+      "title": "Switchers",
+      "width": 760,
+      "height": 520,
+      "mode": "content",
+      "uses": [
+        "ViewSwitcherSidebar",
+        "InlineViewSwitcher",
+        "StackSidebar",
+        "StackSwitcher",
+        "Stack",
+        "Box",
+        "Label"
+      ]
+    },
+    {
+      "name": "reveal",
+      "title": "Reveal",
+      "width": 560,
+      "height": 520,
+      "mode": "content",
+      "uses": [
+        "Squeezer",
+        "Revealer",
+        "Expander",
+        "Box",
+        "Label",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "adaptive",
+      "title": "Adaptive",
+      "width": 800,
+      "height": 600,
+      "mode": "content",
+      "uses": [
+        "BreakpointBin",
+        "Flap",
+        "Leaflet",
+        "OverlaySplitView",
+        "BottomSheet",
+        "MultiLayoutView",
+        "LayoutSlot",
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "text",
+      "title": "Text",
+      "width": 560,
+      "height": 660,
+      "mode": "content",
+      "uses": [
+        "Text",
+        "TextView",
+        "EditableLabel",
+        "PasswordEntry",
+        "PasswordEntryRow",
+        "Inscription",
+        "SearchBar",
+        "ActionBar",
+        "PreferencesGroup"
+      ]
+    },
+    {
+      "name": "buttons",
+      "title": "Buttons",
+      "width": 560,
+      "height": 560,
+      "mode": "content",
+      "uses": [
+        "ButtonContent",
+        "ButtonRow",
+        "SplitButton",
+        "MenuButton",
+        "ToggleButton",
+        "LinkButton",
+        "LockButton",
+        "AppChooserButton",
+        "PreferencesGroup",
+        "Box"
+      ]
+    },
+    {
+      "name": "media",
+      "title": "Media",
+      "width": 640,
+      "height": 600,
+      "mode": "content",
+      "uses": [
+        "Image",
+        "Picture",
+        "Video",
+        "MediaControls",
+        "DrawingArea",
+        "Glarea",
+        "GraphicsOffload",
+        "Box",
+        "Label"
+      ]
+    },
+    {
+      "name": "flow",
+      "title": "Flow",
+      "width": 680,
+      "height": 560,
+      "mode": "content",
+      "uses": [
+        "FlowBox",
+        "FlowBoxChild",
+        "Carousel",
+        "CarouselIndicatorDots",
+        "CarouselIndicatorLines",
+        "ClampScrollable",
+        "Box"
+      ]
+    },
+    {
+      "name": "rows",
+      "title": "Rows",
+      "width": 520,
+      "height": 640,
+      "mode": "content",
+      "uses": [
+        "ExpanderRow",
+        "PreferencesRow",
+        "ListBox",
+        "PreferencesGroup",
+        "PreferencesPage",
+        "Avatar",
+        "ActionRow"
+      ]
+    },
+    {
+      "name": "shortcuts",
+      "title": "Shortcuts",
+      "width": 560,
+      "height": 460,
+      "mode": "content",
+      "uses": [
+        "ShortcutLabel",
+        "ShortcutsGroup",
+        "ShortcutsShortcut",
+        "Box",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "chrome",
+      "title": "Chrome",
+      "width": 600,
+      "height": 440,
+      "mode": "content",
+      "uses": [
+        "WindowControls",
+        "WindowHandle",
+        "PopoverMenuBar",
+        "PopoverBin",
+        "HeaderBar",
+        "ToolbarView",
+        "Box"
+      ]
+    },
+    {
+      "name": "gauges",
+      "title": "Gauges",
+      "width": 520,
+      "height": 480,
+      "mode": "content",
+      "uses": [
+        "Range",
+        "Spinner",
+        "InfoBar",
+        "LevelBar",
+        "ProgressBar",
+        "Box",
+        "PreferencesGroup"
+      ]
+    },
+    {
+      "name": "dialog-alert",
+      "title": "Alert dialog",
+      "width": 480,
+      "height": 360,
+      "mode": "overlay",
+      "uses": [
+        "AlertDialog"
+      ]
+    },
+    {
+      "name": "dialog-about",
+      "title": "About dialog",
+      "width": 480,
+      "height": 640,
+      "mode": "overlay",
+      "uses": [
+        "AboutDialog"
+      ]
+    },
+    {
+      "name": "dialog-preferences",
+      "title": "Preferences dialog",
+      "width": 520,
+      "height": 600,
+      "mode": "overlay",
+      "uses": [
+        "PreferencesDialog",
+        "PreferencesPage",
+        "PreferencesGroup"
+      ]
+    },
+    {
+      "name": "dialog-shortcuts",
+      "title": "Shortcuts dialog",
+      "width": 520,
+      "height": 600,
+      "mode": "overlay",
+      "uses": [
+        "ShortcutsDialog"
+      ]
+    },
+    {
+      "name": "dialog-plain",
+      "title": "Dialog",
+      "width": 420,
+      "height": 320,
+      "mode": "overlay",
+      "uses": [
+        "Dialog",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "width": 300,
+      "height": 200,
+      "mode": "overlay",
+      "uses": [
+        "Popover",
+        "Box",
+        "Label"
+      ]
+    },
+    {
+      "name": "popover-menu",
+      "title": "Popover menu",
+      "width": 260,
+      "height": 220,
+      "mode": "overlay",
+      "uses": [
+        "PopoverMenu"
+      ]
+    },
+    {
+      "name": "emoji",
+      "title": "Emoji chooser",
+      "width": 400,
+      "height": 320,
+      "mode": "overlay",
+      "uses": [
+        "EmojiChooser"
+      ]
+    },
+    {
+      "name": "window-plain",
+      "title": "Window",
+      "width": 480,
+      "height": 360,
+      "mode": "window",
+      "uses": [
+        "Window",
+        "ToolbarView",
+        "HeaderBar",
+        "WindowTitle"
+      ]
+    },
+    {
+      "name": "window-application",
+      "title": "Application window",
+      "width": 480,
+      "height": 360,
+      "mode": "window",
+      "uses": [
+        "ApplicationWindow",
+        "ToolbarView",
+        "HeaderBar"
+      ]
+    },
+    {
+      "name": "window-about",
+      "title": "About window",
+      "width": 480,
+      "height": 640,
+      "mode": "window",
+      "uses": [
+        "AboutWindow"
+      ]
+    },
+    {
+      "name": "window-preferences",
+      "title": "Preferences window",
+      "width": 520,
+      "height": 600,
+      "mode": "window",
+      "uses": [
+        "PreferencesWindow",
+        "PreferencesPage",
+        "PreferencesGroup"
+      ]
+    },
+    {
+      "name": "window-message",
+      "title": "Message dialog",
+      "width": 420,
+      "height": 260,
+      "mode": "window",
+      "uses": [
+        "MessageDialog"
+      ]
+    },
+    {
+      "name": "window-shortcuts",
+      "title": "Shortcuts window",
+      "width": 560,
+      "height": 600,
+      "mode": "window",
+      "uses": [
+        "ShortcutsWindow"
+      ]
+    },
+    {
+      "name": "window-assistant",
+      "title": "Assistant",
+      "width": 520,
+      "height": 400,
+      "mode": "window",
+      "uses": [
+        "Assistant"
+      ]
+    },
+    {
+      "name": "window-file-chooser",
+      "title": "File chooser",
+      "width": 760,
+      "height": 560,
+      "mode": "window",
+      "uses": [
+        "FileChooserDialog"
+      ]
+    },
+    {
+      "name": "window-color-chooser",
+      "title": "Colour chooser",
+      "width": 480,
+      "height": 420,
+      "mode": "window",
+      "uses": [
+        "ColorChooserDialog"
+      ]
+    },
+    {
+      "name": "window-font-chooser",
+      "title": "Font chooser",
+      "width": 600,
+      "height": 480,
+      "mode": "window",
+      "uses": [
+        "FontChooserDialog"
+      ]
+    },
+    {
+      "name": "window-app-chooser",
+      "title": "App chooser",
+      "width": 480,
+      "height": 440,
+      "mode": "window",
+      "uses": [
+        "AppChooserDialog"
+      ]
+    },
+    {
+      "name": "window-page-setup",
+      "title": "Page setup",
+      "width": 520,
+      "height": 440,
+      "mode": "window",
+      "uses": [
+        "PageSetupUnixDialog"
+      ]
+    },
+    {
+      "name": "window-print",
+      "title": "Print",
+      "width": 760,
+      "height": 560,
+      "mode": "window",
+      "uses": [
+        "PrintUnixDialog"
       ]
     }
   ]

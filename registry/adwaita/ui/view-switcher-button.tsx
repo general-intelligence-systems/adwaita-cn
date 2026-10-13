@@ -234,9 +234,9 @@ function ViewSwitcherButtonColorswatch({ className, ...props }: React.ComponentP
   )
 }
 
-function ViewSwitcherButtonSeparator({ className, ...props }: React.ComponentProps<"hr">) {
+function ViewSwitcherButtonSeparator({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <hr
+    <div
       data-slot="view-switcher-button-separator"
         data-node="separator"
       className={cn("bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px]", className)}
