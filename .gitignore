@@ -8,9 +8,5 @@ node_modules
 # The harness bundle.
 /harness/dist
 
-# The page vite builds for bin/14-app-screenshots, which is a build of the registry
-# rather than anything written here.
-/bin/14-app-screenshots.out/web
-
 # The toolkit source bin/02-fetch-gir clones, pinned by bin/02-fetch-gir.out/src/VERSIONS.
 /bin/02-fetch-gir.out/src
