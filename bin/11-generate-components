@@ -466,6 +466,19 @@ module GenerateComponents
   # at the named widget left the nested template out: an expander row rendered an empty pill,
   # and the sixteen other trees which name an action row were missing the same labels.
   #
+  # A component and everything it derives from, which is what its template already carries.
+  def self.ancestry(name, components)
+    found = []
+    current = name
+
+    while current && !found.include?(current)
+      found << current
+      current = components.dig(current, "parent")
+    end
+
+    found
+  end
+
   # The nested tree's own children go first and whatever the outer template put in the node
   # goes into the nested template's slot, which is where the widget itself would have put it.
   def self.expand!(node, components, seen = [])
@@ -478,6 +491,13 @@ module GenerateComponents
 
     klass = node["class"]
     inner = components.dig(klass.to_s, "tree")
+    # A TEMPLATED WIDGET ONLY, which is what this is for: a .ui file names another .ui file
+    # and the second one's parts are part of the first. A widget whose tree was derived from
+    # the stylesheet instead is not that -- nothing was left out of the template, because
+    # there was no template -- and expanding those too pulled a whole derived tree into every
+    # leaf that shared a class name: a spin row ended up with two entries, two texts and four
+    # of everything a text view draws.
+    inner = nil if components.dig(klass.to_s, "template").nil?
 
     unless inner.nil? || seen.include?(klass) || (inner["children"].to_a.empty? && inner["slots"].to_a.empty?)
       copy = Marshal.load(Marshal.dump(inner))
@@ -534,11 +554,14 @@ module GenerateComponents
     components.each do |name, component|
       tree = component["tree"]
 
-      # SEEDED WITH THE COMPONENT'S OWN NAME. A tree's root node is the component, so an
-      # unseeded walk spliced the widget into itself: AdwActionRow grew a second header,
-      # a second title and a second subtitle, and every row which embeds one inherited
-      # the pair.
-      self.expand!(tree, final.fetch("components"), [name]) unless tree.nil?
+      # SEEDED WITH THE COMPONENT AND EVERYTHING IT DERIVES FROM.
+      #
+      # A tree's root node is the component, so an unseeded walk spliced the widget into
+      # itself: AdwActionRow grew a second header, a second title and a second subtitle.
+      # The ancestors go in for the same reason one step up -- a template already carries
+      # what it inherited, so AdwComboRow, which IS an AdwActionRow, had the row's title
+      # spliced in beside the one it already had.
+      self.expand!(tree, final.fetch("components"), self.ancestry(name, final.fetch("components"))) unless tree.nil?
     end
 
     self.write(root, "icons.css", self.icons_css(root, self.named_icons(final)), true)
@@ -3330,7 +3353,21 @@ module GenerateComponents
     # `visible="False"`, and a page with no description rendered it anyway -- an empty
     # label, and the 24px of spacing on either side of it, above every group on the page.
     return "" if self.never?(node)
-    return "#{pad}#{markup}" unless self.hidden?(node) || self.bound_visible(node, props)
+
+    # A NODE WHOSE `visible` IS BOUND TO A PROPERTY IS ALWAYS GATED ON IT.
+    #
+    # Before the escapes below, which exist for a different case: a container the template
+    # builds with `visible="False"` is shown once something fills it, so having children
+    # un-hides it. A binding is not that -- it is a condition the widget states -- and
+    # running it through the same escape threw it away for any node with a child of its
+    # own. adw-expander-row.ui binds the enable switch's `visible` to `show-enable-switch`,
+    # and a GtkSwitch has a slider inside it, so the switch was rendered on every expander
+    # row whether or not it was asked for: an empty pill across the end of the row.
+    bound = self.bound_visible(node, props)
+
+    return "#{pad}{#{bound} ? (\n#{pad}  #{markup.gsub("\n", "\n  ")}\n#{pad}) : null}" if bound
+
+    return "#{pad}#{markup}" unless self.hidden?(node)
 
     # A template node the template itself hides is on screen once something is put in it:
     # adw-action-row.ui builds its prefixes and its suffixes with `visible="False"`, and
@@ -3342,14 +3379,7 @@ module GenerateComponents
     # hidden, and gating it on the caller's children took the switch off every switch row.
     return "#{pad}#{markup}" unless children.empty?
 
-    # A hidden container the template itself fills is not empty and is not hidden:
-    # adw-switch-row.ui puts a switch in the suffixes box adw-action-row.ui builds with
-    # `visible="False"`, and gating that on the caller's children took the switch off
-    # every switch row, the spin button off every spin row and the list off every combo.
-    return "#{pad}#{markup}" unless children.empty?
-
-    gate = self.bound_visible(node, props) ||
-      node["takes"] || (self.holds?(node, slot) ? "children" : nil) || text
+    gate = node["takes"] || (self.holds?(node, slot) ? "children" : nil) || text
 
     gate ? "#{pad}{#{gate} ? (\n#{pad}  #{markup.gsub("\n", "\n  ")}\n#{pad}) : null}" : ""
   end

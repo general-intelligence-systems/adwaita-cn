@@ -204,6 +204,19 @@ function ActionRowLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function ActionRowTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="action-row-title"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
 function ActionRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -219,63 +232,6 @@ function ActionRowLink2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="action-row-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ActionRowTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="action-row-title"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function ActionRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="action-row-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ActionRowLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="action-row-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ActionRowSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="action-row-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ActionRowLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="action-row-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -332,6 +288,6 @@ function ActionRowHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { ActionRow, ActionRowPrefixes, ActionRowImage, ActionRowSelection, ActionRowLink, ActionRowSelection2, ActionRowLink2, ActionRowTitle, ActionRowSelection3, ActionRowLink3, ActionRowSelection4, ActionRowLink4, ActionRowSubtitle, ActionRowTitleBox, ActionRowSuffixes, ActionRowHeader, actionRowVariants }
+export { ActionRow, ActionRowPrefixes, ActionRowImage, ActionRowSelection, ActionRowLink, ActionRowTitle, ActionRowSelection2, ActionRowLink2, ActionRowSubtitle, ActionRowTitleBox, ActionRowSuffixes, ActionRowHeader, actionRowVariants }
 
 ActionRow.isPreferencesRow = true

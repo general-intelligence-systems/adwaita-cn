@@ -123,6 +123,19 @@ function ViewSwitcherTitleLink({ className, ...props }: React.ComponentProps<"di
   )
 }
 
+function ViewSwitcherTitleTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="view-switcher-title-title-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
 function ViewSwitcherTitleSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -145,14 +158,14 @@ function ViewSwitcherTitleLink2({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function ViewSwitcherTitleTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+function ViewSwitcherTitleSubtitleLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="view-switcher-title-title-label"
+      data-slot="view-switcher-title-subtitle-label"
         data-node="label"
         data-xalign="center"
         data-yalign="center"
-      className={cn("label", "title", className)}
+      className={cn("label", "subtitle", className)}
       {...props}
     />
   )
@@ -180,6 +193,19 @@ function ViewSwitcherTitleLink3({ className, ...props }: React.ComponentProps<"d
   )
 }
 
+function ViewSwitcherTitleTitleLabel2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="view-switcher-title-title-label2"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
 function ViewSwitcherTitleSelection4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -195,120 +221,6 @@ function ViewSwitcherTitleLink4({ className, ...props }: React.ComponentProps<"d
   return (
     <div
       data-slot="view-switcher-title-link4"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleSubtitleLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="view-switcher-title-subtitle-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "subtitle", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleSelection5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-selection5"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleLink5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-link5"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleSelection6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-selection6"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleLink6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-link6"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleTitleLabel2({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="view-switcher-title-title-label2"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleSelection7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-selection7"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleLink7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-link7"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleSelection8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-selection8"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherTitleLink8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-title-link8"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -375,4 +287,4 @@ function ViewSwitcherTitleSqueezer({ className, ...props }: React.ComponentProps
   )
 }
 
-export { ViewSwitcherTitle, ViewSwitcherTitleWideViewSwitcher, ViewSwitcherTitleNarrowViewSwitcher, ViewSwitcherTitleSelection, ViewSwitcherTitleLink, ViewSwitcherTitleSelection2, ViewSwitcherTitleLink2, ViewSwitcherTitleTitleLabel, ViewSwitcherTitleSelection3, ViewSwitcherTitleLink3, ViewSwitcherTitleSelection4, ViewSwitcherTitleLink4, ViewSwitcherTitleSubtitleLabel, ViewSwitcherTitleSelection5, ViewSwitcherTitleLink5, ViewSwitcherTitleSelection6, ViewSwitcherTitleLink6, ViewSwitcherTitleTitleLabel2, ViewSwitcherTitleSelection7, ViewSwitcherTitleLink7, ViewSwitcherTitleSelection8, ViewSwitcherTitleLink8, ViewSwitcherTitleSubtitleLabel2, ViewSwitcherTitleBox2, ViewSwitcherTitleBox, ViewSwitcherTitleTitleWidget, ViewSwitcherTitleSqueezer }
+export { ViewSwitcherTitle, ViewSwitcherTitleWideViewSwitcher, ViewSwitcherTitleNarrowViewSwitcher, ViewSwitcherTitleSelection, ViewSwitcherTitleLink, ViewSwitcherTitleTitleLabel, ViewSwitcherTitleSelection2, ViewSwitcherTitleLink2, ViewSwitcherTitleSubtitleLabel, ViewSwitcherTitleSelection3, ViewSwitcherTitleLink3, ViewSwitcherTitleTitleLabel2, ViewSwitcherTitleSelection4, ViewSwitcherTitleLink4, ViewSwitcherTitleSubtitleLabel2, ViewSwitcherTitleBox2, ViewSwitcherTitleBox, ViewSwitcherTitleTitleWidget, ViewSwitcherTitleSqueezer }

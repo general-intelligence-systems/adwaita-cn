@@ -147,9 +147,11 @@ function ExpanderRow({ className, render, variant = "default", child, iconName, 
                         {children ? (
                           <ExpanderRowSuffixes2 />
                         ) : null}
-                        <ExpanderRowEnableSwitch>
-                          <ExpanderRowSlider />
-                        </ExpanderRowEnableSwitch>
+                        {showEnableSwitch ? (
+                          <ExpanderRowEnableSwitch>
+                            <ExpanderRowSlider />
+                          </ExpanderRowEnableSwitch>
+                        ) : null}
                         <ExpanderRowImage3 name={iconName} />
                       </ExpanderRowSuffixes>
                     </ExpanderRowHeader>
@@ -220,6 +222,19 @@ function ExpanderRowLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function ExpanderRowTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="expander-row-title"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
 function ExpanderRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -235,63 +250,6 @@ function ExpanderRowLink2({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="expander-row-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ExpanderRowTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="expander-row-title"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function ExpanderRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="expander-row-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ExpanderRowLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="expander-row-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ExpanderRowSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="expander-row-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ExpanderRowLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="expander-row-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -459,6 +417,6 @@ function ExpanderRowBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { ExpanderRow, ExpanderRowPrefixes, ExpanderRowImage, ExpanderRowSelection, ExpanderRowLink, ExpanderRowSelection2, ExpanderRowLink2, ExpanderRowTitle, ExpanderRowSelection3, ExpanderRowLink3, ExpanderRowSelection4, ExpanderRowLink4, ExpanderRowSubtitle, ExpanderRowTitleBox, ExpanderRowSuffixes2, ExpanderRowImage2, ExpanderRowSlider, ExpanderRowEnableSwitch, ExpanderRowImage3, ExpanderRowSuffixes, ExpanderRowHeader, ExpanderRowActionRow, ExpanderRowListBox, ExpanderRowList, ExpanderRowRevealer, ExpanderRowBox, expanderRowVariants }
+export { ExpanderRow, ExpanderRowPrefixes, ExpanderRowImage, ExpanderRowSelection, ExpanderRowLink, ExpanderRowTitle, ExpanderRowSelection2, ExpanderRowLink2, ExpanderRowSubtitle, ExpanderRowTitleBox, ExpanderRowSuffixes2, ExpanderRowImage2, ExpanderRowSlider, ExpanderRowEnableSwitch, ExpanderRowImage3, ExpanderRowSuffixes, ExpanderRowHeader, ExpanderRowActionRow, ExpanderRowListBox, ExpanderRowList, ExpanderRowRevealer, ExpanderRowBox, expanderRowVariants }
 
 ExpanderRow.isPreferencesRow = true

@@ -141,6 +141,19 @@ function ViewSwitcherSidebarLink({ className, ...props }: React.ComponentProps<"
   )
 }
 
+function ViewSwitcherSidebarDescription({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="view-switcher-sidebar-description"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", "description", className)}
+      {...props}
+    />
+  )
+}
+
 function ViewSwitcherSidebarSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -163,41 +176,6 @@ function ViewSwitcherSidebarLink2({ className, ...props }: React.ComponentProps<
   )
 }
 
-function ViewSwitcherSidebarDescription({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="view-switcher-sidebar-description"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "body", "dimmed", "description", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
 function ViewSwitcherSidebarDescription2({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -206,107 +184,6 @@ function ViewSwitcherSidebarDescription2({ className, ...props }: React.Componen
         data-xalign="start"
         data-yalign="center"
       className={cn("label", "body", "dimmed", "description", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-link4"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarDescription3({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="view-switcher-sidebar-description3"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "body", "dimmed", "description", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarBox3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-box3"
-        data-node="box"
-      className={cn("box", "box", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarClamp3({ className, style, ...props }: React.ComponentProps<"div">) {
-  const { ref, columns } = useClamp<HTMLDivElement>({  })
-
-  return (
-    <div
-      ref={ref}
-      data-slot="view-switcher-sidebar-clamp3"
-        data-node="clamp"
-      className={cn("clamp", className)}
-      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarScrolledWindow3({ className, children, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-scrolled-window3"
-        data-node="scrolledwindow"
-      className={cn("scrolledwindow", className)}
-      {...props}
-    >
-      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
-        {children}
-      </div>
-      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
-              <div data-node="range" className={cn("range", "horizontal")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
-              <div data-node="range" className={cn("range", "vertical")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-    </div>
-  )
-}
-
-function ViewSwitcherSidebarPreferencesPage2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-preferences-page2"
-        data-node="preferencespage"
-      className={cn("preferencespage", "box", "lay-row", className)}
       {...props}
     />
   )
@@ -393,28 +270,6 @@ function ViewSwitcherSidebarClamp({ className, style, ...props }: React.Componen
   )
 }
 
-function ViewSwitcherSidebarOvershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-overshoot"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherSidebarUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-sidebar-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
 function ViewSwitcherSidebarScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -466,4 +321,4 @@ function ViewSwitcherSidebarSidebar({ className, ...props }: React.ComponentProp
   )
 }
 
-export { ViewSwitcherSidebar, ViewSwitcherSidebarSelection, ViewSwitcherSidebarLink, ViewSwitcherSidebarSelection2, ViewSwitcherSidebarLink2, ViewSwitcherSidebarDescription, ViewSwitcherSidebarSelection3, ViewSwitcherSidebarLink3, ViewSwitcherSidebarDescription2, ViewSwitcherSidebarSelection4, ViewSwitcherSidebarLink4, ViewSwitcherSidebarDescription3, ViewSwitcherSidebarBox3, ViewSwitcherSidebarClamp3, ViewSwitcherSidebarScrolledWindow3, ViewSwitcherSidebarPreferencesPage2, ViewSwitcherSidebarBox2, ViewSwitcherSidebarClamp2, ViewSwitcherSidebarScrolledWindow2, ViewSwitcherSidebarBox, ViewSwitcherSidebarClamp, ViewSwitcherSidebarOvershoot, ViewSwitcherSidebarUndershoot, ViewSwitcherSidebarScrolledWindow, ViewSwitcherSidebarPreferencesPage, ViewSwitcherSidebarSidebar, viewSwitcherSidebarVariants }
+export { ViewSwitcherSidebar, ViewSwitcherSidebarSelection, ViewSwitcherSidebarLink, ViewSwitcherSidebarDescription, ViewSwitcherSidebarSelection2, ViewSwitcherSidebarLink2, ViewSwitcherSidebarDescription2, ViewSwitcherSidebarBox2, ViewSwitcherSidebarClamp2, ViewSwitcherSidebarScrolledWindow2, ViewSwitcherSidebarBox, ViewSwitcherSidebarClamp, ViewSwitcherSidebarScrolledWindow, ViewSwitcherSidebarPreferencesPage, ViewSwitcherSidebarSidebar, viewSwitcherSidebarVariants }

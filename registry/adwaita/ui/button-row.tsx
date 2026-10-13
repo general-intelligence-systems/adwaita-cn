@@ -168,28 +168,6 @@ function ButtonRowLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function ButtonRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button-row-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ButtonRowLink2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button-row-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
 function ButtonRowTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -227,6 +205,6 @@ function ButtonRowContents({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-export { ButtonRow, ButtonRowStartImage, ButtonRowSelection, ButtonRowLink, ButtonRowSelection2, ButtonRowLink2, ButtonRowTitle, ButtonRowEndImage, ButtonRowContents, buttonRowVariants }
+export { ButtonRow, ButtonRowStartImage, ButtonRowSelection, ButtonRowLink, ButtonRowTitle, ButtonRowEndImage, ButtonRowContents, buttonRowVariants }
 
 ButtonRow.isPreferencesRow = true

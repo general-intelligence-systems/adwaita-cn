@@ -157,142 +157,10 @@ function PasswordEntryBlockCursor({ className, ...props }: React.ComponentProps<
   )
 }
 
-function PasswordEntrySheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-sheet"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryPaper({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-paper"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryDrawing({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-drawing"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
 function PasswordEntryWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="password-entry-window"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-placeholder2"
-        data-node="placeholder"
-      className={cn("placeholder", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-undershoot2"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntrySelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-cursor-handle2"
-        data-node="cursor-handle"
-      className={cn("cursor-handle", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-block-cursor2"
-        data-node="block-cursor"
-      className={cn("block-cursor", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntrySheet2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-sheet2"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryPaper2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-paper2"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryDrawing2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-drawing2"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryWindow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -333,4 +201,4 @@ function PasswordEntryProgress({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-export { PasswordEntry, PasswordEntryPlaceholder, PasswordEntryUndershoot, PasswordEntrySelection, PasswordEntryCursorHandle, PasswordEntryBlockCursor, PasswordEntrySheet, PasswordEntryPaper, PasswordEntryDrawing, PasswordEntryWindow, PasswordEntryPlaceholder2, PasswordEntryUndershoot2, PasswordEntrySelection2, PasswordEntryCursorHandle2, PasswordEntryBlockCursor2, PasswordEntrySheet2, PasswordEntryPaper2, PasswordEntryDrawing2, PasswordEntryWindow2, PasswordEntryText, PasswordEntryImage, PasswordEntryProgress, passwordEntryVariants }
+export { PasswordEntry, PasswordEntryPlaceholder, PasswordEntryUndershoot, PasswordEntrySelection, PasswordEntryCursorHandle, PasswordEntryBlockCursor, PasswordEntryWindow, PasswordEntryText, PasswordEntryImage, PasswordEntryProgress, passwordEntryVariants }

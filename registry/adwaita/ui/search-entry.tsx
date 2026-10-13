@@ -166,142 +166,10 @@ function SearchEntryBlockCursor({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function SearchEntrySheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-sheet"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryPaper({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-paper"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryDrawing({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-drawing"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
 function SearchEntryWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="search-entry-window"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-placeholder2"
-        data-node="placeholder"
-      className={cn("placeholder", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-undershoot2"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntrySelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-cursor-handle2"
-        data-node="cursor-handle"
-      className={cn("cursor-handle", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-block-cursor2"
-        data-node="block-cursor"
-      className={cn("block-cursor", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntrySheet2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-sheet2"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryPaper2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-paper2"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryDrawing2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-drawing2"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryWindow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -342,4 +210,4 @@ function SearchEntryProgress({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-export { SearchEntry, SearchEntryPlaceholder, SearchEntryUndershoot, SearchEntrySelection, SearchEntryCursorHandle, SearchEntryBlockCursor, SearchEntrySheet, SearchEntryPaper, SearchEntryDrawing, SearchEntryWindow, SearchEntryPlaceholder2, SearchEntryUndershoot2, SearchEntrySelection2, SearchEntryCursorHandle2, SearchEntryBlockCursor2, SearchEntrySheet2, SearchEntryPaper2, SearchEntryDrawing2, SearchEntryWindow2, SearchEntryText, SearchEntryImage, SearchEntryProgress, searchEntryVariants }
+export { SearchEntry, SearchEntryPlaceholder, SearchEntryUndershoot, SearchEntrySelection, SearchEntryCursorHandle, SearchEntryBlockCursor, SearchEntryWindow, SearchEntryText, SearchEntryImage, SearchEntryProgress, searchEntryVariants }

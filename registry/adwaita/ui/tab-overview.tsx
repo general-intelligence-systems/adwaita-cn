@@ -85,7 +85,9 @@ function TabOverview({ className, render, variant = "default", child, secondaryM
     style,
     children: (
         <>
-                  <TabOverviewChildBin />
+                  <TabOverviewChildBin>
+                {children}
+              </TabOverviewChildBin>
                   {child}
         </>
       ),
@@ -110,14 +112,64 @@ function TabOverviewChildBin({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function TabOverviewContent({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewPinnedGrid({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-content"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      data-slot="tab-overview-pinned-grid"
+        data-node="tabgrid"
+      className={cn("tabgrid", className)}
       {...props}
     />
+  )
+}
+
+function TabOverviewGrid({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-grid"
+        data-node="tabgrid"
+      className={cn("tabgrid", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewScrollable({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-scrollable"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-scrolled-window"
+        data-node="scrolledwindow"
+      className={cn("scrolledwindow", className)}
+      {...props}
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -126,51 +178,8 @@ function TabOverviewImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="tab-overview-image"
         data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="tab-overview-button"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewWindowControls({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-window-controls"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSearchButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="tab-overview-search-button"
-        data-node="button"
-      className={cn("button", "box", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSecondaryMenuButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="tab-overview-secondary-menu-button"
-        data-node="menubutton"
-      className={cn("menubutton", "lay-row", className)}
+        data-halign="center"
+      className={cn("image", "icon", className)}
       {...props}
     />
   )
@@ -233,148 +242,14 @@ function TabOverviewLink2({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function TabOverviewSubtitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+function TabOverviewDescriptionLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="tab-overview-subtitle-label"
+      data-slot="tab-overview-description-label"
         data-node="label"
         data-xalign="center"
         data-yalign="center"
-      className={cn("label", "subtitle", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBox3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-box3"
-        data-node="box"
-        data-valign="center"
-      className={cn("box", "box", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewTitle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-title"
-        data-node="windowtitle"
-      className={cn("windowtitle", "numeric", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-box2"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewStart({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-start"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewTitle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-title2"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="tab-overview-image2"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewButton2({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="tab-overview-button2"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewImage3({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="tab-overview-image3"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewCloseButton({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-window-controls2"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBox4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-box4"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewEnd({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-end"
-        data-node="widget"
-      className={cn("widget", className)}
+      className={cn("label", "body", "description", className)}
       {...props}
     />
   )
@@ -385,73 +260,35 @@ function TabOverviewBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-overview-box"
         data-node="box"
-      className={cn("box", "center", "horizontal", className)}
+        data-valign="center"
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
 }
 
-function TabOverviewWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewClamp({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
   return (
     <div
-      data-slot="tab-overview-windowhandle2"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
+      ref={ref}
+      data-slot="tab-overview-clamp"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function TabOverviewHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <div
-      data-slot="tab-overview-header-bar"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewChild({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-child"
-        data-node="child"
-      className={cn("child", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewButton3({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="tab-overview-button3"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-placeholder"
-        data-node="placeholder"
-      className={cn("placeholder", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
+    <Icon
+      data-slot="tab-overview-image2"
+        data-node="image"
+        data-halign="center"
+      className={cn("image", "icon", className)}
       {...props}
     />
   )
@@ -468,264 +305,10 @@ function TabOverviewSelection3({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function TabOverviewCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-cursor-handle"
-        data-node="cursor-handle"
-      className={cn("cursor-handle", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-block-cursor"
-        data-node="block-cursor"
-      className={cn("block-cursor", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewWindow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-window"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewText({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-text"
-        data-node="text"
-      className={cn("text", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewImage4({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="tab-overview-image4"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewProgress({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-progress"
-        data-node="progress"
-      className={cn("progress", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSearchEntry({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-search-entry"
-        data-node="entry"
-        data-hexpand=""
-      className={cn("entry", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewClamp({ className, style, ...props }: React.ComponentProps<"div">) {
-  const { ref, columns } = useClamp<HTMLDivElement>({ maximumSize: 400 })
-
-  return (
-    <div
-      ref={ref}
-      data-slot="tab-overview-clamp"
-        data-node="clamp"
-      className={cn("clamp", className)}
-      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBox5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-box5"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewRevealer2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-revealer2"
-        data-node="revealer"
-      className={cn("revealer", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSearchBar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-search-bar"
-        data-node="searchbar"
-      className={cn("searchbar", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewPinnedGrid({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-pinned-grid"
-        data-node="tabgrid"
-      className={cn("tabgrid", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewGrid({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-grid"
-        data-node="tabgrid"
-      className={cn("tabgrid", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewScrollable({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-scrollable"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewOvershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-overshoot"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-undershoot2"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-scrolled-window"
-        data-node="scrolledwindow"
-      className={cn("scrolledwindow", className)}
-      {...props}
-    >
-      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
-        {children}
-      </div>
-      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
-              <div data-node="range" className={cn("range", "horizontal")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
-              <div data-node="range" className={cn("range", "vertical")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-    </div>
-  )
-}
-
-function TabOverviewImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="tab-overview-image5"
-        data-node="image"
-        data-halign="center"
-      className={cn("image", "icon", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
 function TabOverviewLink3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-overview-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection5"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -746,10 +329,10 @@ function TabOverviewTitleLabel2({ className, ...props }: React.ComponentProps<"s
   )
 }
 
-function TabOverviewSelection6({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSelection4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-selection6"
+      data-slot="tab-overview-selection4"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -757,141 +340,10 @@ function TabOverviewSelection6({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function TabOverviewLink5({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewLink4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-link5"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection7"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link6"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewDescriptionLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="tab-overview-description-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "body", "description", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBox6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-box6"
-        data-node="box"
-        data-valign="center"
-      className={cn("box", "box", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewClamp2({ className, style, ...props }: React.ComponentProps<"div">) {
-  const { ref, columns } = useClamp<HTMLDivElement>({  })
-
-  return (
-    <div
-      ref={ref}
-      data-slot="tab-overview-clamp2"
-        data-node="clamp"
-      className={cn("clamp", className)}
-      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewImage6({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="tab-overview-image6"
-        data-node="image"
-        data-halign="center"
-      className={cn("image", "icon", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection8"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link7"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewTitleLabel3({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="tab-overview-title-label3"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection9({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection9"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link8"
+      data-slot="tab-overview-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -912,10 +364,10 @@ function TabOverviewDescriptionLabel2({ className, ...props }: React.ComponentPr
   )
 }
 
-function TabOverviewBox7({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewBox2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-box7"
+      data-slot="tab-overview-box2"
         data-node="box"
         data-valign="center"
       className={cn("box", "box", "vertical", "vertical", className)}
@@ -924,13 +376,13 @@ function TabOverviewBox7({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function TabOverviewClamp3({ className, style, ...props }: React.ComponentProps<"div">) {
+function TabOverviewClamp2({ className, style, ...props }: React.ComponentProps<"div">) {
   const { ref, columns } = useClamp<HTMLDivElement>({  })
 
   return (
     <div
       ref={ref}
-      data-slot="tab-overview-clamp3"
+      data-slot="tab-overview-clamp2"
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
@@ -992,28 +444,6 @@ function TabOverviewToplevelBox({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function TabOverviewOvershoot2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-overshoot2"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewUndershoot3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-undershoot3"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
 function TabOverviewScrolledWindow2({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1054,10 +484,10 @@ function TabOverviewEmptyState({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function TabOverviewImage7({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function TabOverviewImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="tab-overview-image7"
+      data-slot="tab-overview-image3"
         data-node="image"
         data-halign="center"
       className={cn("image", "icon", className)}
@@ -1066,10 +496,10 @@ function TabOverviewImage7({ className, ...props }: React.ComponentProps<typeof 
   )
 }
 
-function TabOverviewSelection10({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSelection5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-selection10"
+      data-slot="tab-overview-selection5"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1077,10 +507,10 @@ function TabOverviewSelection10({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function TabOverviewLink9({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewLink5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-link9"
+      data-slot="tab-overview-link5"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1088,32 +518,10 @@ function TabOverviewLink9({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function TabOverviewSelection11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection11"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link10"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewTitleLabel4({ className, ...props }: React.ComponentProps<"span">) {
+function TabOverviewTitleLabel3({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="tab-overview-title-label4"
+      data-slot="tab-overview-title-label3"
         data-node="label"
         data-xalign="center"
         data-yalign="center"
@@ -1123,10 +531,10 @@ function TabOverviewTitleLabel4({ className, ...props }: React.ComponentProps<"s
   )
 }
 
-function TabOverviewSelection12({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSelection6({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-selection12"
+      data-slot="tab-overview-selection6"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1134,32 +542,10 @@ function TabOverviewSelection12({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function TabOverviewLink11({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewLink6({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-link11"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection13({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection13"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link12"
+      data-slot="tab-overview-link6"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1180,10 +566,10 @@ function TabOverviewDescriptionLabel3({ className, ...props }: React.ComponentPr
   )
 }
 
-function TabOverviewBox8({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewBox3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-box8"
+      data-slot="tab-overview-box3"
         data-node="box"
         data-valign="center"
       className={cn("box", "box", "vertical", "vertical", className)}
@@ -1192,13 +578,13 @@ function TabOverviewBox8({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function TabOverviewClamp4({ className, style, ...props }: React.ComponentProps<"div">) {
+function TabOverviewClamp3({ className, style, ...props }: React.ComponentProps<"div">) {
   const { ref, columns } = useClamp<HTMLDivElement>({  })
 
   return (
     <div
       ref={ref}
-      data-slot="tab-overview-clamp4"
+      data-slot="tab-overview-clamp3"
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
@@ -1207,10 +593,10 @@ function TabOverviewClamp4({ className, style, ...props }: React.ComponentProps<
   )
 }
 
-function TabOverviewImage8({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function TabOverviewImage4({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="tab-overview-image8"
+      data-slot="tab-overview-image4"
         data-node="image"
         data-halign="center"
       className={cn("image", "icon", className)}
@@ -1219,10 +605,10 @@ function TabOverviewImage8({ className, ...props }: React.ComponentProps<typeof 
   )
 }
 
-function TabOverviewSelection14({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSelection7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-selection14"
+      data-slot="tab-overview-selection7"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1230,10 +616,10 @@ function TabOverviewSelection14({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function TabOverviewLink13({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewLink7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-link13"
+      data-slot="tab-overview-link7"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1241,10 +627,10 @@ function TabOverviewLink13({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function TabOverviewTitleLabel5({ className, ...props }: React.ComponentProps<"span">) {
+function TabOverviewTitleLabel4({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="tab-overview-title-label5"
+      data-slot="tab-overview-title-label4"
         data-node="label"
         data-xalign="center"
         data-yalign="center"
@@ -1254,10 +640,10 @@ function TabOverviewTitleLabel5({ className, ...props }: React.ComponentProps<"s
   )
 }
 
-function TabOverviewSelection15({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSelection8({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-selection15"
+      data-slot="tab-overview-selection8"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1265,10 +651,10 @@ function TabOverviewSelection15({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function TabOverviewLink14({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewLink8({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-link14"
+      data-slot="tab-overview-link8"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1289,10 +675,10 @@ function TabOverviewDescriptionLabel4({ className, ...props }: React.ComponentPr
   )
 }
 
-function TabOverviewBox9({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewBox4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-box9"
+      data-slot="tab-overview-box4"
         data-node="box"
         data-valign="center"
       className={cn("box", "box", "vertical", "vertical", className)}
@@ -1301,13 +687,13 @@ function TabOverviewBox9({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function TabOverviewClamp5({ className, style, ...props }: React.ComponentProps<"div">) {
+function TabOverviewClamp4({ className, style, ...props }: React.ComponentProps<"div">) {
   const { ref, columns } = useClamp<HTMLDivElement>({  })
 
   return (
     <div
       ref={ref}
-      data-slot="tab-overview-clamp5"
+      data-slot="tab-overview-clamp4"
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
@@ -1369,28 +755,6 @@ function TabOverviewToplevelBox3({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function TabOverviewOvershoot3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-overshoot3"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewUndershoot4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-undershoot4"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
 function TabOverviewScrolledWindow4({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1431,10 +795,10 @@ function TabOverviewSearchEmptyState({ className, ...props }: React.ComponentPro
   )
 }
 
-function TabOverviewImage9({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function TabOverviewImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="tab-overview-image9"
+      data-slot="tab-overview-image5"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -1442,10 +806,10 @@ function TabOverviewImage9({ className, ...props }: React.ComponentProps<typeof 
   )
 }
 
-function TabOverviewSelection16({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSelection9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-selection16"
+      data-slot="tab-overview-selection9"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1453,32 +817,10 @@ function TabOverviewSelection16({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function TabOverviewLink15({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewLink9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-link15"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection17({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-selection17"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link16"
+      data-slot="tab-overview-link9"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1499,67 +841,10 @@ function TabOverviewLabel({ className, ...props }: React.ComponentProps<"span">)
   )
 }
 
-function TabOverviewImage10({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="tab-overview-image10"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewSelection18({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewBox5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-selection18"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLink17({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-link17"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewLabel2({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="tab-overview-label2"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBox11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-box11"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewBox10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-box10"
+      data-slot="tab-overview-box5"
         data-node="box"
       className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
@@ -1603,67 +888,346 @@ function TabOverviewOverlay({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-function TabOverviewInternalBox({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSelection10({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
+      data-slot="tab-overview-selection10"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewLink10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-link10"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewTitleLabel5({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="tab-overview-title-label5"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSelection11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-selection11"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewLink11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-link11"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSubtitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="tab-overview-subtitle-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSelection12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-selection12"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewLink12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-link12"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewTitleLabel6({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="tab-overview-title-label6"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSelection13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-selection13"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewLink13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-link13"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSubtitleLabel2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="tab-overview-subtitle-label2"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewBox7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-box7"
         data-node="box"
-      className={cn("box", "box", "vertical", className)}
+        data-valign="center"
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
 }
 
-function TabOverviewWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewBox6({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-windowhandle"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewRevealer({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-overview-revealer"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function TabOverviewInternalBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
+      data-slot="tab-overview-box6"
         data-node="box"
-      className={cn("box", "box", "vertical", className)}
+        data-valign="center"
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
 }
 
-function TabOverviewWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-windowhandle3"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
+      data-slot="tab-overview-title"
+        data-node="windowtitle"
+      className={cn("windowtitle", "numeric", className)}
       {...props}
     />
   )
 }
 
-function TabOverviewRevealer3({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewSearchButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="tab-overview-search-button"
+        data-node="button"
+      className={cn("button", "box", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSecondaryMenuButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="tab-overview-secondary-menu-button"
+        data-node="menubutton"
+      className={cn("menubutton", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tab-overview-revealer3"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="tab-overview-header-bar"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-placeholder"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-undershoot"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSelection14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-selection14"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-block-cursor"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewText({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-text"
+        data-node="text"
+      className={cn("text", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewImage6({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="tab-overview-image6"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewProgress({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-progress"
+        data-node="progress"
+      className={cn("progress", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSearchEntry({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-search-entry"
+        data-node="entry"
+        data-hexpand=""
+      className={cn("entry", className)}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewClamp5({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({ maximumSize: 400 })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="tab-overview-clamp5"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function TabOverviewSearchBar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-overview-search-bar"
+        data-node="searchbar"
+      className={cn("searchbar", className)}
       {...props}
     />
   )
@@ -1680,4 +1244,4 @@ function TabOverviewOverview({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-export { TabOverview, TabOverviewChildBin, TabOverviewContent, TabOverviewImage, TabOverviewButton, TabOverviewWindowControls, TabOverviewSearchButton, TabOverviewSecondaryMenuButton, TabOverviewSelection, TabOverviewLink, TabOverviewTitleLabel, TabOverviewSelection2, TabOverviewLink2, TabOverviewSubtitleLabel, TabOverviewBox3, TabOverviewTitle, TabOverviewBox2, TabOverviewStart, TabOverviewTitle2, TabOverviewImage2, TabOverviewButton2, TabOverviewImage3, TabOverviewCloseButton, TabOverviewWindowControls2, TabOverviewBox4, TabOverviewEnd, TabOverviewBox, TabOverviewWindowhandle2, TabOverviewHeaderBar, TabOverviewChild, TabOverviewButton3, TabOverviewPlaceholder, TabOverviewUndershoot, TabOverviewSelection3, TabOverviewCursorHandle, TabOverviewBlockCursor, TabOverviewWindow, TabOverviewText, TabOverviewImage4, TabOverviewProgress, TabOverviewSearchEntry, TabOverviewClamp, TabOverviewBox5, TabOverviewRevealer2, TabOverviewSearchBar, TabOverviewPinnedGrid, TabOverviewGrid, TabOverviewScrollable, TabOverviewOvershoot, TabOverviewUndershoot2, TabOverviewScrolledWindow, TabOverviewImage5, TabOverviewSelection4, TabOverviewLink3, TabOverviewSelection5, TabOverviewLink4, TabOverviewTitleLabel2, TabOverviewSelection6, TabOverviewLink5, TabOverviewSelection7, TabOverviewLink6, TabOverviewDescriptionLabel, TabOverviewBox6, TabOverviewClamp2, TabOverviewImage6, TabOverviewSelection8, TabOverviewLink7, TabOverviewTitleLabel3, TabOverviewSelection9, TabOverviewLink8, TabOverviewDescriptionLabel2, TabOverviewBox7, TabOverviewClamp3, TabOverviewToplevelBox2, TabOverviewScrolledWindow3, TabOverviewToplevelBox, TabOverviewOvershoot2, TabOverviewUndershoot3, TabOverviewScrolledWindow2, TabOverviewEmptyState, TabOverviewImage7, TabOverviewSelection10, TabOverviewLink9, TabOverviewSelection11, TabOverviewLink10, TabOverviewTitleLabel4, TabOverviewSelection12, TabOverviewLink11, TabOverviewSelection13, TabOverviewLink12, TabOverviewDescriptionLabel3, TabOverviewBox8, TabOverviewClamp4, TabOverviewImage8, TabOverviewSelection14, TabOverviewLink13, TabOverviewTitleLabel5, TabOverviewSelection15, TabOverviewLink14, TabOverviewDescriptionLabel4, TabOverviewBox9, TabOverviewClamp5, TabOverviewToplevelBox4, TabOverviewScrolledWindow5, TabOverviewToplevelBox3, TabOverviewOvershoot3, TabOverviewUndershoot4, TabOverviewScrolledWindow4, TabOverviewSearchEmptyState, TabOverviewImage9, TabOverviewSelection16, TabOverviewLink15, TabOverviewSelection17, TabOverviewLink16, TabOverviewLabel, TabOverviewImage10, TabOverviewSelection18, TabOverviewLink17, TabOverviewLabel2, TabOverviewBox11, TabOverviewBox10, TabOverviewButtonContent, TabOverviewNewTabButton, TabOverviewOverlay, TabOverviewInternalBox, TabOverviewWindowhandle, TabOverviewRevealer, TabOverviewInternalBox2, TabOverviewWindowhandle3, TabOverviewRevealer3, TabOverviewOverview, tabOverviewVariants }
+export { TabOverview, TabOverviewChildBin, TabOverviewPinnedGrid, TabOverviewGrid, TabOverviewScrollable, TabOverviewScrolledWindow, TabOverviewImage, TabOverviewSelection, TabOverviewLink, TabOverviewTitleLabel, TabOverviewSelection2, TabOverviewLink2, TabOverviewDescriptionLabel, TabOverviewBox, TabOverviewClamp, TabOverviewImage2, TabOverviewSelection3, TabOverviewLink3, TabOverviewTitleLabel2, TabOverviewSelection4, TabOverviewLink4, TabOverviewDescriptionLabel2, TabOverviewBox2, TabOverviewClamp2, TabOverviewToplevelBox2, TabOverviewScrolledWindow3, TabOverviewToplevelBox, TabOverviewScrolledWindow2, TabOverviewEmptyState, TabOverviewImage3, TabOverviewSelection5, TabOverviewLink5, TabOverviewTitleLabel3, TabOverviewSelection6, TabOverviewLink6, TabOverviewDescriptionLabel3, TabOverviewBox3, TabOverviewClamp3, TabOverviewImage4, TabOverviewSelection7, TabOverviewLink7, TabOverviewTitleLabel4, TabOverviewSelection8, TabOverviewLink8, TabOverviewDescriptionLabel4, TabOverviewBox4, TabOverviewClamp4, TabOverviewToplevelBox4, TabOverviewScrolledWindow5, TabOverviewToplevelBox3, TabOverviewScrolledWindow4, TabOverviewSearchEmptyState, TabOverviewImage5, TabOverviewSelection9, TabOverviewLink9, TabOverviewLabel, TabOverviewBox5, TabOverviewButtonContent, TabOverviewNewTabButton, TabOverviewOverlay, TabOverviewSelection10, TabOverviewLink10, TabOverviewTitleLabel5, TabOverviewSelection11, TabOverviewLink11, TabOverviewSubtitleLabel, TabOverviewSelection12, TabOverviewLink12, TabOverviewTitleLabel6, TabOverviewSelection13, TabOverviewLink13, TabOverviewSubtitleLabel2, TabOverviewBox7, TabOverviewBox6, TabOverviewTitle, TabOverviewSearchButton, TabOverviewSecondaryMenuButton, TabOverviewHeaderBar, TabOverviewPlaceholder, TabOverviewUndershoot, TabOverviewSelection14, TabOverviewCursorHandle, TabOverviewBlockCursor, TabOverviewWindow, TabOverviewText, TabOverviewImage6, TabOverviewProgress, TabOverviewSearchEntry, TabOverviewClamp5, TabOverviewSearchBar, TabOverviewOverview, tabOverviewVariants }

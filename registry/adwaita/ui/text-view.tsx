@@ -171,109 +171,10 @@ function TextViewBorder({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function TextViewPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-placeholder"
-        data-node="placeholder"
-      className={cn("placeholder", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
 function TextViewSelection({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="text-view-selection"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-cursor-handle"
-        data-node="cursor-handle"
-      className={cn("cursor-handle", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-block-cursor"
-        data-node="block-cursor"
-      className={cn("block-cursor", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-sheet"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewPaper({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-paper"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewDrawing({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-drawing"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewWindow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-window"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewSelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-selection2"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -292,43 +193,10 @@ function TextViewText({ className, ...props }: React.ComponentProps<"input">) {
   )
 }
 
-function TextViewSheet2({ className, ...props }: React.ComponentProps<"div">) {
+function TextViewWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="text-view-sheet2"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewPaper2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-paper2"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewDrawing2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-drawing2"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function TextViewWindow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="text-view-window2"
+      data-slot="text-view-window"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -336,4 +204,4 @@ function TextViewWindow2({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { TextView, TextViewBorder, TextViewPlaceholder, TextViewUndershoot, TextViewSelection, TextViewCursorHandle, TextViewBlockCursor, TextViewSheet, TextViewPaper, TextViewDrawing, TextViewWindow, TextViewSelection2, TextViewText, TextViewSheet2, TextViewPaper2, TextViewDrawing2, TextViewWindow2, textViewVariants }
+export { TextView, TextViewBorder, TextViewSelection, TextViewText, TextViewWindow, textViewVariants }

@@ -197,13 +197,6 @@ function MessageDialog({ className, render, variant = "default", body, child, ex
                     {children}
                   </MessageDialogResponseArea>
                 </MessageDialogBox2>
-                <MessageDialogPopoverMenu>
-                  <MessageDialogArrow />
-                  <MessageDialogContents>
-                    <MessageDialogArrow2 />
-                    <MessageDialogContents2 />
-                  </MessageDialogContents>
-                </MessageDialogPopoverMenu>
               </MessageDialogWindowHandle>
                   {iconName === undefined ? null : (
                 <Icon name={iconName} data-slot="message-dialog-icon" data-node="image" className={cn("image")} />
@@ -257,6 +250,19 @@ function MessageDialogLink({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
+function MessageDialogHeadingLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="message-dialog-heading-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title-2", className)}
+      {...props}
+    />
+  )
+}
+
 function MessageDialogSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -272,63 +278,6 @@ function MessageDialogLink2({ className, ...props }: React.ComponentProps<"div">
   return (
     <div
       data-slot="message-dialog-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogHeadingLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="message-dialog-heading-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title-2", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -359,10 +308,10 @@ function MessageDialogHeadingBin({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function MessageDialogSelection5({ className, ...props }: React.ComponentProps<"div">) {
+function MessageDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="message-dialog-selection5"
+      data-slot="message-dialog-selection3"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -370,32 +319,10 @@ function MessageDialogSelection5({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function MessageDialogLink5({ className, ...props }: React.ComponentProps<"div">) {
+function MessageDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="message-dialog-link5"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogSelection6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-selection6"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogLink6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-link6"
+      data-slot="message-dialog-link3"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -459,61 +386,6 @@ function MessageDialogBox2({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function MessageDialogArrow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-arrow"
-        data-node="arrow"
-      className={cn("arrow", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogArrow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-arrow2"
-        data-node="arrow"
-      className={cn("arrow", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogContents2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-contents2"
-        data-node="contents"
-      className={cn("contents", "hidden", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogContents({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-contents"
-        data-node="contents"
-      className={cn("contents", "hidden", className)}
-      {...props}
-    />
-  )
-}
-
-function MessageDialogPopoverMenu({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="message-dialog-popover-menu"
-        data-node="popover"
-      className={cn("popover", "hidden", className)}
-      {...props}
-    />
-  )
-}
-
 function MessageDialogWindowHandle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -525,4 +397,4 @@ function MessageDialogWindowHandle({ className, ...props }: React.ComponentProps
   )
 }
 
-export { MessageDialog, MessageDialogBox, MessageDialogSelection, MessageDialogLink, MessageDialogSelection2, MessageDialogLink2, MessageDialogHeadingLabel, MessageDialogSelection3, MessageDialogLink3, MessageDialogSelection4, MessageDialogLink4, MessageDialogHeadingLabelSmall, MessageDialogHeadingBin, MessageDialogSelection5, MessageDialogLink5, MessageDialogSelection6, MessageDialogLink6, MessageDialogBodyLabel, MessageDialogChildBin, MessageDialogMessageArea, MessageDialogResponseArea, MessageDialogBox2, MessageDialogArrow, MessageDialogArrow2, MessageDialogContents2, MessageDialogContents, MessageDialogPopoverMenu, MessageDialogWindowHandle, messageDialogVariants }
+export { MessageDialog, MessageDialogBox, MessageDialogSelection, MessageDialogLink, MessageDialogHeadingLabel, MessageDialogSelection2, MessageDialogLink2, MessageDialogHeadingLabelSmall, MessageDialogHeadingBin, MessageDialogSelection3, MessageDialogLink3, MessageDialogBodyLabel, MessageDialogChildBin, MessageDialogMessageArea, MessageDialogResponseArea, MessageDialogBox2, MessageDialogWindowHandle, messageDialogVariants }

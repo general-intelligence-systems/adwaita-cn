@@ -159,6 +159,11 @@ function ComboRow({ className, render, variant = "default", child, iconName, pre
     children: (
         <>
                   <ComboRowHeader>
+                {prefix ? (
+                  <ComboRowPrefixes>
+                    {prefix}
+                  </ComboRowPrefixes>
+                ) : null}
                 {iconName ? (
                   <ComboRowImage name={iconName} />
                 ) : null}
@@ -171,44 +176,24 @@ function ComboRow({ className, render, variant = "default", child, iconName, pre
                   ) : null}
                 </ComboRowTitleBox>
                 <ComboRowSuffixes>
-                  <ComboRowHeader2>
-                    {prefix ? (
-                      <ComboRowPrefixes2>
-                        {prefix}
-                      </ComboRowPrefixes2>
-                    ) : null}
-                    {iconName ? (
-                      <ComboRowImage2 name={iconName} />
-                    ) : null}
-                    <ComboRowTitleBox2>
-                      {title ? (
-                        <ComboRowTitle2>{title}</ComboRowTitle2>
-                      ) : null}
-                      {subtitle ? (
-                        <ComboRowSubtitle2>{subtitle}</ComboRowSubtitle2>
-                      ) : null}
-                    </ComboRowTitleBox2>
-                    <ComboRowSuffixes2>
-                      {useSubtitle ? (
-                        <ComboRowCurrent />
-                      ) : null}
-                      <ComboRowArrowBox>
-                        <ComboRowImage3 name={iconName} />
-                        <ComboRowPopover>
-                          <ComboRowBox>
-                            <ComboRowSearchEntry>
-                              <ComboRowText>
-                                <ComboRowPlaceholder />
-                              </ComboRowText>
-                            </ComboRowSearchEntry>
-                            <ComboRowScrolledWindow>
-                              <ComboRowList />
-                            </ComboRowScrolledWindow>
-                          </ComboRowBox>
-                        </ComboRowPopover>
-                      </ComboRowArrowBox>
-                    </ComboRowSuffixes2>
-                  </ComboRowHeader2>
+                  {useSubtitle ? (
+                    <ComboRowCurrent />
+                  ) : null}
+                  <ComboRowArrowBox>
+                    <ComboRowImage2 name={iconName} />
+                    <ComboRowPopover>
+                      <ComboRowBox>
+                        <ComboRowSearchEntry>
+                          <ComboRowText>
+                            <ComboRowPlaceholder />
+                          </ComboRowText>
+                        </ComboRowSearchEntry>
+                        <ComboRowScrolledWindow>
+                          <ComboRowList />
+                        </ComboRowScrolledWindow>
+                      </ComboRowBox>
+                    </ComboRowPopover>
+                  </ComboRowArrowBox>
                   {children}
                 </ComboRowSuffixes>
               </ComboRowHeader>
@@ -271,6 +256,19 @@ function ComboRowLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function ComboRowTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="combo-row-title"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
 function ComboRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -286,63 +284,6 @@ function ComboRowLink2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="combo-row-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="combo-row-title"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -367,112 +308,6 @@ function ComboRowTitleBox({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="combo-row-title-box"
-        data-node="box"
-        data-valign="center"
-        data-hexpand=""
-      className={cn("box", "box", "title", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowPrefixes2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-prefixes2"
-        data-node="box"
-      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="combo-row-image2"
-        data-node="image"
-        data-valign="center"
-      className={cn("image", "icon", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowSelection5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-selection5"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowLink5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-link5"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowTitle2({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="combo-row-title2"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowSelection6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-selection6"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowLink6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-link6"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowSubtitle2({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="combo-row-subtitle2"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "subtitle", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowTitleBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-title-box2"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -516,10 +351,10 @@ function ComboRowCurrent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function ComboRowImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function ComboRowImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="combo-row-image3"
+      data-slot="combo-row-image2"
         data-node="image"
       className={cn("image", "dropdown-arrow", className)}
       {...props}
@@ -549,10 +384,10 @@ function ComboRowUndershoot({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-function ComboRowSelection7({ className, ...props }: React.ComponentProps<"div">) {
+function ComboRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="combo-row-selection7"
+      data-slot="combo-row-selection3"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -604,10 +439,10 @@ function ComboRowText({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function ComboRowImage4({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function ComboRowImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="combo-row-image4"
+      data-slot="combo-row-image3"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -733,29 +568,6 @@ function ComboRowArrowBox({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function ComboRowSuffixes2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-suffixes2"
-        data-node="box"
-      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowHeader2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-header2"
-        data-node="box"
-        data-valign="center"
-      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
 function ComboRowSuffixes({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -779,6 +591,6 @@ function ComboRowHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { ComboRow, ComboRowPrefixes, ComboRowImage, ComboRowSelection, ComboRowLink, ComboRowSelection2, ComboRowLink2, ComboRowTitle, ComboRowSelection3, ComboRowLink3, ComboRowSelection4, ComboRowLink4, ComboRowSubtitle, ComboRowTitleBox, ComboRowPrefixes2, ComboRowImage2, ComboRowSelection5, ComboRowLink5, ComboRowTitle2, ComboRowSelection6, ComboRowLink6, ComboRowSubtitle2, ComboRowTitleBox2, ComboRowRow, ComboRowRubberband, ComboRowCurrent, ComboRowImage3, ComboRowPlaceholder, ComboRowUndershoot, ComboRowSelection7, ComboRowCursorHandle, ComboRowBlockCursor, ComboRowWindow, ComboRowText, ComboRowImage4, ComboRowProgress, ComboRowSearchEntry, ComboRowRow2, ComboRowRubberband2, ComboRowList, ComboRowScrolledWindow, ComboRowBox, ComboRowPopover, ComboRowArrowBox, ComboRowSuffixes2, ComboRowHeader2, ComboRowSuffixes, ComboRowHeader, comboRowVariants }
+export { ComboRow, ComboRowPrefixes, ComboRowImage, ComboRowSelection, ComboRowLink, ComboRowTitle, ComboRowSelection2, ComboRowLink2, ComboRowSubtitle, ComboRowTitleBox, ComboRowRow, ComboRowRubberband, ComboRowCurrent, ComboRowImage2, ComboRowPlaceholder, ComboRowUndershoot, ComboRowSelection3, ComboRowCursorHandle, ComboRowBlockCursor, ComboRowWindow, ComboRowText, ComboRowImage3, ComboRowProgress, ComboRowSearchEntry, ComboRowRow2, ComboRowRubberband2, ComboRowList, ComboRowScrolledWindow, ComboRowBox, ComboRowPopover, ComboRowArrowBox, ComboRowSuffixes, ComboRowHeader, comboRowVariants }
 
 ComboRow.isPreferencesRow = true

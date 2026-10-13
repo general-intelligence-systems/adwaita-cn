@@ -64,67 +64,12 @@ function ViewSwitcherBar({ className, render, stack: _stack, reveal, pages, visi
   })
 }
 
-function ViewSwitcherBarStart({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-bar-start"
-        data-node="start"
-      className={cn("start", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherBarBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-bar-box2"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherBarCenter({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-bar-center"
-        data-node="center"
-      className={cn("center", className)}
-      {...props}
-    />
-  )
-}
-
 function ViewSwitcherBarViewSwitcher({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="view-switcher-bar-view-switcher"
         data-node="viewswitcher"
       className={cn("viewswitcher", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherBarBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-bar-box"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-bar-revealer"
-        data-node="revealer"
-      className={cn("revealer", className)}
       {...props}
     />
   )
@@ -141,4 +86,4 @@ function ViewSwitcherBarActionBar({ className, ...props }: React.ComponentProps<
   )
 }
 
-export { ViewSwitcherBar, ViewSwitcherBarStart, ViewSwitcherBarBox2, ViewSwitcherBarCenter, ViewSwitcherBarViewSwitcher, ViewSwitcherBarBox, ViewSwitcherBarRevealer, ViewSwitcherBarActionBar }
+export { ViewSwitcherBar, ViewSwitcherBarViewSwitcher, ViewSwitcherBarActionBar }

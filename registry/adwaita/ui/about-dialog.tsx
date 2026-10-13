@@ -199,724 +199,476 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
                 <AboutDialogNavigationView>
                   <AboutDialogNavigationPage>
                     <AboutDialogToolbarView>
-                      <AboutDialogContent />
-                      <AboutDialogRevealer>
-                        <AboutDialogWindowhandle>
-                          <AboutDialogInternalBox>
-                            <AboutDialogMainHeaderbar>
-                              <AboutDialogWindowhandle2>
-                                <AboutDialogBox>
-                                  <AboutDialogStart>
-                                    <AboutDialogBox2>
-                                      <AboutDialogWindowControls />
-                                      <AboutDialogWindowhandle3>
-                                        <AboutDialogBox3>
-                                          <AboutDialogStart2>
-                                            <AboutDialogBox4>
-                                              <AboutDialogWindowControls2 />
-                                            </AboutDialogBox4>
-                                          </AboutDialogStart2>
+                      <AboutDialogMainScrolledWindow>
+                        <AboutDialogClamp>
+                          <AboutDialogBox>
+                            {applicationName ? (
+                              <AboutDialogAppNameLabel>{applicationName}</AboutDialogAppNameLabel>
+                            ) : null}
+                            {developerName ? (
+                              <AboutDialogDeveloperNameLabel>{developerName}</AboutDialogDeveloperNameLabel>
+                            ) : null}
+                            {version ? (
+                              <AboutDialogVersionButton>{version}</AboutDialogVersionButton>
+                            ) : null}
+                            <AboutDialogBox2>
+                              <AboutDialogDetailsGroup>
+                                <AboutDialogBox3>
+                                  {title ? (
+                                    <AboutDialogHeaderBox>
+                                      <AboutDialogBox4>
+                                        {title ? (
                                           <AboutDialogTitle>{title}</AboutDialogTitle>
-                                          <AboutDialogEnd>
-                                            <AboutDialogBox5>
-                                              <AboutDialogWindowControls3>
-                                                <AboutDialogCloseButton>
-                                                  <AboutDialogImage4 />
-                                                </AboutDialogCloseButton>
-                                              </AboutDialogWindowControls3>
-                                              {packEnd}
-                                            </AboutDialogBox5>
-                                          </AboutDialogEnd>
-                                        </AboutDialogBox3>
-                                      </AboutDialogWindowhandle3>
-                                    </AboutDialogBox2>
-                                  </AboutDialogStart>
-                                  <AboutDialogTitle2>{title}</AboutDialogTitle2>
-                                  <AboutDialogEnd2>
-                                    <AboutDialogBox6>
-                                      <AboutDialogWindowControls4>
-                                        <AboutDialogCloseButton2>
-                                          <AboutDialogImage6 />
-                                        </AboutDialogCloseButton2>
-                                      </AboutDialogWindowControls4>
-                                    </AboutDialogBox6>
-                                  </AboutDialogEnd2>
-                                </AboutDialogBox>
-                              </AboutDialogWindowhandle2>
-                            </AboutDialogMainHeaderbar>
-                            <AboutDialogMainScrolledWindow>
-                              <AboutDialogClamp>
-                                <AboutDialogBox7>
-                                  {applicationName ? (
-                                    <AboutDialogAppNameLabel>{applicationName}</AboutDialogAppNameLabel>
+                                        ) : null}
+                                      </AboutDialogBox4>
+                                    </AboutDialogHeaderBox>
                                   ) : null}
-                                  {developerName ? (
-                                    <AboutDialogDeveloperNameLabel>{developerName}</AboutDialogDeveloperNameLabel>
-                                  ) : null}
-                                  {version ? (
-                                    <AboutDialogVersionButton>{version}</AboutDialogVersionButton>
-                                  ) : null}
-                                  <AboutDialogBox8>
-                                    <AboutDialogDetailsGroup>
-                                      <AboutDialogBox9>
-                                        <AboutDialogHeaderBox>
-                                          <AboutDialogBox10>
+                                  <AboutDialogListboxBox>
+                                    <AboutDialogListbox>
+                                      <AboutDialogWhatsNewRow>
+                                        <AboutDialogHeader>
+                                          <AboutDialogImage />
+                                          <AboutDialogTitleBox>
+                                            {title ? (
+                                              <AboutDialogTitle2>{title}</AboutDialogTitle2>
+                                            ) : null}
+                                            <AboutDialogSubtitle />
+                                          </AboutDialogTitleBox>
+                                          <AboutDialogSuffixes>
+                                            <AboutDialogImage2 />
+                                          </AboutDialogSuffixes>
+                                        </AboutDialogHeader>
+                                      </AboutDialogWhatsNewRow>
+                                      <AboutDialogDetailsRow>
+                                        <AboutDialogHeader2>
+                                          <AboutDialogImage3 />
+                                          <AboutDialogTitleBox2>
                                             {title ? (
                                               <AboutDialogTitle3>{title}</AboutDialogTitle3>
                                             ) : null}
-                                          </AboutDialogBox10>
-                                        </AboutDialogHeaderBox>
-                                        <AboutDialogListboxBox>
-                                          <AboutDialogListbox>
-                                            <AboutDialogWhatsNewRow>
-                                              <AboutDialogHeader>
-                                                <AboutDialogImage7 />
-                                                <AboutDialogTitleBox>
-                                                  {title ? (
-                                                    <AboutDialogTitle4>{title}</AboutDialogTitle4>
-                                                  ) : null}
-                                                  <AboutDialogSubtitle />
-                                                </AboutDialogTitleBox>
-                                                <AboutDialogSuffixes>
-                                                  <AboutDialogImage8 />
-                                                </AboutDialogSuffixes>
-                                              </AboutDialogHeader>
-                                            </AboutDialogWhatsNewRow>
-                                            <AboutDialogDetailsRow>
-                                              <AboutDialogHeader2>
-                                                <AboutDialogImage9 />
-                                                <AboutDialogTitleBox2>
-                                                  {title ? (
-                                                    <AboutDialogTitle5>{title}</AboutDialogTitle5>
-                                                  ) : null}
-                                                  <AboutDialogSubtitle2 />
-                                                </AboutDialogTitleBox2>
-                                                <AboutDialogSuffixes2>
-                                                  <AboutDialogImage10 />
-                                                </AboutDialogSuffixes2>
-                                              </AboutDialogHeader2>
-                                            </AboutDialogDetailsRow>
-                                          </AboutDialogListbox>
-                                        </AboutDialogListboxBox>
-                                      </AboutDialogBox9>
-                                    </AboutDialogDetailsGroup>
-                                    <AboutDialogSupportGroup>
-                                      <AboutDialogBox11>
-                                        <AboutDialogHeaderBox2>
-                                          <AboutDialogBox12>
+                                            <AboutDialogSubtitle2 />
+                                          </AboutDialogTitleBox2>
+                                          <AboutDialogSuffixes2>
+                                            <AboutDialogImage4 />
+                                          </AboutDialogSuffixes2>
+                                        </AboutDialogHeader2>
+                                      </AboutDialogDetailsRow>
+                                    </AboutDialogListbox>
+                                  </AboutDialogListboxBox>
+                                </AboutDialogBox3>
+                              </AboutDialogDetailsGroup>
+                              <AboutDialogSupportGroup>
+                                <AboutDialogBox5>
+                                  {title ? (
+                                    <AboutDialogHeaderBox2>
+                                      <AboutDialogBox6>
+                                        {title ? (
+                                          <AboutDialogTitle4>{title}</AboutDialogTitle4>
+                                        ) : null}
+                                      </AboutDialogBox6>
+                                    </AboutDialogHeaderBox2>
+                                  ) : null}
+                                  <AboutDialogListboxBox2>
+                                    <AboutDialogListbox2>
+                                      <AboutDialogTroubleshootingRow>
+                                        <AboutDialogHeader3>
+                                          <AboutDialogImage5 />
+                                          <AboutDialogTitleBox3>
                                             {title ? (
-                                              <AboutDialogTitle6>{title}</AboutDialogTitle6>
+                                              <AboutDialogTitle5>{title}</AboutDialogTitle5>
                                             ) : null}
-                                          </AboutDialogBox12>
-                                        </AboutDialogHeaderBox2>
-                                        <AboutDialogListboxBox2>
-                                          <AboutDialogListbox2>
-                                            <AboutDialogTroubleshootingRow>
-                                              <AboutDialogHeader3>
-                                                <AboutDialogImage11 />
-                                                <AboutDialogTitleBox3>
-                                                  {title ? (
-                                                    <AboutDialogTitle7>{title}</AboutDialogTitle7>
-                                                  ) : null}
-                                                  <AboutDialogSubtitle3 />
-                                                </AboutDialogTitleBox3>
-                                                <AboutDialogSuffixes3>
-                                                  <AboutDialogImage12 />
-                                                </AboutDialogSuffixes3>
-                                              </AboutDialogHeader3>
-                                            </AboutDialogTroubleshootingRow>
-                                          </AboutDialogListbox2>
-                                        </AboutDialogListboxBox2>
-                                      </AboutDialogBox11>
-                                    </AboutDialogSupportGroup>
-                                    <AboutDialogCreditsLegalGroup>
-                                      <AboutDialogBox13>
-                                        <AboutDialogHeaderBox3>
-                                          <AboutDialogBox14>
+                                            <AboutDialogSubtitle3 />
+                                          </AboutDialogTitleBox3>
+                                          <AboutDialogSuffixes3>
+                                            <AboutDialogImage6 />
+                                          </AboutDialogSuffixes3>
+                                        </AboutDialogHeader3>
+                                      </AboutDialogTroubleshootingRow>
+                                    </AboutDialogListbox2>
+                                  </AboutDialogListboxBox2>
+                                </AboutDialogBox5>
+                              </AboutDialogSupportGroup>
+                              <AboutDialogCreditsLegalGroup>
+                                <AboutDialogBox7>
+                                  {title ? (
+                                    <AboutDialogHeaderBox3>
+                                      <AboutDialogBox8>
+                                        {title ? (
+                                          <AboutDialogTitle6>{title}</AboutDialogTitle6>
+                                        ) : null}
+                                      </AboutDialogBox8>
+                                    </AboutDialogHeaderBox3>
+                                  ) : null}
+                                  <AboutDialogListboxBox3>
+                                    <AboutDialogListbox3>
+                                      <AboutDialogActionRow>
+                                        <AboutDialogHeader4>
+                                          <AboutDialogImage7 />
+                                          <AboutDialogTitleBox4>
+                                            {title ? (
+                                              <AboutDialogTitle7>{title}</AboutDialogTitle7>
+                                            ) : null}
+                                            <AboutDialogSubtitle4 />
+                                          </AboutDialogTitleBox4>
+                                          <AboutDialogSuffixes4>
+                                            <AboutDialogImage8 />
+                                          </AboutDialogSuffixes4>
+                                        </AboutDialogHeader4>
+                                      </AboutDialogActionRow>
+                                      <AboutDialogActionRow2>
+                                        <AboutDialogHeader5>
+                                          <AboutDialogImage9 />
+                                          <AboutDialogTitleBox5>
                                             {title ? (
                                               <AboutDialogTitle8>{title}</AboutDialogTitle8>
                                             ) : null}
-                                          </AboutDialogBox14>
-                                        </AboutDialogHeaderBox3>
-                                        <AboutDialogListboxBox3>
-                                          <AboutDialogListbox3>
-                                            <AboutDialogActionRow>
-                                              <AboutDialogHeader4>
-                                                <AboutDialogImage13 />
-                                                <AboutDialogTitleBox4>
-                                                  {title ? (
-                                                    <AboutDialogTitle9>{title}</AboutDialogTitle9>
-                                                  ) : null}
-                                                  <AboutDialogSubtitle4 />
-                                                </AboutDialogTitleBox4>
-                                                <AboutDialogSuffixes4>
-                                                  <AboutDialogImage14 />
-                                                </AboutDialogSuffixes4>
-                                              </AboutDialogHeader4>
-                                            </AboutDialogActionRow>
-                                            <AboutDialogActionRow2>
-                                              <AboutDialogHeader5>
-                                                <AboutDialogImage15 />
-                                                <AboutDialogTitleBox5>
-                                                  {title ? (
-                                                    <AboutDialogTitle10>{title}</AboutDialogTitle10>
-                                                  ) : null}
-                                                  <AboutDialogSubtitle5 />
-                                                </AboutDialogTitleBox5>
-                                                <AboutDialogSuffixes5>
-                                                  <AboutDialogImage16 />
-                                                </AboutDialogSuffixes5>
-                                              </AboutDialogHeader5>
-                                            </AboutDialogActionRow2>
-                                            <AboutDialogActionRow3>
-                                              <AboutDialogHeader6>
-                                                <AboutDialogImage17 />
-                                                <AboutDialogTitleBox6>
-                                                  {title ? (
-                                                    <AboutDialogTitle11>{title}</AboutDialogTitle11>
-                                                  ) : null}
-                                                  <AboutDialogSubtitle6 />
-                                                </AboutDialogTitleBox6>
-                                                <AboutDialogSuffixes6>
-                                                  <AboutDialogImage18 />
-                                                </AboutDialogSuffixes6>
-                                              </AboutDialogHeader6>
-                                            </AboutDialogActionRow3>
-                                          </AboutDialogListbox3>
-                                        </AboutDialogListboxBox3>
-                                      </AboutDialogBox13>
-                                    </AboutDialogCreditsLegalGroup>
-                                    <AboutDialogOtherAppsGroup>
-                                      <AboutDialogBox15>
-                                        <AboutDialogHeaderBox4>
-                                          <AboutDialogBox16>
+                                            <AboutDialogSubtitle5 />
+                                          </AboutDialogTitleBox5>
+                                          <AboutDialogSuffixes5>
+                                            <AboutDialogImage10 />
+                                          </AboutDialogSuffixes5>
+                                        </AboutDialogHeader5>
+                                      </AboutDialogActionRow2>
+                                      <AboutDialogActionRow3>
+                                        <AboutDialogHeader6>
+                                          <AboutDialogImage11 />
+                                          <AboutDialogTitleBox6>
                                             {title ? (
-                                              <AboutDialogTitle12>{title}</AboutDialogTitle12>
+                                              <AboutDialogTitle9>{title}</AboutDialogTitle9>
                                             ) : null}
-                                          </AboutDialogBox16>
-                                        </AboutDialogHeaderBox4>
-                                        <AboutDialogListboxBox4>
-                                          <AboutDialogListbox4>
-                                            <AboutDialogBox17>
-                                              <AboutDialogHeaderBox5>
-                                                <AboutDialogBox18>
-                                                  {title ? (
-                                                    <AboutDialogTitle13>{title}</AboutDialogTitle13>
-                                                  ) : null}
-                                                </AboutDialogBox18>
-                                              </AboutDialogHeaderBox5>
-                                              <AboutDialogListboxBox5 />
-                                            </AboutDialogBox17>
-                                          </AboutDialogListbox4>
-                                        </AboutDialogListboxBox4>
-                                      </AboutDialogBox15>
-                                    </AboutDialogOtherAppsGroup>
-                                  </AboutDialogBox8>
+                                            <AboutDialogSubtitle6 />
+                                          </AboutDialogTitleBox6>
+                                          <AboutDialogSuffixes6>
+                                            <AboutDialogImage12 />
+                                          </AboutDialogSuffixes6>
+                                        </AboutDialogHeader6>
+                                      </AboutDialogActionRow3>
+                                    </AboutDialogListbox3>
+                                  </AboutDialogListboxBox3>
                                 </AboutDialogBox7>
-                              </AboutDialogClamp>
-                            </AboutDialogMainScrolledWindow>
-                            {children}
-                          </AboutDialogInternalBox>
+                              </AboutDialogCreditsLegalGroup>
+                              <AboutDialogOtherAppsGroup>
+                                <AboutDialogBox9>
+                                  {title ? (
+                                    <AboutDialogHeaderBox4>
+                                      <AboutDialogBox10>
+                                        {title ? (
+                                          <AboutDialogTitle10>{title}</AboutDialogTitle10>
+                                        ) : null}
+                                      </AboutDialogBox10>
+                                    </AboutDialogHeaderBox4>
+                                  ) : null}
+                                  <AboutDialogListboxBox4>
+                                    <AboutDialogListbox4>
+                                      <AboutDialogBox11>
+                                        <AboutDialogHeaderBox5>
+                                          <AboutDialogBox12>
+                                            {title ? (
+                                              <AboutDialogTitle11>{title}</AboutDialogTitle11>
+                                            ) : null}
+                                          </AboutDialogBox12>
+                                        </AboutDialogHeaderBox5>
+                                        <AboutDialogListboxBox5 />
+                                      </AboutDialogBox11>
+                                    </AboutDialogListbox4>
+                                  </AboutDialogListboxBox4>
+                                </AboutDialogBox9>
+                              </AboutDialogOtherAppsGroup>
+                            </AboutDialogBox2>
+                          </AboutDialogBox>
+                        </AboutDialogClamp>
+                      </AboutDialogMainScrolledWindow>
+                      <AboutDialogMainHeaderbar>
+                        <AboutDialogWindowhandle>
+                          <AboutDialogBox13>
+                            <AboutDialogStart>
+                              <AboutDialogBox14>
+                                <AboutDialogWindowControls />
+                                {children}
+                              </AboutDialogBox14>
+                            </AboutDialogStart>
+                            <AboutDialogTitle12>{title}</AboutDialogTitle12>
+                            <AboutDialogEnd>
+                              <AboutDialogBox15>
+                                <AboutDialogWindowControls2>
+                                  <AboutDialogCloseButton>
+                                    <AboutDialogImage13 />
+                                  </AboutDialogCloseButton>
+                                </AboutDialogWindowControls2>
+                                {packEnd}
+                              </AboutDialogBox15>
+                            </AboutDialogEnd>
+                          </AboutDialogBox13>
                         </AboutDialogWindowhandle>
-                      </AboutDialogRevealer>
-                      <AboutDialogRevealer2>
-                        <AboutDialogWindowhandle4>
-                          <AboutDialogInternalBox2 />
-                        </AboutDialogWindowhandle4>
-                      </AboutDialogRevealer2>
+                      </AboutDialogMainHeaderbar>
                     </AboutDialogToolbarView>
                   </AboutDialogNavigationPage>
                   <AboutDialogWhatsnewPage>
                     <AboutDialogToolbarView2>
-                      <AboutDialogContent2 />
-                      <AboutDialogRevealer3>
-                        <AboutDialogWindowhandle5>
-                          <AboutDialogInternalBox3>
-                            <AboutDialogHeaderBar>
-                              <AboutDialogWindowhandle6>
-                                <AboutDialogBox19>
-                                  <AboutDialogStart3>
-                                    <AboutDialogBox20>
-                                      <AboutDialogWindowControls5 />
-                                      <AboutDialogWindowhandle7>
-                                        <AboutDialogBox21>
-                                          <AboutDialogStart4>
-                                            <AboutDialogBox22>
-                                              <AboutDialogWindowControls6 />
-                                            </AboutDialogBox22>
-                                          </AboutDialogStart4>
-                                          <AboutDialogTitle14>{title}</AboutDialogTitle14>
-                                          <AboutDialogEnd3>
-                                            <AboutDialogBox23>
-                                              <AboutDialogWindowControls7>
-                                                <AboutDialogCloseButton3>
-                                                  <AboutDialogImage22 />
-                                                </AboutDialogCloseButton3>
-                                              </AboutDialogWindowControls7>
-                                              {packEnd}
-                                            </AboutDialogBox23>
-                                          </AboutDialogEnd3>
-                                        </AboutDialogBox21>
-                                      </AboutDialogWindowhandle7>
-                                    </AboutDialogBox20>
-                                  </AboutDialogStart3>
-                                  <AboutDialogTitle15>{title}</AboutDialogTitle15>
-                                  <AboutDialogEnd4>
-                                    <AboutDialogBox24>
-                                      <AboutDialogWindowControls8>
-                                        <AboutDialogCloseButton4>
-                                          <AboutDialogImage24 />
-                                        </AboutDialogCloseButton4>
-                                      </AboutDialogWindowControls8>
-                                    </AboutDialogBox24>
-                                  </AboutDialogEnd4>
-                                </AboutDialogBox19>
-                              </AboutDialogWindowhandle6>
-                            </AboutDialogHeaderBar>
-                            <AboutDialogScrolledWindow>
-                              <AboutDialogClampScrollable>
-                                <AboutDialogTextView>
-                                  <AboutDialogText>
-                                    <AboutDialogPlaceholder />
-                                  </AboutDialogText>
-                                </AboutDialogTextView>
-                              </AboutDialogClampScrollable>
-                            </AboutDialogScrolledWindow>
-                          </AboutDialogInternalBox3>
-                        </AboutDialogWindowhandle5>
-                      </AboutDialogRevealer3>
-                      <AboutDialogRevealer4>
-                        <AboutDialogWindowhandle8>
-                          <AboutDialogInternalBox4 />
-                        </AboutDialogWindowhandle8>
-                      </AboutDialogRevealer4>
+                      <AboutDialogScrolledWindow>
+                        <AboutDialogClampScrollable>
+                          <AboutDialogTextView />
+                        </AboutDialogClampScrollable>
+                      </AboutDialogScrolledWindow>
+                      <AboutDialogHeaderBar>
+                        <AboutDialogWindowhandle2>
+                          <AboutDialogBox16>
+                            <AboutDialogStart2>
+                              <AboutDialogBox17>
+                                <AboutDialogWindowControls3 />
+                              </AboutDialogBox17>
+                            </AboutDialogStart2>
+                            <AboutDialogTitle13>{title}</AboutDialogTitle13>
+                            <AboutDialogEnd2>
+                              <AboutDialogBox18>
+                                <AboutDialogWindowControls4>
+                                  <AboutDialogCloseButton2>
+                                    <AboutDialogImage14 />
+                                  </AboutDialogCloseButton2>
+                                </AboutDialogWindowControls4>
+                                {packEnd}
+                              </AboutDialogBox18>
+                            </AboutDialogEnd2>
+                          </AboutDialogBox16>
+                        </AboutDialogWindowhandle2>
+                      </AboutDialogHeaderBar>
                     </AboutDialogToolbarView2>
                   </AboutDialogWhatsnewPage>
                   <AboutDialogNavigationPage2>
                     <AboutDialogToolbarView3>
-                      <AboutDialogContent3 />
-                      <AboutDialogRevealer5>
-                        <AboutDialogWindowhandle9>
-                          <AboutDialogInternalBox5>
-                            <AboutDialogHeaderBar2>
-                              <AboutDialogWindowhandle10>
-                                <AboutDialogBox25>
-                                  <AboutDialogStart5>
-                                    <AboutDialogBox26>
-                                      <AboutDialogWindowControls9 />
-                                      <AboutDialogWindowhandle11>
-                                        <AboutDialogBox27>
-                                          <AboutDialogStart6>
-                                            <AboutDialogBox28>
-                                              <AboutDialogWindowControls10 />
-                                            </AboutDialogBox28>
-                                          </AboutDialogStart6>
-                                          <AboutDialogTitle16>{title}</AboutDialogTitle16>
-                                          <AboutDialogEnd5>
-                                            <AboutDialogBox29>
-                                              <AboutDialogWindowControls11>
-                                                <AboutDialogCloseButton5>
-                                                  <AboutDialogImage28 />
-                                                </AboutDialogCloseButton5>
-                                              </AboutDialogWindowControls11>
-                                              {packEnd}
-                                            </AboutDialogBox29>
-                                          </AboutDialogEnd5>
-                                        </AboutDialogBox27>
-                                      </AboutDialogWindowhandle11>
-                                    </AboutDialogBox26>
-                                  </AboutDialogStart5>
-                                  <AboutDialogTitle17>{title}</AboutDialogTitle17>
-                                  <AboutDialogEnd6>
-                                    <AboutDialogBox30>
-                                      <AboutDialogWindowControls12>
-                                        <AboutDialogCloseButton6>
-                                          <AboutDialogImage30 />
-                                        </AboutDialogCloseButton6>
-                                      </AboutDialogWindowControls12>
-                                    </AboutDialogBox30>
-                                  </AboutDialogEnd6>
-                                </AboutDialogBox25>
-                              </AboutDialogWindowhandle10>
-                            </AboutDialogHeaderBar2>
-                            <AboutDialogScrolledWindow2>
-                              <AboutDialogClamp2>
-                                <AboutDialogBox31>
-                                  {comments ? (
-                                    <AboutDialogCommentsLabel>{comments}</AboutDialogCommentsLabel>
-                                  ) : null}
-                                  <AboutDialogLinksGroup>
-                                    <AboutDialogBox32>
-                                      <AboutDialogHeaderBox6>
-                                        <AboutDialogBox33>
-                                          {title ? (
-                                            <AboutDialogTitle18>{title}</AboutDialogTitle18>
-                                          ) : null}
-                                        </AboutDialogBox33>
-                                      </AboutDialogHeaderBox6>
-                                      <AboutDialogListboxBox6>
-                                        <AboutDialogListbox6 />
-                                      </AboutDialogListboxBox6>
-                                    </AboutDialogBox32>
-                                  </AboutDialogLinksGroup>
-                                </AboutDialogBox31>
-                              </AboutDialogClamp2>
-                            </AboutDialogScrolledWindow2>
-                          </AboutDialogInternalBox5>
-                        </AboutDialogWindowhandle9>
-                      </AboutDialogRevealer5>
-                      <AboutDialogRevealer6>
-                        <AboutDialogWindowhandle12>
-                          <AboutDialogInternalBox6 />
-                        </AboutDialogWindowhandle12>
-                      </AboutDialogRevealer6>
+                      <AboutDialogScrolledWindow2>
+                        <AboutDialogClamp2>
+                          <AboutDialogBox19>
+                            {comments ? (
+                              <AboutDialogCommentsLabel>{comments}</AboutDialogCommentsLabel>
+                            ) : null}
+                            <AboutDialogLinksGroup>
+                              <AboutDialogBox20>
+                                {title ? (
+                                  <AboutDialogHeaderBox6>
+                                    <AboutDialogBox21>
+                                      {title ? (
+                                        <AboutDialogTitle14>{title}</AboutDialogTitle14>
+                                      ) : null}
+                                    </AboutDialogBox21>
+                                  </AboutDialogHeaderBox6>
+                                ) : null}
+                                <AboutDialogListboxBox6>
+                                  <AboutDialogListbox6 />
+                                </AboutDialogListboxBox6>
+                              </AboutDialogBox20>
+                            </AboutDialogLinksGroup>
+                          </AboutDialogBox19>
+                        </AboutDialogClamp2>
+                      </AboutDialogScrolledWindow2>
+                      <AboutDialogHeaderBar2>
+                        <AboutDialogWindowhandle3>
+                          <AboutDialogBox22>
+                            <AboutDialogStart3>
+                              <AboutDialogBox23>
+                                <AboutDialogWindowControls5 />
+                              </AboutDialogBox23>
+                            </AboutDialogStart3>
+                            <AboutDialogTitle15>{title}</AboutDialogTitle15>
+                            <AboutDialogEnd3>
+                              <AboutDialogBox24>
+                                <AboutDialogWindowControls6>
+                                  <AboutDialogCloseButton3>
+                                    <AboutDialogImage15 />
+                                  </AboutDialogCloseButton3>
+                                </AboutDialogWindowControls6>
+                                {packEnd}
+                              </AboutDialogBox24>
+                            </AboutDialogEnd3>
+                          </AboutDialogBox22>
+                        </AboutDialogWindowhandle3>
+                      </AboutDialogHeaderBar2>
                     </AboutDialogToolbarView3>
                   </AboutDialogNavigationPage2>
                   <AboutDialogNavigationPage3>
                     <AboutDialogToolbarView4>
-                      <AboutDialogContent4 />
-                      <AboutDialogRevealer7>
-                        <AboutDialogWindowhandle13>
-                          <AboutDialogInternalBox7>
-                            <AboutDialogHeaderBar3>
-                              <AboutDialogWindowhandle14>
-                                <AboutDialogBox34>
-                                  <AboutDialogStart7>
-                                    <AboutDialogBox35>
-                                      <AboutDialogWindowControls13 />
-                                      <AboutDialogWindowhandle15>
-                                        <AboutDialogBox36>
-                                          <AboutDialogStart8>
-                                            <AboutDialogBox37>
-                                              <AboutDialogWindowControls14 />
-                                            </AboutDialogBox37>
-                                          </AboutDialogStart8>
-                                          <AboutDialogTitle19>{title}</AboutDialogTitle19>
-                                          <AboutDialogEnd7>
-                                            <AboutDialogBox38>
-                                              <AboutDialogWindowControls15>
-                                                <AboutDialogCloseButton7>
-                                                  <AboutDialogImage34 />
-                                                </AboutDialogCloseButton7>
-                                              </AboutDialogWindowControls15>
-                                              {packEnd}
-                                            </AboutDialogBox38>
-                                          </AboutDialogEnd7>
-                                        </AboutDialogBox36>
-                                      </AboutDialogWindowhandle15>
-                                    </AboutDialogBox35>
-                                  </AboutDialogStart7>
-                                  <AboutDialogTitle20>{title}</AboutDialogTitle20>
-                                  <AboutDialogEnd8>
-                                    <AboutDialogBox39>
-                                      <AboutDialogWindowControls16>
-                                        <AboutDialogCloseButton8>
-                                          <AboutDialogImage36 />
-                                        </AboutDialogCloseButton8>
-                                      </AboutDialogWindowControls16>
-                                    </AboutDialogBox39>
-                                  </AboutDialogEnd8>
-                                </AboutDialogBox34>
-                              </AboutDialogWindowhandle14>
-                            </AboutDialogHeaderBar3>
-                            <AboutDialogScrolledWindow3>
-                              <AboutDialogClamp3>
-                                <AboutDialogBox40>
-                                  <AboutDialogLabel />
-                                  <AboutDialogPreferencesGroup>
-                                    <AboutDialogBox41>
-                                      <AboutDialogHeaderBox7>
-                                        <AboutDialogBox42>
+                      <AboutDialogScrolledWindow3>
+                        <AboutDialogClamp3>
+                          <AboutDialogBox25>
+                            <AboutDialogLabel />
+                            <AboutDialogPreferencesGroup>
+                              <AboutDialogBox26>
+                                {title ? (
+                                  <AboutDialogHeaderBox7>
+                                    <AboutDialogBox27>
+                                      {title ? (
+                                        <AboutDialogTitle16>{title}</AboutDialogTitle16>
+                                      ) : null}
+                                    </AboutDialogBox27>
+                                  </AboutDialogHeaderBox7>
+                                ) : null}
+                                <AboutDialogListboxBox7>
+                                  <AboutDialogListbox7>
+                                    <AboutDialogActionRow4>
+                                      <AboutDialogHeader7>
+                                        <AboutDialogImage16 />
+                                        <AboutDialogTitleBox7>
                                           {title ? (
-                                            <AboutDialogTitle21>{title}</AboutDialogTitle21>
+                                            <AboutDialogTitle17>{title}</AboutDialogTitle17>
                                           ) : null}
-                                        </AboutDialogBox42>
-                                      </AboutDialogHeaderBox7>
-                                      <AboutDialogListboxBox7>
-                                        <AboutDialogListbox7>
-                                          <AboutDialogActionRow4>
-                                            <AboutDialogHeader7>
-                                              <AboutDialogImage37 />
-                                              <AboutDialogTitleBox7>
-                                                {title ? (
-                                                  <AboutDialogTitle22>{title}</AboutDialogTitle22>
-                                                ) : null}
-                                                <AboutDialogSubtitle7 />
-                                              </AboutDialogTitleBox7>
-                                              <AboutDialogSuffixes7>
-                                                <AboutDialogImage38 />
-                                              </AboutDialogSuffixes7>
-                                            </AboutDialogHeader7>
-                                          </AboutDialogActionRow4>
-                                        </AboutDialogListbox7>
-                                      </AboutDialogListboxBox7>
-                                    </AboutDialogBox41>
-                                  </AboutDialogPreferencesGroup>
-                                </AboutDialogBox40>
-                              </AboutDialogClamp3>
-                            </AboutDialogScrolledWindow3>
-                          </AboutDialogInternalBox7>
-                        </AboutDialogWindowhandle13>
-                      </AboutDialogRevealer7>
-                      <AboutDialogRevealer8>
-                        <AboutDialogWindowhandle16>
-                          <AboutDialogInternalBox8 />
-                        </AboutDialogWindowhandle16>
-                      </AboutDialogRevealer8>
+                                          <AboutDialogSubtitle7 />
+                                        </AboutDialogTitleBox7>
+                                        <AboutDialogSuffixes7>
+                                          <AboutDialogImage17 />
+                                        </AboutDialogSuffixes7>
+                                      </AboutDialogHeader7>
+                                    </AboutDialogActionRow4>
+                                  </AboutDialogListbox7>
+                                </AboutDialogListboxBox7>
+                              </AboutDialogBox26>
+                            </AboutDialogPreferencesGroup>
+                          </AboutDialogBox25>
+                        </AboutDialogClamp3>
+                      </AboutDialogScrolledWindow3>
+                      <AboutDialogHeaderBar3>
+                        <AboutDialogWindowhandle4>
+                          <AboutDialogBox28>
+                            <AboutDialogStart4>
+                              <AboutDialogBox29>
+                                <AboutDialogWindowControls7 />
+                              </AboutDialogBox29>
+                            </AboutDialogStart4>
+                            <AboutDialogTitle18>{title}</AboutDialogTitle18>
+                            <AboutDialogEnd4>
+                              <AboutDialogBox30>
+                                <AboutDialogWindowControls8>
+                                  <AboutDialogCloseButton4>
+                                    <AboutDialogImage18 />
+                                  </AboutDialogCloseButton4>
+                                </AboutDialogWindowControls8>
+                                {packEnd}
+                              </AboutDialogBox30>
+                            </AboutDialogEnd4>
+                          </AboutDialogBox28>
+                        </AboutDialogWindowhandle4>
+                      </AboutDialogHeaderBar3>
                     </AboutDialogToolbarView4>
                   </AboutDialogNavigationPage3>
                   <AboutDialogDebugInfoPage>
                     <AboutDialogToolbarView5>
-                      <AboutDialogContent5 />
-                      <AboutDialogRevealer9>
-                        <AboutDialogWindowhandle17>
-                          <AboutDialogInternalBox9>
-                            <AboutDialogHeaderBar4>
-                              <AboutDialogWindowhandle18>
-                                <AboutDialogBox43>
-                                  <AboutDialogStart9>
-                                    <AboutDialogBox44>
-                                      <AboutDialogWindowControls17 />
-                                      <AboutDialogWindowhandle19>
-                                        <AboutDialogBox45>
-                                          <AboutDialogStart10>
-                                            <AboutDialogBox46>
-                                              <AboutDialogWindowControls18 />
-                                            </AboutDialogBox46>
-                                          </AboutDialogStart10>
-                                          <AboutDialogTitle23>{title}</AboutDialogTitle23>
-                                          <AboutDialogEnd9>
-                                            <AboutDialogBox47>
-                                              <AboutDialogWindowControls19>
-                                                <AboutDialogCloseButton9>
-                                                  <AboutDialogImage42 />
-                                                </AboutDialogCloseButton9>
-                                              </AboutDialogWindowControls19>
-                                              {packEnd}
-                                            </AboutDialogBox47>
-                                          </AboutDialogEnd9>
-                                        </AboutDialogBox45>
-                                      </AboutDialogWindowhandle19>
-                                    </AboutDialogBox44>
-                                  </AboutDialogStart9>
-                                  <AboutDialogTitle24>{title}</AboutDialogTitle24>
-                                  <AboutDialogEnd10>
-                                    <AboutDialogBox48>
-                                      <AboutDialogWindowControls20>
-                                        <AboutDialogCloseButton10>
-                                          <AboutDialogImage44 />
-                                        </AboutDialogCloseButton10>
-                                      </AboutDialogWindowControls20>
-                                    </AboutDialogBox48>
-                                  </AboutDialogEnd10>
-                                </AboutDialogBox43>
-                              </AboutDialogWindowhandle18>
-                            </AboutDialogHeaderBar4>
-                            <AboutDialogActionBar>
-                              <AboutDialogRevealer10>
-                                <AboutDialogBox49>
-                                  <AboutDialogButton21 />
-                                  <AboutDialogButton22 />
-                                </AboutDialogBox49>
-                              </AboutDialogRevealer10>
-                            </AboutDialogActionBar>
-                            <AboutDialogScrolledWindow4>
-                              <AboutDialogClampScrollable2>
-                                <AboutDialogTextView2>
-                                  <AboutDialogText2>
-                                    <AboutDialogPlaceholder2 />
-                                  </AboutDialogText2>
-                                </AboutDialogTextView2>
-                              </AboutDialogClampScrollable2>
-                            </AboutDialogScrolledWindow4>
-                          </AboutDialogInternalBox9>
-                        </AboutDialogWindowhandle17>
-                      </AboutDialogRevealer9>
-                      <AboutDialogRevealer11>
-                        <AboutDialogWindowhandle20>
-                          <AboutDialogInternalBox10 />
-                        </AboutDialogWindowhandle20>
-                      </AboutDialogRevealer11>
+                      <AboutDialogScrolledWindow4>
+                        <AboutDialogClampScrollable2>
+                          <AboutDialogTextView2 />
+                        </AboutDialogClampScrollable2>
+                      </AboutDialogScrolledWindow4>
+                      <AboutDialogHeaderBar4>
+                        <AboutDialogWindowhandle5>
+                          <AboutDialogBox31>
+                            <AboutDialogStart5>
+                              <AboutDialogBox32>
+                                <AboutDialogWindowControls9 />
+                              </AboutDialogBox32>
+                            </AboutDialogStart5>
+                            <AboutDialogTitle19>{title}</AboutDialogTitle19>
+                            <AboutDialogEnd5>
+                              <AboutDialogBox33>
+                                <AboutDialogWindowControls10>
+                                  <AboutDialogCloseButton5>
+                                    <AboutDialogImage19 />
+                                  </AboutDialogCloseButton5>
+                                </AboutDialogWindowControls10>
+                                {packEnd}
+                              </AboutDialogBox33>
+                            </AboutDialogEnd5>
+                          </AboutDialogBox31>
+                        </AboutDialogWindowhandle5>
+                      </AboutDialogHeaderBar4>
+                      <AboutDialogActionBar>
+                        <AboutDialogButton />
+                        <AboutDialogButton2 />
+                      </AboutDialogActionBar>
                     </AboutDialogToolbarView5>
                   </AboutDialogDebugInfoPage>
                   <AboutDialogNavigationPage4>
                     <AboutDialogToolbarView6>
-                      <AboutDialogContent6 />
-                      <AboutDialogRevealer12>
-                        <AboutDialogWindowhandle21>
-                          <AboutDialogInternalBox11>
-                            <AboutDialogHeaderBar5>
-                              <AboutDialogWindowhandle22>
-                                <AboutDialogBox51>
-                                  <AboutDialogStart12>
-                                    <AboutDialogBox52>
-                                      <AboutDialogWindowControls21 />
-                                      <AboutDialogWindowhandle23>
-                                        <AboutDialogBox53>
-                                          <AboutDialogStart13>
-                                            <AboutDialogBox54>
-                                              <AboutDialogWindowControls22 />
-                                            </AboutDialogBox54>
-                                          </AboutDialogStart13>
-                                          <AboutDialogTitle25>{title}</AboutDialogTitle25>
-                                          <AboutDialogEnd11>
-                                            <AboutDialogBox55>
-                                              <AboutDialogWindowControls23>
-                                                <AboutDialogCloseButton11>
-                                                  <AboutDialogImage48 />
-                                                </AboutDialogCloseButton11>
-                                              </AboutDialogWindowControls23>
-                                              {packEnd}
-                                            </AboutDialogBox55>
-                                          </AboutDialogEnd11>
-                                        </AboutDialogBox53>
-                                      </AboutDialogWindowhandle23>
-                                    </AboutDialogBox52>
-                                  </AboutDialogStart12>
-                                  <AboutDialogTitle26>{title}</AboutDialogTitle26>
-                                  <AboutDialogEnd12>
-                                    <AboutDialogBox56>
-                                      <AboutDialogWindowControls24>
-                                        <AboutDialogCloseButton12>
-                                          <AboutDialogImage50 />
-                                        </AboutDialogCloseButton12>
-                                      </AboutDialogWindowControls24>
-                                    </AboutDialogBox56>
-                                  </AboutDialogEnd12>
-                                </AboutDialogBox51>
-                              </AboutDialogWindowhandle22>
-                            </AboutDialogHeaderBar5>
-                            <AboutDialogScrolledWindow5>
-                              <AboutDialogClamp4 />
-                            </AboutDialogScrolledWindow5>
-                          </AboutDialogInternalBox11>
-                        </AboutDialogWindowhandle21>
-                      </AboutDialogRevealer12>
-                      <AboutDialogRevealer13>
-                        <AboutDialogWindowhandle24>
-                          <AboutDialogInternalBox12 />
-                        </AboutDialogWindowhandle24>
-                      </AboutDialogRevealer13>
+                      <AboutDialogScrolledWindow5>
+                        <AboutDialogClamp4 />
+                      </AboutDialogScrolledWindow5>
+                      <AboutDialogHeaderBar5>
+                        <AboutDialogWindowhandle6>
+                          <AboutDialogBox34>
+                            <AboutDialogStart6>
+                              <AboutDialogBox35>
+                                <AboutDialogWindowControls11 />
+                              </AboutDialogBox35>
+                            </AboutDialogStart6>
+                            <AboutDialogTitle20>{title}</AboutDialogTitle20>
+                            <AboutDialogEnd6>
+                              <AboutDialogBox36>
+                                <AboutDialogWindowControls12>
+                                  <AboutDialogCloseButton6>
+                                    <AboutDialogImage20 />
+                                  </AboutDialogCloseButton6>
+                                </AboutDialogWindowControls12>
+                                {packEnd}
+                              </AboutDialogBox36>
+                            </AboutDialogEnd6>
+                          </AboutDialogBox34>
+                        </AboutDialogWindowhandle6>
+                      </AboutDialogHeaderBar5>
                     </AboutDialogToolbarView6>
                   </AboutDialogNavigationPage4>
                   <AboutDialogNavigationPage5>
                     <AboutDialogToolbarView7>
-                      <AboutDialogContent7 />
-                      <AboutDialogRevealer14>
-                        <AboutDialogWindowhandle25>
-                          <AboutDialogInternalBox13>
-                            <AboutDialogHeaderBar6>
-                              <AboutDialogWindowhandle26>
-                                <AboutDialogBox57>
-                                  <AboutDialogStart14>
-                                    <AboutDialogBox58>
-                                      <AboutDialogWindowControls25 />
-                                      <AboutDialogWindowhandle27>
-                                        <AboutDialogBox59>
-                                          <AboutDialogStart15>
-                                            <AboutDialogBox60>
-                                              <AboutDialogWindowControls26 />
-                                            </AboutDialogBox60>
-                                          </AboutDialogStart15>
-                                          <AboutDialogTitle27>{title}</AboutDialogTitle27>
-                                          <AboutDialogEnd13>
-                                            <AboutDialogBox61>
-                                              <AboutDialogWindowControls27>
-                                                <AboutDialogCloseButton13>
-                                                  <AboutDialogImage54 />
-                                                </AboutDialogCloseButton13>
-                                              </AboutDialogWindowControls27>
-                                              {packEnd}
-                                            </AboutDialogBox61>
-                                          </AboutDialogEnd13>
-                                        </AboutDialogBox59>
-                                      </AboutDialogWindowhandle27>
-                                    </AboutDialogBox58>
-                                  </AboutDialogStart14>
-                                  <AboutDialogTitle28>{title}</AboutDialogTitle28>
-                                  <AboutDialogEnd14>
-                                    <AboutDialogBox62>
-                                      <AboutDialogWindowControls28>
-                                        <AboutDialogCloseButton14>
-                                          <AboutDialogImage56 />
-                                        </AboutDialogCloseButton14>
-                                      </AboutDialogWindowControls28>
-                                    </AboutDialogBox62>
-                                  </AboutDialogEnd14>
-                                </AboutDialogBox57>
-                              </AboutDialogWindowhandle26>
-                            </AboutDialogHeaderBar6>
-                            <AboutDialogScrolledWindow6>
-                              <AboutDialogClamp5 />
-                            </AboutDialogScrolledWindow6>
-                          </AboutDialogInternalBox13>
-                        </AboutDialogWindowhandle25>
-                      </AboutDialogRevealer14>
-                      <AboutDialogRevealer15>
-                        <AboutDialogWindowhandle28>
-                          <AboutDialogInternalBox14 />
-                        </AboutDialogWindowhandle28>
-                      </AboutDialogRevealer15>
+                      <AboutDialogScrolledWindow6>
+                        <AboutDialogClamp5 />
+                      </AboutDialogScrolledWindow6>
+                      <AboutDialogHeaderBar6>
+                        <AboutDialogWindowhandle7>
+                          <AboutDialogBox37>
+                            <AboutDialogStart7>
+                              <AboutDialogBox38>
+                                <AboutDialogWindowControls13 />
+                              </AboutDialogBox38>
+                            </AboutDialogStart7>
+                            <AboutDialogTitle21>{title}</AboutDialogTitle21>
+                            <AboutDialogEnd7>
+                              <AboutDialogBox39>
+                                <AboutDialogWindowControls14>
+                                  <AboutDialogCloseButton7>
+                                    <AboutDialogImage21 />
+                                  </AboutDialogCloseButton7>
+                                </AboutDialogWindowControls14>
+                                {packEnd}
+                              </AboutDialogBox39>
+                            </AboutDialogEnd7>
+                          </AboutDialogBox37>
+                        </AboutDialogWindowhandle7>
+                      </AboutDialogHeaderBar6>
                     </AboutDialogToolbarView7>
                   </AboutDialogNavigationPage5>
                   <AboutDialogNavigationPage6>
                     <AboutDialogToolbarView8>
-                      <AboutDialogContent8 />
-                      <AboutDialogRevealer16>
-                        <AboutDialogWindowhandle29>
-                          <AboutDialogInternalBox15>
-                            <AboutDialogHeaderBar7>
-                              <AboutDialogWindowhandle30>
-                                <AboutDialogBox63>
-                                  <AboutDialogStart16>
-                                    <AboutDialogBox64>
-                                      <AboutDialogWindowControls29 />
-                                      <AboutDialogWindowhandle31>
-                                        <AboutDialogBox65>
-                                          <AboutDialogStart17>
-                                            <AboutDialogBox66>
-                                              <AboutDialogWindowControls30 />
-                                            </AboutDialogBox66>
-                                          </AboutDialogStart17>
-                                          <AboutDialogTitle29>{title}</AboutDialogTitle29>
-                                          <AboutDialogEnd15>
-                                            <AboutDialogBox67>
-                                              <AboutDialogWindowControls31>
-                                                <AboutDialogCloseButton15>
-                                                  <AboutDialogImage60 />
-                                                </AboutDialogCloseButton15>
-                                              </AboutDialogWindowControls31>
-                                              {packEnd}
-                                            </AboutDialogBox67>
-                                          </AboutDialogEnd15>
-                                        </AboutDialogBox65>
-                                      </AboutDialogWindowhandle31>
-                                    </AboutDialogBox64>
-                                  </AboutDialogStart16>
-                                  <AboutDialogTitle30>{title}</AboutDialogTitle30>
-                                  <AboutDialogEnd16>
-                                    <AboutDialogBox68>
-                                      <AboutDialogWindowControls32>
-                                        <AboutDialogCloseButton16>
-                                          <AboutDialogImage62 />
-                                        </AboutDialogCloseButton16>
-                                      </AboutDialogWindowControls32>
-                                    </AboutDialogBox68>
-                                  </AboutDialogEnd16>
-                                </AboutDialogBox63>
-                              </AboutDialogWindowhandle30>
-                            </AboutDialogHeaderBar7>
-                            <AboutDialogScrolledWindow7>
-                              <AboutDialogClamp6 />
-                            </AboutDialogScrolledWindow7>
-                          </AboutDialogInternalBox15>
-                        </AboutDialogWindowhandle29>
-                      </AboutDialogRevealer16>
-                      <AboutDialogRevealer17>
-                        <AboutDialogWindowhandle32>
-                          <AboutDialogInternalBox16 />
-                        </AboutDialogWindowhandle32>
-                      </AboutDialogRevealer17>
+                      <AboutDialogScrolledWindow7>
+                        <AboutDialogClamp6 />
+                      </AboutDialogScrolledWindow7>
+                      <AboutDialogHeaderBar7>
+                        <AboutDialogWindowhandle8>
+                          <AboutDialogBox40>
+                            <AboutDialogStart8>
+                              <AboutDialogBox41>
+                                <AboutDialogWindowControls15 />
+                              </AboutDialogBox41>
+                            </AboutDialogStart8>
+                            <AboutDialogTitle22>{title}</AboutDialogTitle22>
+                            <AboutDialogEnd8>
+                              <AboutDialogBox42>
+                                <AboutDialogWindowControls16>
+                                  <AboutDialogCloseButton8>
+                                    <AboutDialogImage22 />
+                                  </AboutDialogCloseButton8>
+                                </AboutDialogWindowControls16>
+                                {packEnd}
+                              </AboutDialogBox42>
+                            </AboutDialogEnd8>
+                          </AboutDialogBox40>
+                        </AboutDialogWindowhandle8>
+                      </AboutDialogHeaderBar7>
                     </AboutDialogToolbarView8>
                   </AboutDialogNavigationPage6>
                 </AboutDialogNavigationView>
@@ -933,382 +685,6 @@ function AboutDialog({ className, render, variant = "default", applicationName, 
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
-}
-
-function AboutDialogDimming({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-dimming"
-        data-node="dimming"
-      className={cn("dimming", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogShadow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-shadow"
-        data-node="shadow"
-      className={cn("shadow", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogContent({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-content"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image2"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton2({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button2"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls2"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box4"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start2"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image3"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton3({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button3"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage4({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image4"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls3"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box5"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box3"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle3"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box2"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title2"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image5"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton4({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button4"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage6({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image6"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls4"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box6"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end2"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle2"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogMainHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-main-headerbar"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
 }
 
 function AboutDialogAppIconImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
@@ -1344,6 +720,19 @@ function AboutDialogLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function AboutDialogAppNameLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-dialog-app-name-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title-1", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutDialogSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1359,63 +748,6 @@ function AboutDialogLink2({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="about-dialog-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogAppNameLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-dialog-app-name-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1448,10 +780,10 @@ function AboutDialogVersionButton({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutDialogSelection5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection5"
+      data-slot="about-dialog-selection3"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1459,10 +791,10 @@ function AboutDialogSelection5({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutDialogLink5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link5"
+      data-slot="about-dialog-link3"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1470,32 +802,10 @@ function AboutDialogLink5({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutDialogSelection6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection6"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link6"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle3({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title3"
+      data-slot="about-dialog-title"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -1505,10 +815,10 @@ function AboutDialogTitle3({ className, ...props }: React.ComponentProps<"span">
   )
 }
 
-function AboutDialogSelection7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection7"
+      data-slot="about-dialog-selection4"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1516,32 +826,10 @@ function AboutDialogSelection7({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutDialogLink7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link7"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection8"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link8"
+      data-slot="about-dialog-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1562,10 +850,10 @@ function AboutDialogDescription({ className, ...props }: React.ComponentProps<"s
   )
 }
 
-function AboutDialogBox10({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box10"
+      data-slot="about-dialog-box4"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -1597,10 +885,10 @@ function AboutDialogPrefixes({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function AboutDialogImage7({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image7"
+      data-slot="about-dialog-image"
         data-node="image"
         data-valign="center"
       className={cn("image", "icon", className)}
@@ -1609,10 +897,10 @@ function AboutDialogImage7({ className, ...props }: React.ComponentProps<typeof 
   )
 }
 
-function AboutDialogSelection9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection9"
+      data-slot="about-dialog-selection5"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1620,10 +908,10 @@ function AboutDialogSelection9({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutDialogLink9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link9"
+      data-slot="about-dialog-link5"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1631,32 +919,10 @@ function AboutDialogLink9({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutDialogSelection10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection10"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link10"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle4({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle2({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title4"
+      data-slot="about-dialog-title2"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -1666,10 +932,10 @@ function AboutDialogTitle4({ className, ...props }: React.ComponentProps<"span">
   )
 }
 
-function AboutDialogSelection11({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection6({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection11"
+      data-slot="about-dialog-selection6"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1677,32 +943,10 @@ function AboutDialogSelection11({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink11({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink6({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link11"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection12"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link12"
+      data-slot="about-dialog-link6"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1736,10 +980,10 @@ function AboutDialogTitleBox({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function AboutDialogImage8({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image8"
+      data-slot="about-dialog-image2"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -1792,10 +1036,10 @@ function AboutDialogPrefixes2({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage9({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image9"
+      data-slot="about-dialog-image3"
         data-node="image"
         data-valign="center"
       className={cn("image", "icon", className)}
@@ -1804,10 +1048,10 @@ function AboutDialogImage9({ className, ...props }: React.ComponentProps<typeof 
   )
 }
 
-function AboutDialogSelection13({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection13"
+      data-slot="about-dialog-selection7"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1815,10 +1059,10 @@ function AboutDialogSelection13({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink13({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link13"
+      data-slot="about-dialog-link7"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1826,32 +1070,10 @@ function AboutDialogLink13({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection14"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link14"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle5({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle3({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title5"
+      data-slot="about-dialog-title3"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -1861,10 +1083,10 @@ function AboutDialogTitle5({ className, ...props }: React.ComponentProps<"span">
   )
 }
 
-function AboutDialogSelection15({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection8({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection15"
+      data-slot="about-dialog-selection8"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1872,32 +1094,10 @@ function AboutDialogSelection15({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink15({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink8({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link15"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection16"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link16"
+      data-slot="about-dialog-link8"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1931,10 +1131,10 @@ function AboutDialogTitleBox2({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage10({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage4({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image10"
+      data-slot="about-dialog-image4"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -2009,10 +1209,10 @@ function AboutDialogListboxBox({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutDialogBox9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box9"
+      data-slot="about-dialog-box3"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -2031,10 +1231,10 @@ function AboutDialogDetailsGroup({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogSelection17({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection17"
+      data-slot="about-dialog-selection9"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2042,10 +1242,10 @@ function AboutDialogSelection17({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink17({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link17"
+      data-slot="about-dialog-link9"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2053,32 +1253,10 @@ function AboutDialogLink17({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection18({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection18"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink18({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link18"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle6({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle4({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title6"
+      data-slot="about-dialog-title4"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -2088,10 +1266,10 @@ function AboutDialogTitle6({ className, ...props }: React.ComponentProps<"span">
   )
 }
 
-function AboutDialogSelection19({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection10({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection19"
+      data-slot="about-dialog-selection10"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2099,32 +1277,10 @@ function AboutDialogSelection19({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink19({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink10({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link19"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection20({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection20"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink20({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link20"
+      data-slot="about-dialog-link10"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2145,10 +1301,10 @@ function AboutDialogDescription2({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogBox12({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox6({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box12"
+      data-slot="about-dialog-box6"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -2202,10 +1358,10 @@ function AboutDialogPrefixes3({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage11({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image11"
+      data-slot="about-dialog-image5"
         data-node="image"
         data-valign="center"
       className={cn("image", "icon", className)}
@@ -2214,10 +1370,10 @@ function AboutDialogImage11({ className, ...props }: React.ComponentProps<typeof
   )
 }
 
-function AboutDialogSelection21({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection11({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection21"
+      data-slot="about-dialog-selection11"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2225,10 +1381,10 @@ function AboutDialogSelection21({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink21({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink11({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link21"
+      data-slot="about-dialog-link11"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2236,32 +1392,10 @@ function AboutDialogLink21({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection22({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection22"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink22({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link22"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle7({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle5({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title7"
+      data-slot="about-dialog-title5"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -2271,10 +1405,10 @@ function AboutDialogTitle7({ className, ...props }: React.ComponentProps<"span">
   )
 }
 
-function AboutDialogSelection23({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection12({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection23"
+      data-slot="about-dialog-selection12"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2282,32 +1416,10 @@ function AboutDialogSelection23({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink23({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink12({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link23"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection24({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection24"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink24({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link24"
+      data-slot="about-dialog-link12"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2341,10 +1453,10 @@ function AboutDialogTitleBox3({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage12({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage6({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image12"
+      data-slot="about-dialog-image6"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -2408,10 +1520,10 @@ function AboutDialogListboxBox2({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogBox11({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box11"
+      data-slot="about-dialog-box5"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -2430,10 +1542,10 @@ function AboutDialogSupportGroup({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogSelection25({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection13({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection25"
+      data-slot="about-dialog-selection13"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2441,10 +1553,10 @@ function AboutDialogSelection25({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink25({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink13({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link25"
+      data-slot="about-dialog-link13"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2452,32 +1564,10 @@ function AboutDialogLink25({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection26({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection26"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink26({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link26"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle8({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle6({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title8"
+      data-slot="about-dialog-title6"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -2487,10 +1577,10 @@ function AboutDialogTitle8({ className, ...props }: React.ComponentProps<"span">
   )
 }
 
-function AboutDialogSelection27({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection14({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection27"
+      data-slot="about-dialog-selection14"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2498,32 +1588,10 @@ function AboutDialogSelection27({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink27({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink14({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link27"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection28({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection28"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink28({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link28"
+      data-slot="about-dialog-link14"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2544,10 +1612,10 @@ function AboutDialogDescription3({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogBox14({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox8({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box14"
+      data-slot="about-dialog-box8"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -2579,10 +1647,10 @@ function AboutDialogPrefixes4({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage13({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage7({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image13"
+      data-slot="about-dialog-image7"
         data-node="image"
         data-valign="center"
       className={cn("image", "icon", className)}
@@ -2591,10 +1659,10 @@ function AboutDialogImage13({ className, ...props }: React.ComponentProps<typeof
   )
 }
 
-function AboutDialogSelection29({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection15({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection29"
+      data-slot="about-dialog-selection15"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2602,10 +1670,10 @@ function AboutDialogSelection29({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink29({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink15({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link29"
+      data-slot="about-dialog-link15"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2613,32 +1681,10 @@ function AboutDialogLink29({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection30({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection30"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink30({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link30"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle9({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle7({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title9"
+      data-slot="about-dialog-title7"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -2648,10 +1694,10 @@ function AboutDialogTitle9({ className, ...props }: React.ComponentProps<"span">
   )
 }
 
-function AboutDialogSelection31({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection16({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection31"
+      data-slot="about-dialog-selection16"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2659,32 +1705,10 @@ function AboutDialogSelection31({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink31({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink16({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link31"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection32({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection32"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink32({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link32"
+      data-slot="about-dialog-link16"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2718,10 +1742,10 @@ function AboutDialogTitleBox4({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage14({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage8({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image14"
+      data-slot="about-dialog-image8"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -2774,10 +1798,10 @@ function AboutDialogPrefixes5({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage15({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage9({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image15"
+      data-slot="about-dialog-image9"
         data-node="image"
         data-valign="center"
       className={cn("image", "icon", className)}
@@ -2786,10 +1810,10 @@ function AboutDialogImage15({ className, ...props }: React.ComponentProps<typeof
   )
 }
 
-function AboutDialogSelection33({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection17({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection33"
+      data-slot="about-dialog-selection17"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2797,10 +1821,10 @@ function AboutDialogSelection33({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink33({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink17({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link33"
+      data-slot="about-dialog-link17"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2808,32 +1832,10 @@ function AboutDialogLink33({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection34({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection34"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink34({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link34"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle10({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle8({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title10"
+      data-slot="about-dialog-title8"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -2843,10 +1845,10 @@ function AboutDialogTitle10({ className, ...props }: React.ComponentProps<"span"
   )
 }
 
-function AboutDialogSelection35({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection18({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection35"
+      data-slot="about-dialog-selection18"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2854,32 +1856,10 @@ function AboutDialogSelection35({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink35({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink18({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link35"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection36({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection36"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink36({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link36"
+      data-slot="about-dialog-link18"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -2913,10 +1893,10 @@ function AboutDialogTitleBox5({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage16({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage10({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image16"
+      data-slot="about-dialog-image10"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -2969,10 +1949,10 @@ function AboutDialogPrefixes6({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage17({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage11({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image17"
+      data-slot="about-dialog-image11"
         data-node="image"
         data-valign="center"
       className={cn("image", "icon", className)}
@@ -2981,10 +1961,10 @@ function AboutDialogImage17({ className, ...props }: React.ComponentProps<typeof
   )
 }
 
-function AboutDialogSelection37({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection19({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection37"
+      data-slot="about-dialog-selection19"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -2992,10 +1972,10 @@ function AboutDialogSelection37({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink37({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink19({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link37"
+      data-slot="about-dialog-link19"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -3003,32 +1983,10 @@ function AboutDialogLink37({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection38({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection38"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink38({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link38"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle11({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle9({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title11"
+      data-slot="about-dialog-title9"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -3038,10 +1996,10 @@ function AboutDialogTitle11({ className, ...props }: React.ComponentProps<"span"
   )
 }
 
-function AboutDialogSelection39({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection20({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection39"
+      data-slot="about-dialog-selection20"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -3049,32 +2007,10 @@ function AboutDialogSelection39({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink39({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink20({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link39"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection40({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection40"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink40({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link40"
+      data-slot="about-dialog-link20"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -3108,10 +2044,10 @@ function AboutDialogTitleBox6({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage18({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage12({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image18"
+      data-slot="about-dialog-image12"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -3175,10 +2111,10 @@ function AboutDialogListboxBox3({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogBox13({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box13"
+      data-slot="about-dialog-box7"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -3197,10 +2133,10 @@ function AboutDialogCreditsLegalGroup({ className, ...props }: React.ComponentPr
   )
 }
 
-function AboutDialogSelection41({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection21({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection41"
+      data-slot="about-dialog-selection21"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -3208,10 +2144,10 @@ function AboutDialogSelection41({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink41({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink21({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link41"
+      data-slot="about-dialog-link21"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -3219,32 +2155,10 @@ function AboutDialogLink41({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection42({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection42"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink42({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link42"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle12({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle10({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title12"
+      data-slot="about-dialog-title10"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -3254,10 +2168,10 @@ function AboutDialogTitle12({ className, ...props }: React.ComponentProps<"span"
   )
 }
 
-function AboutDialogSelection43({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection22({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection43"
+      data-slot="about-dialog-selection22"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -3265,32 +2179,10 @@ function AboutDialogSelection43({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink43({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink22({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link43"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection44({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection44"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink44({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link44"
+      data-slot="about-dialog-link22"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -3311,10 +2203,10 @@ function AboutDialogDescription4({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogBox16({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox10({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box16"
+      data-slot="about-dialog-box10"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -3335,10 +2227,10 @@ function AboutDialogHeaderBox4({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutDialogSelection45({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection23({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection45"
+      data-slot="about-dialog-selection23"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -3346,10 +2238,10 @@ function AboutDialogSelection45({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink45({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink23({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link45"
+      data-slot="about-dialog-link23"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -3357,32 +2249,10 @@ function AboutDialogLink45({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection46({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection46"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink46({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link46"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle13({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle11({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title13"
+      data-slot="about-dialog-title11"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -3392,10 +2262,10 @@ function AboutDialogTitle13({ className, ...props }: React.ComponentProps<"span"
   )
 }
 
-function AboutDialogSelection47({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection24({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection47"
+      data-slot="about-dialog-selection24"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -3403,32 +2273,10 @@ function AboutDialogSelection47({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink47({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink24({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link47"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection48({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection48"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink48({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link48"
+      data-slot="about-dialog-link24"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -3449,10 +2297,10 @@ function AboutDialogDescription5({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogBox18({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox12({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box18"
+      data-slot="about-dialog-box12"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -3495,10 +2343,10 @@ function AboutDialogListboxBox5({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogBox17({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox11({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box17"
+      data-slot="about-dialog-box11"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -3528,10 +2376,10 @@ function AboutDialogListboxBox4({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogBox15({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box15"
+      data-slot="about-dialog-box9"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -3550,10 +2398,10 @@ function AboutDialogOtherAppsGroup({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogBox8({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box8"
+      data-slot="about-dialog-box2"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -3561,10 +2409,10 @@ function AboutDialogBox8({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutDialogBox7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box7"
+      data-slot="about-dialog-box"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -3582,28 +2430,6 @@ function AboutDialogClamp({ className, style, ...props }: React.ComponentProps<"
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -3638,12 +2464,112 @@ function AboutDialogMainScrolledWindow({ className, children, ...props }: React.
   )
 }
 
-function AboutDialogInternalBox({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
+      data-slot="about-dialog-window-controls"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box14"
         data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title12"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage13({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image13"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls2"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box15"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box13"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -3660,45 +2586,12 @@ function AboutDialogWindowhandle({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogRevealer({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogMainHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogInternalBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle4"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer2"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-main-headerbar"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -3726,536 +2619,6 @@ function AboutDialogNavigationPage({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogContent2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-content2"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage19({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image19"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton5({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button5"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls5"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage20({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image20"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton6({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button6"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls6"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox22({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box22"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start4"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title14"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage21({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image21"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton7({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button7"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage22({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image22"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls7"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox23({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box23"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end3"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox21({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box21"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle7"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox20({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box20"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start3"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title15"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage23({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image23"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton8({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button8"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage24({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image24"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls8"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox24({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box24"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end4"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox19({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box19"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle6"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-header-bar"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBorder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-border"
-        data-node="border"
-      className={cn("border", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-placeholder"
-        data-node="placeholder"
-      className={cn("placeholder", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot2"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection49({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection49"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-cursor-handle"
-        data-node="cursor-handle"
-      className={cn("cursor-handle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-block-cursor"
-        data-node="block-cursor"
-      className={cn("block-cursor", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-sheet"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogPaper({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-paper"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogDrawing({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-drawing"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection50({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection50"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogText({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-text"
-        data-node="text"
-      className={cn("text", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSheet2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-sheet2"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogPaper2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-paper2"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogDrawing2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-drawing2"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window2"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogTextView({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
     <textarea
@@ -4277,28 +2640,6 @@ function AboutDialogClampScrollable({ className, style, ...props }: React.Compon
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot2"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot3"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -4333,21 +2674,121 @@ function AboutDialogScrolledWindow({ className, children, ...props }: React.Comp
   )
 }
 
-function AboutDialogInternalBox3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      data-slot="about-dialog-window-controls3"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox17({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-windowhandle5"
+      data-slot="about-dialog-box17"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start2"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title13"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage14({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image14"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls4"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box18"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end2"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box16"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-windowhandle2"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -4355,45 +2796,12 @@ function AboutDialogWindowhandle5({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutDialogRevealer3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer3"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogInternalBox4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle8"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer4"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-header-bar"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -4421,364 +2829,10 @@ function AboutDialogWhatsnewPage({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogContent3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection25({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-content3"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage25({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image25"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton9({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button9"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls9({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls9"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage26({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image26"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton10({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button10"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls10"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox28({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box28"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start6"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title16"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage27({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image27"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton11({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button11"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage28({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image28"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls11"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox29({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box29"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end5"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox27({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box27"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle11"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox26({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box26"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start5"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle17({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title17"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage29({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image29"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton12({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button12"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage30({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image30"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls12"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox30({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box30"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end6"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox25({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box25"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle10"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogHeaderBar2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-header-bar2"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection51({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection51"
+      data-slot="about-dialog-selection25"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -4786,32 +2840,10 @@ function AboutDialogSelection51({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink49({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink25({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link49"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection52({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection52"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink50({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link50"
+      data-slot="about-dialog-link25"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -4832,10 +2864,10 @@ function AboutDialogCommentsLabel({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutDialogSelection53({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection26({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection53"
+      data-slot="about-dialog-selection26"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -4843,10 +2875,10 @@ function AboutDialogSelection53({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink51({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink26({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link51"
+      data-slot="about-dialog-link26"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -4854,32 +2886,10 @@ function AboutDialogLink51({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection54({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection54"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink52({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link52"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle18({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle14({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title18"
+      data-slot="about-dialog-title14"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -4889,10 +2899,10 @@ function AboutDialogTitle18({ className, ...props }: React.ComponentProps<"span"
   )
 }
 
-function AboutDialogSelection55({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection27({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection55"
+      data-slot="about-dialog-selection27"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -4900,32 +2910,10 @@ function AboutDialogSelection55({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink53({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink27({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link53"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection56({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection56"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink54({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link54"
+      data-slot="about-dialog-link27"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -4946,10 +2934,10 @@ function AboutDialogDescription6({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogBox33({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox21({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box33"
+      data-slot="about-dialog-box21"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -5003,10 +2991,10 @@ function AboutDialogListboxBox6({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogBox32({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox20({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box32"
+      data-slot="about-dialog-box20"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -5025,10 +3013,10 @@ function AboutDialogLinksGroup({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutDialogBox31({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox19({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box31"
+      data-slot="about-dialog-box19"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -5046,28 +3034,6 @@ function AboutDialogClamp2({ className, style, ...props }: React.ComponentProps<
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot3"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot4"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -5102,21 +3068,121 @@ function AboutDialogScrolledWindow2({ className, children, ...props }: React.Com
   )
 }
 
-function AboutDialogInternalBox5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      data-slot="about-dialog-window-controls5"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox23({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-windowhandle9"
+      data-slot="about-dialog-box23"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start3"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title15"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage15({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image15"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls6"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox24({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box24"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end3"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box22"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-windowhandle3"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -5124,45 +3190,12 @@ function AboutDialogWindowhandle9({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutDialogRevealer5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogHeaderBar2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer5"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogInternalBox6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle12"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer6"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-header-bar2"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -5190,364 +3223,10 @@ function AboutDialogNavigationPage2({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogContent4({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection28({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-content4"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage31({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image31"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton13({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button13"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls13({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls13"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage32({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image32"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton14({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button14"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls14"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox37({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box37"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start8"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle19({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title19"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage33({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image33"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton15({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button15"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage34({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image34"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls15"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox38({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box38"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end7"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox36({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box36"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle15"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox35({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box35"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start7"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle20({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title20"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage35({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image35"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton16({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button16"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage36({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image36"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls16"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox39({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box39"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end8"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox34({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box34"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle14"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogHeaderBar3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-header-bar3"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection57({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection57"
+      data-slot="about-dialog-selection28"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -5555,32 +3234,10 @@ function AboutDialogSelection57({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink55({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink28({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link55"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection58({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection58"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink56({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link56"
+      data-slot="about-dialog-link28"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -5601,10 +3258,10 @@ function AboutDialogLabel({ className, ...props }: React.ComponentProps<"span">)
   )
 }
 
-function AboutDialogSelection59({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection29({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection59"
+      data-slot="about-dialog-selection29"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -5612,10 +3269,10 @@ function AboutDialogSelection59({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink57({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink29({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link57"
+      data-slot="about-dialog-link29"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -5623,32 +3280,10 @@ function AboutDialogLink57({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection60({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection60"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink58({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link58"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle21({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle16({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title21"
+      data-slot="about-dialog-title16"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -5658,10 +3293,10 @@ function AboutDialogTitle21({ className, ...props }: React.ComponentProps<"span"
   )
 }
 
-function AboutDialogSelection61({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection30({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection61"
+      data-slot="about-dialog-selection30"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -5669,32 +3304,10 @@ function AboutDialogSelection61({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink59({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink30({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link59"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection62({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection62"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink60({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link60"
+      data-slot="about-dialog-link30"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -5715,10 +3328,10 @@ function AboutDialogDescription7({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutDialogBox42({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox27({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box42"
+      data-slot="about-dialog-box27"
         data-node="box"
         data-valign="center"
         data-hexpand=""
@@ -5750,10 +3363,10 @@ function AboutDialogPrefixes7({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage37({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage16({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image37"
+      data-slot="about-dialog-image16"
         data-node="image"
         data-valign="center"
       className={cn("image", "icon", className)}
@@ -5762,10 +3375,10 @@ function AboutDialogImage37({ className, ...props }: React.ComponentProps<typeof
   )
 }
 
-function AboutDialogSelection63({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection31({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection63"
+      data-slot="about-dialog-selection31"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -5773,10 +3386,10 @@ function AboutDialogSelection63({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink61({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink31({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link61"
+      data-slot="about-dialog-link31"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -5784,32 +3397,10 @@ function AboutDialogLink61({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function AboutDialogSelection64({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection64"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink62({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link62"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle22({ className, ...props }: React.ComponentProps<"span">) {
+function AboutDialogTitle17({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="about-dialog-title22"
+      data-slot="about-dialog-title17"
         data-node="label"
         data-xalign="start"
         data-yalign="center"
@@ -5819,10 +3410,10 @@ function AboutDialogTitle22({ className, ...props }: React.ComponentProps<"span"
   )
 }
 
-function AboutDialogSelection65({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogSelection32({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-selection65"
+      data-slot="about-dialog-selection32"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -5830,32 +3421,10 @@ function AboutDialogSelection65({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogLink63({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogLink32({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-link63"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection66({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection66"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogLink64({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-link64"
+      data-slot="about-dialog-link32"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -5889,10 +3458,10 @@ function AboutDialogTitleBox7({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function AboutDialogImage38({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutDialogImage17({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-dialog-image38"
+      data-slot="about-dialog-image17"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -5956,10 +3525,10 @@ function AboutDialogListboxBox7({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutDialogBox41({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox26({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box41"
+      data-slot="about-dialog-box26"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -5978,10 +3547,10 @@ function AboutDialogPreferencesGroup({ className, ...props }: React.ComponentPro
   )
 }
 
-function AboutDialogBox40({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox25({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-box40"
+      data-slot="about-dialog-box25"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -5999,28 +3568,6 @@ function AboutDialogClamp3({ className, style, ...props }: React.ComponentProps<
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot4"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot5"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -6055,21 +3602,121 @@ function AboutDialogScrolledWindow3({ className, children, ...props }: React.Com
   )
 }
 
-function AboutDialogInternalBox7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      data-slot="about-dialog-window-controls7"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle13({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox29({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-windowhandle13"
+      data-slot="about-dialog-box29"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start4"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title18"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage18({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image18"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls8"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox30({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box30"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end4"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox28({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box28"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowhandle4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-windowhandle4"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -6077,45 +3724,12 @@ function AboutDialogWindowhandle13({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogRevealer7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogHeaderBar3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer7"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogInternalBox8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle16"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer8"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-header-bar3"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -6143,624 +3757,6 @@ function AboutDialogNavigationPage3({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogContent5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-content5"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage39({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image39"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton17({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button17"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls17({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls17"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage40({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image40"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton18({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button18"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls18({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls18"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox46({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box46"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start10"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle23({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title23"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage41({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image41"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton19({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button19"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage42({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image42"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton9({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls19({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls19"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox47({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box47"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd9({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end9"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox45({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box45"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle19({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle19"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox44({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box44"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart9({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start9"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle24({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title24"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage43({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image43"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton20({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button20"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage44({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image44"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls20({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls20"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox48({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box48"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end10"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox43({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box43"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle18({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle18"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogHeaderBar4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-header-bar4"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start11"
-        data-node="start"
-      className={cn("start", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox50({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box50"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCenter({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-center"
-        data-node="center"
-      className={cn("center", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton21({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button21"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton22({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button22"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox49({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box49"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer10"
-        data-node="revealer"
-      className={cn("revealer", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogActionBar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-action-bar"
-        data-node="actionbar"
-      className={cn("actionbar", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBorder2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-border2"
-        data-node="border"
-      className={cn("border", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-placeholder2"
-        data-node="placeholder"
-      className={cn("placeholder", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot6"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection67({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection67"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-cursor-handle2"
-        data-node="cursor-handle"
-      className={cn("cursor-handle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-block-cursor2"
-        data-node="block-cursor"
-      className={cn("block-cursor", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSheet3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-sheet3"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogPaper3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-paper3"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogDrawing3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-drawing3"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindow3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window3"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSelection68({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-selection68"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogText2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-text2"
-        data-node="text"
-      className={cn("text", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogSheet4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-sheet4"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogPaper4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-paper4"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogDrawing4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-drawing4"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindow4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window4"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogTextView2({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
     <textarea
@@ -6782,28 +3778,6 @@ function AboutDialogClampScrollable2({ className, style, ...props }: React.Compo
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot5"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot7"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -6838,21 +3812,121 @@ function AboutDialogScrolledWindow4({ className, children, ...props }: React.Com
   )
 }
 
-function AboutDialogInternalBox9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      data-slot="about-dialog-window-controls9"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle17({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox32({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-windowhandle17"
+      data-slot="about-dialog-box32"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start5"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle19({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title19"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage19({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image19"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls10"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox33({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box33"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end5"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox31({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box31"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowhandle5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-windowhandle5"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -6860,45 +3934,45 @@ function AboutDialogWindowhandle17({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogRevealer9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogHeaderBar4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer9"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
+      data-slot="about-dialog-header-bar4"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogInternalBox10({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogButton({ className, ...props }: React.ComponentProps<"button">) {
   return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+    <button
+      data-slot="about-dialog-button"
+        data-node="button"
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle20({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogButton2({ className, ...props }: React.ComponentProps<"button">) {
   return (
-    <div
-      data-slot="about-dialog-windowhandle20"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
+    <button
+      data-slot="about-dialog-button2"
+        data-node="button"
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogRevealer11({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogActionBar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer11"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-action-bar"
+        data-node="actionbar"
+      className={cn("actionbar", className)}
       {...props}
     />
   )
@@ -6926,360 +4000,6 @@ function AboutDialogDebugInfoPage({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutDialogContent6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-content6"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage45({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image45"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton23({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button23"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls21({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls21"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage46({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image46"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton24({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button24"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls22({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls22"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox54({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box54"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart13({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start13"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle25({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title25"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage47({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image47"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton25({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button25"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage48({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image48"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls23({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls23"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox55({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box55"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end11"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox53({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box53"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle23({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle23"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox52({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box52"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start12"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle26({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title26"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage49({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image49"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton26({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button26"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage50({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image50"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls24({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls24"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox56({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box56"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end12"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox51({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box51"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle22({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle22"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogHeaderBar5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-header-bar5"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogCreditsBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -7301,28 +4021,6 @@ function AboutDialogClamp4({ className, style, ...props }: React.ComponentProps<
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot6"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot8"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -7357,21 +4055,121 @@ function AboutDialogScrolledWindow5({ className, children, ...props }: React.Com
   )
 }
 
-function AboutDialogInternalBox11({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls11({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      data-slot="about-dialog-window-controls11"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle21({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox35({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-windowhandle21"
+      data-slot="about-dialog-box35"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start6"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle20({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title20"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage20({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image20"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls12"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox36({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box36"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end6"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox34({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box34"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowhandle6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-windowhandle6"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -7379,45 +4177,12 @@ function AboutDialogWindowhandle21({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogRevealer12({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogHeaderBar5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer12"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogInternalBox12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle24({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle24"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer13({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer13"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-header-bar5"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -7445,360 +4210,6 @@ function AboutDialogNavigationPage4({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogContent7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-content7"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage51({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image51"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton27({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button27"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls25({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls25"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage52({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image52"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton28({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button28"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls26({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls26"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox60({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box60"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start15"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle27({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title27"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage53({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image53"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton29({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button29"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage54({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image54"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton13({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls27({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls27"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox61({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box61"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd13({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end13"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox59({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box59"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle27({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle27"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox58({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box58"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start14"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle28({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title28"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage55({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image55"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton30({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button30"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage56({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image56"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls28({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls28"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox62({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box62"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end14"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox57({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box57"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle26({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle26"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogHeaderBar6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-header-bar6"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogLegalBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -7820,28 +4231,6 @@ function AboutDialogClamp5({ className, style, ...props }: React.ComponentProps<
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot7"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot9({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot9"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -7876,21 +4265,121 @@ function AboutDialogScrolledWindow6({ className, children, ...props }: React.Com
   )
 }
 
-function AboutDialogInternalBox13({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls13({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      data-slot="about-dialog-window-controls13"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle25({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox38({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-windowhandle25"
+      data-slot="about-dialog-box38"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start7"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle21({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title21"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage21({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image21"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls14"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox39({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box39"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end7"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox37({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box37"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowhandle7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-windowhandle7"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -7898,45 +4387,12 @@ function AboutDialogWindowhandle25({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogRevealer14({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogHeaderBar6({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer14"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogInternalBox14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle28({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle28"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer15"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-header-bar6"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -7964,360 +4420,6 @@ function AboutDialogNavigationPage5({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutDialogContent8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-content8"
-        data-vexpand=""
-      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage57({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image57"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton31({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button31"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls29({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls29"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage58({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image58"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton32({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button32"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls30({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls30"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox66({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box66"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart17({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start17"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle29({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title29"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage59({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image59"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton33({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button33"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage60({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image60"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls31({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls31"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox67({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box67"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end15"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox65({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box65"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle31({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle31"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox64({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box64"
-        data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogStart16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-start16"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogTitle30({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-title30"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage61({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-dialog-image61"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton34({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button34"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogImage62({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-dialog-image62"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogCloseButton16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowControls32({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-window-controls32"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox68({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box68"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogEnd16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-end16"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogBox63({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-box63"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle30({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle30"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogHeaderBar7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-header-bar7"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogAcknowledgementsBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -8339,28 +4441,6 @@ function AboutDialogClamp6({ className, style, ...props }: React.ComponentProps<
         data-node="clamp"
       className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogOvershoot8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-overshoot8"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogUndershoot10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-undershoot10"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -8395,21 +4475,121 @@ function AboutDialogScrolledWindow7({ className, children, ...props }: React.Com
   )
 }
 
-function AboutDialogInternalBox15({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogWindowControls15({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
+      data-slot="about-dialog-window-controls15"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
 }
 
-function AboutDialogWindowhandle29({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogBox41({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-windowhandle29"
+      data-slot="about-dialog-box41"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogStart8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-start8"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogTitle22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-title22"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogImage22({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-dialog-image22"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogCloseButton8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowControls16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-window-controls16"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox42({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box42"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogEnd8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-end8"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogBox40({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-box40"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutDialogWindowhandle8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-dialog-windowhandle8"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -8417,45 +4597,12 @@ function AboutDialogWindowhandle29({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogRevealer16({ className, ...props }: React.ComponentProps<"div">) {
+function AboutDialogHeaderBar7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-dialog-revealer16"
-        data-node="revealer"
-      className={cn("revealer", "top-bar", "order-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogInternalBox16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="box"
-        data-node="box"
-      className={cn("box", "box", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogWindowhandle32({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-windowhandle32"
-        data-node="windowhandle"
-      className={cn("windowhandle", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogRevealer17({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-revealer17"
-        data-node="revealer"
-      className={cn("revealer", "bottom-bar", "order-3", className)}
+      data-slot="about-dialog-header-bar7"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -8494,39 +4641,6 @@ function AboutDialogNavigationView({ className, ...props }: React.ComponentProps
   )
 }
 
-function AboutDialogChild({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-child"
-        data-node="child"
-      className={cn("child", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogButton35({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-dialog-button35"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutDialogToast({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-dialog-toast"
-        data-node="toast"
-      className={cn("toast", className)}
-      {...props}
-    />
-  )
-}
-
 function AboutDialogToastOverlay({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -8538,4 +4652,4 @@ function AboutDialogToastOverlay({ className, ...props }: React.ComponentProps<"
   )
 }
 
-export { AboutDialog, AboutDialogDimming, AboutDialogShadow, AboutDialogContent, AboutDialogImage, AboutDialogButton, AboutDialogWindowControls, AboutDialogImage2, AboutDialogButton2, AboutDialogWindowControls2, AboutDialogBox4, AboutDialogStart2, AboutDialogTitle, AboutDialogImage3, AboutDialogButton3, AboutDialogImage4, AboutDialogCloseButton, AboutDialogWindowControls3, AboutDialogBox5, AboutDialogEnd, AboutDialogBox3, AboutDialogWindowhandle3, AboutDialogBox2, AboutDialogStart, AboutDialogTitle2, AboutDialogImage5, AboutDialogButton4, AboutDialogImage6, AboutDialogCloseButton2, AboutDialogWindowControls4, AboutDialogBox6, AboutDialogEnd2, AboutDialogBox, AboutDialogWindowhandle2, AboutDialogMainHeaderbar, AboutDialogAppIconImage, AboutDialogSelection, AboutDialogLink, AboutDialogSelection2, AboutDialogLink2, AboutDialogAppNameLabel, AboutDialogSelection3, AboutDialogLink3, AboutDialogSelection4, AboutDialogLink4, AboutDialogDeveloperNameLabel, AboutDialogVersionButton, AboutDialogSelection5, AboutDialogLink5, AboutDialogSelection6, AboutDialogLink6, AboutDialogTitle3, AboutDialogSelection7, AboutDialogLink7, AboutDialogSelection8, AboutDialogLink8, AboutDialogDescription, AboutDialogBox10, AboutDialogHeaderBox, AboutDialogPrefixes, AboutDialogImage7, AboutDialogSelection9, AboutDialogLink9, AboutDialogSelection10, AboutDialogLink10, AboutDialogTitle4, AboutDialogSelection11, AboutDialogLink11, AboutDialogSelection12, AboutDialogLink12, AboutDialogSubtitle, AboutDialogTitleBox, AboutDialogImage8, AboutDialogSuffixes, AboutDialogHeader, AboutDialogWhatsNewRow, AboutDialogPrefixes2, AboutDialogImage9, AboutDialogSelection13, AboutDialogLink13, AboutDialogSelection14, AboutDialogLink14, AboutDialogTitle5, AboutDialogSelection15, AboutDialogLink15, AboutDialogSelection16, AboutDialogLink16, AboutDialogSubtitle2, AboutDialogTitleBox2, AboutDialogImage10, AboutDialogSuffixes2, AboutDialogHeader2, AboutDialogDetailsRow, AboutDialogWebsiteRow, AboutDialogListbox, AboutDialogListboxBox, AboutDialogBox9, AboutDialogDetailsGroup, AboutDialogSelection17, AboutDialogLink17, AboutDialogSelection18, AboutDialogLink18, AboutDialogTitle6, AboutDialogSelection19, AboutDialogLink19, AboutDialogSelection20, AboutDialogLink20, AboutDialogDescription2, AboutDialogBox12, AboutDialogHeaderBox2, AboutDialogSupportRow, AboutDialogIssueRow, AboutDialogPrefixes3, AboutDialogImage11, AboutDialogSelection21, AboutDialogLink21, AboutDialogSelection22, AboutDialogLink22, AboutDialogTitle7, AboutDialogSelection23, AboutDialogLink23, AboutDialogSelection24, AboutDialogLink24, AboutDialogSubtitle3, AboutDialogTitleBox3, AboutDialogImage12, AboutDialogSuffixes3, AboutDialogHeader3, AboutDialogTroubleshootingRow, AboutDialogListbox2, AboutDialogListboxBox2, AboutDialogBox11, AboutDialogSupportGroup, AboutDialogSelection25, AboutDialogLink25, AboutDialogSelection26, AboutDialogLink26, AboutDialogTitle8, AboutDialogSelection27, AboutDialogLink27, AboutDialogSelection28, AboutDialogLink28, AboutDialogDescription3, AboutDialogBox14, AboutDialogHeaderBox3, AboutDialogPrefixes4, AboutDialogImage13, AboutDialogSelection29, AboutDialogLink29, AboutDialogSelection30, AboutDialogLink30, AboutDialogTitle9, AboutDialogSelection31, AboutDialogLink31, AboutDialogSelection32, AboutDialogLink32, AboutDialogSubtitle4, AboutDialogTitleBox4, AboutDialogImage14, AboutDialogSuffixes4, AboutDialogHeader4, AboutDialogActionRow, AboutDialogPrefixes5, AboutDialogImage15, AboutDialogSelection33, AboutDialogLink33, AboutDialogSelection34, AboutDialogLink34, AboutDialogTitle10, AboutDialogSelection35, AboutDialogLink35, AboutDialogSelection36, AboutDialogLink36, AboutDialogSubtitle5, AboutDialogTitleBox5, AboutDialogImage16, AboutDialogSuffixes5, AboutDialogHeader5, AboutDialogActionRow2, AboutDialogPrefixes6, AboutDialogImage17, AboutDialogSelection37, AboutDialogLink37, AboutDialogSelection38, AboutDialogLink38, AboutDialogTitle11, AboutDialogSelection39, AboutDialogLink39, AboutDialogSelection40, AboutDialogLink40, AboutDialogSubtitle6, AboutDialogTitleBox6, AboutDialogImage18, AboutDialogSuffixes6, AboutDialogHeader6, AboutDialogActionRow3, AboutDialogListbox3, AboutDialogListboxBox3, AboutDialogBox13, AboutDialogCreditsLegalGroup, AboutDialogSelection41, AboutDialogLink41, AboutDialogSelection42, AboutDialogLink42, AboutDialogTitle12, AboutDialogSelection43, AboutDialogLink43, AboutDialogSelection44, AboutDialogLink44, AboutDialogDescription4, AboutDialogBox16, AboutDialogHeaderBox4, AboutDialogSelection45, AboutDialogLink45, AboutDialogSelection46, AboutDialogLink46, AboutDialogTitle13, AboutDialogSelection47, AboutDialogLink47, AboutDialogSelection48, AboutDialogLink48, AboutDialogDescription5, AboutDialogBox18, AboutDialogHeaderBox5, AboutDialogListbox5, AboutDialogListboxBox5, AboutDialogBox17, AboutDialogListbox4, AboutDialogListboxBox4, AboutDialogBox15, AboutDialogOtherAppsGroup, AboutDialogBox8, AboutDialogBox7, AboutDialogClamp, AboutDialogOvershoot, AboutDialogUndershoot, AboutDialogMainScrolledWindow, AboutDialogInternalBox, AboutDialogWindowhandle, AboutDialogRevealer, AboutDialogInternalBox2, AboutDialogWindowhandle4, AboutDialogRevealer2, AboutDialogToolbarView, AboutDialogNavigationPage, AboutDialogContent2, AboutDialogImage19, AboutDialogButton5, AboutDialogWindowControls5, AboutDialogImage20, AboutDialogButton6, AboutDialogWindowControls6, AboutDialogBox22, AboutDialogStart4, AboutDialogTitle14, AboutDialogImage21, AboutDialogButton7, AboutDialogImage22, AboutDialogCloseButton3, AboutDialogWindowControls7, AboutDialogBox23, AboutDialogEnd3, AboutDialogBox21, AboutDialogWindowhandle7, AboutDialogBox20, AboutDialogStart3, AboutDialogTitle15, AboutDialogImage23, AboutDialogButton8, AboutDialogImage24, AboutDialogCloseButton4, AboutDialogWindowControls8, AboutDialogBox24, AboutDialogEnd4, AboutDialogBox19, AboutDialogWindowhandle6, AboutDialogHeaderBar, AboutDialogBorder, AboutDialogPlaceholder, AboutDialogUndershoot2, AboutDialogSelection49, AboutDialogCursorHandle, AboutDialogBlockCursor, AboutDialogSheet, AboutDialogPaper, AboutDialogDrawing, AboutDialogWindow, AboutDialogSelection50, AboutDialogText, AboutDialogSheet2, AboutDialogPaper2, AboutDialogDrawing2, AboutDialogWindow2, AboutDialogTextView, AboutDialogClampScrollable, AboutDialogOvershoot2, AboutDialogUndershoot3, AboutDialogScrolledWindow, AboutDialogInternalBox3, AboutDialogWindowhandle5, AboutDialogRevealer3, AboutDialogInternalBox4, AboutDialogWindowhandle8, AboutDialogRevealer4, AboutDialogToolbarView2, AboutDialogWhatsnewPage, AboutDialogContent3, AboutDialogImage25, AboutDialogButton9, AboutDialogWindowControls9, AboutDialogImage26, AboutDialogButton10, AboutDialogWindowControls10, AboutDialogBox28, AboutDialogStart6, AboutDialogTitle16, AboutDialogImage27, AboutDialogButton11, AboutDialogImage28, AboutDialogCloseButton5, AboutDialogWindowControls11, AboutDialogBox29, AboutDialogEnd5, AboutDialogBox27, AboutDialogWindowhandle11, AboutDialogBox26, AboutDialogStart5, AboutDialogTitle17, AboutDialogImage29, AboutDialogButton12, AboutDialogImage30, AboutDialogCloseButton6, AboutDialogWindowControls12, AboutDialogBox30, AboutDialogEnd6, AboutDialogBox25, AboutDialogWindowhandle10, AboutDialogHeaderBar2, AboutDialogSelection51, AboutDialogLink49, AboutDialogSelection52, AboutDialogLink50, AboutDialogCommentsLabel, AboutDialogSelection53, AboutDialogLink51, AboutDialogSelection54, AboutDialogLink52, AboutDialogTitle18, AboutDialogSelection55, AboutDialogLink53, AboutDialogSelection56, AboutDialogLink54, AboutDialogDescription6, AboutDialogBox33, AboutDialogHeaderBox6, AboutDialogDetailsWebsiteRow, AboutDialogListbox6, AboutDialogListboxBox6, AboutDialogBox32, AboutDialogLinksGroup, AboutDialogBox31, AboutDialogClamp2, AboutDialogOvershoot3, AboutDialogUndershoot4, AboutDialogScrolledWindow2, AboutDialogInternalBox5, AboutDialogWindowhandle9, AboutDialogRevealer5, AboutDialogInternalBox6, AboutDialogWindowhandle12, AboutDialogRevealer6, AboutDialogToolbarView3, AboutDialogNavigationPage2, AboutDialogContent4, AboutDialogImage31, AboutDialogButton13, AboutDialogWindowControls13, AboutDialogImage32, AboutDialogButton14, AboutDialogWindowControls14, AboutDialogBox37, AboutDialogStart8, AboutDialogTitle19, AboutDialogImage33, AboutDialogButton15, AboutDialogImage34, AboutDialogCloseButton7, AboutDialogWindowControls15, AboutDialogBox38, AboutDialogEnd7, AboutDialogBox36, AboutDialogWindowhandle15, AboutDialogBox35, AboutDialogStart7, AboutDialogTitle20, AboutDialogImage35, AboutDialogButton16, AboutDialogImage36, AboutDialogCloseButton8, AboutDialogWindowControls16, AboutDialogBox39, AboutDialogEnd8, AboutDialogBox34, AboutDialogWindowhandle14, AboutDialogHeaderBar3, AboutDialogSelection57, AboutDialogLink55, AboutDialogSelection58, AboutDialogLink56, AboutDialogLabel, AboutDialogSelection59, AboutDialogLink57, AboutDialogSelection60, AboutDialogLink58, AboutDialogTitle21, AboutDialogSelection61, AboutDialogLink59, AboutDialogSelection62, AboutDialogLink60, AboutDialogDescription7, AboutDialogBox42, AboutDialogHeaderBox7, AboutDialogPrefixes7, AboutDialogImage37, AboutDialogSelection63, AboutDialogLink61, AboutDialogSelection64, AboutDialogLink62, AboutDialogTitle22, AboutDialogSelection65, AboutDialogLink63, AboutDialogSelection66, AboutDialogLink64, AboutDialogSubtitle7, AboutDialogTitleBox7, AboutDialogImage38, AboutDialogSuffixes7, AboutDialogHeader7, AboutDialogActionRow4, AboutDialogListbox7, AboutDialogListboxBox7, AboutDialogBox41, AboutDialogPreferencesGroup, AboutDialogBox40, AboutDialogClamp3, AboutDialogOvershoot4, AboutDialogUndershoot5, AboutDialogScrolledWindow3, AboutDialogInternalBox7, AboutDialogWindowhandle13, AboutDialogRevealer7, AboutDialogInternalBox8, AboutDialogWindowhandle16, AboutDialogRevealer8, AboutDialogToolbarView4, AboutDialogNavigationPage3, AboutDialogContent5, AboutDialogImage39, AboutDialogButton17, AboutDialogWindowControls17, AboutDialogImage40, AboutDialogButton18, AboutDialogWindowControls18, AboutDialogBox46, AboutDialogStart10, AboutDialogTitle23, AboutDialogImage41, AboutDialogButton19, AboutDialogImage42, AboutDialogCloseButton9, AboutDialogWindowControls19, AboutDialogBox47, AboutDialogEnd9, AboutDialogBox45, AboutDialogWindowhandle19, AboutDialogBox44, AboutDialogStart9, AboutDialogTitle24, AboutDialogImage43, AboutDialogButton20, AboutDialogImage44, AboutDialogCloseButton10, AboutDialogWindowControls20, AboutDialogBox48, AboutDialogEnd10, AboutDialogBox43, AboutDialogWindowhandle18, AboutDialogHeaderBar4, AboutDialogStart11, AboutDialogBox50, AboutDialogCenter, AboutDialogButton21, AboutDialogButton22, AboutDialogBox49, AboutDialogRevealer10, AboutDialogActionBar, AboutDialogBorder2, AboutDialogPlaceholder2, AboutDialogUndershoot6, AboutDialogSelection67, AboutDialogCursorHandle2, AboutDialogBlockCursor2, AboutDialogSheet3, AboutDialogPaper3, AboutDialogDrawing3, AboutDialogWindow3, AboutDialogSelection68, AboutDialogText2, AboutDialogSheet4, AboutDialogPaper4, AboutDialogDrawing4, AboutDialogWindow4, AboutDialogTextView2, AboutDialogClampScrollable2, AboutDialogOvershoot5, AboutDialogUndershoot7, AboutDialogScrolledWindow4, AboutDialogInternalBox9, AboutDialogWindowhandle17, AboutDialogRevealer9, AboutDialogInternalBox10, AboutDialogWindowhandle20, AboutDialogRevealer11, AboutDialogToolbarView5, AboutDialogDebugInfoPage, AboutDialogContent6, AboutDialogImage45, AboutDialogButton23, AboutDialogWindowControls21, AboutDialogImage46, AboutDialogButton24, AboutDialogWindowControls22, AboutDialogBox54, AboutDialogStart13, AboutDialogTitle25, AboutDialogImage47, AboutDialogButton25, AboutDialogImage48, AboutDialogCloseButton11, AboutDialogWindowControls23, AboutDialogBox55, AboutDialogEnd11, AboutDialogBox53, AboutDialogWindowhandle23, AboutDialogBox52, AboutDialogStart12, AboutDialogTitle26, AboutDialogImage49, AboutDialogButton26, AboutDialogImage50, AboutDialogCloseButton12, AboutDialogWindowControls24, AboutDialogBox56, AboutDialogEnd12, AboutDialogBox51, AboutDialogWindowhandle22, AboutDialogHeaderBar5, AboutDialogCreditsBox, AboutDialogClamp4, AboutDialogOvershoot6, AboutDialogUndershoot8, AboutDialogScrolledWindow5, AboutDialogInternalBox11, AboutDialogWindowhandle21, AboutDialogRevealer12, AboutDialogInternalBox12, AboutDialogWindowhandle24, AboutDialogRevealer13, AboutDialogToolbarView6, AboutDialogNavigationPage4, AboutDialogContent7, AboutDialogImage51, AboutDialogButton27, AboutDialogWindowControls25, AboutDialogImage52, AboutDialogButton28, AboutDialogWindowControls26, AboutDialogBox60, AboutDialogStart15, AboutDialogTitle27, AboutDialogImage53, AboutDialogButton29, AboutDialogImage54, AboutDialogCloseButton13, AboutDialogWindowControls27, AboutDialogBox61, AboutDialogEnd13, AboutDialogBox59, AboutDialogWindowhandle27, AboutDialogBox58, AboutDialogStart14, AboutDialogTitle28, AboutDialogImage55, AboutDialogButton30, AboutDialogImage56, AboutDialogCloseButton14, AboutDialogWindowControls28, AboutDialogBox62, AboutDialogEnd14, AboutDialogBox57, AboutDialogWindowhandle26, AboutDialogHeaderBar6, AboutDialogLegalBox, AboutDialogClamp5, AboutDialogOvershoot7, AboutDialogUndershoot9, AboutDialogScrolledWindow6, AboutDialogInternalBox13, AboutDialogWindowhandle25, AboutDialogRevealer14, AboutDialogInternalBox14, AboutDialogWindowhandle28, AboutDialogRevealer15, AboutDialogToolbarView7, AboutDialogNavigationPage5, AboutDialogContent8, AboutDialogImage57, AboutDialogButton31, AboutDialogWindowControls29, AboutDialogImage58, AboutDialogButton32, AboutDialogWindowControls30, AboutDialogBox66, AboutDialogStart17, AboutDialogTitle29, AboutDialogImage59, AboutDialogButton33, AboutDialogImage60, AboutDialogCloseButton15, AboutDialogWindowControls31, AboutDialogBox67, AboutDialogEnd15, AboutDialogBox65, AboutDialogWindowhandle31, AboutDialogBox64, AboutDialogStart16, AboutDialogTitle30, AboutDialogImage61, AboutDialogButton34, AboutDialogImage62, AboutDialogCloseButton16, AboutDialogWindowControls32, AboutDialogBox68, AboutDialogEnd16, AboutDialogBox63, AboutDialogWindowhandle30, AboutDialogHeaderBar7, AboutDialogAcknowledgementsBox, AboutDialogClamp6, AboutDialogOvershoot8, AboutDialogUndershoot10, AboutDialogScrolledWindow7, AboutDialogInternalBox15, AboutDialogWindowhandle29, AboutDialogRevealer16, AboutDialogInternalBox16, AboutDialogWindowhandle32, AboutDialogRevealer17, AboutDialogToolbarView8, AboutDialogNavigationPage6, AboutDialogNavigationView, AboutDialogChild, AboutDialogButton35, AboutDialogToast, AboutDialogToastOverlay, aboutDialogVariants }
+export { AboutDialog, AboutDialogAppIconImage, AboutDialogSelection, AboutDialogLink, AboutDialogAppNameLabel, AboutDialogSelection2, AboutDialogLink2, AboutDialogDeveloperNameLabel, AboutDialogVersionButton, AboutDialogSelection3, AboutDialogLink3, AboutDialogTitle, AboutDialogSelection4, AboutDialogLink4, AboutDialogDescription, AboutDialogBox4, AboutDialogHeaderBox, AboutDialogPrefixes, AboutDialogImage, AboutDialogSelection5, AboutDialogLink5, AboutDialogTitle2, AboutDialogSelection6, AboutDialogLink6, AboutDialogSubtitle, AboutDialogTitleBox, AboutDialogImage2, AboutDialogSuffixes, AboutDialogHeader, AboutDialogWhatsNewRow, AboutDialogPrefixes2, AboutDialogImage3, AboutDialogSelection7, AboutDialogLink7, AboutDialogTitle3, AboutDialogSelection8, AboutDialogLink8, AboutDialogSubtitle2, AboutDialogTitleBox2, AboutDialogImage4, AboutDialogSuffixes2, AboutDialogHeader2, AboutDialogDetailsRow, AboutDialogWebsiteRow, AboutDialogListbox, AboutDialogListboxBox, AboutDialogBox3, AboutDialogDetailsGroup, AboutDialogSelection9, AboutDialogLink9, AboutDialogTitle4, AboutDialogSelection10, AboutDialogLink10, AboutDialogDescription2, AboutDialogBox6, AboutDialogHeaderBox2, AboutDialogSupportRow, AboutDialogIssueRow, AboutDialogPrefixes3, AboutDialogImage5, AboutDialogSelection11, AboutDialogLink11, AboutDialogTitle5, AboutDialogSelection12, AboutDialogLink12, AboutDialogSubtitle3, AboutDialogTitleBox3, AboutDialogImage6, AboutDialogSuffixes3, AboutDialogHeader3, AboutDialogTroubleshootingRow, AboutDialogListbox2, AboutDialogListboxBox2, AboutDialogBox5, AboutDialogSupportGroup, AboutDialogSelection13, AboutDialogLink13, AboutDialogTitle6, AboutDialogSelection14, AboutDialogLink14, AboutDialogDescription3, AboutDialogBox8, AboutDialogHeaderBox3, AboutDialogPrefixes4, AboutDialogImage7, AboutDialogSelection15, AboutDialogLink15, AboutDialogTitle7, AboutDialogSelection16, AboutDialogLink16, AboutDialogSubtitle4, AboutDialogTitleBox4, AboutDialogImage8, AboutDialogSuffixes4, AboutDialogHeader4, AboutDialogActionRow, AboutDialogPrefixes5, AboutDialogImage9, AboutDialogSelection17, AboutDialogLink17, AboutDialogTitle8, AboutDialogSelection18, AboutDialogLink18, AboutDialogSubtitle5, AboutDialogTitleBox5, AboutDialogImage10, AboutDialogSuffixes5, AboutDialogHeader5, AboutDialogActionRow2, AboutDialogPrefixes6, AboutDialogImage11, AboutDialogSelection19, AboutDialogLink19, AboutDialogTitle9, AboutDialogSelection20, AboutDialogLink20, AboutDialogSubtitle6, AboutDialogTitleBox6, AboutDialogImage12, AboutDialogSuffixes6, AboutDialogHeader6, AboutDialogActionRow3, AboutDialogListbox3, AboutDialogListboxBox3, AboutDialogBox7, AboutDialogCreditsLegalGroup, AboutDialogSelection21, AboutDialogLink21, AboutDialogTitle10, AboutDialogSelection22, AboutDialogLink22, AboutDialogDescription4, AboutDialogBox10, AboutDialogHeaderBox4, AboutDialogSelection23, AboutDialogLink23, AboutDialogTitle11, AboutDialogSelection24, AboutDialogLink24, AboutDialogDescription5, AboutDialogBox12, AboutDialogHeaderBox5, AboutDialogListbox5, AboutDialogListboxBox5, AboutDialogBox11, AboutDialogListbox4, AboutDialogListboxBox4, AboutDialogBox9, AboutDialogOtherAppsGroup, AboutDialogBox2, AboutDialogBox, AboutDialogClamp, AboutDialogMainScrolledWindow, AboutDialogWindowControls, AboutDialogBox14, AboutDialogStart, AboutDialogTitle12, AboutDialogImage13, AboutDialogCloseButton, AboutDialogWindowControls2, AboutDialogBox15, AboutDialogEnd, AboutDialogBox13, AboutDialogWindowhandle, AboutDialogMainHeaderbar, AboutDialogToolbarView, AboutDialogNavigationPage, AboutDialogTextView, AboutDialogClampScrollable, AboutDialogScrolledWindow, AboutDialogWindowControls3, AboutDialogBox17, AboutDialogStart2, AboutDialogTitle13, AboutDialogImage14, AboutDialogCloseButton2, AboutDialogWindowControls4, AboutDialogBox18, AboutDialogEnd2, AboutDialogBox16, AboutDialogWindowhandle2, AboutDialogHeaderBar, AboutDialogToolbarView2, AboutDialogWhatsnewPage, AboutDialogSelection25, AboutDialogLink25, AboutDialogCommentsLabel, AboutDialogSelection26, AboutDialogLink26, AboutDialogTitle14, AboutDialogSelection27, AboutDialogLink27, AboutDialogDescription6, AboutDialogBox21, AboutDialogHeaderBox6, AboutDialogDetailsWebsiteRow, AboutDialogListbox6, AboutDialogListboxBox6, AboutDialogBox20, AboutDialogLinksGroup, AboutDialogBox19, AboutDialogClamp2, AboutDialogScrolledWindow2, AboutDialogWindowControls5, AboutDialogBox23, AboutDialogStart3, AboutDialogTitle15, AboutDialogImage15, AboutDialogCloseButton3, AboutDialogWindowControls6, AboutDialogBox24, AboutDialogEnd3, AboutDialogBox22, AboutDialogWindowhandle3, AboutDialogHeaderBar2, AboutDialogToolbarView3, AboutDialogNavigationPage2, AboutDialogSelection28, AboutDialogLink28, AboutDialogLabel, AboutDialogSelection29, AboutDialogLink29, AboutDialogTitle16, AboutDialogSelection30, AboutDialogLink30, AboutDialogDescription7, AboutDialogBox27, AboutDialogHeaderBox7, AboutDialogPrefixes7, AboutDialogImage16, AboutDialogSelection31, AboutDialogLink31, AboutDialogTitle17, AboutDialogSelection32, AboutDialogLink32, AboutDialogSubtitle7, AboutDialogTitleBox7, AboutDialogImage17, AboutDialogSuffixes7, AboutDialogHeader7, AboutDialogActionRow4, AboutDialogListbox7, AboutDialogListboxBox7, AboutDialogBox26, AboutDialogPreferencesGroup, AboutDialogBox25, AboutDialogClamp3, AboutDialogScrolledWindow3, AboutDialogWindowControls7, AboutDialogBox29, AboutDialogStart4, AboutDialogTitle18, AboutDialogImage18, AboutDialogCloseButton4, AboutDialogWindowControls8, AboutDialogBox30, AboutDialogEnd4, AboutDialogBox28, AboutDialogWindowhandle4, AboutDialogHeaderBar3, AboutDialogToolbarView4, AboutDialogNavigationPage3, AboutDialogTextView2, AboutDialogClampScrollable2, AboutDialogScrolledWindow4, AboutDialogWindowControls9, AboutDialogBox32, AboutDialogStart5, AboutDialogTitle19, AboutDialogImage19, AboutDialogCloseButton5, AboutDialogWindowControls10, AboutDialogBox33, AboutDialogEnd5, AboutDialogBox31, AboutDialogWindowhandle5, AboutDialogHeaderBar4, AboutDialogButton, AboutDialogButton2, AboutDialogActionBar, AboutDialogToolbarView5, AboutDialogDebugInfoPage, AboutDialogCreditsBox, AboutDialogClamp4, AboutDialogScrolledWindow5, AboutDialogWindowControls11, AboutDialogBox35, AboutDialogStart6, AboutDialogTitle20, AboutDialogImage20, AboutDialogCloseButton6, AboutDialogWindowControls12, AboutDialogBox36, AboutDialogEnd6, AboutDialogBox34, AboutDialogWindowhandle6, AboutDialogHeaderBar5, AboutDialogToolbarView6, AboutDialogNavigationPage4, AboutDialogLegalBox, AboutDialogClamp5, AboutDialogScrolledWindow6, AboutDialogWindowControls13, AboutDialogBox38, AboutDialogStart7, AboutDialogTitle21, AboutDialogImage21, AboutDialogCloseButton7, AboutDialogWindowControls14, AboutDialogBox39, AboutDialogEnd7, AboutDialogBox37, AboutDialogWindowhandle7, AboutDialogHeaderBar6, AboutDialogToolbarView7, AboutDialogNavigationPage5, AboutDialogAcknowledgementsBox, AboutDialogClamp6, AboutDialogScrolledWindow7, AboutDialogWindowControls15, AboutDialogBox41, AboutDialogStart8, AboutDialogTitle22, AboutDialogImage22, AboutDialogCloseButton8, AboutDialogWindowControls16, AboutDialogBox42, AboutDialogEnd8, AboutDialogBox40, AboutDialogWindowhandle8, AboutDialogHeaderBar7, AboutDialogToolbarView8, AboutDialogNavigationPage6, AboutDialogNavigationView, AboutDialogToastOverlay, aboutDialogVariants }

@@ -161,13 +161,6 @@ function AlertDialog({ className, render, variant = "default", body, child, extr
                       {children}
                     </AlertDialogResponseArea>
                   </AlertDialogBox>
-                  <AlertDialogPopoverMenu>
-                    <AlertDialogArrow />
-                    <AlertDialogContents2>
-                      <AlertDialogArrow2 />
-                      <AlertDialogContents3 />
-                    </AlertDialogContents2>
-                  </AlertDialogPopoverMenu>
                 </AlertDialogWindowHandle>
               </AlertDialogContents>
                   {child}
@@ -207,6 +200,19 @@ function AlertDialogLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function AlertDialogHeadingLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="alert-dialog-heading-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title-2", className)}
+      {...props}
+    />
+  )
+}
+
 function AlertDialogSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -222,63 +228,6 @@ function AlertDialogLink2({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="alert-dialog-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogHeadingLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="alert-dialog-heading-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title-2", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -309,10 +258,10 @@ function AlertDialogHeadingBin({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AlertDialogSelection5({ className, ...props }: React.ComponentProps<"div">) {
+function AlertDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="alert-dialog-selection5"
+      data-slot="alert-dialog-selection3"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -320,32 +269,10 @@ function AlertDialogSelection5({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AlertDialogLink5({ className, ...props }: React.ComponentProps<"div">) {
+function AlertDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="alert-dialog-link5"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogSelection6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-selection6"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogLink6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-link6"
+      data-slot="alert-dialog-link3"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -383,28 +310,6 @@ function AlertDialogMessageArea({ className, ...props }: React.ComponentProps<"d
       data-slot="alert-dialog-message-area"
         data-node="box"
       className={cn("box", "box", "message-area", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogOvershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-overshoot"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -460,61 +365,6 @@ function AlertDialogBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AlertDialogArrow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-arrow"
-        data-node="arrow"
-      className={cn("arrow", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogArrow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-arrow2"
-        data-node="arrow"
-      className={cn("arrow", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogContents3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-contents3"
-        data-node="contents"
-      className={cn("contents", "hidden", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogContents2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-contents2"
-        data-node="contents"
-      className={cn("contents", "hidden", className)}
-      {...props}
-    />
-  )
-}
-
-function AlertDialogPopoverMenu({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-popover-menu"
-        data-node="popover"
-      className={cn("popover", "hidden", className)}
-      {...props}
-    />
-  )
-}
-
 function AlertDialogWindowHandle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -536,4 +386,4 @@ function AlertDialogContents({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-export { AlertDialog, AlertDialogSelection, AlertDialogLink, AlertDialogSelection2, AlertDialogLink2, AlertDialogHeadingLabel, AlertDialogSelection3, AlertDialogLink3, AlertDialogSelection4, AlertDialogLink4, AlertDialogHeadingLabelSmall, AlertDialogHeadingBin, AlertDialogSelection5, AlertDialogLink5, AlertDialogSelection6, AlertDialogLink6, AlertDialogBodyLabel, AlertDialogChildBin, AlertDialogMessageArea, AlertDialogOvershoot, AlertDialogUndershoot, AlertDialogScrolledWindow, AlertDialogResponseArea, AlertDialogBox, AlertDialogArrow, AlertDialogArrow2, AlertDialogContents3, AlertDialogContents2, AlertDialogPopoverMenu, AlertDialogWindowHandle, AlertDialogContents, alertDialogVariants }
+export { AlertDialog, AlertDialogSelection, AlertDialogLink, AlertDialogHeadingLabel, AlertDialogSelection2, AlertDialogLink2, AlertDialogHeadingLabelSmall, AlertDialogHeadingBin, AlertDialogSelection3, AlertDialogLink3, AlertDialogBodyLabel, AlertDialogChildBin, AlertDialogMessageArea, AlertDialogScrolledWindow, AlertDialogResponseArea, AlertDialogBox, AlertDialogWindowHandle, AlertDialogContents, alertDialogVariants }

@@ -110,105 +110,6 @@ function ProgressBar({ className, render, variant = "default", text, ellipsize, 
   })
 }
 
-function ProgressBarPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-placeholder"
-        data-node="placeholder"
-      className={cn("placeholder", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarSelection({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-selection"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-cursor-handle"
-        data-node="cursor-handle"
-      className={cn("cursor-handle", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-block-cursor"
-        data-node="block-cursor"
-      className={cn("block-cursor", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-sheet"
-        data-node="sheet"
-      className={cn("sheet", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarPaper({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-paper"
-        data-node="paper"
-      className={cn("paper", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarDrawing({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-drawing"
-        data-node="drawing"
-      className={cn("drawing", className)}
-      {...props}
-    />
-  )
-}
-
-function ProgressBarWindow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="progress-bar-window"
-        data-node="window"
-      className={cn("window", className)}
-      {...props}
-    />
-  )
-}
-
 function ProgressBarText({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -242,4 +143,4 @@ function ProgressBarTrough({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-export { ProgressBar, ProgressBarPlaceholder, ProgressBarUndershoot, ProgressBarSelection, ProgressBarCursorHandle, ProgressBarBlockCursor, ProgressBarSheet, ProgressBarPaper, ProgressBarDrawing, ProgressBarWindow, ProgressBarText, ProgressBarProgress, ProgressBarTrough, progressBarVariants }
+export { ProgressBar, ProgressBarText, ProgressBarProgress, ProgressBarTrough, progressBarVariants }

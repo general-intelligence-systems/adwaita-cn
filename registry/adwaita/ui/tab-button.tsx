@@ -62,7 +62,6 @@ function TabButton({ className, render, variant = "default", actionTarget: _acti
                     <TabButtonLabel />
                     {children}
                   </TabButtonOverlay>
-                  <TabButtonIndicator2 />
                 </TabButtonIndicator>
               </TabButtonButton>
       ),
@@ -110,28 +109,6 @@ function TabButtonLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function TabButtonSelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-button-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function TabButtonLink2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-button-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
 function TabButtonLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -152,28 +129,6 @@ function TabButtonOverlay({ className, ...props }: React.ComponentProps<"div">) 
       data-slot="tab-button-overlay"
         data-node="overlay"
       className={cn("overlay", className)}
-      {...props}
-    />
-  )
-}
-
-function TabButtonIndicator2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-button-indicator2"
-        data-node="indicator"
-      className={cn("indicator", className)}
-      {...props}
-    />
-  )
-}
-
-function TabButtonMask({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tab-button-mask"
-        data-node="mask"
-      className={cn("mask", className)}
       {...props}
     />
   )
@@ -203,4 +158,4 @@ function TabButtonButton({ className, ...props }: React.ComponentProps<"button">
   )
 }
 
-export { TabButton, TabButtonIcon, TabButtonSelection, TabButtonLink, TabButtonSelection2, TabButtonLink2, TabButtonLabel, TabButtonOverlay, TabButtonIndicator2, TabButtonMask, TabButtonIndicator, TabButtonButton, tabButtonVariants }
+export { TabButton, TabButtonIcon, TabButtonSelection, TabButtonLink, TabButtonLabel, TabButtonOverlay, TabButtonIndicator, TabButtonButton, tabButtonVariants }

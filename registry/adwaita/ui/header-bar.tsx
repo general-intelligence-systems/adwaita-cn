@@ -108,7 +108,7 @@ function HeaderBar({ className, render, variant = "default", size = "default", p
                     <HeaderBarBox3>
                       <HeaderBarWindowControls2>
                         <HeaderBarCloseButton>
-                          <HeaderBarImage3 />
+                          <HeaderBarImage />
                         </HeaderBarCloseButton>
                       </HeaderBarWindowControls2>
                       {packEnd}
@@ -126,28 +126,6 @@ function HeaderBar({ className, render, variant = "default", size = "default", p
     render,
     props: mergeProps<"header">(defaultProps, rest),
   })
-}
-
-function HeaderBarImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="header-bar-image"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function HeaderBarButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="header-bar-button"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
 }
 
 function HeaderBarWindowControls({ className, ...props }: React.ComponentProps<"div">) {
@@ -194,33 +172,11 @@ function HeaderBarTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function HeaderBarImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="header-bar-image2"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function HeaderBarButton2({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="header-bar-button2"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function HeaderBarImage3({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+function HeaderBarImage({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
         name={name}
-      data-slot="header-bar-image3"
+      data-slot="header-bar-image"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -294,4 +250,4 @@ function HeaderBarWindowhandle({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-export { HeaderBar, HeaderBarImage, HeaderBarButton, HeaderBarWindowControls, HeaderBarBox2, HeaderBarStart, HeaderBarTitle, HeaderBarImage2, HeaderBarButton2, HeaderBarImage3, HeaderBarCloseButton, HeaderBarWindowControls2, HeaderBarBox3, HeaderBarEnd, HeaderBarBox, HeaderBarWindowhandle, headerBarVariants }
+export { HeaderBar, HeaderBarWindowControls, HeaderBarBox2, HeaderBarStart, HeaderBarTitle, HeaderBarImage, HeaderBarCloseButton, HeaderBarWindowControls2, HeaderBarBox3, HeaderBarEnd, HeaderBarBox, HeaderBarWindowhandle, headerBarVariants }

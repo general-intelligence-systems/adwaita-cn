@@ -140,6 +140,19 @@ function SidebarLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function SidebarDescription({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="sidebar-description"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", "description", className)}
+      {...props}
+    />
+  )
+}
+
 function SidebarSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -155,41 +168,6 @@ function SidebarLink2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function SidebarDescription({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="sidebar-description"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "body", "dimmed", "description", className)}
-      {...props}
-    />
-  )
-}
-
-function SidebarSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function SidebarLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-link3"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -291,28 +269,6 @@ function SidebarClamp({ className, style, ...props }: React.ComponentProps<"div"
   )
 }
 
-function SidebarOvershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-overshoot"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function SidebarUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
 function SidebarScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -353,4 +309,4 @@ function SidebarPreferencesPage({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-export { Sidebar, SidebarSelection, SidebarLink, SidebarSelection2, SidebarLink2, SidebarDescription, SidebarSelection3, SidebarLink3, SidebarDescription2, SidebarBox2, SidebarClamp2, SidebarScrolledWindow2, SidebarBox, SidebarClamp, SidebarOvershoot, SidebarUndershoot, SidebarScrolledWindow, SidebarPreferencesPage, sidebarVariants }
+export { Sidebar, SidebarSelection, SidebarLink, SidebarDescription, SidebarSelection2, SidebarLink2, SidebarDescription2, SidebarBox2, SidebarClamp2, SidebarScrolledWindow2, SidebarBox, SidebarClamp, SidebarScrolledWindow, SidebarPreferencesPage, sidebarVariants }

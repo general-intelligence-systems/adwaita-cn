@@ -45,7 +45,12 @@ function TreeExpander({ className, render, child, listRow: _listRow, hideExpande
     "data-indent-for-icon": indentForIcon,
     className: cn("treeexpander", "group/tree-expander", "lay-row", widgetClassName, className),
     style,
-    children: child,
+    children: (
+        <>
+                  {child}
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
@@ -68,72 +73,6 @@ function TreeExpanderIndent({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-function TreeExpanderExpander3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-expander-expander3"
-        data-node="expander"
-      className={cn("expander", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeExpanderTitle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-expander-title2"
-        data-node="title"
-      className={cn("title", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeExpanderBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-expander-box2"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeExpanderExpander2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-expander-expander2"
-        data-node="expander"
-      className={cn("expander", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeExpanderTitle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-expander-title"
-        data-node="title"
-      className={cn("title", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeExpanderBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-expander-box"
-        data-node="box"
-      className={cn("box", "box", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
 function TreeExpanderExpander({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -145,4 +84,4 @@ function TreeExpanderExpander({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-export { TreeExpander, TreeExpanderIndent, TreeExpanderExpander3, TreeExpanderTitle2, TreeExpanderBox2, TreeExpanderExpander2, TreeExpanderTitle, TreeExpanderBox, TreeExpanderExpander }
+export { TreeExpander, TreeExpanderIndent, TreeExpanderExpander }

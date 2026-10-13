@@ -116,28 +116,6 @@ function PreferencesPageLink({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function PreferencesPageSelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="preferences-page-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function PreferencesPageLink2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="preferences-page-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
 function PreferencesPageDescription({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -177,28 +155,6 @@ function PreferencesPageClamp({ className, style, ...props }: React.ComponentPro
   )
 }
 
-function PreferencesPageOvershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="preferences-page-overshoot"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function PreferencesPageUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="preferences-page-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
 function PreferencesPageScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -228,4 +184,4 @@ function PreferencesPageScrolledWindow({ className, children, ...props }: React.
   )
 }
 
-export { PreferencesPage, PreferencesPageSelection, PreferencesPageLink, PreferencesPageSelection2, PreferencesPageLink2, PreferencesPageDescription, PreferencesPageBox, PreferencesPageClamp, PreferencesPageOvershoot, PreferencesPageUndershoot, PreferencesPageScrolledWindow, preferencesPageVariants }
+export { PreferencesPage, PreferencesPageSelection, PreferencesPageLink, PreferencesPageDescription, PreferencesPageBox, PreferencesPageClamp, PreferencesPageScrolledWindow, preferencesPageVariants }

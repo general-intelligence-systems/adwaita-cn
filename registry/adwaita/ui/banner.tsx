@@ -114,28 +114,6 @@ function BannerLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function BannerSelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="banner-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function BannerLink2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="banner-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
 function BannerTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -184,4 +162,4 @@ function BannerRevealer({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Banner, BannerSelection, BannerLink, BannerSelection2, BannerLink2, BannerTitle, BannerButton, BannerGizmo, BannerRevealer, bannerVariants }
+export { Banner, BannerSelection, BannerLink, BannerTitle, BannerButton, BannerGizmo, BannerRevealer, bannerVariants }

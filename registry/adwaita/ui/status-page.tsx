@@ -130,6 +130,19 @@ function StatusPageLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="status-page-title-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
 function StatusPageSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -145,63 +158,6 @@ function StatusPageLink2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="status-page-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="status-page-title-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function StatusPageSelection3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="status-page-selection3"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function StatusPageLink3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="status-page-link3"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function StatusPageSelection4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="status-page-selection4"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function StatusPageLink4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="status-page-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -261,28 +217,6 @@ function StatusPageToplevelBox({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function StatusPageOvershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="status-page-overshoot"
-        data-node="overshoot"
-      className={cn("overshoot", className)}
-      {...props}
-    />
-  )
-}
-
-function StatusPageUndershoot({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="status-page-undershoot"
-        data-node="undershoot"
-      className={cn("undershoot", className)}
-      {...props}
-    />
-  )
-}
-
 function StatusPageScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -312,4 +246,4 @@ function StatusPageScrolledWindow({ className, children, ...props }: React.Compo
   )
 }
 
-export { StatusPage, StatusPageImage, StatusPageSelection, StatusPageLink, StatusPageSelection2, StatusPageLink2, StatusPageTitleLabel, StatusPageSelection3, StatusPageLink3, StatusPageSelection4, StatusPageLink4, StatusPageDescriptionLabel, StatusPageBox, StatusPageClamp, StatusPageToplevelBox, StatusPageOvershoot, StatusPageUndershoot, StatusPageScrolledWindow, statusPageVariants }
+export { StatusPage, StatusPageImage, StatusPageSelection, StatusPageLink, StatusPageTitleLabel, StatusPageSelection2, StatusPageLink2, StatusPageDescriptionLabel, StatusPageBox, StatusPageClamp, StatusPageToplevelBox, StatusPageScrolledWindow, statusPageVariants }
