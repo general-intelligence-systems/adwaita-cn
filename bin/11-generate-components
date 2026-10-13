@@ -204,51 +204,36 @@ module GenerateComponents
     "[&>[data-valign=end]]:self-end",
   ].join(" ").freeze
 
+  # The arrangement each kind of widget uses, by the name bin/03 declares it as a Tailwind
+  # utility.
+  #
+  # NAMES RATHER THAN DECLARATIONS. These were strings of arbitrary variants spliced into
+  # every component that used them -- `grid [&>*]:col-start-1 [&>*]:row-start-1 …` repeated
+  # per node -- which is the same arrangement restated once per widget and no way to correct
+  # it in one place. bin/lib/theme.rb states each one once, as CSS, read out of the manager
+  # type the widget's C passes to gtk_widget_class_set_layout_manager_type().
   LAYOUTS = {
-    # Children in a line. Which way is the orientation property, handled below.
-    "box" => "flex",
+    # Children in a line. Which way is the orientation property, and `.horizontal` and
+    # `.vertical` carry it: the manager says it is a line and not which way it runs.
+    "box" => "box-layout",
     # The child is given the whole allocation, and several children overlap.
-    "bin" => "grid [&>*]:col-start-1 [&>*]:row-start-1 #{GRID_ALIGNMENT}",
-    "overlay" => "grid [&>*]:col-start-1 [&>*]:row-start-1 #{GRID_ALIGNMENT}",
-    # GtkCenterBox: the start widget at the start, the end widget at the end, and the
-    # centre centred in the whole width rather than in what is left between them. Two
-    # `1fr` tracks either side of an `auto` one is that statement -- `justify-between`
-    # was not, because it centres the middle child between its siblings and a header
-    # bar's title then moved whenever a button was added to one side.
-    "center" => "grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end",
-    # A clamp fills what it is given and limits the child, on a curve that no stylesheet
-    # can state: between the tightening threshold and the maximum, AdwClampLayout eases
-    # the child's width rather than stepping it. lib/clamp.ts does the arithmetic, and
-    # the element itself is the column it centres.
-    "clamp" => "grid",
-    "grid" => "grid #{GRID_ALIGNMENT}",
-    "fixed" => "relative [&>*]:absolute",
-    "wrap" => "flex flex-wrap",
+    "bin" => "bin-layout gtk-alignment",
+    "overlay" => "overlay-layout gtk-alignment",
+    # GtkCenterBox: the centre centred in the whole width rather than in what is left
+    # between the other two.
+    "center" => "center-layout",
+    # A clamp fills what it is given and limits the child, on a curve no stylesheet can
+    # state: between the tightening threshold and the maximum, AdwClampLayout eases the
+    # child's width rather than stepping it. lib/clamp.ts does the arithmetic.
+    "clamp" => "clamp-layout",
+    "grid" => "grid-layout gtk-alignment",
+    "fixed" => "fixed-layout",
+    "wrap" => "wrap-layout",
     # The sidebar's track and the content's, from lib/split-view.ts.
-    "split" => "grid [&>*]:min-w-0",
-    # The widget takes the whole of what it is given, and scrolls what will not fit. `min-h-0`
-    # is what lets it: a flex item will not shrink below its content without it, so a scroller
-    # in a page pushed the page open instead of scrolling.
-    "fill" => "flex flex-col grow min-h-0",
-    # The same, and what will not fit is scrolled rather than pushing the page open.
-    #
-    # A child which aligns itself is NOT stretched: `[&>*]:grow` is what a scrolled
-    # window does with a child which fills it, and AdwStatusPage's box asks for
-    # `valign=center` instead. Grown, it was as tall as the viewport and its contents sat
-    # at the top of it -- the icon, the title and the button of every status page in the
-    # registry were 115px above where the toolkit puts them.
-    # A child which aligns itself is not stretched, and where it sits is stated ON THE
-    # CONTAINER and never as a margin on the child. `my-auto` centres a child too, and it
-    # is a margin: it replaced AdwStatusPage's own `my-9` and took 72px off the top and
-    # bottom of every status page in the registry, pulling everything under it up the page.
-    "scroll" =>
-      "flex flex-col grow min-h-0 overflow-auto " \
-      "[&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 " \
-      "has-[>[data-valign=center]]:justify-center " \
-      "has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start",
-    # Items across, wrapped, packed to the top of whatever height the view is given.
-    "fill-grid" =>
-      "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0",
+    "split" => "split-layout",
+    "fill" => "fill-layout",
+    "scroll" => "scroll-layout",
+    "fill-grid" => "fill-grid-layout",
   }.freeze
 
   # The widgets which lay their children out in C rather than by naming a
@@ -341,36 +326,45 @@ module GenerateComponents
   # with `self-*` and said nothing about `halign`, so `halign="end"` on a banner's close
   # button, on a row's switch, on a header's buttons did nothing at all and each of them sat
   # wherever the text before it finished.
+  # What a container does with a child that stated an alignment or an expansion.
+  #
+  # Through the `child-*` variants bin/03 declares, rather than as `[&>[data-valign=center]]:`
+  # written out here: the selector is one shape repeated ten times per direction and twice
+  # per container, and declaring it once is what stops the two copies drifting.
+  #
+  # ALIGNMENT IS RESOLVED BY THE CONTAINER AND NOT BY THE CHILD. `halign` is horizontal
+  # whichever way the parent runs and `align-self` is whichever way it does not, so in a row
+  # `align-self` is vertical and in a column it is horizontal. A button asked to sit in the
+  # middle of a header bar was being centred against the bar's height.
   ALIGNMENT = {
     "row" => [
-      "[&>[data-hexpand]]:grow",
+      "child-hexpand:grow",
       "[&>*:has([data-hexpand])]:grow",
       # The cross axis, which is down.
-      "[&>[data-valign=start]]:self-start",
-      "[&>[data-valign=center]]:self-center",
-      "[&>[data-valign=end]]:self-end",
-      "[&>[data-valign=baseline]]:self-baseline",
+      "child-vstart:self-start",
+      "child-vcenter:self-center",
+      "child-vend:self-end",
+      "child-vbaseline:self-baseline",
       # The main axis, which is across, and so is margin.
-      "[&>[data-halign=start]]:mr-auto",
-      "[&>[data-halign=center]]:mx-auto",
-      "[&>[data-halign=end]]:ml-auto",
+      "child-hstart:mr-auto",
+      "child-hcenter:mx-auto",
+      "child-hend:ml-auto",
     ].join(" "),
     "col" => [
-      "[&>[data-vexpand]]:grow",
+      "child-vexpand:grow",
       "[&>*:has([data-vexpand])]:grow",
       # The cross axis, which is across.
-      "[&>[data-halign=start]]:self-start",
-      "[&>[data-halign=center]]:self-center",
-      "[&>[data-halign=end]]:self-end",
+      "child-hstart:self-start",
+      "child-hcenter:self-center",
+      "child-hend:self-end",
       # A FLEX CHILD WILL NOT SHRINK BELOW ITS CONTENT unless it is told it may, and GTK's
       # children all may: a window gives its child the window's height and the child scrolls
-      # what will not fit. Without this the toolbar view came out 709px tall in a 620px
-      # window and everything anchored to the bottom -- a toast, an action bar -- fell off it.
+      # inside it.
       "[&>*]:min-h-0",
-      # The main axis, which is down.
-      "[&>[data-valign=start]]:mb-auto",
-      "[&>[data-valign=center]]:my-auto",
-      "[&>[data-valign=end]]:mt-auto",
+      # The main axis, which is down, and so is margin.
+      "child-vstart:mb-auto",
+      "child-vcenter:my-auto",
+      "child-vend:mt-auto",
     ].join(" "),
   }.freeze
 
@@ -457,7 +451,6 @@ module GenerateComponents
   # out. A `max-width` cannot be the statement here: between the tightening threshold
   # and the maximum the layout manager eases the width rather than capping it, and a
   # cap gave a 480px clamp a 480px child where the toolkit gives it 443.
-  CLAMP_CLASSES = "[&>*]:min-w-0 [&>*]:col-start-2"
 
   # The split views, which size their sidebar the same way: a fraction of the whole,
   # clamped between a minimum and a maximum, neither of which a grid can state.
@@ -476,6 +469,13 @@ module GenerateComponents
   # The nested tree's own children go first and whatever the outer template put in the node
   # goes into the nested template's slot, which is where the widget itself would have put it.
   def self.expand!(node, components, seen = [])
+    # ONCE PER NODE. The trees are shared objects -- a component's tree is the same hash the
+    # catalogue holds -- so a node reached twice had the nested widget spliced in twice, and
+    # an expander row drew its title, its subtitle and its switch four times over.
+    return if node["expanded"]
+
+    node["expanded"] = true
+
     klass = node["class"]
     inner = components.dig(klass.to_s, "tree")
 
@@ -524,6 +524,22 @@ module GenerateComponents
     self.enum_names = EnumNames.map(final.fetch("enums"))
     components = final.fetch("components").slice(*final.fetch("buildable"))
     self.components_by_name = final.fetch("components")
+
+    # A TEMPLATE WHICH NAMES ANOTHER TEMPLATED WIDGET BUILDS THAT WIDGET'S OWN TREE TOO,
+    # and until this was called it did not. adw-expander-row.ui names an AdwActionRow and
+    # binds the row's title onto it; left unexpanded the action row was an empty div, so an
+    # expander row drew no title and no subtitle -- an empty pill where the toolkit has a
+    # row. The same goes for every composite which names another: the widget was there and
+    # everything it draws was missing.
+    components.each do |name, component|
+      tree = component["tree"]
+
+      # SEEDED WITH THE COMPONENT'S OWN NAME. A tree's root node is the component, so an
+      # unseeded walk spliced the widget into itself: AdwActionRow grew a second header,
+      # a second title and a second subtitle, and every row which embeds one inherited
+      # the pair.
+      self.expand!(tree, final.fetch("components"), [name]) unless tree.nil?
+    end
 
     self.write(root, "icons.css", self.icons_css(root, self.named_icons(final)), true)
     self.write(root, "variables.css", self.variables_css(final.fetch("variables", {})), true)
@@ -1040,7 +1056,7 @@ module GenerateComponents
   # that node. The direction is not here: it is `.horizontal` and `.vertical`, which are
   # names, and a node is both over its lifetime.
   def self.layout_utilities(kind, single_child: false, gizmo: false)
-    return "#{LAYOUTS.fetch('clamp')} #{CLAMP_CLASSES}" if kind == :clamped
+    return LAYOUTS.fetch("clamp") if kind == :clamped
 
     LAYOUTS[kind.to_s.sub(/-(vertical|horizontal)\z/, "")] ||
       (single_child ? LAYOUTS.fetch("bin") : nil) ||
@@ -2759,6 +2775,28 @@ module GenerateComponents
     node.fetch("slots", {}).each_value{|slot| self.each_node(slot, &block) }
   end
 
+  # The same walk, with the path that reached each node: where a node sits decides what it
+  # can be, and a slot's depth alone does not say whether it is in the titlebar or the body.
+  def self.each_node_with_ancestors(node, ancestors = [], &block)
+    block.call(node, ancestors)
+
+    inner = ancestors + [node]
+
+    node.fetch("children", []).each{|child| self.each_node_with_ancestors(child, inner, &block) }
+    node.fetch("slots", {}).each_value{|slot| self.each_node_with_ancestors(slot, inner, &block) }
+  end
+
+  # The nodes a window draws its chrome in rather than its content.
+  TITLEBARS = %w[headerbar windowhandle windowcontrols].to_set
+
+  def self.titlebar?(ancestors)
+    ancestors.any? do |one|
+      TITLEBARS.include?(one["node"]) ||
+        one["class"].to_s.end_with?("HeaderBar") ||
+        one["slot"] == "titlebar"
+    end
+  end
+
   # Where a composite's children go: the last container the template leaves
   # empty, which is the slot it keeps for them; failing that the innermost
   # container it does fill; failing that the root.
@@ -2766,14 +2804,157 @@ module GenerateComponents
   # adds its child to the box the clamp sits in, not inside the clamp -- the toolkit's tree
   # has it as the clamp's sibling, and nesting it inside put the status page's buttons in the
   # clamped column instead of under it.
-  SLOT_IDS = { "StatusPage" => "toplevel_box" }.freeze
+  # AdwStatusPage adds its child to the box the clamp sits in, not inside the clamp. Its C
+  # does this in `set_child` rather than in an `add`, so the reader below does not see it.
+  SLOT_IDS_BY_HAND = { "StatusPage" => "toplevel_box" }.freeze
+
+  # Where each widget's C puts what it is given, read out of the C.
+  #
+  # A template says which parts a widget has and NOT which of them holds the caller's
+  # children, so the generator was guessing: "the last container the template leaves empty",
+  # which in a window is the stack the header bar keeps for the title. AdwPreferencesWindow
+  # put its pages in the title strip and left the content area empty, which is a window that
+  # renders blank.
+  #
+  #     adw_preferences_window_add (...) {
+  #       stack_page = adw_view_stack_add_named (priv->pages_stack, GTK_WIDGET (page), ...);
+  #
+  # `priv->pages_stack` is the answer, it is stated once, and it is stated where the
+  # behaviour is. This reads the first thing each `_add` function adds into.
+  ADDS = /\w+_(?:add|add_named|add_titled|append|add_child)\s*\(\s*(?:priv|self)->(\w+)/.freeze
+
+  def self.slot_ids
+    @slot_ids ||= SLOT_IDS_BY_HAND.merge(self.slot_ids_from_source)
+  end
+
+  def self.slot_ids_from_source
+    found = {}
+
+    Dir.glob(File.join(File.expand_path("..", __dir__), "bin/02-fetch-gir.out/src/{gtk/gtk,libadwaita/src}/*.c")).sort.each do |path|
+      klass = self.class_for_source(path)
+
+      next if klass.nil?
+
+      source = File.read(path, encoding: "UTF-8", invalid: :replace, undef: :replace)
+      targets = self.add_targets(source)
+
+      next if targets.empty?
+
+      wanted = self.routed(source) || targets.keys.find{|name| name.end_with?("_add") }
+
+      found[klass] = targets[wanted] || targets.values.first
+    end
+
+    found
+  end
+
+  # Every `<thing>_add…` function in a file, against the template child it adds into.
+  def self.add_targets(source)
+    found = {}
+
+    source.scan(/^(\w+_add(?:_\w+)?)\s*\([^;{]*\)\s*\n\{/) do
+      name = ::Regexp.last_match(1)
+      body = self.c_body(source, ::Regexp.last_match.end(0))
+      target = body[ADDS, 1]
+
+      found[name] ||= target unless target.nil?
+    end
+
+    found
+  end
+
+  # WHERE A GENERIC CHILD GOES, which is what a component's `children` are.
+  #
+  # A widget may have several ways in -- AdwExpanderRow has `add_prefix`, `add_suffix` and
+  # `add_row` -- and only its GtkBuildable says which one an unqualified child takes. That
+  # is the final branch of `buildable_add_child`, and taking the first `_add` instead put
+  # an expander row's rows in its suffix slot: the row appeared beside the title rather
+  # than inside the part that expands.
+  def self.routed(source)
+    start = source.index(/^\w+_buildable_add_child\s*\(/)
+
+    return nil if start.nil?
+
+    opened = source.index("{", start)
+
+    return nil if opened.nil?
+
+    body = self.c_body(source, opened + 1)
+    calls = body.scan(/(\w+_add(?:_\w+)?)\s*\(\s*(?:self|ADW_[A-Z_]+\s*\()/).flatten
+
+    calls.last
+  end
+
+  # A C function body, from the brace that opens it to the one that closes it.
+  def self.c_body(source, from)
+    depth = 1
+    index = from
+
+    while index < source.length && depth.positive?
+      case source[index]
+      when "{" then depth += 1
+      when "}" then depth -= 1
+      end
+
+      index += 1
+    end
+
+    source[from...index]
+  end
+
+  # The component a source file belongs to: `adw-preferences-window.c` is PreferencesWindow,
+  # `gtkheaderbar.c` is HeaderBar.
+  def self.class_for_source(path)
+    name = File.basename(path, ".c")
+
+    return nil unless name.start_with?("adw-")
+
+    name.delete_prefix("adw-").split("-").map(&:capitalize).join
+  end
+
+  # The node the C names, or the deepest node on the way to it that the component actually
+  # writes.
+  #
+  # THE EMITTED TREE IS SHALLOWER THAN THE TEMPLATE'S. A GtkStackPage is a child object and
+  # not a widget, so the emitter stops at the stack and everything below it is collapsed
+  # away: AdwPreferencesWindow adds its pages to `pages_stack`, which lives under two of
+  # them, and a slot pointing there is a slot that is never written -- the children were
+  # dropped altogether, which shows less than putting them in the wrong place. The stack
+  # above is where they go, and it is the last node on the path that survives.
+  def self.reachable(node, wanted)
+    path = self.path_to(node, wanted)
+
+    return nil if path.nil?
+
+    deepest = nil
+
+    path.each do |one|
+      break unless self.widget_node?(one) && self.rendered?(one)
+
+      deepest = one
+    end
+
+    deepest
+  end
+
+  # The nodes from the root down to the one carrying this id, or nil if there is none.
+  def self.path_to(node, wanted)
+    return [node] if node["id"] == wanted
+
+    (node.fetch("slots", {}).values + node.fetch("children", [])).each do |child|
+      found = self.path_to(child, wanted)
+
+      return [node] + found unless found.nil?
+    end
+
+    nil
+  end
 
   def self.slot(node, derived: true)
-    wanted = SLOT_IDS[node["class"]]
+    wanted = self.slot_ids[node["class"]]
 
     unless wanted.nil?
-      found = nil
-      self.each_node(node){|one| found ||= one if one["id"] == wanted }
+      found = self.reachable(node, wanted)
 
       return found unless found.nil?
     end
@@ -2791,10 +2972,15 @@ module GenerateComponents
     return self.fallback_slot(node) unless derived
 
     found_slot = nil
-    self.each_node(node) do |one|
+    self.each_node_with_ancestors(node) do |one, ancestors|
       next unless one["css-node"] && CONTENT_SLOTS.include?(one["node"])
       next unless (one.fetch("children", []) + one.fetch("slots", {}).values).empty?
       next unless self.rendered?(one)
+      # WHAT A WINDOW IS GIVEN IS NOT ITS TITLE. A header bar keeps an empty stack for the
+      # title widget, and it is reached before the content area in the walk, so the first
+      # empty container was the titlebar's: AdwPreferencesWindow put its pages in the strip
+      # across the top and left the content area empty, which is a window that renders blank.
+      next if self.titlebar?(ancestors)
 
       found_slot ||= one
     end

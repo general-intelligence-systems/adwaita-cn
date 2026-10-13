@@ -92,6 +92,28 @@ function ButtonContentLink({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
+function ButtonContentSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button-content-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ButtonContentLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button-content-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
 function ButtonContentLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -116,4 +138,4 @@ function ButtonContentBox({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { ButtonContent, ButtonContentImage, ButtonContentSelection, ButtonContentLink, ButtonContentLabel, ButtonContentBox }
+export { ButtonContent, ButtonContentImage, ButtonContentSelection, ButtonContentLink, ButtonContentSelection2, ButtonContentLink2, ButtonContentLabel, ButtonContentBox }

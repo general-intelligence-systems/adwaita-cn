@@ -214,6 +214,39 @@ function TextBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function TextSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function TextPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function TextDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
 function TextWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -225,4 +258,4 @@ function TextWindow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Text, TextPlaceholder, TextUndershoot, TextSelection, TextCursorHandle, TextBlockCursor, TextWindow, textVariants }
+export { Text, TextPlaceholder, TextUndershoot, TextSelection, TextCursorHandle, TextBlockCursor, TextSheet, TextPaper, TextDrawing, TextWindow, textVariants }

@@ -128,11 +128,6 @@ function SwitchRow({ className, render, variant = "default", child, iconName, pr
     children: (
         <>
                   <SwitchRowHeader>
-                {prefix ? (
-                  <SwitchRowPrefixes>
-                    {prefix}
-                  </SwitchRowPrefixes>
-                ) : null}
                 {iconName ? (
                   <SwitchRowImage name={iconName} />
                 ) : null}
@@ -145,9 +140,29 @@ function SwitchRow({ className, render, variant = "default", child, iconName, pr
                   ) : null}
                 </SwitchRowTitleBox>
                 <SwitchRowSuffixes>
-                  <SwitchRowSwitch>
-                    <SwitchRowSlider className="justify-self-start self-center group-data-[state=checked]/switch-row:justify-self-end" />
-                  </SwitchRowSwitch>
+                  <SwitchRowHeader2>
+                    {prefix ? (
+                      <SwitchRowPrefixes2>
+                        {prefix}
+                      </SwitchRowPrefixes2>
+                    ) : null}
+                    {iconName ? (
+                      <SwitchRowImage2 name={iconName} />
+                    ) : null}
+                    <SwitchRowTitleBox2>
+                      {title ? (
+                        <SwitchRowTitle2>{title}</SwitchRowTitle2>
+                      ) : null}
+                      {subtitle ? (
+                        <SwitchRowSubtitle2>{subtitle}</SwitchRowSubtitle2>
+                      ) : null}
+                    </SwitchRowTitleBox2>
+                    <SwitchRowSuffixes2>
+                      <SwitchRowSwitch>
+                        <SwitchRowSlider className="justify-self-start self-center group-data-[state=checked]/switch-row:justify-self-end" />
+                      </SwitchRowSwitch>
+                    </SwitchRowSuffixes2>
+                  </SwitchRowHeader2>
                   {children}
                 </SwitchRowSuffixes>
               </SwitchRowHeader>
@@ -210,19 +225,6 @@ function SwitchRowLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function SwitchRowTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="switch-row-title"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
 function SwitchRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -238,6 +240,63 @@ function SwitchRowLink2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="switch-row-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="switch-row-title"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -271,10 +330,116 @@ function SwitchRowTitleBox({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
+function SwitchRowPrefixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-prefixes2"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
 function SwitchRowImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
       data-slot="switch-row-image2"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSelection5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-selection5"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowLink5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-link5"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowTitle2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="switch-row-title2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSelection6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-selection6"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowLink6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-link6"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSubtitle2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="switch-row-subtitle2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowTitleBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-title-box2"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="switch-row-image3"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -305,6 +470,29 @@ function SwitchRowSwitch({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function SwitchRowSuffixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-suffixes2"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowHeader2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-header2"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
 function SwitchRowSuffixes({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -328,6 +516,6 @@ function SwitchRowHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { SwitchRow, SwitchRowPrefixes, SwitchRowImage, SwitchRowSelection, SwitchRowLink, SwitchRowTitle, SwitchRowSelection2, SwitchRowLink2, SwitchRowSubtitle, SwitchRowTitleBox, SwitchRowImage2, SwitchRowSlider, SwitchRowSwitch, SwitchRowSuffixes, SwitchRowHeader, switchRowVariants }
+export { SwitchRow, SwitchRowPrefixes, SwitchRowImage, SwitchRowSelection, SwitchRowLink, SwitchRowSelection2, SwitchRowLink2, SwitchRowTitle, SwitchRowSelection3, SwitchRowLink3, SwitchRowSelection4, SwitchRowLink4, SwitchRowSubtitle, SwitchRowTitleBox, SwitchRowPrefixes2, SwitchRowImage2, SwitchRowSelection5, SwitchRowLink5, SwitchRowTitle2, SwitchRowSelection6, SwitchRowLink6, SwitchRowSubtitle2, SwitchRowTitleBox2, SwitchRowImage3, SwitchRowSlider, SwitchRowSwitch, SwitchRowSuffixes2, SwitchRowHeader2, SwitchRowSuffixes, SwitchRowHeader, switchRowVariants }
 
 SwitchRow.isPreferencesRow = true

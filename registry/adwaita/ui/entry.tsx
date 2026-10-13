@@ -284,10 +284,142 @@ function EntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
+function EntrySheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
 function EntryWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="entry-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-placeholder2"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function EntrySelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-cursor-handle2"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-block-cursor2"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function EntrySheet2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-sheet2"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryPaper2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-paper2"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryDrawing2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-drawing2"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryWindow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -328,4 +460,4 @@ function EntryProgress({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Entry, EntryPlaceholder, EntryUndershoot, EntrySelection, EntryCursorHandle, EntryBlockCursor, EntryWindow, EntryText, EntryImage, EntryProgress, entryVariants }
+export { Entry, EntryPlaceholder, EntryUndershoot, EntrySelection, EntryCursorHandle, EntryBlockCursor, EntrySheet, EntryPaper, EntryDrawing, EntryWindow, EntryPlaceholder2, EntryUndershoot2, EntrySelection2, EntryCursorHandle2, EntryBlockCursor2, EntrySheet2, EntryPaper2, EntryDrawing2, EntryWindow2, EntryText, EntryImage, EntryProgress, entryVariants }

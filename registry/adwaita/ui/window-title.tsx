@@ -93,19 +93,6 @@ function WindowTitleLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function WindowTitleTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="window-title-title-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
 function WindowTitleSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -121,6 +108,63 @@ function WindowTitleLink2({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="window-title-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="window-title-title-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -153,4 +197,4 @@ function WindowTitleBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { WindowTitle, WindowTitleSelection, WindowTitleLink, WindowTitleTitleLabel, WindowTitleSelection2, WindowTitleLink2, WindowTitleSubtitleLabel, WindowTitleBox, windowTitleVariants }
+export { WindowTitle, WindowTitleSelection, WindowTitleLink, WindowTitleSelection2, WindowTitleLink2, WindowTitleTitleLabel, WindowTitleSelection3, WindowTitleLink3, WindowTitleSelection4, WindowTitleLink4, WindowTitleSubtitleLabel, WindowTitleBox, windowTitleVariants }

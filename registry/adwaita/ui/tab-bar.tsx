@@ -106,6 +106,28 @@ function TabBarPinnedBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function TabBarOvershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-bar-overshoot"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function TabBarUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-bar-undershoot"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
 function TabBarPinnedScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -141,6 +163,28 @@ function TabBarBox2({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="tab-bar-box2"
         data-node="tabbox"
       className={cn("tabbox", className)}
+      {...props}
+    />
+  )
+}
+
+function TabBarOvershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-bar-overshoot2"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function TabBarUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-bar-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -208,4 +252,4 @@ function TabBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { TabBar, TabBarStartActionBin, TabBarPinnedBox, TabBarPinnedScrolledWindow, TabBarBox2, TabBarScrolledWindow, TabBarEndActionBin, TabBarBox, TabBarRevealer }
+export { TabBar, TabBarStartActionBin, TabBarPinnedBox, TabBarOvershoot, TabBarUndershoot, TabBarPinnedScrolledWindow, TabBarBox2, TabBarOvershoot2, TabBarUndershoot2, TabBarScrolledWindow, TabBarEndActionBin, TabBarBox, TabBarRevealer }

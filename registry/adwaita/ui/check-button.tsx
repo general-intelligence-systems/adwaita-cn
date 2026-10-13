@@ -109,6 +109,28 @@ function CheckButtonCheck({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
+function CheckButtonSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="check-button-selection"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function CheckButtonLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="check-button-link"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
 function CheckButtonLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -122,4 +144,4 @@ function CheckButtonLabel({ className, ...props }: React.ComponentProps<"span">)
   )
 }
 
-export { CheckButton, CheckButtonCheck, CheckButtonLabel, checkButtonVariants }
+export { CheckButton, CheckButtonCheck, CheckButtonSelection, CheckButtonLink, CheckButtonLabel, checkButtonVariants }

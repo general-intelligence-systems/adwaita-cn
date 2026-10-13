@@ -764,6 +764,17 @@ module FinalComponents
       # cascade and it is the stylesheet's own: `list` loses to `list.boxed-list`, which
       # loses to `.sidebar-pane list.boxed-list`, exactly as it does in GTK.
       contexts.each{|selector, states| found[selector] = states }
+
+      # THE SOURCE LAST, because it is the one that knows which widget a rule belongs to.
+      # Everything above is read out of the compiled sheet, where a rule's only key is its
+      # subject; these are read out of libadwaita's own partials, with the selector whole.
+      self.read("bin/03-adwaita-tailwind.out/scss-contexts.json").each do |selector, states|
+        existing = found[selector]
+
+        found[selector] = existing.nil? ? states : existing.merge(states) do |_state, old, one|
+          (old + one).uniq
+        end
+      end
     end
   end
 

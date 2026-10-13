@@ -109,6 +109,28 @@ function AvatarLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function AvatarSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="avatar-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AvatarLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="avatar-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
 function AvatarLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -155,4 +177,4 @@ function AvatarGizmo({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Avatar, AvatarSelection, AvatarLink, AvatarLabel, AvatarImage, AvatarImage2, AvatarGizmo }
+export { Avatar, AvatarSelection, AvatarLink, AvatarSelection2, AvatarLink2, AvatarLabel, AvatarImage, AvatarImage2, AvatarGizmo }

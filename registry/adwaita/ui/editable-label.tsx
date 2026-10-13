@@ -111,6 +111,28 @@ function EditableLabelLink({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
+function EditableLabelSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
 function EditableLabelLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -146,10 +168,10 @@ function EditableLabelUndershoot({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function EditableLabelSelection2({ className, ...props }: React.ComponentProps<"div">) {
+function EditableLabelSelection3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="editable-label-selection2"
+      data-slot="editable-label-selection3"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -179,10 +201,142 @@ function EditableLabelBlockCursor({ className, ...props }: React.ComponentProps<
   )
 }
 
+function EditableLabelSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
 function EditableLabelWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="editable-label-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-placeholder2"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-cursor-handle2"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-block-cursor2"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelSheet2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-sheet2"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelPaper2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-paper2"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelDrawing2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-drawing2"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelWindow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -212,4 +366,4 @@ function EditableLabelStack({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-export { EditableLabel, EditableLabelSelection, EditableLabelLink, EditableLabelLabel, EditableLabelPlaceholder, EditableLabelUndershoot, EditableLabelSelection2, EditableLabelCursorHandle, EditableLabelBlockCursor, EditableLabelWindow, EditableLabelText, EditableLabelStack, editableLabelVariants }
+export { EditableLabel, EditableLabelSelection, EditableLabelLink, EditableLabelSelection2, EditableLabelLink2, EditableLabelLabel, EditableLabelPlaceholder, EditableLabelUndershoot, EditableLabelSelection3, EditableLabelCursorHandle, EditableLabelBlockCursor, EditableLabelSheet, EditableLabelPaper, EditableLabelDrawing, EditableLabelWindow, EditableLabelPlaceholder2, EditableLabelUndershoot2, EditableLabelSelection4, EditableLabelCursorHandle2, EditableLabelBlockCursor2, EditableLabelSheet2, EditableLabelPaper2, EditableLabelDrawing2, EditableLabelWindow2, EditableLabelText, EditableLabelStack, editableLabelVariants }

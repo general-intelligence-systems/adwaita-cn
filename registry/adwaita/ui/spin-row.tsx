@@ -189,11 +189,6 @@ function SpinRow({ className, render, variant = "default", child, iconName, pref
     children: (
         <>
                   <SpinRowHeader>
-                {prefix ? (
-                  <SpinRowPrefixes>
-                    {prefix}
-                  </SpinRowPrefixes>
-                ) : null}
                 {iconName ? (
                   <SpinRowImage name={iconName} />
                 ) : null}
@@ -206,15 +201,35 @@ function SpinRow({ className, render, variant = "default", child, iconName, pref
                   ) : null}
                 </SpinRowTitleBox>
                 <SpinRowSuffixes>
-                  <SpinRowSpinButton>
-                    <SpinRowText defaultValue={text ?? value} />
-                    <SpinRowSpinDown>
+                  <SpinRowHeader2>
+                    {prefix ? (
+                      <SpinRowPrefixes2>
+                        {prefix}
+                      </SpinRowPrefixes2>
+                    ) : null}
+                    {iconName ? (
                       <SpinRowImage2 name={iconName} />
-                    </SpinRowSpinDown>
-                    <SpinRowSpinUp>
-                      <SpinRowImage3 name={iconName} />
-                    </SpinRowSpinUp>
-                  </SpinRowSpinButton>
+                    ) : null}
+                    <SpinRowTitleBox2>
+                      {title ? (
+                        <SpinRowTitle2>{title}</SpinRowTitle2>
+                      ) : null}
+                      {subtitle ? (
+                        <SpinRowSubtitle2>{subtitle}</SpinRowSubtitle2>
+                      ) : null}
+                    </SpinRowTitleBox2>
+                    <SpinRowSuffixes2>
+                      <SpinRowSpinButton>
+                        <SpinRowText defaultValue={text ?? value} />
+                        <SpinRowSpinDown>
+                          <SpinRowImage3 name={iconName} />
+                        </SpinRowSpinDown>
+                        <SpinRowSpinUp>
+                          <SpinRowImage4 name={iconName} />
+                        </SpinRowSpinUp>
+                      </SpinRowSpinButton>
+                    </SpinRowSuffixes2>
+                  </SpinRowHeader2>
                   {children}
                 </SpinRowSuffixes>
               </SpinRowHeader>
@@ -277,19 +292,6 @@ function SpinRowLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function SpinRowTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="spin-row-title"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
 function SpinRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -305,6 +307,63 @@ function SpinRowLink2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="spin-row-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="spin-row-title"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -338,6 +397,112 @@ function SpinRowTitleBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function SpinRowPrefixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-prefixes2"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="spin-row-image2"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSelection5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-selection5"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowLink5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-link5"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowTitle2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="spin-row-title2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSelection6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-selection6"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowLink6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-link6"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSubtitle2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="spin-row-subtitle2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowTitleBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-title-box2"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
 function SpinRowPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -360,10 +525,10 @@ function SpinRowUndershoot({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-function SpinRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+function SpinRowSelection7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="spin-row-selection3"
+      data-slot="spin-row-selection7"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -416,11 +581,11 @@ function SpinRowText({ className, ...props }: React.ComponentProps<"input">) {
   )
 }
 
-function SpinRowImage2({ className, name = "value-decrease-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+function SpinRowImage3({ className, name = "value-decrease-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
         name={name}
-      data-slot="spin-row-image2"
+      data-slot="spin-row-image3"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -439,11 +604,11 @@ function SpinRowSpinDown({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function SpinRowImage3({ className, name = "value-increase-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+function SpinRowImage4({ className, name = "value-increase-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
         name={name}
-      data-slot="spin-row-image3"
+      data-slot="spin-row-image4"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -475,6 +640,29 @@ function SpinRowSpinButton({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
+function SpinRowSuffixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-suffixes2"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowHeader2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-header2"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
 function SpinRowSuffixes({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -498,6 +686,6 @@ function SpinRowHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { SpinRow, SpinRowPrefixes, SpinRowImage, SpinRowSelection, SpinRowLink, SpinRowTitle, SpinRowSelection2, SpinRowLink2, SpinRowSubtitle, SpinRowTitleBox, SpinRowPlaceholder, SpinRowUndershoot, SpinRowSelection3, SpinRowCursorHandle, SpinRowBlockCursor, SpinRowWindow, SpinRowText, SpinRowImage2, SpinRowSpinDown, SpinRowImage3, SpinRowSpinUp, SpinRowSpinButton, SpinRowSuffixes, SpinRowHeader, spinRowVariants }
+export { SpinRow, SpinRowPrefixes, SpinRowImage, SpinRowSelection, SpinRowLink, SpinRowSelection2, SpinRowLink2, SpinRowTitle, SpinRowSelection3, SpinRowLink3, SpinRowSelection4, SpinRowLink4, SpinRowSubtitle, SpinRowTitleBox, SpinRowPrefixes2, SpinRowImage2, SpinRowSelection5, SpinRowLink5, SpinRowTitle2, SpinRowSelection6, SpinRowLink6, SpinRowSubtitle2, SpinRowTitleBox2, SpinRowPlaceholder, SpinRowUndershoot, SpinRowSelection7, SpinRowCursorHandle, SpinRowBlockCursor, SpinRowWindow, SpinRowText, SpinRowImage3, SpinRowSpinDown, SpinRowImage4, SpinRowSpinUp, SpinRowSpinButton, SpinRowSuffixes2, SpinRowHeader2, SpinRowSuffixes, SpinRowHeader, spinRowVariants }
 
 SpinRow.isPreferencesRow = true

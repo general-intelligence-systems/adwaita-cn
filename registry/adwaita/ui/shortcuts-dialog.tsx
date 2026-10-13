@@ -107,44 +107,99 @@ function ShortcutsDialog({ className, render, variant = "default", child, defaul
     children: (
         <>
                   <ShortcutsDialogToolbarView>
-                <ShortcutsDialogStack>
-                  <ShortcutsDialogContents>
-                    <ShortcutsDialogNavGroup>
-                      <ShortcutsDialogNavBox />
-                    </ShortcutsDialogNavGroup>
-                  </ShortcutsDialogContents>
-                  <ShortcutsDialogSearch>
-                    <ShortcutsDialogPreferencesGroup>
-                      <ShortcutsDialogSearchList>
-                        {children}
-                      </ShortcutsDialogSearchList>
-                    </ShortcutsDialogPreferencesGroup>
-                  </ShortcutsDialogSearch>
-                  <ShortcutsDialogEmpty>
-                    <ShortcutsDialogScrolledWindow>
-                      <ShortcutsDialogToplevelBox>
-                        <ShortcutsDialogClamp>
+                <ShortcutsDialogContent />
+                <ShortcutsDialogRevealer>
+                  <ShortcutsDialogWindowhandle>
+                    <ShortcutsDialogInternalBox>
+                      <ShortcutsDialogHeaderBar>
+                        <ShortcutsDialogWindowhandle2>
                           <ShortcutsDialogBox>
-                            <ShortcutsDialogImage />
-                            {title ? (
-                              <ShortcutsDialogTitleLabel>{title}</ShortcutsDialogTitleLabel>
-                            ) : null}
-                            <ShortcutsDialogDescriptionLabel />
+                            <ShortcutsDialogStart>
+                              <ShortcutsDialogBox2>
+                                <ShortcutsDialogWindowControls />
+                                <ShortcutsDialogClamp>
+                                  <ShortcutsDialogSearchEntry>
+                                    <ShortcutsDialogText>
+                                      <ShortcutsDialogPlaceholder />
+                                    </ShortcutsDialogText>
+                                  </ShortcutsDialogSearchEntry>
+                                </ShortcutsDialogClamp>
+                              </ShortcutsDialogBox2>
+                            </ShortcutsDialogStart>
+                            <ShortcutsDialogTitle>{title}</ShortcutsDialogTitle>
+                            <ShortcutsDialogEnd>
+                              <ShortcutsDialogBox3>
+                                <ShortcutsDialogWindowControls2>
+                                  <ShortcutsDialogCloseButton>
+                                    <ShortcutsDialogImage4 />
+                                  </ShortcutsDialogCloseButton>
+                                </ShortcutsDialogWindowControls2>
+                              </ShortcutsDialogBox3>
+                            </ShortcutsDialogEnd>
                           </ShortcutsDialogBox>
-                        </ShortcutsDialogClamp>
-                      </ShortcutsDialogToplevelBox>
-                    </ShortcutsDialogScrolledWindow>
-                  </ShortcutsDialogEmpty>
-                </ShortcutsDialogStack>
-                <ShortcutsDialogHeaderBar>
-                  <ShortcutsDialogClamp2>
-                    <ShortcutsDialogSearchEntry>
-                      <ShortcutsDialogText>
-                        <ShortcutsDialogPlaceholder />
-                      </ShortcutsDialogText>
-                    </ShortcutsDialogSearchEntry>
-                  </ShortcutsDialogClamp2>
-                </ShortcutsDialogHeaderBar>
+                        </ShortcutsDialogWindowhandle2>
+                      </ShortcutsDialogHeaderBar>
+                      <ShortcutsDialogStack>
+                        <ShortcutsDialogContents>
+                          <ShortcutsDialogScrolledWindow>
+                            <ShortcutsDialogClamp2>
+                              <ShortcutsDialogBox4>
+                                <ShortcutsDialogNavGroup>
+                                  <ShortcutsDialogNavBox />
+                                </ShortcutsDialogNavGroup>
+                              </ShortcutsDialogBox4>
+                            </ShortcutsDialogClamp2>
+                          </ShortcutsDialogScrolledWindow>
+                        </ShortcutsDialogContents>
+                        <ShortcutsDialogSearch>
+                          <ShortcutsDialogScrolledWindow2>
+                            <ShortcutsDialogClamp3>
+                              <ShortcutsDialogBox5>
+                                <ShortcutsDialogPreferencesGroup>
+                                  <ShortcutsDialogSearchList />
+                                </ShortcutsDialogPreferencesGroup>
+                              </ShortcutsDialogBox5>
+                            </ShortcutsDialogClamp3>
+                          </ShortcutsDialogScrolledWindow2>
+                        </ShortcutsDialogSearch>
+                        <ShortcutsDialogEmpty>
+                          <ShortcutsDialogScrolledWindow3>
+                            <ShortcutsDialogToplevelBox>
+                              <ShortcutsDialogClamp4>
+                                <ShortcutsDialogBox6>
+                                  <ShortcutsDialogImage5 />
+                                  {title ? (
+                                    <ShortcutsDialogTitleLabel>{title}</ShortcutsDialogTitleLabel>
+                                  ) : null}
+                                  <ShortcutsDialogDescriptionLabel />
+                                </ShortcutsDialogBox6>
+                              </ShortcutsDialogClamp4>
+                              <ShortcutsDialogScrolledWindow4>
+                                <ShortcutsDialogToplevelBox2>
+                                  <ShortcutsDialogClamp5>
+                                    <ShortcutsDialogBox7>
+                                      <ShortcutsDialogImage6 />
+                                      {title ? (
+                                        <ShortcutsDialogTitleLabel2>{title}</ShortcutsDialogTitleLabel2>
+                                      ) : null}
+                                      <ShortcutsDialogDescriptionLabel2 />
+                                    </ShortcutsDialogBox7>
+                                  </ShortcutsDialogClamp5>
+                                </ShortcutsDialogToplevelBox2>
+                              </ShortcutsDialogScrolledWindow4>
+                            </ShortcutsDialogToplevelBox>
+                          </ShortcutsDialogScrolledWindow3>
+                        </ShortcutsDialogEmpty>
+                      </ShortcutsDialogStack>
+                      {children}
+                    </ShortcutsDialogInternalBox>
+                  </ShortcutsDialogWindowhandle>
+                </ShortcutsDialogRevealer>
+                <ShortcutsDialogRevealer2>
+                  <ShortcutsDialogWindowhandle3>
+                    <ShortcutsDialogInternalBox2 />
+                  </ShortcutsDialogWindowhandle3>
+                </ShortcutsDialogRevealer2>
               </ShortcutsDialogToolbarView>
                   {child}
         </>
@@ -160,68 +215,12 @@ function ShortcutsDialog({ className, render, variant = "default", child, defaul
   })
 }
 
-function ShortcutsDialogNavBox({ className, ...props }: React.ComponentProps<"div">) {
+function ShortcutsDialogContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="shortcuts-dialog-nav-box"
-        data-node="wrap-box"
-        data-halign="center"
-      className={cn("wrap-box", "navigation-box", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogNavGroup({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-nav-group"
-        data-node="preferencesgroup"
-      className={cn("preferencesgroup", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogContents({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-contents"
-        data-node="preferencespage"
-      className={cn("preferencespage", "box", "contents", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogSearchList({ className, ...props }: React.ComponentProps<"ul">) {
-  return (
-    <ul
-      data-slot="shortcuts-dialog-search-list"
-        data-node="list"
-      className={cn("list", "boxed-list", "lay-col", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogPreferencesGroup({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-preferences-group"
-        data-node="preferencesgroup"
-      className={cn("preferencesgroup", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogSearch({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-search"
-        data-node="preferencespage"
-      className={cn("preferencespage", "box", "lay-row", className)}
+      data-slot="shortcuts-dialog-content"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
       {...props}
     />
   )
@@ -232,168 +231,29 @@ function ShortcutsDialogImage({ className, ...props }: React.ComponentProps<type
     <Icon
       data-slot="shortcuts-dialog-image"
         data-node="image"
-        data-halign="center"
-      className={cn("image", "icon", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
 }
 
-function ShortcutsDialogSelection({ className, ...props }: React.ComponentProps<"div">) {
+function ShortcutsDialogButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="shortcuts-dialog-button"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogWindowControls({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="shortcuts-dialog-selection"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogLink({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-link"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="shortcuts-dialog-title-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogSelection2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogLink2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogDescriptionLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="shortcuts-dialog-description-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "body", "description", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-box"
-        data-node="box"
-        data-valign="center"
-      className={cn("box", "box", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogClamp({ className, style, ...props }: React.ComponentProps<"div">) {
-  const { ref, columns } = useClamp<HTMLDivElement>({  })
-
-  return (
-    <div
-      ref={ref}
-      data-slot="shortcuts-dialog-clamp"
-        data-node="clamp"
-      className={cn("clamp", "clamp", className)}
-      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogToplevelBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-toplevel-box"
-        data-node="box"
-        data-valign="center"
-      className={cn("box", "box", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-scrolled-window"
-        data-node="scrolledwindow"
-      className={cn("scrolledwindow", className)}
-      {...props}
-    >
-      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
-        {children}
-      </div>
-      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
-              <div data-node="range" className={cn("range", "horizontal")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
-              <div data-node="range" className={cn("range", "vertical")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-    </div>
-  )
-}
-
-function ShortcutsDialogEmpty({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-empty"
-        data-node="statuspage"
-      className={cn("statuspage", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsDialogStack({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-dialog-stack"
-        data-node="stack"
-      className={cn("stack", className)}
+      data-slot="shortcuts-dialog-window-controls"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -421,10 +281,10 @@ function ShortcutsDialogUndershoot({ className, ...props }: React.ComponentProps
   )
 }
 
-function ShortcutsDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
+function ShortcutsDialogSelection({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="shortcuts-dialog-selection3"
+      data-slot="shortcuts-dialog-selection"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -509,16 +369,149 @@ function ShortcutsDialogSearchEntry({ className, ...props }: React.ComponentProp
   )
 }
 
-function ShortcutsDialogClamp2({ className, style, ...props }: React.ComponentProps<"div">) {
+function ShortcutsDialogClamp({ className, style, ...props }: React.ComponentProps<"div">) {
   const { ref, columns } = useClamp<HTMLDivElement>({ maximumSize: 400 })
 
   return (
     <div
       ref={ref}
-      data-slot="shortcuts-dialog-clamp2"
+      data-slot="shortcuts-dialog-clamp"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box2"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogStart({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-start"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogTitle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-title"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="shortcuts-dialog-image3"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="shortcuts-dialog-button2"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogImage4({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="shortcuts-dialog-image4"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogCloseButton({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-window-controls2"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box3"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogEnd({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-end"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-windowhandle2"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -535,6 +528,839 @@ function ShortcutsDialogHeaderBar({ className, ...props }: React.ComponentProps<
   )
 }
 
+function ShortcutsDialogSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogDescription({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-description"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", "description", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogNavBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-nav-box"
+        data-node="wrap-box"
+        data-halign="center"
+      className={cn("wrap-box", "navigation-box", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogNavGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-nav-group"
+        data-node="preferencesgroup"
+      className={cn("preferencesgroup", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box4"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogClamp2({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="shortcuts-dialog-clamp2"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogOvershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-overshoot"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-scrolled-window"
+        data-node="scrolledwindow"
+      className={cn("scrolledwindow", className)}
+      {...props}
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
+  )
+}
+
+function ShortcutsDialogContents({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-contents"
+        data-node="preferencespage"
+      className={cn("preferencespage", "box", "contents", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection5"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link4"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogDescription2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-description2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", "description", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSearchList({ className, ...props }: React.ComponentProps<"ul">) {
+  return (
+    <ul
+      data-slot="shortcuts-dialog-search-list"
+        data-node="list"
+      className={cn("list", "boxed-list", "lay-col", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogPreferencesGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-preferences-group"
+        data-node="preferencesgroup"
+      className={cn("preferencesgroup", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box5"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogClamp3({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="shortcuts-dialog-clamp3"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogOvershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-overshoot2"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogUndershoot3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-undershoot3"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogScrolledWindow2({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-scrolled-window2"
+        data-node="scrolledwindow"
+      className={cn("scrolledwindow", className)}
+      {...props}
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
+  )
+}
+
+function ShortcutsDialogSearch({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-search"
+        data-node="preferencespage"
+      className={cn("preferencespage", "box", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="shortcuts-dialog-image5"
+        data-node="image"
+        data-halign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection6"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link5"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection7"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link6"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-title-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection8"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link7"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection9"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link8"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogDescriptionLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-description-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "body", "description", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box6"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogClamp4({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="shortcuts-dialog-clamp4"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogImage6({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="shortcuts-dialog-image6"
+        data-node="image"
+        data-halign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection10"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link9"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection11"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link10"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogTitleLabel2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-title-label2"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection12"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link11"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogSelection13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-selection13"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogLink12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-link12"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogDescriptionLabel2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-description-label2"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "body", "description", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box7"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogClamp5({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="shortcuts-dialog-clamp5"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogToplevelBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-toplevel-box2"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogScrolledWindow4({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-scrolled-window4"
+        data-node="scrolledwindow"
+      className={cn("scrolledwindow", className)}
+      {...props}
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
+  )
+}
+
+function ShortcutsDialogToplevelBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-toplevel-box"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogOvershoot3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-overshoot3"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogUndershoot4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-undershoot4"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogScrolledWindow3({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-scrolled-window3"
+        data-node="scrolledwindow"
+      className={cn("scrolledwindow", className)}
+      {...props}
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
+  )
+}
+
+function ShortcutsDialogEmpty({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-empty"
+        data-node="statuspage"
+      className={cn("statuspage", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-stack"
+        data-node="stack"
+      className={cn("stack", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogInternalBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-windowhandle"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-revealer"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogInternalBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-windowhandle3"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogRevealer2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-revealer2"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
+      {...props}
+    />
+  )
+}
+
 function ShortcutsDialogToolbarView({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -546,4 +1372,4 @@ function ShortcutsDialogToolbarView({ className, ...props }: React.ComponentProp
   )
 }
 
-export { ShortcutsDialog, ShortcutsDialogNavBox, ShortcutsDialogNavGroup, ShortcutsDialogContents, ShortcutsDialogSearchList, ShortcutsDialogPreferencesGroup, ShortcutsDialogSearch, ShortcutsDialogImage, ShortcutsDialogSelection, ShortcutsDialogLink, ShortcutsDialogTitleLabel, ShortcutsDialogSelection2, ShortcutsDialogLink2, ShortcutsDialogDescriptionLabel, ShortcutsDialogBox, ShortcutsDialogClamp, ShortcutsDialogToplevelBox, ShortcutsDialogScrolledWindow, ShortcutsDialogEmpty, ShortcutsDialogStack, ShortcutsDialogPlaceholder, ShortcutsDialogUndershoot, ShortcutsDialogSelection3, ShortcutsDialogCursorHandle, ShortcutsDialogBlockCursor, ShortcutsDialogWindow, ShortcutsDialogText, ShortcutsDialogImage2, ShortcutsDialogProgress, ShortcutsDialogSearchEntry, ShortcutsDialogClamp2, ShortcutsDialogHeaderBar, ShortcutsDialogToolbarView, shortcutsDialogVariants }
+export { ShortcutsDialog, ShortcutsDialogContent, ShortcutsDialogImage, ShortcutsDialogButton, ShortcutsDialogWindowControls, ShortcutsDialogPlaceholder, ShortcutsDialogUndershoot, ShortcutsDialogSelection, ShortcutsDialogCursorHandle, ShortcutsDialogBlockCursor, ShortcutsDialogWindow, ShortcutsDialogText, ShortcutsDialogImage2, ShortcutsDialogProgress, ShortcutsDialogSearchEntry, ShortcutsDialogClamp, ShortcutsDialogBox2, ShortcutsDialogStart, ShortcutsDialogTitle, ShortcutsDialogImage3, ShortcutsDialogButton2, ShortcutsDialogImage4, ShortcutsDialogCloseButton, ShortcutsDialogWindowControls2, ShortcutsDialogBox3, ShortcutsDialogEnd, ShortcutsDialogBox, ShortcutsDialogWindowhandle2, ShortcutsDialogHeaderBar, ShortcutsDialogSelection2, ShortcutsDialogLink, ShortcutsDialogSelection3, ShortcutsDialogLink2, ShortcutsDialogDescription, ShortcutsDialogNavBox, ShortcutsDialogNavGroup, ShortcutsDialogBox4, ShortcutsDialogClamp2, ShortcutsDialogOvershoot, ShortcutsDialogUndershoot2, ShortcutsDialogScrolledWindow, ShortcutsDialogContents, ShortcutsDialogSelection4, ShortcutsDialogLink3, ShortcutsDialogSelection5, ShortcutsDialogLink4, ShortcutsDialogDescription2, ShortcutsDialogSearchList, ShortcutsDialogPreferencesGroup, ShortcutsDialogBox5, ShortcutsDialogClamp3, ShortcutsDialogOvershoot2, ShortcutsDialogUndershoot3, ShortcutsDialogScrolledWindow2, ShortcutsDialogSearch, ShortcutsDialogImage5, ShortcutsDialogSelection6, ShortcutsDialogLink5, ShortcutsDialogSelection7, ShortcutsDialogLink6, ShortcutsDialogTitleLabel, ShortcutsDialogSelection8, ShortcutsDialogLink7, ShortcutsDialogSelection9, ShortcutsDialogLink8, ShortcutsDialogDescriptionLabel, ShortcutsDialogBox6, ShortcutsDialogClamp4, ShortcutsDialogImage6, ShortcutsDialogSelection10, ShortcutsDialogLink9, ShortcutsDialogSelection11, ShortcutsDialogLink10, ShortcutsDialogTitleLabel2, ShortcutsDialogSelection12, ShortcutsDialogLink11, ShortcutsDialogSelection13, ShortcutsDialogLink12, ShortcutsDialogDescriptionLabel2, ShortcutsDialogBox7, ShortcutsDialogClamp5, ShortcutsDialogToplevelBox2, ShortcutsDialogScrolledWindow4, ShortcutsDialogToplevelBox, ShortcutsDialogOvershoot3, ShortcutsDialogUndershoot4, ShortcutsDialogScrolledWindow3, ShortcutsDialogEmpty, ShortcutsDialogStack, ShortcutsDialogInternalBox, ShortcutsDialogWindowhandle, ShortcutsDialogRevealer, ShortcutsDialogInternalBox2, ShortcutsDialogWindowhandle3, ShortcutsDialogRevealer2, ShortcutsDialogToolbarView, shortcutsDialogVariants }

@@ -96,7 +96,12 @@ function ComboBoxText({ className, render, variant = "default", child, model: _m
                 <ComboBoxTextEntry>
                   <ComboBoxTextText>
                     <ComboBoxTextPlaceholder />
+                    <ComboBoxTextPlaceholder2 />
                   </ComboBoxTextText>
+                  <ComboBoxTextText2>
+                    <ComboBoxTextPlaceholder3 />
+                    <ComboBoxTextPlaceholder4 />
+                  </ComboBoxTextText2>
                 </ComboBoxTextEntry>
                 <ComboBoxTextButton>
                   {children}
@@ -171,10 +176,142 @@ function ComboBoxTextBlockCursor({ className, ...props }: React.ComponentProps<"
   )
 }
 
+function ComboBoxTextSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
 function ComboBoxTextWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="combo-box-text-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-placeholder2"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-cursor-handle2"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-block-cursor2"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextSheet2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-sheet2"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextPaper2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-paper2"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextDrawing2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-drawing2"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextWindow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -215,6 +352,237 @@ function ComboBoxTextProgress({ className, ...props }: React.ComponentProps<"div
   )
 }
 
+function ComboBoxTextPlaceholder3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-placeholder3"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextUndershoot3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-undershoot3"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextCursorHandle3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-cursor-handle3"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextBlockCursor3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-block-cursor3"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextSheet3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-sheet3"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextPaper3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-paper3"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextDrawing3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-drawing3"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextWindow3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-window3"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextPlaceholder4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-placeholder4"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextUndershoot4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-undershoot4"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextCursorHandle4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-cursor-handle4"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextBlockCursor4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-block-cursor4"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextSheet4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-sheet4"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextPaper4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-paper4"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextDrawing4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-drawing4"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextWindow4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-window4"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextText2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-text2"
+        data-node="text"
+      className={cn("text", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="combo-box-text-image2"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextProgress2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-progress2"
+        data-node="progress"
+      className={cn("progress", className)}
+      {...props}
+    />
+  )
+}
+
 function ComboBoxTextEntry({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -237,10 +605,43 @@ function ComboBoxTextButton({ className, ...props }: React.ComponentProps<"butto
   )
 }
 
-function ComboBoxTextWindow2({ className, ...props }: React.ComponentProps<"div">) {
+function ComboBoxTextSheet5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="combo-box-text-window2"
+      data-slot="combo-box-text-sheet5"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextPaper5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-paper5"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextDrawing5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-drawing5"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboBoxTextWindow5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-text-window5"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -259,4 +660,4 @@ function ComboBoxTextBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { ComboBoxText, ComboBoxTextPlaceholder, ComboBoxTextUndershoot, ComboBoxTextSelection, ComboBoxTextCursorHandle, ComboBoxTextBlockCursor, ComboBoxTextWindow, ComboBoxTextText, ComboBoxTextImage, ComboBoxTextProgress, ComboBoxTextEntry, ComboBoxTextButton, ComboBoxTextWindow2, ComboBoxTextBox, comboBoxTextVariants }
+export { ComboBoxText, ComboBoxTextPlaceholder, ComboBoxTextUndershoot, ComboBoxTextSelection, ComboBoxTextCursorHandle, ComboBoxTextBlockCursor, ComboBoxTextSheet, ComboBoxTextPaper, ComboBoxTextDrawing, ComboBoxTextWindow, ComboBoxTextPlaceholder2, ComboBoxTextUndershoot2, ComboBoxTextSelection2, ComboBoxTextCursorHandle2, ComboBoxTextBlockCursor2, ComboBoxTextSheet2, ComboBoxTextPaper2, ComboBoxTextDrawing2, ComboBoxTextWindow2, ComboBoxTextText, ComboBoxTextImage, ComboBoxTextProgress, ComboBoxTextPlaceholder3, ComboBoxTextUndershoot3, ComboBoxTextSelection3, ComboBoxTextCursorHandle3, ComboBoxTextBlockCursor3, ComboBoxTextSheet3, ComboBoxTextPaper3, ComboBoxTextDrawing3, ComboBoxTextWindow3, ComboBoxTextPlaceholder4, ComboBoxTextUndershoot4, ComboBoxTextSelection4, ComboBoxTextCursorHandle4, ComboBoxTextBlockCursor4, ComboBoxTextSheet4, ComboBoxTextPaper4, ComboBoxTextDrawing4, ComboBoxTextWindow4, ComboBoxTextText2, ComboBoxTextImage2, ComboBoxTextProgress2, ComboBoxTextEntry, ComboBoxTextButton, ComboBoxTextSheet5, ComboBoxTextPaper5, ComboBoxTextDrawing5, ComboBoxTextWindow5, ComboBoxTextBox, comboBoxTextVariants }

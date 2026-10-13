@@ -158,11 +158,6 @@ function PasswordEntryRow({ className, render, variant = "default", child, prefi
     children: (
         <>
                   <PasswordEntryRowHeader>
-                {prefix ? (
-                  <PasswordEntryRowPrefixes>
-                    {prefix}
-                  </PasswordEntryRowPrefixes>
-                ) : null}
                 <PasswordEntryRowEditableArea>
                   <PasswordEntryRowEmptyTitle style={{ opacity: text === undefined ? 1 : 0 }}>{title}</PasswordEntryRowEmptyTitle>
                   <PasswordEntryRowTitle style={{ opacity: text === undefined ? 0 : 1 }}>{title}</PasswordEntryRowTitle>
@@ -171,11 +166,27 @@ function PasswordEntryRow({ className, render, variant = "default", child, prefi
                     <PasswordEntryRowEditIcon />
                   ) : null}
                 </PasswordEntryRowEditableArea>
-                {children ? (
-                  <PasswordEntryRowSuffixes>
-                    {children}
-                  </PasswordEntryRowSuffixes>
-                ) : null}
+                <PasswordEntryRowSuffixes>
+                  <PasswordEntryRowHeader2>
+                    {prefix ? (
+                      <PasswordEntryRowPrefixes2>
+                        {prefix}
+                      </PasswordEntryRowPrefixes2>
+                    ) : null}
+                    <PasswordEntryRowEditableArea2>
+                      <PasswordEntryRowEmptyTitle2 style={{ opacity: text === undefined ? 1 : 0 }}>{title}</PasswordEntryRowEmptyTitle2>
+                      <PasswordEntryRowTitle2 style={{ opacity: text === undefined ? 0 : 1 }}>{title}</PasswordEntryRowTitle2>
+                      <PasswordEntryRowText2 defaultValue={text} style={{ opacity: text === undefined ? 0 : 1 }} />
+                      {editable ? (
+                        <PasswordEntryRowEditIcon2 />
+                      ) : null}
+                    </PasswordEntryRowEditableArea2>
+                    {children ? (
+                      <PasswordEntryRowSuffixes2 />
+                    ) : null}
+                  </PasswordEntryRowHeader2>
+                  {children}
+                </PasswordEntryRowSuffixes>
               </PasswordEntryRowHeader>
                   {child}
         </>
@@ -224,20 +235,6 @@ function PasswordEntryRowLink({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function PasswordEntryRowEmptyTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="password-entry-row-empty-title"
-        data-node="label"
-        data-halign="start"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", "dimmed", className)}
-      {...props}
-    />
-  )
-}
-
 function PasswordEntryRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -253,6 +250,64 @@ function PasswordEntryRowLink2({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="password-entry-row-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowEmptyTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="password-entry-row-empty-title"
+        data-node="label"
+        data-halign="start"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -297,10 +352,10 @@ function PasswordEntryRowUndershoot({ className, ...props }: React.ComponentProp
   )
 }
 
-function PasswordEntryRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+function PasswordEntryRowSelection5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="password-entry-row-selection3"
+      data-slot="password-entry-row-selection5"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -330,10 +385,142 @@ function PasswordEntryRowBlockCursor({ className, ...props }: React.ComponentPro
   )
 }
 
+function PasswordEntryRowSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
 function PasswordEntryRowWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="password-entry-row-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-placeholder2"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection6"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-cursor-handle2"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-block-cursor2"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSheet2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-sheet2"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowPaper2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-paper2"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowDrawing2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-drawing2"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowWindow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -403,6 +590,241 @@ function PasswordEntryRowEditableArea({ className, ...props }: React.ComponentPr
   )
 }
 
+function PasswordEntryRowPrefixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-prefixes2"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection7"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowLink5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-link5"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowEmptyTitle2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="password-entry-row-empty-title2"
+        data-node="label"
+        data-halign="start"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection8"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowLink6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-link6"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowTitle2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="password-entry-row-title2"
+        data-node="label"
+        data-halign="start"
+        data-xalign="start"
+        data-yalign="center"
+        style={{ opacity: 0 }}
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowPlaceholder3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-placeholder3"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowUndershoot3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-undershoot3"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection9"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowCursorHandle3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-cursor-handle3"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowBlockCursor3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-block-cursor3"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowWindow3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-window3"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowText2({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="password-entry-row-text2"
+        data-node="text"
+        data-valign="baseline-fill"
+        data-hexpand=""
+        data-vexpand=""
+        style={{ opacity: 0 }}
+      className={cn("text", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowIndicator2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="password-entry-row-indicator2"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "indicator", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowApplyButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="password-entry-row-apply-button2"
+        data-node="button"
+        data-valign="center"
+      className={cn("button", "bin", "suggested-action", "circular", "apply-button", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowEditIcon2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="password-entry-row-edit-icon2"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "edit-icon", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowEditableArea2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-editable-area2"
+        data-hexpand=""
+      className={cn("editable-area", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSuffixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-suffixes2"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowHeader2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-header2"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
 function PasswordEntryRowSuffixes({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -426,6 +848,6 @@ function PasswordEntryRowHeader({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-export { PasswordEntryRow, PasswordEntryRowPrefixes, PasswordEntryRowSelection, PasswordEntryRowLink, PasswordEntryRowEmptyTitle, PasswordEntryRowSelection2, PasswordEntryRowLink2, PasswordEntryRowTitle, PasswordEntryRowPlaceholder, PasswordEntryRowUndershoot, PasswordEntryRowSelection3, PasswordEntryRowCursorHandle, PasswordEntryRowBlockCursor, PasswordEntryRowWindow, PasswordEntryRowText, PasswordEntryRowIndicator, PasswordEntryRowApplyButton, PasswordEntryRowEditIcon, PasswordEntryRowEditableArea, PasswordEntryRowSuffixes, PasswordEntryRowHeader, passwordEntryRowVariants }
+export { PasswordEntryRow, PasswordEntryRowPrefixes, PasswordEntryRowSelection, PasswordEntryRowLink, PasswordEntryRowSelection2, PasswordEntryRowLink2, PasswordEntryRowEmptyTitle, PasswordEntryRowSelection3, PasswordEntryRowLink3, PasswordEntryRowSelection4, PasswordEntryRowLink4, PasswordEntryRowTitle, PasswordEntryRowPlaceholder, PasswordEntryRowUndershoot, PasswordEntryRowSelection5, PasswordEntryRowCursorHandle, PasswordEntryRowBlockCursor, PasswordEntryRowSheet, PasswordEntryRowPaper, PasswordEntryRowDrawing, PasswordEntryRowWindow, PasswordEntryRowPlaceholder2, PasswordEntryRowUndershoot2, PasswordEntryRowSelection6, PasswordEntryRowCursorHandle2, PasswordEntryRowBlockCursor2, PasswordEntryRowSheet2, PasswordEntryRowPaper2, PasswordEntryRowDrawing2, PasswordEntryRowWindow2, PasswordEntryRowText, PasswordEntryRowIndicator, PasswordEntryRowApplyButton, PasswordEntryRowEditIcon, PasswordEntryRowEditableArea, PasswordEntryRowPrefixes2, PasswordEntryRowSelection7, PasswordEntryRowLink5, PasswordEntryRowEmptyTitle2, PasswordEntryRowSelection8, PasswordEntryRowLink6, PasswordEntryRowTitle2, PasswordEntryRowPlaceholder3, PasswordEntryRowUndershoot3, PasswordEntryRowSelection9, PasswordEntryRowCursorHandle3, PasswordEntryRowBlockCursor3, PasswordEntryRowWindow3, PasswordEntryRowText2, PasswordEntryRowIndicator2, PasswordEntryRowApplyButton2, PasswordEntryRowEditIcon2, PasswordEntryRowEditableArea2, PasswordEntryRowSuffixes2, PasswordEntryRowHeader2, PasswordEntryRowSuffixes, PasswordEntryRowHeader, passwordEntryRowVariants }
 
 PasswordEntryRow.isPreferencesRow = true

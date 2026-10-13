@@ -35,10 +35,12 @@ function WindowHandle({ className, render, child, children, ...props }: WindowHa
                   <WindowHandlePopoverMenu>
                 <WindowHandleArrow />
                 <WindowHandleContents>
-                  {children}
+                  <WindowHandleArrow2 />
+                  <WindowHandleContents2 />
                 </WindowHandleContents>
               </WindowHandlePopoverMenu>
                   {child}
+                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -63,12 +65,34 @@ function WindowHandleArrow({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
+function WindowHandleArrow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-handle-arrow2"
+        data-node="arrow"
+      className={cn("arrow", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowHandleContents2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-handle-contents2"
+        data-node="contents"
+      className={cn("contents", "hidden", className)}
+      {...props}
+    />
+  )
+}
+
 function WindowHandleContents({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="window-handle-contents"
         data-node="contents"
-      className={cn("contents", className)}
+      className={cn("contents", "hidden", className)}
       {...props}
     />
   )
@@ -85,4 +109,4 @@ function WindowHandlePopoverMenu({ className, ...props }: React.ComponentProps<"
   )
 }
 
-export { WindowHandle, WindowHandleArrow, WindowHandleContents, WindowHandlePopoverMenu }
+export { WindowHandle, WindowHandleArrow, WindowHandleArrow2, WindowHandleContents2, WindowHandleContents, WindowHandlePopoverMenu }

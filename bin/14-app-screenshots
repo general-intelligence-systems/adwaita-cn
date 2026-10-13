@@ -74,6 +74,12 @@ GLib::Log.always_fatal = GLib::Log::LEVEL_ERROR
 module AppScreenshots
   ROOT = File.expand_path("..", __dir__)
   PORT = 7416
+
+  # Wide enough for the widest case beside its toolkit twin. The height is only what the
+  # window opens at; `fit` grows it to the page before anything is shot.
+  VIEWPORT_WIDTH = 1600
+  VIEWPORT_HEIGHT = 2000
+  VIEWPORT_MARGIN = 64
   # A script's output sits beside it, under its own name: bin/14-app-screenshots.out.
   OUTPUT = "#{__FILE__}.out"
 
@@ -240,7 +246,7 @@ module AppScreenshots
     browser = Ferrum::Browser.new(
       browser_path: ENV.fetch("BROWSER_PATH", nil),
       headless: true,
-      window_size: [1600, 20_000],
+      window_size: [VIEWPORT_WIDTH, VIEWPORT_HEIGHT],
       timeout: 60,
       browser_options: { "force-device-scale-factor" => "1", "hide-scrollbars" => nil },
     )
@@ -248,11 +254,35 @@ module AppScreenshots
     begin
       browser.go_to("http://127.0.0.1:#{PORT}/")
       browser.network.wait_for_idle(timeout: 30)
+      self.fit(browser)
       yield(browser)
     ensure
       browser.quit
       server.shutdown
     end
+  end
+
+  # The viewport, grown to the page.
+  #
+  # A SHOT BELOW THE FOLD IS BLANK. The window was opened at a height picked to be larger
+  # than the page could plausibly be, and the page outgrew it: every case is stacked down one
+  # document, and at 42 of them it ran past 20,000px. Chromium renders what is in the
+  # viewport, so the cases past the end came back as empty rectangles -- a preferences window
+  # with its pages in it photographed as a blank panel, which reads as a broken component and
+  # is a short window.
+  #
+  # Measured rather than raised: the next case added would run past a bigger guess too.
+  def self.fit(browser)
+    height = browser.evaluate(<<~JS)
+      Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight,
+      )
+    JS
+
+    return unless height.is_a?(Numeric) && height.positive?
+
+    browser.resize(width: VIEWPORT_WIDTH, height: height.ceil + VIEWPORT_MARGIN)
   end
 
   # ── the two, side by side ────────────────────────────────────────────────

@@ -64,14 +64,11 @@ function Scrollbar({ className, render, variant = "default", adjustment: _adjust
     className: cn("scrollbar", "group/scrollbar", "bin", scrollbarVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
-        <>
-                  <ScrollbarRange>
-                <ScrollbarTrough>
-                  <ScrollbarSlider className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ [orientation === "vertical" ? "insetBlockStart" : "insetInlineStart"]: `${Math.max(0, Math.min(100, (((value ?? 0) - (minValue ?? 0)) / ((maxValue ?? 1) - (minValue ?? 0) || 1)) * 100))}%` }} />
-                </ScrollbarTrough>
+        <ScrollbarRange>
+                <ScrollbarGizmo>
+                  <ScrollbarGizmo2 className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ [orientation === "vertical" ? "insetBlockStart" : "insetInlineStart"]: `${Math.max(0, Math.min(100, (((value ?? 0) - (minValue ?? 0)) / ((maxValue ?? 1) - (minValue ?? 0) || 1)) * 100))}%` }} />
+                </ScrollbarGizmo>
               </ScrollbarRange>
-                  {children}
-        </>
       ),
     ...widgetAttributes,
   }
@@ -106,6 +103,28 @@ function ScrollbarTrough({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function ScrollbarGizmo2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scrollbar-gizmo2"
+        data-node="slider"
+      className={cn("slider", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function ScrollbarGizmo({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scrollbar-gizmo"
+        data-node="trough"
+      className={cn("trough", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
 function ScrollbarRange({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -117,4 +136,4 @@ function ScrollbarRange({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Scrollbar, ScrollbarSlider, ScrollbarTrough, ScrollbarRange, scrollbarVariants }
+export { Scrollbar, ScrollbarSlider, ScrollbarTrough, ScrollbarGizmo2, ScrollbarGizmo, ScrollbarRange, scrollbarVariants }

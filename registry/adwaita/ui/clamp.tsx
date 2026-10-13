@@ -48,7 +48,7 @@ function Clamp({ className, render, child, maximumSize, orientation, tighteningT
     "data-orientation": orientation,
     "data-tightening-threshold": tighteningThreshold,
     "data-unit": unit,
-    className: cn("clamp", "clamp", widgetClassName, className),
+    className: cn("clamp", widgetClassName, className),
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>

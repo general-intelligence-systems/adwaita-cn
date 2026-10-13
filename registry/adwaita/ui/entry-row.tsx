@@ -222,20 +222,6 @@ function EntryRowLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function EntryRowEmptyTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="entry-row-empty-title"
-        data-node="label"
-        data-halign="start"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "title", "dimmed", className)}
-      {...props}
-    />
-  )
-}
-
 function EntryRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -251,6 +237,64 @@ function EntryRowLink2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="entry-row-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowEmptyTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="entry-row-empty-title"
+        data-node="label"
+        data-halign="start"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -295,10 +339,10 @@ function EntryRowUndershoot({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-function EntryRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+function EntryRowSelection5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="entry-row-selection3"
+      data-slot="entry-row-selection5"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -328,10 +372,142 @@ function EntryRowBlockCursor({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
+function EntryRowSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
 function EntryRowWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="entry-row-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-placeholder2"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowSelection6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-selection6"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-cursor-handle2"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-block-cursor2"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowSheet2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-sheet2"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowPaper2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-paper2"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowDrawing2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-drawing2"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowWindow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -424,6 +600,6 @@ function EntryRowHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { EntryRow, EntryRowPrefixes, EntryRowSelection, EntryRowLink, EntryRowEmptyTitle, EntryRowSelection2, EntryRowLink2, EntryRowTitle, EntryRowPlaceholder, EntryRowUndershoot, EntryRowSelection3, EntryRowCursorHandle, EntryRowBlockCursor, EntryRowWindow, EntryRowText, EntryRowIndicator, EntryRowApplyButton, EntryRowEditIcon, EntryRowEditableArea, EntryRowSuffixes, EntryRowHeader, entryRowVariants }
+export { EntryRow, EntryRowPrefixes, EntryRowSelection, EntryRowLink, EntryRowSelection2, EntryRowLink2, EntryRowEmptyTitle, EntryRowSelection3, EntryRowLink3, EntryRowSelection4, EntryRowLink4, EntryRowTitle, EntryRowPlaceholder, EntryRowUndershoot, EntryRowSelection5, EntryRowCursorHandle, EntryRowBlockCursor, EntryRowSheet, EntryRowPaper, EntryRowDrawing, EntryRowWindow, EntryRowPlaceholder2, EntryRowUndershoot2, EntryRowSelection6, EntryRowCursorHandle2, EntryRowBlockCursor2, EntryRowSheet2, EntryRowPaper2, EntryRowDrawing2, EntryRowWindow2, EntryRowText, EntryRowIndicator, EntryRowApplyButton, EntryRowEditIcon, EntryRowEditableArea, EntryRowSuffixes, EntryRowHeader, entryRowVariants }
 
 EntryRow.isPreferencesRow = true

@@ -54,7 +54,13 @@
 require "json"
 require "set"
 
+require_relative "lib/scss"
+require_relative "lib/theme"
+
 module AdwaitaTailwind
+  # Adwaita as Tailwind's own language, written beside the components that name it.
+  THEME = "registry/adwaita/theme.css"
+
   # So this converts whichever sheet it is given, and bin/04-gtk-tailwind is the separate stage
   # which handles GTK's, for the nodes libadwaita never mentions at all.
   SHEET = "bin/01-fetch-adwaita.out/adwaita.css"
@@ -149,6 +155,43 @@ module AdwaitaTailwind
     found.reject(&:empty?)
   end
 
+  # A colour, as the theme token where the sheet names one and arbitrarily where it does not.
+  #
+  # THIS IS WHY A COLOUR KEPT BEING DROPPED. `bg-[var(--accent-bg-color)]` is an arbitrary
+  # value: tailwind-merge cannot see what it sets, so two of them on one element were not
+  # recognised as the same property and the wrong one survived. `bg-accent-bg` is a utility
+  # in the `background-color` group, and merging it against another background is the one
+  # thing tailwind-merge is for. The variable is still what the utility resolves to, so
+  # repointing the palette still moves everything downstream of it.
+  #
+  # Only a variable the palette actually defines becomes a token: a rule may name one the
+  # sheet never states -- a theme's own, or one GTK sets at runtime -- and `bg-whatever`
+  # for a token @theme does not carry is a class that resolves to nothing at all.
+  def self.colour(prefix, value)
+    token = self.colour_token(value)
+
+    return "#{prefix}-[#{self.arbitrary(value)}]" if token.nil?
+
+    "#{prefix}-#{token}"
+  end
+
+  # The name `@theme` files a variable under: `--window-bg-color` is `--color-window-bg`, and
+  # the utility is therefore `bg-window-bg`. Kept identical to the generator's own `token`,
+  # because a name written here and a name declared there have to be the same name.
+  def self.colour_token(value)
+    name = value.to_s.strip[/\Avar\((--[a-z0-9-]+)\)\z/, 1]
+
+    return nil if name.nil?
+    return nil unless self.palette.include?(name)
+
+    name.sub(/\A--/, "").sub(/-color\z/, "")
+  end
+
+  # Every variable the sheets define a colour for, which is exactly the set `@theme` carries.
+  def self.palette
+    @palette ||= self.variables.fetch("light").filter_map{|name, one| name if Theme.colour?(one) }.to_set
+  end
+
   # One declaration as the classes which reproduce it, or none when nothing does.
   #
   # The arbitrary form is used freely: Adwaita's measurements are its own and rounding 9px to
@@ -200,24 +243,24 @@ module AdwaitaTailwind
     when "transition"   then self.transition(value)
     when "transition-duration" then ["duration-[#{self.arbitrary(value)}]"]
     when "text-decoration-line" then ["[text-decoration-line:#{value}]"]
-    when "color"            then ["text-[#{self.arbitrary(value)}]"]
-    when "background-color" then ["bg-[#{self.arbitrary(value)}]"]
+    when "color"            then [self.colour("text", value)]
+    when "background-color" then [self.colour("bg", value)]
     when "background"       then self.background(value)
     when "background-image" then ["bg-[image:#{self.arbitrary(value)}]"]
     when "background-position" then ["bg-[position:#{self.arbitrary(value)}]"]
     when "background-size" then ["bg-[size:#{self.arbitrary(value)}]"]
     when "background-repeat" then [value == "no-repeat" ? "bg-no-repeat" : "bg-repeat"]
     when "background-clip" then ["bg-clip-#{value.delete_suffix('-box')}"]
-    when "border-color"    then ["border-[#{self.arbitrary(value)}]"]
-    when "outline-color"   then ["outline-[#{self.arbitrary(value)}]"]
-    when "caret-color"     then ["caret-[#{self.arbitrary(value)}]"]
-    when "fill"            then ["fill-[#{self.arbitrary(value)}]"]
-    when "stroke"          then ["stroke-[#{self.arbitrary(value)}]"]
-    when "text-decoration-color" then ["decoration-[#{self.arbitrary(value)}]"]
+    when "border-color"    then [self.colour("border", value)]
+    when "outline-color"   then [self.colour("outline", value)]
+    when "caret-color"     then [self.colour("caret", value)]
+    when "fill"            then [self.colour("fill", value)]
+    when "stroke"          then [self.colour("stroke", value)]
+    when "text-decoration-color" then [self.colour("decoration", value)]
     when "text-shadow"     then ["[text-shadow:#{self.arbitrary(value)}]"]
     when "filter"          then ["[filter:#{self.arbitrary(value)}]"]
     when /\Aborder-(top|right|bottom|left)-color\z/
-      ["border-#{SIDES.fetch(::Regexp.last_match(1))}-[#{self.arbitrary(value)}]"]
+      [self.colour("border-#{SIDES.fetch(::Regexp.last_match(1))}", value)]
     when /\Apadding-(top|right|bottom|left)\z/ then [self.length("p#{SIDES.fetch(::Regexp.last_match(1))}", value)]
     when /\Amargin-(top|right|bottom|left)\z/ then [self.length("m#{SIDES.fetch(::Regexp.last_match(1))}", value)]
     when /\Aborder-(top|bottom)-(left|right)-radius\z/
@@ -673,14 +716,164 @@ module AdwaitaTailwind
   PATHS = { adwaita: SHEET, gtk: GTK_SHEET }.freeze
 
   def self.run(_argv)
-    SHEETS.each do |name, (which, contexts)|
-      File.write(self.output(name),
-                 "#{JSON.pretty_generate(self.widgets(PATHS.fetch(which), contexts: contexts, all: contexts))}\n")
+    converted = SHEETS.to_h do |name, (which, contexts)|
+      [name, self.widgets(PATHS.fetch(which), contexts: contexts, all: contexts)]
+    end
+
+    converted.each do |name, widgets|
+      File.write(self.output(name), "#{JSON.pretty_generate(widgets)}\n")
       warn("wrote bin/03-adwaita-tailwind.out/#{name}")
     end
 
     File.write(self.output("variables.json"), "#{JSON.pretty_generate(self.variables)}\n")
     warn("wrote bin/03-adwaita-tailwind.out/variables.json")
+
+    self.scss
+    self.theme(converted)
+  end
+
+  # The stylesheet as its own source states it: one entry per widget, because the partial a
+  # rule is written in is the widget it belongs to.
+  #
+  # THE COMPILED SHEET CANNOT SAY THIS. Its selectors are flat, so the only thing to key
+  # them by is the subject -- and `headerbar button`, `.linked > button` and
+  # `button.destructive-action` all have `button` as their subject. Merged under that one
+  # key, the context which chose between them is gone, and `button` alone is reached at 78
+  # different specificities. Here the key is the owner and the selector is kept whole.
+  def self.scss
+    rules = Scss.read(File.expand_path("..", __dir__))
+
+    found = Hash.new{|hash, key| hash[key] = [] }
+
+    rules.each do |rule|
+      classes = rule.declarations.flat_map{|property, value| self.classes_for(property, value) || [] }.compact
+
+      next if classes.empty?
+
+      found[rule.widget] << {
+        "selector" => rule.selector,
+        "media" => rule.media,
+        "classes" => classes,
+      }.compact
+    end
+
+    File.write(self.output("scss-widgets.json"), "#{JSON.pretty_generate(found.sort.to_h)}\n")
+    warn("wrote bin/03-adwaita-tailwind.out/scss-widgets.json (#{found.length} widgets, #{found.values.sum(&:length)} rules)")
+
+    # The same rules in the shape the sheet is built from: the context in the selector and
+    # the STATE AS ITS OWN KEY.
+    #
+    # Not left in the selector. Downstream reads a selector for its subject and takes the
+    # state from the key beside it, so `menubutton:disabled` filed whole came back as
+    # plain `menubutton` -- which put a disabled widget's dimming on every widget, and
+    # every application rendered at half opacity.
+    contexts = {}
+
+    found.each_value do |rules|
+      rules.each do |rule|
+        next unless rule["media"].nil?
+
+        selector, state = self.split_state(rule.fetch("selector"))
+
+        next if selector.nil? || state.nil?
+
+        states = (contexts[selector] ||= {})
+        (states[state] ||= []).concat(rule.fetch("classes"))
+      end
+    end
+
+    contexts.each_value{|states| states.each_key{|state| states[state] = states.fetch(state).uniq } }
+
+    File.write(self.output("scss-contexts.json"), "#{JSON.pretty_generate(contexts.sort.to_h)}\n")
+    warn("wrote bin/03-adwaita-tailwind.out/scss-contexts.json (#{contexts.length} selectors)")
+  end
+
+  # Adwaita as Tailwind's own language, which is the half of this conversion that is a
+  # stylesheet rather than a table: the palette as `@theme` tokens, the states and node paths
+  # as `@custom-variant`, the layout managers as `@utility`.
+  #
+  # HERE, AND NOT IN A STAGE OF ITS OWN. A component names a utility, so the utility has to
+  # exist before anything downstream writes it: this is the stage that turns the sheet into
+  # Tailwind, and the theme is that conversion's other output.
+  def self.theme(converted)
+    path = File.join(File.expand_path("..", __dir__), THEME)
+
+    File.write(path, Theme.css(self.nodes(converted), self.variables))
+    warn("wrote #{THEME}")
+  end
+
+  # A selector split into the selector proper and the state its subject is in.
+  #
+  # The state belongs to the LAST compound only: in `row:hover > label` it is the row that
+  # is hovered and the rule is about the label, which the sheet states as a context rather
+  # than as a state. Only a pseudo-class on the subject is a state; a rule whose subject
+  # carries one this table has no name for is dropped rather than filed as `base`, because
+  # filing it as `base` is what applied it unconditionally.
+  STATE_KEYS = {
+    ":hover" => "hover", ":active" => "active", ":disabled" => "disabled",
+    ":focus" => "focus", ":focus-visible" => "focus-visible",
+    ":indeterminate" => "indeterminate", ":first-child" => "first",
+    ":last-child" => "last", ":only-child" => "only",
+    ":checked" => "data-[state=checked]", ":selected" => "data-[selected]",
+  }.freeze
+
+  def self.split_state(selector)
+    head, _, subject = selector.rpartition(/(?<=[\s>+~])/)
+    subject = selector if subject.empty?
+    head = "" if subject == selector
+
+    # `button:checked.keyboard-activating` is the same subject as
+    # `button.keyboard-activating:checked`; written the first way the state is not trailing
+    # and the peel below stops before it reaches it. The classes go in front, which is the
+    # order the rest of this reads.
+    # Only where there is no `:not(...)` to reach into: a class inside one is the filter's
+    # and not the subject's, and lifting it out turned `:not(.raised)` into `:not()`.
+    unless subject.include?("(")
+      classes = subject.scan(/\.[a-z0-9-]+/).join
+      subject = subject.gsub(/\.[a-z0-9-]+/, "")
+      element = subject[/\A[^:\[]*/]
+      subject = "#{element}#{classes}#{subject[element.length..]}"
+    end
+
+    # The state pseudo-classes, taken from wherever in the subject they sit.
+    #
+    # Not only from the end: `button:disabled:not(:checked)` keeps the state behind a
+    # `:not()`, which is a filter on the subject and not a state of it. Peeling only the
+    # trailing pseudo stopped at the `:not` and left the `:disabled` in the selector, where
+    # it was read as part of the subject and the rule applied unconditionally.
+    states = []
+    bare = subject.dup
+
+    STATE_KEYS.each_key do |pseudo|
+      # `:focus` must not match inside `:focus-visible`, and neither may match inside a
+      # `:not(...)`, whose contents are a filter and not this subject's state.
+      pattern = /#{::Regexp.escape(pseudo)}(?![a-z-])(?![^(]*\))/
+
+      next unless bare.match?(pattern)
+
+      states << pseudo
+      bare = bare.sub(pattern, "")
+    end
+
+    # A PSEUDO-CLASS THIS HAS NO NAME FOR IS NOT `base`.
+    #
+    # `button:drop(active)` is the drag-and-drop highlight; filed as the button's own base
+    # it put `text-[var(--accent-bg-color)]` and a 2px accent ring on EVERY button, and
+    # since Adwaita's button background is `currentColor 10%`, the blue text took the
+    # background and the border with it. The same goes for `:backdrop` and `:visited`.
+    # A rule whose state cannot be named is dropped rather than applied unconditionally.
+    leftover = bare.gsub(/:(?:not|nth-child|nth-of-type|nth-last-child)\([^)]*\)/, "")
+
+    return [nil, nil] if leftover.match?(/:[a-z-]+/)
+
+    return [selector, "base"] if states.empty?
+
+    ["#{head}#{bare}", states.map{|one| STATE_KEYS.fetch(one) }.join(":")]
+  end
+
+  # Every CSS node the sheets style, which is what the `node-*` and `in-*` variants reach.
+  def self.nodes(converted)
+    converted.values.flat_map(&:keys).filter_map{|key| key[/\A[a-z][a-z0-9-]*/] }.uniq.sort
   end
 
   # The custom properties the stylesheets define for themselves.

@@ -240,306 +240,721 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
                 <AboutWindowNavigationView>
                   <AboutWindowNavigationPage>
                     <AboutWindowToolbarView>
-                      <AboutWindowMainScrolledWindow>
-                        <AboutWindowClamp>
-                          <AboutWindowBox>
-                            {iconName ? (
-                              <AboutWindowAppIconImage name={iconName} />
-                            ) : null}
-                            {applicationName ? (
-                              <AboutWindowAppNameLabel>{applicationName}</AboutWindowAppNameLabel>
-                            ) : null}
-                            {developerName ? (
-                              <AboutWindowDeveloperNameLabel>{developerName}</AboutWindowDeveloperNameLabel>
-                            ) : null}
-                            {version ? (
-                              <AboutWindowVersionButton>{version}</AboutWindowVersionButton>
-                            ) : null}
-                            <AboutWindowBox2>
-                              <AboutWindowDetailsGroup>
-                                <AboutWindowWhatsNewRow>
-                                  <AboutWindowImage name={iconName} />
-                                </AboutWindowWhatsNewRow>
-                                <AboutWindowDetailsRow>
-                                  <AboutWindowImage2 name={iconName} />
-                                </AboutWindowDetailsRow>
-                              </AboutWindowDetailsGroup>
-                              <AboutWindowSupportGroup>
-                                <AboutWindowTroubleshootingRow>
-                                  <AboutWindowImage3 name={iconName} />
-                                </AboutWindowTroubleshootingRow>
-                              </AboutWindowSupportGroup>
-                              <AboutWindowCreditsLegalGroup>
-                                <AboutWindowActionRow>
-                                  <AboutWindowImage4 name={iconName} />
-                                </AboutWindowActionRow>
-                                <AboutWindowActionRow2>
-                                  <AboutWindowImage5 name={iconName} />
-                                </AboutWindowActionRow2>
-                                <AboutWindowActionRow3>
-                                  <AboutWindowImage6 name={iconName} />
-                                </AboutWindowActionRow3>
-                              </AboutWindowCreditsLegalGroup>
-                            </AboutWindowBox2>
-                          </AboutWindowBox>
-                        </AboutWindowClamp>
-                      </AboutWindowMainScrolledWindow>
-                      <AboutWindowMainHeaderbar>
+                      <AboutWindowContent>{content}</AboutWindowContent>
+                      <AboutWindowRevealer>
                         <AboutWindowWindowhandle>
-                          <AboutWindowBox3>
-                            <AboutWindowStart>
-                              <AboutWindowBox4>
-                                <AboutWindowWindowControls />
-                                {children}
-                              </AboutWindowBox4>
-                            </AboutWindowStart>
-                            <AboutWindowTitle>{title}</AboutWindowTitle>
-                            <AboutWindowEnd>
-                              <AboutWindowBox5>
-                                <AboutWindowWindowControls2>
-                                  <AboutWindowCloseButton>
-                                    <AboutWindowImage7 name={iconName} />
-                                  </AboutWindowCloseButton>
-                                </AboutWindowWindowControls2>
-                                {packEnd}
-                              </AboutWindowBox5>
-                            </AboutWindowEnd>
-                          </AboutWindowBox3>
+                          <AboutWindowInternalBox>
+                            <AboutWindowMainHeaderbar>
+                              <AboutWindowWindowhandle2>
+                                <AboutWindowBox>
+                                  <AboutWindowStart>
+                                    <AboutWindowBox2>
+                                      <AboutWindowWindowControls />
+                                      <AboutWindowWindowhandle3>
+                                        <AboutWindowBox3>
+                                          <AboutWindowStart2>
+                                            <AboutWindowBox4>
+                                              <AboutWindowWindowControls2 />
+                                            </AboutWindowBox4>
+                                          </AboutWindowStart2>
+                                          <AboutWindowTitle>{title}</AboutWindowTitle>
+                                          <AboutWindowEnd>
+                                            <AboutWindowBox5>
+                                              <AboutWindowWindowControls3>
+                                                <AboutWindowCloseButton>
+                                                  <AboutWindowImage4 name={iconName} />
+                                                </AboutWindowCloseButton>
+                                              </AboutWindowWindowControls3>
+                                              {packEnd}
+                                            </AboutWindowBox5>
+                                          </AboutWindowEnd>
+                                        </AboutWindowBox3>
+                                      </AboutWindowWindowhandle3>
+                                    </AboutWindowBox2>
+                                  </AboutWindowStart>
+                                  <AboutWindowTitle2>{title}</AboutWindowTitle2>
+                                  <AboutWindowEnd2>
+                                    <AboutWindowBox6>
+                                      <AboutWindowWindowControls4>
+                                        <AboutWindowCloseButton2>
+                                          <AboutWindowImage6 name={iconName} />
+                                        </AboutWindowCloseButton2>
+                                      </AboutWindowWindowControls4>
+                                    </AboutWindowBox6>
+                                  </AboutWindowEnd2>
+                                </AboutWindowBox>
+                              </AboutWindowWindowhandle2>
+                            </AboutWindowMainHeaderbar>
+                            <AboutWindowMainScrolledWindow>
+                              <AboutWindowClamp>
+                                <AboutWindowBox7>
+                                  {iconName ? (
+                                    <AboutWindowAppIconImage name={iconName} />
+                                  ) : null}
+                                  {applicationName ? (
+                                    <AboutWindowAppNameLabel>{applicationName}</AboutWindowAppNameLabel>
+                                  ) : null}
+                                  {developerName ? (
+                                    <AboutWindowDeveloperNameLabel>{developerName}</AboutWindowDeveloperNameLabel>
+                                  ) : null}
+                                  {version ? (
+                                    <AboutWindowVersionButton>{version}</AboutWindowVersionButton>
+                                  ) : null}
+                                  <AboutWindowBox8>
+                                    <AboutWindowDetailsGroup>
+                                      <AboutWindowBox9>
+                                        <AboutWindowHeaderBox>
+                                          <AboutWindowBox10>
+                                            {title ? (
+                                              <AboutWindowTitle3>{title}</AboutWindowTitle3>
+                                            ) : null}
+                                          </AboutWindowBox10>
+                                        </AboutWindowHeaderBox>
+                                        <AboutWindowListboxBox>
+                                          <AboutWindowListbox>
+                                            <AboutWindowWhatsNewRow>
+                                              <AboutWindowHeader>
+                                                {iconName ? (
+                                                  <AboutWindowImage7 name={iconName} />
+                                                ) : null}
+                                                <AboutWindowTitleBox>
+                                                  {title ? (
+                                                    <AboutWindowTitle4>{title}</AboutWindowTitle4>
+                                                  ) : null}
+                                                  <AboutWindowSubtitle />
+                                                </AboutWindowTitleBox>
+                                                <AboutWindowSuffixes>
+                                                  <AboutWindowImage8 name={iconName} />
+                                                </AboutWindowSuffixes>
+                                              </AboutWindowHeader>
+                                            </AboutWindowWhatsNewRow>
+                                            <AboutWindowDetailsRow>
+                                              <AboutWindowHeader2>
+                                                {iconName ? (
+                                                  <AboutWindowImage9 name={iconName} />
+                                                ) : null}
+                                                <AboutWindowTitleBox2>
+                                                  {title ? (
+                                                    <AboutWindowTitle5>{title}</AboutWindowTitle5>
+                                                  ) : null}
+                                                  <AboutWindowSubtitle2 />
+                                                </AboutWindowTitleBox2>
+                                                <AboutWindowSuffixes2>
+                                                  <AboutWindowImage10 name={iconName} />
+                                                </AboutWindowSuffixes2>
+                                              </AboutWindowHeader2>
+                                            </AboutWindowDetailsRow>
+                                          </AboutWindowListbox>
+                                        </AboutWindowListboxBox>
+                                      </AboutWindowBox9>
+                                    </AboutWindowDetailsGroup>
+                                    <AboutWindowSupportGroup>
+                                      <AboutWindowBox11>
+                                        <AboutWindowHeaderBox2>
+                                          <AboutWindowBox12>
+                                            {title ? (
+                                              <AboutWindowTitle6>{title}</AboutWindowTitle6>
+                                            ) : null}
+                                          </AboutWindowBox12>
+                                        </AboutWindowHeaderBox2>
+                                        <AboutWindowListboxBox2>
+                                          <AboutWindowListbox2>
+                                            <AboutWindowTroubleshootingRow>
+                                              <AboutWindowHeader3>
+                                                {iconName ? (
+                                                  <AboutWindowImage11 name={iconName} />
+                                                ) : null}
+                                                <AboutWindowTitleBox3>
+                                                  {title ? (
+                                                    <AboutWindowTitle7>{title}</AboutWindowTitle7>
+                                                  ) : null}
+                                                  <AboutWindowSubtitle3 />
+                                                </AboutWindowTitleBox3>
+                                                <AboutWindowSuffixes3>
+                                                  <AboutWindowImage12 name={iconName} />
+                                                </AboutWindowSuffixes3>
+                                              </AboutWindowHeader3>
+                                            </AboutWindowTroubleshootingRow>
+                                          </AboutWindowListbox2>
+                                        </AboutWindowListboxBox2>
+                                      </AboutWindowBox11>
+                                    </AboutWindowSupportGroup>
+                                    <AboutWindowCreditsLegalGroup>
+                                      <AboutWindowBox13>
+                                        <AboutWindowHeaderBox3>
+                                          <AboutWindowBox14>
+                                            {title ? (
+                                              <AboutWindowTitle8>{title}</AboutWindowTitle8>
+                                            ) : null}
+                                          </AboutWindowBox14>
+                                        </AboutWindowHeaderBox3>
+                                        <AboutWindowListboxBox3>
+                                          <AboutWindowListbox3>
+                                            <AboutWindowActionRow>
+                                              <AboutWindowHeader4>
+                                                {iconName ? (
+                                                  <AboutWindowImage13 name={iconName} />
+                                                ) : null}
+                                                <AboutWindowTitleBox4>
+                                                  {title ? (
+                                                    <AboutWindowTitle9>{title}</AboutWindowTitle9>
+                                                  ) : null}
+                                                  <AboutWindowSubtitle4 />
+                                                </AboutWindowTitleBox4>
+                                                <AboutWindowSuffixes4>
+                                                  <AboutWindowImage14 name={iconName} />
+                                                </AboutWindowSuffixes4>
+                                              </AboutWindowHeader4>
+                                            </AboutWindowActionRow>
+                                            <AboutWindowActionRow2>
+                                              <AboutWindowHeader5>
+                                                {iconName ? (
+                                                  <AboutWindowImage15 name={iconName} />
+                                                ) : null}
+                                                <AboutWindowTitleBox5>
+                                                  {title ? (
+                                                    <AboutWindowTitle10>{title}</AboutWindowTitle10>
+                                                  ) : null}
+                                                  <AboutWindowSubtitle5 />
+                                                </AboutWindowTitleBox5>
+                                                <AboutWindowSuffixes5>
+                                                  <AboutWindowImage16 name={iconName} />
+                                                </AboutWindowSuffixes5>
+                                              </AboutWindowHeader5>
+                                            </AboutWindowActionRow2>
+                                            <AboutWindowActionRow3>
+                                              <AboutWindowHeader6>
+                                                {iconName ? (
+                                                  <AboutWindowImage17 name={iconName} />
+                                                ) : null}
+                                                <AboutWindowTitleBox6>
+                                                  {title ? (
+                                                    <AboutWindowTitle11>{title}</AboutWindowTitle11>
+                                                  ) : null}
+                                                  <AboutWindowSubtitle6 />
+                                                </AboutWindowTitleBox6>
+                                                <AboutWindowSuffixes6>
+                                                  <AboutWindowImage18 name={iconName} />
+                                                </AboutWindowSuffixes6>
+                                              </AboutWindowHeader6>
+                                            </AboutWindowActionRow3>
+                                          </AboutWindowListbox3>
+                                        </AboutWindowListboxBox3>
+                                      </AboutWindowBox13>
+                                    </AboutWindowCreditsLegalGroup>
+                                  </AboutWindowBox8>
+                                </AboutWindowBox7>
+                              </AboutWindowClamp>
+                            </AboutWindowMainScrolledWindow>
+                            {children}
+                          </AboutWindowInternalBox>
                         </AboutWindowWindowhandle>
-                      </AboutWindowMainHeaderbar>
+                      </AboutWindowRevealer>
+                      <AboutWindowRevealer2>
+                        <AboutWindowWindowhandle4>
+                          <AboutWindowInternalBox2 />
+                        </AboutWindowWindowhandle4>
+                      </AboutWindowRevealer2>
                     </AboutWindowToolbarView>
                   </AboutWindowNavigationPage>
                   <AboutWindowWhatsnewPage>
                     <AboutWindowToolbarView2>
-                      <AboutWindowScrolledWindow>
-                        <AboutWindowClampScrollable>
-                          <AboutWindowTextView />
-                        </AboutWindowClampScrollable>
-                      </AboutWindowScrolledWindow>
-                      <AboutWindowHeaderBar>
-                        <AboutWindowWindowhandle2>
-                          <AboutWindowBox6>
-                            <AboutWindowStart2>
-                              <AboutWindowBox7>
-                                <AboutWindowWindowControls3 />
-                              </AboutWindowBox7>
-                            </AboutWindowStart2>
-                            <AboutWindowTitle2>{title}</AboutWindowTitle2>
-                            <AboutWindowEnd2>
-                              <AboutWindowBox8>
-                                <AboutWindowWindowControls4>
-                                  <AboutWindowCloseButton2>
-                                    <AboutWindowImage8 name={iconName} />
-                                  </AboutWindowCloseButton2>
-                                </AboutWindowWindowControls4>
-                                {packEnd}
-                              </AboutWindowBox8>
-                            </AboutWindowEnd2>
-                          </AboutWindowBox6>
-                        </AboutWindowWindowhandle2>
-                      </AboutWindowHeaderBar>
+                      <AboutWindowContent2>{content}</AboutWindowContent2>
+                      <AboutWindowRevealer3>
+                        <AboutWindowWindowhandle5>
+                          <AboutWindowInternalBox3>
+                            <AboutWindowHeaderBar>
+                              <AboutWindowWindowhandle6>
+                                <AboutWindowBox15>
+                                  <AboutWindowStart3>
+                                    <AboutWindowBox16>
+                                      <AboutWindowWindowControls5 />
+                                      <AboutWindowWindowhandle7>
+                                        <AboutWindowBox17>
+                                          <AboutWindowStart4>
+                                            <AboutWindowBox18>
+                                              <AboutWindowWindowControls6 />
+                                            </AboutWindowBox18>
+                                          </AboutWindowStart4>
+                                          <AboutWindowTitle12>{title}</AboutWindowTitle12>
+                                          <AboutWindowEnd3>
+                                            <AboutWindowBox19>
+                                              <AboutWindowWindowControls7>
+                                                <AboutWindowCloseButton3>
+                                                  <AboutWindowImage22 name={iconName} />
+                                                </AboutWindowCloseButton3>
+                                              </AboutWindowWindowControls7>
+                                              {packEnd}
+                                            </AboutWindowBox19>
+                                          </AboutWindowEnd3>
+                                        </AboutWindowBox17>
+                                      </AboutWindowWindowhandle7>
+                                    </AboutWindowBox16>
+                                  </AboutWindowStart3>
+                                  <AboutWindowTitle13>{title}</AboutWindowTitle13>
+                                  <AboutWindowEnd4>
+                                    <AboutWindowBox20>
+                                      <AboutWindowWindowControls8>
+                                        <AboutWindowCloseButton4>
+                                          <AboutWindowImage24 name={iconName} />
+                                        </AboutWindowCloseButton4>
+                                      </AboutWindowWindowControls8>
+                                    </AboutWindowBox20>
+                                  </AboutWindowEnd4>
+                                </AboutWindowBox15>
+                              </AboutWindowWindowhandle6>
+                            </AboutWindowHeaderBar>
+                            <AboutWindowScrolledWindow>
+                              <AboutWindowClampScrollable>
+                                <AboutWindowTextView>
+                                  <AboutWindowText>
+                                    <AboutWindowPlaceholder />
+                                  </AboutWindowText>
+                                </AboutWindowTextView>
+                              </AboutWindowClampScrollable>
+                            </AboutWindowScrolledWindow>
+                          </AboutWindowInternalBox3>
+                        </AboutWindowWindowhandle5>
+                      </AboutWindowRevealer3>
+                      <AboutWindowRevealer4>
+                        <AboutWindowWindowhandle8>
+                          <AboutWindowInternalBox4 />
+                        </AboutWindowWindowhandle8>
+                      </AboutWindowRevealer4>
                     </AboutWindowToolbarView2>
                   </AboutWindowWhatsnewPage>
                   <AboutWindowNavigationPage2>
                     <AboutWindowToolbarView3>
-                      <AboutWindowScrolledWindow2>
-                        <AboutWindowClamp2>
-                          <AboutWindowBox9>
-                            {comments ? (
-                              <AboutWindowCommentsLabel>{comments}</AboutWindowCommentsLabel>
-                            ) : null}
-                            <AboutWindowLinksGroup />
-                          </AboutWindowBox9>
-                        </AboutWindowClamp2>
-                      </AboutWindowScrolledWindow2>
-                      <AboutWindowHeaderBar2>
-                        <AboutWindowWindowhandle3>
-                          <AboutWindowBox10>
-                            <AboutWindowStart3>
-                              <AboutWindowBox11>
-                                <AboutWindowWindowControls5 />
-                              </AboutWindowBox11>
-                            </AboutWindowStart3>
-                            <AboutWindowTitle3>{title}</AboutWindowTitle3>
-                            <AboutWindowEnd3>
-                              <AboutWindowBox12>
-                                <AboutWindowWindowControls6>
-                                  <AboutWindowCloseButton3>
-                                    <AboutWindowImage9 name={iconName} />
-                                  </AboutWindowCloseButton3>
-                                </AboutWindowWindowControls6>
-                                {packEnd}
-                              </AboutWindowBox12>
-                            </AboutWindowEnd3>
-                          </AboutWindowBox10>
-                        </AboutWindowWindowhandle3>
-                      </AboutWindowHeaderBar2>
+                      <AboutWindowContent3>{content}</AboutWindowContent3>
+                      <AboutWindowRevealer5>
+                        <AboutWindowWindowhandle9>
+                          <AboutWindowInternalBox5>
+                            <AboutWindowHeaderBar2>
+                              <AboutWindowWindowhandle10>
+                                <AboutWindowBox21>
+                                  <AboutWindowStart5>
+                                    <AboutWindowBox22>
+                                      <AboutWindowWindowControls9 />
+                                      <AboutWindowWindowhandle11>
+                                        <AboutWindowBox23>
+                                          <AboutWindowStart6>
+                                            <AboutWindowBox24>
+                                              <AboutWindowWindowControls10 />
+                                            </AboutWindowBox24>
+                                          </AboutWindowStart6>
+                                          <AboutWindowTitle14>{title}</AboutWindowTitle14>
+                                          <AboutWindowEnd5>
+                                            <AboutWindowBox25>
+                                              <AboutWindowWindowControls11>
+                                                <AboutWindowCloseButton5>
+                                                  <AboutWindowImage28 name={iconName} />
+                                                </AboutWindowCloseButton5>
+                                              </AboutWindowWindowControls11>
+                                              {packEnd}
+                                            </AboutWindowBox25>
+                                          </AboutWindowEnd5>
+                                        </AboutWindowBox23>
+                                      </AboutWindowWindowhandle11>
+                                    </AboutWindowBox22>
+                                  </AboutWindowStart5>
+                                  <AboutWindowTitle15>{title}</AboutWindowTitle15>
+                                  <AboutWindowEnd6>
+                                    <AboutWindowBox26>
+                                      <AboutWindowWindowControls12>
+                                        <AboutWindowCloseButton6>
+                                          <AboutWindowImage30 name={iconName} />
+                                        </AboutWindowCloseButton6>
+                                      </AboutWindowWindowControls12>
+                                    </AboutWindowBox26>
+                                  </AboutWindowEnd6>
+                                </AboutWindowBox21>
+                              </AboutWindowWindowhandle10>
+                            </AboutWindowHeaderBar2>
+                            <AboutWindowScrolledWindow2>
+                              <AboutWindowClamp2>
+                                <AboutWindowBox27>
+                                  {comments ? (
+                                    <AboutWindowCommentsLabel>{comments}</AboutWindowCommentsLabel>
+                                  ) : null}
+                                  <AboutWindowLinksGroup>
+                                    <AboutWindowBox28>
+                                      <AboutWindowHeaderBox4>
+                                        <AboutWindowBox29>
+                                          {title ? (
+                                            <AboutWindowTitle16>{title}</AboutWindowTitle16>
+                                          ) : null}
+                                        </AboutWindowBox29>
+                                      </AboutWindowHeaderBox4>
+                                      <AboutWindowListboxBox4>
+                                        <AboutWindowListbox4 />
+                                      </AboutWindowListboxBox4>
+                                    </AboutWindowBox28>
+                                  </AboutWindowLinksGroup>
+                                </AboutWindowBox27>
+                              </AboutWindowClamp2>
+                            </AboutWindowScrolledWindow2>
+                          </AboutWindowInternalBox5>
+                        </AboutWindowWindowhandle9>
+                      </AboutWindowRevealer5>
+                      <AboutWindowRevealer6>
+                        <AboutWindowWindowhandle12>
+                          <AboutWindowInternalBox6 />
+                        </AboutWindowWindowhandle12>
+                      </AboutWindowRevealer6>
                     </AboutWindowToolbarView3>
                   </AboutWindowNavigationPage2>
                   <AboutWindowNavigationPage3>
                     <AboutWindowToolbarView4>
-                      <AboutWindowScrolledWindow3>
-                        <AboutWindowClamp3>
-                          <AboutWindowBox13>
-                            <AboutWindowLabel />
-                            <AboutWindowPreferencesGroup>
-                              <AboutWindowActionRow4>
-                                <AboutWindowImage10 name={iconName} />
-                              </AboutWindowActionRow4>
-                            </AboutWindowPreferencesGroup>
-                          </AboutWindowBox13>
-                        </AboutWindowClamp3>
-                      </AboutWindowScrolledWindow3>
-                      <AboutWindowHeaderBar3>
-                        <AboutWindowWindowhandle4>
-                          <AboutWindowBox14>
-                            <AboutWindowStart4>
-                              <AboutWindowBox15>
-                                <AboutWindowWindowControls7 />
-                              </AboutWindowBox15>
-                            </AboutWindowStart4>
-                            <AboutWindowTitle4>{title}</AboutWindowTitle4>
-                            <AboutWindowEnd4>
-                              <AboutWindowBox16>
-                                <AboutWindowWindowControls8>
-                                  <AboutWindowCloseButton4>
-                                    <AboutWindowImage11 name={iconName} />
-                                  </AboutWindowCloseButton4>
-                                </AboutWindowWindowControls8>
-                                {packEnd}
-                              </AboutWindowBox16>
-                            </AboutWindowEnd4>
-                          </AboutWindowBox14>
-                        </AboutWindowWindowhandle4>
-                      </AboutWindowHeaderBar3>
+                      <AboutWindowContent4>{content}</AboutWindowContent4>
+                      <AboutWindowRevealer7>
+                        <AboutWindowWindowhandle13>
+                          <AboutWindowInternalBox7>
+                            <AboutWindowHeaderBar3>
+                              <AboutWindowWindowhandle14>
+                                <AboutWindowBox30>
+                                  <AboutWindowStart7>
+                                    <AboutWindowBox31>
+                                      <AboutWindowWindowControls13 />
+                                      <AboutWindowWindowhandle15>
+                                        <AboutWindowBox32>
+                                          <AboutWindowStart8>
+                                            <AboutWindowBox33>
+                                              <AboutWindowWindowControls14 />
+                                            </AboutWindowBox33>
+                                          </AboutWindowStart8>
+                                          <AboutWindowTitle17>{title}</AboutWindowTitle17>
+                                          <AboutWindowEnd7>
+                                            <AboutWindowBox34>
+                                              <AboutWindowWindowControls15>
+                                                <AboutWindowCloseButton7>
+                                                  <AboutWindowImage34 name={iconName} />
+                                                </AboutWindowCloseButton7>
+                                              </AboutWindowWindowControls15>
+                                              {packEnd}
+                                            </AboutWindowBox34>
+                                          </AboutWindowEnd7>
+                                        </AboutWindowBox32>
+                                      </AboutWindowWindowhandle15>
+                                    </AboutWindowBox31>
+                                  </AboutWindowStart7>
+                                  <AboutWindowTitle18>{title}</AboutWindowTitle18>
+                                  <AboutWindowEnd8>
+                                    <AboutWindowBox35>
+                                      <AboutWindowWindowControls16>
+                                        <AboutWindowCloseButton8>
+                                          <AboutWindowImage36 name={iconName} />
+                                        </AboutWindowCloseButton8>
+                                      </AboutWindowWindowControls16>
+                                    </AboutWindowBox35>
+                                  </AboutWindowEnd8>
+                                </AboutWindowBox30>
+                              </AboutWindowWindowhandle14>
+                            </AboutWindowHeaderBar3>
+                            <AboutWindowScrolledWindow3>
+                              <AboutWindowClamp3>
+                                <AboutWindowBox36>
+                                  <AboutWindowLabel />
+                                  <AboutWindowPreferencesGroup>
+                                    <AboutWindowBox37>
+                                      <AboutWindowHeaderBox5>
+                                        <AboutWindowBox38>
+                                          {title ? (
+                                            <AboutWindowTitle19>{title}</AboutWindowTitle19>
+                                          ) : null}
+                                        </AboutWindowBox38>
+                                      </AboutWindowHeaderBox5>
+                                      <AboutWindowListboxBox5>
+                                        <AboutWindowListbox5>
+                                          <AboutWindowActionRow4>
+                                            <AboutWindowHeader7>
+                                              {iconName ? (
+                                                <AboutWindowImage37 name={iconName} />
+                                              ) : null}
+                                              <AboutWindowTitleBox7>
+                                                {title ? (
+                                                  <AboutWindowTitle20>{title}</AboutWindowTitle20>
+                                                ) : null}
+                                                <AboutWindowSubtitle7 />
+                                              </AboutWindowTitleBox7>
+                                              <AboutWindowSuffixes7>
+                                                <AboutWindowImage38 name={iconName} />
+                                              </AboutWindowSuffixes7>
+                                            </AboutWindowHeader7>
+                                          </AboutWindowActionRow4>
+                                        </AboutWindowListbox5>
+                                      </AboutWindowListboxBox5>
+                                    </AboutWindowBox37>
+                                  </AboutWindowPreferencesGroup>
+                                </AboutWindowBox36>
+                              </AboutWindowClamp3>
+                            </AboutWindowScrolledWindow3>
+                          </AboutWindowInternalBox7>
+                        </AboutWindowWindowhandle13>
+                      </AboutWindowRevealer7>
+                      <AboutWindowRevealer8>
+                        <AboutWindowWindowhandle16>
+                          <AboutWindowInternalBox8 />
+                        </AboutWindowWindowhandle16>
+                      </AboutWindowRevealer8>
                     </AboutWindowToolbarView4>
                   </AboutWindowNavigationPage3>
                   <AboutWindowDebugInfoPage>
                     <AboutWindowToolbarView5>
-                      <AboutWindowScrolledWindow4>
-                        <AboutWindowClampScrollable2>
-                          <AboutWindowTextView2 />
-                        </AboutWindowClampScrollable2>
-                      </AboutWindowScrolledWindow4>
-                      <AboutWindowHeaderBar4>
-                        <AboutWindowWindowhandle5>
-                          <AboutWindowBox17>
-                            <AboutWindowStart5>
-                              <AboutWindowBox18>
-                                <AboutWindowWindowControls9 />
-                              </AboutWindowBox18>
-                            </AboutWindowStart5>
-                            <AboutWindowTitle5>{title}</AboutWindowTitle5>
-                            <AboutWindowEnd5>
-                              <AboutWindowBox19>
-                                <AboutWindowWindowControls10>
-                                  <AboutWindowCloseButton5>
-                                    <AboutWindowImage12 name={iconName} />
-                                  </AboutWindowCloseButton5>
-                                </AboutWindowWindowControls10>
-                                {packEnd}
-                              </AboutWindowBox19>
-                            </AboutWindowEnd5>
-                          </AboutWindowBox17>
-                        </AboutWindowWindowhandle5>
-                      </AboutWindowHeaderBar4>
-                      <AboutWindowActionBar>
-                        <AboutWindowButton />
-                        <AboutWindowButton2 />
-                      </AboutWindowActionBar>
+                      <AboutWindowContent5>{content}</AboutWindowContent5>
+                      <AboutWindowRevealer9>
+                        <AboutWindowWindowhandle17>
+                          <AboutWindowInternalBox9>
+                            <AboutWindowHeaderBar4>
+                              <AboutWindowWindowhandle18>
+                                <AboutWindowBox39>
+                                  <AboutWindowStart9>
+                                    <AboutWindowBox40>
+                                      <AboutWindowWindowControls17 />
+                                      <AboutWindowWindowhandle19>
+                                        <AboutWindowBox41>
+                                          <AboutWindowStart10>
+                                            <AboutWindowBox42>
+                                              <AboutWindowWindowControls18 />
+                                            </AboutWindowBox42>
+                                          </AboutWindowStart10>
+                                          <AboutWindowTitle21>{title}</AboutWindowTitle21>
+                                          <AboutWindowEnd9>
+                                            <AboutWindowBox43>
+                                              <AboutWindowWindowControls19>
+                                                <AboutWindowCloseButton9>
+                                                  <AboutWindowImage42 name={iconName} />
+                                                </AboutWindowCloseButton9>
+                                              </AboutWindowWindowControls19>
+                                              {packEnd}
+                                            </AboutWindowBox43>
+                                          </AboutWindowEnd9>
+                                        </AboutWindowBox41>
+                                      </AboutWindowWindowhandle19>
+                                    </AboutWindowBox40>
+                                  </AboutWindowStart9>
+                                  <AboutWindowTitle22>{title}</AboutWindowTitle22>
+                                  <AboutWindowEnd10>
+                                    <AboutWindowBox44>
+                                      <AboutWindowWindowControls20>
+                                        <AboutWindowCloseButton10>
+                                          <AboutWindowImage44 name={iconName} />
+                                        </AboutWindowCloseButton10>
+                                      </AboutWindowWindowControls20>
+                                    </AboutWindowBox44>
+                                  </AboutWindowEnd10>
+                                </AboutWindowBox39>
+                              </AboutWindowWindowhandle18>
+                            </AboutWindowHeaderBar4>
+                            <AboutWindowActionBar>
+                              <AboutWindowRevealer10>
+                                <AboutWindowBox45>
+                                  <AboutWindowButton21 />
+                                  <AboutWindowButton22 />
+                                </AboutWindowBox45>
+                              </AboutWindowRevealer10>
+                            </AboutWindowActionBar>
+                            <AboutWindowScrolledWindow4>
+                              <AboutWindowClampScrollable2>
+                                <AboutWindowTextView2>
+                                  <AboutWindowText2>
+                                    <AboutWindowPlaceholder2 />
+                                  </AboutWindowText2>
+                                </AboutWindowTextView2>
+                              </AboutWindowClampScrollable2>
+                            </AboutWindowScrolledWindow4>
+                          </AboutWindowInternalBox9>
+                        </AboutWindowWindowhandle17>
+                      </AboutWindowRevealer9>
+                      <AboutWindowRevealer11>
+                        <AboutWindowWindowhandle20>
+                          <AboutWindowInternalBox10 />
+                        </AboutWindowWindowhandle20>
+                      </AboutWindowRevealer11>
                     </AboutWindowToolbarView5>
                   </AboutWindowDebugInfoPage>
                   <AboutWindowNavigationPage4>
                     <AboutWindowToolbarView6>
-                      <AboutWindowScrolledWindow5>
-                        <AboutWindowClamp4 />
-                      </AboutWindowScrolledWindow5>
-                      <AboutWindowHeaderBar5>
-                        <AboutWindowWindowhandle6>
-                          <AboutWindowBox20>
-                            <AboutWindowStart6>
-                              <AboutWindowBox21>
-                                <AboutWindowWindowControls11 />
-                              </AboutWindowBox21>
-                            </AboutWindowStart6>
-                            <AboutWindowTitle6>{title}</AboutWindowTitle6>
-                            <AboutWindowEnd6>
-                              <AboutWindowBox22>
-                                <AboutWindowWindowControls12>
-                                  <AboutWindowCloseButton6>
-                                    <AboutWindowImage13 name={iconName} />
-                                  </AboutWindowCloseButton6>
-                                </AboutWindowWindowControls12>
-                                {packEnd}
-                              </AboutWindowBox22>
-                            </AboutWindowEnd6>
-                          </AboutWindowBox20>
-                        </AboutWindowWindowhandle6>
-                      </AboutWindowHeaderBar5>
+                      <AboutWindowContent6>{content}</AboutWindowContent6>
+                      <AboutWindowRevealer12>
+                        <AboutWindowWindowhandle21>
+                          <AboutWindowInternalBox11>
+                            <AboutWindowHeaderBar5>
+                              <AboutWindowWindowhandle22>
+                                <AboutWindowBox47>
+                                  <AboutWindowStart12>
+                                    <AboutWindowBox48>
+                                      <AboutWindowWindowControls21 />
+                                      <AboutWindowWindowhandle23>
+                                        <AboutWindowBox49>
+                                          <AboutWindowStart13>
+                                            <AboutWindowBox50>
+                                              <AboutWindowWindowControls22 />
+                                            </AboutWindowBox50>
+                                          </AboutWindowStart13>
+                                          <AboutWindowTitle23>{title}</AboutWindowTitle23>
+                                          <AboutWindowEnd11>
+                                            <AboutWindowBox51>
+                                              <AboutWindowWindowControls23>
+                                                <AboutWindowCloseButton11>
+                                                  <AboutWindowImage48 name={iconName} />
+                                                </AboutWindowCloseButton11>
+                                              </AboutWindowWindowControls23>
+                                              {packEnd}
+                                            </AboutWindowBox51>
+                                          </AboutWindowEnd11>
+                                        </AboutWindowBox49>
+                                      </AboutWindowWindowhandle23>
+                                    </AboutWindowBox48>
+                                  </AboutWindowStart12>
+                                  <AboutWindowTitle24>{title}</AboutWindowTitle24>
+                                  <AboutWindowEnd12>
+                                    <AboutWindowBox52>
+                                      <AboutWindowWindowControls24>
+                                        <AboutWindowCloseButton12>
+                                          <AboutWindowImage50 name={iconName} />
+                                        </AboutWindowCloseButton12>
+                                      </AboutWindowWindowControls24>
+                                    </AboutWindowBox52>
+                                  </AboutWindowEnd12>
+                                </AboutWindowBox47>
+                              </AboutWindowWindowhandle22>
+                            </AboutWindowHeaderBar5>
+                            <AboutWindowScrolledWindow5>
+                              <AboutWindowClamp4 />
+                            </AboutWindowScrolledWindow5>
+                          </AboutWindowInternalBox11>
+                        </AboutWindowWindowhandle21>
+                      </AboutWindowRevealer12>
+                      <AboutWindowRevealer13>
+                        <AboutWindowWindowhandle24>
+                          <AboutWindowInternalBox12 />
+                        </AboutWindowWindowhandle24>
+                      </AboutWindowRevealer13>
                     </AboutWindowToolbarView6>
                   </AboutWindowNavigationPage4>
                   <AboutWindowNavigationPage5>
                     <AboutWindowToolbarView7>
-                      <AboutWindowScrolledWindow6>
-                        <AboutWindowClamp5 />
-                      </AboutWindowScrolledWindow6>
-                      <AboutWindowHeaderBar6>
-                        <AboutWindowWindowhandle7>
-                          <AboutWindowBox23>
-                            <AboutWindowStart7>
-                              <AboutWindowBox24>
-                                <AboutWindowWindowControls13 />
-                              </AboutWindowBox24>
-                            </AboutWindowStart7>
-                            <AboutWindowTitle7>{title}</AboutWindowTitle7>
-                            <AboutWindowEnd7>
-                              <AboutWindowBox25>
-                                <AboutWindowWindowControls14>
-                                  <AboutWindowCloseButton7>
-                                    <AboutWindowImage14 name={iconName} />
-                                  </AboutWindowCloseButton7>
-                                </AboutWindowWindowControls14>
-                                {packEnd}
-                              </AboutWindowBox25>
-                            </AboutWindowEnd7>
-                          </AboutWindowBox23>
-                        </AboutWindowWindowhandle7>
-                      </AboutWindowHeaderBar6>
+                      <AboutWindowContent7>{content}</AboutWindowContent7>
+                      <AboutWindowRevealer14>
+                        <AboutWindowWindowhandle25>
+                          <AboutWindowInternalBox13>
+                            <AboutWindowHeaderBar6>
+                              <AboutWindowWindowhandle26>
+                                <AboutWindowBox53>
+                                  <AboutWindowStart14>
+                                    <AboutWindowBox54>
+                                      <AboutWindowWindowControls25 />
+                                      <AboutWindowWindowhandle27>
+                                        <AboutWindowBox55>
+                                          <AboutWindowStart15>
+                                            <AboutWindowBox56>
+                                              <AboutWindowWindowControls26 />
+                                            </AboutWindowBox56>
+                                          </AboutWindowStart15>
+                                          <AboutWindowTitle25>{title}</AboutWindowTitle25>
+                                          <AboutWindowEnd13>
+                                            <AboutWindowBox57>
+                                              <AboutWindowWindowControls27>
+                                                <AboutWindowCloseButton13>
+                                                  <AboutWindowImage54 name={iconName} />
+                                                </AboutWindowCloseButton13>
+                                              </AboutWindowWindowControls27>
+                                              {packEnd}
+                                            </AboutWindowBox57>
+                                          </AboutWindowEnd13>
+                                        </AboutWindowBox55>
+                                      </AboutWindowWindowhandle27>
+                                    </AboutWindowBox54>
+                                  </AboutWindowStart14>
+                                  <AboutWindowTitle26>{title}</AboutWindowTitle26>
+                                  <AboutWindowEnd14>
+                                    <AboutWindowBox58>
+                                      <AboutWindowWindowControls28>
+                                        <AboutWindowCloseButton14>
+                                          <AboutWindowImage56 name={iconName} />
+                                        </AboutWindowCloseButton14>
+                                      </AboutWindowWindowControls28>
+                                    </AboutWindowBox58>
+                                  </AboutWindowEnd14>
+                                </AboutWindowBox53>
+                              </AboutWindowWindowhandle26>
+                            </AboutWindowHeaderBar6>
+                            <AboutWindowScrolledWindow6>
+                              <AboutWindowClamp5 />
+                            </AboutWindowScrolledWindow6>
+                          </AboutWindowInternalBox13>
+                        </AboutWindowWindowhandle25>
+                      </AboutWindowRevealer14>
+                      <AboutWindowRevealer15>
+                        <AboutWindowWindowhandle28>
+                          <AboutWindowInternalBox14 />
+                        </AboutWindowWindowhandle28>
+                      </AboutWindowRevealer15>
                     </AboutWindowToolbarView7>
                   </AboutWindowNavigationPage5>
                   <AboutWindowNavigationPage6>
                     <AboutWindowToolbarView8>
-                      <AboutWindowScrolledWindow7>
-                        <AboutWindowClamp6 />
-                      </AboutWindowScrolledWindow7>
-                      <AboutWindowHeaderBar7>
-                        <AboutWindowWindowhandle8>
-                          <AboutWindowBox26>
-                            <AboutWindowStart8>
-                              <AboutWindowBox27>
-                                <AboutWindowWindowControls15 />
-                              </AboutWindowBox27>
-                            </AboutWindowStart8>
-                            <AboutWindowTitle8>{title}</AboutWindowTitle8>
-                            <AboutWindowEnd8>
-                              <AboutWindowBox28>
-                                <AboutWindowWindowControls16>
-                                  <AboutWindowCloseButton8>
-                                    <AboutWindowImage15 name={iconName} />
-                                  </AboutWindowCloseButton8>
-                                </AboutWindowWindowControls16>
-                                {packEnd}
-                              </AboutWindowBox28>
-                            </AboutWindowEnd8>
-                          </AboutWindowBox26>
-                        </AboutWindowWindowhandle8>
-                      </AboutWindowHeaderBar7>
+                      <AboutWindowContent8>{content}</AboutWindowContent8>
+                      <AboutWindowRevealer16>
+                        <AboutWindowWindowhandle29>
+                          <AboutWindowInternalBox15>
+                            <AboutWindowHeaderBar7>
+                              <AboutWindowWindowhandle30>
+                                <AboutWindowBox59>
+                                  <AboutWindowStart16>
+                                    <AboutWindowBox60>
+                                      <AboutWindowWindowControls29 />
+                                      <AboutWindowWindowhandle31>
+                                        <AboutWindowBox61>
+                                          <AboutWindowStart17>
+                                            <AboutWindowBox62>
+                                              <AboutWindowWindowControls30 />
+                                            </AboutWindowBox62>
+                                          </AboutWindowStart17>
+                                          <AboutWindowTitle27>{title}</AboutWindowTitle27>
+                                          <AboutWindowEnd15>
+                                            <AboutWindowBox63>
+                                              <AboutWindowWindowControls31>
+                                                <AboutWindowCloseButton15>
+                                                  <AboutWindowImage60 name={iconName} />
+                                                </AboutWindowCloseButton15>
+                                              </AboutWindowWindowControls31>
+                                              {packEnd}
+                                            </AboutWindowBox63>
+                                          </AboutWindowEnd15>
+                                        </AboutWindowBox61>
+                                      </AboutWindowWindowhandle31>
+                                    </AboutWindowBox60>
+                                  </AboutWindowStart16>
+                                  <AboutWindowTitle28>{title}</AboutWindowTitle28>
+                                  <AboutWindowEnd16>
+                                    <AboutWindowBox64>
+                                      <AboutWindowWindowControls32>
+                                        <AboutWindowCloseButton16>
+                                          <AboutWindowImage62 name={iconName} />
+                                        </AboutWindowCloseButton16>
+                                      </AboutWindowWindowControls32>
+                                    </AboutWindowBox64>
+                                  </AboutWindowEnd16>
+                                </AboutWindowBox59>
+                              </AboutWindowWindowhandle30>
+                            </AboutWindowHeaderBar7>
+                            <AboutWindowScrolledWindow7>
+                              <AboutWindowClamp6 />
+                            </AboutWindowScrolledWindow7>
+                          </AboutWindowInternalBox15>
+                        </AboutWindowWindowhandle29>
+                      </AboutWindowRevealer16>
+                      <AboutWindowRevealer17>
+                        <AboutWindowWindowhandle32>
+                          <AboutWindowInternalBox16 />
+                        </AboutWindowWindowhandle32>
+                      </AboutWindowRevealer17>
                     </AboutWindowToolbarView8>
                   </AboutWindowNavigationPage6>
                 </AboutWindowNavigationView>
               </AboutWindowToastOverlay>
                   {titlebar}
-                  {content}
                   {child}
         </>
       ),
@@ -554,94 +969,34 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
   })
 }
 
-function AboutWindowAppIconImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-window-app-icon-image"
-        data-node="image"
-      className={cn("image", "icon-dropshadow", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowSelection({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowDimming({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-selection"
-        data-node="selection"
-      className={cn("selection", className)}
+      data-slot="about-window-dimming"
+        data-node="dimming"
+      className={cn("dimming", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowLink({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowShadow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-link"
-        data-node="link"
-      className={cn("link", className)}
+      data-slot="about-window-shadow"
+        data-node="shadow"
+      className={cn("shadow", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowAppNameLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-window-app-name-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", "title-1", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowSelection2({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-selection2"
-        data-node="selection"
-      className={cn("selection", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowLink2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-link2"
-        data-node="link"
-      className={cn("link", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowDeveloperNameLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="about-window-developer-name-label"
-        data-node="label"
-        data-xalign="center"
-        data-yalign="center"
-      className={cn("label", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowVersionButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-window-version-button"
-        data-node="button"
-        data-halign="center"
-      className={cn("button", "bin", "app-version", className)}
+      data-slot="about-window-content"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
       {...props}
     />
   )
@@ -658,12 +1013,23 @@ function AboutWindowImage({ className, ...props }: React.ComponentProps<typeof I
   )
 }
 
-function AboutWindowWhatsNewRow({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-whats-new-row"
-        data-node="row"
-      className={cn("row", "bin", className)}
+      data-slot="about-window-window-controls"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -680,241 +1046,21 @@ function AboutWindowImage2({ className, ...props }: React.ComponentProps<typeof 
   )
 }
 
-function AboutWindowDetailsRow({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button2"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-details-row"
-        data-node="row"
-      className={cn("row", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWebsiteRow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-website-row"
-        data-node="row"
-      className={cn("row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowDetailsGroup({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-details-group"
-        data-node="preferencesgroup"
-      className={cn("preferencesgroup", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowSupportRow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-support-row"
-        data-node="row"
-      className={cn("row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowIssueRow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-issue-row"
-        data-node="row"
-      className={cn("row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-window-image3"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTroubleshootingRow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-troubleshooting-row"
-        data-node="row"
-      className={cn("row", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowSupportGroup({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-support-group"
-        data-node="preferencesgroup"
-      className={cn("preferencesgroup", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage4({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-window-image4"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowActionRow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-action-row"
-        data-node="row"
-      className={cn("row", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-window-image5"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowActionRow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-action-row2"
-        data-node="row"
-      className={cn("row", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage6({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="about-window-image6"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowActionRow3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-action-row3"
-        data-node="row"
-      className={cn("row", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCreditsLegalGroup({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-credits-legal-group"
-        data-node="preferencesgroup"
-      className={cn("preferencesgroup", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box2"
-        data-node="box"
-      className={cn("box", "box", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box"
-        data-node="box"
-      className={cn("box", "box", "vertical", "vertical", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowClamp({ className, style, ...props }: React.ComponentProps<"div">) {
-  const { ref, columns } = useClamp<HTMLDivElement>({  })
-
-  return (
-    <div
-      ref={ref}
-      data-slot="about-window-clamp"
-        data-node="clamp"
-      className={cn("clamp", "clamp", className)}
-      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowMainScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-main-scrolled-window"
-        data-node="scrolledwindow"
-      className={cn("scrolledwindow", "main-page", className)}
-      {...props}
-    >
-      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
-        {children}
-      </div>
-      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
-              <div data-node="range" className={cn("range", "horizontal")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
-              <div data-node="range" className={cn("range", "vertical")}>
-                <div data-node="trough" className={cn("trough")}>
-                  <div data-node="slider" className={cn("slider")} />
-                </div>
-              </div>
-            </div>
-    </div>
-  )
-}
-
-function AboutWindowWindowControls({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls"
+      data-slot="about-window-window-controls2"
         data-node="windowcontrols"
       className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
@@ -933,10 +1079,10 @@ function AboutWindowBox4({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutWindowStart({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowStart2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start"
+      data-slot="about-window-start2"
         data-node="widget"
       className={cn("widget", className)}
       {...props}
@@ -955,11 +1101,33 @@ function AboutWindowTitle({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AboutWindowImage7({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+function AboutWindowImage3({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image3"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton3({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button3"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage4({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
         name={name}
-      data-slot="about-window-image7"
+      data-slot="about-window-image4"
         data-node="image"
       className={cn("image", className)}
       {...props}
@@ -978,10 +1146,10 @@ function AboutWindowCloseButton({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function AboutWindowWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowControls3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls2"
+      data-slot="about-window-window-controls3"
         data-node="windowcontrols"
       className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
@@ -1022,10 +1190,143 @@ function AboutWindowBox3({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function AboutWindowWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-windowhandle"
+      data-slot="about-window-windowhandle3"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box2"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title2"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage5({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image5"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton4({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button4"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage6({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image6"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls4"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box6"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end2"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle2"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -1039,6 +1340,2046 @@ function AboutWindowMainHeaderbar({ className, ...props }: React.ComponentProps<
       data-slot="about-window-main-headerbar"
         data-node="headerbar"
       className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowAppIconImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-app-icon-image"
+        data-node="image"
+      className={cn("image", "icon-dropshadow", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowAppNameLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-app-name-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link4"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDeveloperNameLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-developer-name-label"
+        data-node="label"
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowVersionButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-version-button"
+        data-node="button"
+        data-halign="center"
+      className={cn("button", "bin", "app-version", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection5"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link5"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection6"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link6"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle3({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title3"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "heading", "h4", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection7"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link7"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection8"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link8"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDescription({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-description"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box10"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "labels", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-box"
+        data-node="box"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPrefixes({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-prefixes"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage7({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image7"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection9"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link9"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection10"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link10"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle4({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title4"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection11"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link11"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection12"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link12"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSubtitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-subtitle"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitleBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title-box"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage8({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image8"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSuffixes({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-suffixes"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWhatsNewRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-whats-new-row"
+        data-node="row"
+      className={cn("row", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPrefixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-prefixes2"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage9({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image9"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection13"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link13"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection14"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link14"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle5({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title5"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection15"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link15"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection16"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link16"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSubtitle2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-subtitle2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitleBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title-box2"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage10({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image10"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSuffixes2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-suffixes2"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeader2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header2"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDetailsRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-details-row"
+        data-node="row"
+      className={cn("row", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWebsiteRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-website-row"
+        data-node="row"
+      className={cn("row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListbox({ className, ...props }: React.ComponentProps<"ul">) {
+  return (
+    <ul
+      data-slot="about-window-listbox"
+        data-node="list"
+      className={cn("list", "boxed-list", "lay-col", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListboxBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-listbox-box"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box9"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDetailsGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-details-group"
+        data-node="preferencesgroup"
+      className={cn("preferencesgroup", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection17({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection17"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink17({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link17"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection18"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link18"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle6({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title6"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "heading", "h4", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection19({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection19"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink19({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link19"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection20({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection20"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink20({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link20"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDescription2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-description2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box12"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "labels", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-box2"
+        data-node="box"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSupportRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-support-row"
+        data-node="row"
+      className={cn("row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowIssueRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-issue-row"
+        data-node="row"
+      className={cn("row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPrefixes3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-prefixes3"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage11({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image11"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection21({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection21"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink21({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link21"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection22"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link22"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle7({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title7"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection23({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection23"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink23({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link23"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection24({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection24"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink24({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link24"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSubtitle3({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-subtitle3"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitleBox3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title-box3"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage12({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image12"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSuffixes3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-suffixes3"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeader3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header3"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTroubleshootingRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-troubleshooting-row"
+        data-node="row"
+      className={cn("row", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListbox2({ className, ...props }: React.ComponentProps<"ul">) {
+  return (
+    <ul
+      data-slot="about-window-listbox2"
+        data-node="list"
+      className={cn("list", "boxed-list", "lay-col", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListboxBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-listbox-box2"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box11"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSupportGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-support-group"
+        data-node="preferencesgroup"
+      className={cn("preferencesgroup", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection25({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection25"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink25({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link25"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection26({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection26"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink26({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link26"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle8({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title8"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "heading", "h4", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection27({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection27"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink27({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link27"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection28({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection28"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink28({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link28"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDescription3({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-description3"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box14"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "labels", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBox3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-box3"
+        data-node="box"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPrefixes4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-prefixes4"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage13({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image13"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection29({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection29"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink29({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link29"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection30({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection30"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink30({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link30"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle9({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title9"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection31({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection31"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink31({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link31"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection32({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection32"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink32({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link32"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSubtitle4({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-subtitle4"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitleBox4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title-box4"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage14({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image14"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSuffixes4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-suffixes4"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeader4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header4"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowActionRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-action-row"
+        data-node="row"
+      className={cn("row", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPrefixes5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-prefixes5"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage15({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image15"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection33({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection33"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink33({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link33"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection34({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection34"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink34({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link34"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle10({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title10"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection35({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection35"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink35({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link35"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection36({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection36"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink36({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link36"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSubtitle5({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-subtitle5"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitleBox5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title-box5"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage16({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image16"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSuffixes5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-suffixes5"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeader5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header5"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowActionRow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-action-row2"
+        data-node="row"
+      className={cn("row", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPrefixes6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-prefixes6"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage17({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image17"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection37({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection37"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink37({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link37"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection38({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection38"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink38({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link38"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle11({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title11"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection39({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection39"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink39({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link39"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection40({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection40"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink40({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link40"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSubtitle6({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-subtitle6"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitleBox6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title-box6"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage18({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image18"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSuffixes6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-suffixes6"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeader6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header6"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowActionRow3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-action-row3"
+        data-node="row"
+      className={cn("row", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListbox3({ className, ...props }: React.ComponentProps<"ul">) {
+  return (
+    <ul
+      data-slot="about-window-listbox3"
+        data-node="list"
+      className={cn("list", "boxed-list", "lay-col", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListboxBox3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-listbox-box3"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box13"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCreditsLegalGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-credits-legal-group"
+        data-node="preferencesgroup"
+      className={cn("preferencesgroup", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box8"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box7"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowClamp({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="about-window-clamp"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowMainScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-main-scrolled-window"
+        data-node="scrolledwindow"
+      className={cn("scrolledwindow", "main-page", className)}
+      {...props}
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
+  )
+}
+
+function AboutWindowInternalBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowInternalBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle4"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer2"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -1066,6 +3407,536 @@ function AboutWindowNavigationPage({ className, ...props }: React.ComponentProps
   )
 }
 
+function AboutWindowContent2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-content2"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage19({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image19"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton5({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button5"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls5"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage20({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image20"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton6({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button6"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls6"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box18"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start4"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title12"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage21({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image21"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton7({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button7"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage22({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image22"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls7"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox19({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box19"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end3"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox17({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box17"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle7"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box16"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start3"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title13"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage23({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image23"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton8({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button8"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage24({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image24"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls8"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox20({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box20"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end4"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box15"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle6"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-bar"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBorder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-border"
+        data-node="border"
+      className={cn("border", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-placeholder"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection41({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection41"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-block-cursor"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection42({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection42"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowText({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-text"
+        data-node="text"
+      className={cn("text", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSheet2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-sheet2"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPaper2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-paper2"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDrawing2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-drawing2"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window2"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowTextView({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
     <textarea
@@ -1085,8 +3956,30 @@ function AboutWindowClampScrollable({ className, style, ...props }: React.Compon
       ref={ref}
       data-slot="about-window-clamp-scrollable"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot2"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot3"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -1121,121 +4014,21 @@ function AboutWindowScrolledWindow({ className, children, ...props }: React.Comp
   )
 }
 
-function AboutWindowWindowControls3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls3"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box7"
+      data-slot="box"
         data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowStart2({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start2"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTitle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-title2"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage8({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-window-image8"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCloseButton2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowControls4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls4"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box8"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowEnd2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-end2"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box6"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-windowhandle2"
+      data-slot="about-window-windowhandle5"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -1243,12 +4036,45 @@ function AboutWindowWindowhandle2({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutWindowHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowRevealer3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-header-bar"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
+      data-slot="about-window-revealer3"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowInternalBox4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle8"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer4"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -1276,10 +4102,364 @@ function AboutWindowWhatsnewPage({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AboutWindowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowContent3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-selection3"
+      data-slot="about-window-content3"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage25({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image25"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton9({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button9"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls9"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage26({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image26"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton10({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button10"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls10"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox24({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box24"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start6"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title14"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage27({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image27"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton11({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button11"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage28({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image28"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls11"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox25({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box25"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end5"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox23({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box23"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle11"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box22"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start5"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title15"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage29({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image29"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton12({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button12"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage30({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image30"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls12"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox26({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box26"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end6"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox21({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box21"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle10"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBar2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-bar2"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection43({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection43"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1287,10 +4467,32 @@ function AboutWindowSelection3({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutWindowLink3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowLink41({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-link3"
+      data-slot="about-window-link41"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection44({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection44"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink42({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link42"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1311,12 +4513,183 @@ function AboutWindowCommentsLabel({ className, ...props }: React.ComponentProps<
   )
 }
 
+function AboutWindowSelection45({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection45"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink43({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link43"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection46({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection46"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink44({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link44"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle16({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title16"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "heading", "h4", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection47({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection47"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink45({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link45"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection48({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection48"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink46({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link46"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDescription4({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-description4"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox29({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box29"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "labels", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBox4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-box4"
+        data-node="box"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowDetailsWebsiteRow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-details-website-row"
         data-node="row"
       className={cn("row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListbox4({ className, ...props }: React.ComponentProps<"ul">) {
+  return (
+    <ul
+      data-slot="about-window-listbox4"
+        data-node="list"
+      className={cn("list", "boxed-list", "lay-col", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListboxBox4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-listbox-box4"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox28({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box28"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -1333,10 +4706,10 @@ function AboutWindowLinksGroup({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutWindowBox9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowBox27({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-box9"
+      data-slot="about-window-box27"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -1352,8 +4725,30 @@ function AboutWindowClamp2({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp2"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot3"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot4"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -1388,121 +4783,21 @@ function AboutWindowScrolledWindow2({ className, children, ...props }: React.Com
   )
 }
 
-function AboutWindowWindowControls5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls5"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox11({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box11"
+      data-slot="box"
         data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowStart3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start3"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTitle3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-title3"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage9({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-window-image9"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCloseButton3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowControls6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls6"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box12"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowEnd3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-end3"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box10"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-windowhandle3"
+      data-slot="about-window-windowhandle9"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -1510,12 +4805,45 @@ function AboutWindowWindowhandle3({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutWindowHeaderBar2({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowRevealer5({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-header-bar2"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
+      data-slot="about-window-revealer5"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowInternalBox6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle12"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer6"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -1543,10 +4871,364 @@ function AboutWindowNavigationPage2({ className, ...props }: React.ComponentProp
   )
 }
 
-function AboutWindowSelection4({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowContent4({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-selection4"
+      data-slot="about-window-content4"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage31({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image31"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton13({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button13"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls13"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage32({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image32"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton14({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button14"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls14"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox33({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box33"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start8"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle17({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title17"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage33({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image33"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton15({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button15"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage34({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image34"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls15"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox34({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box34"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end7"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox32({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box32"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle15"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox31({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box31"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start7"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title18"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage35({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image35"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton16({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button16"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage36({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image36"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls16"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox35({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box35"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end8"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox30({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box30"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle14"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBar3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-bar3"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection49({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection49"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -1554,10 +5236,32 @@ function AboutWindowSelection4({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function AboutWindowLink4({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowLink47({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-link4"
+      data-slot="about-window-link47"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection50({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection50"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink48({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link48"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -1578,12 +5282,323 @@ function AboutWindowLabel({ className, ...props }: React.ComponentProps<"span">)
   )
 }
 
-function AboutWindowImage10({ className, ...props }: React.ComponentProps<typeof Icon>) {
+function AboutWindowSelection51({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection51"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink49({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link49"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection52({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection52"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink50({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link50"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle19({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title19"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "heading", "h4", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection53({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection53"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink51({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link51"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection54({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection54"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink52({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link52"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDescription5({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-description5"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox38({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box38"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "labels", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBox5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-box5"
+        data-node="box"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPrefixes7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-prefixes7"
+        data-node="box"
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage37({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
     <Icon
-      data-slot="about-window-image10"
+      data-slot="about-window-image37"
+        data-node="image"
+        data-valign="center"
+      className={cn("image", "icon", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection55({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection55"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink53({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link53"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection56({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection56"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink54({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link54"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle20({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-title20"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection57({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection57"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink55({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link55"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection58({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection58"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowLink56({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-link56"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSubtitle7({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="about-window-subtitle7"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitleBox7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title-box7"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage38({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image38"
         data-node="image"
       className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSuffixes7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-suffixes7"
+        data-node="box"
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeader7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header7"
+        data-node="box"
+        data-valign="center"
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1600,6 +5615,39 @@ function AboutWindowActionRow4({ className, ...props }: React.ComponentProps<"di
   )
 }
 
+function AboutWindowListbox5({ className, ...props }: React.ComponentProps<"ul">) {
+  return (
+    <ul
+      data-slot="about-window-listbox5"
+        data-node="list"
+      className={cn("list", "boxed-list", "lay-col", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowListboxBox5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-listbox-box5"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox37({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box37"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowPreferencesGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -1611,10 +5659,10 @@ function AboutWindowPreferencesGroup({ className, ...props }: React.ComponentPro
   )
 }
 
-function AboutWindowBox13({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowBox36({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-box13"
+      data-slot="about-window-box36"
         data-node="box"
       className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
@@ -1630,8 +5678,30 @@ function AboutWindowClamp3({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp3"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot4"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot5"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -1666,121 +5736,21 @@ function AboutWindowScrolledWindow3({ className, children, ...props }: React.Com
   )
 }
 
-function AboutWindowWindowControls7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls7"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox15({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box15"
+      data-slot="box"
         data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowStart4({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle13({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start4"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTitle4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-title4"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage11({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-window-image11"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCloseButton4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowControls8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls8"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box16"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowEnd4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-end4"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box14"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowhandle4({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-windowhandle4"
+      data-slot="about-window-windowhandle13"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -1788,12 +5758,45 @@ function AboutWindowWindowhandle4({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutWindowHeaderBar3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowRevealer7({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-header-bar3"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
+      data-slot="about-window-revealer7"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowInternalBox8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle16"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer8"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -1821,6 +5824,624 @@ function AboutWindowNavigationPage3({ className, ...props }: React.ComponentProp
   )
 }
 
+function AboutWindowContent5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-content5"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage39({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image39"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton17({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button17"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls17({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls17"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage40({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image40"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton18({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button18"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls18"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox42({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box42"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start10"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle21({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title21"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage41({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image41"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton19({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button19"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage42({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image42"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls19({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls19"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox43({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box43"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end9"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox41({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box41"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle19({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle19"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox40({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box40"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start9"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title22"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage43({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image43"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton20({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button20"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage44({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image44"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls20({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls20"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox44({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box44"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end10"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox39({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box39"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle18({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle18"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBar4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-bar4"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start11"
+        data-node="start"
+      className={cn("start", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox46({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box46"
+        data-node="box"
+      className={cn("box", "box", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCenter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-center"
+        data-node="center"
+      className={cn("center", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton21({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button21"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton22({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button22"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox45({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box45"
+        data-node="box"
+      className={cn("box", "box", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer10"
+        data-node="revealer"
+      className={cn("revealer", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowActionBar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-action-bar"
+        data-node="actionbar"
+      className={cn("actionbar", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBorder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-border2"
+        data-node="border"
+      className={cn("border", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-placeholder2"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot6"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection59({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection59"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-cursor-handle2"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-block-cursor2"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSheet3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-sheet3"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPaper3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-paper3"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDrawing3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-drawing3"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindow3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window3"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSelection60({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-selection60"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowText2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-text2"
+        data-node="text"
+      className={cn("text", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowSheet4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-sheet4"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowPaper4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-paper4"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowDrawing4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-drawing4"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindow4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window4"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowTextView2({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
     <textarea
@@ -1840,8 +6461,30 @@ function AboutWindowClampScrollable2({ className, style, ...props }: React.Compo
       ref={ref}
       data-slot="about-window-clamp-scrollable2"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot5"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot7"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -1876,121 +6519,21 @@ function AboutWindowScrolledWindow4({ className, children, ...props }: React.Com
   )
 }
 
-function AboutWindowWindowControls9({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls9"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox18({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box18"
+      data-slot="box"
         data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowStart5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle17({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start5"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTitle5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-title5"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage12({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-window-image12"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCloseButton5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowControls10({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls10"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox19({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box19"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowEnd5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-end5"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox17({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box17"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowhandle5({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-windowhandle5"
+      data-slot="about-window-windowhandle17"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -1998,45 +6541,45 @@ function AboutWindowWindowhandle5({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutWindowHeaderBar4({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowRevealer9({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-header-bar4"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
+      data-slot="about-window-revealer9"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-window-button"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowButton2({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="about-window-button2"
-        data-node="button"
-      className={cn("button", "bin", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowActionBar({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox10({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-action-bar"
-        data-node="actionbar"
-      className={cn("actionbar", className)}
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle20({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle20"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer11"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -2064,6 +6607,360 @@ function AboutWindowDebugInfoPage({ className, ...props }: React.ComponentProps<
   )
 }
 
+function AboutWindowContent6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-content6"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage45({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image45"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton23({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button23"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls21({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls21"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage46({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image46"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton24({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button24"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls22"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox50({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box50"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start13"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle23({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title23"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage47({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image47"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton25({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button25"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage48({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image48"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls23({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls23"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox51({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box51"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd11({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end11"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox49({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box49"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle23({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle23"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox48({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box48"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start12"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle24({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title24"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage49({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image49"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton26({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button26"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage50({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image50"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls24({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls24"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox52({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box52"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end12"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox47({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box47"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle22({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle22"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBar5({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-bar5"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowCreditsBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2083,8 +6980,30 @@ function AboutWindowClamp4({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp4"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot6"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot8"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -2119,121 +7038,21 @@ function AboutWindowScrolledWindow5({ className, children, ...props }: React.Com
   )
 }
 
-function AboutWindowWindowControls11({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox11({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls11"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox21({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box21"
+      data-slot="box"
         data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowStart6({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle21({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start6"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTitle6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-title6"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage13({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-window-image13"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCloseButton6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowControls12({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls12"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox22({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box22"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowEnd6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-end6"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox20({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box20"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowhandle6({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-windowhandle6"
+      data-slot="about-window-windowhandle21"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -2241,12 +7060,45 @@ function AboutWindowWindowhandle6({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutWindowHeaderBar5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowRevealer12({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-header-bar5"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
+      data-slot="about-window-revealer12"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowInternalBox12({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle24({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle24"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer13"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -2274,6 +7126,360 @@ function AboutWindowNavigationPage4({ className, ...props }: React.ComponentProp
   )
 }
 
+function AboutWindowContent7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-content7"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage51({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image51"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton27({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button27"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls25({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls25"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage52({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image52"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton28({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button28"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls26({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls26"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox56({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box56"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start15"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle25({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title25"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage53({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image53"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton29({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button29"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage54({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image54"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls27({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls27"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox57({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box57"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd13({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end13"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox55({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box55"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle27({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle27"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox54({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box54"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start14"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle26({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title26"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage55({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image55"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton30({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button30"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage56({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image56"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls28({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls28"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox58({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box58"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end14"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox53({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box53"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle26({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle26"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBar6({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-bar6"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowLegalBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2293,8 +7499,30 @@ function AboutWindowClamp5({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp5"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot7"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot9({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot9"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -2329,121 +7557,21 @@ function AboutWindowScrolledWindow6({ className, children, ...props }: React.Com
   )
 }
 
-function AboutWindowWindowControls13({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox13({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls13"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox24({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box24"
+      data-slot="box"
         data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowStart7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle25({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start7"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTitle7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-title7"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage14({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-window-image14"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCloseButton7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowControls14({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls14"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox25({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box25"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowEnd7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-end7"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox23({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box23"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowhandle7({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-windowhandle7"
+      data-slot="about-window-windowhandle25"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -2451,12 +7579,45 @@ function AboutWindowWindowhandle7({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutWindowHeaderBar6({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowRevealer14({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-header-bar6"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
+      data-slot="about-window-revealer14"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowInternalBox14({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle28({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle28"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer15"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -2484,6 +7645,360 @@ function AboutWindowNavigationPage5({ className, ...props }: React.ComponentProp
   )
 }
 
+function AboutWindowContent8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-content8"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage57({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image57"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton31({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button31"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls29({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls29"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage58({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image58"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton32({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button32"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls30({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls30"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox62({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box62"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart17({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start17"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle27({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title27"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage59({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image59"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton33({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button33"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage60({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image60"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls31({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls31"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox63({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box63"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd15({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end15"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox61({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box61"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle31({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle31"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox60({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box60"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowStart16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-start16"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowTitle28({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-title28"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage61({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="about-window-image61"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton34({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button34"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowImage62({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="about-window-image62"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowCloseButton16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowControls32({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-window-controls32"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox64({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box64"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowEnd16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-end16"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowBox59({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-box59"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle30({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle30"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowHeaderBar7({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-header-bar7"
+        data-node="headerbar"
+      className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowAcknowledgementsBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2503,8 +8018,30 @@ function AboutWindowClamp6({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp6"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowOvershoot8({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-overshoot8"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowUndershoot10({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-undershoot10"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -2539,121 +8076,21 @@ function AboutWindowScrolledWindow7({ className, children, ...props }: React.Com
   )
 }
 
-function AboutWindowWindowControls15({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowInternalBox15({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-window-controls15"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox27({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box27"
+      data-slot="box"
         data-node="box"
-      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
 }
 
-function AboutWindowStart8({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowWindowhandle29({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-start8"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowTitle8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-title8"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowImage15({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-        name={name}
-      data-slot="about-window-image15"
-        data-node="image"
-      className={cn("image", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowCloseButton8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="button"
-        data-node="button"
-      className={cn("button", "bin", "close", "image-button", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowControls16({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-window-controls16"
-        data-node="windowcontrols"
-      className={cn("windowcontrols", "end", "lay-row", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox28({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box28"
-        data-node="box"
-      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowEnd8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-end8"
-        data-node="widget"
-      className={cn("widget", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowBox26({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-box26"
-        data-node="box"
-      className={cn("box", "center", "horizontal", className)}
-      {...props}
-    />
-  )
-}
-
-function AboutWindowWindowhandle8({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="about-window-windowhandle8"
+      data-slot="about-window-windowhandle29"
         data-node="windowhandle"
       className={cn("windowhandle", className)}
       {...props}
@@ -2661,12 +8098,45 @@ function AboutWindowWindowhandle8({ className, ...props }: React.ComponentProps<
   )
 }
 
-function AboutWindowHeaderBar7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowRevealer16({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="about-window-header-bar7"
-        data-node="headerbar"
-      className={cn("headerbar", className)}
+      data-slot="about-window-revealer16"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowInternalBox16({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowWindowhandle32({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-windowhandle32"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowRevealer17({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-revealer17"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -2705,6 +8175,39 @@ function AboutWindowNavigationView({ className, ...props }: React.ComponentProps
   )
 }
 
+function AboutWindowChild({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-child"
+        data-node="child"
+      className={cn("child", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowButton35({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="about-window-button35"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function AboutWindowToast({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="about-window-toast"
+        data-node="toast"
+      className={cn("toast", className)}
+      {...props}
+    />
+  )
+}
+
 function AboutWindowToastOverlay({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -2716,4 +8219,4 @@ function AboutWindowToastOverlay({ className, ...props }: React.ComponentProps<"
   )
 }
 
-export { AboutWindow, AboutWindowAppIconImage, AboutWindowSelection, AboutWindowLink, AboutWindowAppNameLabel, AboutWindowSelection2, AboutWindowLink2, AboutWindowDeveloperNameLabel, AboutWindowVersionButton, AboutWindowImage, AboutWindowWhatsNewRow, AboutWindowImage2, AboutWindowDetailsRow, AboutWindowWebsiteRow, AboutWindowDetailsGroup, AboutWindowSupportRow, AboutWindowIssueRow, AboutWindowImage3, AboutWindowTroubleshootingRow, AboutWindowSupportGroup, AboutWindowImage4, AboutWindowActionRow, AboutWindowImage5, AboutWindowActionRow2, AboutWindowImage6, AboutWindowActionRow3, AboutWindowCreditsLegalGroup, AboutWindowBox2, AboutWindowBox, AboutWindowClamp, AboutWindowMainScrolledWindow, AboutWindowWindowControls, AboutWindowBox4, AboutWindowStart, AboutWindowTitle, AboutWindowImage7, AboutWindowCloseButton, AboutWindowWindowControls2, AboutWindowBox5, AboutWindowEnd, AboutWindowBox3, AboutWindowWindowhandle, AboutWindowMainHeaderbar, AboutWindowToolbarView, AboutWindowNavigationPage, AboutWindowTextView, AboutWindowClampScrollable, AboutWindowScrolledWindow, AboutWindowWindowControls3, AboutWindowBox7, AboutWindowStart2, AboutWindowTitle2, AboutWindowImage8, AboutWindowCloseButton2, AboutWindowWindowControls4, AboutWindowBox8, AboutWindowEnd2, AboutWindowBox6, AboutWindowWindowhandle2, AboutWindowHeaderBar, AboutWindowToolbarView2, AboutWindowWhatsnewPage, AboutWindowSelection3, AboutWindowLink3, AboutWindowCommentsLabel, AboutWindowDetailsWebsiteRow, AboutWindowLinksGroup, AboutWindowBox9, AboutWindowClamp2, AboutWindowScrolledWindow2, AboutWindowWindowControls5, AboutWindowBox11, AboutWindowStart3, AboutWindowTitle3, AboutWindowImage9, AboutWindowCloseButton3, AboutWindowWindowControls6, AboutWindowBox12, AboutWindowEnd3, AboutWindowBox10, AboutWindowWindowhandle3, AboutWindowHeaderBar2, AboutWindowToolbarView3, AboutWindowNavigationPage2, AboutWindowSelection4, AboutWindowLink4, AboutWindowLabel, AboutWindowImage10, AboutWindowActionRow4, AboutWindowPreferencesGroup, AboutWindowBox13, AboutWindowClamp3, AboutWindowScrolledWindow3, AboutWindowWindowControls7, AboutWindowBox15, AboutWindowStart4, AboutWindowTitle4, AboutWindowImage11, AboutWindowCloseButton4, AboutWindowWindowControls8, AboutWindowBox16, AboutWindowEnd4, AboutWindowBox14, AboutWindowWindowhandle4, AboutWindowHeaderBar3, AboutWindowToolbarView4, AboutWindowNavigationPage3, AboutWindowTextView2, AboutWindowClampScrollable2, AboutWindowScrolledWindow4, AboutWindowWindowControls9, AboutWindowBox18, AboutWindowStart5, AboutWindowTitle5, AboutWindowImage12, AboutWindowCloseButton5, AboutWindowWindowControls10, AboutWindowBox19, AboutWindowEnd5, AboutWindowBox17, AboutWindowWindowhandle5, AboutWindowHeaderBar4, AboutWindowButton, AboutWindowButton2, AboutWindowActionBar, AboutWindowToolbarView5, AboutWindowDebugInfoPage, AboutWindowCreditsBox, AboutWindowClamp4, AboutWindowScrolledWindow5, AboutWindowWindowControls11, AboutWindowBox21, AboutWindowStart6, AboutWindowTitle6, AboutWindowImage13, AboutWindowCloseButton6, AboutWindowWindowControls12, AboutWindowBox22, AboutWindowEnd6, AboutWindowBox20, AboutWindowWindowhandle6, AboutWindowHeaderBar5, AboutWindowToolbarView6, AboutWindowNavigationPage4, AboutWindowLegalBox, AboutWindowClamp5, AboutWindowScrolledWindow6, AboutWindowWindowControls13, AboutWindowBox24, AboutWindowStart7, AboutWindowTitle7, AboutWindowImage14, AboutWindowCloseButton7, AboutWindowWindowControls14, AboutWindowBox25, AboutWindowEnd7, AboutWindowBox23, AboutWindowWindowhandle7, AboutWindowHeaderBar6, AboutWindowToolbarView7, AboutWindowNavigationPage5, AboutWindowAcknowledgementsBox, AboutWindowClamp6, AboutWindowScrolledWindow7, AboutWindowWindowControls15, AboutWindowBox27, AboutWindowStart8, AboutWindowTitle8, AboutWindowImage15, AboutWindowCloseButton8, AboutWindowWindowControls16, AboutWindowBox28, AboutWindowEnd8, AboutWindowBox26, AboutWindowWindowhandle8, AboutWindowHeaderBar7, AboutWindowToolbarView8, AboutWindowNavigationPage6, AboutWindowNavigationView, AboutWindowToastOverlay, aboutWindowVariants }
+export { AboutWindow, AboutWindowDimming, AboutWindowShadow, AboutWindowContent, AboutWindowImage, AboutWindowButton, AboutWindowWindowControls, AboutWindowImage2, AboutWindowButton2, AboutWindowWindowControls2, AboutWindowBox4, AboutWindowStart2, AboutWindowTitle, AboutWindowImage3, AboutWindowButton3, AboutWindowImage4, AboutWindowCloseButton, AboutWindowWindowControls3, AboutWindowBox5, AboutWindowEnd, AboutWindowBox3, AboutWindowWindowhandle3, AboutWindowBox2, AboutWindowStart, AboutWindowTitle2, AboutWindowImage5, AboutWindowButton4, AboutWindowImage6, AboutWindowCloseButton2, AboutWindowWindowControls4, AboutWindowBox6, AboutWindowEnd2, AboutWindowBox, AboutWindowWindowhandle2, AboutWindowMainHeaderbar, AboutWindowAppIconImage, AboutWindowSelection, AboutWindowLink, AboutWindowSelection2, AboutWindowLink2, AboutWindowAppNameLabel, AboutWindowSelection3, AboutWindowLink3, AboutWindowSelection4, AboutWindowLink4, AboutWindowDeveloperNameLabel, AboutWindowVersionButton, AboutWindowSelection5, AboutWindowLink5, AboutWindowSelection6, AboutWindowLink6, AboutWindowTitle3, AboutWindowSelection7, AboutWindowLink7, AboutWindowSelection8, AboutWindowLink8, AboutWindowDescription, AboutWindowBox10, AboutWindowHeaderBox, AboutWindowPrefixes, AboutWindowImage7, AboutWindowSelection9, AboutWindowLink9, AboutWindowSelection10, AboutWindowLink10, AboutWindowTitle4, AboutWindowSelection11, AboutWindowLink11, AboutWindowSelection12, AboutWindowLink12, AboutWindowSubtitle, AboutWindowTitleBox, AboutWindowImage8, AboutWindowSuffixes, AboutWindowHeader, AboutWindowWhatsNewRow, AboutWindowPrefixes2, AboutWindowImage9, AboutWindowSelection13, AboutWindowLink13, AboutWindowSelection14, AboutWindowLink14, AboutWindowTitle5, AboutWindowSelection15, AboutWindowLink15, AboutWindowSelection16, AboutWindowLink16, AboutWindowSubtitle2, AboutWindowTitleBox2, AboutWindowImage10, AboutWindowSuffixes2, AboutWindowHeader2, AboutWindowDetailsRow, AboutWindowWebsiteRow, AboutWindowListbox, AboutWindowListboxBox, AboutWindowBox9, AboutWindowDetailsGroup, AboutWindowSelection17, AboutWindowLink17, AboutWindowSelection18, AboutWindowLink18, AboutWindowTitle6, AboutWindowSelection19, AboutWindowLink19, AboutWindowSelection20, AboutWindowLink20, AboutWindowDescription2, AboutWindowBox12, AboutWindowHeaderBox2, AboutWindowSupportRow, AboutWindowIssueRow, AboutWindowPrefixes3, AboutWindowImage11, AboutWindowSelection21, AboutWindowLink21, AboutWindowSelection22, AboutWindowLink22, AboutWindowTitle7, AboutWindowSelection23, AboutWindowLink23, AboutWindowSelection24, AboutWindowLink24, AboutWindowSubtitle3, AboutWindowTitleBox3, AboutWindowImage12, AboutWindowSuffixes3, AboutWindowHeader3, AboutWindowTroubleshootingRow, AboutWindowListbox2, AboutWindowListboxBox2, AboutWindowBox11, AboutWindowSupportGroup, AboutWindowSelection25, AboutWindowLink25, AboutWindowSelection26, AboutWindowLink26, AboutWindowTitle8, AboutWindowSelection27, AboutWindowLink27, AboutWindowSelection28, AboutWindowLink28, AboutWindowDescription3, AboutWindowBox14, AboutWindowHeaderBox3, AboutWindowPrefixes4, AboutWindowImage13, AboutWindowSelection29, AboutWindowLink29, AboutWindowSelection30, AboutWindowLink30, AboutWindowTitle9, AboutWindowSelection31, AboutWindowLink31, AboutWindowSelection32, AboutWindowLink32, AboutWindowSubtitle4, AboutWindowTitleBox4, AboutWindowImage14, AboutWindowSuffixes4, AboutWindowHeader4, AboutWindowActionRow, AboutWindowPrefixes5, AboutWindowImage15, AboutWindowSelection33, AboutWindowLink33, AboutWindowSelection34, AboutWindowLink34, AboutWindowTitle10, AboutWindowSelection35, AboutWindowLink35, AboutWindowSelection36, AboutWindowLink36, AboutWindowSubtitle5, AboutWindowTitleBox5, AboutWindowImage16, AboutWindowSuffixes5, AboutWindowHeader5, AboutWindowActionRow2, AboutWindowPrefixes6, AboutWindowImage17, AboutWindowSelection37, AboutWindowLink37, AboutWindowSelection38, AboutWindowLink38, AboutWindowTitle11, AboutWindowSelection39, AboutWindowLink39, AboutWindowSelection40, AboutWindowLink40, AboutWindowSubtitle6, AboutWindowTitleBox6, AboutWindowImage18, AboutWindowSuffixes6, AboutWindowHeader6, AboutWindowActionRow3, AboutWindowListbox3, AboutWindowListboxBox3, AboutWindowBox13, AboutWindowCreditsLegalGroup, AboutWindowBox8, AboutWindowBox7, AboutWindowClamp, AboutWindowOvershoot, AboutWindowUndershoot, AboutWindowMainScrolledWindow, AboutWindowInternalBox, AboutWindowWindowhandle, AboutWindowRevealer, AboutWindowInternalBox2, AboutWindowWindowhandle4, AboutWindowRevealer2, AboutWindowToolbarView, AboutWindowNavigationPage, AboutWindowContent2, AboutWindowImage19, AboutWindowButton5, AboutWindowWindowControls5, AboutWindowImage20, AboutWindowButton6, AboutWindowWindowControls6, AboutWindowBox18, AboutWindowStart4, AboutWindowTitle12, AboutWindowImage21, AboutWindowButton7, AboutWindowImage22, AboutWindowCloseButton3, AboutWindowWindowControls7, AboutWindowBox19, AboutWindowEnd3, AboutWindowBox17, AboutWindowWindowhandle7, AboutWindowBox16, AboutWindowStart3, AboutWindowTitle13, AboutWindowImage23, AboutWindowButton8, AboutWindowImage24, AboutWindowCloseButton4, AboutWindowWindowControls8, AboutWindowBox20, AboutWindowEnd4, AboutWindowBox15, AboutWindowWindowhandle6, AboutWindowHeaderBar, AboutWindowBorder, AboutWindowPlaceholder, AboutWindowUndershoot2, AboutWindowSelection41, AboutWindowCursorHandle, AboutWindowBlockCursor, AboutWindowSheet, AboutWindowPaper, AboutWindowDrawing, AboutWindowWindow, AboutWindowSelection42, AboutWindowText, AboutWindowSheet2, AboutWindowPaper2, AboutWindowDrawing2, AboutWindowWindow2, AboutWindowTextView, AboutWindowClampScrollable, AboutWindowOvershoot2, AboutWindowUndershoot3, AboutWindowScrolledWindow, AboutWindowInternalBox3, AboutWindowWindowhandle5, AboutWindowRevealer3, AboutWindowInternalBox4, AboutWindowWindowhandle8, AboutWindowRevealer4, AboutWindowToolbarView2, AboutWindowWhatsnewPage, AboutWindowContent3, AboutWindowImage25, AboutWindowButton9, AboutWindowWindowControls9, AboutWindowImage26, AboutWindowButton10, AboutWindowWindowControls10, AboutWindowBox24, AboutWindowStart6, AboutWindowTitle14, AboutWindowImage27, AboutWindowButton11, AboutWindowImage28, AboutWindowCloseButton5, AboutWindowWindowControls11, AboutWindowBox25, AboutWindowEnd5, AboutWindowBox23, AboutWindowWindowhandle11, AboutWindowBox22, AboutWindowStart5, AboutWindowTitle15, AboutWindowImage29, AboutWindowButton12, AboutWindowImage30, AboutWindowCloseButton6, AboutWindowWindowControls12, AboutWindowBox26, AboutWindowEnd6, AboutWindowBox21, AboutWindowWindowhandle10, AboutWindowHeaderBar2, AboutWindowSelection43, AboutWindowLink41, AboutWindowSelection44, AboutWindowLink42, AboutWindowCommentsLabel, AboutWindowSelection45, AboutWindowLink43, AboutWindowSelection46, AboutWindowLink44, AboutWindowTitle16, AboutWindowSelection47, AboutWindowLink45, AboutWindowSelection48, AboutWindowLink46, AboutWindowDescription4, AboutWindowBox29, AboutWindowHeaderBox4, AboutWindowDetailsWebsiteRow, AboutWindowListbox4, AboutWindowListboxBox4, AboutWindowBox28, AboutWindowLinksGroup, AboutWindowBox27, AboutWindowClamp2, AboutWindowOvershoot3, AboutWindowUndershoot4, AboutWindowScrolledWindow2, AboutWindowInternalBox5, AboutWindowWindowhandle9, AboutWindowRevealer5, AboutWindowInternalBox6, AboutWindowWindowhandle12, AboutWindowRevealer6, AboutWindowToolbarView3, AboutWindowNavigationPage2, AboutWindowContent4, AboutWindowImage31, AboutWindowButton13, AboutWindowWindowControls13, AboutWindowImage32, AboutWindowButton14, AboutWindowWindowControls14, AboutWindowBox33, AboutWindowStart8, AboutWindowTitle17, AboutWindowImage33, AboutWindowButton15, AboutWindowImage34, AboutWindowCloseButton7, AboutWindowWindowControls15, AboutWindowBox34, AboutWindowEnd7, AboutWindowBox32, AboutWindowWindowhandle15, AboutWindowBox31, AboutWindowStart7, AboutWindowTitle18, AboutWindowImage35, AboutWindowButton16, AboutWindowImage36, AboutWindowCloseButton8, AboutWindowWindowControls16, AboutWindowBox35, AboutWindowEnd8, AboutWindowBox30, AboutWindowWindowhandle14, AboutWindowHeaderBar3, AboutWindowSelection49, AboutWindowLink47, AboutWindowSelection50, AboutWindowLink48, AboutWindowLabel, AboutWindowSelection51, AboutWindowLink49, AboutWindowSelection52, AboutWindowLink50, AboutWindowTitle19, AboutWindowSelection53, AboutWindowLink51, AboutWindowSelection54, AboutWindowLink52, AboutWindowDescription5, AboutWindowBox38, AboutWindowHeaderBox5, AboutWindowPrefixes7, AboutWindowImage37, AboutWindowSelection55, AboutWindowLink53, AboutWindowSelection56, AboutWindowLink54, AboutWindowTitle20, AboutWindowSelection57, AboutWindowLink55, AboutWindowSelection58, AboutWindowLink56, AboutWindowSubtitle7, AboutWindowTitleBox7, AboutWindowImage38, AboutWindowSuffixes7, AboutWindowHeader7, AboutWindowActionRow4, AboutWindowListbox5, AboutWindowListboxBox5, AboutWindowBox37, AboutWindowPreferencesGroup, AboutWindowBox36, AboutWindowClamp3, AboutWindowOvershoot4, AboutWindowUndershoot5, AboutWindowScrolledWindow3, AboutWindowInternalBox7, AboutWindowWindowhandle13, AboutWindowRevealer7, AboutWindowInternalBox8, AboutWindowWindowhandle16, AboutWindowRevealer8, AboutWindowToolbarView4, AboutWindowNavigationPage3, AboutWindowContent5, AboutWindowImage39, AboutWindowButton17, AboutWindowWindowControls17, AboutWindowImage40, AboutWindowButton18, AboutWindowWindowControls18, AboutWindowBox42, AboutWindowStart10, AboutWindowTitle21, AboutWindowImage41, AboutWindowButton19, AboutWindowImage42, AboutWindowCloseButton9, AboutWindowWindowControls19, AboutWindowBox43, AboutWindowEnd9, AboutWindowBox41, AboutWindowWindowhandle19, AboutWindowBox40, AboutWindowStart9, AboutWindowTitle22, AboutWindowImage43, AboutWindowButton20, AboutWindowImage44, AboutWindowCloseButton10, AboutWindowWindowControls20, AboutWindowBox44, AboutWindowEnd10, AboutWindowBox39, AboutWindowWindowhandle18, AboutWindowHeaderBar4, AboutWindowStart11, AboutWindowBox46, AboutWindowCenter, AboutWindowButton21, AboutWindowButton22, AboutWindowBox45, AboutWindowRevealer10, AboutWindowActionBar, AboutWindowBorder2, AboutWindowPlaceholder2, AboutWindowUndershoot6, AboutWindowSelection59, AboutWindowCursorHandle2, AboutWindowBlockCursor2, AboutWindowSheet3, AboutWindowPaper3, AboutWindowDrawing3, AboutWindowWindow3, AboutWindowSelection60, AboutWindowText2, AboutWindowSheet4, AboutWindowPaper4, AboutWindowDrawing4, AboutWindowWindow4, AboutWindowTextView2, AboutWindowClampScrollable2, AboutWindowOvershoot5, AboutWindowUndershoot7, AboutWindowScrolledWindow4, AboutWindowInternalBox9, AboutWindowWindowhandle17, AboutWindowRevealer9, AboutWindowInternalBox10, AboutWindowWindowhandle20, AboutWindowRevealer11, AboutWindowToolbarView5, AboutWindowDebugInfoPage, AboutWindowContent6, AboutWindowImage45, AboutWindowButton23, AboutWindowWindowControls21, AboutWindowImage46, AboutWindowButton24, AboutWindowWindowControls22, AboutWindowBox50, AboutWindowStart13, AboutWindowTitle23, AboutWindowImage47, AboutWindowButton25, AboutWindowImage48, AboutWindowCloseButton11, AboutWindowWindowControls23, AboutWindowBox51, AboutWindowEnd11, AboutWindowBox49, AboutWindowWindowhandle23, AboutWindowBox48, AboutWindowStart12, AboutWindowTitle24, AboutWindowImage49, AboutWindowButton26, AboutWindowImage50, AboutWindowCloseButton12, AboutWindowWindowControls24, AboutWindowBox52, AboutWindowEnd12, AboutWindowBox47, AboutWindowWindowhandle22, AboutWindowHeaderBar5, AboutWindowCreditsBox, AboutWindowClamp4, AboutWindowOvershoot6, AboutWindowUndershoot8, AboutWindowScrolledWindow5, AboutWindowInternalBox11, AboutWindowWindowhandle21, AboutWindowRevealer12, AboutWindowInternalBox12, AboutWindowWindowhandle24, AboutWindowRevealer13, AboutWindowToolbarView6, AboutWindowNavigationPage4, AboutWindowContent7, AboutWindowImage51, AboutWindowButton27, AboutWindowWindowControls25, AboutWindowImage52, AboutWindowButton28, AboutWindowWindowControls26, AboutWindowBox56, AboutWindowStart15, AboutWindowTitle25, AboutWindowImage53, AboutWindowButton29, AboutWindowImage54, AboutWindowCloseButton13, AboutWindowWindowControls27, AboutWindowBox57, AboutWindowEnd13, AboutWindowBox55, AboutWindowWindowhandle27, AboutWindowBox54, AboutWindowStart14, AboutWindowTitle26, AboutWindowImage55, AboutWindowButton30, AboutWindowImage56, AboutWindowCloseButton14, AboutWindowWindowControls28, AboutWindowBox58, AboutWindowEnd14, AboutWindowBox53, AboutWindowWindowhandle26, AboutWindowHeaderBar6, AboutWindowLegalBox, AboutWindowClamp5, AboutWindowOvershoot7, AboutWindowUndershoot9, AboutWindowScrolledWindow6, AboutWindowInternalBox13, AboutWindowWindowhandle25, AboutWindowRevealer14, AboutWindowInternalBox14, AboutWindowWindowhandle28, AboutWindowRevealer15, AboutWindowToolbarView7, AboutWindowNavigationPage5, AboutWindowContent8, AboutWindowImage57, AboutWindowButton31, AboutWindowWindowControls29, AboutWindowImage58, AboutWindowButton32, AboutWindowWindowControls30, AboutWindowBox62, AboutWindowStart17, AboutWindowTitle27, AboutWindowImage59, AboutWindowButton33, AboutWindowImage60, AboutWindowCloseButton15, AboutWindowWindowControls31, AboutWindowBox63, AboutWindowEnd15, AboutWindowBox61, AboutWindowWindowhandle31, AboutWindowBox60, AboutWindowStart16, AboutWindowTitle28, AboutWindowImage61, AboutWindowButton34, AboutWindowImage62, AboutWindowCloseButton16, AboutWindowWindowControls32, AboutWindowBox64, AboutWindowEnd16, AboutWindowBox59, AboutWindowWindowhandle30, AboutWindowHeaderBar7, AboutWindowAcknowledgementsBox, AboutWindowClamp6, AboutWindowOvershoot8, AboutWindowUndershoot10, AboutWindowScrolledWindow7, AboutWindowInternalBox15, AboutWindowWindowhandle29, AboutWindowRevealer16, AboutWindowInternalBox16, AboutWindowWindowhandle32, AboutWindowRevealer17, AboutWindowToolbarView8, AboutWindowNavigationPage6, AboutWindowNavigationView, AboutWindowChild, AboutWindowButton35, AboutWindowToast, AboutWindowToastOverlay, aboutWindowVariants }

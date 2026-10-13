@@ -202,10 +202,142 @@ function SpinButtonBlockCursor({ className, ...props }: React.ComponentProps<"di
   )
 }
 
+function SpinButtonSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-sheet"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-paper"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-drawing"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
 function SpinButtonWindow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="spin-button-window"
+        data-node="window"
+      className={cn("window", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonPlaceholder2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-placeholder2"
+        data-node="placeholder"
+      className={cn("placeholder", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonUndershoot2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-undershoot2"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonCursorHandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-cursor-handle2"
+        data-node="cursor-handle"
+      className={cn("cursor-handle", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonBlockCursor2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-block-cursor2"
+        data-node="block-cursor"
+      className={cn("block-cursor", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonSheet2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-sheet2"
+        data-node="sheet"
+      className={cn("sheet", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonPaper2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-paper2"
+        data-node="paper"
+      className={cn("paper", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonDrawing2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-drawing2"
+        data-node="drawing"
+      className={cn("drawing", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonWindow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-window2"
         data-node="window"
       className={cn("window", className)}
       {...props}
@@ -271,4 +403,4 @@ function SpinButtonSpinUp({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { SpinButton, SpinButtonPlaceholder, SpinButtonUndershoot, SpinButtonSelection, SpinButtonCursorHandle, SpinButtonBlockCursor, SpinButtonWindow, SpinButtonText, SpinButtonImage, SpinButtonSpinDown, SpinButtonImage2, SpinButtonSpinUp, spinButtonVariants }
+export { SpinButton, SpinButtonPlaceholder, SpinButtonUndershoot, SpinButtonSelection, SpinButtonCursorHandle, SpinButtonBlockCursor, SpinButtonSheet, SpinButtonPaper, SpinButtonDrawing, SpinButtonWindow, SpinButtonPlaceholder2, SpinButtonUndershoot2, SpinButtonSelection2, SpinButtonCursorHandle2, SpinButtonBlockCursor2, SpinButtonSheet2, SpinButtonPaper2, SpinButtonDrawing2, SpinButtonWindow2, SpinButtonText, SpinButtonImage, SpinButtonSpinDown, SpinButtonImage2, SpinButtonSpinUp, spinButtonVariants }

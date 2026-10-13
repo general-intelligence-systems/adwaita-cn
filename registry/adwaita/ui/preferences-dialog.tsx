@@ -122,15 +122,46 @@ function PreferencesDialog({ className, render, variant = "default", child, defa
                   <PreferencesDialogNavigationPage>
                     <PreferencesDialogBreakpointBin>
                       <PreferencesDialogToolbarView>
-                        <PreferencesDialogContentStack />
-                        <PreferencesDialogHeaderBar>
-                          <PreferencesDialogTitleStack>
-                            {children}
-                          </PreferencesDialogTitleStack>
-                          {searchEnabled ? (
-                            <PreferencesDialogSearchButton />
-                          ) : null}
-                        </PreferencesDialogHeaderBar>
+                        <PreferencesDialogContent />
+                        <PreferencesDialogRevealer>
+                          <PreferencesDialogWindowhandle>
+                            <PreferencesDialogInternalBox>
+                              <PreferencesDialogHeaderBar>
+                                <PreferencesDialogWindowhandle2>
+                                  <PreferencesDialogBox>
+                                    <PreferencesDialogStart>
+                                      <PreferencesDialogBox2>
+                                        <PreferencesDialogWindowControls />
+                                        {searchEnabled ? (
+                                          <PreferencesDialogSearchButton />
+                                        ) : null}
+                                        <PreferencesDialogTitleStack />
+                                      </PreferencesDialogBox2>
+                                    </PreferencesDialogStart>
+                                    <PreferencesDialogTitle>{title}</PreferencesDialogTitle>
+                                    <PreferencesDialogEnd>
+                                      <PreferencesDialogBox3>
+                                        <PreferencesDialogWindowControls2>
+                                          <PreferencesDialogCloseButton>
+                                            <PreferencesDialogImage3 />
+                                          </PreferencesDialogCloseButton>
+                                        </PreferencesDialogWindowControls2>
+                                      </PreferencesDialogBox3>
+                                    </PreferencesDialogEnd>
+                                  </PreferencesDialogBox>
+                                </PreferencesDialogWindowhandle2>
+                              </PreferencesDialogHeaderBar>
+                              <PreferencesDialogContentStack>
+                                {children}
+                              </PreferencesDialogContentStack>
+                            </PreferencesDialogInternalBox>
+                          </PreferencesDialogWindowhandle>
+                        </PreferencesDialogRevealer>
+                        <PreferencesDialogRevealer2>
+                          <PreferencesDialogWindowhandle3>
+                            <PreferencesDialogInternalBox2 />
+                          </PreferencesDialogWindowhandle3>
+                        </PreferencesDialogRevealer2>
                       </PreferencesDialogToolbarView>
                     </PreferencesDialogBreakpointBin>
                   </PreferencesDialogNavigationPage>
@@ -150,24 +181,67 @@ function PreferencesDialog({ className, render, variant = "default", child, defa
   })
 }
 
-function PreferencesDialogContentStack({ className, ...props }: React.ComponentProps<"div">) {
+function PreferencesDialogDimming({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="preferences-dialog-content-stack"
-        data-node="stack"
-      className={cn("stack", className)}
+      data-slot="preferences-dialog-dimming"
+        data-node="dimming"
+      className={cn("dimming", className)}
       {...props}
     />
   )
 }
 
-function PreferencesDialogTitleStack({ className, ...props }: React.ComponentProps<"div">) {
+function PreferencesDialogShadow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="preferences-dialog-title-stack"
-        data-node="stack"
-        data-hexpand=""
-      className={cn("stack", className)}
+      data-slot="preferences-dialog-shadow"
+        data-node="shadow"
+      className={cn("shadow", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-content"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="preferences-dialog-image"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="preferences-dialog-button"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogWindowControls({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-window-controls"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -185,12 +259,234 @@ function PreferencesDialogSearchButton({ className, ...props }: React.ComponentP
   )
 }
 
+function PreferencesDialogTitleStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-title-stack"
+        data-node="stack"
+        data-hexpand=""
+      className={cn("stack", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-box2"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogStart({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-start"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogTitle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-title"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="preferences-dialog-image2"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="preferences-dialog-button2"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogImage3({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="preferences-dialog-image3"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogCloseButton({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-window-controls2"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogBox3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-box3"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogEnd({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-end"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-box"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-windowhandle2"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
 function PreferencesDialogHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="preferences-dialog-header-bar"
         data-node="headerbar"
       className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogContentStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-content-stack"
+        data-node="stack"
+      className={cn("stack", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogInternalBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-windowhandle"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-revealer"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogInternalBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-windowhandle3"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogRevealer2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-revealer2"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -239,6 +535,39 @@ function PreferencesDialogSubpagesNavView({ className, ...props }: React.Compone
   )
 }
 
+function PreferencesDialogChild({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-child"
+        data-node="child"
+      className={cn("child", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogButton3({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="preferences-dialog-button3"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesDialogToast({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-dialog-toast"
+        data-node="toast"
+      className={cn("toast", className)}
+      {...props}
+    />
+  )
+}
+
 function PreferencesDialogToastOverlay({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -250,4 +579,4 @@ function PreferencesDialogToastOverlay({ className, ...props }: React.ComponentP
   )
 }
 
-export { PreferencesDialog, PreferencesDialogContentStack, PreferencesDialogTitleStack, PreferencesDialogSearchButton, PreferencesDialogHeaderBar, PreferencesDialogToolbarView, PreferencesDialogBreakpointBin, PreferencesDialogNavigationPage, PreferencesDialogSubpagesNavView, PreferencesDialogToastOverlay, preferencesDialogVariants }
+export { PreferencesDialog, PreferencesDialogDimming, PreferencesDialogShadow, PreferencesDialogContent, PreferencesDialogImage, PreferencesDialogButton, PreferencesDialogWindowControls, PreferencesDialogSearchButton, PreferencesDialogTitleStack, PreferencesDialogBox2, PreferencesDialogStart, PreferencesDialogTitle, PreferencesDialogImage2, PreferencesDialogButton2, PreferencesDialogImage3, PreferencesDialogCloseButton, PreferencesDialogWindowControls2, PreferencesDialogBox3, PreferencesDialogEnd, PreferencesDialogBox, PreferencesDialogWindowhandle2, PreferencesDialogHeaderBar, PreferencesDialogContentStack, PreferencesDialogInternalBox, PreferencesDialogWindowhandle, PreferencesDialogRevealer, PreferencesDialogInternalBox2, PreferencesDialogWindowhandle3, PreferencesDialogRevealer2, PreferencesDialogToolbarView, PreferencesDialogBreakpointBin, PreferencesDialogNavigationPage, PreferencesDialogSubpagesNavView, PreferencesDialogChild, PreferencesDialogButton3, PreferencesDialogToast, PreferencesDialogToastOverlay, preferencesDialogVariants }

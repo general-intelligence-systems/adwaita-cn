@@ -174,26 +174,53 @@ function PreferencesWindow({ className, render, variant = "default", child, cont
                     <PreferencesWindowNavigationPage>
                       <PreferencesWindowBreakpointBin>
                         <PreferencesWindowToolbarView>
-                          <PreferencesWindowContentStack />
-                          <PreferencesWindowHeaderBar>
-                            <PreferencesWindowTitleStack>
-                              {children}
-                            </PreferencesWindowTitleStack>
-                            {searchEnabled ? (
-                              <PreferencesWindowSearchButton />
-                            ) : null}
-                          </PreferencesWindowHeaderBar>
+                          <PreferencesWindowContent>{content}</PreferencesWindowContent>
+                          <PreferencesWindowRevealer>
+                            <PreferencesWindowWindowhandle>
+                              <PreferencesWindowInternalBox>
+                                <PreferencesWindowHeaderBar>
+                                  <PreferencesWindowWindowhandle2>
+                                    <PreferencesWindowBox>
+                                      <PreferencesWindowStart>
+                                        <PreferencesWindowBox2>
+                                          <PreferencesWindowWindowControls />
+                                          {searchEnabled ? (
+                                            <PreferencesWindowSearchButton />
+                                          ) : null}
+                                          <PreferencesWindowTitleStack />
+                                        </PreferencesWindowBox2>
+                                      </PreferencesWindowStart>
+                                      <PreferencesWindowTitle>{title}</PreferencesWindowTitle>
+                                      <PreferencesWindowEnd>
+                                        <PreferencesWindowBox3>
+                                          <PreferencesWindowWindowControls2>
+                                            <PreferencesWindowCloseButton>
+                                              <PreferencesWindowImage3 name={iconName} />
+                                            </PreferencesWindowCloseButton>
+                                          </PreferencesWindowWindowControls2>
+                                        </PreferencesWindowBox3>
+                                      </PreferencesWindowEnd>
+                                    </PreferencesWindowBox>
+                                  </PreferencesWindowWindowhandle2>
+                                </PreferencesWindowHeaderBar>
+                                <PreferencesWindowContentStack>
+                                  {children}
+                                </PreferencesWindowContentStack>
+                              </PreferencesWindowInternalBox>
+                            </PreferencesWindowWindowhandle>
+                          </PreferencesWindowRevealer>
+                          <PreferencesWindowRevealer2>
+                            <PreferencesWindowWindowhandle3>
+                              <PreferencesWindowInternalBox2 />
+                            </PreferencesWindowWindowhandle3>
+                          </PreferencesWindowRevealer2>
                         </PreferencesWindowToolbarView>
                       </PreferencesWindowBreakpointBin>
                     </PreferencesWindowNavigationPage>
                   </PreferencesWindowSubpagesNavView>
                 </PreferencesWindowSubpagesLeaflet>
               </PreferencesWindowToastOverlay>
-                  {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="preferences-window-icon" data-node="image" className={cn("image")} />
-              )}
                   {titlebar}
-                  {content}
                   {child}
         </>
       ),
@@ -208,24 +235,89 @@ function PreferencesWindow({ className, render, variant = "default", child, cont
   })
 }
 
-function PreferencesWindowContentStack({ className, ...props }: React.ComponentProps<"div">) {
+function PreferencesWindowDimming({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="preferences-window-content-stack"
-        data-node="stack"
-      className={cn("stack", className)}
+      data-slot="preferences-window-dimming"
+        data-node="dimming"
+      className={cn("dimming", className)}
       {...props}
     />
   )
 }
 
-function PreferencesWindowTitleStack({ className, ...props }: React.ComponentProps<"div">) {
+function PreferencesWindowShadow({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="preferences-window-title-stack"
-        data-node="stack"
-        data-hexpand=""
-      className={cn("stack", className)}
+      data-slot="preferences-window-shadow"
+        data-node="shadow"
+      className={cn("shadow", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowDimming2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-dimming2"
+        data-node="dimming"
+      className={cn("dimming", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowShadow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-shadow2"
+        data-node="shadow"
+      className={cn("shadow", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-content"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="preferences-window-image"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="preferences-window-button"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowWindowControls({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-window-controls"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -243,12 +335,234 @@ function PreferencesWindowSearchButton({ className, ...props }: React.ComponentP
   )
 }
 
+function PreferencesWindowTitleStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-title-stack"
+        data-node="stack"
+        data-hexpand=""
+      className={cn("stack", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-box2"
+        data-node="box"
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowStart({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-start"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowTitle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-title"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="preferences-window-image2"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="preferences-window-button2"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowImage3({ className, name = "window-close-symbolic", ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+        name={name}
+      data-slot="preferences-window-image3"
+        data-node="image"
+      className={cn("image", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowCloseButton({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("button", "bin", "close", "image-button", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowWindowControls2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-window-controls2"
+        data-node="windowcontrols"
+      className={cn("windowcontrols", "end", "lay-row", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowBox3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-box3"
+        data-node="box"
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowEnd({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-end"
+        data-node="widget"
+      className={cn("widget", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-box"
+        data-node="box"
+      className={cn("box", "center", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-windowhandle2"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
 function PreferencesWindowHeaderBar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="preferences-window-header-bar"
         data-node="headerbar"
       className={cn("headerbar", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowContentStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-content-stack"
+        data-node="stack"
+      className={cn("stack", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowInternalBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-windowhandle"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-revealer"
+        data-node="revealer"
+      className={cn("revealer", "top-bar", "order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowInternalBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("box", "box", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowWindowhandle3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-windowhandle3"
+        data-node="windowhandle"
+      className={cn("windowhandle", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowRevealer2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-revealer2"
+        data-node="revealer"
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )
@@ -308,6 +622,39 @@ function PreferencesWindowSubpagesLeaflet({ className, ...props }: React.Compone
   )
 }
 
+function PreferencesWindowChild({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-child"
+        data-node="child"
+      className={cn("child", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowButton3({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="preferences-window-button3"
+        data-node="button"
+      className={cn("button", "bin", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesWindowToast({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-window-toast"
+        data-node="toast"
+      className={cn("toast", className)}
+      {...props}
+    />
+  )
+}
+
 function PreferencesWindowToastOverlay({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -319,4 +666,4 @@ function PreferencesWindowToastOverlay({ className, ...props }: React.ComponentP
   )
 }
 
-export { PreferencesWindow, PreferencesWindowContentStack, PreferencesWindowTitleStack, PreferencesWindowSearchButton, PreferencesWindowHeaderBar, PreferencesWindowToolbarView, PreferencesWindowBreakpointBin, PreferencesWindowNavigationPage, PreferencesWindowSubpagesNavView, PreferencesWindowSubpagesLeaflet, PreferencesWindowToastOverlay, preferencesWindowVariants }
+export { PreferencesWindow, PreferencesWindowDimming, PreferencesWindowShadow, PreferencesWindowDimming2, PreferencesWindowShadow2, PreferencesWindowContent, PreferencesWindowImage, PreferencesWindowButton, PreferencesWindowWindowControls, PreferencesWindowSearchButton, PreferencesWindowTitleStack, PreferencesWindowBox2, PreferencesWindowStart, PreferencesWindowTitle, PreferencesWindowImage2, PreferencesWindowButton2, PreferencesWindowImage3, PreferencesWindowCloseButton, PreferencesWindowWindowControls2, PreferencesWindowBox3, PreferencesWindowEnd, PreferencesWindowBox, PreferencesWindowWindowhandle2, PreferencesWindowHeaderBar, PreferencesWindowContentStack, PreferencesWindowInternalBox, PreferencesWindowWindowhandle, PreferencesWindowRevealer, PreferencesWindowInternalBox2, PreferencesWindowWindowhandle3, PreferencesWindowRevealer2, PreferencesWindowToolbarView, PreferencesWindowBreakpointBin, PreferencesWindowNavigationPage, PreferencesWindowSubpagesNavView, PreferencesWindowSubpagesLeaflet, PreferencesWindowChild, PreferencesWindowButton3, PreferencesWindowToast, PreferencesWindowToastOverlay, preferencesWindowVariants }

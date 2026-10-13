@@ -153,6 +153,28 @@ function CalendarLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function CalendarSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
 function CalendarLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -177,10 +199,10 @@ function CalendarHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function CalendarSelection2({ className, ...props }: React.ComponentProps<"div">) {
+function CalendarSelection3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="calendar-selection2"
+      data-slot="calendar-selection3"
         data-node="selection"
       className={cn("selection", className)}
       {...props}
@@ -188,10 +210,32 @@ function CalendarSelection2({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-function CalendarLink2({ className, ...props }: React.ComponentProps<"div">) {
+function CalendarLink3({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="calendar-link2"
+      data-slot="calendar-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -223,4 +267,4 @@ function CalendarGrid({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Calendar, CalendarButton, CalendarStack, CalendarSelection, CalendarLink, CalendarLabel, CalendarHeader, CalendarSelection2, CalendarLink2, CalendarLabel2, CalendarGrid, calendarVariants }
+export { Calendar, CalendarButton, CalendarStack, CalendarSelection, CalendarLink, CalendarSelection2, CalendarLink2, CalendarLabel, CalendarHeader, CalendarSelection3, CalendarLink3, CalendarSelection4, CalendarLink4, CalendarLabel2, CalendarGrid, calendarVariants }

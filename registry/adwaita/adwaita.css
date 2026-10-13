@@ -4,6 +4,12 @@
  * brand's palette. */
 @import "./variables.css";
 
+/* Adwaita as Tailwind's own language, generated beside this by bin/19-tailwind-theme: the
+ * palette as `@theme` tokens, the states and node paths as `@custom-variant`, and the
+ * layout managers as `@utility`. Imported before anything below states a rule, because a
+ * utility has to exist before a component names it. */
+@import "./theme.css";
+
 
 /* Adwaita's icons, generated beside this by bin/11-generate-components. An `icon-name`
  * names one of these the way it names one in GTK. */

@@ -93,7 +93,13 @@ function Sidebar({ className, render, variant = "default", placeholder, filter: 
                 <SidebarScrolledWindow>
                   <SidebarClamp>
                     <SidebarBox>
-                      {children}
+                      <SidebarScrolledWindow2>
+                        <SidebarClamp2>
+                          <SidebarBox2>
+                            {children}
+                          </SidebarBox2>
+                        </SidebarClamp2>
+                      </SidebarScrolledWindow2>
                     </SidebarBox>
                   </SidebarClamp>
                 </SidebarScrolledWindow>
@@ -134,6 +140,28 @@ function SidebarLink({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function SidebarSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-selection2"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
 function SidebarDescription({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -144,6 +172,96 @@ function SidebarDescription({ className, ...props }: React.ComponentProps<"span"
       className={cn("label", "body", "dimmed", "description", className)}
       {...props}
     />
+  )
+}
+
+function SidebarSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarDescription2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="sidebar-description2"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", "description", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-box2"
+        data-node="box"
+      className={cn("box", "box", "vertical", "vertical", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarClamp2({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="sidebar-clamp2"
+        data-node="clamp"
+      className={cn("clamp", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function SidebarScrolledWindow2({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-scrolled-window2"
+        data-node="scrolledwindow"
+      className={cn("scrolledwindow", className)}
+      {...props}
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -166,8 +284,30 @@ function SidebarClamp({ className, style, ...props }: React.ComponentProps<"div"
       ref={ref}
       data-slot="sidebar-clamp"
         data-node="clamp"
-      className={cn("clamp", "clamp", className)}
+      className={cn("clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function SidebarOvershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-overshoot"
+        data-node="overshoot"
+      className={cn("overshoot", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-undershoot"
+        data-node="undershoot"
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -213,4 +353,4 @@ function SidebarPreferencesPage({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-export { Sidebar, SidebarSelection, SidebarLink, SidebarDescription, SidebarBox, SidebarClamp, SidebarScrolledWindow, SidebarPreferencesPage, sidebarVariants }
+export { Sidebar, SidebarSelection, SidebarLink, SidebarSelection2, SidebarLink2, SidebarDescription, SidebarSelection3, SidebarLink3, SidebarDescription2, SidebarBox2, SidebarClamp2, SidebarScrolledWindow2, SidebarBox, SidebarClamp, SidebarOvershoot, SidebarUndershoot, SidebarScrolledWindow, SidebarPreferencesPage, sidebarVariants }

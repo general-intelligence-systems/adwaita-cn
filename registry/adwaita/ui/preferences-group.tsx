@@ -126,19 +126,6 @@ function PreferencesGroupLink({ className, ...props }: React.ComponentProps<"div
   )
 }
 
-function PreferencesGroupTitle({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="preferences-group-title"
-        data-node="label"
-        data-xalign="start"
-        data-yalign="center"
-      className={cn("label", "heading", "h4", className)}
-      {...props}
-    />
-  )
-}
-
 function PreferencesGroupSelection2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -154,6 +141,63 @@ function PreferencesGroupLink2({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="preferences-group-link2"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="preferences-group-title"
+        data-node="label"
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "heading", "h4", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-selection3"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-link3"
+        data-node="link"
+      className={cn("link", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupSelection4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-selection4"
+        data-node="selection"
+      className={cn("selection", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupLink4({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-link4"
         data-node="link"
       className={cn("link", className)}
       {...props}
@@ -231,4 +275,4 @@ function PreferencesGroupBox({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-export { PreferencesGroup, PreferencesGroupSelection, PreferencesGroupLink, PreferencesGroupTitle, PreferencesGroupSelection2, PreferencesGroupLink2, PreferencesGroupDescription, PreferencesGroupBox2, PreferencesGroupHeaderBox, PreferencesGroupListbox, PreferencesGroupListboxBox, PreferencesGroupBox, preferencesGroupVariants }
+export { PreferencesGroup, PreferencesGroupSelection, PreferencesGroupLink, PreferencesGroupSelection2, PreferencesGroupLink2, PreferencesGroupTitle, PreferencesGroupSelection3, PreferencesGroupLink3, PreferencesGroupSelection4, PreferencesGroupLink4, PreferencesGroupDescription, PreferencesGroupBox2, PreferencesGroupHeaderBox, PreferencesGroupListbox, PreferencesGroupListboxBox, PreferencesGroupBox, preferencesGroupVariants }
