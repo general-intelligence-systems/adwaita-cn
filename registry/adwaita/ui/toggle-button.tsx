@@ -172,7 +172,7 @@ function ToggleButton({ className, render, variant = "default", size = "default"
     "data-can-shrink": canShrink,
     "data-has-frame": hasFrame,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toggleButtonVariants({ variant, size }), "toggle", hasFrame === false && [
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toggleButtonVariants({ variant, size }), "toggle", hasFrame === false && [
           "flat bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",

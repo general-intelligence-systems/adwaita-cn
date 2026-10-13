@@ -51,9 +51,16 @@ export interface PreferencesGroupProps
 function PreferencesGroup({ className, render, variant = "default", description, headerSuffix, title, separateRows, children, ...props }: PreferencesGroupProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  // The mark the generator puts on every component which descends from
+  // AdwPreferencesRow. A child it cannot read -- a fragment, a bare element -- is
+  // not a row, which is the answer gtk_widget_is_ancestor would give for it too.
+  const all = React.Children.toArray(children)
+  const isRow = (one: React.ReactNode) =>
+    React.isValidElement(one) &&
+    (one.type as { isPreferencesRow?: boolean })?.isPreferencesRow === true
+  const rows = all.filter(isRow)
+  const loose = all.filter((one) => !isRow(one))
+
   const defaultProps = {
     "data-slot": "preferences-group",
     "data-node": "preferencesgroup",
@@ -62,29 +69,30 @@ function PreferencesGroup({ className, render, variant = "default", description,
     className: cn("group/preferences-group", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesGroupVariants({ variant }), widgetClassName, className),
     style,
     children: (
-        <>
-                  <PreferencesGroupBox>
-                <PreferencesGroupHeaderBox>
-                  <PreferencesGroupBox2>
-                    {title ? (
-                      <PreferencesGroupTitle>{title}</PreferencesGroupTitle>
-                    ) : null}
-                    {description ? (
-                      <PreferencesGroupDescription>{description}</PreferencesGroupDescription>
-                    ) : null}
-                  </PreferencesGroupBox2>
-                </PreferencesGroupHeaderBox>
-                <PreferencesGroupListboxBox>
-                  {children ? (
-                    <PreferencesGroupListbox>
-                      {children}
-                    </PreferencesGroupListbox>
-                  ) : null}
-                </PreferencesGroupListboxBox>
-              </PreferencesGroupBox>
-                  {headerSuffix}
-        </>
-      ),
+      <>
+        <PreferencesGroupBox>
+          <PreferencesGroupHeaderBox>
+            <PreferencesGroupBox2>
+              {title ? (
+                <PreferencesGroupTitle>{title}</PreferencesGroupTitle>
+              ) : null}
+              {description ? (
+                <PreferencesGroupDescription>{description}</PreferencesGroupDescription>
+              ) : null}
+            </PreferencesGroupBox2>
+          </PreferencesGroupHeaderBox>
+          <PreferencesGroupListboxBox>
+            {rows.length > 0 ? (
+              <PreferencesGroupListbox>
+                {rows}
+              </PreferencesGroupListbox>
+            ) : null}
+            {loose}
+          </PreferencesGroupListboxBox>
+        </PreferencesGroupBox>
+        {headerSuffix}
+      </>
+    ),
     ...widgetAttributes,
   }
 
@@ -185,7 +193,7 @@ function PreferencesGroupBox2({ className, ...props }: React.ComponentProps<"div
         data-node="box"
         data-valign="center"
         data-hexpand=""
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "labels vertical", "gap-[6px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "labels vertical", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -196,7 +204,7 @@ function PreferencesGroupHeaderBox({ className, ...props }: React.ComponentProps
     <div
       data-slot="preferences-group-header-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "gap-[6px] mb-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "gap-[6px] mb-1.5", className)}
       {...props}
     />
   )
@@ -207,7 +215,7 @@ function PreferencesGroupListbox({ className, ...props }: React.ComponentProps<"
     <ul
       data-slot="preferences-group-listbox"
         data-node="list"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -218,7 +226,7 @@ function PreferencesGroupListboxBox({ className, ...props }: React.ComponentProp
     <div
       data-slot="preferences-group-listbox-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[6px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -229,7 +237,7 @@ function PreferencesGroupBox({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="preferences-group-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[6px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[6px]", className)}
       {...props}
     />
   )

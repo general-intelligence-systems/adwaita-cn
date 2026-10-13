@@ -199,7 +199,7 @@ function EntryRowPrefixes({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="entry-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
       {...props}
     />
   )
@@ -365,7 +365,7 @@ function EntryRowText({ className, ...props }: React.ComponentProps<"input">) {
         data-hexpand=""
         data-vexpand=""
         style={{ opacity: 0 }}
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
       {...props}
     />
   )
@@ -434,7 +434,7 @@ function EntryRowSuffixes({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="entry-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px] mx-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px] mx-1.5", className)}
       {...props}
     />
   )
@@ -446,10 +446,12 @@ function EntryRowHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="entry-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
       {...props}
     />
   )
 }
 
 export { EntryRow, EntryRowPrefixes, EntryRowSelection, EntryRowLink, EntryRowEmptyTitle, EntryRowSelection2, EntryRowLink2, EntryRowTitle, EntryRowPlaceholder, EntryRowUndershoot, EntryRowSelection3, EntryRowCursorHandle, EntryRowBlockCursor, EntryRowWindow, EntryRowText, EntryRowIndicator, EntryRowApplyButton, EntryRowEditIcon, EntryRowEditableArea, EntryRowSuffixes, EntryRowHeader, entryRowVariants }
+
+EntryRow.isPreferencesRow = true

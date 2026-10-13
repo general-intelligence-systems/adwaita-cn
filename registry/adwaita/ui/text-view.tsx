@@ -150,7 +150,7 @@ function TextView({ className, render, variant = "default", buffer: _buffer, ext
     "data-top-margin": topMargin,
     "data-vscroll-policy": vscrollPolicy,
     "data-wrap-mode": wrapMode,
-    className: cn("group/text-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textViewVariants({ variant }), [
+    className: cn("group/text-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textViewVariants({ variant }), [
           "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
           "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
           "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
@@ -201,7 +201,7 @@ function TextViewText({ className, ...props }: React.ComponentProps<"input">) {
     <input
       data-slot="text-view-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", [
         "text-[var(--view-fg-color)] bg-[transparent]",
         "group-disabled/text-view:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] group-disabled/text-view:bg-[transparent]",
         "group-data-[selected]/text-view:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] group-data-[selected]/text-view:rounded-[9px]",

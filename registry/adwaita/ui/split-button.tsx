@@ -93,7 +93,7 @@ function SplitButton({ className, render, variant = "default", child, iconName, 
     "data-direction": direction,
     "data-dropdown-tooltip": dropdownTooltip,
     "data-use-underline": useUnderline,
-    className: cn("group/split-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", splitButtonVariants({ variant }), iconName && !label && "image-button", label && !iconName && "text-button", widgetClassName, className),
+    className: cn("group/split-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", splitButtonVariants({ variant }), iconName && !label && "image-button", label && !iconName && "text-button", widgetClassName, className),
     style,
     children: (
         <>

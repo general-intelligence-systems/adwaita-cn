@@ -172,7 +172,7 @@ function AppChooserDialog({ className, render, variant = "default", child, headi
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/app-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", appChooserDialogVariants({ variant }), "background", "dialog", iconName && !heading && "image-button", heading && !iconName && "text-button", widgetClassName, className),
+    className: cn("group/app-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", appChooserDialogVariants({ variant }), "background", "dialog", iconName && !heading && "image-button", heading && !iconName && "text-button", widgetClassName, className),
     style,
     children: (
         <>

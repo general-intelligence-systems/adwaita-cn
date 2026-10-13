@@ -86,7 +86,7 @@ function PopoverMenu({ className, render, variant = "default", child, defaultWid
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
     "data-visible-submenu": visibleSubmenu,
-    className: cn("group/popover-menu", popoverMenuVariants({ variant }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", "menu p-0 min-w-30", widgetClassName, className),
+    className: cn("group/popover-menu", "grid [&>*]:col-start-1 [&>*]:row-start-1", popoverMenuVariants({ variant }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", "menu p-0 min-w-30", widgetClassName, className),
     style,
     children: (
         <>

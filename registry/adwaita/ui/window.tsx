@@ -146,7 +146,7 @@ function Window({ className, render, variant = "default", child, content, iconNa
     "data-resizable": resizable,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn("group/window", windowVariants({ variant }), "background", widgetClassName, className),
+    className: cn("group/window", "grid [&>*]:col-start-1 [&>*]:row-start-1", windowVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>

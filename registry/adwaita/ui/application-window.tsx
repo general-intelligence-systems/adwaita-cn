@@ -150,7 +150,7 @@ function ApplicationWindow({ className, render, variant = "default", child, cont
     "data-show-menubar": showMenubar,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn("group/application-window", applicationWindowVariants({ variant }), "background", widgetClassName, className),
+    className: cn("group/application-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", applicationWindowVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>

@@ -65,7 +65,7 @@ function WindowControls({ className, render, variant = "default", decorationLayo
     "data-decoration-layout": decorationLayout,
     "data-side": side,
     "data-use-native-controls": useNativeControls,
-    className: cn("group/window-controls", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", windowControlsVariants({ variant }), "empty", "start", widgetClassName, className),
+    className: cn("group/window-controls", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", windowControlsVariants({ variant }), "empty", "start", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

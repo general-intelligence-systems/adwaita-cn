@@ -99,7 +99,7 @@ function Flap({ className, render, variant = "default", content, flap, separator
     "data-swipe-to-close": swipeToClose,
     "data-swipe-to-open": swipeToOpen,
     "data-transition-type": transitionType,
-    className: cn("group/flap", flapVariants({ variant }), "unfolded", widgetClassName, className),
+    className: cn("group/flap", "grid [&>*]:col-start-1 [&>*]:row-start-1", flapVariants({ variant }), "unfolded", widgetClassName, className),
     style,
     children: (
         <>

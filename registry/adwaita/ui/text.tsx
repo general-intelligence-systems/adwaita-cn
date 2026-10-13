@@ -135,7 +135,7 @@ function Text({ className, render, variant = "default", placeholderText, attribu
     "data-visibility": visibility,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/text", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textVariants({ variant }), editable === false && "read-only", widgetClassName, className),
+    className: cn("group/text", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textVariants({ variant }), editable === false && "read-only", widgetClassName, className),
     style,
     children: (
         <>

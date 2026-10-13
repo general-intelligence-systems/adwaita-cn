@@ -119,3 +119,5 @@ function PreferencesRow({ className, render, variant = "default", child, actionT
 }
 
 export { PreferencesRow, preferencesRowVariants }
+
+PreferencesRow.isPreferencesRow = true

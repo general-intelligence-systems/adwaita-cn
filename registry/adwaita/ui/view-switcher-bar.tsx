@@ -69,7 +69,7 @@ function ViewSwitcherBarViewSwitcher({ className, ...props }: React.ComponentPro
     <div
       data-slot="view-switcher-bar-view-switcher"
         data-node="viewswitcher"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5", className)}
       {...props}
     />
   )

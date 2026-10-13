@@ -159,7 +159,7 @@ function ShortcutsWindow({ className, render, variant = "default", size = "defau
     "data-startup-id": startupId,
     "data-title": title,
     "data-view-name": viewName,
-    className: cn("group/shortcuts-window", shortcutsWindowVariants({ variant, size }), "background", "shortcuts", widgetClassName, className),
+    className: cn("group/shortcuts-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", shortcutsWindowVariants({ variant, size }), "background", "shortcuts", widgetClassName, className),
     style,
     children: (
         <>

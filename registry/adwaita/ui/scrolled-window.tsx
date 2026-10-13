@@ -133,7 +133,7 @@ function ScrolledWindow({ className, render, variant = "default", child, hadjust
     "data-propagate-natural-width": propagateNaturalWidth,
     "data-vscrollbar-policy": vscrollbarPolicy,
     "data-window-placement": windowPlacement,
-    className: cn("group/scrolled-window", "flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", scrolledWindowVariants({ variant }), hasFrame && "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
+    className: cn("group/scrolled-window", "flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", scrolledWindowVariants({ variant }), hasFrame && "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
     style,
     children: (
         <>

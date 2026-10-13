@@ -147,7 +147,7 @@ function Assistant({ className, render, variant = "default", child, iconName, ti
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/assistant", assistantVariants({ variant }), "assistant", "background", widgetClassName, className),
+    className: cn("group/assistant", "grid [&>*]:col-start-1 [&>*]:row-start-1", assistantVariants({ variant }), "assistant", "background", widgetClassName, className),
     style,
     children: (
         <>

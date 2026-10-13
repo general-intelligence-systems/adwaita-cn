@@ -162,7 +162,7 @@ function PageSetupUnixDialog({ className, render, variant = "default", child, ic
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/page-setup-unix-dialog", pageSetupUnixDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
+    className: cn("group/page-setup-unix-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", pageSetupUnixDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>

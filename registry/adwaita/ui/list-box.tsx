@@ -81,7 +81,7 @@ function ListBox({ className, render, variant = "default", acceptUnpairedRelease
     "data-selection-mode": selectionMode,
     "data-show-separators": showSeparators,
     "data-tab-behavior": tabBehavior,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", listBoxVariants({ variant }), showSeparators && "separators", widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", listBoxVariants({ variant }), showSeparators && "separators", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

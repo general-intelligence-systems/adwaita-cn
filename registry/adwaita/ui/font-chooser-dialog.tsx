@@ -181,7 +181,7 @@ function FontChooserDialog({ className, render, variant = "default", child, icon
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/font-chooser-dialog", fontChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
+    className: cn("group/font-chooser-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", fontChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>

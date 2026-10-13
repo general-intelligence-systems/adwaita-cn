@@ -206,10 +206,12 @@ function ButtonRowContents({ className, ...props }: React.ComponentProps<"div">)
       data-slot="button-row-contents"
         data-node="box"
         data-halign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "mx-3 gap-[6px] min-h-10", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "mx-3 gap-[6px] min-h-10", className)}
       {...props}
     />
   )
 }
 
 export { ButtonRow, ButtonRowStartImage, ButtonRowSelection, ButtonRowLink, ButtonRowTitle, ButtonRowEndImage, ButtonRowContents, buttonRowVariants }
+
+ButtonRow.isPreferencesRow = true

@@ -40,7 +40,7 @@ function NavigationView({ className, render, animateTransitions, hhomogeneous, p
     "data-hhomogeneous": hhomogeneous,
     "data-pop-on-escape": popOnEscape,
     "data-vhomogeneous": vhomogeneous,
-    className: cn("group/navigation-view", widgetClassName, className),
+    className: cn("group/navigation-view", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

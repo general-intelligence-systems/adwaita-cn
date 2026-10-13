@@ -170,7 +170,7 @@ function ExpanderRowSuffixes({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="expander-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", className)}
       {...props}
     />
   )
@@ -254,7 +254,7 @@ function ExpanderRowListBox({ className, ...props }: React.ComponentProps<"ul">)
     <ul
       data-slot="expander-row-list-box"
         data-node="list"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-none text-[inherit]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-none text-[inherit]", className)}
       {...props}
     />
   )
@@ -265,7 +265,7 @@ function ExpanderRowList({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-slot="expander-row-list"
         data-node="list"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "nested", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-[color-mix(in_srgb,var(--card-shade-color)_50%,transparent)] text-[inherit]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "nested", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-[color-mix(in_srgb,var(--card-shade-color)_50%,transparent)] text-[inherit]", className)}
       {...props}
     />
   )
@@ -287,10 +287,12 @@ function ExpanderRowBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-row-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
       {...props}
     />
   )
 }
 
 export { ExpanderRow, ExpanderRowSuffixes, ExpanderRowImage, ExpanderRowSlider, ExpanderRowEnableSwitch, ExpanderRowImage2, ExpanderRowActionRow, ExpanderRowListBox, ExpanderRowList, ExpanderRowRevealer, ExpanderRowBox, expanderRowVariants }
+
+ExpanderRow.isPreferencesRow = true

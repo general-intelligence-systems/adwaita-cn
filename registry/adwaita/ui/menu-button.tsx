@@ -107,7 +107,7 @@ function MenuButton({ className, render, variant = "default", child, iconName, p
     "data-label": label,
     "data-primary": primary,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", menuButtonVariants({ variant }), "popup", iconName && "image-button", widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", menuButtonVariants({ variant }), "popup", iconName && "image-button", widgetClassName, className),
     style,
     children: (
         <>

@@ -88,7 +88,7 @@ function ToolbarView({ className, render, variant = "default", bottomBars, conte
     "data-reveal-bottom-bars": revealBottomBars,
     "data-reveal-top-bars": revealTopBars,
     "data-top-bar-style": topBarStyle,
-    className: cn("group/toolbar-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toolbarViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/toolbar-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toolbarViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -136,7 +136,7 @@ function ToolbarViewInternalBox({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
       {...props}
     />
   )
@@ -169,7 +169,7 @@ function ToolbarViewInternalBox2({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
       {...props}
     />
   )

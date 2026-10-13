@@ -169,7 +169,7 @@ function ColorChooserDialog({ className, render, variant = "default", child, ico
     "data-title": title,
     "data-use-alpha": useAlpha,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/color-chooser-dialog", colorChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
+    className: cn("group/color-chooser-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", colorChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>

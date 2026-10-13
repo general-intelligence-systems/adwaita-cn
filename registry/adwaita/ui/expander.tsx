@@ -87,7 +87,7 @@ function ExpanderExpander2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="expander-expander2"
         data-node="expander"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)] opacity-70",
         "group-disabled/expander:[filter:Opacity(var(--disabled-opacity))]",
         "group-data-[state=checked]/expander:adw-icon-source group-data-[state=checked]/expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
@@ -113,7 +113,7 @@ function ExpanderBox2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-box2"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
       {...props}
     />
   )
@@ -124,7 +124,7 @@ function ExpanderExpander({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="expander-expander"
         data-node="expander"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
         "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)] opacity-70",
         "group-disabled/expander:[filter:Opacity(var(--disabled-opacity))]",
         "group-data-[state=checked]/expander:adw-icon-source group-data-[state=checked]/expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
@@ -150,7 +150,7 @@ function ExpanderBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
       {...props}
     />
   )

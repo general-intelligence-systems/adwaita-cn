@@ -201,7 +201,7 @@ function EditableLabelText({ className, ...props }: React.ComponentProps<"input"
     <input
       data-slot="editable-label-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]", className)}
       {...props}
     />
   )

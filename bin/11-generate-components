@@ -212,10 +212,15 @@ module GenerateComponents
     # `valign=center` instead. Grown, it was as tall as the viewport and its contents sat
     # at the top of it -- the icon, the title and the button of every status page in the
     # registry were 115px above where the toolkit puts them.
+    # A child which aligns itself is not stretched, and where it sits is stated ON THE
+    # CONTAINER and never as a margin on the child. `my-auto` centres a child too, and it
+    # is a margin: it replaced AdwStatusPage's own `my-9` and took 72px off the top and
+    # bottom of every status page in the registry, pulling everything under it up the page.
     "scroll" =>
       "flex flex-col grow min-h-0 overflow-auto " \
       "[&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 " \
-      "[&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto",
+      "has-[>[data-valign=center]]:justify-center " \
+      "has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start",
     # Items across, wrapped, packed to the top of whatever height the view is given.
     "fill-grid" =>
       "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0",
@@ -297,9 +302,17 @@ module GenerateComponents
   # `halign` is `align-self` in a column, and `hexpand` is `flex-grow` in a row where
   # `vexpand` is `flex-grow` in a column. lib/widget.ts writes the four as attributes
   # and these turn them into the rules which mean them here.
+  #
+  # EXPANSION PROPAGATES UP. gtk_widget_compute_expand asks a widget whether it or ANY
+  # descendant expands, so AdwMessageDialog's body carrying `vexpand="True"` is what gives
+  # the message area around it the window's height, and the response area the 80px left at
+  # the foot. Matched on the child alone, nothing between the dialog and the label grew:
+  # the heading, the body and the buttons were a stack of natural heights in the top left
+  # corner of a 920x620 window, and the same in every dialog, window and popover.
   ALIGNMENT = {
     "row" => [
       "[&>[data-hexpand]]:grow",
+      "[&>*:has([data-hexpand])]:grow",
       "[&>[data-valign=start]]:self-start",
       "[&>[data-valign=center]]:self-center",
       "[&>[data-valign=end]]:self-end",
@@ -307,6 +320,7 @@ module GenerateComponents
     ].join(" "),
     "col" => [
       "[&>[data-vexpand]]:grow",
+      "[&>*:has([data-vexpand])]:grow",
       "[&>[data-halign=start]]:self-start",
       "[&>[data-halign=center]]:self-center",
       "[&>[data-halign=end]]:self-end",
@@ -412,6 +426,7 @@ module GenerateComponents
     flags = final.fetch("enums").select{|_name, enum| enum.fetch("flags")}.keys.to_set
     self.enum_names = EnumNames.map(final.fetch("enums"))
     components = final.fetch("components").slice(*final.fetch("buildable"))
+    self.components_by_name = final.fetch("components")
 
     self.write(root, "styles.css", self.styles_css(final.fetch("styles", {})), true)
     self.write(root, "icons.css", self.icons_css(root, self.named_icons(final)), true)
@@ -954,11 +969,34 @@ module GenerateComponents
         # measuring itself inside it -- were 261px wide in a 480px page.
         "bin"
       elsif component["layout"].nil?
-        nil
+        # A WIDGET WHICH HOLDS SOMETHING ALWAYS ALLOCATES IT. GTK names a layout manager
+        # for the widgets which arrange several children and leaves the rest to their own
+        # C, which hands the child the whole allocation -- so a component with none got no
+        # CSS layout at all and everything inside it fell into the document's flow, at the
+        # top left, at its own natural size.
+        #
+        # That is AdwMessageDialog's heading, body and buttons piled into the corner of a
+        # 920x620 window where the toolkit centres them and puts the buttons along the
+        # foot, and the same for every window, dialog, popover and revealer in the
+        # registry: 37 components, which is most of what an application is built out of.
+        #
+        # A leaf -- a label, an image, a separator -- holds nothing and is left alone.
+        self.holds_children?(component) ? "bin" : nil
       else
         "#{component['layout']}#{component['direction'] == 'vertical' ? '-vertical' : ''}"
       end
     end.to_s
+  end
+
+  # Whether this component has anything to lay out: a tree with widget children, or a
+  # place for the caller's own.
+  def self.holds_children?(component)
+    tree = component["tree"]
+
+    return false if tree.nil?
+
+    (tree.fetch("slots", {}).values + tree.fetch("children", []))
+      .any?{|child| self.widget_node?(child) }
   end
 
   # A template whose root holds exactly one widget, which is therefore given all of it.
@@ -1075,6 +1113,71 @@ module GenerateComponents
   # The body here REPLACES the generated one. It is the last resort and the table is
   # meant to stay short: anything which can be read out of a source belongs in bin/08.
   OWN_BEHAVIOUR = {
+    # `adw_preferences_group_add` sorts what it is given: an AdwPreferencesRow goes into
+    # the group's list box -- which is the card the rows are drawn in -- and anything else
+    # is appended to the group's own box BELOW that card. bin/apps/software adds a
+    # progress bar, a level bar, a spinner and one row, and the toolkit draws the row in
+    # the card with the other three under it; rendered in the order they were written they
+    # were all inside the card and the row was last.
+    "PreferencesGroup" => {
+      body: <<~'TSX'.chomp,
+        function PreferencesGroup({ className, render, variant = "default", description, headerSuffix, title, separateRows, children, ...props }: PreferencesGroupProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          // The mark the generator puts on every component which descends from
+          // AdwPreferencesRow. A child it cannot read -- a fragment, a bare element -- is
+          // not a row, which is the answer gtk_widget_is_ancestor would give for it too.
+          const all = React.Children.toArray(children)
+          const isRow = (one: React.ReactNode) =>
+            React.isValidElement(one) &&
+            (one.type as { isPreferencesRow?: boolean })?.isPreferencesRow === true
+          const rows = all.filter(isRow)
+          const loose = all.filter((one) => !isRow(one))
+
+          const defaultProps = {
+            "data-slot": "preferences-group",
+            "data-node": "preferencesgroup",
+            "data-variant": variant,
+            "data-separate-rows": separateRows,
+            className: cn("group/preferences-group", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesGroupVariants({ variant }), widgetClassName, className),
+            style,
+            children: (
+              <>
+                <PreferencesGroupBox>
+                  <PreferencesGroupHeaderBox>
+                    <PreferencesGroupBox2>
+                      {title ? (
+                        <PreferencesGroupTitle>{title}</PreferencesGroupTitle>
+                      ) : null}
+                      {description ? (
+                        <PreferencesGroupDescription>{description}</PreferencesGroupDescription>
+                      ) : null}
+                    </PreferencesGroupBox2>
+                  </PreferencesGroupHeaderBox>
+                  <PreferencesGroupListboxBox>
+                    {rows.length > 0 ? (
+                      <PreferencesGroupListbox>
+                        {rows}
+                      </PreferencesGroupListbox>
+                    ) : null}
+                    {loose}
+                  </PreferencesGroupListboxBox>
+                </PreferencesGroupBox>
+                {headerSuffix}
+              </>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+      TSX
+    },
     # GtkInfoBar is a revealer around a row of three: the content area holding what the
     # application put in, an empty action area, and the close button. `message-type` is a
     # style class on the bar itself, which is where `infobar.warning > revealer > box`
@@ -1556,6 +1659,36 @@ module GenerateComponents
     }
   TS
 
+  # `adw_preferences_group_add` asks whether what it was handed IS A ROW: an
+  # AdwPreferencesRow goes into the group's list box and anything else is appended to the
+  # group's box underneath it. A component cannot be asked what it descends from at
+  # runtime, so the generator marks the ones which do, and PreferencesGroup reads the mark.
+  #
+  # Without it bin/apps/software drew its progress bar, level bar and spinner INSIDE the
+  # card and above the row, where the toolkit draws them below it.
+  def self.row_mark(name, component)
+    return "" unless self.preferences_row?(name, component)
+
+    "\n\n#{name}.isPreferencesRow = true"
+  end
+
+  def self.preferences_row?(name, component)
+    return true if name == "PreferencesRow"
+
+    parent = component["parent"]
+    seen = self.components_by_name
+    while parent
+      return true if parent == "PreferencesRow"
+
+      parent = seen.dig(parent, "parent")
+    end
+    false
+  end
+
+  class << self
+    attr_accessor :components_by_name
+  end
+
   def self.component(name, component, flags)
     props = component.fetch("props")
     appearance, sizes = AdwaitaClasses.split(self.offered(component))
@@ -1582,7 +1715,7 @@ module GenerateComponents
 
       #{(OWN_BEHAVIOUR[name] || {})[:body] || self.root(name, component, props, cva, element, parts)}#{parts.map{|part| "\n\n#{part.fetch(:source)}"}.join}
 
-      export { #{([name] + parts.map{|part| part.fetch(:name)} + (cva ? ["#{self.variants_name(name)}"] : [])).join(', ')} }
+      export { #{([name] + parts.map{|part| part.fetch(:name)} + (cva ? ["#{self.variants_name(name)}"] : [])).join(', ')} }#{self.row_mark(name, component)}
     TS
   end
 

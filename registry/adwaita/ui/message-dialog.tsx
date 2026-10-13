@@ -178,7 +178,7 @@ function MessageDialog({ className, render, variant = "default", body, child, ex
     "data-resizable": resizable,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn("group/message-dialog", messageDialogVariants({ variant }), "background", widgetClassName, className),
+    className: cn("group/message-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", messageDialogVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -222,7 +222,7 @@ function MessageDialogBox({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="message-dialog-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
       {...props}
     />
   )
@@ -314,7 +314,7 @@ function MessageDialogHeadingBin({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="message-dialog-heading-bin"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "heading-bin", "px-6", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "heading-bin", "px-6", className)}
       {...props}
     />
   )
@@ -377,7 +377,7 @@ function MessageDialogMessageArea({ className, ...props }: React.ComponentProps<
     <div
       data-slot="message-dialog-message-area"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area vertical", "pt-8 pb-[9px] gap-[24px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area vertical", "pt-8 pb-[9px] gap-[24px]", className)}
       {...props}
     />
   )
@@ -387,7 +387,7 @@ function MessageDialogResponseArea({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="message-dialog-response-area"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
       {...props}
     />
   )
@@ -398,7 +398,7 @@ function MessageDialogBox2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="message-dialog-box2"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
       {...props}
     />
   )

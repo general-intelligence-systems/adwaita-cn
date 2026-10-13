@@ -155,7 +155,7 @@ function AvatarGizmo({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="avatar-gizmo"
         data-node="avatar"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "rounded-full font-bold", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "rounded-full font-bold", className)}
       {...props}
     />
   )

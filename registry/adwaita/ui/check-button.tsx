@@ -73,7 +73,7 @@ function CheckButton({ className, render, size = "default", child, label, action
     "aria-checked": active,
     "data-inconsistent": inconsistent,
     "data-use-underline": useUnderline,
-    className: cn("group/check-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", checkButtonVariants({ size }), label && "text-button p-1", widgetClassName, className),
+    className: cn("group/check-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", checkButtonVariants({ size }), label && "text-button p-1", widgetClassName, className),
     style,
     children: (
         <>

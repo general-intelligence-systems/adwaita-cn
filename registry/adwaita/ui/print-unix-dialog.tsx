@@ -188,7 +188,7 @@ function PrintUnixDialog({ className, render, variant = "default", child, iconNa
     "data-support-selection": supportSelection,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/print-unix-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", printUnixDialogVariants({ variant }), "background", "dialog", "print", widgetClassName, className),
+    className: cn("group/print-unix-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", printUnixDialogVariants({ variant }), "background", "dialog", "print", widgetClassName, className),
     style,
     children: (
         <>

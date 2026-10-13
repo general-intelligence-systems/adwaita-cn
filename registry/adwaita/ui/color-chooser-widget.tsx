@@ -58,7 +58,7 @@ function ColorChooserWidget({ className, render, variant = "default", rgba: _rgb
     "data-variant": variant,
     "data-show-editor": showEditor,
     "data-use-alpha": useAlpha,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", colorChooserWidgetVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", colorChooserWidgetVariants({ variant }), widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

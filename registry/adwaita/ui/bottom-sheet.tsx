@@ -96,7 +96,7 @@ function BottomSheet({ className, render, variant = "default", bottomBar, conten
     "data-open": open,
     "data-reveal-bottom-bar": revealBottomBar,
     "data-show-drag-handle": showDragHandle,
-    className: cn("group/bottom-sheet", bottomSheetVariants({ variant }), widgetClassName, className),
+    className: cn("group/bottom-sheet", "grid [&>*]:col-start-1 [&>*]:row-start-1", bottomSheetVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

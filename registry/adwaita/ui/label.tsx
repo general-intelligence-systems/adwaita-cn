@@ -147,7 +147,7 @@ function Label({ className, render, variant = "default", label, attributes: _att
     "data-wrap-mode": wrapMode,
     "data-xalign": xalign,
     "data-yalign": yalign,
-    className: cn("group/label", labelVariants({ variant }), widgetClassName, className),
+    className: cn("group/label", "grid [&>*]:col-start-1 [&>*]:row-start-1", labelVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

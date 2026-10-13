@@ -269,7 +269,7 @@ function AlertDialogHeadingBin({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="alert-dialog-heading-bin"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "heading-bin", "px-6", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "heading-bin", "px-6", className)}
       {...props}
     />
   )
@@ -332,7 +332,7 @@ function AlertDialogMessageArea({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="alert-dialog-message-area"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area vertical", "pt-8 pb-[9px] gap-[24px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area vertical", "pt-8 pb-[9px] gap-[24px]", className)}
       {...props}
     />
   )
@@ -343,7 +343,7 @@ function AlertDialogScrolledWindow({ className, ...props }: React.ComponentProps
     <div
       data-slot="alert-dialog-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "body-scrolled-window undershoot-bottom", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "body-scrolled-window undershoot-bottom", className)}
       {...props}
     />
   )
@@ -353,7 +353,7 @@ function AlertDialogResponseArea({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="alert-dialog-response-area"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
       {...props}
     />
   )
@@ -364,7 +364,7 @@ function AlertDialogBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="alert-dialog-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
       {...props}
     />
   )
@@ -385,7 +385,7 @@ function AlertDialogContents({ className, ...props }: React.ComponentProps<"div"
   return (
     <div
       data-slot="alert-dialog-contents"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )

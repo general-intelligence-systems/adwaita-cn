@@ -201,7 +201,7 @@ function PasswordEntryRowPrefixes({ className, ...props }: React.ComponentProps<
     <div
       data-slot="password-entry-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
       {...props}
     />
   )
@@ -367,7 +367,7 @@ function PasswordEntryRowText({ className, ...props }: React.ComponentProps<"inp
         data-hexpand=""
         data-vexpand=""
         style={{ opacity: 0 }}
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
       {...props}
     />
   )
@@ -436,7 +436,7 @@ function PasswordEntryRowSuffixes({ className, ...props }: React.ComponentProps<
     <div
       data-slot="password-entry-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px] mx-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px] mx-1.5", className)}
       {...props}
     />
   )
@@ -448,10 +448,12 @@ function PasswordEntryRowHeader({ className, ...props }: React.ComponentProps<"d
       data-slot="password-entry-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
       {...props}
     />
   )
 }
 
 export { PasswordEntryRow, PasswordEntryRowPrefixes, PasswordEntryRowSelection, PasswordEntryRowLink, PasswordEntryRowEmptyTitle, PasswordEntryRowSelection2, PasswordEntryRowLink2, PasswordEntryRowTitle, PasswordEntryRowPlaceholder, PasswordEntryRowUndershoot, PasswordEntryRowSelection3, PasswordEntryRowCursorHandle, PasswordEntryRowBlockCursor, PasswordEntryRowWindow, PasswordEntryRowText, PasswordEntryRowIndicator, PasswordEntryRowApplyButton, PasswordEntryRowEditIcon, PasswordEntryRowEditableArea, PasswordEntryRowSuffixes, PasswordEntryRowHeader, passwordEntryRowVariants }
+
+PasswordEntryRow.isPreferencesRow = true
