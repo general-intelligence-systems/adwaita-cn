@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -12,7 +11,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { InlineViewSwitcherDisplayMode } from "@/lib/enums"
+import type { InlineViewSwitcherDisplayMode, Orientation } from "@/lib/enums"
 
 const inlineViewSwitcherVariants = cva(
   "",
@@ -21,17 +20,17 @@ const inlineViewSwitcherVariants = cva(
       variant: {
         default: "",
         /** .both */
-        both: "",
+        both: "both",
         /** .flat */
-        flat: "",
+        flat: "flat",
         /** .icons */
-        icons: "",
+        icons: "icons",
         /** .labels */
-        labels: "",
+        labels: "labels",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .round */
-        round: "",
+        round: "round",
       },
     },
     defaultVariants: { variant: "default" },
@@ -52,13 +51,13 @@ export interface InlineViewSwitcherProps
   homogeneous?: boolean
 
   /** Orientation, from Adw.InlineViewSwitcher */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** ViewStack, from Adw.InlineViewSwitcher */
-  stack?: ReactNode
+  stack?: unknown
 }
 
-function InlineViewSwitcher({ className, render, variant = "default", orientation, stack, canShrink, displayMode, homogeneous, children, ...props }: InlineViewSwitcherProps) {
+function InlineViewSwitcher({ className, render, variant = "default", stack: _stack, canShrink, displayMode, homogeneous, orientation, children, ...props }: InlineViewSwitcherProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -72,26 +71,15 @@ function InlineViewSwitcher({ className, render, variant = "default", orientatio
     "data-can-shrink": canShrink,
     "data-display-mode": displayMode,
     "data-homogeneous": homogeneous,
+    "data-orientation": orientation,
     className: cn("group/inline-view-switcher", "grid [&>*]:col-start-1 [&>*]:row-start-1", inlineViewSwitcherVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <InlineViewSwitcherToggleGroup>
-                <InlineViewSwitcherToggle>
-                  <InlineViewSwitcherWidget>
-                    <InlineViewSwitcherBox>
-                      {children}
-                    </InlineViewSwitcherBox>
-                    <InlineViewSwitcherIndicatorbin>
-                      <InlineViewSwitcherIndicator />
-                      <InlineViewSwitcherLabel />
-                      <InlineViewSwitcherMask />
-                    </InlineViewSwitcherIndicatorbin>
-                  </InlineViewSwitcherWidget>
-                </InlineViewSwitcherToggle>
+                <InlineViewSwitcherToggle />
               </InlineViewSwitcherToggleGroup>
-                  {orientation}
-                  {stack}
+                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -103,75 +91,6 @@ function InlineViewSwitcher({ className, render, variant = "default", orientatio
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
-}
-
-function InlineViewSwitcherBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="inline-view-switcher-box"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
-      {...props}
-    />
-  )
-}
-
-function InlineViewSwitcherIndicator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="inline-view-switcher-indicator"
-        data-node="indicator"
-      className={cn("m-0.5 min-w-1.5 min-h-1.5 rounded-[100px] bg-[color-mix(in_srgb,currentColor_40%,transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function InlineViewSwitcherLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="inline-view-switcher-label"
-        data-node="label"
-      className={cn([
-        "caret-[currentColor]",
-        "group-disabled/inline-view-switcher:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function InlineViewSwitcherMask({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="inline-view-switcher-mask"
-        data-node="mask"
-      className={cn("p-0.5 min-w-1.5 min-h-1.5 rounded-[100px] bg-[black]", className)}
-      {...props}
-    />
-  )
-}
-
-function InlineViewSwitcherIndicatorbin({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="inline-view-switcher-indicatorbin"
-        data-node="indicatorbin"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function InlineViewSwitcherWidget({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="inline-view-switcher-widget"
-        data-node="widget"
-      className={cn(className)}
-      {...props}
-    />
-  )
 }
 
 function InlineViewSwitcherToggle({ className, ...props }: React.ComponentProps<"div">) {
@@ -205,4 +124,4 @@ function InlineViewSwitcherToggleGroup({ className, ...props }: React.ComponentP
   )
 }
 
-export { InlineViewSwitcher, InlineViewSwitcherBox, InlineViewSwitcherIndicator, InlineViewSwitcherLabel, InlineViewSwitcherMask, InlineViewSwitcherIndicatorbin, InlineViewSwitcherWidget, InlineViewSwitcherToggle, InlineViewSwitcherToggleGroup, inlineViewSwitcherVariants }
+export { InlineViewSwitcher, InlineViewSwitcherToggle, InlineViewSwitcherToggleGroup, inlineViewSwitcherVariants }

@@ -20,42 +20,42 @@ const alertDialogVariants = cva(
     variants: {
       variant: {
         /** .alert */
-        alert: "",
+        alert: "alert",
         /** .background */
-        background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
         /** .bottom-sheet */
-        bottomSheet: "",
+        bottomSheet: "bottom-sheet",
         /** .compact */
-        compact: "",
+        compact: "compact",
         /** .default */
-        default: "",
+        default: "default",
         /** .destructive-action */
-        destructiveAction: "",
+        destructiveAction: "destructive-action",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .dialog-window */
-        dialogWindow: "",
+        dialogWindow: "dialog-window",
         /** .floating */
-        floating: "",
+        floating: "floating",
         /** .has-body */
-        hasBody: "",
+        hasBody: "has-body",
         /** .has-heading */
-        hasHeading: "",
+        hasHeading: "has-heading",
         /** .landscape */
-        landscape: "",
+        landscape: "landscape",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .portrait */
-        portrait: "",
+        portrait: "portrait",
         /** .short */
-        short: "",
+        short: "short",
         /** .suggested-action */
-        suggestedAction: "",
+        suggestedAction: "suggested-action",
         /** .view */
         view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
           "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
           "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
           "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
@@ -95,13 +95,13 @@ export interface AlertDialogProps
   defaultResponse?: string
 
   /** Gtk.Widget, from Adw.Dialog */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** Gtk.Widget, from Adw.AlertDialog */
   extraChild?: ReactNode
 
   /** Gtk.Widget, from Adw.Dialog */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Adw.Dialog */
   followsContentSize?: boolean
@@ -122,7 +122,7 @@ export interface AlertDialogProps
   title?: string
 }
 
-function AlertDialog({ className, render, variant = "default", body, child, defaultWidget, extraChild, focusWidget, heading, bodyUseMarkup, canClose, closeResponse, contentHeight, contentWidth, defaultResponse, followsContentSize, headingUseMarkup, preferWideLayout, presentationMode, title, children, ...props }: AlertDialogProps) {
+function AlertDialog({ className, render, variant = "default", body, child, extraChild, heading, defaultWidget: _defaultWidget, focusWidget: _focusWidget, bodyUseMarkup, canClose, closeResponse, contentHeight, contentWidth, defaultResponse, followsContentSize, headingUseMarkup, preferWideLayout, presentationMode, title, children, ...props }: AlertDialogProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -169,9 +169,7 @@ function AlertDialog({ className, render, variant = "default", body, child, defa
                 </AlertDialogWindowHandle>
               </AlertDialogContents>
                   {child}
-                  {defaultWidget}
                   {extraChild}
-                  {focusWidget}
         </>
       ),
     ...widgetAttributes,
@@ -185,6 +183,33 @@ function AlertDialog({ className, render, variant = "default", body, child, defa
   })
 }
 
+function AlertDialogSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function AlertDialogLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/alert-dialog:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/alert-dialog:text-[var(--accent-color)]",
+        "group-disabled/alert-dialog:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function AlertDialogHeadingLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -193,6 +218,33 @@ function AlertDialogHeadingLabel({ className, ...props }: React.ComponentProps<"
       className={cn("title-2", [
         "caret-[currentColor] font-extrabold text-[136%]",
         "group-disabled/alert-dialog:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function AlertDialogSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function AlertDialogLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/alert-dialog:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/alert-dialog:text-[var(--accent-color)]",
+        "group-disabled/alert-dialog:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -218,6 +270,33 @@ function AlertDialogHeadingBin({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="alert-dialog-heading-bin"
       className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "heading-bin", "px-6", className)}
+      {...props}
+    />
+  )
+}
+
+function AlertDialogSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-selection3"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function AlertDialogLink3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-link3"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/alert-dialog:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/alert-dialog:text-[var(--accent-color)]",
+        "group-disabled/alert-dialog:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
       {...props}
     />
   )
@@ -253,7 +332,7 @@ function AlertDialogMessageArea({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="alert-dialog-message-area"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area", "pt-8 pb-[9px] gap-[24px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area vertical", "pt-8 pb-[9px] gap-[24px]", className)}
       {...props}
     />
   )
@@ -264,7 +343,7 @@ function AlertDialogScrolledWindow({ className, ...props }: React.ComponentProps
     <div
       data-slot="alert-dialog-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("body-scrolled-window undershoot-bottom", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "body-scrolled-window undershoot-bottom", className)}
       {...props}
     />
   )
@@ -285,7 +364,7 @@ function AlertDialogBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="alert-dialog-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
       {...props}
     />
   )
@@ -312,4 +391,4 @@ function AlertDialogContents({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-export { AlertDialog, AlertDialogHeadingLabel, AlertDialogHeadingLabelSmall, AlertDialogHeadingBin, AlertDialogBodyLabel, AlertDialogChildBin, AlertDialogMessageArea, AlertDialogScrolledWindow, AlertDialogResponseArea, AlertDialogBox, AlertDialogWindowHandle, AlertDialogContents, alertDialogVariants }
+export { AlertDialog, AlertDialogSelection, AlertDialogLink, AlertDialogHeadingLabel, AlertDialogSelection2, AlertDialogLink2, AlertDialogHeadingLabelSmall, AlertDialogHeadingBin, AlertDialogSelection3, AlertDialogLink3, AlertDialogBodyLabel, AlertDialogChildBin, AlertDialogMessageArea, AlertDialogScrolledWindow, AlertDialogResponseArea, AlertDialogBox, AlertDialogWindowHandle, AlertDialogContents, alertDialogVariants }

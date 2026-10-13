@@ -49,7 +49,7 @@ function Grid({ className, render, baselineRow, columnHomogeneous, columnSpacing
     "data-orientation": orientation,
     "data-row-homogeneous": rowHomogeneous,
     "data-row-spacing": rowSpacing,
-    className: cn("grid", widgetClassName, className),
+    className: cn("grid", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

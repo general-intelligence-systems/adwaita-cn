@@ -20,35 +20,35 @@ const boxVariants = cva(
       variant: {
         default: "",
         /** .box */
-        box: "",
+        box: "box",
         /** .circular-buttons */
-        circularButtons: "",
+        circularButtons: "circular-buttons",
         /** .end */
-        end: "",
+        end: "end",
         /** .header */
-        header: "",
+        header: "header",
         /** .icon-title-box */
-        iconTitleBox: "",
+        iconTitleBox: "icon-title-box",
         /** .inline-buttons */
-        inlineButtons: "",
+        inlineButtons: "inline-buttons",
         /** .labels */
-        labels: "",
+        labels: "labels",
         /** .message-area */
-        messageArea: "",
+        messageArea: "message-area",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .prefixes */
-        prefixes: "",
+        prefixes: "prefixes",
         /** .single-line */
-        singleLine: "",
+        singleLine: "single-line",
         /** .start */
-        start: "",
+        start: "start",
         /** .suffixes */
-        suffixes: "",
+        suffixes: "suffixes",
         /** .title */
-        title: "",
+        title: "title",
         /** .wide */
-        wide: "",
+        wide: "wide",
       },
     },
     defaultVariants: { variant: "default" },
@@ -90,7 +90,7 @@ function Box({ className, render, variant = "default", baselineChild, baselinePo
     "data-homogeneous": homogeneous,
     "data-orientation": orientation,
     "data-spacing": spacing,
-    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), boxVariants({ variant }), widgetClassName, className),
+    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), boxVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style: { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties,
     children: children,
     ...widgetAttributes,

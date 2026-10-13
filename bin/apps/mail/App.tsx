@@ -14,11 +14,11 @@ import { Leaflet } from "@/ui/leaflet"
 import { ListBox } from "@/ui/list-box"
 import { ListBoxRow } from "@/ui/list-box-row"
 import { MessageDialog } from "@/ui/message-dialog"
+import { ToggleButton } from "@/ui/toggle-button"
 import { ToolbarView } from "@/ui/toolbar-view"
 import { ViewStack } from "@/ui/view-stack"
 import { ViewSwitcher } from "@/ui/view-switcher"
 import { ViewSwitcherBar } from "@/ui/view-switcher-bar"
-import { ViewSwitcherButton } from "@/ui/view-switcher-button"
 import { ViewSwitcherSidebar } from "@/ui/view-switcher-sidebar"
 import { ViewSwitcherTitle } from "@/ui/view-switcher-title"
 
@@ -58,9 +58,9 @@ export default function MailApp() {
         <HeaderBar titleWidget={<ViewSwitcherTitle title="Mail" />}>
           <ViewSwitcher>
             {["Inbox", "Drafts", "Sent"].map((name) => (
-              <ViewSwitcherButton key={name}>
+              <ToggleButton key={name}>
                 <IndicatorBin />
-              </ViewSwitcherButton>
+              </ToggleButton>
             ))}
           </ViewSwitcher>
           <InlineViewSwitcher />

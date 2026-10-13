@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -20,13 +19,13 @@ const colorChooserWidgetVariants = cva(
       variant: {
         default: "",
         /** .bottom */
-        bottom: "",
+        bottom: "bottom",
         /** .left */
-        left: "",
+        left: "left",
         /** .right */
-        right: "",
+        right: "right",
         /** .top */
-        top: "",
+        top: "top",
       },
     },
     defaultVariants: { variant: "default" },
@@ -38,7 +37,7 @@ export interface ColorChooserWidgetProps
     WidgetProps,
     VariantProps<typeof colorChooserWidgetVariants> {
   /** Gdk.RGBA, from Gtk.ColorChooserWidget */
-  rgba?: ReactNode
+  rgba?: unknown
 
   /** gboolean, from Gtk.ColorChooserWidget */
   showEditor?: boolean
@@ -47,7 +46,7 @@ export interface ColorChooserWidgetProps
   useAlpha?: boolean
 }
 
-function ColorChooserWidget({ className, render, variant = "default", rgba, showEditor, useAlpha, children, ...props }: ColorChooserWidgetProps) {
+function ColorChooserWidget({ className, render, variant = "default", rgba: _rgba, showEditor, useAlpha, children, ...props }: ColorChooserWidgetProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -61,12 +60,7 @@ function ColorChooserWidget({ className, render, variant = "default", rgba, show
     "data-use-alpha": useAlpha,
     className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", colorChooserWidgetVariants({ variant }), widgetClassName, className),
     style,
-    children: (
-        <>
-                  {rgba}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

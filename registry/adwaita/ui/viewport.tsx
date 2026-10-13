@@ -20,7 +20,7 @@ export interface ViewportProps
   child?: ReactNode
 
   /** Adjustment, from Gtk.Viewport */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.Viewport */
   hscrollPolicy?: ScrollablePolicy
@@ -29,13 +29,13 @@ export interface ViewportProps
   scrollToFocus?: boolean
 
   /** Adjustment, from Gtk.Viewport */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.Viewport */
   vscrollPolicy?: ScrollablePolicy
 }
 
-function Viewport({ className, render, child, hadjustment, vadjustment, hscrollPolicy, scrollToFocus, vscrollPolicy, children, ...props }: ViewportProps) {
+function Viewport({ className, render, child, hadjustment: _hadjustment, vadjustment: _vadjustment, hscrollPolicy, scrollToFocus, vscrollPolicy, children, ...props }: ViewportProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -47,13 +47,11 @@ function Viewport({ className, render, child, hadjustment, vadjustment, hscrollP
     "data-hscroll-policy": hscrollPolicy,
     "data-scroll-to-focus": scrollToFocus,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn(widgetClassName, className),
+    className: cn("flex flex-col grow min-h-0", widgetClassName, className),
     style,
     children: (
         <>
                   {child}
-                  {hadjustment}
-                  {vadjustment}
                   {children}
         </>
       ),

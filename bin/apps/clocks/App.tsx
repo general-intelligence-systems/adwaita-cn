@@ -4,6 +4,8 @@ import { Box } from "@/ui/box"
 import { Button } from "@/ui/button"
 import { HeaderBar } from "@/ui/header-bar"
 import { Label } from "@/ui/label"
+import { ListBox } from "@/ui/list-box"
+import { ListBoxRow } from "@/ui/list-box-row"
 import { Paned } from "@/ui/paned"
 import { Revealer } from "@/ui/revealer"
 import { Spinner } from "@/ui/spinner"
@@ -11,8 +13,15 @@ import { Squeezer } from "@/ui/squeezer"
 import { Stack } from "@/ui/stack"
 import { StackSidebar } from "@/ui/stack-sidebar"
 import { StackSwitcher } from "@/ui/stack-switcher"
+import { ToggleButton } from "@/ui/toggle-button"
 import { ToolbarView } from "@/ui/toolbar-view"
 import { Window } from "@/ui/window"
+
+const PAGES: [string, string][] = [
+  ["world", "World"],
+  ["alarms", "Alarms"],
+  ["stopwatch", "Stopwatch"],
+]
 
 const CITIES: [string, string][] = [
   ["London", "09:14"],
@@ -27,10 +36,20 @@ export default function ClocksApp() {
         <Paned
           position={180}
           resizeStartChild={false}
-          startChild={<StackSidebar />}
+          startChild={
+            <StackSidebar>
+              <ListBox className="navigation-sidebar">
+                {PAGES.map(([name, title]) => (
+                  <ListBoxRow key={name} name={name} selected={name === "world"}>
+                    <Label label={title} className="text-left" />
+                  </ListBoxRow>
+                ))}
+              </ListBox>
+            </StackSidebar>
+          }
           endChild={
             <Stack>
-              <Box orientation="vertical" spacing={6} className="gap-1.5 m-3">
+              <Box name="world" orientation="vertical" spacing={6} className="gap-1.5 m-3">
                 {CITIES.map(([city, time]) => (
                   <Box key={city} orientation="horizontal" spacing={12} className="gap-3">
                     <Label label={city} className="text-left grow" />
@@ -38,7 +57,7 @@ export default function ClocksApp() {
                   </Box>
                 ))}
               </Box>
-              <Box orientation="vertical" spacing={12} className="gap-3 m-3">
+              <Box name="stopwatch" orientation="vertical" spacing={12} className="gap-3 m-3">
                 <Squeezer>
                   <Label label="00:00:12.48 elapsed" className="text-3xl" />
                 </Squeezer>
@@ -52,7 +71,18 @@ export default function ClocksApp() {
         />
       }
     >
-      <HeaderBar titleWidget={<StackSwitcher />}>
+      {/* GtkStackSwitcher builds a button per page out of the stack it is bound to, and a
+          binding between two widgets is not something JSX carries, so the pages are named
+          here the way `add_titled` names them beside this. */}
+      <HeaderBar
+        titleWidget={
+          <StackSwitcher>
+            {PAGES.map(([name, title]) => (
+              <ToggleButton key={name} name={name} label={title} active={name === "world"} />
+            ))}
+          </StackSwitcher>
+        }
+      >
         <Button variant="flat" iconName="list-add-symbolic" />
       </HeaderBar>
     </ToolbarView>

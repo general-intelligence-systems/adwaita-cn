@@ -22,15 +22,15 @@ const overlaySplitViewVariants = cva(
       variant: {
         default: "",
         /** .background */
-        background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
         /** .content-pane */
-        contentPane: "",
+        contentPane: "content-pane",
         /** .end */
-        end: "",
+        end: "end",
         /** .isolated */
-        isolated: "",
+        isolated: "isolated",
         /** .sidebar-pane */
-        sidebarPane: "bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)] [--shade-color:var(--sidebar-shade-color)] shadow-[inset_1px_0_var(--sidebar-border-color)]",
+        sidebarPane: "sidebar-pane bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)] [--shade-color:var(--sidebar-shade-color)] shadow-[inset_1px_0_var(--sidebar-border-color)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -104,8 +104,6 @@ function OverlaySplitView({ className, render, variant = "default", content, sid
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
-                  <OverlaySplitViewDimming />
-                  <OverlaySplitViewShadow />
                   {sidebar}
                   {content}
                   {children}

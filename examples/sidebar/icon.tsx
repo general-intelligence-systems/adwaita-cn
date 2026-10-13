@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function SidebarIcon() {
   return (
-    <Sidebar size="icon">
+    <Sidebar variant="icon">
       <Label label="Label" />
     </Sidebar>
   )

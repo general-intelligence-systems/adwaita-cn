@@ -23,33 +23,26 @@ const switchRowVariants = cva(
     variants: {
       variant: {
         default: "",
-        /** .activatable */
-        activatable: [
-          "hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ],
         /** .entry */
-        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
-        expander: "p-0 bg-none",
+        expander: "expander p-0 bg-none",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
         /** .header */
-        header: "",
+        header: "header",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
-        separator: "",
+        separator: "separator",
         /** .separators */
-        separators: "",
+        separators: "separators",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "",
+        sidebarNewBookmarkRow: "sidebar-new-bookmark-row",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "",
+        sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -64,13 +57,13 @@ export interface SwitchRowProps
   actionName?: string
 
   /** GLib.Variant, from Adw.SwitchRow */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.ListBoxRow */
   activatable?: boolean
 
   /** Gtk.Widget, from Adw.ActionRow */
-  activatableWidget?: ReactNode
+  activatableWidget?: unknown
 
   /** gboolean, from Adw.SwitchRow */
   active?: boolean
@@ -112,7 +105,7 @@ export interface SwitchRowProps
   useUnderline?: boolean
 }
 
-function SwitchRow({ className, render, variant = "default", actionTarget, activatableWidget, child, iconName, prefix, subtitle, title, actionName, activatable, active, selectable, subtitleLines, subtitleSelectable, titleLines, titleSelectable, useMarkup, useUnderline, children, ...props }: SwitchRowProps) {
+function SwitchRow({ className, render, variant = "default", child, iconName, prefix, subtitle, title, actionTarget: _actionTarget, activatableWidget: _activatableWidget, actionName, activatable, active, selectable, subtitleLines, subtitleSelectable, titleLines, titleSelectable, useMarkup, useUnderline, children, ...props }: SwitchRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -133,7 +126,12 @@ function SwitchRow({ className, render, variant = "default", actionTarget, activ
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("group/switch-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", switchRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/switch-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", switchRowVariants({ variant }), [
+          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
+          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
+          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
+          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
+        ], widgetClassName, className),
     style,
     children: (
         <>
@@ -154,14 +152,13 @@ function SwitchRow({ className, render, variant = "default", actionTarget, activ
                     <SwitchRowSubtitle>{subtitle}</SwitchRowSubtitle>
                   ) : null}
                 </SwitchRowTitleBox>
-                {children ? (
-                  <SwitchRowSuffixes>
-                    {children}
-                  </SwitchRowSuffixes>
-                ) : null}
+                <SwitchRowSuffixes>
+                  <SwitchRowSwitch>
+                    <SwitchRowSlider className="justify-self-start self-center group-data-[state=checked]/switch-row:justify-self-end" />
+                  </SwitchRowSwitch>
+                  {children}
+                </SwitchRowSuffixes>
               </SwitchRowHeader>
-                  {actionTarget}
-                  {activatableWidget}
                   {child}
         </>
       ),
@@ -181,7 +178,7 @@ function SwitchRowPrefixes({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="switch-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes", "mx-1.5 gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
       {...props}
     />
   )
@@ -202,6 +199,33 @@ function SwitchRowImage({ className, ...props }: React.ComponentProps<typeof Ico
   )
 }
 
+function SwitchRowSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/switch-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/switch-row:text-[var(--accent-color)]",
+        "group-disabled/switch-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function SwitchRowTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -210,6 +234,33 @@ function SwitchRowTitle({ className, ...props }: React.ComponentProps<"span">) {
       className={cn("title", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
         "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/switch-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/switch-row:text-[var(--accent-color)]",
+        "group-disabled/switch-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -237,7 +288,52 @@ function SwitchRowTitleBox({ className, ...props }: React.ComponentProps<"div">)
         data-node="box"
         data-valign="center"
         data-hexpand=""
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title vertical", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="switch-row-image2"
+        data-node="image"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSlider({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-slider"
+        data-node="slider"
+      className={cn([
+        "min-w-5 min-h-5 rounded-full bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_2px_4px_RGB(0_0_6/20%)]",
+        "group-disabled/switch-row:shadow-[0_2px_4px_transparent]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SwitchRowSwitch({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-row-switch"
+        data-node="switch"
+        data-valign="center"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "min-w-[46px]", [
+        "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/switch-row:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
+        "group-active/switch-row:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
+        "group-disabled/switch-row:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/switch-row:text-[var(--accent-fg-color)] group-data-[state=checked]/switch-row:bg-[var(--accent-bg-color)]",
+        "group-data-[state=checked]/switch-row:group-hover/switch-row:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "group-data-[state=checked]/switch-row:group-active/switch-row:bg-[image:image(RGB(0_0_6/20%))]",
+      ], className)}
       {...props}
     />
   )
@@ -248,7 +344,7 @@ function SwitchRowSuffixes({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="switch-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", "gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -260,10 +356,10 @@ function SwitchRowHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="switch-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "mx-3 gap-[6px] min-h-12.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5", className)}
       {...props}
     />
   )
 }
 
-export { SwitchRow, SwitchRowPrefixes, SwitchRowImage, SwitchRowTitle, SwitchRowSubtitle, SwitchRowTitleBox, SwitchRowSuffixes, SwitchRowHeader, switchRowVariants }
+export { SwitchRow, SwitchRowPrefixes, SwitchRowImage, SwitchRowSelection, SwitchRowLink, SwitchRowTitle, SwitchRowSelection2, SwitchRowLink2, SwitchRowSubtitle, SwitchRowTitleBox, SwitchRowImage2, SwitchRowSlider, SwitchRowSwitch, SwitchRowSuffixes, SwitchRowHeader, switchRowVariants }

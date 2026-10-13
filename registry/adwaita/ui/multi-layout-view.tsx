@@ -4,11 +4,11 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { visibleChild } from "@/lib/stack"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -16,13 +16,13 @@ export interface MultiLayoutViewProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "layout" | "layoutName">,
     WidgetProps {
   /** Layout, from Adw.MultiLayoutView */
-  layout?: ReactNode
+  layout?: unknown
 
   /** utf8, from Adw.MultiLayoutView */
   layoutName?: string
 }
 
-function MultiLayoutView({ className, render, layout, layoutName, children, ...props }: MultiLayoutViewProps) {
+function MultiLayoutView({ className, render, layout: _layout, layoutName, children, ...props }: MultiLayoutViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -34,12 +34,7 @@ function MultiLayoutView({ className, render, layout, layoutName, children, ...p
     "data-layout-name": layoutName,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {layout}
-                  {children}
-        </>
-      ),
+    children: visibleChild(children),
     ...widgetAttributes,
   }
 

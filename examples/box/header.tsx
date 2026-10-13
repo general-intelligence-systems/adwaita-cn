@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxHeader() {
   return (
-    <Box size="header">
+    <Box variant="header">
       <Label label="Label" />
     </Box>
   )

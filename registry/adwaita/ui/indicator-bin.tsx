@@ -29,9 +29,7 @@ function IndicatorBin({ className, render, children, ...props }: IndicatorBinPro
     style,
     children: (
         <>
-                  <IndicatorBinIndicator>
-                <IndicatorBinLabel />
-              </IndicatorBinIndicator>
+                  <IndicatorBinIndicator />
                   <IndicatorBinMask />
                   {children}
         </>
@@ -45,20 +43,6 @@ function IndicatorBin({ className, render, children, ...props }: IndicatorBinPro
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
-}
-
-function IndicatorBinLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="indicator-bin-label"
-        data-node="label"
-      className={cn([
-        "caret-[currentColor]",
-        "group-disabled/indicator-bin:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
 }
 
 function IndicatorBinIndicator({ className, ...props }: React.ComponentProps<"div">) {
@@ -83,4 +67,4 @@ function IndicatorBinMask({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { IndicatorBin, IndicatorBinLabel, IndicatorBinIndicator, IndicatorBinMask }
+export { IndicatorBin, IndicatorBinIndicator, IndicatorBinMask }

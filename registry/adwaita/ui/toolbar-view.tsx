@@ -21,21 +21,21 @@ const toolbarViewVariants = cva(
       variant: {
         default: "",
         /** .border */
-        border: "",
+        border: "border",
         /** .bottom-bar */
-        bottomBar: "",
+        bottomBar: "bottom-bar",
         /** .collapse-spacing */
-        collapseSpacing: "",
+        collapseSpacing: "collapse-spacing",
         /** .overview */
-        overview: "",
+        overview: "overview",
         /** .raised */
-        raised: "",
+        raised: "raised",
         /** .top-bar */
-        topBar: "",
+        topBar: "top-bar",
         /** .undershoot-bottom */
-        undershootBottom: "",
+        undershootBottom: "undershoot-bottom",
         /** .undershoot-top */
-        undershootTop: "",
+        undershootTop: "undershoot-top",
       },
     },
     defaultVariants: { variant: "default" },

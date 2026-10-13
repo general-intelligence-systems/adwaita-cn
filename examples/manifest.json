@@ -62,7 +62,7 @@
       "title": "AboutDialog .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/about-dialog/dialog-action-box.tsx"
     },
     {
@@ -259,15 +259,6 @@
     },
     {
       "component": "ActionRow",
-      "variant": "activatable",
-      "title": "ActionRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/action-row/activatable.tsx"
-    },
-    {
-      "component": "ActionRow",
       "variant": "entry",
       "title": "ActionRow .entry",
       "summary": null,
@@ -290,7 +281,7 @@
       "title": "ActionRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/action-row/has-open-popup.tsx"
     },
     {
@@ -299,7 +290,7 @@
       "title": "ActionRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/action-row/header.tsx"
     },
     {
@@ -335,7 +326,7 @@
       "title": "ActionRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/action-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -344,7 +335,7 @@
       "title": "ActionRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/action-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -423,7 +414,7 @@
       "title": "AlertDialog .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/alert-dialog/dialog-action-box.tsx"
     },
     {
@@ -653,7 +644,7 @@
       "title": "AppChooserDialog .subtitle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/app-chooser-dialog/subtitle.tsx"
     },
     {
@@ -662,7 +653,7 @@
       "title": "AppChooserDialog .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/app-chooser-dialog/title.tsx"
     },
     {
@@ -737,15 +728,6 @@
       "title": "Assistant",
       "summary": "Assistant with no variant.",
       "file": "examples/assistant/base.tsx"
-    },
-    {
-      "component": "Assistant",
-      "variant": "assistant",
-      "title": "Assistant .assistant",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/assistant/assistant.tsx"
     },
     {
       "component": "Assistant",
@@ -914,7 +896,7 @@
       "title": "Box .box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/box.tsx"
     },
     {
@@ -923,7 +905,7 @@
       "title": "Box .circular-buttons",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/circular-buttons.tsx"
     },
     {
@@ -932,7 +914,7 @@
       "title": "Box .end",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/end.tsx"
     },
     {
@@ -941,7 +923,7 @@
       "title": "Box .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/header.tsx"
     },
     {
@@ -950,7 +932,7 @@
       "title": "Box .icon-title-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/icon-title-box.tsx"
     },
     {
@@ -959,7 +941,7 @@
       "title": "Box .inline-buttons",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/inline-buttons.tsx"
     },
     {
@@ -968,7 +950,7 @@
       "title": "Box .labels",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/labels.tsx"
     },
     {
@@ -977,7 +959,7 @@
       "title": "Box .message-area",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/message-area.tsx"
     },
     {
@@ -986,7 +968,7 @@
       "title": "Box .narrow",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/narrow.tsx"
     },
     {
@@ -995,7 +977,7 @@
       "title": "Box .prefixes",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/prefixes.tsx"
     },
     {
@@ -1004,7 +986,7 @@
       "title": "Box .single-line",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/single-line.tsx"
     },
     {
@@ -1013,7 +995,7 @@
       "title": "Box .start",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/start.tsx"
     },
     {
@@ -1022,7 +1004,7 @@
       "title": "Box .suffixes",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/suffixes.tsx"
     },
     {
@@ -1031,7 +1013,7 @@
       "title": "Box .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/title.tsx"
     },
     {
@@ -1040,7 +1022,7 @@
       "title": "Box .wide",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/box/wide.tsx"
     },
     {
@@ -1063,7 +1045,7 @@
       "title": "Button .app-version",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button/app-version.tsx"
     },
     {
@@ -1072,7 +1054,7 @@
       "title": "Button .apply-button",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button/apply-button.tsx"
     },
     {
@@ -1117,7 +1099,7 @@
       "title": "Button .combo",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button/combo.tsx"
     },
     {
@@ -1135,7 +1117,7 @@
       "title": "Button .dnd",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button/dnd.tsx"
     },
     {
@@ -1162,7 +1144,7 @@
       "title": "Button .inert",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button/inert.tsx"
     },
     {
@@ -1189,7 +1171,7 @@
       "title": "Button .new-tab-button",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button/new-tab-button.tsx"
     },
     {
@@ -1261,7 +1243,7 @@
       "title": "Button .toggle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button/toggle.tsx"
     },
     {
@@ -1277,15 +1259,6 @@
       "title": "ButtonRow",
       "summary": "ButtonRow with no variant.",
       "file": "examples/button-row/base.tsx"
-    },
-    {
-      "component": "ButtonRow",
-      "variant": "activatable",
-      "title": "ButtonRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/button-row/activatable.tsx"
     },
     {
       "component": "ButtonRow",
@@ -1320,7 +1293,7 @@
       "title": "ButtonRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button-row/has-open-popup.tsx"
     },
     {
@@ -1329,7 +1302,7 @@
       "title": "ButtonRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button-row/header.tsx"
     },
     {
@@ -1365,7 +1338,7 @@
       "title": "ButtonRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -1374,7 +1347,7 @@
       "title": "ButtonRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/button-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -1417,7 +1390,7 @@
       "title": "Calendar .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/calendar/dialog-action-box.tsx"
     },
     {
@@ -1446,15 +1419,6 @@
       "deprecated": false,
       "colour": true,
       "file": "examples/calendar/today.tsx"
-    },
-    {
-      "component": "Calendar",
-      "variant": "view",
-      "title": "Calendar .view",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/calendar/view.tsx"
     },
     {
       "component": "Calendar",
@@ -1515,7 +1479,7 @@
       "title": "CenterBox .circular-buttons",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/circular-buttons.tsx"
     },
     {
@@ -1524,7 +1488,7 @@
       "title": "CenterBox .end",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/end.tsx"
     },
     {
@@ -1533,7 +1497,7 @@
       "title": "CenterBox .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/header.tsx"
     },
     {
@@ -1542,7 +1506,7 @@
       "title": "CenterBox .inline-buttons",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/inline-buttons.tsx"
     },
     {
@@ -1551,7 +1515,7 @@
       "title": "CenterBox .labels",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/labels.tsx"
     },
     {
@@ -1560,7 +1524,7 @@
       "title": "CenterBox .narrow",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/narrow.tsx"
     },
     {
@@ -1569,7 +1533,7 @@
       "title": "CenterBox .single-line",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/single-line.tsx"
     },
     {
@@ -1578,7 +1542,7 @@
       "title": "CenterBox .start",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/start.tsx"
     },
     {
@@ -1587,8 +1551,17 @@
       "title": "CenterBox .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/title.tsx"
+    },
+    {
+      "component": "CenterBox",
+      "variant": "vertical",
+      "title": "CenterBox .vertical",
+      "summary": null,
+      "deprecated": false,
+      "colour": true,
+      "file": "examples/center-box/vertical.tsx"
     },
     {
       "component": "CenterBox",
@@ -1596,7 +1569,7 @@
       "title": "CenterBox .wide",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/center-box/wide.tsx"
     },
     {
@@ -1868,7 +1841,7 @@
       "title": "ColumnView .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/column-view/dialog-action-box.tsx"
     },
     {
@@ -1957,15 +1930,6 @@
     },
     {
       "component": "ComboRow",
-      "variant": "activatable",
-      "title": "ComboRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/combo-row/activatable.tsx"
-    },
-    {
-      "component": "ComboRow",
       "variant": "combo",
       "title": "ComboRow .combo",
       "summary": null,
@@ -1997,7 +1961,7 @@
       "title": "ComboRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/combo-row/has-open-popup.tsx"
     },
     {
@@ -2006,7 +1970,7 @@
       "title": "ComboRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/combo-row/header.tsx"
     },
     {
@@ -2042,7 +2006,7 @@
       "title": "ComboRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/combo-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -2051,7 +2015,7 @@
       "title": "ComboRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/combo-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -2103,7 +2067,7 @@
       "title": "Dialog .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/dialog/dialog-action-box.tsx"
     },
     {
@@ -2191,7 +2155,7 @@
       "title": "DragIcon .large-icons",
       "summary": null,
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/drag-icon/large-icons.tsx"
     },
     {
@@ -2230,15 +2194,6 @@
       "title": "EmojiChooser",
       "summary": "EmojiChooser with no variant.",
       "file": "examples/emoji-chooser/base.tsx"
-    },
-    {
-      "component": "EmojiChooser",
-      "variant": "background",
-      "title": "EmojiChooser .background",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/emoji-chooser/background.tsx"
     },
     {
       "component": "EmojiChooser",
@@ -2301,15 +2256,6 @@
     },
     {
       "component": "EntryRow",
-      "variant": "activatable",
-      "title": "EntryRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/entry-row/activatable.tsx"
-    },
-    {
-      "component": "EntryRow",
       "variant": "entry",
       "title": "EntryRow .entry",
       "summary": null,
@@ -2341,7 +2287,7 @@
       "title": "EntryRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/entry-row/has-open-popup.tsx"
     },
     {
@@ -2350,7 +2296,7 @@
       "title": "EntryRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/entry-row/header.tsx"
     },
     {
@@ -2386,7 +2332,7 @@
       "title": "EntryRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/entry-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -2395,7 +2341,7 @@
       "title": "EntryRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/entry-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -2420,15 +2366,6 @@
       "title": "ExpanderRow",
       "summary": "ExpanderRow with no variant.",
       "file": "examples/expander-row/base.tsx"
-    },
-    {
-      "component": "ExpanderRow",
-      "variant": "activatable",
-      "title": "ExpanderRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/expander-row/activatable.tsx"
     },
     {
       "component": "ExpanderRow",
@@ -2463,7 +2400,7 @@
       "title": "ExpanderRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/expander-row/has-open-popup.tsx"
     },
     {
@@ -2472,7 +2409,7 @@
       "title": "ExpanderRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/expander-row/header.tsx"
     },
     {
@@ -2508,7 +2445,7 @@
       "title": "ExpanderRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/expander-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -2517,7 +2454,7 @@
       "title": "ExpanderRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/expander-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -2650,7 +2587,7 @@
       "title": "FileChooserDialog .subtitle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/file-chooser-dialog/subtitle.tsx"
     },
     {
@@ -2659,7 +2596,7 @@
       "title": "FileChooserDialog .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/file-chooser-dialog/title.tsx"
     },
     {
@@ -2711,15 +2648,6 @@
       "file": "examples/flap/folded.tsx"
     },
     {
-      "component": "Flap",
-      "variant": "unfolded",
-      "title": "Flap .unfolded",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/flap/unfolded.tsx"
-    },
-    {
       "component": "FlowBox",
       "variant": null,
       "title": "FlowBox",
@@ -2732,7 +2660,7 @@
       "title": "FlowBox .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/flow-box/dialog-action-box.tsx"
     },
     {
@@ -2766,7 +2694,7 @@
       "title": "FlowBoxChild .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/flow-box-child/has-open-popup.tsx"
     },
     {
@@ -2964,7 +2892,7 @@
       "title": "GridView .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/grid-view/dialog-action-box.tsx"
     },
     {
@@ -2975,15 +2903,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/grid-view/navigation-sidebar.tsx"
-    },
-    {
-      "component": "GridView",
-      "variant": "view",
-      "title": "GridView .view",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/grid-view/view.tsx"
     },
     {
       "component": "HeaderBar",
@@ -2998,7 +2917,7 @@
       "title": "HeaderBar .adaptive-mode-flat",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/header-bar/adaptive-mode-flat.tsx"
     },
     {
@@ -3043,7 +2962,7 @@
       "title": "HeaderBar .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/header-bar/title.tsx"
     },
     {
@@ -3063,15 +2982,6 @@
       "file": "examples/icon-view/base.tsx"
     },
     {
-      "component": "IconView",
-      "variant": "view",
-      "title": "IconView .view",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/icon-view/view.tsx"
-    },
-    {
       "component": "Image",
       "variant": null,
       "title": "Image",
@@ -3084,7 +2994,7 @@
       "title": "Image .caps-lock-indicator",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/caps-lock-indicator.tsx"
     },
     {
@@ -3093,7 +3003,7 @@
       "title": "Image .dropdown-arrow",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/dropdown-arrow.tsx"
     },
     {
@@ -3102,7 +3012,7 @@
       "title": "Image .edit-icon",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/edit-icon.tsx"
     },
     {
@@ -3120,7 +3030,7 @@
       "title": "Image .expander-row-arrow",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/expander-row-arrow.tsx"
     },
     {
@@ -3129,7 +3039,7 @@
       "title": "Image .icon",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/icon.tsx"
     },
     {
@@ -3147,7 +3057,7 @@
       "title": "Image .indicator",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/indicator.tsx"
     },
     {
@@ -3156,7 +3066,7 @@
       "title": "Image .large-icons",
       "summary": null,
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/image/large-icons.tsx"
     },
     {
@@ -3165,7 +3075,7 @@
       "title": "Image .left",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/left.tsx"
     },
     {
@@ -3183,7 +3093,7 @@
       "title": "Image .right",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/right.tsx"
     },
     {
@@ -3192,7 +3102,7 @@
       "title": "Image .sidebar-icon",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/sidebar-icon.tsx"
     },
     {
@@ -3228,8 +3138,15 @@
       "title": "Image .tab-unpin-icon",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/image/tab-unpin-icon.tsx"
+    },
+    {
+      "component": "IndicatorBin",
+      "variant": null,
+      "title": "IndicatorBin",
+      "summary": "IndicatorBin with no variant.",
+      "file": "examples/indicator-bin/base.tsx"
     },
     {
       "component": "InfoBar",
@@ -3253,7 +3170,7 @@
       "title": "InfoBar .close",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/info-bar/close.tsx"
     },
     {
@@ -3330,7 +3247,7 @@
       "title": "Inscription .day-number",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/inscription/day-number.tsx"
     },
     {
@@ -3339,7 +3256,7 @@
       "title": "Inscription .highlight",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/inscription/highlight.tsx"
     },
     {
@@ -3357,7 +3274,7 @@
       "title": "Inscription .sidebar-label",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/inscription/sidebar-label.tsx"
     },
     {
@@ -3366,7 +3283,7 @@
       "title": "Inscription .small",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/inscription/small.tsx"
     },
     {
@@ -3375,7 +3292,7 @@
       "title": "Inscription .subtitle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/inscription/subtitle.tsx"
     },
     {
@@ -3384,7 +3301,7 @@
       "title": "Inscription .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/inscription/title.tsx"
     },
     {
@@ -3393,7 +3310,7 @@
       "title": "Inscription .today",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/inscription/today.tsx"
     },
     {
@@ -3418,7 +3335,7 @@
       "title": "Label .day-number",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/label/day-number.tsx"
     },
     {
@@ -3463,7 +3380,7 @@
       "title": "Label .highlight",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/label/highlight.tsx"
     },
     {
@@ -3499,7 +3416,7 @@
       "title": "Label .sidebar-label",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/label/sidebar-label.tsx"
     },
     {
@@ -3508,7 +3425,7 @@
       "title": "Label .small",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/label/small.tsx"
     },
     {
@@ -3517,7 +3434,7 @@
       "title": "Label .subtitle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/label/subtitle.tsx"
     },
     {
@@ -3526,7 +3443,7 @@
       "title": "Label .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/label/title.tsx"
     },
     {
@@ -3562,7 +3479,7 @@
       "title": "Label .today",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/label/today.tsx"
     },
     {
@@ -3587,15 +3504,6 @@
       "deprecated": false,
       "colour": true,
       "file": "examples/leaflet/folded.tsx"
-    },
-    {
-      "component": "Leaflet",
-      "variant": "unfolded",
-      "title": "Leaflet .unfolded",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/leaflet/unfolded.tsx"
     },
     {
       "component": "LevelBar",
@@ -3653,7 +3561,7 @@
       "title": "LinkButton .combo",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/link-button/combo.tsx"
     },
     {
@@ -3671,7 +3579,7 @@
       "title": "LinkButton .dnd",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/link-button/dnd.tsx"
     },
     {
@@ -3698,7 +3606,7 @@
       "title": "LinkButton .inert",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/link-button/inert.tsx"
     },
     {
@@ -3709,15 +3617,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/link-button/keyboard-activating.tsx"
-    },
-    {
-      "component": "LinkButton",
-      "variant": "link",
-      "title": "LinkButton .link",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/link-button/link.tsx"
     },
     {
       "component": "LinkButton",
@@ -3770,7 +3669,7 @@
       "title": "LinkButton .toggle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/link-button/toggle.tsx"
     },
     {
@@ -3829,7 +3728,7 @@
       "title": "ListBox .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-box/dialog-action-box.tsx"
     },
     {
@@ -3838,7 +3737,7 @@
       "title": "ListBox .nested",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-box/nested.tsx"
     },
     {
@@ -3868,15 +3767,6 @@
     },
     {
       "component": "ListBoxRow",
-      "variant": "activatable",
-      "title": "ListBoxRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/list-box-row/activatable.tsx"
-    },
-    {
-      "component": "ListBoxRow",
       "variant": "entry",
       "title": "ListBoxRow .entry",
       "summary": null,
@@ -3899,7 +3789,7 @@
       "title": "ListBoxRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-box-row/has-open-popup.tsx"
     },
     {
@@ -3908,7 +3798,7 @@
       "title": "ListBoxRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-box-row/header.tsx"
     },
     {
@@ -3944,7 +3834,7 @@
       "title": "ListBoxRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-box-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -3953,7 +3843,7 @@
       "title": "ListBoxRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-box-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -3978,7 +3868,7 @@
       "title": "ListView .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-view/dialog-action-box.tsx"
     },
     {
@@ -3987,7 +3877,7 @@
       "title": "ListView .inline",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/list-view/inline.tsx"
     },
     {
@@ -3998,15 +3888,6 @@
       "deprecated": false,
       "colour": true,
       "file": "examples/list-view/separators.tsx"
-    },
-    {
-      "component": "ListView",
-      "variant": "view",
-      "title": "ListView .view",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/list-view/view.tsx"
     },
     {
       "component": "LockButton",
@@ -4057,7 +3938,7 @@
       "title": "LockButton .combo",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/lock-button/combo.tsx"
     },
     {
@@ -4075,7 +3956,7 @@
       "title": "LockButton .dnd",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/lock-button/dnd.tsx"
     },
     {
@@ -4102,7 +3983,7 @@
       "title": "LockButton .inert",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/lock-button/inert.tsx"
     },
     {
@@ -4122,15 +4003,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/lock-button/link.tsx"
-    },
-    {
-      "component": "LockButton",
-      "variant": "lock",
-      "title": "LockButton .lock",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/lock-button/lock.tsx"
     },
     {
       "component": "LockButton",
@@ -4183,7 +4055,7 @@
       "title": "LockButton .toggle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/lock-button/toggle.tsx"
     },
     {
@@ -4262,15 +4134,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/menu-button/osd.tsx"
-    },
-    {
-      "component": "MenuButton",
-      "variant": "popup",
-      "title": "MenuButton .popup",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/menu-button/popup.tsx"
     },
     {
       "component": "MenuButton",
@@ -4432,7 +4295,7 @@
       "title": "NavigationSplitView .content-pane",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/navigation-split-view/content-pane.tsx"
     },
     {
@@ -4487,15 +4350,6 @@
     },
     {
       "component": "Notebook",
-      "variant": "frame",
-      "title": "Notebook .frame",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/notebook/frame.tsx"
-    },
-    {
-      "component": "Notebook",
       "variant": "reorderable-page",
       "title": "Notebook .reorderable-page",
       "summary": null,
@@ -4534,7 +4388,7 @@
       "title": "Overlay .arrow-button",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/overlay/arrow-button.tsx"
     },
     {
@@ -4552,7 +4406,7 @@
       "title": "Overlay .image-button",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/overlay/image-button.tsx"
     },
     {
@@ -4561,7 +4415,7 @@
       "title": "Overlay .image-text-button",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/overlay/image-text-button.tsx"
     },
     {
@@ -4570,7 +4424,7 @@
       "title": "Overlay .keyboard-activating",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/overlay/keyboard-activating.tsx"
     },
     {
@@ -4579,7 +4433,7 @@
       "title": "Overlay .text-button",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/overlay/text-button.tsx"
     },
     {
@@ -4613,7 +4467,7 @@
       "title": "OverlaySplitView .content-pane",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/overlay-split-view/content-pane.tsx"
     },
     {
@@ -4818,29 +4672,11 @@
       "file": "examples/password-entry/flat.tsx"
     },
     {
-      "component": "PasswordEntry",
-      "variant": "password",
-      "title": "PasswordEntry .password",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/password-entry/password.tsx"
-    },
-    {
       "component": "PasswordEntryRow",
       "variant": null,
       "title": "PasswordEntryRow",
       "summary": "PasswordEntryRow with no variant.",
       "file": "examples/password-entry-row/base.tsx"
-    },
-    {
-      "component": "PasswordEntryRow",
-      "variant": "activatable",
-      "title": "PasswordEntryRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/password-entry-row/activatable.tsx"
     },
     {
       "component": "PasswordEntryRow",
@@ -4884,7 +4720,7 @@
       "title": "PasswordEntryRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/password-entry-row/has-open-popup.tsx"
     },
     {
@@ -4893,7 +4729,7 @@
       "title": "PasswordEntryRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/password-entry-row/header.tsx"
     },
     {
@@ -4904,15 +4740,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/password-entry-row/osd.tsx"
-    },
-    {
-      "component": "PasswordEntryRow",
-      "variant": "password",
-      "title": "PasswordEntryRow .password",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/password-entry-row/password.tsx"
     },
     {
       "component": "PasswordEntryRow",
@@ -4938,7 +4765,7 @@
       "title": "PasswordEntryRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/password-entry-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -4947,7 +4774,7 @@
       "title": "PasswordEntryRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/password-entry-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -4972,15 +4799,6 @@
       "title": "Popover",
       "summary": "Popover with no variant.",
       "file": "examples/popover/base.tsx"
-    },
-    {
-      "component": "Popover",
-      "variant": "background",
-      "title": "Popover .background",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/popover/background.tsx"
     },
     {
       "component": "Popover",
@@ -5034,30 +4852,12 @@
     },
     {
       "component": "PopoverMenu",
-      "variant": "background",
-      "title": "PopoverMenu .background",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/popover-menu/background.tsx"
-    },
-    {
-      "component": "PopoverMenu",
       "variant": "magnifier",
       "title": "PopoverMenu .magnifier",
       "summary": null,
       "deprecated": false,
       "colour": false,
       "file": "examples/popover-menu/magnifier.tsx"
-    },
-    {
-      "component": "PopoverMenu",
-      "variant": "menu",
-      "title": "PopoverMenu .menu",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/popover-menu/menu.tsx"
     },
     {
       "component": "PopoverMenu",
@@ -5115,7 +4915,7 @@
       "title": "PreferencesDialog .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/preferences-dialog/dialog-action-box.tsx"
     },
     {
@@ -5258,15 +5058,6 @@
     },
     {
       "component": "PreferencesRow",
-      "variant": "activatable",
-      "title": "PreferencesRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/preferences-row/activatable.tsx"
-    },
-    {
-      "component": "PreferencesRow",
       "variant": "entry",
       "title": "PreferencesRow .entry",
       "summary": null,
@@ -5289,7 +5080,7 @@
       "title": "PreferencesRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/preferences-row/has-open-popup.tsx"
     },
     {
@@ -5298,7 +5089,7 @@
       "title": "PreferencesRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/preferences-row/header.tsx"
     },
     {
@@ -5334,7 +5125,7 @@
       "title": "PreferencesRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/preferences-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -5343,7 +5134,7 @@
       "title": "PreferencesRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/preferences-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -5494,15 +5285,6 @@
       "deprecated": false,
       "colour": true,
       "file": "examples/print-unix-dialog/portrait.tsx"
-    },
-    {
-      "component": "PrintUnixDialog",
-      "variant": "print",
-      "title": "PrintUnixDialog .print",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/print-unix-dialog/print.tsx"
     },
     {
       "component": "PrintUnixDialog",
@@ -5783,15 +5565,6 @@
       "file": "examples/scale-button/base.tsx"
     },
     {
-      "component": "ScaleButton",
-      "variant": "scale",
-      "title": "ScaleButton .scale",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/scale-button/scale.tsx"
-    },
-    {
       "component": "Scrollbar",
       "variant": null,
       "title": "Scrollbar",
@@ -5838,7 +5611,7 @@
       "title": "ScrolledWindow .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/scrolled-window/dialog-action-box.tsx"
     },
     {
@@ -5847,7 +5620,7 @@
       "title": "ScrolledWindow .frame",
       "summary": null,
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/scrolled-window/frame.tsx"
     },
     {
@@ -5962,7 +5735,7 @@
       "title": "SearchBar .close",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/search-bar/close.tsx"
     },
     {
@@ -5978,7 +5751,7 @@
       "title": "SearchEntry .combo-searchbar",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/search-entry/combo-searchbar.tsx"
     },
     {
@@ -5989,15 +5762,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/search-entry/flat.tsx"
-    },
-    {
-      "component": "SearchEntry",
-      "variant": "search",
-      "title": "SearchEntry .search",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/search-entry/search.tsx"
     },
     {
       "component": "Separator",
@@ -6012,7 +5776,7 @@
       "title": "Separator .hidden",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/separator/hidden.tsx"
     },
     {
@@ -6030,7 +5794,7 @@
       "title": "Separator .wide",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/separator/wide.tsx"
     },
     {
@@ -6055,7 +5819,7 @@
       "title": "ShortcutLabel .keycap",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/shortcut-label/keycap.tsx"
     },
     {
@@ -6098,7 +5862,7 @@
       "title": "ShortcutsDialog .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/shortcuts-dialog/dialog-action-box.tsx"
     },
     {
@@ -6250,15 +6014,6 @@
     },
     {
       "component": "ShortcutsWindow",
-      "variant": "shortcuts",
-      "title": "ShortcutsWindow .shortcuts",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/shortcuts-window/shortcuts.tsx"
-    },
-    {
-      "component": "ShortcutsWindow",
       "variant": "shortcuts-search-results",
       "title": "ShortcutsWindow .shortcuts-search-results",
       "summary": null,
@@ -6290,7 +6045,7 @@
       "title": "ShortcutsWindow .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/shortcuts-window/title.tsx"
     },
     {
@@ -6306,7 +6061,7 @@
       "title": "Sidebar .arrow",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/sidebar/arrow.tsx"
     },
     {
@@ -6360,7 +6115,7 @@
       "title": "Sidebar .icon",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/sidebar/icon.tsx"
     },
     {
@@ -6387,7 +6142,7 @@
       "title": "Sidebar .subtitle",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/sidebar/subtitle.tsx"
     },
     {
@@ -6396,7 +6151,7 @@
       "title": "Sidebar .title",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/sidebar/title.tsx"
     },
     {
@@ -6442,15 +6197,6 @@
     },
     {
       "component": "SpinRow",
-      "variant": "activatable",
-      "title": "SpinRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/spin-row/activatable.tsx"
-    },
-    {
-      "component": "SpinRow",
       "variant": "entry",
       "title": "SpinRow .entry",
       "summary": null,
@@ -6482,7 +6228,7 @@
       "title": "SpinRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spin-row/has-open-popup.tsx"
     },
     {
@@ -6491,7 +6237,7 @@
       "title": "SpinRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spin-row/header.tsx"
     },
     {
@@ -6527,7 +6273,7 @@
       "title": "SpinRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spin-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -6536,7 +6282,7 @@
       "title": "SpinRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spin-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -6561,7 +6307,7 @@
       "title": "Spinner .caps-lock-indicator",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spinner/caps-lock-indicator.tsx"
     },
     {
@@ -6570,7 +6316,7 @@
       "title": "Spinner .dropdown-arrow",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spinner/dropdown-arrow.tsx"
     },
     {
@@ -6579,7 +6325,7 @@
       "title": "Spinner .expander-row-arrow",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spinner/expander-row-arrow.tsx"
     },
     {
@@ -6588,7 +6334,7 @@
       "title": "Spinner .large-icons",
       "summary": null,
       "deprecated": false,
-      "colour": true,
+      "colour": false,
       "file": "examples/spinner/large-icons.tsx"
     },
     {
@@ -6597,7 +6343,7 @@
       "title": "Spinner .left",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spinner/left.tsx"
     },
     {
@@ -6615,7 +6361,7 @@
       "title": "Spinner .right",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spinner/right.tsx"
     },
     {
@@ -6624,17 +6370,8 @@
       "title": "Spinner .sidebar-icon",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/spinner/sidebar-icon.tsx"
-    },
-    {
-      "component": "Spinner",
-      "variant": "spinner",
-      "title": "Spinner .spinner",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/spinner/spinner.tsx"
     },
     {
       "component": "SplitButton",
@@ -6719,15 +6456,6 @@
       "file": "examples/stack-sidebar/needs-attention.tsx"
     },
     {
-      "component": "StackSidebar",
-      "variant": "sidebar",
-      "title": "StackSidebar .sidebar",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/stack-sidebar/sidebar.tsx"
-    },
-    {
       "component": "StackSwitcher",
       "variant": null,
       "title": "StackSwitcher",
@@ -6740,17 +6468,8 @@
       "title": "StackSwitcher .circular",
       "summary": null,
       "deprecated": false,
-      "colour": false,
-      "file": "examples/stack-switcher/circular.tsx"
-    },
-    {
-      "component": "StackSwitcher",
-      "variant": "linked",
-      "title": "StackSwitcher .linked",
-      "summary": null,
-      "deprecated": false,
       "colour": true,
-      "file": "examples/stack-switcher/linked.tsx"
+      "file": "examples/stack-switcher/circular.tsx"
     },
     {
       "component": "StackSwitcher",
@@ -6800,15 +6519,6 @@
     },
     {
       "component": "SwitchRow",
-      "variant": "activatable",
-      "title": "SwitchRow .activatable",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/switch-row/activatable.tsx"
-    },
-    {
-      "component": "SwitchRow",
       "variant": "entry",
       "title": "SwitchRow .entry",
       "summary": null,
@@ -6831,7 +6541,7 @@
       "title": "SwitchRow .has-open-popup",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/switch-row/has-open-popup.tsx"
     },
     {
@@ -6840,7 +6550,7 @@
       "title": "SwitchRow .header",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/switch-row/header.tsx"
     },
     {
@@ -6876,7 +6586,7 @@
       "title": "SwitchRow .sidebar-new-bookmark-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/switch-row/sidebar-new-bookmark-row.tsx"
     },
     {
@@ -6885,7 +6595,7 @@
       "title": "SwitchRow .sidebar-placeholder-row",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/switch-row/sidebar-placeholder-row.tsx"
     },
     {
@@ -7048,20 +6758,18 @@
       "file": "examples/text-view/touch-selection.tsx"
     },
     {
-      "component": "TextView",
-      "variant": "view",
-      "title": "TextView .view",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/text-view/view.tsx"
-    },
-    {
       "component": "ToastOverlay",
       "variant": null,
       "title": "ToastOverlay",
       "summary": "ToastOverlay with no variant.",
       "file": "examples/toast-overlay/base.tsx"
+    },
+    {
+      "component": "ToastWidget",
+      "variant": null,
+      "title": "ToastWidget",
+      "summary": "ToastWidget with no variant.",
+      "file": "examples/toast-widget/base.tsx"
     },
     {
       "component": "ToggleButton",
@@ -7112,7 +6820,7 @@
       "title": "ToggleButton .combo",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/toggle-button/combo.tsx"
     },
     {
@@ -7130,7 +6838,7 @@
       "title": "ToggleButton .dnd",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/toggle-button/dnd.tsx"
     },
     {
@@ -7157,7 +6865,7 @@
       "title": "ToggleButton .inert",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/toggle-button/inert.tsx"
     },
     {
@@ -7222,15 +6930,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/toggle-button/suggested-action.tsx"
-    },
-    {
-      "component": "ToggleButton",
-      "variant": "toggle",
-      "title": "ToggleButton .toggle",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/toggle-button/toggle.tsx"
     },
     {
       "component": "ToggleGroup",
@@ -7306,7 +7005,7 @@
       "title": "ToolbarView .collapse-spacing",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/toolbar-view/collapse-spacing.tsx"
     },
     {
@@ -7315,7 +7014,7 @@
       "title": "ToolbarView .overview",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/toolbar-view/overview.tsx"
     },
     {
@@ -7333,7 +7032,7 @@
       "title": "ToolbarView .top-bar",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/toolbar-view/top-bar.tsx"
     },
     {
@@ -7374,7 +7073,7 @@
       "title": "TreeView .dialog-action-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/tree-view/dialog-action-box.tsx"
     },
     {
@@ -7385,15 +7084,6 @@
       "deprecated": false,
       "colour": false,
       "file": "examples/tree-view/navigation-sidebar.tsx"
-    },
-    {
-      "component": "TreeView",
-      "variant": "view",
-      "title": "TreeView .view",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/tree-view/view.tsx"
     },
     {
       "component": "Video",
@@ -7418,20 +7108,11 @@
     },
     {
       "component": "ViewSwitcher",
-      "variant": "narrow",
-      "title": "ViewSwitcher .narrow",
-      "summary": null,
-      "deprecated": false,
-      "colour": false,
-      "file": "examples/view-switcher/narrow.tsx"
-    },
-    {
-      "component": "ViewSwitcher",
       "variant": "wide",
       "title": "ViewSwitcher .wide",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/view-switcher/wide.tsx"
     },
     {
@@ -7463,7 +7144,7 @@
       "title": "ViewSwitcherSidebar .indicator",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/view-switcher-sidebar/indicator.tsx"
     },
     {
@@ -7504,15 +7185,6 @@
       "title": "VolumeButton",
       "summary": "VolumeButton with no variant.",
       "file": "examples/volume-button/base.tsx"
-    },
-    {
-      "component": "VolumeButton",
-      "variant": "scale",
-      "title": "VolumeButton .scale",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/volume-button/scale.tsx"
     },
     {
       "component": "Window",
@@ -7570,17 +7242,8 @@
       "title": "WindowControls .close",
       "summary": null,
       "deprecated": false,
-      "colour": false,
-      "file": "examples/window-controls/close.tsx"
-    },
-    {
-      "component": "WindowControls",
-      "variant": "empty",
-      "title": "WindowControls .empty",
-      "summary": null,
-      "deprecated": false,
       "colour": true,
-      "file": "examples/window-controls/empty.tsx"
+      "file": "examples/window-controls/close.tsx"
     },
     {
       "component": "WindowControls",
@@ -7597,7 +7260,7 @@
       "title": "WindowControls .icon",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/window-controls/icon.tsx"
     },
     {
@@ -7626,15 +7289,6 @@
       "deprecated": false,
       "colour": true,
       "file": "examples/window-controls/native.tsx"
-    },
-    {
-      "component": "WindowControls",
-      "variant": "start",
-      "title": "WindowControls .start",
-      "summary": null,
-      "deprecated": false,
-      "colour": true,
-      "file": "examples/window-controls/start.tsx"
     },
     {
       "component": "WindowHandle",
@@ -7672,7 +7326,7 @@
       "title": "WrapBox .navigation-box",
       "summary": null,
       "deprecated": false,
-      "colour": false,
+      "colour": true,
       "file": "examples/wrap-box/navigation-box.tsx"
     }
   ]

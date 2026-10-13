@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -12,7 +11,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { JustifyMode, LengthUnit, PackDirection, WrapPolicy } from "@/lib/enums"
+import type { JustifyMode, LengthUnit, Orientation, PackDirection, WrapPolicy } from "@/lib/enums"
 
 const wrapBoxVariants = cva(
   "",
@@ -21,7 +20,7 @@ const wrapBoxVariants = cva(
       variant: {
         default: "",
         /** .navigation-box */
-        navigationBox: "",
+        navigationBox: "navigation-box",
       },
     },
     defaultVariants: { variant: "default" },
@@ -63,7 +62,7 @@ export interface WrapBoxProps
   naturalLineLengthUnit?: LengthUnit
 
   /** Orientation, from Adw.WrapBox */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** PackDirection, from Adw.WrapBox */
   packDirection?: PackDirection
@@ -75,7 +74,7 @@ export interface WrapBoxProps
   wrapReverse?: boolean
 }
 
-function WrapBox({ className, render, variant = "default", orientation, align, childSpacing, childSpacingUnit, justify, justifyLastLine, lineHomogeneous, lineSpacing, lineSpacingUnit, naturalLineLength, naturalLineLengthUnit, packDirection, wrapPolicy, wrapReverse, children, ...props }: WrapBoxProps) {
+function WrapBox({ className, render, variant = "default", align, childSpacing, childSpacingUnit, justify, justifyLastLine, lineHomogeneous, lineSpacing, lineSpacingUnit, naturalLineLength, naturalLineLengthUnit, orientation, packDirection, wrapPolicy, wrapReverse, children, ...props }: WrapBoxProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -95,17 +94,13 @@ function WrapBox({ className, render, variant = "default", orientation, align, c
     "data-line-spacing-unit": lineSpacingUnit,
     "data-natural-line-length": naturalLineLength,
     "data-natural-line-length-unit": naturalLineLengthUnit,
+    "data-orientation": orientation,
     "data-pack-direction": packDirection,
     "data-wrap-policy": wrapPolicy,
     "data-wrap-reverse": wrapReverse,
     className: cn("flex flex-wrap", wrapBoxVariants({ variant }), widgetClassName, className),
     style,
-    children: (
-        <>
-                  {orientation}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

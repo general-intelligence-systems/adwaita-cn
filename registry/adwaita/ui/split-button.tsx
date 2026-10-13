@@ -25,18 +25,18 @@ const splitButtonVariants = cva(
       variant: {
         default: "",
         /** .destructive-action */
-        destructiveAction: "[--accent-bg-color:var(--destructive-bg-color)] [--accent-fg-color:var(--destructive-fg-color)] [--accent-color:var(--destructive-color)] text-[var(--accent-color)]",
+        destructiveAction: "destructive-action [--accent-bg-color:var(--destructive-bg-color)] [--accent-fg-color:var(--destructive-fg-color)] [--accent-color:var(--destructive-color)] text-[var(--accent-color)]",
         /** .flat */
         flat: [
-          "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+          "flat hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
           "disabled:[filter:opacity(30%)]",
           "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
         ],
         /** .opaque */
-        opaque: "bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)]",
+        opaque: "opaque bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)]",
         /** .suggested-action */
-        suggestedAction: "bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)]",
+        suggestedAction: "suggested-action bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -51,7 +51,7 @@ export interface SplitButtonProps
   actionName?: string
 
   /** GLib.Variant, from Adw.SplitButton */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Adw.SplitButton */
   canShrink?: boolean
@@ -72,7 +72,7 @@ export interface SplitButtonProps
   label?: string
 
   /** Gio.MenuModel, from Adw.SplitButton */
-  menuModel?: ReactNode
+  menuModel?: unknown
 
   /** Gtk.Popover, from Adw.SplitButton */
   popover?: ReactNode
@@ -81,7 +81,7 @@ export interface SplitButtonProps
   useUnderline?: boolean
 }
 
-function SplitButton({ className, render, variant = "default", actionTarget, child, iconName, label, menuModel, popover, actionName, canShrink, direction, dropdownTooltip, useUnderline, children, ...props }: SplitButtonProps) {
+function SplitButton({ className, render, variant = "default", child, iconName, label, popover, actionTarget: _actionTarget, menuModel: _menuModel, actionName, canShrink, direction, dropdownTooltip, useUnderline, children, ...props }: SplitButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -96,21 +96,28 @@ function SplitButton({ className, render, variant = "default", actionTarget, chi
     "data-direction": direction,
     "data-dropdown-tooltip": dropdownTooltip,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", splitButtonVariants({ variant }), widgetClassName, className),
+    className: cn("group/split-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", splitButtonVariants({ variant }), iconName && !label && "image-button", label && !iconName && "text-button", widgetClassName, className),
     style,
     children: (
         <>
-                  <Icon name={iconName} data-slot="split-button-icon" />
+                  <SplitButtonButton>
+                {children}
+              </SplitButtonButton>
+                  <SplitButtonMenubutton>
+                <SplitButtonButton2>
+                  <SplitButtonArrow />
+                </SplitButtonButton2>
+              </SplitButtonMenubutton>
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="split-button-icon" />
+              )}
                   {label === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}
                 </span>
               )}
-                  {actionTarget}
                   {child}
-                  {menuModel}
                   {popover}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -124,4 +131,75 @@ function SplitButton({ className, render, variant = "default", actionTarget, chi
   })
 }
 
-export { SplitButton, splitButtonVariants }
+function SplitButtonButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="split-button-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] mx-[-1px] rounded-tr-[0] rounded-br-[0] rounded-tl-[0] rounded-bl-[0]",
+        "group-hover/split-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/split-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/split-button:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/split-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/split-button:group-hover/split-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/split-button:group-active/split-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SplitButtonSeparator({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="split-button-separator"
+        data-node="separator"
+      className={cn("horizontal", "bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] my-1.5 transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-none", className)}
+      {...props}
+    />
+  )
+}
+
+function SplitButtonArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="split-button-arrow"
+        data-node="arrow"
+      className={cn("min-h-4 min-w-4", className)}
+      {...props}
+    />
+  )
+}
+
+function SplitButtonButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="split-button-button2"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] mx-[-1px] rounded-tr-[0] rounded-br-[0] rounded-tl-[0] rounded-bl-[0] px-1",
+        "group-hover/split-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/split-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/split-button:[filter:Opacity(var(--disabled-opacity))] group-disabled/split-button:[filter:none]",
+        "group-data-[state=checked]/split-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/split-button:group-hover/split-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/split-button:group-active/split-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SplitButtonMenubutton({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="split-button-menubutton"
+        data-node="menubutton"
+      className={cn("group-disabled/split-button:[filter:Opacity(var(--disabled-opacity))]", className)}
+      {...props}
+    />
+  )
+}
+
+export { SplitButton, SplitButtonButton, SplitButtonSeparator, SplitButtonArrow, SplitButtonButton2, SplitButtonMenubutton, splitButtonVariants }

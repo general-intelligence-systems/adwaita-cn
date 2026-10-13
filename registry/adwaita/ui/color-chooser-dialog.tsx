@@ -21,29 +21,29 @@ const colorChooserDialogVariants = cva(
     variants: {
       variant: {
         /** .bottom-sheet */
-        bottomSheet: "",
+        bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .default */
-        default: "",
+        default: "default",
         /** .dialog-window */
-        dialogWindow: "",
+        dialogWindow: "dialog-window",
         /** .floating */
-        floating: "",
+        floating: "floating",
         /** .landscape */
-        landscape: "",
+        landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .portrait */
-        portrait: "",
+        portrait: "portrait",
         /** .short */
-        short: "",
+        short: "short",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -55,7 +55,7 @@ export interface ColorChooserDialogProps
     WidgetProps,
     VariantProps<typeof colorChooserDialogVariants> {
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** Widget, from Gtk.Window */
   child?: ReactNode
@@ -67,7 +67,7 @@ export interface ColorChooserDialogProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -79,13 +79,13 @@ export interface ColorChooserDialogProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
@@ -115,7 +115,7 @@ export interface ColorChooserDialogProps
   resizable?: boolean
 
   /** Gdk.RGBA, from Gtk.ColorChooserDialog */
-  rgba?: ReactNode
+  rgba?: unknown
 
   /** gboolean, from Gtk.ColorChooserDialog */
   showEditor?: boolean
@@ -130,7 +130,7 @@ export interface ColorChooserDialogProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 
   /** gboolean, from Gtk.ColorChooserDialog */
   useAlpha?: boolean
@@ -139,7 +139,7 @@ export interface ColorChooserDialogProps
   useHeaderBar?: number
 }
 
-function ColorChooserDialog({ className, render, variant = "default", application, child, defaultWidget, display, focusWidget, iconName, rgba, titlebar, transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, showEditor, startupId, title, useAlpha, useHeaderBar, children, ...props }: ColorChooserDialogProps) {
+function ColorChooserDialog({ className, render, variant = "default", child, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, focusWidget: _focusWidget, rgba: _rgba, transientFor: _transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, showEditor, startupId, title, useAlpha, useHeaderBar, children, ...props }: ColorChooserDialogProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -169,27 +169,19 @@ function ColorChooserDialog({ className, render, variant = "default", applicatio
     "data-title": title,
     "data-use-alpha": useAlpha,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/color-chooser-dialog", colorChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/color-chooser-dialog", colorChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>
+                  <ColorChooserDialogSheet />
                   <ColorChooserDialogDrawing>
                 <ColorChooserDialogPaper />
               </ColorChooserDialogDrawing>
-                  <ColorChooserDialogSheet>
-                <ColorChooserDialogHeaderbar>
-                  <ColorChooserDialogWindowhandle />
-                </ColorChooserDialogHeaderbar>
-              </ColorChooserDialogSheet>
-                  <Icon name={iconName} data-slot="color-chooser-dialog-icon" />
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {focusWidget}
-                  {rgba}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="color-chooser-dialog-icon" />
+              )}
                   {titlebar}
-                  {transientFor}
+                  {child}
                   {children}
         </>
       ),
@@ -202,6 +194,17 @@ function ColorChooserDialog({ className, render, variant = "default", applicatio
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function ColorChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="color-chooser-dialog-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function ColorChooserDialogPaper({ className, ...props }: React.ComponentProps<"div">) {
@@ -226,37 +229,4 @@ function ColorChooserDialogDrawing({ className, ...props }: React.ComponentProps
   )
 }
 
-function ColorChooserDialogWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="color-chooser-dialog-windowhandle"
-        data-node="windowhandle"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function ColorChooserDialogHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="color-chooser-dialog-headerbar"
-        data-node="headerbar"
-      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function ColorChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="color-chooser-dialog-sheet"
-        data-node="sheet"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { ColorChooserDialog, ColorChooserDialogPaper, ColorChooserDialogDrawing, ColorChooserDialogWindowhandle, ColorChooserDialogHeaderbar, ColorChooserDialogSheet, colorChooserDialogVariants }
+export { ColorChooserDialog, ColorChooserDialogSheet, ColorChooserDialogPaper, ColorChooserDialogDrawing, colorChooserDialogVariants }

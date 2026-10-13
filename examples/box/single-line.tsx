@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxSingleline() {
   return (
-    <Box size="singleLine">
+    <Box variant="singleLine">
       <Label label="Label" />
     </Box>
   )

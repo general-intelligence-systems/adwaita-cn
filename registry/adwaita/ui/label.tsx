@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -12,7 +11,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { Justification, NaturalWrapMode } from "@/lib/enums"
+import type { EllipsizeMode, Justification, NaturalWrapMode, PangoWrapMode } from "@/lib/enums"
 
 const labelVariants = cva(
   [
@@ -24,41 +23,41 @@ const labelVariants = cva(
       variant: {
         default: "",
         /** .body */
-        body: "font-normal leading-[140%]",
+        body: "body font-normal leading-[140%]",
         /** .day-number */
-        dayNumber: "",
+        dayNumber: "day-number",
         /** .description */
-        description: "",
+        description: "description",
         /** .dimmed */
-        dimmed: "opacity-[var(--dim-opacity)]",
+        dimmed: "dimmed opacity-[var(--dim-opacity)]",
         /** .h4 */
-        h4: "",
+        h4: "h4",
         /** .heading */
-        heading: "font-bold",
+        heading: "heading font-bold",
         /** .highlight */
-        highlight: "",
+        highlight: "highlight",
         /** .link */
-        link: "",
+        link: "link",
         /** .numeric */
-        numeric: "",
+        numeric: "numeric",
         /** .separator */
-        separator: "opacity-[var(--dim-opacity)]",
+        separator: "separator opacity-[var(--dim-opacity)]",
         /** .sidebar-label */
-        sidebarLabel: "",
+        sidebarLabel: "sidebar-label",
         /** .small */
-        small: "",
+        small: "small",
         /** .subtitle */
-        subtitle: "",
+        subtitle: "subtitle",
         /** .title */
-        title: "",
+        title: "title",
         /** .title-1 */
-        title1: "font-extrabold text-[181%]",
+        title1: "title-1 font-extrabold text-[181%]",
         /** .title-2 */
-        title2: "font-extrabold text-[136%]",
+        title2: "title-2 font-extrabold text-[136%]",
         /** .title-4 */
-        title4: "font-bold text-[118%]",
+        title4: "title-4 font-bold text-[118%]",
         /** .today */
-        today: "",
+        today: "today",
       },
     },
     defaultVariants: { variant: "default" },
@@ -70,13 +69,13 @@ export interface LabelProps
     WidgetProps,
     VariantProps<typeof labelVariants> {
   /** Pango.AttrList, from Gtk.Label */
-  attributes?: ReactNode
+  attributes?: unknown
 
   /** Pango.EllipsizeMode, from Gtk.Label */
-  ellipsize?: ReactNode
+  ellipsize?: EllipsizeMode
 
   /** Gio.MenuModel, from Gtk.Label */
-  extraMenu?: ReactNode
+  extraMenu?: unknown
 
   /** Justification, from Gtk.Label */
   justify?: Justification
@@ -91,7 +90,7 @@ export interface LabelProps
   maxWidthChars?: number
 
   /** Widget, from Gtk.Label */
-  mnemonicWidget?: ReactNode
+  mnemonicWidget?: unknown
 
   /** NaturalWrapMode, from Gtk.Label */
   naturalWrapMode?: NaturalWrapMode
@@ -103,7 +102,7 @@ export interface LabelProps
   singleLineMode?: boolean
 
   /** Pango.TabArray, from Gtk.Label */
-  tabs?: ReactNode
+  tabs?: unknown
 
   /** gboolean, from Gtk.Label */
   useMarkup?: boolean
@@ -118,7 +117,7 @@ export interface LabelProps
   wrap?: boolean
 
   /** Pango.WrapMode, from Gtk.Label */
-  wrapMode?: ReactNode
+  wrapMode?: PangoWrapMode
 
   /** gfloat, from Gtk.Label */
   xalign?: number
@@ -127,7 +126,7 @@ export interface LabelProps
   yalign?: number
 }
 
-function Label({ className, render, variant = "default", attributes, ellipsize, extraMenu, label, mnemonicWidget, tabs, wrapMode, justify, lines, maxWidthChars, naturalWrapMode, selectable, singleLineMode, useMarkup, useUnderline, widthChars, wrap, xalign, yalign, children, ...props }: LabelProps) {
+function Label({ className, render, variant = "default", label, attributes: _attributes, extraMenu: _extraMenu, mnemonicWidget: _mnemonicWidget, tabs: _tabs, ellipsize, justify, lines, maxWidthChars, naturalWrapMode, selectable, singleLineMode, useMarkup, useUnderline, widthChars, wrap, wrapMode, xalign, yalign, children, ...props }: LabelProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -137,6 +136,7 @@ function Label({ className, render, variant = "default", attributes, ellipsize, 
     "data-slot": "label",
     "data-node": "label",
     "data-variant": variant,
+    "data-ellipsize": ellipsize,
     "data-justify": justify,
     "data-lines": lines,
     "data-max-width-chars": maxWidthChars,
@@ -147,19 +147,14 @@ function Label({ className, render, variant = "default", attributes, ellipsize, 
     "data-use-underline": useUnderline,
     "data-width-chars": widthChars,
     "data-wrap": wrap,
+    "data-wrap-mode": wrapMode,
     "data-xalign": xalign,
     "data-yalign": yalign,
-    className: cn(labelVariants({ variant }), widgetClassName, className),
+    className: cn("group/label", labelVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   {label}
-                  {attributes}
-                  {ellipsize}
-                  {extraMenu}
-                  {mnemonicWidget}
-                  {tabs}
-                  {wrapMode}
                   {children}
         </>
       ),
@@ -174,4 +169,31 @@ function Label({ className, render, variant = "default", attributes, ellipsize, 
   })
 }
 
-export { Label, labelVariants }
+function LabelSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="label-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function LabelLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="label-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/label:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/label:text-[var(--accent-color)]",
+        "group-disabled/label:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { Label, LabelSelection, LabelLink, labelVariants }

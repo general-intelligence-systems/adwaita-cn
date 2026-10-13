@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxCircularbuttons() {
   return (
-    <Box size="circularButtons">
+    <Box variant="circularButtons">
       <Label label="Label" />
     </Box>
   )

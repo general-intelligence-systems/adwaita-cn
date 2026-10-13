@@ -44,6 +44,26 @@ require "json"
 require_relative "lib/classes"
 
 module GenerateExamples
+  # The examples of components which are no longer components. bin/11-generate-components
+  # removes the component's own file; the examples importing it are left behind otherwise, and
+  # the lint reads them and reports a component this registry does not have.
+  def self.prune(root, manifest)
+    wanted = manifest.map{|one| File.join(root, one.fetch("file")) }.to_set
+    directory = File.join(root, "examples")
+    return unless Dir.exist?(directory)
+
+    Dir.glob(File.join(directory, "*", "*.tsx")).sort.each do |path|
+      next if wanted.include?(path)
+
+      File.delete(path)
+      warn("removed #{path.delete_prefix("#{root}/")}: no longer an example")
+    end
+
+    Dir.glob(File.join(directory, "*")).select{|one| File.directory?(one) }.sort.each do |one|
+      Dir.rmdir(one) if Dir.empty?(one)
+    end
+  end
+
   def self.run(argv)
     root = File.expand_path("..", __dir__)
     force = !argv.delete("--force").nil?
@@ -65,6 +85,8 @@ module GenerateExamples
         end
       end
     end
+
+    self.prune(root, manifest)
 
     self.write(root, "examples/manifest.json", "#{JSON.pretty_generate({
       "versions" => variants.fetch("versions"),

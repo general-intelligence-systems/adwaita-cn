@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -26,7 +25,7 @@ export interface PictureProps
   contentFit?: ContentFit
 
   /** Gio.File, from Gtk.Picture */
-  file?: ReactNode
+  file?: unknown
 
   /** gboolean, from Gtk.Picture */
   isolateContents?: boolean
@@ -35,10 +34,10 @@ export interface PictureProps
   keepAspectRatio?: boolean
 
   /** Gdk.Paintable, from Gtk.Picture */
-  paintable?: ReactNode
+  paintable?: unknown
 }
 
-function Picture({ className, render, alternativeText, canShrink, contentFit, file, isolateContents, keepAspectRatio, paintable, children: _children, ...props }: PictureProps) {
+function Picture({ className, render, file: _file, paintable: _paintable, alternativeText, canShrink, contentFit, isolateContents, keepAspectRatio, children: _children, ...props }: PictureProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -50,10 +49,8 @@ function Picture({ className, render, alternativeText, canShrink, contentFit, fi
     "data-alternative-text": alternativeText,
     "data-can-shrink": canShrink,
     "data-content-fit": contentFit,
-    "data-file": file,
     "data-isolate-contents": isolateContents,
     "data-keep-aspect-ratio": keepAspectRatio,
-    "data-paintable": paintable,
     className: cn(widgetClassName, className),
     style,
     ...widgetAttributes,

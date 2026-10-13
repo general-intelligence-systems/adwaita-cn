@@ -4,12 +4,10 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
-import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { GraphicsOffloadEnabled } from "@/lib/enums"
@@ -21,7 +19,7 @@ export interface VideoProps
   autoplay?: boolean
 
   /** Gio.File, from Gtk.Video */
-  file?: ReactNode
+  file?: unknown
 
   /** GraphicsOffloadEnabled, from Gtk.Video */
   graphicsOffload?: GraphicsOffloadEnabled
@@ -30,10 +28,10 @@ export interface VideoProps
   loop?: boolean
 
   /** MediaStream, from Gtk.Video */
-  mediaStream?: ReactNode
+  mediaStream?: unknown
 }
 
-function Video({ className, render, file, mediaStream, autoplay, graphicsOffload, loop, children, ...props }: VideoProps) {
+function Video({ className, render, file: _file, mediaStream: _mediaStream, autoplay, graphicsOffload, loop, children, ...props }: VideoProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -45,16 +43,9 @@ function Video({ className, render, file, mediaStream, autoplay, graphicsOffload
     "data-autoplay": autoplay,
     "data-graphics-offload": graphicsOffload,
     "data-loop": loop,
-    className: cn("group/video", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <VideoImage />
-                  {file}
-                  {mediaStream}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -66,15 +57,4 @@ function Video({ className, render, file, mediaStream, autoplay, graphicsOffload
   })
 }
 
-function VideoImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="video-image"
-        data-node="image"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { Video, VideoImage }
+export { Video }

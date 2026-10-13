@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -16,10 +15,10 @@ export interface PopoverMenuBarProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "menuModel">,
     WidgetProps {
   /** Gio.MenuModel, from Gtk.PopoverMenuBar */
-  menuModel?: ReactNode
+  menuModel?: unknown
 }
 
-function PopoverMenuBar({ className, render, menuModel, children, ...props }: PopoverMenuBarProps) {
+function PopoverMenuBar({ className, render, menuModel: _menuModel, children, ...props }: PopoverMenuBarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -29,19 +28,9 @@ function PopoverMenuBar({ className, render, menuModel, children, ...props }: Po
     "data-slot": "popover-menu-bar",
     "data-node": "menubar",
     role: "menubar",
-    className: cn("group/popover-menu-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", "pb-[1px] shadow-[inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "pb-[1px] shadow-[inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [&>*]:py-1 [&>*]:px-2 [&>*]:min-h-4 [&>*]:rounded-[9px] [&>*]:data-[selected]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <PopoverMenuBarItem>
-                <PopoverMenuBarPopover>
-                  <PopoverMenuBarArrow />
-                </PopoverMenuBarPopover>
-              </PopoverMenuBarItem>
-                  {menuModel}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -53,40 +42,4 @@ function PopoverMenuBar({ className, render, menuModel, children, ...props }: Po
   })
 }
 
-function PopoverMenuBarArrow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="popover-menu-bar-arrow"
-        data-node="arrow"
-      className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
-      {...props}
-    />
-  )
-}
-
-function PopoverMenuBarPopover({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="popover-menu-bar-popover"
-        data-node="popover"
-      className={cn("hidden", "[--shade-color:var(--popover-shade-color)] p-2 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)] rounded-[15px]", className)}
-      {...props}
-    />
-  )
-}
-
-function PopoverMenuBarItem({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="popover-menu-bar-item"
-        data-node="item"
-      className={cn([
-        "py-1 px-2 min-h-4 rounded-[9px]",
-        "group-data-[selected]/popover-menu-bar:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { PopoverMenuBar, PopoverMenuBarArrow, PopoverMenuBarPopover, PopoverMenuBarItem }
+export { PopoverMenuBar }

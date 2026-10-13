@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxWide() {
   return (
-    <Box size="wide">
+    <Box variant="wide">
       <Label label="Label" />
     </Box>
   )

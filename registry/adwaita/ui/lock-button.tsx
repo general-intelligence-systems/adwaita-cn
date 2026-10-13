@@ -30,7 +30,7 @@ const lockButtonVariants = cva(
         default: "",
         /** .card */
         card: [
-          "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 bg-clip-padding [font-weight:inherit] transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
+          "card bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 bg-clip-padding [font-weight:inherit] transition-[outline-color,outline-width,outline-offset,background,box-shadow]",
           "hover:bg-[image:image(color-mix(in_srgb,currentColor_4%,transparent))]",
           "active:bg-[image:image(color-mix(in_srgb,currentColor_8%,transparent))]",
           "data-[state=checked]:bg-[var(--card-bg-color)] data-[state=checked]:bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_25%,transparent))]",
@@ -38,10 +38,10 @@ const lockButtonVariants = cva(
           "data-[state=checked]:active:bg-[image:image(color-mix(in_srgb,var(--accent-bg-color)_39%,transparent))]",
         ],
         /** .combo */
-        combo: "",
+        combo: "combo",
         /** .destructive-action */
         destructiveAction: [
-          "[--accent-bg-color:var(--destructive-bg-color)] [--accent-fg-color:var(--destructive-fg-color)] [--accent-color:var(--destructive-color)] text-[var(--accent-color)] bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+          "destructive-action [--accent-bg-color:var(--destructive-bg-color)] [--accent-fg-color:var(--destructive-fg-color)] [--accent-color:var(--destructive-color)] text-[var(--accent-color)] bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
           "hover:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
           "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
@@ -49,10 +49,10 @@ const lockButtonVariants = cva(
           "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_45%,transparent)]",
         ],
         /** .dnd */
-        dnd: "",
+        dnd: "dnd",
         /** .flat */
         flat: [
-          "bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "flat bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
           "disabled:[filter:opacity(30%)]",
@@ -61,22 +61,20 @@ const lockButtonVariants = cva(
           "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
         ],
         /** .inert */
-        inert: "",
+        inert: "inert",
         /** .keyboard-activating */
-        keyboardActivating: "bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        keyboardActivating: "keyboard-activating bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
         /** .link */
         link: [
-          "text-[var(--accent-color)] [font-weight:inherit] bg-[transparent]",
+          "link text-[var(--accent-color)] [font-weight:inherit] bg-[transparent]",
           "hover:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))] hover:bg-[transparent]",
           "active:text-[var(--accent-color)] active:bg-[transparent]",
           "disabled:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
           "data-[state=checked]:bg-[transparent]",
         ],
-        /** .lock */
-        lock: "",
         /** .opaque */
         opaque: [
-          "shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)]",
+          "opaque shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)]",
           "hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
           "active:bg-[image:image(RGB(0_0_6/20%))]",
           "data-[state=checked]:bg-[image:image(RGB(0_0_6/15%))]",
@@ -85,7 +83,7 @@ const lockButtonVariants = cva(
         ],
         /** .osd */
         osd: [
-          "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-8 min-h-8 bg-[RGB(0_0_0/65%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-8 min-h-8 bg-[RGB(0_0_0/65%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "hover:text-[white] hover:bg-[color-mix(in_srgb,black_calc(0.85_*_65%),currentColor_calc(0.15_*_65%))]",
           "active:text-[white] active:bg-[color-mix(in_srgb,black_calc(0.75_*_65%),currentColor_calc(0.25_*_65%))]",
           "data-[state=checked]:bg-[color-mix(in_srgb,black_calc(0.8_*_65%),currentColor_calc(0.2_*_65%))]",
@@ -94,7 +92,7 @@ const lockButtonVariants = cva(
         ],
         /** .sidebar-button */
         sidebarButton: [
-          "p-0 my-[3px] bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-6.5 min-w-6.5 rounded-full",
+          "sidebar-button p-0 my-[3px] bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-6.5 min-w-6.5 rounded-full",
           "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
           "disabled:[filter:opacity(30%)]",
@@ -104,7 +102,7 @@ const lockButtonVariants = cva(
         ],
         /** .suggested-action */
         suggestedAction: [
-          "shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
+          "suggested-action shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
           "hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
           "active:bg-[image:image(RGB(0_0_6/20%))]",
           "data-[state=checked]:bg-[image:image(RGB(0_0_6/15%))] data-[state=checked]:bg-[var(--accent-bg-color)]",
@@ -112,20 +110,20 @@ const lockButtonVariants = cva(
           "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/30%))]",
         ],
         /** .toggle */
-        toggle: "",
+        toggle: "toggle",
       },
       size: {
         default: "",
         /** .arrow-button */
-        arrowButton: "px-[9px]",
+        arrowButton: "arrow-button px-[9px]",
         /** .circular */
-        circular: "p-0 min-w-8.5 min-h-8.5 rounded-full",
+        circular: "circular p-0 min-w-8.5 min-h-8.5 rounded-full",
         /** .color */
-        color: "p-[5px]",
+        color: "color p-[5px]",
         /** .image-text-button */
-        imageTextButton: "px-[9px]",
+        imageTextButton: "image-text-button px-[9px]",
         /** .pill */
-        pill: "py-2.5 px-8 rounded-full",
+        pill: "pill py-2.5 px-8 rounded-full",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -140,7 +138,7 @@ export interface LockButtonProps
   actionName?: string
 
   /** GLib.Variant, from Gtk.LockButton */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.Button */
   canShrink?: boolean
@@ -158,7 +156,7 @@ export interface LockButtonProps
   label?: string
 
   /** Gio.Permission, from Gtk.LockButton */
-  permission?: ReactNode
+  permission?: unknown
 
   /** utf8, from Gtk.LockButton */
   textLock?: string
@@ -179,7 +177,7 @@ export interface LockButtonProps
   useUnderline?: boolean
 }
 
-function LockButton({ className, render, variant = "default", size = "default", actionTarget, child, iconName, label, permission, actionName, canShrink, hasFrame, textLock, textUnlock, tooltipLock, tooltipNotAuthorized, tooltipUnlock, useUnderline, children, ...props }: LockButtonProps) {
+function LockButton({ className, render, variant = "default", size = "default", child, iconName, label, actionTarget: _actionTarget, permission: _permission, actionName, canShrink, hasFrame, textLock, textUnlock, tooltipLock, tooltipNotAuthorized, tooltipUnlock, useUnderline, children, ...props }: LockButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -199,19 +197,27 @@ function LockButton({ className, render, variant = "default", size = "default", 
     "data-tooltip-not-authorized": tooltipNotAuthorized,
     "data-tooltip-unlock": tooltipUnlock,
     "data-use-underline": useUnderline,
-    className: cn(lockButtonVariants({ variant, size }), iconName && !label && "px-[5px] min-w-6", label && !iconName && "px-[17px]", widgetClassName, className),
+    className: cn(lockButtonVariants({ variant, size }), "lock", hasFrame === false && [
+          "flat bg-[transparent] shadow-none [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+          "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+          "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+          "disabled:[filter:opacity(30%)]",
+          "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+          "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+          "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        ], iconName && !label && "image-button px-[5px] min-w-6", label && !iconName && "text-button px-[17px]", widgetClassName, className),
     style,
     children: (
         <>
-                  <Icon name={iconName} data-slot="lock-button-icon" />
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="lock-button-icon" />
+              )}
                   {label === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}
                 </span>
               )}
-                  {actionTarget}
                   {child}
-                  {permission}
                   {children}
         </>
       ),

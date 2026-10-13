@@ -4,14 +4,14 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { visibleChild } from "@/lib/stack"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { FoldThresholdPolicy, SqueezerTransitionType } from "@/lib/enums"
+import type { FoldThresholdPolicy, Orientation, SqueezerTransitionType } from "@/lib/enums"
 
 export interface SqueezerProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "allowNone" | "homogeneous" | "interpolateSize" | "orientation" | "switchThresholdPolicy" | "transitionDuration" | "transitionType" | "xalign" | "yalign">,
@@ -26,7 +26,7 @@ export interface SqueezerProps
   interpolateSize?: boolean
 
   /** Orientation, from Adw.Squeezer */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** FoldThresholdPolicy, from Adw.Squeezer */
   switchThresholdPolicy?: FoldThresholdPolicy
@@ -44,7 +44,7 @@ export interface SqueezerProps
   yalign?: number
 }
 
-function Squeezer({ className, render, orientation, allowNone, homogeneous, interpolateSize, switchThresholdPolicy, transitionDuration, transitionType, xalign, yalign, children, ...props }: SqueezerProps) {
+function Squeezer({ className, render, allowNone, homogeneous, interpolateSize, orientation, switchThresholdPolicy, transitionDuration, transitionType, xalign, yalign, children, ...props }: SqueezerProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -56,19 +56,15 @@ function Squeezer({ className, render, orientation, allowNone, homogeneous, inte
     "data-allow-none": allowNone,
     "data-homogeneous": homogeneous,
     "data-interpolate-size": interpolateSize,
+    "data-orientation": orientation,
     "data-switch-threshold-policy": switchThresholdPolicy,
     "data-transition-duration": transitionDuration,
     "data-transition-type": transitionType,
     "data-xalign": xalign,
     "data-yalign": yalign,
-    className: cn(widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {orientation}
-                  {children}
-        </>
-      ),
+    children: visibleChild(children),
     ...widgetAttributes,
   }
 

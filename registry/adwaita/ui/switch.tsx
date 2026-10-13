@@ -4,11 +4,11 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -19,7 +19,7 @@ export interface SwitchProps
   actionName?: string
 
   /** GLib.Variant, from Gtk.Switch */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.Switch */
   active?: boolean
@@ -28,7 +28,7 @@ export interface SwitchProps
   state?: boolean
 }
 
-function Switch({ className, render, actionTarget, actionName, active, state: _state, children, ...props }: SwitchProps) {
+function Switch({ className, render, actionTarget: _actionTarget, actionName, active, state: _state, children, ...props }: SwitchProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -49,12 +49,11 @@ function Switch({ className, render, actionTarget, actionName, active, state: _s
           "data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:bg-[var(--accent-bg-color)]",
           "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
           "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-        ], widgetClassName, className),
+        ], "min-w-[46px]", widgetClassName, className),
     style,
     children: (
         <>
-                  <SwitchSlider />
-                  {actionTarget}
+                  <SwitchSlider className="justify-self-start self-center group-data-[state=checked]/switch:justify-self-end" />
                   {children}
         </>
       ),
@@ -67,6 +66,17 @@ function Switch({ className, render, actionTarget, actionName, active, state: _s
     render,
     props: mergeProps<"button">(defaultProps, rest),
   })
+}
+
+function SwitchImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="switch-image"
+        data-node="image"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function SwitchSlider({ className, ...props }: React.ComponentProps<"div">) {
@@ -83,4 +93,4 @@ function SwitchSlider({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Switch, SwitchSlider }
+export { Switch, SwitchImage, SwitchSlider }

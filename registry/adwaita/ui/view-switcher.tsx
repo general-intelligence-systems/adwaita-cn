@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,15 +20,10 @@ const viewSwitcherVariants = cva(
       variant: {
         default: "",
         /** .wide */
-        wide: "",
-      },
-      size: {
-        default: "",
-        /** .narrow */
-        narrow: "my-[-3px] min-h-1.5",
+        wide: "wide",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -41,10 +35,10 @@ export interface ViewSwitcherProps
   policy?: ViewSwitcherPolicy
 
   /** ViewStack, from Adw.ViewSwitcher */
-  stack?: ReactNode
+  stack?: unknown
 }
 
-function ViewSwitcher({ className, render, variant = "default", size = "default", stack, policy, children, ...props }: ViewSwitcherProps) {
+function ViewSwitcher({ className, render, variant = "default", stack: _stack, policy, children, ...props }: ViewSwitcherProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -54,21 +48,11 @@ function ViewSwitcher({ className, render, variant = "default", size = "default"
     "data-slot": "view-switcher",
     "data-node": "viewswitcher",
     "data-variant": variant,
-    "data-size": size,
     role: "tablist",
     "data-policy": policy,
-    className: cn("group/view-switcher", "grid [&>*]:col-start-1 [&>*]:row-start-1", viewSwitcherVariants({ variant, size }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", viewSwitcherVariants({ variant }), "narrow my-[-3px] min-h-1.5", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <ViewSwitcherButton>
-                <ViewSwitcherStack>
-                  {children}
-                </ViewSwitcherStack>
-              </ViewSwitcherButton>
-                  {stack}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -80,34 +64,4 @@ function ViewSwitcher({ className, render, variant = "default", size = "default"
   })
 }
 
-function ViewSwitcherStack({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="view-switcher-stack"
-        data-node="stack"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function ViewSwitcherButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="view-switcher-button"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/view-switcher:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/view-switcher:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/view-switcher:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/view-switcher:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/view-switcher:group-hover/view-switcher:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/view-switcher:group-active/view-switcher:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { ViewSwitcher, ViewSwitcherStack, ViewSwitcherButton, viewSwitcherVariants }
+export { ViewSwitcher, viewSwitcherVariants }

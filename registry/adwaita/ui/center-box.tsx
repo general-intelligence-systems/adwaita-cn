@@ -21,25 +21,27 @@ const centerBoxVariants = cva(
       variant: {
         default: "",
         /** .circular-buttons */
-        circularButtons: "",
+        circularButtons: "circular-buttons",
         /** .end */
-        end: "",
+        end: "end",
         /** .header */
-        header: "",
+        header: "header",
         /** .inline-buttons */
-        inlineButtons: "",
+        inlineButtons: "inline-buttons",
         /** .labels */
-        labels: "",
+        labels: "labels",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .single-line */
-        singleLine: "",
+        singleLine: "single-line",
         /** .start */
-        start: "",
+        start: "start",
         /** .title */
-        title: "",
+        title: "title",
+        /** .vertical */
+        vertical: "vertical",
         /** .wide */
-        wide: "",
+        wide: "wide",
       },
     },
     defaultVariants: { variant: "default" },
@@ -86,9 +88,9 @@ function CenterBox({ className, render, variant = "default", centerWidget, endWi
     style,
     children: (
         <>
+                  {startWidget}
                   {centerWidget}
                   {endWidget}
-                  {startWidget}
                   {children}
         </>
       ),

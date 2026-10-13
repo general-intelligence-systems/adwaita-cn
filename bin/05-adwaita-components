@@ -91,6 +91,374 @@ module AdwaitaComponents
   # when the stylesheet styles that name, which is what makes it a style class rather
   # than any other string in the file.
   APPLIED = /gtk_widget_(?:add|remove)_css_class\s*\([^;]*?"([a-z][\w-]*)"/
+
+  # WHERE a widget puts a class on itself, which `applies` does not say.
+  #
+  # `applies` is every class a file mentions, and a component which carried all of them
+  # would be a button that is flat and circular and suggested all at once. What decides
+  # is the call site:
+  #
+  #   gtk_toggle_button_init  adds `.toggle` and nothing turns it off, so a ToggleButton
+  #                           IS `.toggle` and the caller is never asked.
+  #   gtk_button_set_has_frame  adds `.flat` in one branch and removes it in the other,
+  #                           so `.flat` is `has-frame` being false and nothing else.
+  #
+  # Neither fact is anywhere else in the pipeline, and without them the components
+  # offered both as a variant a caller opts into: every button in every application came
+  # out as a plain button, and every rule Adwaita writes for `.toggle`, `.flat`,
+  # `.text-button`, `window.background` or `popover.background` addressed nothing.
+  #
+  # A function body, taken by matching its braces rather than by a regex: a C function
+  # holds whole blocks and the first `}` is not its end.
+  FUNCTION = /^([a-z_]\w*)\s*\(([^;{]*?)\)\s*\n\{/m
+
+  # The first argument of a css-class call, and the class. The argument says WHICH widget
+  # the class goes on: `widget` and `GTK_WIDGET (self)` are the widget itself, and
+  # `priv->start_box` is a child it built, which is a part and not the component.
+  CSS_CALL = /gtk_widget_(add|remove)_css_class\s*\(\s*([^,]+?)\s*,\s*(?:I_\s*\()?\s*"([a-z][\w-]*)"/
+
+  # `.horizontal` and `.vertical` are nobody's literal: gtk_widget_update_orientation
+  # writes them, and a widget carries one from the start only where its own `_init`
+  # calls it. Implementing Gtk.Orientable is not enough -- AdwClamp, AdwLeaflet,
+  # AdwWrapBox and AdwToggleGroup all do and carry neither class until something sets
+  # the property -- so reading the interface put `.horizontal` on fourteen widgets the
+  # toolkit leaves bare.
+  ORIENTS = /gtk_widget_update_orientation\s*\(\s*([^,]+?)\s*,/
+
+  # `GTK_WIDGET (self)` is `self`.
+  def self.target(argument) = argument.to_s.gsub(/\A[A-Z_]+\s*\(\s*|\s*\)\z/, "").strip
+
+  # Which name in this function IS the widget: its first parameter, whatever the author
+  # called it. A fixed list of names missed `calendar` in gtk_calendar_init and `combo_box`
+  # in gtk_combo_box_init, and with them every rule Adwaita writes for `calendar.view` or
+  # `combobox.combo`.
+  def self.receiver(signature)
+    signature.to_s.split(",").first.to_s[/(\w+)\s*\z/, 1]
+  end
+
+  # `AdwNavigationSplitView *self` is an AdwNavigationSplitView.
+  def self.receiver_type(signature)
+    signature.to_s.split(",").first.to_s[/\A\s*(?:const\s+)?([A-Z]\w*)\s*\*/, 1]
+  end
+
+  # The names which ARE the receiver inside this body. A C function casts once at the top
+  # -- `GtkWidget *widget = GTK_WIDGET (window);` -- and every call after that is against
+  # the local, so matching the parameter alone found nothing in gtk_window_init,
+  # gtk_popover_init or gtk_text_view_init, and `window.background`, `popover.background`
+  # and `textview.view` went missing from the components which are those nodes.
+  def self.aliases(body, receiver)
+    found = [receiver].compact
+
+    body.scan(/\*?\s*(\w+)\s*=\s*[A-Z][A-Z_]*\s*\(\s*(\w+)\s*\)/) do |name, from|
+      found << name if found.include?(from)
+    end
+
+    found.to_set
+  end
+
+  # Every top-level function in a file, as [name, body].
+  #
+  # A function ends at the `}` in the first column, which is how both toolkits are
+  # written and the only cheap answer: counting braces from the start of every function
+  # is a pass over the rest of the file per function, and gtkwindow.c has two hundred of
+  # them in three hundred kilobytes.
+  def self.functions(source)
+    source.enum_for(:scan, FUNCTION).map do
+      start = Regexp.last_match.end(0) - 1
+      finish = source.index("\n}", start) || source.length
+
+      [Regexp.last_match(1), source[start..finish].to_s, self.receiver(Regexp.last_match(2)),
+       self.receiver_type(Regexp.last_match(2))]
+    end
+  end
+
+  # The calls in a body which put a class on the widget ITSELF, with how deeply nested
+  # each one is. Depth 1 is the body's own statements; anything deeper is inside an `if`.
+  def self.own_calls(body, receiver)
+    # The calls first, then the depth each one sits at: matching from every character in
+    # turn is quadratic, and gtkwindow.c alone is three hundred kilobytes.
+    calls = body.enum_for(:scan, CSS_CALL).map do
+      { "add" => Regexp.last_match(1) == "add", "class" => Regexp.last_match(3),
+        "self" => receiver.include?(self.target(Regexp.last_match(2))), "at" => Regexp.last_match.begin(0) }
+    end
+
+    return [] if calls.empty?
+
+    depth = 0
+    at = 0
+
+    calls.each do |call|
+      while at < call.fetch("at")
+        depth += 1 if body[at] == "{"
+        depth -= 1 if body[at] == "}"
+        at += 1
+      end
+
+      call["depth"] = depth
+    end
+
+    calls
+  end
+
+  # ── The children a widget builds in C ──
+  #
+  # A widget's structure is a .ui template, a drawn CSS node tree, or neither: 47 of the
+  # 158 components the registry builds have no template and no tree, and build what they
+  # hold in their own `_init`. AdwAvatar makes a gizmo called `avatar` and puts its label
+  # and its icon in it; AdwNavigationSplitView makes two bins and gives them
+  # `.sidebar-pane` and `.content-pane`, which is where a sidebar's background colour
+  # comes from. Read from neither source, every one of those came out of the generator as
+  # an empty box -- no avatar anywhere in the registry, and no sidebar that was a
+  # different colour from the page beside it.
+  #
+  # What is read is the three calls which say it: the constructor a field is assigned
+  # from, the classes put on that field, and the field it is parented to.
+
+  # `self->gizmo = adw_gizmo_new_with_role ("avatar", ...)`, and the plainer forms.
+  FIELD_NEW = /(?:self|priv)->(\w+)\s*=\s*(?:\(\s*\w+\s*\*\s*\)\s*)?(?:[A-Z_]+\s*\(\s*)?([a-z]\w*)_new(?:_\w+)?\s*\(\s*(?:I_\s*\(\s*)?("[a-z][\w-]*")?/
+
+  # `gtk_widget_set_parent (self->label, self->gizmo)` -- the second argument is where it
+  # goes, and `GTK_WIDGET (self)` is the widget itself.
+  SET_PARENT = /gtk_widget_set_parent\s*\(\s*([^,]+?)\s*,\s*(.+?)\s*\)\s*;/m
+
+  # `self->label = g_object_new (GTK_TYPE_LABEL, ...)`, which is the other half of how
+  # the toolkit makes a child: a plain constructor where the type takes no arguments, and
+  # g_object_new where it is given properties at the same time.
+  FIELD_OBJECT = /(?:self|priv)->(\w+)\s*=\s*(?:\(\s*\w+\s*\*\s*\)\s*)?g_object_new\s*\(\s*([A-Z][A-Z_]*_TYPE_[A-Z_]+)/
+
+  # `adw_bin_set_child (ADW_BIN (self->sidebar_bin), GTK_WIDGET (self->sidebar))` --
+  # which of the widget's own fields a node it built is given. Where that field is one
+  # of the widget's properties, the node is where that property's widget goes, and the
+  # component renders the prop into it rather than beside it.
+  SET_CHILD = /_set_child\s*\(\s*([^,]+?)\s*,\s*((?:[A-Z_]+\s*\(\s*)?(?:self|priv)->\w+\s*\)?)\s*\)\s*;/
+
+  # The field a reference names, if it names one.
+  def self.field(reference)
+    self.target(reference)[/\A(?:self|priv)->(\w+)\z/, 1]
+  end
+
+  # What a `*_new` call makes: a gizmo renders as the node it was given a name for, and
+  # anything else is the type its prefix defines.
+  def self.constructed(prefix, literal, prefixes)
+    return { "class" => "Gizmo", "node" => literal.to_s.delete('"') } if prefix.end_with?("gizmo")
+
+    name = prefixes[prefix]
+
+    name.nil? ? nil : { "class" => self.bare(name) }
+  end
+
+  def self.bare(name) = name.sub(/\A(Adw|Gtk|G)(?=[A-Z])/, "")
+
+  # The tree this file's widgets build in C.
+  #
+  # Attributed by the type of each function's first parameter rather than by the
+  # function's name: AdwNavigationSplitView builds its two panes in `update_collapsed`,
+  # a static helper with no type prefix at all, and matching names missed the one widget
+  # whose `.sidebar-pane` is where a sidebar's background colour comes from.
+  def self.built_in(source, prefixes, widgets)
+    fields = {}
+    # A class the file also takes off again is a state the widget enters, not what the
+    # thing is: AdwNavigationSplitView adds `.end` to its sidebar when the sidebar is on
+    # the right and removes it when it is not, and a structure which carried it drew
+    # every split view with its sidebar on both sides at once.
+    removed = Set.new
+    source.enum_for(:scan, CSS_CALL).each do
+      removed << [self.field(Regexp.last_match(2)), Regexp.last_match(3)] if Regexp.last_match(1) == "remove"
+    end
+
+    self.functions(source).each do |_name, body, receiver, type|
+      next if receiver.nil?
+
+      self.constructions(body, prefixes, removed).each do |field, made|
+        fields[field] ||= made
+      end
+    end
+
+    return if fields.empty?
+
+    self.functions(source).each do |_name, body, receiver, type|
+      widget = widgets[type]
+      next if widget.nil? || receiver.nil?
+
+      here = self.aliases(body, receiver)
+
+      body.enum_for(:scan, SET_CHILD).each do
+        holder = self.field(Regexp.last_match(1))
+        held = self.field(Regexp.last_match(2))
+        next if holder.nil? || held.nil? || fields[holder].nil?
+
+        fields[holder]["takes"] ||= self.camel(held)
+      end
+
+      body.enum_for(:scan, SET_PARENT).each do
+        child = self.field(Regexp.last_match(1))
+        parent = Regexp.last_match(2)
+        into = self.field(parent)
+
+        next if child.nil? || fields[child].nil?
+        next if into.nil? && !here.include?(self.target(parent))
+
+        widget["builds"] ||= []
+        widget["builds"] << { "field" => child, "into" => into, "node" => fields.fetch(child) } unless
+          widget.fetch("builds").any?{|one| one.fetch("field") == child }
+      end
+
+      widget["built"] = self.assemble(widget.fetch("builds")) if widget["builds"]
+    end
+  end
+
+  # The fields this body constructs, with the classes it puts on them where it made them.
+  #
+  # Only those: a class added in the same block as the construction is part of what the
+  # thing IS -- `gtk_widget_add_css_class (self->sidebar_bin, "sidebar-pane")` on the
+  # line after `adw_bin_new ()` -- and one added anywhere else is state the widget
+  # enters. An avatar's gizmo gains `.image` when it is given a picture and `.contrasted`
+  # when it is small, and writing either into the structure drew every avatar as both.
+  def self.constructions(body, prefixes, removed = Set.new)
+    made = {}
+    depth = 0
+    at = 0
+    events = []
+
+    body.enum_for(:scan, FIELD_NEW).each do
+      found = self.constructed(Regexp.last_match(2), Regexp.last_match(3), prefixes)
+      events << [Regexp.last_match.begin(0), :new, Regexp.last_match(1), found] if found
+    end
+
+    body.enum_for(:scan, FIELD_OBJECT).each do
+      name = self.type_of(Regexp.last_match(2))
+      events << [Regexp.last_match.begin(0), :new, Regexp.last_match(1), { "class" => self.bare(name) }] if name
+    end
+
+    body.enum_for(:scan, CSS_CALL).each do
+      next unless Regexp.last_match(1) == "add"
+
+      name = self.field(Regexp.last_match(2))
+      next if name.nil? || removed.include?([name, Regexp.last_match(3)])
+
+      events << [Regexp.last_match.begin(0), :style, name, Regexp.last_match(3)]
+    end
+
+    depths = {}
+
+    events.sort_by(&:first).each do |position, kind, name, value|
+      while at < position
+        depth += 1 if body[at] == "{"
+        depth -= 1 if body[at] == "}"
+        at += 1
+      end
+
+      if kind == :new
+        made[name] ||= value
+        depths[name] = depth
+      elsif made[name] && depths[name] == depth
+        (made.fetch(name)["styles"] ||= []) << value
+      end
+    end
+
+    made
+  end
+
+  # The flat list of parentings as the tree it describes.
+  def self.assemble(builds)
+    nodes = builds.to_h do |one|
+      found = one.fetch("node").dup
+      found["styles"] = found.fetch("styles", []).uniq.sort if found["styles"]
+      found.delete("children")
+
+      [one.fetch("field"), found]
+    end
+
+    builds.each do |one|
+      into = one.fetch("into")
+      next if into.nil? || nodes[into].nil?
+
+      (nodes.fetch(into)["children"] ||= []) << nodes.fetch(one.fetch("field"))
+    end
+
+    builds.reject{|one| one.fetch("into") && nodes[one.fetch("into")] }
+      .map{|one| nodes.fetch(one.fetch("field")) }
+  end
+
+  # Whether this body gives the widget its orientation class, at the body's own level.
+  def self.orients?(body, receiver)
+    depth = 0
+    at = 0
+
+    body.enum_for(:scan, ORIENTS).each do
+      target = self.target(Regexp.last_match(1))
+      start = Regexp.last_match.begin(0)
+
+      while at < start
+        depth += 1 if body[at] == "{"
+        depth -= 1 if body[at] == "}"
+        at += 1
+      end
+
+      return true if depth == 1 && receiver.include?(target)
+    end
+
+    false
+  end
+
+  # What `_init` puts on unconditionally, and what a `_set_` turns on and off.
+  def self.conditions_in(source, prefixes, widgets)
+    self.functions(source).each do |name, body, receiver, _type|
+      next if receiver.nil?
+
+      aliases = self.aliases(body, receiver)
+      calls = self.own_calls(body, aliases).select{|one| one.fetch("self") }
+
+      if (prefix = prefixes.keys.find{|one| name == "#{one}_init" })
+        widget = widgets[prefixes.fetch(prefix)]
+        next if widget.nil?
+
+        # Depth 1 only: a class added inside an `if` is a state, not what the widget is.
+        always = calls.select{|one| one.fetch("add") && one.fetch("depth") == 1 }.map{|one| one.fetch("class") }
+        widget["always"] = (widget.fetch("always", []) | always).sort unless always.empty?
+        widget["orients"] = true if self.orients?(body, aliases)
+        next
+      end
+
+      next if calls.empty?
+
+      prefix = prefixes.keys.select{|one| name.start_with?("#{one}_set_") }.max_by(&:length)
+      next if prefix.nil?
+
+      widget = widgets[prefixes.fetch(prefix)]
+      property = name.delete_prefix("#{prefix}_set_")
+      next if widget.nil?
+
+      self.polarities(body, calls).each do |style, polarity|
+        (widget["byProperty"] ||= {})[self.camel(property)] ||= {}
+        widget.fetch("byProperty").fetch(self.camel(property))[polarity] =
+          (widget.dig("byProperty", self.camel(property), polarity) || []) | [style]
+      end
+    end
+  end
+
+  # Which way round a setter's two branches go.
+  #
+  # `if (has_frame) remove ("flat"); else add ("flat");` is `.flat` when `has-frame` is
+  # false. The branch is read off the `else` in front of the call rather than off the
+  # condition, because the condition is the property either way and the branch is what
+  # differs.
+  def self.polarities(body, calls)
+    calls.group_by{|one| one.fetch("class") }.filter_map do |style, both|
+      add = both.find{|one| one.fetch("add") }
+      next if add.nil?
+
+      before = body[0...add.fetch("at")]
+      # The branch this call sits in. `else` is the second branch, and `if (!x)` is the
+      # first branch of a negated test; either one means the class is on when the
+      # property is off.
+      otherwise = before.match?(/\belse\b\s*\{?\s*\z/)
+      negated = !otherwise && before.match?(/\bif\s*\(\s*!\s*\w+\s*\)\s*\{?\s*\z/)
+
+      [style, otherwise || negated ? "false" : "true"]
+    end.to_h
+  end
+
   LITERAL = /"([a-z][a-z0-9-]*)"/
 
   # What a widget's own source says about whether a template child is on screen.
@@ -116,6 +484,154 @@ module AdwaitaComponents
 
   # GTK_TYPE_TOGGLE_BUTTON is GtkToggleButton.
   NAMESPACES = { "GTK" => "Gtk", "ADW" => "Adw", "GDK" => "Gdk", "GSK" => "Gsk" }.freeze
+
+
+  # ── The CSS node tree each widget's own documentation draws ──
+  #
+  # GTK and libadwaita both write, in the widget's doc comment, the tree of CSS nodes the
+  # widget builds inside itself:
+  #
+  #       entry[.flat][.warning][.error]
+  #       ├── text[.readonly]
+  #       ├── image.left
+  #       ├── image.right
+  #       ╰── [progress[.pulse]]
+  #
+  # This is the authority for what a widget's structure IS, and nothing else in the pipeline
+  # has it. Deriving the tree from the stylesheet instead cannot tell a part the widget builds
+  # from a widget which merely appears under it: every Adwaita selector is written from the
+  # window down, so `window.background.csd > toggle-group > separator` made the separator the
+  # toggle group's own, and `entry > text` and `dropdown > button` were cut by the same rule
+  # that was meant to stop it.
+  #
+  # The brackets are the other half: `[progress[.pulse]]` is a node the entry adds only when it
+  # shows progress, and one rendered unconditionally is an empty box on the screen.
+  SECTION = /^\s*\*\s*#+\s*CSS nodes?\s*$/
+  # A line of the drawn tree: its indent, its branch, and the node it names.
+  BRANCH = /\A(?<indent>[\s│]*)(?:(?<branch>├──|╰──|└──)\s*)?(?<rest>\S.*)\z/
+  # The prose form, for the widgets which describe their nodes in a sentence rather than
+  # drawing them: "has a single CSS node with name button", "with the button and popover nodes
+  # as children", "its toggles have CSS nodes with the name `toggle`".
+  # The heading which ends the section.
+  HEADING = /^\s*\*\s*#+\s+\S/
+
+  # The documented tree for every widget in one source file, keyed by the widget it belongs to.
+  #
+  # Scoped to the section itself: a widget's doc comment also carries C examples in fenced
+  # blocks, and reading those as a node tree gave GtkSpinButton children called `gpointer`,
+  # `return` and `void`.
+  def self.documented_in(source, names)
+    return {} if names.empty?
+
+    {}.tap do |found|
+      source.split(%r{^\s*\*/\s*$}).each do |comment|
+        section = self.section(comment)
+        next if section.nil?
+
+        # On a word boundary, and the whole name: adw-toggle-group.c defines AdwToggle as well
+        # as AdwToggleGroup, and a plain substring search found AdwToggle inside the first
+        # `AdwToggleGroup` of the group's own documentation and gave the section to the toggle.
+        owner = names
+          .select{|name| comment.match?(/\b#{Regexp.escape(name)}\b/) }
+          .min_by{|name| [comment.index(/\b#{Regexp.escape(name)}\b/), -name.length] }
+        next if owner.nil?
+
+        drawn = self.drawn(section)
+        # A section which describes its nodes in a sentence rather than drawing them says WHICH
+        # nodes the widget has and nothing about where they sit or how many there are. An
+        # AdwToggleGroup "has toggles with the name `toggle` and separators with the name
+        # `separator`" -- one of each, read as a tree, is a toggle group with an empty toggle
+        # and an empty separator in front of whatever the application put in it. Prose is kept
+        # for what it does say, which is that those nodes are the widget's own.
+        parsed = drawn.empty? ? self.prose(section).map{|one| one.merge("prose" => true) } : drawn
+
+        found[owner] = parsed unless parsed.empty?
+      end
+    end
+  end
+
+  # The lines between the `# CSS nodes` heading and the heading after it.
+  def self.section(comment)
+    lines = comment.lines
+    start = lines.index{|line| line.match?(SECTION) }
+    return nil if start.nil?
+
+    rest = lines.drop(start + 1)
+    stop = rest.index{|line| line.match?(HEADING) }
+
+    (stop ? rest.take(stop) : rest).join
+  end
+
+  # The fenced tree, as a list of { node, optional, depth }.
+  #
+  # A section which draws MORE THAN ONE tree is drawing the widget in more than one state --
+  # AdwNavigationSplitView draws itself collapsed and then uncollapsed -- and neither drawing
+  # is the widget. Reading the first of them gave every split view the collapsed form: one
+  # `navigation-view` node holding both panes, which rendered as an empty cell in front of the
+  # two panes and broke the grid. Where the section is ambiguous this returns nothing and the
+  # stylesheet is read instead.
+  def self.drawn(section)
+    lines = section.lines.map{|line| line.sub(/\A\s*\*\s?/, "").rstrip }
+    return [] if lines.count{|line| line.strip.start_with?("```") } > 2
+
+    inside = false
+    found = []
+
+    lines.each do |line|
+      if line.strip.start_with?("```")
+        break if inside
+
+        inside = true
+        next
+      end
+
+      next unless inside
+      next if line.strip.empty?
+
+      match = BRANCH.match(line)
+      next unless match
+
+      rest = match[:rest]
+      optional = rest.start_with?("[")
+      name = rest[/\A\[*([a-z][a-z0-9-]*)/, 1]
+      next if name.nil?
+
+      # The root line is the widget's own node; everything else is a child, and how deep it
+      # sits is how far its branch is indented. Four columns per level is what both toolkits
+      # draw, and `│` stands in for a space in the columns a branch passes through.
+      depth = match[:branch].nil? ? 0 : (match[:indent].length / 4) + 1
+
+      found << { "node" => name, "optional" => optional, "depth" => depth }
+    end
+
+    found
+  end
+
+  # "has a single CSS node with name dropdown, with the button and popover nodes as children",
+  # for the widgets which describe their nodes in a sentence rather than drawing them.
+  def self.prose(section)
+    text = section.lines.map{|line| line.sub(/\A\s*\*\s?/, "").strip }.join(" ")
+    found = []
+
+    root = text[/\b(?:main|single)\s+(?:CSS\s+)?node\s+(?:with\s+(?:the\s+)?name\s+)?[`"]?([a-z][a-z0-9-]*)/, 1]
+    found << { "node" => root, "optional" => false, "depth" => 0 } if root
+
+    text.scan(/\b([a-z][a-z0-9-]*(?:\s+and\s+[a-z][a-z0-9-]*)*)\s+nodes?\s+as\s+children/) do |(list)|
+      list.split(/\s+and\s+/).each do |one|
+        found << { "node" => one, "optional" => false, "depth" => 1 }
+      end
+    end
+
+    text.scan(/\bsubnodes?\s+(?:with\s+(?:the\s+)?names?\s+)?[`"]?([a-z][a-z0-9-]*)/) do |(one)|
+      found << { "node" => one, "optional" => false, "depth" => 1 }
+    end
+
+    text.scan(/\bhave\s+(?:CSS\s+)?nodes?\s+with\s+the\s+names?\s+[`"]?([a-z][a-z0-9-]*)/) do |(one)|
+      found << { "node" => one, "optional" => false, "depth" => 1 }
+    end
+
+    found.uniq{|one| [one["node"], one["depth"]] }
+  end
 
   def self.run(_argv)
     widgets = {}
@@ -168,9 +684,14 @@ module AdwaitaComponents
       end
 
       self.nodes_in(source, prefixes, widgets, source.scan(TYPE).map(&:first))
+      self.documented_in(source, source.scan(TYPE).map(&:first)).each do |owner, tree|
+        widgets[owner]["documented"] = tree if widgets.key?(owner)
+      end
       INTERNAL_NODE.each{|pattern| source.scan(pattern){|node| internal[node.first] << relative } }
 
       self.text_in(source, prefixes, widgets)
+      self.conditions_in(source, prefixes, widgets)
+      self.built_in(source, prefixes, widgets)
       self.visibility_in(source, source.scan(TYPE).map(&:first), widgets)
 
       # The style classes this file writes belong to the types it defines.

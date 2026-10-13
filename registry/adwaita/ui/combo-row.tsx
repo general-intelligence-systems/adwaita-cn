@@ -25,36 +25,29 @@ const comboRowVariants = cva(
       variant: {
         default: "",
         /** .accent-color-row */
-        accentColorRow: "",
-        /** .activatable */
-        activatable: [
-          "hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ],
+        accentColorRow: "accent-color-row",
         /** .combo */
-        combo: "",
+        combo: "combo",
         /** .entry */
-        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
-        expander: "p-0 bg-none",
+        expander: "expander p-0 bg-none",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
         /** .header */
-        header: "",
+        header: "header",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
-        separator: "",
+        separator: "separator",
         /** .separators */
-        separators: "",
+        separators: "separators",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "",
+        sidebarNewBookmarkRow: "sidebar-new-bookmark-row",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "",
+        sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -69,13 +62,13 @@ export interface ComboRowProps
   actionName?: string
 
   /** GLib.Variant, from Adw.ComboRow */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.ListBoxRow */
   activatable?: boolean
 
   /** Gtk.Widget, from Adw.ActionRow */
-  activatableWidget?: ReactNode
+  activatableWidget?: unknown
 
   /** Widget, from Gtk.ListBoxRow */
   child?: ReactNode
@@ -84,22 +77,22 @@ export interface ComboRowProps
   enableSearch?: boolean
 
   /** Gtk.Expression, from Adw.ComboRow */
-  expression?: ReactNode
+  expression?: unknown
 
   /** Gtk.ListItemFactory, from Adw.ComboRow */
-  factory?: ReactNode
+  factory?: unknown
 
   /** Gtk.ListItemFactory, from Adw.ComboRow */
-  headerFactory?: ReactNode
+  headerFactory?: unknown
 
   /** utf8, from Adw.ActionRow */
   iconName?: string
 
   /** Gtk.ListItemFactory, from Adw.ComboRow */
-  listFactory?: ReactNode
+  listFactory?: unknown
 
   /** Gio.ListModel, from Adw.ComboRow */
-  model?: ReactNode
+  model?: unknown
 
   /** Gtk.Widget, from Adw.ComboRow */
   prefix?: ReactNode
@@ -141,7 +134,7 @@ export interface ComboRowProps
   useUnderline?: boolean
 }
 
-function ComboRow({ className, render, variant = "default", actionTarget, activatableWidget, child, expression, factory, headerFactory, iconName, listFactory, model, prefix, subtitle, title, actionName, activatable, enableSearch, searchMatchMode, selectable, selected, subtitleLines, subtitleSelectable, titleLines, titleSelectable, useMarkup, useSubtitle, useUnderline, children, ...props }: ComboRowProps) {
+function ComboRow({ className, render, variant = "default", child, iconName, prefix, subtitle, title, actionTarget: _actionTarget, activatableWidget: _activatableWidget, expression: _expression, factory: _factory, headerFactory: _headerFactory, listFactory: _listFactory, model: _model, actionName, activatable, enableSearch, searchMatchMode, selectable, selected, subtitleLines, subtitleSelectable, titleLines, titleSelectable, useMarkup, useSubtitle, useUnderline, children, ...props }: ComboRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -164,7 +157,12 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
     "data-use-markup": useMarkup,
     "data-use-subtitle": useSubtitle,
     "data-use-underline": useUnderline,
-    className: cn("group/combo-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", comboRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/combo-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", comboRowVariants({ variant }), [
+          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
+          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
+          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
+          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
+        ], widgetClassName, className),
     style,
     children: (
         <>
@@ -194,14 +192,7 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
                     <ComboRowPopover>
                       <ComboRowBox>
                         <ComboRowSearchEntry>
-                          <ComboRowImage3 name={iconName} />
-                          <ComboRowProgress>
-                            <ComboRowTrough>
-                              <ComboRowProgress2 />
-                            </ComboRowTrough>
-                          </ComboRowProgress>
                           <ComboRowText>
-                            <ComboRowBlockCursor />
                             <ComboRowPlaceholder />
                           </ComboRowText>
                         </ComboRowSearchEntry>
@@ -214,14 +205,7 @@ function ComboRow({ className, render, variant = "default", actionTarget, activa
                   {children}
                 </ComboRowSuffixes>
               </ComboRowHeader>
-                  {actionTarget}
-                  {activatableWidget}
                   {child}
-                  {expression}
-                  {factory}
-                  {headerFactory}
-                  {listFactory}
-                  {model}
         </>
       ),
     ...widgetAttributes,
@@ -240,7 +224,7 @@ function ComboRowPrefixes({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="combo-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes", "mx-1.5 gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
       {...props}
     />
   )
@@ -261,6 +245,33 @@ function ComboRowImage({ className, ...props }: React.ComponentProps<typeof Icon
   )
 }
 
+function ComboRowSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/combo-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/combo-row:text-[var(--accent-color)]",
+        "group-disabled/combo-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function ComboRowTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -269,6 +280,33 @@ function ComboRowTitle({ className, ...props }: React.ComponentProps<"span">) {
       className={cn("title", [
         "caret-[currentColor] p-0 [font-weight:inherit]",
         "group-disabled/combo-row:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/combo-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/combo-row:text-[var(--accent-color)]",
+        "group-disabled/combo-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -296,7 +334,32 @@ function ComboRowTitleBox({ className, ...props }: React.ComponentProps<"div">) 
         data-node="box"
         data-valign="center"
         data-hexpand=""
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title vertical", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-row"
+        data-node="row"
+      className={cn([
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
+        "group-data-[selected]/combo-row:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowRubberband({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-rubberband"
+        data-node="rubberband"
+      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
       {...props}
     />
   )
@@ -308,7 +371,7 @@ function ComboRowCurrent({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="combo-row-current"
         data-node="listview"
         data-valign="center"
-      className={cn("inline", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      className={cn("flex flex-col grow min-h-0", "inline", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -320,6 +383,83 @@ function ComboRowImage2({ className, ...props }: React.ComponentProps<typeof Ico
       data-slot="combo-row-image2"
         data-node="image"
       className={cn("dropdown-arrow", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-selection3"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowText({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -340,67 +480,12 @@ function ComboRowImage3({ className, ...props }: React.ComponentProps<typeof Ico
   )
 }
 
-function ComboRowProgress2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-progress2"
-        data-node="progress"
-      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowTrough({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-trough"
-        data-node="trough"
-      className={cn("min-h-0.5", className)}
-      {...props}
-    />
-  )
-}
-
 function ComboRowProgress({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="combo-row-progress"
         data-node="progress"
       className={cn("mb-[3px]", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-block-cursor"
-        data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-placeholder"
-        data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
-      {...props}
-    />
-  )
-}
-
-function ComboRowText({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="combo-row-text"
-        data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -420,12 +505,39 @@ function ComboRowSearchEntry({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
+function ComboRowRow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-row2"
+        data-node="row"
+      className={cn([
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5 py-[9px] px-3 my-0 mx-1.5 min-h-0 py-0 rounded-[9px] min-h-8 min-w-10",
+        "group-data-[selected]/combo-row:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] group-data-[selected]/combo-row:bg-none",
+        "group-hover/combo-row:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-active/combo-row:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ComboRowRubberband2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-row-rubberband2"
+        data-node="rubberband"
+      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
 function ComboRowList({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="combo-row-list"
         data-node="listview"
-      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] py-1.5 px-0 bg-none text-[inherit]", className)}
+      className={cn("flex flex-col grow min-h-0", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] py-1.5 px-0 bg-none text-[inherit]", className)}
       {...props}
     />
   )
@@ -436,7 +548,7 @@ function ComboRowScrolledWindow({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="combo-row-scrolled-window"
         data-node="scrolledwindow"
-      className={cn(className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
       {...props}
     />
   )
@@ -447,7 +559,7 @@ function ComboRowBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="combo-row-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
       {...props}
     />
   )
@@ -470,7 +582,7 @@ function ComboRowArrowBox({ className, ...props }: React.ComponentProps<"div">) 
       data-slot="combo-row-arrow-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
       {...props}
     />
   )
@@ -481,7 +593,7 @@ function ComboRowSuffixes({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="combo-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", "gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -493,10 +605,10 @@ function ComboRowHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="combo-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "mx-3 gap-[6px] min-h-12.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5", className)}
       {...props}
     />
   )
 }
 
-export { ComboRow, ComboRowPrefixes, ComboRowImage, ComboRowTitle, ComboRowSubtitle, ComboRowTitleBox, ComboRowCurrent, ComboRowImage2, ComboRowImage3, ComboRowProgress2, ComboRowTrough, ComboRowProgress, ComboRowBlockCursor, ComboRowPlaceholder, ComboRowText, ComboRowSearchEntry, ComboRowList, ComboRowScrolledWindow, ComboRowBox, ComboRowPopover, ComboRowArrowBox, ComboRowSuffixes, ComboRowHeader, comboRowVariants }
+export { ComboRow, ComboRowPrefixes, ComboRowImage, ComboRowSelection, ComboRowLink, ComboRowTitle, ComboRowSelection2, ComboRowLink2, ComboRowSubtitle, ComboRowTitleBox, ComboRowRow, ComboRowRubberband, ComboRowCurrent, ComboRowImage2, ComboRowPlaceholder, ComboRowUndershoot, ComboRowSelection3, ComboRowCursorHandle, ComboRowBlockCursor, ComboRowWindow, ComboRowText, ComboRowImage3, ComboRowProgress, ComboRowSearchEntry, ComboRowRow2, ComboRowRubberband2, ComboRowList, ComboRowScrolledWindow, ComboRowBox, ComboRowPopover, ComboRowArrowBox, ComboRowSuffixes, ComboRowHeader, comboRowVariants }

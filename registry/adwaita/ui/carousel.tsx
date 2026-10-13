@@ -4,13 +4,13 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import type { Orientation } from "@/lib/enums"
 
 export interface CarouselProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "allowLongSwipes" | "allowMouseDrag" | "allowScrollWheel" | "interactive" | "orientation" | "revealDuration" | "scrollParams" | "spacing">,
@@ -28,19 +28,19 @@ export interface CarouselProps
   interactive?: boolean
 
   /** Orientation, from Adw.Carousel */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** guint, from Adw.Carousel */
   revealDuration?: number
 
   /** SpringParams, from Adw.Carousel */
-  scrollParams?: ReactNode
+  scrollParams?: unknown
 
   /** guint, from Adw.Carousel */
   spacing?: number
 }
 
-function Carousel({ className, render, orientation, scrollParams, allowLongSwipes, allowMouseDrag, allowScrollWheel, interactive, revealDuration, spacing, children, ...props }: CarouselProps) {
+function Carousel({ className, render, scrollParams: _scrollParams, allowLongSwipes, allowMouseDrag, allowScrollWheel, interactive, orientation, revealDuration, spacing, children, ...props }: CarouselProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -53,17 +53,12 @@ function Carousel({ className, render, orientation, scrollParams, allowLongSwipe
     "data-allow-mouse-drag": allowMouseDrag,
     "data-allow-scroll-wheel": allowScrollWheel,
     "data-interactive": interactive,
+    "data-orientation": orientation,
     "data-reveal-duration": revealDuration,
     "data-spacing": spacing,
-    className: cn(widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {orientation}
-                  {scrollParams}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

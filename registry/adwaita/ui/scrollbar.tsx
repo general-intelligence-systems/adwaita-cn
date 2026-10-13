@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,7 +20,7 @@ const scrollbarVariants = cva(
       variant: {
         default: "",
         /** .overlay-indicator */
-        overlayIndicator: "p-0 bg-none text-[inherit] shadow-none",
+        overlayIndicator: "overlay-indicator p-0 bg-none text-[inherit] shadow-none",
       },
     },
     defaultVariants: { variant: "default" },
@@ -29,17 +28,26 @@ const scrollbarVariants = cva(
 )
 
 export interface ScrollbarProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adjustment" | "orientation" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adjustment" | "orientation" | "value" | "minValue" | "maxValue" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof scrollbarVariants> {
   /** Adjustment, from Gtk.Scrollbar */
-  adjustment?: ReactNode
+  adjustment?: unknown
+
+  /** gdouble, from Gtk.Adjustment */
+  maxValue?: number
+
+  /** gdouble, from Gtk.Adjustment */
+  minValue?: number
 
   /** Orientation, from Gtk.Scrollbar */
   orientation?: Orientation
+
+  /** gdouble, from Gtk.Adjustment */
+  value?: number
 }
 
-function Scrollbar({ className, render, variant = "default", adjustment, orientation, children, ...props }: ScrollbarProps) {
+function Scrollbar({ className, render, variant = "default", adjustment: _adjustment, maxValue, minValue, orientation, value, children, ...props }: ScrollbarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -49,17 +57,19 @@ function Scrollbar({ className, render, variant = "default", adjustment, orienta
     "data-slot": "scrollbar",
     "data-node": "scrollbar",
     "data-variant": variant,
+    "data-max-value": maxValue,
+    "data-min-value": minValue,
     "data-orientation": orientation,
-    className: cn("group/scrollbar", "grid [&>*]:col-start-1 [&>*]:row-start-1", scrollbarVariants({ variant }), widgetClassName, className),
+    "data-value": value,
+    className: cn("group/scrollbar", "grid [&>*]:col-start-1 [&>*]:row-start-1", scrollbarVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
                   <ScrollbarRange>
                 <ScrollbarTrough>
-                  <ScrollbarSlider />
+                  <ScrollbarSlider className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ [orientation === "vertical" ? "insetBlockStart" : "insetInlineStart"]: `${Math.max(0, Math.min(100, (((value ?? 0) - (minValue ?? 0)) / ((maxValue ?? 1) - (minValue ?? 0) || 1)) * 100))}%` }} />
                 </ScrollbarTrough>
               </ScrollbarRange>
-                  {adjustment}
                   {children}
         </>
       ),
@@ -95,7 +105,7 @@ function ScrollbarTrough({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scrollbar-trough"
         data-node="trough"
-      className={cn("m-[9px] transition-[all] duration-200 ease-[linear] rounded-[99px] my-2", className)}
+      className={cn("relative min-h-[1px]", "m-[9px] transition-[all] duration-200 ease-[linear] rounded-[99px] my-2", className)}
       {...props}
     />
   )
@@ -106,7 +116,7 @@ function ScrollbarRange({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scrollbar-range"
         data-node="range"
-      className={cn(className)}
+      className={cn("horizontal", className)}
       {...props}
     />
   )

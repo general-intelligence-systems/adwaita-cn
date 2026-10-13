@@ -21,33 +21,33 @@ const appChooserDialogVariants = cva(
     variants: {
       variant: {
         /** .bottom-sheet */
-        bottomSheet: "",
+        bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .default */
-        default: "",
+        default: "default",
         /** .dialog-window */
-        dialogWindow: "",
+        dialogWindow: "dialog-window",
         /** .floating */
-        floating: "",
+        floating: "floating",
         /** .landscape */
-        landscape: "",
+        landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .portrait */
-        portrait: "",
+        portrait: "portrait",
         /** .short */
-        short: "",
+        short: "short",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
         /** .subtitle */
-        subtitle: "",
+        subtitle: "subtitle",
         /** .title */
-        title: "",
+        title: "title",
       },
     },
     defaultVariants: { variant: "default" },
@@ -59,7 +59,7 @@ export interface AppChooserDialogProps
     WidgetProps,
     VariantProps<typeof appChooserDialogVariants> {
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** Widget, from Gtk.Window */
   child?: ReactNode
@@ -74,7 +74,7 @@ export interface AppChooserDialogProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -86,19 +86,19 @@ export interface AppChooserDialogProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
 
   /** Gio.File, from Gtk.AppChooserDialog */
-  gfile?: ReactNode
+  gfile?: unknown
 
   /** WindowGravity, from Gtk.Window */
   gravity?: WindowGravity
@@ -137,13 +137,13 @@ export interface AppChooserDialogProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 
   /** gint, from Gtk.Dialog */
   useHeaderBar?: number
 }
 
-function AppChooserDialog({ className, render, variant = "default", application, child, defaultWidget, display, focusWidget, gfile, heading, iconName, titlebar, transientFor, contentType, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, startupId, title, useHeaderBar, children, ...props }: AppChooserDialogProps) {
+function AppChooserDialog({ className, render, variant = "default", child, heading, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, focusWidget: _focusWidget, gfile: _gfile, transientFor: _transientFor, contentType, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, startupId, title, useHeaderBar, children, ...props }: AppChooserDialogProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -172,32 +172,24 @@ function AppChooserDialog({ className, render, variant = "default", application,
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/app-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", appChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/app-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", appChooserDialogVariants({ variant }), "background", "dialog", iconName && !heading && "image-button", heading && !iconName && "text-button", widgetClassName, className),
     style,
     children: (
         <>
+                  <AppChooserDialogSheet />
                   <AppChooserDialogDrawing>
                 <AppChooserDialogPaper />
               </AppChooserDialogDrawing>
-                  <AppChooserDialogSheet>
-                <AppChooserDialogHeaderbar>
-                  <AppChooserDialogWindowhandle />
-                </AppChooserDialogHeaderbar>
-              </AppChooserDialogSheet>
-                  <Icon name={iconName} data-slot="app-chooser-dialog-icon" />
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="app-chooser-dialog-icon" />
+              )}
                   {heading === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {heading}
                 </span>
               )}
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {focusWidget}
-                  {gfile}
                   {titlebar}
-                  {transientFor}
+                  {child}
                   {children}
         </>
       ),
@@ -210,6 +202,17 @@ function AppChooserDialog({ className, render, variant = "default", application,
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function AppChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="app-chooser-dialog-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function AppChooserDialogPaper({ className, ...props }: React.ComponentProps<"div">) {
@@ -234,37 +237,4 @@ function AppChooserDialogDrawing({ className, ...props }: React.ComponentProps<"
   )
 }
 
-function AppChooserDialogWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="app-chooser-dialog-windowhandle"
-        data-node="windowhandle"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AppChooserDialogHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="app-chooser-dialog-headerbar"
-        data-node="headerbar"
-      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AppChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="app-chooser-dialog-sheet"
-        data-node="sheet"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { AppChooserDialog, AppChooserDialogPaper, AppChooserDialogDrawing, AppChooserDialogWindowhandle, AppChooserDialogHeaderbar, AppChooserDialogSheet, appChooserDialogVariants }
+export { AppChooserDialog, AppChooserDialogSheet, AppChooserDialogPaper, AppChooserDialogDrawing, appChooserDialogVariants }

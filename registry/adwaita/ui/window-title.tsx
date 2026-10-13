@@ -19,7 +19,7 @@ const windowTitleVariants = cva(
       variant: {
         default: "",
         /** .numeric */
-        numeric: "",
+        numeric: "numeric",
       },
     },
     defaultVariants: { variant: "default" },
@@ -71,6 +71,33 @@ function WindowTitle({ className, render, variant = "default", subtitle, title, 
   })
 }
 
+function WindowTitleSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/window-title:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/window-title:text-[var(--accent-color)]",
+        "group-disabled/window-title:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function WindowTitleTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -79,6 +106,33 @@ function WindowTitleTitleLabel({ className, ...props }: React.ComponentProps<"sp
       className={cn("title", [
         "caret-[currentColor] px-3 font-bold",
         "group-disabled/window-title:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowTitleLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-title-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/window-title:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/window-title:text-[var(--accent-color)]",
+        "group-disabled/window-title:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -105,10 +159,10 @@ function WindowTitleBox({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="window-title-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
       {...props}
     />
   )
 }
 
-export { WindowTitle, WindowTitleTitleLabel, WindowTitleSubtitleLabel, WindowTitleBox, windowTitleVariants }
+export { WindowTitle, WindowTitleSelection, WindowTitleLink, WindowTitleTitleLabel, WindowTitleSelection2, WindowTitleLink2, WindowTitleSubtitleLabel, WindowTitleBox, windowTitleVariants }

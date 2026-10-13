@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -20,11 +19,9 @@ const stackSidebarVariants = cva(
       variant: {
         default: "",
         /** .navigation-sidebar */
-        navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit]",
+        navigationSidebar: "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit]",
         /** .needs-attention */
-        needsAttention: "",
-        /** .sidebar */
-        sidebar: "[border-right-width:1px] [border-right-style:solid] [border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-left-style:none] [border-left-width:1px] [border-left-style:solid] [border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-right-style:none]",
+        needsAttention: "needs-attention",
       },
     },
     defaultVariants: { variant: "default" },
@@ -36,10 +33,10 @@ export interface StackSidebarProps
     WidgetProps,
     VariantProps<typeof stackSidebarVariants> {
   /** Stack, from Gtk.StackSidebar */
-  stack?: ReactNode
+  stack?: unknown
 }
 
-function StackSidebar({ className, render, variant = "default", stack, children, ...props }: StackSidebarProps) {
+function StackSidebar({ className, render, variant = "default", stack: _stack, children, ...props }: StackSidebarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -49,17 +46,9 @@ function StackSidebar({ className, render, variant = "default", stack, children,
     "data-slot": "stack-sidebar",
     "data-node": "stacksidebar",
     "data-variant": variant,
-    className: cn("group/stack-sidebar", "grid [&>*]:col-start-1 [&>*]:row-start-1", stackSidebarVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", stackSidebarVariants({ variant }), "sidebar [border-right-width:1px] [border-right-style:solid] [border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-left-style:none] [border-left-width:1px] [border-left-style:solid] [border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-right-style:none]", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <StackSidebarRow>
-                <StackSidebarLabel />
-              </StackSidebarRow>
-                  {stack}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -71,32 +60,4 @@ function StackSidebar({ className, render, variant = "default", stack, children,
   })
 }
 
-function StackSidebarLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="stack-sidebar-label"
-        data-node="label"
-      className={cn([
-        "caret-[currentColor] px-1.5",
-        "group-disabled/stack-sidebar:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function StackSidebarRow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="stack-sidebar-row"
-        data-node="row"
-      className={cn([
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] py-2.5 px-1",
-        "group-data-[selected]/stack-sidebar:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { StackSidebar, StackSidebarLabel, StackSidebarRow, stackSidebarVariants }
+export { StackSidebar, stackSidebarVariants }

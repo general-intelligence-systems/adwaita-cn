@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -12,7 +11,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { Orientation } from "@/lib/enums"
+import type { EllipsizeMode, Orientation } from "@/lib/enums"
 
 const progressBarVariants = cva(
   "disabled:[filter:Opacity(var(--disabled-opacity))]",
@@ -21,21 +20,21 @@ const progressBarVariants = cva(
       variant: {
         default: "",
         /** .bottom */
-        bottom: "",
+        bottom: "bottom",
         /** .empty */
-        empty: "",
+        empty: "empty",
         /** .full */
-        full: "",
+        full: "full",
         /** .left */
-        left: "",
+        left: "left",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-0.5 min-h-0.5",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-0.5 min-h-0.5",
         /** .pulse */
-        pulse: "",
+        pulse: "pulse",
         /** .right */
-        right: "",
+        right: "right",
         /** .top */
-        top: "",
+        top: "top",
       },
     },
     defaultVariants: { variant: "default" },
@@ -47,7 +46,7 @@ export interface ProgressBarProps
     WidgetProps,
     VariantProps<typeof progressBarVariants> {
   /** Pango.EllipsizeMode, from Gtk.ProgressBar */
-  ellipsize?: ReactNode
+  ellipsize?: EllipsizeMode
 
   /** gdouble, from Gtk.ProgressBar */
   fraction?: number
@@ -68,7 +67,7 @@ export interface ProgressBarProps
   text?: string
 }
 
-function ProgressBar({ className, render, variant = "default", ellipsize, text, fraction, inverted, orientation, pulseStep, showText, children, ...props }: ProgressBarProps) {
+function ProgressBar({ className, render, variant = "default", text, ellipsize, fraction, inverted, orientation, pulseStep, showText, children, ...props }: ProgressBarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -79,25 +78,24 @@ function ProgressBar({ className, render, variant = "default", ellipsize, text, 
     "data-node": "progressbar",
     "data-variant": variant,
     role: "progressbar",
+    "data-ellipsize": ellipsize,
     "data-fraction": fraction,
     "data-inverted": inverted,
     "data-orientation": orientation,
     "data-pulse-step": pulseStep,
     "data-show-text": showText,
-    className: cn("group/progress-bar", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", progressBarVariants({ variant }), widgetClassName, className),
+    className: cn("group/progress-bar", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", progressBarVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
-                  <ProgressBarText />
                   <ProgressBarTrough>
-                <ProgressBarProgress />
+                <ProgressBarProgress style={{ [orientation === "vertical" ? "blockSize" : "inlineSize"]: `${Math.max(0, Math.min(100, (fraction ?? 0) * 100))}%`, [orientation === "vertical" ? "inlineSize" : "blockSize"]: "100%" }} />
               </ProgressBarTrough>
                   {text === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {text}
                 </span>
               )}
-                  {ellipsize}
                   {children}
         </>
       ),

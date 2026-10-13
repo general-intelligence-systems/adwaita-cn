@@ -7,6 +7,6 @@ import { Label } from "@/ui/label"
 
 export default function LabelSidebarlabel() {
   return (
-    <Label size="sidebarLabel" label="Label" />
+    <Label variant="sidebarLabel" label="Label" />
   )
 }

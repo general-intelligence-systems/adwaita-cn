@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 import type { SidebarMode } from "@/lib/enums"
 
 const sidebarVariants = cva(
@@ -21,27 +22,27 @@ const sidebarVariants = cva(
       variant: {
         default: "",
         /** .arrow */
-        arrow: "",
+        arrow: "arrow",
         /** .empty */
-        empty: "",
+        empty: "empty",
         /** .first */
-        first: "",
+        first: "first",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
         /** .header */
-        header: "",
+        header: "header",
         /** .heading */
-        heading: "font-bold",
+        heading: "heading font-bold",
         /** .icon */
-        icon: "",
+        icon: "icon",
         /** .navigation-sidebar */
-        navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit]",
+        navigationSidebar: "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit]",
         /** .page */
-        page: "",
+        page: "page",
         /** .subtitle */
-        subtitle: "",
+        subtitle: "subtitle",
         /** .title */
-        title: "",
+        title: "title",
       },
     },
     defaultVariants: { variant: "default" },
@@ -56,10 +57,10 @@ export interface SidebarProps
   dropPreload?: boolean
 
   /** Gtk.Filter, from Adw.Sidebar */
-  filter?: ReactNode
+  filter?: unknown
 
   /** Gio.MenuModel, from Adw.Sidebar */
-  menuModel?: ReactNode
+  menuModel?: unknown
 
   /** SidebarMode, from Adw.Sidebar */
   mode?: SidebarMode
@@ -71,7 +72,7 @@ export interface SidebarProps
   selected?: number
 }
 
-function Sidebar({ className, render, variant = "default", filter, menuModel, placeholder, dropPreload, mode, selected, children, ...props }: SidebarProps) {
+function Sidebar({ className, render, variant = "default", placeholder, filter: _filter, menuModel: _menuModel, dropPreload, mode, selected, children, ...props }: SidebarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -88,13 +89,16 @@ function Sidebar({ className, render, variant = "default", filter, menuModel, pl
     style,
     children: (
         <>
-                  <SidebarStatuspage>
-                <SidebarScrolledwindow />
-              </SidebarStatuspage>
-                  {filter}
-                  {menuModel}
+                  <SidebarPreferencesPage>
+                <SidebarScrolledWindow>
+                  <SidebarClamp>
+                    <SidebarBox>
+                      {children}
+                    </SidebarBox>
+                  </SidebarClamp>
+                </SidebarScrolledWindow>
+              </SidebarPreferencesPage>
                   {placeholder}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -108,26 +112,93 @@ function Sidebar({ className, render, variant = "default", filter, menuModel, pl
   })
 }
 
-function SidebarScrolledwindow({ className, ...props }: React.ComponentProps<"div">) {
+function SidebarSelection({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="sidebar-scrolledwindow"
+      data-slot="sidebar-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/sidebar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/sidebar:text-[var(--accent-color)]",
+        "group-disabled/sidebar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarDescription({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="sidebar-description"
+        data-node="label"
+      className={cn("body dimmed description", [
+        "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
+        "group-disabled/sidebar:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-box"
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-6 mx-3 gap-[24px]", className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarClamp({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="sidebar-clamp"
+        data-node="clamp"
+      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function SidebarScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-scrolled-window"
         data-node="scrolledwindow"
-      className={cn(className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
       {...props}
     />
   )
 }
 
-function SidebarStatuspage({ className, ...props }: React.ComponentProps<"div">) {
+function SidebarPreferencesPage({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="sidebar-statuspage"
-        data-node="statuspage"
-      className={cn(className)}
+      data-slot="sidebar-preferences-page"
+        data-node="preferencespage"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-export { Sidebar, SidebarScrolledwindow, SidebarStatuspage, sidebarVariants }
+export { Sidebar, SidebarSelection, SidebarLink, SidebarDescription, SidebarBox, SidebarClamp, SidebarScrolledWindow, SidebarPreferencesPage, sidebarVariants }

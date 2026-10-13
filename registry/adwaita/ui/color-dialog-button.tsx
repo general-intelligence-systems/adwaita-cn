@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -20,9 +19,9 @@ const colorDialogButtonVariants = cva(
       variant: {
         default: "",
         /** .activatable */
-        activatable: "",
+        activatable: "activatable",
         /** .color */
-        color: "",
+        color: "color",
       },
     },
     defaultVariants: { variant: "default" },
@@ -34,13 +33,13 @@ export interface ColorDialogButtonProps
     WidgetProps,
     VariantProps<typeof colorDialogButtonVariants> {
   /** ColorDialog, from Gtk.ColorDialogButton */
-  dialog?: ReactNode
+  dialog?: unknown
 
   /** Gdk.RGBA, from Gtk.ColorDialogButton */
-  rgba?: ReactNode
+  rgba?: unknown
 }
 
-function ColorDialogButton({ className, render, variant = "default", dialog, rgba, children, ...props }: ColorDialogButtonProps) {
+function ColorDialogButton({ className, render, variant = "default", dialog: _dialog, rgba: _rgba, children, ...props }: ColorDialogButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -50,12 +49,11 @@ function ColorDialogButton({ className, render, variant = "default", dialog, rgb
     "data-slot": "color-dialog-button",
     "data-node": "colorbutton",
     "data-variant": variant,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", colorDialogButtonVariants({ variant }), widgetClassName, className),
+    className: cn("group/color-dialog-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", colorDialogButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {dialog}
-                  {rgba}
+                  <ColorDialogButtonButton />
                   {children}
         </>
       ),
@@ -70,4 +68,34 @@ function ColorDialogButton({ className, render, variant = "default", dialog, rgb
   })
 }
 
-export { ColorDialogButton, colorDialogButtonVariants }
+function ColorDialogButtonContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="color-dialog-button-content"
+        data-node="content"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ColorDialogButtonButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="color-dialog-button-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/color-dialog-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/color-dialog-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/color-dialog-button:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/color-dialog-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/color-dialog-button:group-hover/color-dialog-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/color-dialog-button:group-active/color-dialog-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { ColorDialogButton, ColorDialogButtonContent, ColorDialogButtonButton, colorDialogButtonVariants }

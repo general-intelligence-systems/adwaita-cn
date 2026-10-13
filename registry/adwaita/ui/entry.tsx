@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -26,7 +25,7 @@ const entryVariants = cva(
         default: "",
         /** .flat */
         flat: [
-          "p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
+          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
           "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
         ],
       },
@@ -43,13 +42,13 @@ export interface EntryProps
   activatesDefault?: boolean
 
   /** Pango.AttrList, from Gtk.Entry */
-  attributes?: ReactNode
+  attributes?: unknown
 
   /** EntryBuffer, from Gtk.Entry */
-  buffer?: ReactNode
+  buffer?: unknown
 
   /** EntryCompletion, from Gtk.Entry */
-  completion?: ReactNode
+  completion?: unknown
 
   /** gboolean, from Gtk.Entry */
   editable?: boolean
@@ -64,7 +63,7 @@ export interface EntryProps
   enableUndo?: boolean
 
   /** Gio.MenuModel, from Gtk.Entry */
-  extraMenu?: ReactNode
+  extraMenu?: unknown
 
   /** gboolean, from Gtk.Entry */
   hasFrame?: boolean
@@ -106,13 +105,13 @@ export interface EntryProps
   primaryIconActivatable?: boolean
 
   /** Gio.Icon, from Gtk.Entry */
-  primaryIconGicon?: ReactNode
+  primaryIconGicon?: unknown
 
   /** utf8, from Gtk.Entry */
   primaryIconName?: string
 
   /** Gdk.Paintable, from Gtk.Entry */
-  primaryIconPaintable?: ReactNode
+  primaryIconPaintable?: unknown
 
   /** gboolean, from Gtk.Entry */
   primaryIconSensitive?: boolean
@@ -133,13 +132,13 @@ export interface EntryProps
   secondaryIconActivatable?: boolean
 
   /** Gio.Icon, from Gtk.Entry */
-  secondaryIconGicon?: ReactNode
+  secondaryIconGicon?: unknown
 
   /** utf8, from Gtk.Entry */
   secondaryIconName?: string
 
   /** Gdk.Paintable, from Gtk.Entry */
-  secondaryIconPaintable?: ReactNode
+  secondaryIconPaintable?: unknown
 
   /** gboolean, from Gtk.Entry */
   secondaryIconSensitive?: boolean
@@ -154,7 +153,7 @@ export interface EntryProps
   showEmojiIcon?: boolean
 
   /** Pango.TabArray, from Gtk.Entry */
-  tabs?: ReactNode
+  tabs?: unknown
 
   /** utf8, from Gtk.Entry */
   text?: string
@@ -172,7 +171,7 @@ export interface EntryProps
   xalign?: number
 }
 
-function Entry({ className, render, variant = "default", attributes, buffer, completion, extraMenu, primaryIconGicon, primaryIconPaintable, secondaryIconGicon, secondaryIconPaintable, tabs, activatesDefault, editable, editingCanceled, enableEmojiCompletion, enableUndo, hasFrame, imModule, inputHints, inputPurpose, invisibleChar, invisibleCharSet, maxLength, maxWidthChars, menuEntryIconPrimaryText, menuEntryIconSecondaryText, overwriteMode, placeholderText, primaryIconActivatable, primaryIconName, primaryIconSensitive, primaryIconTooltipMarkup, primaryIconTooltipText, progressFraction, progressPulseStep, secondaryIconActivatable, secondaryIconName, secondaryIconSensitive, secondaryIconTooltipMarkup, secondaryIconTooltipText, showEmojiIcon, text, truncateMultiline, visibility, widthChars, xalign, children, ...props }: EntryProps) {
+function Entry({ className, render, variant = "default", attributes: _attributes, buffer: _buffer, completion: _completion, extraMenu: _extraMenu, primaryIconGicon: _primaryIconGicon, primaryIconPaintable: _primaryIconPaintable, secondaryIconGicon: _secondaryIconGicon, secondaryIconPaintable: _secondaryIconPaintable, tabs: _tabs, activatesDefault, editable, editingCanceled, enableEmojiCompletion, enableUndo, hasFrame, imModule, inputHints, inputPurpose, invisibleChar, invisibleCharSet, maxLength, maxWidthChars, menuEntryIconPrimaryText, menuEntryIconSecondaryText, overwriteMode, placeholderText, primaryIconActivatable, primaryIconName, primaryIconSensitive, primaryIconTooltipMarkup, primaryIconTooltipText, progressFraction, progressPulseStep, secondaryIconActivatable, secondaryIconName, secondaryIconSensitive, secondaryIconTooltipMarkup, secondaryIconTooltipText, showEmojiIcon, text, truncateMultiline, visibility, widthChars, xalign, children, ...props }: EntryProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -217,26 +216,14 @@ function Entry({ className, render, variant = "default", attributes, buffer, com
     "data-visibility": visibility,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", entryVariants({ variant }), widgetClassName, className),
+    className: cn("group/entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", entryVariants({ variant }), hasFrame === false && [
+          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
+          "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
+        ], widgetClassName, className),
     style,
     children: (
         <>
-                  <EntryImage />
-                  <EntryProgress>
-                <EntryTrough>
-                  <EntryProgress2 />
-                </EntryTrough>
-              </EntryProgress>
                   <EntryText placeholder={placeholderText} defaultValue={text} />
-                  {attributes}
-                  {buffer}
-                  {completion}
-                  {extraMenu}
-                  {primaryIconGicon}
-                  {primaryIconPaintable}
-                  {secondaryIconGicon}
-                  {secondaryIconPaintable}
-                  {tabs}
                   {children}
         </>
       ),
@@ -249,6 +236,83 @@ function Entry({ className, render, variant = "default", attributes, buffer, com
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function EntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EntrySelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EntryText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="entry-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      {...props}
+    />
+  )
 }
 
 function EntryImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
@@ -266,28 +330,6 @@ function EntryImage({ className, ...props }: React.ComponentProps<typeof Icon>) 
   )
 }
 
-function EntryProgress2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="entry-progress2"
-        data-node="progress"
-      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
-      {...props}
-    />
-  )
-}
-
-function EntryTrough({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="entry-trough"
-        data-node="trough"
-      className={cn("min-h-0.5", className)}
-      {...props}
-    />
-  )
-}
-
 function EntryProgress({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -299,37 +341,4 @@ function EntryProgress({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function EntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="entry-block-cursor"
-        data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
-      {...props}
-    />
-  )
-}
-
-function EntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="entry-placeholder"
-        data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
-      {...props}
-    />
-  )
-}
-
-function EntryText({ className, ...props }: React.ComponentProps<"input">) {
-  return (
-    <input
-      data-slot="entry-text"
-        data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
-      {...props}
-    />
-  )
-}
-
-export { Entry, EntryImage, EntryProgress2, EntryTrough, EntryProgress, EntryBlockCursor, EntryPlaceholder, EntryText, entryVariants }
+export { Entry, EntryPlaceholder, EntryUndershoot, EntrySelection, EntryCursorHandle, EntryBlockCursor, EntryWindow, EntryText, EntryImage, EntryProgress, entryVariants }

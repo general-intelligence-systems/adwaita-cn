@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function SearchEntryCombosearchbar() {
   return (
-    <SearchEntry size="comboSearchbar">
+    <SearchEntry variant="comboSearchbar">
       <Label label="Label" />
     </SearchEntry>
   )

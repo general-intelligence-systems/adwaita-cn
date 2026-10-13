@@ -53,6 +53,16 @@ export const dialogPresentationModeValues = ["auto", "floating", "bottom-sheet"]
 
 export type DialogPresentationMode = (typeof dialogPresentationModeValues)[number]
 
+/** Gdk.DragAction — flags: a set, so a prop drawn from this is an array of it */
+export const dragActionValues = ["none", "copy", "move", "link", "ask"] as const
+
+export type DragAction = (typeof dragActionValues)[number]
+
+/** Pango.EllipsizeMode */
+export const ellipsizeModeValues = ["none", "start", "middle", "end"] as const
+
+export type EllipsizeMode = (typeof ellipsizeModeValues)[number]
+
 /** Gtk.FileChooserAction */
 export const fileChooserActionValues = ["open", "save", "select-folder"] as const
 
@@ -82,6 +92,11 @@ export type FontChooserLevel = (typeof fontChooserLevelValues)[number]
 export const fontLevelValues = ["family", "face", "font", "features"] as const
 
 export type FontLevel = (typeof fontLevelValues)[number]
+
+/** Gdk.GLAPI — flags: a set, so a prop drawn from this is an array of it */
+export const glapIValues = ["gl", "gles"] as const
+
+export type GLAPI = (typeof glapIValues)[number]
 
 /** Gtk.GraphicsOffloadEnabled */
 export const graphicsOffloadEnabledValues = ["enabled", "disabled"] as const
@@ -182,6 +197,11 @@ export type PackDirection = (typeof packDirectionValues)[number]
 export const packTypeValues = ["start", "end"] as const
 
 export type PackType = (typeof packTypeValues)[number]
+
+/** Pango.WrapMode */
+export const pangoWrapModeValues = ["word", "char", "word-char", "none"] as const
+
+export type PangoWrapMode = (typeof pangoWrapModeValues)[number]
 
 /** Gtk.PolicyType */
 export const policyTypeValues = ["always", "automatic", "never", "external"] as const

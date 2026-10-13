@@ -20,7 +20,7 @@ const popoverBinVariants = cva(
       variant: {
         default: "",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
       },
     },
     defaultVariants: { variant: "default" },
@@ -38,13 +38,13 @@ export interface PopoverBinProps
   handleInput?: boolean
 
   /** Gio.MenuModel, from Gtk.PopoverBin */
-  menuModel?: ReactNode
+  menuModel?: unknown
 
   /** Popover, from Gtk.PopoverBin */
   popover?: ReactNode
 }
 
-function PopoverBin({ className, render, variant = "default", child, menuModel, popover, handleInput, children, ...props }: PopoverBinProps) {
+function PopoverBin({ className, render, variant = "default", child, popover, menuModel: _menuModel, handleInput, children, ...props }: PopoverBinProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -60,7 +60,6 @@ function PopoverBin({ className, render, variant = "default", child, menuModel, 
     children: (
         <>
                   {child}
-                  {menuModel}
                   {popover}
                   {children}
         </>

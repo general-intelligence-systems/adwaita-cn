@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function ToolbarViewCollapsespacing() {
   return (
-    <ToolbarView size="collapseSpacing">
+    <ToolbarView variant="collapseSpacing">
       <Label label="Label" />
     </ToolbarView>
   )

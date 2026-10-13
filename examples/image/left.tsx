@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function ImageLeft() {
   return (
-    <Image size="left">
+    <Image variant="left">
       <Label label="Label" />
     </Image>
   )

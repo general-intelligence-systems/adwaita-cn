@@ -22,33 +22,26 @@ const listBoxRowVariants = cva(
     variants: {
       variant: {
         default: "",
-        /** .activatable */
-        activatable: [
-          "hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ],
         /** .entry */
-        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
-        expander: "p-0 bg-none",
+        expander: "expander p-0 bg-none",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
         /** .header */
-        header: "",
+        header: "header",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
-        separator: "",
+        separator: "separator",
         /** .separators */
-        separators: "",
+        separators: "separators",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "",
+        sidebarNewBookmarkRow: "sidebar-new-bookmark-row",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "",
+        sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -63,7 +56,7 @@ export interface ListBoxRowProps
   actionName?: string
 
   /** GLib.Variant, from Gtk.ListBoxRow */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.ListBoxRow */
   activatable?: boolean
@@ -75,7 +68,7 @@ export interface ListBoxRowProps
   selectable?: boolean
 }
 
-function ListBoxRow({ className, render, variant = "default", actionTarget, child, actionName, activatable, selectable, children, ...props }: ListBoxRowProps) {
+function ListBoxRow({ className, render, variant = "default", child, actionTarget: _actionTarget, actionName, activatable, selectable, children, ...props }: ListBoxRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -88,11 +81,15 @@ function ListBoxRow({ className, render, variant = "default", actionTarget, chil
     "data-action-name": actionName,
     "data-activatable": activatable,
     "data-selectable": selectable,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", listBoxRowVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", listBoxRowVariants({ variant }), [
+          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
+          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
+          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
+          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
+        ], widgetClassName, className),
     style,
     children: (
         <>
-                  {actionTarget}
                   {child}
                   {children}
         </>

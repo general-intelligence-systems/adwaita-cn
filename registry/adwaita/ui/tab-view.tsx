@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -17,19 +16,19 @@ export interface TabViewProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "defaultIcon" | "menuModel" | "selectedPage" | "shortcuts">,
     WidgetProps {
   /** Gio.Icon, from Adw.TabView */
-  defaultIcon?: ReactNode
+  defaultIcon?: unknown
 
   /** Gio.MenuModel, from Adw.TabView */
-  menuModel?: ReactNode
+  menuModel?: unknown
 
   /** TabPage, from Adw.TabView */
-  selectedPage?: ReactNode
+  selectedPage?: unknown
 
   /** TabViewShortcuts, from Adw.TabView */
   shortcuts?: TabViewShortcuts[]
 }
 
-function TabView({ className, render, defaultIcon, menuModel, selectedPage, shortcuts, children, ...props }: TabViewProps) {
+function TabView({ className, render, defaultIcon: _defaultIcon, menuModel: _menuModel, selectedPage: _selectedPage, shortcuts, children, ...props }: TabViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -41,14 +40,7 @@ function TabView({ className, render, defaultIcon, menuModel, selectedPage, shor
     "data-shortcuts": shortcuts,
     className: cn(widgetClassName, className),
     style,
-    children: (
-        <>
-                  {defaultIcon}
-                  {menuModel}
-                  {selectedPage}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

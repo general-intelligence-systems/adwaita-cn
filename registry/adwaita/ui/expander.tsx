@@ -51,13 +51,24 @@ function Expander({ className, render, child, labelWidget, expanded, label, resi
     "data-resize-toplevel": resizeToplevel,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "duration-[300ms]", widgetClassName, className),
+    className: cn("group/expander", "grid [&>*]:col-start-1 [&>*]:row-start-1", "duration-[300ms]", widgetClassName, className),
     style,
     children: (
         <>
+                  <ExpanderBox>
+                <ExpanderTitle>
+                  <ExpanderExpander>
+                    <ExpanderBox2>
+                      <ExpanderTitle2>
+                        <ExpanderExpander2 />
+                      </ExpanderTitle2>
+                      {children}
+                    </ExpanderBox2>
+                  </ExpanderExpander>
+                </ExpanderTitle>
+              </ExpanderBox>
                   {child}
                   {labelWidget}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -71,4 +82,78 @@ function Expander({ className, render, child, labelWidget, expanded, label, resi
   })
 }
 
-export { Expander }
+function ExpanderExpander2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="expander-expander2"
+        data-node="expander"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+        "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)] opacity-70",
+        "group-disabled/expander:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/expander:adw-icon-source group-data-[state=checked]/expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ExpanderTitle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="expander-title2"
+        data-node="title"
+      className={cn("[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ExpanderBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="expander-box2"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function ExpanderExpander({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="expander-expander"
+        data-node="expander"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+        "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)] opacity-70",
+        "group-disabled/expander:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/expander:adw-icon-source group-data-[state=checked]/expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ExpanderTitle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="expander-title"
+        data-node="title"
+      className={cn("[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ExpanderBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="expander-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+export { Expander, ExpanderExpander2, ExpanderTitle2, ExpanderBox2, ExpanderExpander, ExpanderTitle, ExpanderBox }

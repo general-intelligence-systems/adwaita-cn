@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -17,7 +16,7 @@ export interface ListBaseProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "hadjustment" | "hscrollPolicy" | "orientation" | "vadjustment" | "vscrollPolicy">,
     WidgetProps {
   /** Adjustment, from Gtk.ListBase */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.ListBase */
   hscrollPolicy?: ScrollablePolicy
@@ -26,13 +25,13 @@ export interface ListBaseProps
   orientation?: Orientation
 
   /** Adjustment, from Gtk.ListBase */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.ListBase */
   vscrollPolicy?: ScrollablePolicy
 }
 
-function ListBase({ className, render, hadjustment, vadjustment, hscrollPolicy, orientation, vscrollPolicy, children, ...props }: ListBaseProps) {
+function ListBase({ className, render, hadjustment: _hadjustment, vadjustment: _vadjustment, hscrollPolicy, orientation, vscrollPolicy, children, ...props }: ListBaseProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -43,15 +42,9 @@ function ListBase({ className, render, hadjustment, vadjustment, hscrollPolicy, 
     "data-hscroll-policy": hscrollPolicy,
     "data-orientation": orientation,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn(widgetClassName, className),
+    className: cn("flex flex-col grow min-h-0", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {hadjustment}
-                  {vadjustment}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

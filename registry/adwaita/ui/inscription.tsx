@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -12,7 +11,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { InscriptionOverflow } from "@/lib/enums"
+import type { InscriptionOverflow, PangoWrapMode } from "@/lib/enums"
 
 const inscriptionVariants = cva(
   [
@@ -24,21 +23,21 @@ const inscriptionVariants = cva(
       variant: {
         default: "",
         /** .day-number */
-        dayNumber: "",
+        dayNumber: "day-number",
         /** .highlight */
-        highlight: "",
+        highlight: "highlight",
         /** .separator */
-        separator: "opacity-[var(--dim-opacity)]",
+        separator: "separator opacity-[var(--dim-opacity)]",
         /** .sidebar-label */
-        sidebarLabel: "",
+        sidebarLabel: "sidebar-label",
         /** .small */
-        small: "",
+        small: "small",
         /** .subtitle */
-        subtitle: "",
+        subtitle: "subtitle",
         /** .title */
-        title: "",
+        title: "title",
         /** .today */
-        today: "",
+        today: "today",
       },
     },
     defaultVariants: { variant: "default" },
@@ -50,7 +49,7 @@ export interface InscriptionProps
     WidgetProps,
     VariantProps<typeof inscriptionVariants> {
   /** Pango.AttrList, from Gtk.Inscription */
-  attributes?: ReactNode
+  attributes?: unknown
 
   /** utf8, from Gtk.Inscription */
   markup?: string
@@ -74,7 +73,7 @@ export interface InscriptionProps
   textOverflow?: InscriptionOverflow
 
   /** Pango.WrapMode, from Gtk.Inscription */
-  wrapMode?: ReactNode
+  wrapMode?: PangoWrapMode
 
   /** gfloat, from Gtk.Inscription */
   xalign?: number
@@ -83,7 +82,7 @@ export interface InscriptionProps
   yalign?: number
 }
 
-function Inscription({ className, render, variant = "default", attributes, markup, text, wrapMode, minChars, minLines, natChars, natLines, textOverflow, xalign, yalign, children, ...props }: InscriptionProps) {
+function Inscription({ className, render, variant = "default", markup, text, attributes: _attributes, minChars, minLines, natChars, natLines, textOverflow, wrapMode, xalign, yalign, children, ...props }: InscriptionProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -98,6 +97,7 @@ function Inscription({ className, render, variant = "default", attributes, marku
     "data-nat-chars": natChars,
     "data-nat-lines": natLines,
     "data-text-overflow": textOverflow,
+    "data-wrap-mode": wrapMode,
     "data-xalign": xalign,
     "data-yalign": yalign,
     className: cn(inscriptionVariants({ variant }), widgetClassName, className),
@@ -106,8 +106,6 @@ function Inscription({ className, render, variant = "default", attributes, marku
         <>
                   {markup}
                   {text}
-                  {attributes}
-                  {wrapMode}
                   {children}
         </>
       ),

@@ -20,20 +20,13 @@ const popoverMenuVariants = cva(
     variants: {
       variant: {
         default: "",
-        /** .background */
-        background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]",
         /** .magnifier */
-        magnifier: "bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
+        magnifier: "magnifier bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
         /** .touch-selection */
-        touchSelection: "bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
-      },
-      size: {
-        default: "",
-        /** .menu */
-        menu: "p-0 min-w-30",
+        touchSelection: "touch-selection bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -51,7 +44,7 @@ export interface PopoverMenuProps
   child?: ReactNode
 
   /** Widget, from Gtk.Popover */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** PopoverMenuFlags, from Gtk.PopoverMenu */
   flags?: PopoverMenuFlags[]
@@ -60,13 +53,13 @@ export interface PopoverMenuProps
   hasArrow?: boolean
 
   /** Gio.MenuModel, from Gtk.PopoverMenu */
-  menuModel?: ReactNode
+  menuModel?: unknown
 
   /** gboolean, from Gtk.Popover */
   mnemonicsVisible?: boolean
 
   /** Gdk.Rectangle, from Gtk.Popover */
-  pointingTo?: ReactNode
+  pointingTo?: unknown
 
   /** PositionType, from Gtk.Popover */
   position?: PositionType
@@ -75,7 +68,7 @@ export interface PopoverMenuProps
   visibleSubmenu?: string
 }
 
-function PopoverMenu({ className, render, variant = "default", size = "default", child, defaultWidget, menuModel, pointingTo, autohide, cascadePopdown, flags, hasArrow, mnemonicsVisible, position, visibleSubmenu, children, ...props }: PopoverMenuProps) {
+function PopoverMenu({ className, render, variant = "default", child, defaultWidget: _defaultWidget, menuModel: _menuModel, pointingTo: _pointingTo, autohide, cascadePopdown, flags, hasArrow, mnemonicsVisible, position, visibleSubmenu, children, ...props }: PopoverMenuProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -85,7 +78,6 @@ function PopoverMenu({ className, render, variant = "default", size = "default",
     "data-slot": "popover-menu",
     "data-node": "popover",
     "data-variant": variant,
-    "data-size": size,
     role: "dialog",
     "data-autohide": autohide,
     "data-cascade-popdown": cascadePopdown,
@@ -94,16 +86,15 @@ function PopoverMenu({ className, render, variant = "default", size = "default",
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
     "data-visible-submenu": visibleSubmenu,
-    className: cn("group/popover-menu", "grid [&>*]:col-start-1 [&>*]:row-start-1", popoverMenuVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/popover-menu", popoverMenuVariants({ variant }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", "menu p-0 min-w-30", widgetClassName, className),
     style,
     children: (
         <>
                   <PopoverMenuArrow />
+                  <PopoverMenuContents>
+                {children}
+              </PopoverMenuContents>
                   {child}
-                  {defaultWidget}
-                  {menuModel}
-                  {pointingTo}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -128,4 +119,15 @@ function PopoverMenuArrow({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { PopoverMenu, PopoverMenuArrow, popoverMenuVariants }
+function PopoverMenuContents({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="popover-menu-contents"
+        data-node="contents"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { PopoverMenu, PopoverMenuArrow, PopoverMenuContents, popoverMenuVariants }

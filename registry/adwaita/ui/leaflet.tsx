@@ -4,15 +4,15 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { visibleChild } from "@/lib/stack"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { FoldThresholdPolicy, LeafletTransitionType } from "@/lib/enums"
+import type { FoldThresholdPolicy, LeafletTransitionType, Orientation } from "@/lib/enums"
 
 const leafletVariants = cva(
   "",
@@ -21,9 +21,7 @@ const leafletVariants = cva(
       variant: {
         default: "",
         /** .folded */
-        folded: "",
-        /** .unfolded */
-        unfolded: "",
+        folded: "folded",
       },
     },
     defaultVariants: { variant: "default" },
@@ -44,7 +42,7 @@ export interface LeafletProps
   canUnfold?: boolean
 
   /** SpringParams, from Adw.Leaflet */
-  childTransitionParams?: ReactNode
+  childTransitionParams?: unknown
 
   /** FoldThresholdPolicy, from Adw.Leaflet */
   foldThresholdPolicy?: FoldThresholdPolicy
@@ -56,19 +54,19 @@ export interface LeafletProps
   modeTransitionDuration?: number
 
   /** Orientation, from Adw.Leaflet */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** LeafletTransitionType, from Adw.Leaflet */
   transitionType?: LeafletTransitionType
 
   /** Gtk.Widget, from Adw.Leaflet */
-  visibleChild?: ReactNode
+  visibleChild?: unknown
 
   /** utf8, from Adw.Leaflet */
   visibleChildName?: string
 }
 
-function Leaflet({ className, render, variant = "default", childTransitionParams, orientation, visibleChild, canNavigateBack, canNavigateForward, canUnfold, foldThresholdPolicy, homogeneous, modeTransitionDuration, transitionType, visibleChildName, children, ...props }: LeafletProps) {
+function Leaflet({ className, render, variant = "default", childTransitionParams: _childTransitionParams, visibleChild: _visibleChild, canNavigateBack, canNavigateForward, canUnfold, foldThresholdPolicy, homogeneous, modeTransitionDuration, orientation, transitionType, visibleChildName, children, ...props }: LeafletProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -84,20 +82,12 @@ function Leaflet({ className, render, variant = "default", childTransitionParams
     "data-fold-threshold-policy": foldThresholdPolicy,
     "data-homogeneous": homogeneous,
     "data-mode-transition-duration": modeTransitionDuration,
+    "data-orientation": orientation,
     "data-transition-type": transitionType,
     "data-visible-child-name": visibleChildName,
-    className: cn("group/leaflet", leafletVariants({ variant }), widgetClassName, className),
+    className: cn("group/leaflet", "grid [&>*]:col-start-1 [&>*]:row-start-1", leafletVariants({ variant }), "unfolded", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <LeafletDimming />
-                  <LeafletShadow />
-                  {childTransitionParams}
-                  {orientation}
-                  {visibleChild}
-                  {children}
-        </>
-      ),
+    children: visibleChild(children, visibleChildName),
     ...widgetAttributes,
   }
 

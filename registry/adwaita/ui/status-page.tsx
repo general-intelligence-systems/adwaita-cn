@@ -22,7 +22,7 @@ const statusPageVariants = cva(
       variant: {
         default: "",
         /** .spinner */
-        spinner: "",
+        spinner: "spinner",
       },
     },
     defaultVariants: { variant: "default" },
@@ -43,13 +43,13 @@ export interface StatusPageProps
   iconName?: string
 
   /** Gdk.Paintable, from Adw.StatusPage */
-  paintable?: ReactNode
+  paintable?: unknown
 
   /** utf8, from Adw.StatusPage */
   title?: string
 }
 
-function StatusPage({ className, render, variant = "default", child, description, iconName, paintable, title, children, ...props }: StatusPageProps) {
+function StatusPage({ className, render, variant = "default", child, description, iconName, title, paintable: _paintable, children, ...props }: StatusPageProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -83,7 +83,6 @@ function StatusPage({ className, render, variant = "default", child, description
                 </StatusPageToplevelBox>
               </StatusPageScrolledWindow>
                   {child}
-                  {paintable}
         </>
       ),
     ...widgetAttributes,
@@ -112,6 +111,33 @@ function StatusPageImage({ className, ...props }: React.ComponentProps<typeof Ic
   )
 }
 
+function StatusPageSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="status-page-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function StatusPageLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="status-page-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/status-page:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/status-page:text-[var(--accent-color)]",
+        "group-disabled/status-page:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -120,6 +146,33 @@ function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"spa
       className={cn("title", [
         "caret-[currentColor] font-extrabold text-[181%]",
         "group-disabled/status-page:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function StatusPageSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="status-page-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function StatusPageLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="status-page-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/status-page:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/status-page:text-[var(--accent-color)]",
+        "group-disabled/status-page:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -146,7 +199,7 @@ function StatusPageBox({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="status-page-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "gap-[12px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[12px]", className)}
       {...props}
     />
   )
@@ -173,7 +226,7 @@ function StatusPageToplevelBox({ className, ...props }: React.ComponentProps<"di
       data-slot="status-page-toplevel-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "my-9 mx-3 gap-[36px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-9 mx-3 gap-[36px]", className)}
       {...props}
     />
   )
@@ -184,10 +237,10 @@ function StatusPageScrolledWindow({ className, ...props }: React.ComponentProps<
     <div
       data-slot="status-page-scrolled-window"
         data-node="scrolledwindow"
-      className={cn(className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
       {...props}
     />
   )
 }
 
-export { StatusPage, StatusPageImage, StatusPageTitleLabel, StatusPageDescriptionLabel, StatusPageBox, StatusPageClamp, StatusPageToplevelBox, StatusPageScrolledWindow, statusPageVariants }
+export { StatusPage, StatusPageImage, StatusPageSelection, StatusPageLink, StatusPageTitleLabel, StatusPageSelection2, StatusPageLink2, StatusPageDescriptionLabel, StatusPageBox, StatusPageClamp, StatusPageToplevelBox, StatusPageScrolledWindow, statusPageVariants }

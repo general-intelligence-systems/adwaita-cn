@@ -20,17 +20,15 @@ const popoverVariants = cva(
     variants: {
       variant: {
         default: "",
-        /** .background */
-        background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]",
         /** .magnifier */
-        magnifier: "bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
+        magnifier: "magnifier bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
         /** .touch-selection */
-        touchSelection: "bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
+        touchSelection: "touch-selection bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
       },
       size: {
         default: "",
         /** .menu */
-        menu: "p-0 min-w-30",
+        menu: "menu p-0 min-w-30",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -51,7 +49,7 @@ export interface PopoverProps
   child?: ReactNode
 
   /** Widget, from Gtk.Popover */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gboolean, from Gtk.Popover */
   hasArrow?: boolean
@@ -60,13 +58,13 @@ export interface PopoverProps
   mnemonicsVisible?: boolean
 
   /** Gdk.Rectangle, from Gtk.Popover */
-  pointingTo?: ReactNode
+  pointingTo?: unknown
 
   /** PositionType, from Gtk.Popover */
   position?: PositionType
 }
 
-function Popover({ className, render, variant = "default", size = "default", child, defaultWidget, pointingTo, autohide, cascadePopdown, hasArrow, mnemonicsVisible, position, children, ...props }: PopoverProps) {
+function Popover({ className, render, variant = "default", size = "default", child, defaultWidget: _defaultWidget, pointingTo: _pointingTo, autohide, cascadePopdown, hasArrow, mnemonicsVisible, position, children, ...props }: PopoverProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -83,15 +81,15 @@ function Popover({ className, render, variant = "default", size = "default", chi
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("group/popover", "grid [&>*]:col-start-1 [&>*]:row-start-1", popoverVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/popover", popoverVariants({ variant, size }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", widgetClassName, className),
     style,
     children: (
         <>
                   <PopoverArrow />
+                  <PopoverContents>
+                {children}
+              </PopoverContents>
                   {child}
-                  {defaultWidget}
-                  {pointingTo}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -116,4 +114,15 @@ function PopoverArrow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Popover, PopoverArrow, popoverVariants }
+function PopoverContents({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="popover-contents"
+        data-node="contents"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { Popover, PopoverArrow, PopoverContents, popoverVariants }

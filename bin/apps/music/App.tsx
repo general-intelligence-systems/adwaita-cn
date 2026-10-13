@@ -44,7 +44,7 @@ export default function MusicApp() {
       }
     >
       <HeaderBar>
-        <ScaleButton iconName="media-playlist-repeat-symbolic" />
+        <ScaleButton icons={["media-playlist-repeat-symbolic"]} />
         <VolumeButton />
       </HeaderBar>
     </ToolbarView>

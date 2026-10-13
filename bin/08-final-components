@@ -57,16 +57,19 @@ module FinalComponents
   # widget's own source mentions them and the property is what says who carries them.
   BY_PROPERTY = { "orientation" => %w[horizontal vertical] }.freeze
 
-  # The orientable widgets, by name, filled in as each one's props are read.
+  # The widgets which carry `.horizontal` or `.vertical` from the moment they are built,
+  # which bin/05 reads off the `gtk_widget_update_orientation` call in each one's `_init`.
   #
-  # gtk_widget_update_orientation puts `.horizontal` or `.vertical` on every one of
-  # them, always, and the default is horizontal -- so a path built without it addresses
-  # a widget no running application has. Every rule the stylesheet states through that
-  # class was therefore unreachable: `progressbar.horizontal > trough` carries the only
-  # statement of a progress bar's 8px height and 150px minimum width, and
-  # `levelbar.horizontal trough > block` the only one of a level bar's block, so both
-  # came out of the generator as nodes with a colour and no size at all. 83 rules
-  # across 13 widgets were being dropped this way.
+  # Having an `orientation` property is not it, and implementing Gtk.Orientable is not
+  # it either: AdwClamp, AdwLeaflet, AdwWrapBox and AdwToggleGroup do both and carry
+  # neither class until something sets the property. What decides is whether the widget
+  # orients itself when it is made.
+  #
+  # The class matters because the stylesheet states things nowhere else:
+  # `progressbar.horizontal > trough` is the only statement of a progress bar's 8px
+  # height and 150px minimum width, and `levelbar.horizontal trough > block` the only
+  # one of a level bar's block, so both came out of the generator as nodes with a colour
+  # and no size at all. 83 rules across 13 widgets were being dropped this way.
   def self.orientable = @orientable ||= Set.new
 
   # The class a node carries for its orientation, as a selector segment.
@@ -106,6 +109,35 @@ module FinalComponents
     # whatever was actually in it.
     @widget_nodes = source.values.filter_map{|one| one["node"] }.to_set
 
+    # What bin/05-adwaita-components found out about each node: whether it is a widget's own
+    # node or a box the toolkit paints inside one, and which source files create it.
+    #
+    # This is what tells a widget's OWN structure from a widget which merely appears under it
+    # in the stylesheet. Every Adwaita selector is written from the window down --
+    # `window.background.csd > toggle-group.horizontal > separator.horizontal` -- so matching
+    # a selector by its first element gave every window-rooted component the whole sheet, and
+    # gave a toggle group a separator, a drop down a popover, an entry an image and a link row
+    # thirteen children it does not have. bin/11-generate-components renders a node it is
+    # given, so each of those was an empty box drawn into the application.
+    @node_catalogue = catalogue.fetch("nodes", {})
+    @node_sources = source.transform_values{|one| one["source"] }
+    @qualified_names = qualified
+
+    # The documented node tree of whichever widget OWNS each CSS node. A widget which renders
+    # as another's node has that widget's structure: GtkSearchEntry and GtkPasswordEntry are
+    # both `entry`, and neither draws its own nodes because GtkEntry already did.
+    @documented_by_node = {}
+    source.each_value do |one|
+      node = one["node"]
+      next unless node && one["ownNode"] && one["documented"]
+
+      @documented_by_node[node] ||= one["documented"]
+    end
+
+    # Before the entries, because an entry's own selector path carries the class.
+    @orientable = self.names_of(classes, source).select{|name, qualified| self.orients?(name, qualified, source) }
+      .keys.to_set
+
     names = classes.keys | trees.fetch("referenced").keys | trees.fetch("trees").keys
 
     components = names.sort.to_h do |name|
@@ -127,6 +159,12 @@ module FinalComponents
       "widget" => shared,
       "components" => components,
       "universal" => self.universal(contexts),
+      # Every class name the stylesheet addresses. The components write these onto the
+      # elements so the cascade can reach them, and a few of them -- `text-button`,
+      # `hidden`, `block`, `border` -- read as Tailwind utilities to tailwind-merge,
+      # which then drops the utility they appear to conflict with. `.destructive-action`
+      # lost its colour to `.text-button` exactly that way.
+      "styleClasses" => self.style_classes(contexts, widgets),
       "styles" => self.style_sheet(contexts),
       "variables" => self.read("bin/03-adwaita-tailwind.out/variables.json"),
     })}\n")
@@ -140,12 +178,21 @@ module FinalComponents
     schema = classes[name]
     own = self.source_for(name, qualified, source)
     props = schema.nil? ? {} : self.own_props(schema, shared)
-    self.orientable << name if props.key?("orientation")
+
     node = own && own["node"]
     tree = self.tree_for(name, classes, trees)
     found = self.enums_of(props)
 
-    structure = self.structure(name, node, tree, contexts, props)
+    sources = self.sources_for(name, self.qualified_names, classes, source)
+    self.sources_by_name[name] = sources
+
+    structure = self.structure(
+      name, node, tree, contexts, props, sources,
+      self.documented_for(name, node, self.qualified_names, classes, source),
+      own && own["built"],
+    )
+    self.with_suffix(name, structure)
+    self.mark_item(structure["tree"], sources)
 
     {
       "kind" => self.kind(name, schema, classes, structure["tree"]),
@@ -165,8 +212,16 @@ module FinalComponents
       "hides" => self.hides(name, classes, source, qualified),
       "layout" => own && own["layout"],
       "direction" => own && own["direction"],
+      # WHEN the widget puts a class on itself, which `applied` does not say: `always` is
+      # what its `_init` adds and nothing takes off, and `byProperty` is what a setter
+      # turns on and off with a property the component has. Read by bin/05 off the call
+      # site. Without them a component offered `.toggle` and `.flat` as variants to opt
+      # into and carried neither, so every toggle button in every application was drawn
+      # as a plain button.
+      "always" => self.always(name, qualified, source),
+      "byProperty" => self.by_property(name, qualified, source, props),
       "classes" => node ? self.lookup(self.ambient(name, node) + ["#{node}#{self.orientation(name)}"], contexts, widgets) : {},
-      "variants" => self.variants(name, node, own, source, classes, contexts, props),
+      "variants" => self.variants(name, node, own, source, classes, contexts, props, self.always(name, qualified, source)),
     }.merge(structure)
   end
 
@@ -302,6 +357,64 @@ module FinalComponents
     },
   }.freeze
 
+  # The three numbers a GtkAdjustment holds, as props.
+  #
+  # A GtkRange keeps where it is in a GtkAdjustment rather than in a property of its own, so
+  # `gtk_range_set_value` is the only way to say where a scale's handle sits, and an adjustment
+  # is an object no JSX attribute can carry. A scale given a value had nowhere to put it: it
+  # drew its trough at full width with no highlight and no handle, and bin/apps/controls wrote
+  # `<Scale value={60} />` against a component with no `value` at all.
+  ADJUSTED = { "value" => "gdouble", "minValue" => "gdouble", "maxValue" => "gdouble" }.freeze
+
+  def self.with_adjustment_props(entry)
+    props = entry.fetch("props", {})
+    return entry unless props.dig("adjustment", "gobject").to_s.end_with?("Adjustment")
+
+    ADJUSTED.each do |prop, gir|
+      next if props.key?(prop)
+
+      rule = { "type" => "number", "gir" => gir, "from" => "Gtk.Adjustment" }
+      props[prop] = rule
+      entry.fetch("accepts", {})[prop] ||= rule.merge("writable" => true)
+    end
+
+    entry
+  end
+
+  # The widget a row builds into its suffixes in its own C rather than in a .ui file.
+  #
+  # AdwSwitchRow has no template: it inherits AdwActionRow's and adds a GtkSwitch in
+  # adw_switch_row_init. There is no .ui file to read it out of, so a switch row rendered as a
+  # plain action row -- a title, a subtitle and nothing on the right of them -- in every
+  # preferences page in the registry.
+  SUFFIXED = { "SwitchRow" => "Switch" }.freeze
+
+  def self.with_suffix(name, structure)
+    wanted = SUFFIXED[name]
+    tree = structure["tree"]
+    return if wanted.nil? || tree.nil?
+
+    # On a copy. A .ui file is read once and the tree handed to every class which inherits it,
+    # so adding the switch in place added it to AdwActionRow's template as well -- and every
+    # action row in every preferences page drew a switch beside whatever was already in it.
+    tree = Marshal.load(Marshal.dump(tree))
+    structure["tree"] = tree
+
+    suffixes = nil
+    self.each_node(tree){|one| suffixes ||= one if one["id"] == "suffixes" }
+    return if suffixes.nil?
+
+    children = (suffixes["children"] ||= [])
+    return if children.any?{|one| one["class"] == wanted }
+
+    children << {
+      "class" => wanted,
+      "id" => wanted.downcase,
+      "properties" => { "valign" => "center" },
+      "children" => [],
+    }
+  end
+
   # The props a template's own slots are, beside the properties the class declares.
   def self.with_slot_props(entry)
     return entry unless entry["tree"]
@@ -312,8 +425,17 @@ module FinalComponents
     (taken.uniq - ["children"]).each do |prop|
       next if entry.fetch("props").key?(prop)
 
-      entry.fetch("props")[prop] =
-        { "type" => "node", "gir" => "Gtk.Widget", "from" => entry["gtk"] || "the template" }
+      rule = { "type" => "node", "gir" => "Gtk.Widget", "from" => entry["gtk"] || "the template" }
+
+      entry.fetch("props")[prop] = rule
+      # And into `accepts`, which is what bin/10-lint-rules writes the lint's rule file from.
+      # A template slot is as much a prop as a declared property -- bin/11-generate-components
+      # gives the component both -- and leaving it out of `accepts` had the lint reject the
+      # components' own applications: `<ActionRow prefix={...}>` is what an action row's
+      # template asks for, and `adwaita/exact-props` called it a property Adw.ActionRow
+      # does not have.
+      entry.fetch("accepts", {})[prop] ||= rule.slice("type", "from")
+      entry.fetch("accepts", {})[prop]["writable"] = true
     end
 
     entry
@@ -322,11 +444,29 @@ module FinalComponents
   # A component's structure: its template where it has one, the structure written down
   # for it where its source builds one in C, and the nodes the stylesheet shows it
   # building where it does neither.
-  def self.structure(name, node, tree, contexts, props)
+  def self.structure(name, node, tree, contexts, props, sources = [], documented = nil, built = nil)
     return { "template" => tree.fetch("template"), "tree" => tree.fetch("tree") } if tree
     return { "tree" => Marshal.load(Marshal.dump(CONSTRUCTED.fetch(name))) } if CONSTRUCTED.key?(name)
 
-    self.node_tree(name, node, contexts, props).then{|found| found ? { "tree" => found } : {} }
+    # The widget's own documentation, where it draws its nodes. It is the authority: it says
+    # what the widget builds and, through the brackets around a node, which of those it only
+    # builds when it is asked to.
+    drawn = self.documented_tree(name, node, documented)
+    return { "tree" => drawn } if drawn
+
+    found = self.node_tree(name, node, contexts, props, sources, documented)
+    return { "tree" => self.aside(found) } if found
+
+    # Last: what the widget's own C builds, read by bin/05. A widget with no template,
+    # no drawn tree and no nodes in the stylesheet still has a structure -- AdwAvatar is
+    # a gizmo called `avatar` holding a label and two images, and
+    # AdwNavigationSplitView two bins carrying `.sidebar-pane` and `.content-pane` --
+    # and with nothing to read it from, the generator rendered each of them as one empty
+    # box. Every avatar in the registry was missing and every sidebar was the same
+    # colour as the page beside it.
+    return {} if built.nil? || built.empty?
+
+    { "tree" => { "class" => name, "node" => node, "children" => built } }
   end
 
   # The template a component is built from. A subclass with none of its own is built
@@ -420,10 +560,10 @@ module FinalComponents
 
   # The style classes a component can carry: the ones the stylesheet draws on its node,
   # and the ones the widget or an ancestor puts on itself.
-  def self.variants(name, node, own, source, classes, contexts, props = {})
+  def self.variants(name, node, own, source, classes, contexts, props = {}, always = [])
     return {} if node.nil?
 
-    by_property = BY_PROPERTY.filter_map{|prop, styles| styles if props.key?(prop) }.flatten
+    by_property = self.orientable.include?(name) ? BY_PROPERTY.fetch("orientation") : []
 
     applied = self.ancestry(name, classes).flat_map do |ancestor|
       entry = self.source_for(ancestor, classes.dig(ancestor, "class")&.sub(".", ""), source)
@@ -447,9 +587,65 @@ module FinalComponents
         "context" => rules.keys.reject{|selector| self.segments(selector).length == 1 }.sort,
         "colour" => merged.values.all?(&:empty?),
         "applied" => applied.include?(style) || by_property.include?(style),
+        # The widget's own `_init` puts it on and nothing takes it off, so it is not a
+        # choice and nothing offers it: a Window is `.background` and an example of a
+        # window which is not one is an example of nothing.
+        "automatic" => always.include?(style),
         "universal" => self.unscoped(contexts).include?(style),
       }]
     end
+  end
+
+  # Each component's name beside the name the C defines it under.
+  def self.names_of(classes, source)
+    found = source.keys.to_h{|one| [one.sub(/\A(Adw|Gtk)/, ""), one] }
+
+    found.merge(classes.to_h{|name, schema| [name, schema.fetch("class").sub(".", "")] })
+  end
+
+  # Whether this component orients itself when it is built, which is what puts
+  # `.horizontal` on it before anybody asks.
+  def self.orients?(name, qualified, source)
+    self.c_ancestry(name, qualified, source).any?{|one| one["orients"] }
+  end
+
+  # Inherited, along the ancestry the C declares rather than the one the introspection
+  # data does. G_DEFINE_TYPE says AdwWindow is a GtkWindow and the GIR says Adw.Window's
+  # parent is Gtk.Widget, so a walk up the schemas stopped before it reached the window
+  # which adds `.background` -- and every window in the registry was drawn on nothing.
+  def self.c_ancestry(name, qualified, source)
+    found = []
+    current = self.source_for(name, qualified, source)
+
+    while current && !found.include?(current)
+      found << current
+      current = source[current["parent"]]
+    end
+
+    found
+  end
+
+  # What a widget's `_init` puts on and nothing takes off.
+  def self.always(name, qualified, source)
+    self.c_ancestry(name, qualified, source).flat_map{|one| one.fetch("always", []) }.uniq.sort
+  end
+
+  # Only for a property this component actually has, and only a boolean one: GtkText
+  # turns `.read-only` on and off with `editable`, and a component with no `editable` has
+  # no such state. An enumeration's setter adds a class per value and the branch it sits
+  # in says nothing useful, so those are left to be variants.
+  def self.by_property(name, qualified, source, props)
+    found = {}
+
+    self.c_ancestry(name, qualified, source).reverse_each do |one|
+      one.fetch("byProperty", {}).each do |prop, polarities|
+        next unless props.dig(prop, "type") == "boolean"
+
+        found[prop] = (found[prop] || {}).merge(polarities)
+      end
+    end
+
+    found
   end
 
   # The classes libadwaita's own templates put on a widget of each class: a .ui saying
@@ -540,6 +736,17 @@ module FinalComponents
   end
 
   # The classes which go on any widget at all, which are the rules naming no element.
+  # Every `.name` any selector in either sheet mentions.
+  def self.style_classes(contexts, widgets)
+    found = Set.new
+
+    (contexts.keys + widgets.keys).each do |selector|
+      selector.scan(/\.(-?[a-zA-Z_][\w-]*)/){|(name)| found << name }
+    end
+
+    found.sort
+  end
+
   def self.universal(contexts)
     self.unscoped(contexts).sort.to_h do |style|
       rules = self.variant_classes(style, nil, nil, contexts)
@@ -785,19 +992,20 @@ module FinalComponents
     klass = node.fetch("class")
     named = node.fetch("properties", {})["css-name"]
 
-    # The orientation class GTK always draws, which the template never writes down.
-    # `.vertical` where the template asks for it, and `.horizontal` otherwise.
-    stated = node.fetch("properties", {})["orientation"]
-    orientation =
-      if (own & %w[horizontal vertical]).any? || !self.orientable.include?(klass)
-        ""
-      elsif stated == "vertical" || stated == "1"
-        ".vertical"
-      else
-        ".horizontal"
-      end
+    orientation = self.orientation_of(node).then{|one| one ? ".#{one}" : "" }
 
     "#{name || (named.is_a?(String) ? named : nil) || node["node"] || self.nodes[klass] || 'widget'}#{styles}#{orientation}"
+  end
+
+  # The orientation class GTK draws on a template's node, which the template never
+  # writes down. `vertical` where it asks for it, and `horizontal` otherwise, because
+  # that is the property's own default and the branch gtk_widget_update_orientation
+  # takes for it.
+  def self.orientation_of(node)
+    return nil unless self.orientable.include?(node.fetch("class"))
+    return nil if (node.fetch("styles", []) & %w[horizontal vertical]).any?
+
+    %w[vertical 1].include?(node.fetch("properties", {})["orientation"]) ? "vertical" : "horizontal"
   end
 
   # The nodes a widget builds inside itself, as a tree, read from the selectors which
@@ -825,7 +1033,7 @@ module FinalComponents
   # is the same progress node as `progress`, and which of them a particular widget is
   # showing is a variant, which `annotate` reads separately. A node the stylesheet only
   # ever names with a class is still a node.
-  def self.node_tree(name, node, contexts, props = {})
+  def self.node_tree(name, node, contexts, props = {}, sources = [], documented = nil)
     return nil if node.nil?
 
     paths = contexts.keys.filter_map do |selector|
@@ -845,7 +1053,7 @@ module FinalComponents
       elements.drop(1)
     end
 
-    paths = paths.map{|path| self.structural(node, path, props) }.reject(&:empty?).uniq
+    paths = paths.map{|path| self.structural(node, path, props, sources, documented) }.reject(&:empty?).uniq
 
     return nil if paths.empty?
 
@@ -894,7 +1102,38 @@ module FinalComponents
   # buttoncontent, inside a box -- rather than three toggles side by side. The rules for
   # the node belong on the parent, as the shape it gives its children, so that they reach
   # whatever the caller actually put there.
+  # The item node a container's documentation draws under it. A list box IS drawn as
+  # `list ╰── row`, but a row is a GtkListBoxRow the application adds: the documentation is
+  # showing the shape of a child, not a part the list box builds. Read as a part it put an
+  # empty 50px row in every list box -- which took the boxed list a preferences group draws
+  # its card as, and left the group's own rows outside the card.
+  #
+  # The test is the same one `own_node?` uses: the node is some other widget's own, and this
+  # widget's source is not where it is made. What it contributes is its STYLE, which the
+  # container restates as the shape it gives each of its children.
   ITEMS = { "toggle-group" => "toggle" }.freeze
+
+  # Marked on the node itself and before anything else reads the tree, because a composite
+  # which holds this one copies its structure: adw-preferences-group.ui holds a GtkListBox, and
+  # the empty row went into the group's boxed list before the fold could take it out again.
+  def self.mark_item(tree, sources)
+    return if tree.nil?
+
+    children = tree.fetch("children", [])
+    return unless children.length == 1
+
+    found = children.first
+    return unless found["css-node"] && found.fetch("children", []).empty?
+    return if self.own_node?(found["node"], sources) && !ITEMS[tree["node"]].eql?(found["node"])
+
+    found["item"] = true
+  end
+
+  def self.item_of(entry, _sources = [])
+    return ITEMS[entry["node"]] if ITEMS.key?(entry["node"])
+
+    (entry.dig("tree", "children") || []).find{|one| one["item"] }&.fetch("node")
+  end
 
   # A node's rules restated as the shape the parent gives each of its children.
   #
@@ -912,8 +1151,8 @@ module FinalComponents
   end
 
   # The item node folded off a component's tree and onto the component itself.
-  def self.fold_items(entry)
-    repeated = ITEMS[entry["node"]]
+  def self.fold_items(entry, sources = [])
+    repeated = self.item_of(entry, sources)
     tree = entry["tree"]
 
     return if repeated.nil? || tree.nil?
@@ -971,13 +1210,18 @@ module FinalComponents
   # test is whether the node could hold something: a container holds what is added to it,
   # and so does a widget with a `child` or a `content` property. A GtkSpinButton has
   # neither, so its buttons are its own; a GtkButton has `child`, so its label is not.
-  def self.structural(root, path, props = {})
+  def self.structural(root, path, props = {}, sources = [], documented = nil)
     holds = CONTENT_NODES.include?(root) || HOLDS.any?{|prop| props.key?(prop) }
 
     [].tap do |found|
       parent = root
 
       path.each do |one|
+        # A node which is a widget of its own is not this widget's structure unless this
+        # widget's own source is what creates it. GtkSpinButton's `button` is built in
+        # gtkspinbutton.c and is the spin button's; AdwToggleGroup's `separator` is a
+        # GtkSeparator, built nowhere near adw-toggle-group.c, and is not.
+        break unless self.own_node?(one, sources, documented)
         break if holds && self.widget_nodes.include?(one)
 
         found << one
@@ -985,6 +1229,163 @@ module FinalComponents
         holds = CONTENT_NODES.include?(parent)
       end
     end
+  end
+
+  # The flat list bin/05-adwaita-components read out of the doc comment, nested by its depths.
+  def self.documented_tree(name, node, documented)
+    return nil if documented.nil? || documented.empty?
+
+    root = documented.first
+    return nil unless root["depth"].zero?
+    return nil unless node.nil? || root.fetch("node") == node
+    # Only the root: the section said the widget's own node and nothing about what is inside
+    # it, which is not a statement that it is empty.
+    return nil if documented.length < 2
+    # Prose says which nodes are the widget's, not how they are arranged; `own_node?` uses it
+    # and the tree does not.
+    return nil if documented.any?{|one| one["prose"] }
+
+    found = { "class" => name, "node" => root.fetch("node"), "children" => [] }
+    stack = { 0 => found }
+
+    documented.drop(1).each do |one|
+      depth = one.fetch("depth")
+      parent = stack[depth - 1]
+      next if parent.nil?
+
+      child = {
+        "class" => self.pascal(one.fetch("node")),
+        "node" => one.fetch("node"),
+        "css-node" => true,
+        "children" => [],
+      }
+      # A node the documentation draws in brackets: the widget adds it when it has something
+      # to put there and not before. Rendered unconditionally it is an empty box -- an entry
+      # with a progress bar in it, a scale with a value nobody asked to see.
+      child["optional"] = true if one.fetch("optional")
+
+      parent.fetch("children") << child
+      stack[depth] = child
+    end
+
+    self.aside(self.collapse(found))
+  end
+
+  # A node the documentation draws twice under the same parent is drawn twice to say there can
+  # be several of it, not that there are two: a scale's `mark`, a level bar's `block`, an
+  # entry's `image.left` and `image.right`. One stands for the set, and the set is empty until
+  # the application fills it, so the one that is kept is not drawn either.
+  def self.collapse(node)
+    children = node.fetch("children", [])
+    counts = children.group_by{|child| child.fetch("node") }.transform_values(&:size)
+
+    node["children"] = children.uniq{|child| child.fetch("node") }.each do |child|
+      child["optional"] = true if counts.fetch(child.fetch("node"), 0) > 1
+      self.collapse(child)
+    end
+
+    node
+  end
+
+  # A node which is a popup: it is drawn over the window when it opens, never in the flow of
+  # the widget which owns it. A drop down's documentation lists its popover beside its button,
+  # and rendering that popover inline put an empty panel next to every drop down.
+  # A node the toolkit paints OVER the widget rather than inside it: a popup, and the chrome a
+  # pane draws while it is sliding or overlaid. Neither is in the widget's flow, and both took
+  # a cell of their own in the grid an overlay split view lays its panes out with -- which is
+  # why every pane in bin/apps/files started 270px down the window, with the sidebar as a grey
+  # block in the corner and the header bar floating in the middle of the page.
+  POPUPS = %w[
+    popover window tooltip menu toast dimming shadow outline undershoot overshoot rubberband
+  ].to_set
+
+  # A node the toolkit draws BETWEEN a widget's children rather than as one of them. A toggle
+  # group's separators sit between its toggles, a paned's between its two panes; there is no
+  # such thing as the one separator a widget has, so one rendered as a child is an empty box
+  # in front of everything the application put in.
+  BETWEEN = %w[separator].to_set
+
+  # The nodes in a derived tree which are not drawn where the tree puts them. Applied to the
+  # tree however it was derived, because the stylesheet and the documentation disagree about
+  # nothing here: a popover is a popup in both, and a separator is between in both.
+  def self.aside(node)
+    node.fetch("children", []).each do |child|
+      name = child["node"]
+      child["optional"] = true if POPUPS.include?(name) || BETWEEN.include?(name)
+      self.aside(child)
+    end
+
+    node
+  end
+
+  # The documented tree a component inherits, which is its own where it draws one and its
+  # nearest ancestor's where it does not: an AdwSpinRow draws no nodes of its own.
+  def self.documented_for(name, node, qualified, classes, source)
+    current = name
+    seen = 0
+
+    while current && (schema = classes[current]) && seen < 32
+      own = self.source_for(current, qualified[current], source)
+      return own["documented"] if own && own["documented"]
+
+      current = schema["parent"]
+      seen += 1
+    end
+
+    # Failing that, whoever owns the node this widget renders as.
+    node && self.documented_by_node[node]
+  end
+
+  # Whether a node is one the widget paints itself rather than one which arrives inside it.
+  #
+  # A node bin/05-adwaita-components calls "internal" is a box the toolkit draws -- a trough, a
+  # highlight, a slider, a check -- and is always the widget's own. A node it calls a widget is
+  # the widget's own only where one of the source files which create it is this widget's or an
+  # ancestor's: `trough` is made in gtkrange.c, which is GtkScale's ancestry, and `popover` is
+  # made in no file a drop down inherits.
+  def self.own_node?(node, sources, documented = nil)
+    # The widget's own documentation first: if it names the node, the node is the widget's,
+    # however the node is classified elsewhere. GtkSearchEntry's `text` and GtkDropDown's
+    # `button` are both widgets of their own and both are drawn by the widget which holds them.
+    # Only where the documentation DRAWS the tree. A sentence names the nodes in play without
+    # saying whose they are -- "GtkListBox uses a node named list; each GtkListBoxRow uses a
+    # node named row" is two widgets, not a list box with a row inside it -- and reading it as
+    # structure put an empty row in every list box, which took the boxed list a preferences
+    # group draws its card as, and left the group's own rows outside the card.
+    return true if documented&.any? do |one|
+      one["node"] == node && !one["depth"].zero? && !one["prose"]
+    end
+
+    found = self.node_catalogue[node]
+
+    return true if found.nil?
+    return true if found.fetch("kind", nil) != "widget"
+
+    made = found.fetch("madeIn", [])
+
+    made.any? && sources.any?{|one| made.include?(one) }
+  end
+
+  # The source file of a widget and of every class it descends from, which is where a node it
+  # builds inside itself would have been created.
+  def self.sources_for(name, qualified, classes, source)
+    found = []
+    current = name
+
+    while current && (schema = classes[current])
+      own = self.source_for(current, qualified[current], source)
+      found << own["source"] if own && own["source"]
+      current = schema["parent"]
+      break if found.length > 32
+    end
+
+    found.uniq
+  end
+
+  class << self
+    attr_reader :node_catalogue, :node_sources, :qualified_names, :documented_by_node
+
+    def sources_by_name = (@sources_by_name ||= {})
   end
 
   # The trees are annotated once the nodes are known, because a tree's root is addressed
@@ -1018,9 +1419,9 @@ module FinalComponents
       entry["tree"] =
         self.annotate(entry.fetch("tree"), self.ambient(name, root), contexts, widgets, root,
                       entry["classes"], entry.fetch("hides", {}))
-      self.with_slot_props(entry)
+      self.with_adjustment_props(self.with_slot_props(entry))
       # After the tree is annotated, so the node carries the classes being folded.
-      self.fold_items(entry)
+      self.fold_items(entry, self.sources_by_name.fetch(name, []))
     end
   end
 
@@ -1042,10 +1443,18 @@ module FinalComponents
     # start of every header bar in the registry -- a grey disc the toolkit does not
     # draw, beside the back button, in every application.
     return if node.fetch("styles", []).include?("empty")
+    # A node the toolkit's own documentation draws in brackets is not on screen: it is added
+    # when the widget is asked for it. Filling one from the widget it names put a GtkText's
+    # magnifier -- a window, with a sheet and a sheet of drawing paper in it -- inside every
+    # entry, every spin button and every progress bar's text node.
+    return if node["optional"]
     return if found.nil? || seen.include?(klass) || children.any?
 
     seen = seen + [klass]
+    # Not the item: a list box is drawn as `list ╰── row`, and the row is the shape of what the
+    # application adds rather than a part the list box comes with.
     own = (found.fetch("slots", {}).values + found.fetch("children", []))
+      .reject{|child| child["item"] }
       .map{|child| Marshal.load(Marshal.dump(child)) }
 
     own.each{|child| self.expand(child, components, seen) }
@@ -1087,6 +1496,14 @@ module FinalComponents
     if node["id"] && hides.key?(node["id"]) && !node.dig("properties", "visible")
       (node["properties"] ||= {})["visible"] = { "when" => hides.fetch(node["id"]) }
     end
+
+    # Written onto the node as the style class it is, so that the part the generator
+    # makes of it carries it. The path alone was not enough: the rules the path found
+    # were resolved into the part's own utilities, and every OTHER rule the stylesheet
+    # writes against `.horizontal` or `.vertical` -- `box.linked.vertical > button`,
+    # `headerbar box.horizontal` -- still addressed a class no part put on.
+    orientation = self.orientation_of(node)
+    node["styles"] = (node.fetch("styles", []) + [orientation]) if orientation
 
     path = ancestors + [self.selector(node, name)]
     classes = own || self.lookup(path, contexts, widgets)

@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxInlinebuttons() {
   return (
-    <Box size="inlineButtons">
+    <Box variant="inlineButtons">
       <Label label="Label" />
     </Box>
   )

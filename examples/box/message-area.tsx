@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxMessagearea() {
   return (
-    <Box size="messageArea">
+    <Box variant="messageArea">
       <Label label="Label" />
     </Box>
   )

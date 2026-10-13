@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -17,7 +16,7 @@ export interface ShortcutsGroupProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "accelSizeGroup" | "baselineChild" | "baselinePosition" | "homogeneous" | "orientation" | "spacing" | "title" | "titleSizeGroup" | "view">,
     WidgetProps {
   /** SizeGroup, from Gtk.ShortcutsGroup */
-  accelSizeGroup?: ReactNode
+  accelSizeGroup?: unknown
 
   /** gint, from Gtk.Box */
   baselineChild?: number
@@ -38,13 +37,13 @@ export interface ShortcutsGroupProps
   title?: string
 
   /** SizeGroup, from Gtk.ShortcutsGroup */
-  titleSizeGroup?: ReactNode
+  titleSizeGroup?: unknown
 
   /** utf8, from Gtk.ShortcutsGroup */
   view?: string
 }
 
-function ShortcutsGroup({ className, render, accelSizeGroup, titleSizeGroup, baselineChild, baselinePosition, homogeneous, orientation, spacing, title, view, children, ...props }: ShortcutsGroupProps) {
+function ShortcutsGroup({ className, render, accelSizeGroup: _accelSizeGroup, titleSizeGroup: _titleSizeGroup, baselineChild, baselinePosition, homogeneous, orientation, spacing, title, view, children, ...props }: ShortcutsGroupProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -60,15 +59,9 @@ function ShortcutsGroup({ className, render, accelSizeGroup, titleSizeGroup, bas
     "data-spacing": spacing,
     "data-title": title,
     "data-view": view,
-    className: cn(widgetClassName, className),
+    className: cn(orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {accelSizeGroup}
-                  {titleSizeGroup}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

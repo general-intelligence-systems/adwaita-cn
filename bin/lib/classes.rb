@@ -11,9 +11,10 @@ module AdwaitaClasses
   # not offer them as props.
   CONTENT = %w[text-button image-button image-text-button horizontal vertical].freeze
 
-  # The style classes a caller chooses between.
+  # The style classes a caller chooses between: not the ones the content decides, and
+  # not the ones the widget's own `_init` puts on and nothing takes off.
   def self.offered(variants)
-    variants.reject{|style, variant| self.content?(style, variant) }
+    variants.reject{|style, variant| self.content?(style, variant) || variant.fetch("automatic", false) }
   end
 
   def self.content?(style, variant)
@@ -41,8 +42,20 @@ module AdwaitaClasses
 
   # The state groups as one TypeScript expression: a string when there is one group, and
   # an array of them when there are several, which is what cva and cn both take.
-  def self.expression(classes, indent)
+  #
+  # `name` is the style class itself, written first. A component which carried only the
+  # measurements a style class resolves to was a component the rest of the stylesheet
+  # could not see: `.flat`, `.text-button` and `.horizontal` are what
+  # `headerbar button.flat`, `button.text-button > box` and `progressbar.horizontal >
+  # trough` are written against, and registry/adwaita/styles.css is six thousand lines
+  # of exactly those rules, addressing a class no component put on.
+  def self.expression(classes, indent, name: nil)
     groups = self.stated(classes).reject(&:empty?).map{|group| group.join(" ")}
+    groups = if name.nil?
+               groups
+             else
+               [[name, groups.first].compact.join(" ")] + groups.drop(1)
+             end
 
     case groups.length
     when 0 then nil

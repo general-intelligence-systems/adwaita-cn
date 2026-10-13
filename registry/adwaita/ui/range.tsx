@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,13 +20,13 @@ const rangeVariants = cva(
       variant: {
         default: "",
         /** .bottom */
-        bottom: "",
+        bottom: "bottom",
         /** .dragging */
-        dragging: "",
+        dragging: "dragging",
         /** .fine-tune */
-        fineTune: "",
+        fineTune: "fine-tune",
         /** .top */
-        top: "",
+        top: "top",
       },
     },
     defaultVariants: { variant: "default" },
@@ -35,17 +34,23 @@ const rangeVariants = cva(
 )
 
 export interface RangeProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "adjustment" | "fillLevel" | "inverted" | "orientation" | "restrictToFillLevel" | "roundDigits" | "showFillLevel" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adjustment" | "fillLevel" | "inverted" | "orientation" | "restrictToFillLevel" | "roundDigits" | "showFillLevel" | "value" | "minValue" | "maxValue" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof rangeVariants> {
   /** Adjustment, from Gtk.Range */
-  adjustment?: ReactNode
+  adjustment?: unknown
 
   /** gdouble, from Gtk.Range */
   fillLevel?: number
 
   /** gboolean, from Gtk.Range */
   inverted?: boolean
+
+  /** gdouble, from Gtk.Adjustment */
+  maxValue?: number
+
+  /** gdouble, from Gtk.Adjustment */
+  minValue?: number
 
   /** Orientation, from Gtk.Range */
   orientation?: Orientation
@@ -58,9 +63,12 @@ export interface RangeProps
 
   /** gboolean, from Gtk.Range */
   showFillLevel?: boolean
+
+  /** gdouble, from Gtk.Adjustment */
+  value?: number
 }
 
-function Range({ className, render, variant = "default", adjustment, fillLevel, inverted, orientation, restrictToFillLevel, roundDigits, showFillLevel, children: _children, ...props }: RangeProps) {
+function Range({ className, render, variant = "default", adjustment: _adjustment, fillLevel, inverted, maxValue, minValue, orientation, restrictToFillLevel, roundDigits, showFillLevel, value, children, ...props }: RangeProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -70,25 +78,54 @@ function Range({ className, render, variant = "default", adjustment, fillLevel, 
     "data-slot": "range",
     "data-node": "range",
     "data-variant": variant,
-    type: "range",
-    "data-adjustment": adjustment,
+    role: "slider",
     "data-fill-level": fillLevel,
     "data-inverted": inverted,
+    "data-max-value": maxValue,
+    "data-min-value": minValue,
     "data-orientation": orientation,
     "data-restrict-to-fill-level": restrictToFillLevel,
     "data-round-digits": roundDigits,
     "data-show-fill-level": showFillLevel,
-    className: cn(rangeVariants({ variant }), widgetClassName, className),
+    "data-value": value,
+    className: cn("group/range", "grid [&>*]:col-start-1 [&>*]:row-start-1", rangeVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
+    children: (
+        <RangeGizmo>
+                <RangeGizmo2 className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ [orientation === "vertical" ? "insetBlockStart" : "insetInlineStart"]: `${Math.max(0, Math.min(100, (((value ?? 0) - (minValue ?? 0)) / ((maxValue ?? 1) - (minValue ?? 0) || 1)) * 100))}%` }} />
+              </RangeGizmo>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { Range, rangeVariants }
+function RangeGizmo2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="range-gizmo2"
+        data-node="slider"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      {...props}
+    />
+  )
+}
+
+function RangeGizmo({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="range-gizmo"
+        data-node="trough"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "relative min-h-1", className)}
+      {...props}
+    />
+  )
+}
+
+export { Range, RangeGizmo2, RangeGizmo, rangeVariants }

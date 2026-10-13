@@ -20,9 +20,9 @@ const infoBarVariants = cva(
       variant: {
         default: "",
         /** .action */
-        action: "",
+        action: "action",
         /** .close */
-        close: "",
+        close: "close",
       },
     },
     defaultVariants: { variant: "default" },
@@ -57,13 +57,9 @@ function InfoBar({ className, render, variant = "default", messageType, revealed
     "data-message-type": messageType,
     "data-revealed": revealed,
     "data-show-close-button": showCloseButton,
-    className: cn("group/info-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", infoBarVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", infoBarVariants({ variant }), widgetClassName, className),
     style,
-    children: (
-        <InfoBarRevealer>
-                {children}
-              </InfoBarRevealer>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -75,15 +71,4 @@ function InfoBar({ className, render, variant = "default", messageType, revealed
   })
 }
 
-function InfoBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="info-bar-revealer"
-        data-node="revealer"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { InfoBar, InfoBarRevealer, infoBarVariants }
+export { InfoBar, infoBarVariants }

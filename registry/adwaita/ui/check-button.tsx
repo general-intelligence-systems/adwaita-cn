@@ -20,9 +20,9 @@ const checkButtonVariants = cva(
       size: {
         default: "",
         /** .grouped */
-        grouped: "rounded-[999px]",
+        grouped: "grouped rounded-[999px]",
         /** .selection-mode */
-        selectionMode: "rounded-[100px]",
+        selectionMode: "selection-mode rounded-[100px]",
       },
     },
     defaultVariants: { size: "default" },
@@ -37,7 +37,7 @@ export interface CheckButtonProps
   actionName?: string
 
   /** GLib.Variant, from Gtk.CheckButton */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.CheckButton */
   active?: boolean
@@ -46,7 +46,7 @@ export interface CheckButtonProps
   child?: ReactNode
 
   /** CheckButton, from Gtk.CheckButton */
-  group?: ReactNode
+  group?: unknown
 
   /** gboolean, from Gtk.CheckButton */
   inconsistent?: boolean
@@ -58,7 +58,7 @@ export interface CheckButtonProps
   useUnderline?: boolean
 }
 
-function CheckButton({ className, render, size = "default", actionTarget, child, group, label, actionName, active, inconsistent, useUnderline, children, ...props }: CheckButtonProps) {
+function CheckButton({ className, render, size = "default", child, label, actionTarget: _actionTarget, group: _group, actionName, active, inconsistent, useUnderline, children, ...props }: CheckButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -73,7 +73,7 @@ function CheckButton({ className, render, size = "default", actionTarget, child,
     "aria-checked": active,
     "data-inconsistent": inconsistent,
     "data-use-underline": useUnderline,
-    className: cn("group/check-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", checkButtonVariants({ size }), label && "p-1", widgetClassName, className),
+    className: cn("group/check-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", checkButtonVariants({ size }), label && "text-button p-1", widgetClassName, className),
     style,
     children: (
         <>
@@ -83,9 +83,7 @@ function CheckButton({ className, render, size = "default", actionTarget, child,
                   {label}
                 </span>
               )}
-                  {actionTarget}
                   {child}
-                  {group}
                   {children}
         </>
       ),
@@ -122,4 +120,18 @@ function CheckButtonCheck({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { CheckButton, CheckButtonCheck, checkButtonVariants }
+function CheckButtonLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="check-button-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor]",
+        "group-disabled/check-button:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { CheckButton, CheckButtonCheck, CheckButtonLabel, checkButtonVariants }

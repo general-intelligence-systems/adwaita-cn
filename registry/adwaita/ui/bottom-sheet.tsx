@@ -20,19 +20,19 @@ const bottomSheetVariants = cva(
       variant: {
         default: "",
         /** .background */
-        background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
         /** .bottom-bar */
-        bottomBar: "",
+        bottomBar: "bottom-bar",
         /** .flush-left */
-        flushLeft: "",
+        flushLeft: "flush-left",
         /** .flush-right */
-        flushRight: "",
+        flushRight: "flush-right",
         /** .has-drag-handle */
-        hasDragHandle: "",
+        hasDragHandle: "has-drag-handle",
         /** .hidden */
-        hidden: "",
+        hidden: "hidden",
         /** .inert */
-        inert: "",
+        inert: "inert",
       },
     },
     defaultVariants: { variant: "default" },
@@ -100,19 +100,11 @@ function BottomSheet({ className, render, variant = "default", bottomBar, conten
     style,
     children: (
         <>
-                  <BottomSheetDimming />
-                  <BottomSheetSheet>
-                <BottomSheetOutline />
-                <BottomSheetStack>
-                  <BottomSheetWidget>
-                    <BottomSheetDragHandle />
-                  </BottomSheetWidget>
-                  {children}
-                </BottomSheetStack>
-              </BottomSheetSheet>
+                  <BottomSheetSheet />
                   {content}
                   {bottomBar}
                   {sheet}
+                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -148,39 +140,6 @@ function BottomSheetOutline({ className, ...props }: React.ComponentProps<"div">
   )
 }
 
-function BottomSheetDragHandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="bottom-sheet-drag-handle"
-        data-node="drag-handle"
-      className={cn("m-[15px] bg-[color-mix(in_srgb,currentColor_25%,transparent)] min-w-13.5 min-h-1.5 rounded-[99px]", className)}
-      {...props}
-    />
-  )
-}
-
-function BottomSheetWidget({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="bottom-sheet-widget"
-        data-node="widget"
-      className={cn("rounded-tl-[15px] rounded-tr-[15px]", className)}
-      {...props}
-    />
-  )
-}
-
-function BottomSheetStack({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="bottom-sheet-stack"
-        data-node="stack"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
 function BottomSheetSheet({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -192,4 +151,4 @@ function BottomSheetSheet({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { BottomSheet, BottomSheetDimming, BottomSheetOutline, BottomSheetDragHandle, BottomSheetWidget, BottomSheetStack, BottomSheetSheet, bottomSheetVariants }
+export { BottomSheet, BottomSheetDimming, BottomSheetOutline, BottomSheetSheet, bottomSheetVariants }

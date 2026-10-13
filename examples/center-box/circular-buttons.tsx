@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function CenterBoxCircularbuttons() {
   return (
-    <CenterBox size="circularButtons">
+    <CenterBox variant="circularButtons">
       <Label label="Label" />
     </CenterBox>
   )

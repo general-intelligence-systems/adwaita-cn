@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -20,19 +19,19 @@ export interface DropDownProps
   enableSearch?: boolean
 
   /** Expression, from Gtk.DropDown */
-  expression?: ReactNode
+  expression?: unknown
 
   /** ListItemFactory, from Gtk.DropDown */
-  factory?: ReactNode
+  factory?: unknown
 
   /** ListItemFactory, from Gtk.DropDown */
-  headerFactory?: ReactNode
+  headerFactory?: unknown
 
   /** ListItemFactory, from Gtk.DropDown */
-  listFactory?: ReactNode
+  listFactory?: unknown
 
   /** Gio.ListModel, from Gtk.DropDown */
-  model?: ReactNode
+  model?: unknown
 
   /** StringFilterMatchMode, from Gtk.DropDown */
   searchMatchMode?: StringFilterMatchMode
@@ -44,7 +43,7 @@ export interface DropDownProps
   showArrow?: boolean
 }
 
-function DropDown({ className, render, expression, factory, headerFactory, listFactory, model, enableSearch, searchMatchMode, selected, showArrow, children, ...props }: DropDownProps) {
+function DropDown({ className, render, expression: _expression, factory: _factory, headerFactory: _headerFactory, listFactory: _listFactory, model: _model, enableSearch, searchMatchMode, selected, showArrow, children, ...props }: DropDownProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -57,24 +56,12 @@ function DropDown({ className, render, expression, factory, headerFactory, listF
     "data-search-match-mode": searchMatchMode,
     "data-selected-value": selected,
     "data-show-arrow": showArrow,
-    className: cn("group/drop-down", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
+    className: cn("group/drop-down", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
                   <DropDownArrow />
-                  <DropDownPopover>
-                <DropDownArrow2 />
-              </DropDownPopover>
-                  <DropDownButton>
-                <DropDownBox>
                   {children}
-                </DropDownBox>
-              </DropDownButton>
-                  {expression}
-                  {factory}
-                  {headerFactory}
-                  {listFactory}
-                  {model}
         </>
       ),
     ...widgetAttributes,
@@ -99,56 +86,4 @@ function DropDownArrow({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function DropDownArrow2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="drop-down-arrow2"
-        data-node="arrow"
-      className={cn("adw-icon-source [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
-      {...props}
-    />
-  )
-}
-
-function DropDownPopover({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="drop-down-popover"
-        data-node="popover"
-      className={cn("hidden", "[--shade-color:var(--popover-shade-color)] p-2 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)] rounded-[15px]", className)}
-      {...props}
-    />
-  )
-}
-
-function DropDownBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="drop-down-box"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
-      {...props}
-    />
-  )
-}
-
-function DropDownButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="drop-down-button"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/drop-down:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/drop-down:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/drop-down:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/drop-down:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/drop-down:group-hover/drop-down:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/drop-down:group-active/drop-down:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { DropDown, DropDownArrow, DropDownArrow2, DropDownPopover, DropDownBox, DropDownButton }
+export { DropDown, DropDownArrow }

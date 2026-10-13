@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -12,6 +11,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import type { Orientation } from "@/lib/enums"
 
 const toggleGroupVariants = cva(
   [
@@ -23,16 +23,16 @@ const toggleGroupVariants = cva(
       variant: {
         default: "",
         /** .flat */
-        flat: "[---group-padding:0px] bg-none text-[inherit] shadow-none",
+        flat: "flat [---group-padding:0px] bg-none text-[inherit] shadow-none",
         /** .hidden */
-        hidden: "",
+        hidden: "hidden",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding [--active-toggle-bg-color:white] [--active-toggle-fg-color:rgb(0_0_0_/_80%)]",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding [--active-toggle-bg-color:white] [--active-toggle-fg-color:rgb(0_0_0_/_80%)]",
       },
       size: {
         default: "",
         /** .round */
-        round: "rounded-[17px]",
+        round: "round rounded-[17px]",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -56,10 +56,10 @@ export interface ToggleGroupProps
   homogeneous?: boolean
 
   /** Orientation, from Adw.ToggleGroup */
-  orientation?: ReactNode
+  orientation?: Orientation
 }
 
-function ToggleGroup({ className, render, variant = "default", size = "default", orientation, active, activeName, canShrink, homogeneous, children, ...props }: ToggleGroupProps) {
+function ToggleGroup({ className, render, variant = "default", size = "default", active, activeName, canShrink, homogeneous, orientation, children, ...props }: ToggleGroupProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -75,15 +75,10 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
     "data-active-name": activeName,
     "data-can-shrink": canShrink,
     "data-homogeneous": homogeneous,
-    className: cn("group/toggle-group", "flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), toggleGroupVariants({ variant, size }), widgetClassName, className),
+    "data-orientation": orientation,
+    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), toggleGroupVariants({ variant, size }), widgetClassName, className),
     style,
-    children: (
-        <>
-                  <ToggleGroupSeparator />
-                  {orientation}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -95,18 +90,4 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
   })
 }
 
-function ToggleGroupSeparator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="toggle-group-separator"
-        data-node="separator"
-      className={cn([
-        "bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] transition-[opacity] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] my-[calc(6px_-_var(---group-padding))] mx-[1px]",
-        "group-disabled/toggle-group:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { ToggleGroup, ToggleGroupSeparator, toggleGroupVariants }
+export { ToggleGroup, toggleGroupVariants }

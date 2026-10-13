@@ -19,7 +19,7 @@ const editableLabelVariants = cva(
       variant: {
         default: "",
         /** .editing */
-        editing: "",
+        editing: "editing",
       },
     },
     defaultVariants: { variant: "default" },
@@ -73,6 +73,8 @@ function EditableLabel({ className, render, variant = "default", editable, editi
     style,
     children: (
         <EditableLabelStack>
+                <EditableLabelLabel />
+                <EditableLabelText defaultValue={text} />
                 {children}
               </EditableLabelStack>
       ),
@@ -87,15 +89,133 @@ function EditableLabel({ className, render, variant = "default", editable, editi
   })
 }
 
-function EditableLabelStack({ className, ...props }: React.ComponentProps<"div">) {
+function EditableLabelSelection({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="editable-label-stack"
-        data-node="stack"
+      data-slot="editable-label-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/editable-label:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/editable-label:text-[var(--accent-color)]",
+        "group-disabled/editable-label:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="editable-label-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor]",
+        "group-disabled/editable-label:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-placeholder"
+        data-node="placeholder"
       className={cn(className)}
       {...props}
     />
   )
 }
 
-export { EditableLabel, EditableLabelStack, editableLabelVariants }
+function EditableLabelUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-block-cursor"
+        data-node="block-cursor"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="editable-label-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EditableLabelStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-stack"
+        data-node="stack"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      {...props}
+    />
+  )
+}
+
+export { EditableLabel, EditableLabelSelection, EditableLabelLink, EditableLabelLabel, EditableLabelPlaceholder, EditableLabelUndershoot, EditableLabelSelection2, EditableLabelCursorHandle, EditableLabelBlockCursor, EditableLabelWindow, EditableLabelText, EditableLabelStack, editableLabelVariants }

@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,16 +20,9 @@ const gridViewVariants = cva(
       variant: {
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .navigation-sidebar */
-        navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
-        /** .view */
-        view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        navigationSidebar: "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -45,10 +37,10 @@ export interface GridViewProps
   enableRubberband?: boolean
 
   /** ListItemFactory, from Gtk.GridView */
-  factory?: ReactNode
+  factory?: unknown
 
   /** Adjustment, from Gtk.GridView */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.GridView */
   hscrollPolicy?: ScrollablePolicy
@@ -60,7 +52,7 @@ export interface GridViewProps
   minColumns?: number
 
   /** SelectionModel, from Gtk.GridView */
-  model?: ReactNode
+  model?: unknown
 
   /** Orientation, from Gtk.GridView */
   orientation?: Orientation
@@ -72,13 +64,13 @@ export interface GridViewProps
   tabBehavior?: ListTabBehavior
 
   /** Adjustment, from Gtk.GridView */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.GridView */
   vscrollPolicy?: ScrollablePolicy
 }
 
-function GridView({ className, render, variant = "default", factory, hadjustment, model, vadjustment, enableRubberband, hscrollPolicy, maxColumns, minColumns, orientation, singleClickActivate, tabBehavior, vscrollPolicy, children, ...props }: GridViewProps) {
+function GridView({ className, render, variant = "default", factory: _factory, hadjustment: _hadjustment, model: _model, vadjustment: _vadjustment, enableRubberband, hscrollPolicy, maxColumns, minColumns, orientation, singleClickActivate, tabBehavior, vscrollPolicy, children, ...props }: GridViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -96,18 +88,14 @@ function GridView({ className, render, variant = "default", factory, hadjustment
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("group/grid-view", "grid [&>*]:col-start-1 [&>*]:row-start-1", gridViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/grid-view", "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0", gridViewVariants({ variant }), [
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
+          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
+        ], widgetClassName, className),
     style,
-    children: (
-        <>
-                  <GridViewChild />
-                  {factory}
-                  {hadjustment}
-                  {model}
-                  {vadjustment}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -133,4 +121,15 @@ function GridViewChild({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { GridView, GridViewChild, gridViewVariants }
+function GridViewRubberband({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="grid-view-rubberband"
+        data-node="rubberband"
+      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+export { GridView, GridViewChild, GridViewRubberband, gridViewVariants }

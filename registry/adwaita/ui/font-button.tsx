@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,7 +20,7 @@ const fontButtonVariants = cva(
       variant: {
         default: "",
         /** .font */
-        font: "",
+        font: "font",
       },
     },
     defaultVariants: { variant: "default" },
@@ -36,7 +35,7 @@ export interface FontButtonProps
   font?: string
 
   /** Pango.FontDescription, from Gtk.FontButton */
-  fontDesc?: ReactNode
+  fontDesc?: unknown
 
   /** utf8, from Gtk.FontButton */
   language?: string
@@ -63,7 +62,7 @@ export interface FontButtonProps
   useSize?: boolean
 }
 
-function FontButton({ className, render, variant = "default", fontDesc, font, language, level, modal, previewText, showPreviewEntry, title, useFont, useSize, children, ...props }: FontButtonProps) {
+function FontButton({ className, render, variant = "default", fontDesc: _fontDesc, font, language, level, modal, previewText, showPreviewEntry, title, useFont, useSize, children, ...props }: FontButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -82,11 +81,11 @@ function FontButton({ className, render, variant = "default", fontDesc, font, la
     "data-title": title,
     "data-use-font": useFont,
     "data-use-size": useSize,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", fontButtonVariants({ variant }), widgetClassName, className),
+    className: cn("group/font-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", fontButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {fontDesc}
+                  <FontButtonButton />
                   {children}
         </>
       ),
@@ -101,4 +100,34 @@ function FontButton({ className, render, variant = "default", fontDesc, font, la
   })
 }
 
-export { FontButton, fontButtonVariants }
+function FontButtonContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="font-button-content"
+        data-node="content"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function FontButtonButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="font-button-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/font-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/font-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/font-button:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/font-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/font-button:group-hover/font-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/font-button:group-active/font-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { FontButton, FontButtonContent, FontButtonButton, fontButtonVariants }

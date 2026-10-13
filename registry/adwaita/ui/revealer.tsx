@@ -21,7 +21,7 @@ const revealerVariants = cva(
       variant: {
         default: "",
         /** .needs-attention */
-        needsAttention: "",
+        needsAttention: "needs-attention",
       },
     },
     defaultVariants: { variant: "default" },

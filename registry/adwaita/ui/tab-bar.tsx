@@ -34,10 +34,10 @@ export interface TabBarProps
   startActionWidget?: ReactNode
 
   /** TabView, from Adw.TabBar */
-  view?: ReactNode
+  view?: unknown
 }
 
-function TabBar({ className, render, endActionWidget, startActionWidget, view, autohide, expandTabs, extraDragPreload, inverted, children, ...props }: TabBarProps) {
+function TabBar({ className, render, endActionWidget, startActionWidget, view: _view, autohide, expandTabs, extraDragPreload, inverted, children, ...props }: TabBarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -72,7 +72,6 @@ function TabBar({ className, render, endActionWidget, startActionWidget, view, a
               </TabBarRevealer>
                   {endActionWidget}
                   {startActionWidget}
-                  {view}
         </>
       ),
     ...widgetAttributes,
@@ -112,7 +111,7 @@ function TabBarPinnedScrolledWindow({ className, ...props }: React.ComponentProp
     <div
       data-slot="tab-bar-pinned-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("pinned", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "pinned", className)}
       {...props}
     />
   )
@@ -135,7 +134,7 @@ function TabBarScrolledWindow({ className, ...props }: React.ComponentProps<"div
       data-slot="tab-bar-scrolled-window"
         data-node="scrolledwindow"
         data-hexpand=""
-      className={cn(className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
       {...props}
     />
   )
@@ -156,7 +155,7 @@ function TabBarBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-bar-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "box", "pt-0 pb-[1px] px-[1px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color)]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "box horizontal", "pt-0 pb-[1px] px-[1px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color)]", className)}
       {...props}
     />
   )

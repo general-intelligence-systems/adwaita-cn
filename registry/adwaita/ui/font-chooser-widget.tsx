@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -20,7 +19,7 @@ export interface FontChooserWidgetProps
   font?: string
 
   /** Pango.FontDescription, from Gtk.FontChooserWidget */
-  fontDesc?: ReactNode
+  fontDesc?: unknown
 
   /** utf8, from Gtk.FontChooserWidget */
   language?: string
@@ -35,7 +34,7 @@ export interface FontChooserWidgetProps
   showPreviewEntry?: boolean
 }
 
-function FontChooserWidget({ className, render, font, fontDesc, previewText, language, level, showPreviewEntry, children, ...props }: FontChooserWidgetProps) {
+function FontChooserWidget({ className, render, font, previewText, fontDesc: _fontDesc, language, level, showPreviewEntry, children, ...props }: FontChooserWidgetProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -61,7 +60,6 @@ function FontChooserWidget({ className, render, font, fontDesc, previewText, lan
                   {previewText}
                 </span>
               )}
-                  {fontDesc}
                   {children}
         </>
       ),

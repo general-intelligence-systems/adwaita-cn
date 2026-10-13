@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -25,14 +24,12 @@ const searchEntryVariants = cva(
       variant: {
         default: "",
         /** .combo-searchbar */
-        comboSearchbar: "",
+        comboSearchbar: "combo-searchbar",
         /** .flat */
         flat: [
-          "p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
+          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
           "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
         ],
-        /** .search */
-        search: "",
       },
     },
     defaultVariants: { variant: "default" },
@@ -59,7 +56,7 @@ export interface SearchEntryProps
   inputPurpose?: InputPurpose
 
   /** Widget, from Gtk.SearchEntry */
-  keyCaptureWidget?: ReactNode
+  keyCaptureWidget?: unknown
 
   /** gint, from Gtk.SearchEntry */
   maxWidthChars?: number
@@ -80,7 +77,7 @@ export interface SearchEntryProps
   xalign?: number
 }
 
-function SearchEntry({ className, render, variant = "default", keyCaptureWidget, activatesDefault, editable, enableUndo, inputHints, inputPurpose, maxWidthChars, placeholderText, searchDelay, text, widthChars, xalign, children, ...props }: SearchEntryProps) {
+function SearchEntry({ className, render, variant = "default", keyCaptureWidget: _keyCaptureWidget, activatesDefault, editable, enableUndo, inputHints, inputPurpose, maxWidthChars, placeholderText, searchDelay, text, widthChars, xalign, children, ...props }: SearchEntryProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -101,18 +98,11 @@ function SearchEntry({ className, render, variant = "default", keyCaptureWidget,
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/search-entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", searchEntryVariants({ variant }), widgetClassName, className),
+    className: cn("group/search-entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", searchEntryVariants({ variant }), "search", widgetClassName, className),
     style,
     children: (
         <>
-                  <SearchEntryImage />
-                  <SearchEntryProgress>
-                <SearchEntryTrough>
-                  <SearchEntryProgress2 />
-                </SearchEntryTrough>
-              </SearchEntryProgress>
                   <SearchEntryText placeholder={placeholderText} defaultValue={text} />
-                  {keyCaptureWidget}
                   {children}
         </>
       ),
@@ -125,6 +115,83 @@ function SearchEntry({ className, render, variant = "default", keyCaptureWidget,
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function SearchEntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntrySelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="search-entry-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      {...props}
+    />
+  )
 }
 
 function SearchEntryImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
@@ -142,28 +209,6 @@ function SearchEntryImage({ className, ...props }: React.ComponentProps<typeof I
   )
 }
 
-function SearchEntryProgress2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-progress2"
-        data-node="progress"
-      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryTrough({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-trough"
-        data-node="trough"
-      className={cn("min-h-0.5", className)}
-      {...props}
-    />
-  )
-}
-
 function SearchEntryProgress({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -175,37 +220,4 @@ function SearchEntryProgress({ className, ...props }: React.ComponentProps<"div"
   )
 }
 
-function SearchEntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-block-cursor"
-        data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="search-entry-placeholder"
-        data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
-      {...props}
-    />
-  )
-}
-
-function SearchEntryText({ className, ...props }: React.ComponentProps<"input">) {
-  return (
-    <input
-      data-slot="search-entry-text"
-        data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
-      {...props}
-    />
-  )
-}
-
-export { SearchEntry, SearchEntryImage, SearchEntryProgress2, SearchEntryTrough, SearchEntryProgress, SearchEntryBlockCursor, SearchEntryPlaceholder, SearchEntryText, searchEntryVariants }
+export { SearchEntry, SearchEntryPlaceholder, SearchEntryUndershoot, SearchEntrySelection, SearchEntryCursorHandle, SearchEntryBlockCursor, SearchEntryWindow, SearchEntryText, SearchEntryImage, SearchEntryProgress, searchEntryVariants }

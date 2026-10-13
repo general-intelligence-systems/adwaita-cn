@@ -4,13 +4,11 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
-import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation } from "@/lib/enums"
@@ -22,11 +20,9 @@ const stackSwitcherVariants = cva(
       variant: {
         default: "",
         /** .circular */
-        circular: "",
-        /** .linked */
-        linked: "",
+        circular: "circular",
         /** .needs-attention */
-        needsAttention: "",
+        needsAttention: "needs-attention",
       },
     },
     defaultVariants: { variant: "default" },
@@ -41,10 +37,10 @@ export interface StackSwitcherProps
   orientation?: Orientation
 
   /** Stack, from Gtk.StackSwitcher */
-  stack?: ReactNode
+  stack?: unknown
 }
 
-function StackSwitcher({ className, render, variant = "default", stack, orientation, children, ...props }: StackSwitcherProps) {
+function StackSwitcher({ className, render, variant = "default", stack: _stack, orientation, children, ...props }: StackSwitcherProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -56,18 +52,9 @@ function StackSwitcher({ className, render, variant = "default", stack, orientat
     "data-variant": variant,
     role: "tablist",
     "data-orientation": orientation,
-    className: cn("group/stack-switcher", "grid [&>*]:col-start-1 [&>*]:row-start-1", stackSwitcherVariants({ variant }), widgetClassName, className),
+    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), stackSwitcherVariants({ variant }), "linked", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <StackSwitcherButton>
-                <StackSwitcherImage />
-                <StackSwitcherLabel />
-              </StackSwitcherButton>
-                  {stack}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -79,48 +66,4 @@ function StackSwitcher({ className, render, variant = "default", stack, orientat
   })
 }
 
-function StackSwitcherImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="stack-switcher-image"
-        data-node="image"
-      className={cn("py-[3px] px-1.5 my-[-3px] -mx-1.5", className)}
-      {...props}
-    />
-  )
-}
-
-function StackSwitcherLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="stack-switcher-label"
-        data-node="label"
-      className={cn([
-        "caret-[currentColor] py-0 px-1.5 my-0 -mx-1.5",
-        "group-disabled/stack-switcher:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function StackSwitcherButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="stack-switcher-button"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/stack-switcher:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/stack-switcher:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/stack-switcher:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/stack-switcher:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/stack-switcher:group-hover/stack-switcher:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/stack-switcher:group-active/stack-switcher:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { StackSwitcher, StackSwitcherImage, StackSwitcherLabel, StackSwitcherButton, stackSwitcherVariants }
+export { StackSwitcher, stackSwitcherVariants }

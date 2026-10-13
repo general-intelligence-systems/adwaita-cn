@@ -24,39 +24,30 @@ const passwordEntryRowVariants = cva(
     variants: {
       variant: {
         default: "",
-        /** .activatable */
-        activatable: [
-          "hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ],
         /** .entry */
-        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
-        expander: "p-0 bg-none",
+        expander: "expander p-0 bg-none",
         /** .flat */
-        flat: "",
+        flat: "flat",
         /** .focused */
-        focused: "",
+        focused: "focused",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
         /** .header */
-        header: "",
+        header: "header",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
-        /** .password */
-        password: "",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
-        separator: "",
+        separator: "separator",
         /** .separators */
-        separators: "",
+        separators: "separators",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "",
+        sidebarNewBookmarkRow: "sidebar-new-bookmark-row",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "",
+        sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -71,7 +62,7 @@ export interface PasswordEntryRowProps
   actionName?: string
 
   /** GLib.Variant, from Adw.PasswordEntryRow */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.ListBoxRow */
   activatable?: boolean
@@ -80,7 +71,7 @@ export interface PasswordEntryRowProps
   activatesDefault?: boolean
 
   /** Pango.AttrList, from Adw.EntryRow */
-  attributes?: ReactNode
+  attributes?: unknown
 
   /** Widget, from Gtk.ListBoxRow */
   child?: ReactNode
@@ -137,7 +128,7 @@ export interface PasswordEntryRowProps
   xalign?: number
 }
 
-function PasswordEntryRow({ className, render, variant = "default", actionTarget, attributes, child, prefix, title, actionName, activatable, activatesDefault, editable, enableEmojiCompletion, enableUndo, inputHints, inputPurpose, maxLength, maxWidthChars, selectable, showApplyButton, text, titleSelectable, useMarkup, useUnderline, widthChars, xalign, children, ...props }: PasswordEntryRowProps) {
+function PasswordEntryRow({ className, render, variant = "default", child, prefix, title, actionTarget: _actionTarget, attributes: _attributes, actionName, activatable, activatesDefault, editable, enableEmojiCompletion, enableUndo, inputHints, inputPurpose, maxLength, maxWidthChars, selectable, showApplyButton, text, titleSelectable, useMarkup, useUnderline, widthChars, xalign, children, ...props }: PasswordEntryRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -165,7 +156,12 @@ function PasswordEntryRow({ className, render, variant = "default", actionTarget
     "data-use-underline": useUnderline,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/password-entry-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", passwordEntryRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/password-entry-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", passwordEntryRowVariants({ variant }), [
+          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
+          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
+          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
+          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
+        ], "password", widgetClassName, className),
     style,
     children: (
         <>
@@ -176,9 +172,9 @@ function PasswordEntryRow({ className, render, variant = "default", actionTarget
                   </PasswordEntryRowPrefixes>
                 ) : null}
                 <PasswordEntryRowEditableArea>
-                  <PasswordEntryRowEmptyTitle>{title}</PasswordEntryRowEmptyTitle>
-                  <PasswordEntryRowTitle>{title}</PasswordEntryRowTitle>
-                  <PasswordEntryRowText>{text}</PasswordEntryRowText>
+                  <PasswordEntryRowEmptyTitle style={{ opacity: text === undefined ? 1 : 0 }}>{title}</PasswordEntryRowEmptyTitle>
+                  <PasswordEntryRowTitle style={{ opacity: text === undefined ? 0 : 1 }}>{title}</PasswordEntryRowTitle>
+                  <PasswordEntryRowText defaultValue={text} style={{ opacity: text === undefined ? 0 : 1 }} />
                   {editable ? (
                     <PasswordEntryRowEditIcon />
                   ) : null}
@@ -189,8 +185,6 @@ function PasswordEntryRow({ className, render, variant = "default", actionTarget
                   </PasswordEntryRowSuffixes>
                 ) : null}
               </PasswordEntryRowHeader>
-                  {actionTarget}
-                  {attributes}
                   {child}
         </>
       ),
@@ -210,7 +204,34 @@ function PasswordEntryRowPrefixes({ className, ...props }: React.ComponentProps<
     <div
       data-slot="password-entry-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes", "mx-1.5 gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/password-entry-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/password-entry-row:text-[var(--accent-color)]",
+        "group-disabled/password-entry-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
       {...props}
     />
   )
@@ -225,6 +246,33 @@ function PasswordEntryRowEmptyTitle({ className, ...props }: React.ComponentProp
       className={cn("title dimmed", [
         "caret-[currentColor] opacity-[var(--dim-opacity)]",
         "group-disabled/password-entry-row:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/password-entry-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/password-entry-row:text-[var(--accent-color)]",
+        "group-disabled/password-entry-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -247,6 +295,72 @@ function PasswordEntryRowTitle({ className, ...props }: React.ComponentProps<"sp
   )
 }
 
+function PasswordEntryRowPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-placeholder"
+        data-node="placeholder"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-selection3"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-block-cursor"
+        data-node="block-cursor"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryRowWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-row-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
 function PasswordEntryRowText({ className, ...props }: React.ComponentProps<"input">) {
   return (
     <input
@@ -256,7 +370,7 @@ function PasswordEntryRowText({ className, ...props }: React.ComponentProps<"inp
         data-hexpand=""
         data-vexpand=""
         style={{ opacity: 0 }}
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
       {...props}
     />
   )
@@ -325,7 +439,7 @@ function PasswordEntryRowSuffixes({ className, ...props }: React.ComponentProps<
     <div
       data-slot="password-entry-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", "gap-[6px] mx-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px] mx-1.5", className)}
       {...props}
     />
   )
@@ -337,10 +451,10 @@ function PasswordEntryRowHeader({ className, ...props }: React.ComponentProps<"d
       data-slot="password-entry-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
       {...props}
     />
   )
 }
 
-export { PasswordEntryRow, PasswordEntryRowPrefixes, PasswordEntryRowEmptyTitle, PasswordEntryRowTitle, PasswordEntryRowText, PasswordEntryRowIndicator, PasswordEntryRowApplyButton, PasswordEntryRowEditIcon, PasswordEntryRowEditableArea, PasswordEntryRowSuffixes, PasswordEntryRowHeader, passwordEntryRowVariants }
+export { PasswordEntryRow, PasswordEntryRowPrefixes, PasswordEntryRowSelection, PasswordEntryRowLink, PasswordEntryRowEmptyTitle, PasswordEntryRowSelection2, PasswordEntryRowLink2, PasswordEntryRowTitle, PasswordEntryRowPlaceholder, PasswordEntryRowUndershoot, PasswordEntryRowSelection3, PasswordEntryRowCursorHandle, PasswordEntryRowBlockCursor, PasswordEntryRowWindow, PasswordEntryRowText, PasswordEntryRowIndicator, PasswordEntryRowApplyButton, PasswordEntryRowEditIcon, PasswordEntryRowEditableArea, PasswordEntryRowSuffixes, PasswordEntryRowHeader, passwordEntryRowVariants }

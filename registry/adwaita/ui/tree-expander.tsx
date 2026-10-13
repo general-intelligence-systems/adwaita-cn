@@ -28,10 +28,10 @@ export interface TreeExpanderProps
   indentForIcon?: boolean
 
   /** TreeListRow, from Gtk.TreeExpander */
-  listRow?: ReactNode
+  listRow?: unknown
 }
 
-function TreeExpander({ className, render, child, listRow, hideExpander, indentForDepth, indentForIcon, children, ...props }: TreeExpanderProps) {
+function TreeExpander({ className, render, child, listRow: _listRow, hideExpander, indentForDepth, indentForIcon, children, ...props }: TreeExpanderProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -43,12 +43,11 @@ function TreeExpander({ className, render, child, listRow, hideExpander, indentF
     "data-hide-expander": hideExpander,
     "data-indent-for-depth": indentForDepth,
     "data-indent-for-icon": indentForIcon,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[4px]", widgetClassName, className),
+    className: cn("group/tree-expander", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[4px]", widgetClassName, className),
     style,
     children: (
         <>
                   {child}
-                  {listRow}
                   {children}
         </>
       ),
@@ -63,4 +62,30 @@ function TreeExpander({ className, render, child, listRow, hideExpander, indentF
   })
 }
 
-export { TreeExpander }
+function TreeExpanderIndent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tree-expander-indent"
+        data-node="indent"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function TreeExpanderExpander({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tree-expander-expander"
+        data-node="expander"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+        "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)]",
+        "group-disabled/tree-expander:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/tree-expander:adw-icon-source group-data-[state=checked]/tree-expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { TreeExpander, TreeExpanderIndent, TreeExpanderExpander }

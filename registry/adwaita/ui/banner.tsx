@@ -4,7 +4,6 @@
 // of its stylesheet and out of adw-banner.ui. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,7 +20,7 @@ const bannerVariants = cva(
       variant: {
         default: "",
         /** .suggested-action */
-        suggestedAction: "",
+        suggestedAction: "suggested-action",
       },
     },
     defaultVariants: { variant: "default" },
@@ -36,7 +35,7 @@ export interface BannerProps
   actionName?: string
 
   /** GLib.Variant, from Adw.Banner */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** utf8, from Adw.Banner */
   buttonLabel?: string
@@ -54,7 +53,7 @@ export interface BannerProps
   useMarkup?: boolean
 }
 
-function Banner({ className, render, variant = "default", actionTarget, buttonLabel, title, actionName, buttonStyle, revealed, useMarkup, children, ...props }: BannerProps) {
+function Banner({ className, render, variant = "default", buttonLabel, title, actionTarget: _actionTarget, actionName, buttonStyle, revealed, useMarkup, children, ...props }: BannerProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -72,8 +71,7 @@ function Banner({ className, render, variant = "default", actionTarget, buttonLa
     className: cn("group/banner", "grid [&>*]:col-start-1 [&>*]:row-start-1", bannerVariants({ variant }), widgetClassName, className),
     style,
     children: (
-        <>
-                  <BannerRevealer>
+        <BannerRevealer>
                 <BannerGizmo>
                   <BannerTitle>{title}</BannerTitle>
                   {buttonLabel ? (
@@ -82,8 +80,6 @@ function Banner({ className, render, variant = "default", actionTarget, buttonLa
                   {children}
                 </BannerGizmo>
               </BannerRevealer>
-                  {actionTarget}
-        </>
       ),
     ...widgetAttributes,
   }
@@ -94,6 +90,33 @@ function Banner({ className, render, variant = "default", actionTarget, buttonLa
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function BannerSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="banner-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function BannerLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="banner-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/banner:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/banner:text-[var(--accent-color)]",
+        "group-disabled/banner:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
 }
 
 function BannerTitle({ className, ...props }: React.ComponentProps<"span">) {
@@ -153,4 +176,4 @@ function BannerRevealer({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Banner, BannerTitle, BannerButton, BannerGizmo, BannerRevealer, bannerVariants }
+export { Banner, BannerSelection, BannerLink, BannerTitle, BannerButton, BannerGizmo, BannerRevealer, bannerVariants }

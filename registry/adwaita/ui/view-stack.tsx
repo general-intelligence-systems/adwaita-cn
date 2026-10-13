@@ -4,11 +4,11 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { visibleChild } from "@/lib/stack"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -28,13 +28,13 @@ export interface ViewStackProps
   vhomogeneous?: boolean
 
   /** Gtk.Widget, from Adw.ViewStack */
-  visibleChild?: ReactNode
+  visibleChild?: unknown
 
   /** utf8, from Adw.ViewStack */
   visibleChildName?: string
 }
 
-function ViewStack({ className, render, visibleChild, enableTransitions, hhomogeneous, transitionDuration, vhomogeneous, visibleChildName, children, ...props }: ViewStackProps) {
+function ViewStack({ className, render, visibleChild: _visibleChild, enableTransitions, hhomogeneous, transitionDuration, vhomogeneous, visibleChildName, children, ...props }: ViewStackProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -48,14 +48,9 @@ function ViewStack({ className, render, visibleChild, enableTransitions, hhomoge
     "data-transition-duration": transitionDuration,
     "data-vhomogeneous": vhomogeneous,
     "data-visible-child-name": visibleChildName,
-    className: cn(widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {visibleChild}
-                  {children}
-        </>
-      ),
+    children: visibleChild(children, visibleChildName),
     ...widgetAttributes,
   }
 

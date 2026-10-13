@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
-import type { LengthUnit } from "@/lib/enums"
+import type { LengthUnit, Orientation, ScrollablePolicy } from "@/lib/enums"
 
 export interface ClampScrollableProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "child" | "hadjustment" | "hscrollPolicy" | "maximumSize" | "orientation" | "tighteningThreshold" | "unit" | "vadjustment" | "vscrollPolicy">,
@@ -21,16 +21,16 @@ export interface ClampScrollableProps
   child?: ReactNode
 
   /** Adjustment, from Adw.ClampScrollable */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** ScrollablePolicy, from Adw.ClampScrollable */
-  hscrollPolicy?: ReactNode
+  hscrollPolicy?: ScrollablePolicy
 
   /** gint, from Adw.ClampScrollable */
   maximumSize?: number
 
   /** Orientation, from Adw.ClampScrollable */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** gint, from Adw.ClampScrollable */
   tighteningThreshold?: number
@@ -39,13 +39,13 @@ export interface ClampScrollableProps
   unit?: LengthUnit
 
   /** Adjustment, from Adw.ClampScrollable */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Adw.ClampScrollable */
-  vscrollPolicy?: ReactNode
+  vscrollPolicy?: ScrollablePolicy
 }
 
-function ClampScrollable({ className, render, child, hadjustment, hscrollPolicy, orientation, vadjustment, vscrollPolicy, maximumSize, tighteningThreshold, unit, children, ...props }: ClampScrollableProps) {
+function ClampScrollable({ className, render, child, hadjustment: _hadjustment, vadjustment: _vadjustment, hscrollPolicy, maximumSize, orientation, tighteningThreshold, unit, vscrollPolicy, children, ...props }: ClampScrollableProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   const { ref: clampRef, columns: clampColumns } = useClamp<HTMLDivElement>({ maximumSize, tighteningThreshold, unit })
@@ -56,19 +56,17 @@ function ClampScrollable({ className, render, child, hadjustment, hscrollPolicy,
     "data-slot": "clamp-scrollable",
     "data-node": "clamp",
     ref: clampRef,
+    "data-hscroll-policy": hscrollPolicy,
     "data-maximum-size": maximumSize,
+    "data-orientation": orientation,
     "data-tightening-threshold": tighteningThreshold,
     "data-unit": unit,
+    "data-vscroll-policy": vscrollPolicy,
     className: cn("grid", "[&>*]:min-w-0 [&>*]:col-start-2", widgetClassName, className),
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
                   {child}
-                  {hadjustment}
-                  {hscrollPolicy}
-                  {orientation}
-                  {vadjustment}
-                  {vscrollPolicy}
                   {children}
         </>
       ),

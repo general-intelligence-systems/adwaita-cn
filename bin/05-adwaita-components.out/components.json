@@ -61,6 +61,14 @@
         "heading",
         "lowres-icon"
       ],
+      "documented": [
+        {
+          "node": "dialog",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "hides": {
         "credits_legal_group": "gtk_widget_get_visible (self->credits_box) ||\n                          gtk_widget_get_visible (self->legal_box) ||\n                          gtk_widget_get_visible (self->acknowledgements_box)",
         "credits_box": "!!gtk_widget_get_first_child (self->credits_box)",
@@ -99,6 +107,14 @@
         "body",
         "heading"
       ],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "hides": {
         "credits_legal_group": "gtk_widget_get_visible (self->credits_box) ||\n                          gtk_widget_get_visible (self->legal_box) ||\n                          gtk_widget_get_visible (self->acknowledgements_box)",
         "credits_box": "!!gtk_widget_get_first_child (self->credits_box)",
@@ -133,6 +149,26 @@
         "activatable"
       ],
       "declared": [],
+      "documented": [
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        },
+        {
+          "node": "label",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
+      ],
       "showsText": [
         "subtitle"
       ],
@@ -259,6 +295,62 @@
         "contrasted",
         "image"
       ],
+      "documented": [
+        {
+          "node": "avatar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "builds": [
+        {
+          "field": "gizmo",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "avatar"
+          }
+        },
+        {
+          "field": "label",
+          "into": "gizmo",
+          "node": {
+            "class": "Label"
+          }
+        },
+        {
+          "field": "icon",
+          "into": "gizmo",
+          "node": {
+            "class": "Image"
+          }
+        },
+        {
+          "field": "custom_image",
+          "into": "gizmo",
+          "node": {
+            "class": "Image"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Gizmo",
+          "node": "avatar",
+          "children": [
+            {
+              "class": "Label"
+            },
+            {
+              "class": "Image"
+            },
+            {
+              "class": "Image"
+            }
+          ]
+        }
+      ],
       "hides": {
         "label": "!has_custom_image && has_initials",
         "icon": "!has_custom_image && !has_initials",
@@ -293,6 +385,14 @@
       ],
       "declared": [
         "suggested-action"
+      ],
+      "documented": [
+        {
+          "node": "banner",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ],
       "showsText": [
         "buttonLabel",
@@ -338,6 +438,76 @@
         "has-drag-handle",
         "hidden",
         "inert"
+      ],
+      "builds": [
+        {
+          "field": "content_bin",
+          "into": null,
+          "node": {
+            "class": "Bin"
+          }
+        },
+        {
+          "field": "dimming",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "dimming"
+          }
+        },
+        {
+          "field": "sheet_bin",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "sheet",
+            "styles": [
+              "background"
+            ]
+          }
+        },
+        {
+          "field": "outline",
+          "into": "sheet_bin",
+          "node": {
+            "class": "Gizmo",
+            "node": "outline"
+          }
+        },
+        {
+          "field": "drag_handle",
+          "into": "sheet_page",
+          "node": {
+            "class": "Gizmo",
+            "node": "drag-handle"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Bin"
+        },
+        {
+          "class": "Gizmo",
+          "node": "dimming"
+        },
+        {
+          "class": "Gizmo",
+          "node": "sheet",
+          "styles": [
+            "background"
+          ],
+          "children": [
+            {
+              "class": "Gizmo",
+              "node": "outline"
+            }
+          ]
+        },
+        {
+          "class": "Gizmo",
+          "node": "drag-handle"
+        }
       ],
       "hides": {
         "dimming": "self->modal",
@@ -392,6 +562,28 @@
       "declared": [
         "image-text-button"
       ],
+      "documented": [
+        {
+          "node": "buttoncontent",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "image",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "label",
+          "optional": false,
+          "depth": 2
+        }
+      ],
       "showsText": [
         "label"
       ],
@@ -409,6 +601,20 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
+      ],
       "inheritedFrom": "GtkListBoxRow"
     },
     "AdwCallbackAnimationTarget": {
@@ -437,6 +643,14 @@
       "declared": [
         "horizontal",
         "vertical"
+      ],
+      "documented": [
+        {
+          "node": "carousel",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ]
     },
     "AdwCarouselIndicatorDots": {
@@ -448,7 +662,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "carouselindicatordots",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwCarouselIndicatorLines": {
       "library": "libadwaita",
@@ -459,7 +681,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "carouselindicatorlines",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwClamp": {
       "library": "libadwaita",
@@ -470,7 +700,15 @@
       "ownNode": true,
       "layout": "clamp",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "clamp",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwClampLayout": {
       "library": "libadwaita",
@@ -517,6 +755,14 @@
         "has-open-popup"
       ],
       "direction": "horizontal",
+      "documented": [
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "enableSearch"
       ],
@@ -553,6 +799,30 @@
         "narrow",
         "portrait",
         "short"
+      ],
+      "builds": [
+        {
+          "field": "child_breakpoint_bin",
+          "into": null,
+          "node": {
+            "class": "BreakpointBin"
+          }
+        },
+        {
+          "field": "bin",
+          "into": null,
+          "node": {
+            "class": "BreakpointBin"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "BreakpointBin"
+        },
+        {
+          "class": "BreakpointBin"
+        }
       ]
     },
     "AdwDialogHost": {
@@ -564,7 +834,21 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "builds": [
+        {
+          "field": "bin",
+          "into": null,
+          "node": {
+            "class": "Bin"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Bin"
+        }
+      ]
     },
     "AdwDialogModel": {
       "library": "libadwaita",
@@ -590,6 +874,14 @@
       ],
       "declared": [
         "focused"
+      ],
+      "documented": [
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ],
       "hides": {
         "edit_icon": "!priv->text_changed && (!priv->editing || !editable)",
@@ -635,6 +927,20 @@
         "empty"
       ],
       "direction": "horizontal",
+      "documented": [
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
+      ],
       "inheritedFrom": "GtkListBoxRow"
     },
     "AdwFadingLabel": {
@@ -667,6 +973,33 @@
         "folded",
         "unfolded"
       ],
+      "documented": [
+        {
+          "node": "flap",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "unfolded"
+      ],
+      "builds": [
+        {
+          "field": "shield",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "widget"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Gizmo",
+          "node": "widget"
+        }
+      ],
       "hides": {
         "shield": "self->modal &&\n                                  self->fold_progress > 0 &&\n                                  self->reveal_progress > 0"
       }
@@ -684,6 +1017,38 @@
       ],
       "declared": [
         "background"
+      ],
+      "builds": [
+        {
+          "field": "dimming",
+          "into": null,
+          "node": {
+            "class": "WindowHandle"
+          }
+        },
+        {
+          "field": "sheet_bin",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "sheet",
+            "styles": [
+              "background"
+            ]
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "WindowHandle"
+        },
+        {
+          "class": "Gizmo",
+          "node": "sheet",
+          "styles": [
+            "background"
+          ]
+        }
       ],
       "hides": {
         "dimming": "FALSE",
@@ -719,6 +1084,78 @@
         "start",
         "title"
       ],
+      "documented": [
+        {
+          "node": "headerbar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "windowhandle",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "widget",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 4
+        },
+        {
+          "node": "windowcontrols",
+          "optional": false,
+          "depth": 5
+        },
+        {
+          "node": "widget",
+          "optional": false,
+          "depth": 5
+        },
+        {
+          "node": "button",
+          "optional": true,
+          "depth": 6
+        },
+        {
+          "node": "other",
+          "optional": true,
+          "depth": 5
+        },
+        {
+          "node": "widget",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "widget",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 4
+        },
+        {
+          "node": "other",
+          "optional": true,
+          "depth": 5
+        },
+        {
+          "node": "windowcontrols",
+          "optional": false,
+          "depth": 5
+        }
+      ],
       "hides": {
         "center_bin": "show_title"
       }
@@ -743,6 +1180,46 @@
       ],
       "showsText": [
         "badgeNumber"
+      ],
+      "byProperty": {
+        "needsAttention": {
+          "true": [
+            "needs-attention"
+          ]
+        },
+        "badgeNumber": {
+          "true": [
+            "badge"
+          ]
+        }
+      },
+      "builds": [
+        {
+          "field": "mask",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "mask"
+          }
+        },
+        {
+          "field": "indicator",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "indicator"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Gizmo",
+          "node": "mask"
+        },
+        {
+          "class": "Gizmo",
+          "node": "indicator"
+        }
       ],
       "hides": {
         "label": "badge_number > 0"
@@ -771,6 +1248,28 @@
         "labels",
         "osd",
         "round"
+      ],
+      "documented": [
+        {
+          "node": "inline-view-switcher",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "builds": [
+        {
+          "field": "toggle_group",
+          "into": null,
+          "node": {
+            "class": "ToggleGroup"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "ToggleGroup"
+        }
       ]
     },
     "AdwInspectorPage": {
@@ -826,6 +1325,17 @@
       "declared": [
         "folded",
         "unfolded"
+      ],
+      "documented": [
+        {
+          "node": "leaflet",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "unfolded"
       ]
     },
     "AdwLeafletPage": {
@@ -876,6 +1386,9 @@
       ],
       "declared": [
         "has-open-popup",
+        "link"
+      ],
+      "always": [
         "link"
       ],
       "inheritedFrom": "AdwActionRow"
@@ -929,7 +1442,15 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "multi-layout-view",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwNavigationPage": {
       "library": "libadwaita",
@@ -962,6 +1483,50 @@
         "content-pane",
         "end",
         "sidebar-pane"
+      ],
+      "documented": [
+        {
+          "node": "navigation-split-view",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "builds": [
+        {
+          "field": "sidebar_bin",
+          "into": null,
+          "node": {
+            "class": "Bin",
+            "styles": [
+              "sidebar-pane"
+            ]
+          }
+        },
+        {
+          "field": "content_bin",
+          "into": null,
+          "node": {
+            "class": "Bin",
+            "styles": [
+              "content-pane"
+            ]
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Bin",
+          "styles": [
+            "sidebar-pane"
+          ]
+        },
+        {
+          "class": "Bin",
+          "styles": [
+            "content-pane"
+          ]
+        }
       ]
     },
     "AdwNavigationView": {
@@ -974,6 +1539,30 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "navigation-view",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "builds": [
+        {
+          "field": "shield",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "widget"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Gizmo",
+          "node": "widget"
+        }
+      ],
       "hides": {
         "shield": "FALSE"
       }
@@ -1023,6 +1612,50 @@
         "end",
         "sidebar-pane"
       ],
+      "documented": [
+        {
+          "node": "overlay-split-view",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "builds": [
+        {
+          "field": "content_bin",
+          "into": null,
+          "node": {
+            "class": "Bin"
+          }
+        },
+        {
+          "field": "shield",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "widget"
+          }
+        },
+        {
+          "field": "sidebar_bin",
+          "into": null,
+          "node": {
+            "class": "Bin"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Bin"
+        },
+        {
+          "class": "Gizmo",
+          "node": "widget"
+        },
+        {
+          "class": "Bin"
+        }
+      ],
       "hides": {
         "shield": "self->collapsed && self->show_progress > 0",
         "sidebar_bin": "FALSE"
@@ -1044,6 +1677,9 @@
         "flat",
         "password"
       ],
+      "always": [
+        "password"
+      ],
       "inheritedFrom": "AdwEntryRow"
     },
     "AdwPreferencesDialog": {
@@ -1056,6 +1692,14 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "dialog",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "hides": {
         "search_button": "search_enabled"
       },
@@ -1079,6 +1723,14 @@
         "boxed-list-separate",
         "single-line"
       ],
+      "documented": [
+        {
+          "node": "preferencesgroup",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "description",
         "title"
@@ -1100,6 +1752,14 @@
       "layout": "box",
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "preferencespage",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "description"
       ],
@@ -1129,6 +1789,14 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "hides": {
         "search_button": "search_enabled"
       },
@@ -1258,7 +1926,19 @@
         "empty",
         "end",
         "start"
-      ]
+      ],
+      "always": [
+        "empty",
+        "start"
+      ],
+      "byProperty": {
+        "side": {
+          "true": [
+            "start",
+            "end"
+          ]
+        }
+      }
     },
     "AdwShortcutLabel": {
       "library": "libadwaita",
@@ -1275,6 +1955,14 @@
       "declared": [
         "dimmed",
         "keycap"
+      ],
+      "documented": [
+        {
+          "node": "shortcut-label",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ]
     },
     "AdwShortcutRow": {
@@ -1298,6 +1986,9 @@
         "title-box"
       ],
       "direction": "vertical",
+      "always": [
+        "shortcut-row"
+      ],
       "inheritedFrom": "AdwPreferencesRow"
     },
     "AdwShortcutsDialog": {
@@ -1370,6 +2061,35 @@
         "page",
         "subtitle",
         "title"
+      ],
+      "documented": [
+        {
+          "node": "sidebar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "byProperty": {
+        "mode": {
+          "true": [
+            "page"
+          ]
+        }
+      },
+      "builds": [
+        {
+          "field": "page",
+          "into": null,
+          "node": {
+            "class": "PreferencesPage"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "PreferencesPage"
+        }
       ],
       "hides": {
         "page": "n_items > 0 || self->placeholder == NULL",
@@ -1521,6 +2241,17 @@
       ],
       "declared": [
         "spinner"
+      ],
+      "documented": [
+        {
+          "node": "image",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "spinner"
       ]
     },
     "AdwSpinnerPaintable": {
@@ -1550,6 +2281,38 @@
         "image-button",
         "text-button"
       ],
+      "documented": [
+        {
+          "node": "splitbutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "separator",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "menubutton",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "arrow",
+          "optional": false,
+          "depth": 3
+        }
+      ],
       "showsText": [
         "label"
       ]
@@ -1574,7 +2337,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "squeezer",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwSqueezerPage": {
       "library": "libadwaita",
@@ -1612,10 +2383,25 @@
       "declared": [
         "spinner"
       ],
+      "documented": [
+        {
+          "node": "statuspage",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "description",
         "title"
-      ]
+      ],
+      "byProperty": {
+        "paintable": {
+          "true": [
+            "spinner"
+          ]
+        }
+      }
     },
     "AdwStyleManager": {
       "library": "libadwaita",
@@ -1682,6 +2468,14 @@
       "layout": "bin",
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "tabbar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "hides": {
         "start_action_bin": "widget != NULL",
         "end_action_bin": "widget != NULL"
@@ -1743,6 +2537,14 @@
       "declared": [
         "small"
       ],
+      "documented": [
+        {
+          "node": "tabbutton",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "hides": {
         "label": "display_label"
       }
@@ -1782,6 +2584,14 @@
       ],
       "declared": [
         "background"
+      ],
+      "documented": [
+        {
+          "node": "taboverview",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ],
       "hides": {
         "empty_state": "empty && !self->search_active",
@@ -1896,6 +2706,14 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "tabview",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "hides": {
         "bin": "should_be_visible"
       }
@@ -1931,7 +2749,39 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "toastoverlay",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "child",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "toast",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "custom",
+          "optional": true,
+          "depth": 3
+        },
+        {
+          "node": "button",
+          "optional": true,
+          "depth": 2
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        }
+      ]
     },
     "AdwToastWidget": {
       "library": "libadwaita",
@@ -1976,6 +2826,26 @@
       ],
       "declared": [
         "hidden"
+      ],
+      "documented": [
+        {
+          "node": "toggle-group",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "toggle",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        },
+        {
+          "node": "separator",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
       ]
     },
     "AdwToggleGroupToggles": {
@@ -2030,7 +2900,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "named",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwViewStackPage": {
       "library": "libadwaita",
@@ -2069,7 +2947,28 @@
       "declared": [
         "narrow",
         "wide"
-      ]
+      ],
+      "documented": [
+        {
+          "node": "viewswitcher",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "narrow"
+      ],
+      "byProperty": {
+        "policy": {
+          "true": [
+            "wide"
+          ],
+          "false": [
+            "narrow"
+          ]
+        }
+      }
     },
     "AdwViewSwitcherBar": {
       "library": "libadwaita",
@@ -2080,7 +2979,15 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "with",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwViewSwitcherButton": {
       "library": "libadwaita",
@@ -2113,6 +3020,28 @@
         "indicator",
         "needs-attention",
         "numeric"
+      ],
+      "documented": [
+        {
+          "node": "view-switcher-sidebar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "builds": [
+        {
+          "field": "sidebar",
+          "into": null,
+          "node": {
+            "class": "Sidebar"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Sidebar"
+        }
       ]
     },
     "AdwViewSwitcherTitle": {
@@ -2124,7 +3053,15 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "viewswitchertitle",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwWindow": {
       "library": "libadwaita",
@@ -2151,6 +3088,14 @@
       "layout": "bin",
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "windowtitle",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "subtitle",
         "title"
@@ -2169,7 +3114,15 @@
       "ownNode": true,
       "layout": "wrap",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "wrap-box",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "AdwWrapLayout": {
       "library": "libadwaita",
@@ -2294,6 +3247,14 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "comments",
         "copyright",
@@ -2350,6 +3311,48 @@
       "declared": [
         "end",
         "start"
+      ],
+      "documented": [
+        {
+          "node": "actionbar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "revealer",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "start",
+          "optional": true,
+          "depth": 4
+        },
+        {
+          "node": "center",
+          "optional": true,
+          "depth": 3
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "end",
+          "optional": true,
+          "depth": 4
+        }
       ]
     },
     "GtkActionHelper": {
@@ -2438,7 +3441,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "with",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkAppChooserDialog": {
       "library": "gtk",
@@ -2461,6 +3472,14 @@
         "title"
       ],
       "direction": "vertical",
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "heading"
       ],
@@ -2481,6 +3500,14 @@
         "heading"
       ],
       "direction": "horizontal",
+      "documented": [
+        {
+          "node": "appchooser",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "property"
       ],
@@ -2658,6 +3685,17 @@
         "highlight",
         "suggested-action"
       ],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "assistant"
+      ],
       "inheritedFrom": "GtkWindow"
     },
     "GtkAssistantPage": {
@@ -2798,7 +3836,16 @@
       "ownNode": true,
       "layout": "box",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "orients": true
     },
     "GtkBoxLayout": {
       "library": "gtk",
@@ -2873,10 +3920,25 @@
         "flat",
         "keyboard-activating"
       ],
+      "documented": [
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "label",
         "property"
-      ]
+      ],
+      "byProperty": {
+        "hasFrame": {
+          "false": [
+            "flat"
+          ]
+        }
+      }
     },
     "GtkCalendar": {
       "library": "gtk",
@@ -2905,6 +3967,61 @@
         "view",
         "week-number",
         "year"
+      ],
+      "documented": [
+        {
+          "node": "calendar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "header",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "stack",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "label",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "grid",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "label",
+          "optional": false,
+          "depth": 2
+        }
+      ],
+      "always": [
+        "view"
       ],
       "hides": {
         "header_box": "value"
@@ -3082,7 +4199,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "cellview",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkCenterBox": {
       "library": "gtk",
@@ -3093,7 +4218,15 @@
       "ownNode": true,
       "layout": "center",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "with",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkCenterLayout": {
       "library": "gtk",
@@ -3122,8 +4255,46 @@
         "grouped",
         "text-button"
       ],
+      "documented": [
+        {
+          "node": "checkbutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "check",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "label",
+          "optional": true,
+          "depth": 1
+        }
+      ],
       "showsText": [
         "label"
+      ],
+      "byProperty": {
+        "label": {
+          "true": [
+            "text-button"
+          ]
+        }
+      },
+      "builds": [
+        {
+          "field": "indicator_widget",
+          "into": null,
+          "node": {
+            "class": "BuiltinIcon"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "BuiltinIcon"
+        }
       ]
     },
     "GtkColorButton": {
@@ -3141,6 +4312,23 @@
       "declared": [
         "activatable",
         "color"
+      ],
+      "documented": [
+        {
+          "node": "colorbutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "content",
+          "optional": true,
+          "depth": 2
+        }
       ]
     },
     "GtkColorChooserDialog": {
@@ -3153,6 +4341,14 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "inheritedFrom": "GtkDialog"
     },
     "GtkColorChooserWidget": {
@@ -3202,6 +4398,43 @@
       "declared": [
         "activatable",
         "color"
+      ],
+      "documented": [
+        {
+          "node": "colorbutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "content",
+          "optional": true,
+          "depth": 2
+        }
+      ],
+      "builds": [
+        {
+          "field": "button",
+          "into": null,
+          "node": {
+            "class": "Button",
+            "styles": [
+              "color"
+            ]
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Button",
+          "styles": [
+            "color"
+          ]
+        }
       ]
     },
     "GtkColorEditor": {
@@ -3300,6 +4533,9 @@
       "declared": [
         "color"
       ],
+      "always": [
+        "color"
+      ],
       "inheritedFrom": "GtkScale"
     },
     "GtkColorSwatch": {
@@ -3319,7 +4555,20 @@
         "activatable",
         "dark",
         "light"
-      ]
+      ],
+      "always": [
+        "activatable"
+      ],
+      "byProperty": {
+        "rgba": {
+          "true": [
+            "light"
+          ],
+          "false": [
+            "dark"
+          ]
+        }
+      }
     },
     "GtkColumnListView": {
       "library": "gtk",
@@ -3353,7 +4602,36 @@
       "declared": [
         "column-separators",
         "dnd"
-      ]
+      ],
+      "documented": [
+        {
+          "node": "columnview",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "header",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "listview",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "rubberband",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "byProperty": {
+        "showColumnSeparators": {
+          "true": [
+            "column-separators"
+          ]
+        }
+      }
     },
     "GtkColumnViewCell": {
       "library": "gtk",
@@ -3449,6 +4727,20 @@
       "showsText": [
         "title"
       ],
+      "builds": [
+        {
+          "field": "box",
+          "into": null,
+          "node": {
+            "class": "Box"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Box"
+        }
+      ],
       "hides": {
         "sort": "FALSE"
       }
@@ -3469,6 +4761,14 @@
         "combo",
         "toggle"
       ],
+      "documented": [
+        {
+          "node": "combobox",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "model"
       ]
@@ -3483,6 +4783,33 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "combobox",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "entry",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 2
+        }
+      ],
       "inheritedFrom": "GtkComboBox"
     },
     "GtkConstraint": {
@@ -3834,6 +5161,20 @@
       ],
       "declared": [
         "error"
+      ],
+      "builds": [
+        {
+          "field": "contents",
+          "into": null,
+          "node": {
+            "class": "Label"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Label"
+        }
       ]
     },
     "GtkDialog": {
@@ -3851,6 +5192,9 @@
       "declared": [
         "dialog",
         "suggested-action"
+      ],
+      "always": [
+        "dialog"
       ],
       "hides": {
         "action_box": "!priv->use_header_bar"
@@ -3927,6 +5271,26 @@
       "applies": [],
       "declared": [],
       "direction": "horizontal",
+      "documented": [
+        {
+          "node": "dropdown",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        },
+        {
+          "node": "popover",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
+      ],
       "showsText": [
         "enableSearch",
         "property"
@@ -3972,6 +5336,28 @@
       "declared": [
         "editing"
       ],
+      "documented": [
+        {
+          "node": "editablelabel",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "stack",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "label",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "text",
+          "optional": false,
+          "depth": 2
+        }
+      ],
       "showsText": [
         "property"
       ]
@@ -3991,6 +5377,38 @@
         "view"
       ],
       "direction": "horizontal",
+      "documented": [
+        {
+          "node": "popover",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "entry",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        }
+      ],
       "inheritedFrom": "GtkPopover"
     },
     "GtkEmojiChooserChild": {
@@ -4039,6 +5457,54 @@
       ],
       "declared": [
         "flat"
+      ],
+      "documented": [
+        {
+          "node": "entry",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "text",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "image",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "image",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "progress",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "byProperty": {
+        "hasFrame": {
+          "false": [
+            "flat"
+          ]
+        }
+      },
+      "builds": [
+        {
+          "field": "progress_widget",
+          "into": null,
+          "node": {
+            "class": "ProgressBar"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "ProgressBar"
+        }
       ],
       "hides": {
         "progress_widget": "fraction > 0"
@@ -4165,7 +5631,29 @@
       "declared": [
         "horizontal"
       ],
-      "direction": "vertical"
+      "direction": "vertical",
+      "documented": [
+        {
+          "node": "expander-widget",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "title",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "expander",
+          "optional": false,
+          "depth": 3
+        }
+      ]
     },
     "GtkFileChooserCell": {
       "library": "gtk",
@@ -4180,7 +5668,14 @@
       ],
       "declared": [
         "dim-label"
-      ]
+      ],
+      "byProperty": {
+        "property": {
+          "false": [
+            "dim-label"
+          ]
+        }
+      }
     },
     "GtkFileChooserDialog": {
       "library": "gtk",
@@ -4199,6 +5694,14 @@
         "title"
       ],
       "direction": "vertical",
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "inheritedFrom": "GtkDialog"
     },
     "GtkFileChooserEntry": {
@@ -4259,6 +5762,14 @@
       "declared": [
         "error",
         "search-bar"
+      ],
+      "documented": [
+        {
+          "node": "filechooser",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ],
       "showsText": [
         "currentFolder",
@@ -4395,7 +5906,30 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "flowbox",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "flowboxchild",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "flowboxchild",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "rubberband",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "orients": true
     },
     "GtkFlowBoxChild": {
       "library": "gtk",
@@ -4433,6 +5967,23 @@
       "declared": [
         "font"
       ],
+      "documented": [
+        {
+          "node": "fontbutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "content",
+          "optional": true,
+          "depth": 2
+        }
+      ],
       "showsText": [
         "fontName"
       ]
@@ -4447,6 +5998,14 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "inheritedFrom": "GtkDialog"
     },
     "GtkFontChooserWidget": {
@@ -4459,6 +6018,14 @@
       "layout": "bin",
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "fontchooser",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "font",
         "previewText",
@@ -4490,8 +6057,45 @@
       "declared": [
         "font"
       ],
+      "documented": [
+        {
+          "node": "fontbutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "content",
+          "optional": true,
+          "depth": 2
+        }
+      ],
       "showsText": [
         "property"
+      ],
+      "builds": [
+        {
+          "field": "button",
+          "into": null,
+          "node": {
+            "class": "Button",
+            "styles": [
+              "font"
+            ]
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Button",
+          "styles": [
+            "font"
+          ]
+        }
       ],
       "hides": {
         "font_size_box": "self->level >= GTK_FONT_LEVEL_FONT"
@@ -4528,7 +6132,14 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "frame",
+          "optional": false,
+          "depth": 0
+        }
+      ]
     },
     "GtkGLArea": {
       "library": "gtk",
@@ -4682,7 +6293,16 @@
       "ownNode": true,
       "layout": "grid",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "grid",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "orients": true
     },
     "GtkGridLayout": {
       "library": "gtk",
@@ -4718,6 +6338,31 @@
         "view"
       ],
       "declared": [
+        "view"
+      ],
+      "documented": [
+        {
+          "node": "gridview",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "child",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "child",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "rubberband",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "always": [
         "view"
       ]
     },
@@ -4773,6 +6418,53 @@
         "end",
         "start",
         "title"
+      ],
+      "documented": [
+        {
+          "node": "headerbar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "windowhandle",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "windowcontrols",
+          "optional": false,
+          "depth": 4
+        },
+        {
+          "node": "other",
+          "optional": true,
+          "depth": 4
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "other",
+          "optional": true,
+          "depth": 4
+        },
+        {
+          "node": "windowcontrols",
+          "optional": false,
+          "depth": 4
+        }
       ]
     },
     "GtkHighlightOverlay": {
@@ -4920,6 +6612,21 @@
       ],
       "declared": [
         "view"
+      ],
+      "documented": [
+        {
+          "node": "iconview",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "rubberband",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "always": [
+        "view"
       ]
     },
     "GtkImage": {
@@ -4931,7 +6638,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "image",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkInfoBar": {
       "library": "gtk",
@@ -4948,6 +6663,14 @@
       "declared": [
         "action",
         "close"
+      ],
+      "documented": [
+        {
+          "node": "infobar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ]
     },
     "GtkInscription": {
@@ -4960,6 +6683,14 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "documented": [
+        {
+          "node": "label",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "markup",
         "property",
@@ -5388,6 +7119,20 @@
       "declared": [],
       "showsText": [
         "value"
+      ],
+      "builds": [
+        {
+          "field": "editor",
+          "into": null,
+          "node": {
+            "class": "CheckButton"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "CheckButton"
+        }
       ]
     },
     "GtkInspectorVisual": {
@@ -5457,13 +7202,42 @@
       "declared": [
         "link"
       ],
+      "documented": [
+        {
+          "node": "label",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "selection",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "link",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "link",
+          "optional": true,
+          "depth": 1
+        }
+      ],
       "showsText": [
         "label",
         "markup",
         "markupInternal",
         "property",
         "text"
-      ]
+      ],
+      "byProperty": {
+        "markupInternal": {
+          "true": [
+            "link"
+          ]
+        }
+      }
     },
     "GtkLabelContent": {
       "library": "gtk",
@@ -5522,7 +7296,46 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "levelbar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "trough",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "block",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "block",
+          "optional": false,
+          "depth": 2
+        }
+      ],
+      "orients": true,
+      "builds": [
+        {
+          "field": "trough_widget",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "trough"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Gizmo",
+          "node": "trough"
+        }
+      ]
     },
     "GtkLinkButton": {
       "library": "gtk",
@@ -5536,6 +7349,17 @@
         "link"
       ],
       "declared": [
+        "link"
+      ],
+      "documented": [
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
         "link"
       ]
     },
@@ -5580,7 +7404,26 @@
       "declared": [
         "activatable",
         "separators"
-      ]
+      ],
+      "documented": [
+        {
+          "node": "list",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 1
+        }
+      ],
+      "byProperty": {
+        "showSeparators": {
+          "true": [
+            "separators"
+          ]
+        }
+      }
     },
     "GtkListBoxRow": {
       "library": "gtk",
@@ -5597,6 +7440,9 @@
       "declared": [
         "activatable",
         "separators"
+      ],
+      "always": [
+        "activatable"
       ]
     },
     "GtkListFactoryWidget": {
@@ -5612,7 +7458,14 @@
       ],
       "declared": [
         "activatable"
-      ]
+      ],
+      "byProperty": {
+        "activatable": {
+          "true": [
+            "activatable"
+          ]
+        }
+      }
     },
     "GtkListHeader": {
       "library": "gtk",
@@ -5739,7 +7592,39 @@
       "declared": [
         "separators",
         "view"
-      ]
+      ],
+      "documented": [
+        {
+          "node": "listview",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "row",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "rubberband",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "always": [
+        "view"
+      ],
+      "byProperty": {
+        "showSeparators": {
+          "true": [
+            "separators"
+          ]
+        }
+      }
     },
     "GtkLockButton": {
       "library": "gtk",
@@ -5757,6 +7642,9 @@
       ],
       "showsText": [
         "property"
+      ],
+      "always": [
+        "lock"
       ]
     },
     "GtkMagnifier": {
@@ -5848,6 +7736,26 @@
         "up"
       ],
       "direction": "horizontal",
+      "documented": [
+        {
+          "node": "menubutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "arrow",
+          "optional": true,
+          "depth": 3
+        }
+      ],
+      "always": [
+        "popup"
+      ],
       "hides": {
         "popover": "FALSE"
       }
@@ -5926,6 +7834,9 @@
         "markup",
         "property"
       ],
+      "always": [
+        "message"
+      ],
       "hides": {
         "secondary_label": "priv->has_secondary_text"
       },
@@ -5977,8 +7888,63 @@
         "right",
         "title"
       ],
+      "documented": [
+        {
+          "node": "modelbutton",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "is",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
+      ],
       "showsText": [
         "popover"
+      ],
+      "byProperty": {
+        "role": {
+          "true": [
+            "title"
+          ]
+        },
+        "iconic": {
+          "true": [
+            "model",
+            "image-button",
+            "flat"
+          ]
+        }
+      },
+      "always": [
+        "flat"
+      ],
+      "builds": [
+        {
+          "field": "end_indicator",
+          "into": null,
+          "node": {
+            "class": "BuiltinIcon"
+          }
+        },
+        {
+          "field": "label",
+          "into": null,
+          "node": {
+            "class": "Label"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "BuiltinIcon"
+        },
+        {
+          "class": "Label"
+        }
       ],
       "hides": {
         "label": "has_text && (!self->iconic || !has_icon)",
@@ -6096,9 +8062,61 @@
         "top",
         "up"
       ],
+      "documented": [
+        {
+          "node": "notebook",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "header",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "tabs",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "arrow",
+          "optional": true,
+          "depth": 3
+        },
+        {
+          "node": "tab",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "tab",
+          "optional": false,
+          "depth": 3
+        },
+        {
+          "node": "arrow",
+          "optional": true,
+          "depth": 3
+        },
+        {
+          "node": "stack",
+          "optional": false,
+          "depth": 1
+        }
+      ],
       "showsText": [
         "scrollTimer"
-      ]
+      ],
+      "always": [
+        "frame"
+      ],
+      "byProperty": {
+        "showBorder": {
+          "true": [
+            "frame"
+          ]
+        }
+      }
     },
     "GtkNotebookPage": {
       "library": "gtk",
@@ -6212,7 +8230,15 @@
       "ownNode": true,
       "layout": "overlay",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "with",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkOverlayLayout": {
       "library": "gtk",
@@ -6294,6 +8320,14 @@
         "separator",
         "separator-before"
       ],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "inheritedFrom": "GtkDialog"
     },
     "GtkPageThumbnail": {
@@ -6308,6 +8342,20 @@
       "declared": [],
       "showsText": [
         "pageNum"
+      ],
+      "builds": [
+        {
+          "field": "label",
+          "into": null,
+          "node": {
+            "class": "Inscription"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Inscription"
+        }
       ]
     },
     "GtkPaned": {
@@ -6323,7 +8371,20 @@
       ],
       "declared": [
         "wide"
-      ]
+      ],
+      "documented": [
+        {
+          "node": "paned",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "separator",
+          "optional": false,
+          "depth": 1
+        }
+      ],
+      "orients": true
     },
     "GtkPanedHandle": {
       "library": "gtk",
@@ -6350,6 +8411,9 @@
       ],
       "declared": [
         "caps-lock-indicator",
+        "password"
+      ],
+      "always": [
         "password"
       ]
     },
@@ -6392,7 +8456,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "picture",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkPlacesSidebar": {
       "library": "gtk",
@@ -6415,6 +8487,17 @@
         "sidebar",
         "sidebar-new-bookmark-row",
         "suggested-action"
+      ],
+      "documented": [
+        {
+          "node": "placessidebar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "sidebar"
       ]
     },
     "GtkPlacesView": {
@@ -6471,6 +8554,26 @@
       ],
       "declared": [
         "background"
+      ],
+      "documented": [
+        {
+          "node": "popover",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "arrow",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "contents",
+          "optional": false,
+          "depth": 1
+        }
+      ],
+      "always": [
+        "background"
       ]
     },
     "GtkPopoverBin": {
@@ -6486,6 +8589,14 @@
       ],
       "declared": [
         "has-open-popup"
+      ],
+      "documented": [
+        {
+          "node": "popoverbin",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
       ],
       "hides": {
         "popover": "FALSE"
@@ -6516,6 +8627,9 @@
       "declared": [
         "menu"
       ],
+      "always": [
+        "menu"
+      ],
       "inheritedFrom": "GtkPopover"
     },
     "GtkPopoverMenuBar": {
@@ -6527,7 +8641,29 @@
       "ownNode": true,
       "layout": "box",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "menubar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "item",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "item",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "popover",
+          "optional": false,
+          "depth": 2
+        }
+      ]
     },
     "GtkPopoverMenuBarItem": {
       "library": "gtk",
@@ -6640,8 +8776,19 @@
         "separator-before"
       ],
       "direction": "vertical",
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "property"
+      ],
+      "always": [
+        "print"
       ],
       "inheritedFrom": "GtkDialog"
     },
@@ -6746,10 +8893,33 @@
         "right",
         "top"
       ],
+      "documented": [
+        {
+          "node": "progressbar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "text",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "trough",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "progress",
+          "optional": false,
+          "depth": 2
+        }
+      ],
       "showsText": [
         "fraction",
         "text"
-      ]
+      ],
+      "orients": true
     },
     "GtkPropertyLookupListModel": {
       "library": "gtk",
@@ -6793,6 +8963,37 @@
         "fine-tune",
         "top"
       ],
+      "orients": true,
+      "builds": [
+        {
+          "field": "trough_widget",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "trough"
+          }
+        },
+        {
+          "field": "slider_widget",
+          "into": "trough_widget",
+          "node": {
+            "class": "Gizmo",
+            "node": "slider"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Gizmo",
+          "node": "trough",
+          "children": [
+            {
+              "class": "Gizmo",
+              "node": "slider"
+            }
+          ]
+        }
+      ],
       "hides": {
         "slider_widget": "upper != lower || !GTK_IS_SCALE (range)"
       }
@@ -6817,7 +9018,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "revealer",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkScale": {
       "library": "gtk",
@@ -6842,6 +9051,68 @@
         "marks-before",
         "right",
         "top"
+      ],
+      "documented": [
+        {
+          "node": "scale",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "value",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "marks",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "mark",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "mark",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "marks",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "mark",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "mark",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "trough",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "fill",
+          "optional": true,
+          "depth": 2
+        },
+        {
+          "node": "highlight",
+          "optional": true,
+          "depth": 2
+        },
+        {
+          "node": "slider",
+          "optional": false,
+          "depth": 2
+        }
       ]
     },
     "GtkScaleButton": {
@@ -6857,6 +9128,21 @@
       ],
       "declared": [
         "scale"
+      ],
+      "documented": [
+        {
+          "node": "scalebutton",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 1
+        }
+      ],
+      "always": [
+        "scale"
       ]
     },
     "GtkScrollbar": {
@@ -6868,7 +9154,44 @@
       "ownNode": true,
       "layout": "box",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "scrollbar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "range",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "trough",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "slider",
+          "optional": false,
+          "depth": 3
+        }
+      ],
+      "orients": true,
+      "builds": [
+        {
+          "field": "range",
+          "into": null,
+          "node": {
+            "class": "Range"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Range"
+        }
+      ]
     },
     "GtkScrolledWindow": {
       "library": "gtk",
@@ -6896,6 +9219,33 @@
         "right",
         "top"
       ],
+      "documented": [
+        {
+          "node": "scrolledwindow",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "overshoot",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        },
+        {
+          "node": "named",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
+      ],
+      "byProperty": {
+        "hasFrame": {
+          "true": [
+            "frame"
+          ]
+        }
+      },
       "hides": {
         "hscrollbar": "priv->hscrollbar_visible",
         "vscrollbar": "priv->vscrollbar_visible"
@@ -6914,6 +9264,33 @@
       ],
       "declared": [
         "close"
+      ],
+      "documented": [
+        {
+          "node": "searchbar",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "revealer",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "box",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "child",
+          "optional": true,
+          "depth": 3
+        },
+        {
+          "node": "button",
+          "optional": true,
+          "depth": 3
+        }
       ]
     },
     "GtkSearchEngine": {
@@ -6976,6 +9353,9 @@
       ],
       "showsText": [
         "property"
+      ],
+      "always": [
+        "search"
       ]
     },
     "GtkSelectionFilterModel": {
@@ -6998,7 +9378,16 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "separator",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "orients": true
     },
     "GtkShortcut": {
       "library": "gtk",
@@ -7116,6 +9505,20 @@
         "subtitle",
         "titleSizeGroup"
       ],
+      "builds": [
+        {
+          "field": "box",
+          "into": null,
+          "node": {
+            "class": "Box"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Box"
+        }
+      ],
       "hides": {
         "subtitle": "subtitle && subtitle[0]",
         "accelerator": "type == GTK_SHORTCUT_ACCELERATOR",
@@ -7144,8 +9547,19 @@
         "shortcuts-search-results",
         "title"
       ],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "property"
+      ],
+      "always": [
+        "shortcuts"
       ],
       "inheritedFrom": "GtkWindow"
     },
@@ -7166,6 +9580,13 @@
       "showsText": [
         "property"
       ],
+      "byProperty": {
+        "property": {
+          "true": [
+            "sidebar-placeholder-row"
+          ]
+        }
+      },
       "hides": {
         "end_icon_widget": "object != NULL",
         "eject_button": "self->ejectable"
@@ -7264,9 +9685,24 @@
         "down",
         "up"
       ],
+      "documented": [
+        {
+          "node": "has",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        },
+        {
+          "node": "for",
+          "optional": false,
+          "depth": 1,
+          "prose": true
+        }
+      ],
       "showsText": [
         "orientation"
-      ]
+      ],
+      "orients": true
     },
     "GtkSpinner": {
       "library": "gtk",
@@ -7277,7 +9713,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "spinner",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkStack": {
       "library": "gtk",
@@ -7288,7 +9732,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "named",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkStackPage": {
       "library": "gtk",
@@ -7330,8 +9782,19 @@
         "needs-attention",
         "sidebar"
       ],
+      "documented": [
+        {
+          "node": "stacksidebar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
       "showsText": [
         "property"
+      ],
+      "always": [
+        "sidebar"
       ]
     },
     "GtkStackSwitcher": {
@@ -7353,6 +9816,17 @@
         "linked",
         "needs-attention",
         "text-button"
+      ],
+      "documented": [
+        {
+          "node": "named",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "linked"
       ]
     },
     "GtkStatusbar": {
@@ -7364,7 +9838,15 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "statusbar",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkStringFilter": {
       "library": "gtk",
@@ -7474,7 +9956,65 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "switch",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "image",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "image",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "slider",
+          "optional": false,
+          "depth": 1
+        }
+      ],
+      "builds": [
+        {
+          "field": "on_image",
+          "into": null,
+          "node": {
+            "class": "Image"
+          }
+        },
+        {
+          "field": "off_image",
+          "into": null,
+          "node": {
+            "class": "Image"
+          }
+        },
+        {
+          "field": "slider",
+          "into": null,
+          "node": {
+            "class": "Gizmo",
+            "node": "slider"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Image"
+        },
+        {
+          "class": "Image"
+        },
+        {
+          "class": "Gizmo",
+          "node": "slider"
+        }
+      ]
     },
     "GtkTestATContext": {
       "library": "gtk",
@@ -7510,8 +10050,97 @@
         "touch-selection"
       ],
       "direction": "vertical",
+      "documented": [
+        {
+          "node": "text",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "placeholder",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "undershoot",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "undershoot",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "selection",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "cursor-handle",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "cursor-handle",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "block-cursor",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "cursor-handle",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "window",
+          "optional": true,
+          "depth": 1
+        }
+      ],
       "showsText": [
         "placeholderText"
+      ],
+      "byProperty": {
+        "editable": {
+          "false": [
+            "read-only"
+          ]
+        }
+      },
+      "builds": [
+        {
+          "field": "magnifier_popover",
+          "into": null,
+          "node": {
+            "class": "Popover",
+            "styles": [
+              "magnifier"
+            ]
+          }
+        },
+        {
+          "field": "popup_menu",
+          "into": null,
+          "node": {
+            "class": "PopoverMenu"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Popover",
+          "styles": [
+            "magnifier"
+          ]
+        },
+        {
+          "class": "PopoverMenu"
+        }
       ],
       "hides": {
         "placeholder": "priv->preedit_length == 0 &&\n                                  (priv->buffer == NULL ||\n                                   gtk_entry_buffer_get_length (priv->buffer) == 0)",
@@ -7678,6 +10307,88 @@
         "view"
       ],
       "direction": "vertical",
+      "documented": [
+        {
+          "node": "textview",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "border",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "border",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "text",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "selection",
+          "optional": true,
+          "depth": 2
+        },
+        {
+          "node": "border",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "border",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "window",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "always": [
+        "view"
+      ],
+      "byProperty": {
+        "monospace": {
+          "true": [
+            "monospace"
+          ]
+        }
+      },
+      "builds": [
+        {
+          "field": "magnifier_popover",
+          "into": null,
+          "node": {
+            "class": "Popover",
+            "styles": [
+              "magnifier"
+            ]
+          }
+        },
+        {
+          "field": "popup_menu",
+          "into": null,
+          "node": {
+            "class": "PopoverMenu"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "Popover",
+          "styles": [
+            "magnifier"
+          ]
+        },
+        {
+          "class": "PopoverMenu"
+        }
+      ],
       "hides": {
         "magnifier_popover": "FALSE",
         "selection_bubble": "FALSE"
@@ -7708,7 +10419,18 @@
       "declared": [
         "toggle"
       ],
-      "direction": "vertical"
+      "direction": "vertical",
+      "documented": [
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "always": [
+        "toggle"
+      ]
     },
     "GtkTooltip": {
       "library": "gtk",
@@ -7756,7 +10478,24 @@
       "ownNode": true,
       "layout": "box",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "treeexpander",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "indent",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "expander",
+          "optional": true,
+          "depth": 1
+        }
+      ]
     },
     "GtkTreeListModel": {
       "library": "gtk",
@@ -7834,6 +10573,9 @@
         "right"
       ],
       "direction": "vertical",
+      "always": [
+        "menu"
+      ],
       "inheritedFrom": "GtkPopover"
     },
     "GtkTreeSelection": {
@@ -7872,8 +10614,53 @@
       "declared": [
         "view"
       ],
+      "documented": [
+        {
+          "node": "treeview",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "header",
+          "optional": false,
+          "depth": 1
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "sort-indicator",
+          "optional": true,
+          "depth": 3
+        },
+        {
+          "node": "button",
+          "optional": false,
+          "depth": 2
+        },
+        {
+          "node": "sort-indicator",
+          "optional": true,
+          "depth": 3
+        },
+        {
+          "node": "rubberband",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "dndtarget",
+          "optional": true,
+          "depth": 1
+        }
+      ],
       "showsText": [
         "searchEntry"
+      ],
+      "always": [
+        "view"
       ]
     },
     "GtkTreeViewColumn": {
@@ -7942,7 +10729,15 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "viewport",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ]
     },
     "GtkVolumeButton": {
       "library": "gtk",
@@ -7988,6 +10783,16 @@
         "tiled-top",
         "titlebar"
       ],
+      "documented": [
+        {
+          "node": "window",
+          "optional": false,
+          "depth": 0
+        }
+      ],
+      "always": [
+        "background"
+      ],
       "hides": {
         "title_box": "visible"
       }
@@ -8030,7 +10835,46 @@
         "minimize",
         "native",
         "start"
-      ]
+      ],
+      "documented": [
+        {
+          "node": "windowcontrols",
+          "optional": false,
+          "depth": 0
+        },
+        {
+          "node": "image",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "button",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "button",
+          "optional": true,
+          "depth": 1
+        },
+        {
+          "node": "button",
+          "optional": true,
+          "depth": 1
+        }
+      ],
+      "always": [
+        "empty",
+        "start"
+      ],
+      "byProperty": {
+        "side": {
+          "true": [
+            "start",
+            "end"
+          ]
+        }
+      }
     },
     "GtkWindowGroup": {
       "library": "gtk",
@@ -8052,7 +10896,29 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "documented": [
+        {
+          "node": "windowhandle",
+          "optional": false,
+          "depth": 0,
+          "prose": true
+        }
+      ],
+      "builds": [
+        {
+          "field": "fallback_menu",
+          "into": null,
+          "node": {
+            "class": "PopoverMenu"
+          }
+        }
+      ],
+      "built": [
+        {
+          "class": "PopoverMenu"
+        }
+      ]
     },
     "MenuItem": {
       "library": "gtk",

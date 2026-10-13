@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,27 +20,20 @@ const textViewVariants = cva(
       variant: {
         default: "",
         /** .body */
-        body: "font-normal leading-[140%]",
+        body: "body font-normal leading-[140%]",
         /** .inline */
         inline: [
-          "bg-[transparent] text-[inherit]",
+          "inline bg-[transparent] text-[inherit]",
           "disabled:bg-[transparent] disabled:text-[inherit]",
         ],
         /** .linked */
-        linked: "",
+        linked: "linked",
         /** .magnifier */
-        magnifier: "",
+        magnifier: "magnifier",
         /** .monospace */
-        monospace: "font-[var(--monospace-font-family)] text-[var(--monospace-font-size)]",
+        monospace: "monospace font-[var(--monospace-font-family)] text-[var(--monospace-font-size)]",
         /** .touch-selection */
-        touchSelection: "",
-        /** .view */
-        view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        touchSelection: "touch-selection",
       },
     },
     defaultVariants: { variant: "default" },
@@ -59,7 +51,7 @@ export interface TextViewProps
   bottomMargin?: number
 
   /** TextBuffer, from Gtk.TextView */
-  buffer?: ReactNode
+  buffer?: unknown
 
   /** gboolean, from Gtk.TextView */
   cursorVisible?: boolean
@@ -68,10 +60,10 @@ export interface TextViewProps
   editable?: boolean
 
   /** Gio.MenuModel, from Gtk.TextView */
-  extraMenu?: ReactNode
+  extraMenu?: unknown
 
   /** Adjustment, from Gtk.TextView */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.TextView */
   hscrollPolicy?: ScrollablePolicy
@@ -113,13 +105,13 @@ export interface TextViewProps
   rightMargin?: number
 
   /** Pango.TabArray, from Gtk.TextView */
-  tabs?: ReactNode
+  tabs?: unknown
 
   /** gint, from Gtk.TextView */
   topMargin?: number
 
   /** Adjustment, from Gtk.TextView */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.TextView */
   vscrollPolicy?: ScrollablePolicy
@@ -128,7 +120,7 @@ export interface TextViewProps
   wrapMode?: WrapMode
 }
 
-function TextView({ className, render, variant = "default", buffer, extraMenu, hadjustment, tabs, vadjustment, acceptsTab, bottomMargin, cursorVisible, editable, hscrollPolicy, imModule, indent, inputHints, inputPurpose, justification, leftMargin, monospace, overwrite, pixelsAboveLines, pixelsBelowLines, pixelsInsideWrap, rightMargin, topMargin, vscrollPolicy, wrapMode, children, ...props }: TextViewProps) {
+function TextView({ className, render, variant = "default", buffer: _buffer, extraMenu: _extraMenu, hadjustment: _hadjustment, tabs: _tabs, vadjustment: _vadjustment, acceptsTab, bottomMargin, cursorVisible, editable, hscrollPolicy, imModule, indent, inputHints, inputPurpose, justification, leftMargin, monospace, overwrite, pixelsAboveLines, pixelsBelowLines, pixelsInsideWrap, rightMargin, topMargin, vscrollPolicy, wrapMode, children, ...props }: TextViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -158,17 +150,16 @@ function TextView({ className, render, variant = "default", buffer, extraMenu, h
     "data-top-margin": topMargin,
     "data-vscroll-policy": vscrollPolicy,
     "data-wrap-mode": wrapMode,
-    className: cn("group/text-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/text-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textViewVariants({ variant }), [
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
+          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
+        ], monospace && "monospace font-[var(--monospace-font-family)] text-[var(--monospace-font-size)]", widgetClassName, className),
     style,
     children: (
         <>
-                  <TextViewBorder />
                   <TextViewText />
-                  {buffer}
-                  {extraMenu}
-                  {hadjustment}
-                  {tabs}
-                  {vadjustment}
                   {children}
         </>
       ),
@@ -194,12 +185,23 @@ function TextViewBorder({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function TextViewSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-view-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
 function TextViewText({ className, ...props }: React.ComponentProps<"input">) {
   return (
     <input
       data-slot="text-view-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", [
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", [
         "text-[var(--view-fg-color)] bg-[transparent]",
         "group-disabled/text-view:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] group-disabled/text-view:bg-[transparent]",
         "group-data-[selected]/text-view:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] group-data-[selected]/text-view:rounded-[9px]",
@@ -209,4 +211,15 @@ function TextViewText({ className, ...props }: React.ComponentProps<"input">) {
   )
 }
 
-export { TextView, TextViewBorder, TextViewText, textViewVariants }
+function TextViewWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-view-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { TextView, TextViewBorder, TextViewSelection, TextViewText, TextViewWindow, textViewVariants }

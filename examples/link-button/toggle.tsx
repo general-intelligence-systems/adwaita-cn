@@ -7,6 +7,6 @@ import { LinkButton } from "@/ui/link-button"
 
 export default function LinkButtonToggle() {
   return (
-    <LinkButton size="toggle" label="Label" />
+    <LinkButton variant="toggle" label="Label" />
   )
 }

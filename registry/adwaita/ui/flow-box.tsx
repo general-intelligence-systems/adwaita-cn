@@ -20,12 +20,12 @@ const flowBoxVariants = cva(
       variant: {
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .navigation-sidebar */
-        navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
+        navigationSidebar: "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
         /** .view */
         view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
           "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
           "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
           "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
@@ -87,7 +87,7 @@ function FlowBox({ className, render, variant = "default", acceptUnpairedRelease
     "data-orientation": orientation,
     "data-row-spacing": rowSpacing,
     "data-selection-mode": selectionMode,
-    className: cn(flowBoxVariants({ variant }), widgetClassName, className),
+    className: cn("group/flow-box", flowBoxVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,
@@ -101,4 +101,33 @@ function FlowBox({ className, render, variant = "default", acceptUnpairedRelease
   })
 }
 
-export { FlowBox, flowBoxVariants }
+function FlowBoxFlowboxchild({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="flow-box-flowboxchild"
+        data-node="flowboxchild"
+      className={cn([
+        "p-[3px] rounded-[9px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/flow-box:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
+        "group-active/flow-box:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
+        "group-data-[selected]/flow-box:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+        "group-data-[selected]/flow-box:group-hover/flow-box:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
+        "group-data-[selected]/flow-box:group-active/flow-box:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function FlowBoxRubberband({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="flow-box-rubberband"
+        data-node="rubberband"
+      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+export { FlowBox, FlowBoxFlowboxchild, FlowBoxRubberband, flowBoxVariants }

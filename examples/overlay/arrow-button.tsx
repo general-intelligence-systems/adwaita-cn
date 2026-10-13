@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function OverlayArrowbutton() {
   return (
-    <Overlay size="arrowButton">
+    <Overlay variant="arrowButton">
       <Label label="Label" />
     </Overlay>
   )

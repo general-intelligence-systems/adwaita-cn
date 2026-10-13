@@ -20,7 +20,7 @@ const dragIconVariants = cva(
       variant: {
         default: "",
         /** .large-icons */
-        largeIcons: "[--adw-icon-size:32px]",
+        largeIcons: "large-icons [--adw-icon-size:32px]",
       },
     },
     defaultVariants: { variant: "default" },

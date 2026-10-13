@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxSuffixes() {
   return (
-    <Box size="suffixes">
+    <Box variant="suffixes">
       <Label label="Label" />
     </Box>
   )

@@ -14,28 +14,28 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, SelectionMode } from "@/lib/enums"
 
 const listBoxVariants = cva(
-  "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+  "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [&>*]:bg-clip-padding [&>*]:[outline-width:0px] [&>*]:[outline-style:solid] [&>*]:[outline-color:transparent] [&>*]:outline-offset-[4px] [&>*]:transition-[outline-color,outline-width,outline-offset] [&>*]:duration-200 [&>*]:ease-[cubic-bezier(0.25,0.46,0.45,0.94)] [&>*]:p-0.5 [&>*]:data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   {
     variants: {
       variant: {
         default: "",
         /** .activatable */
-        activatable: "",
+        activatable: "activatable",
         /** .boxed-list */
-        boxedList: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+        boxedList: "boxed-list bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
         /** .boxed-list-separate */
-        boxedListSeparate: "bg-none text-[var(--card-fg-color)]",
+        boxedListSeparate: "boxed-list-separate bg-none text-[var(--card-fg-color)]",
         /** .content */
-        content: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+        content: "content bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .nested */
-        nested: "",
+        nested: "nested",
         /** .separators */
-        separators: "",
+        separators: "separators",
         /** .view */
         view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
           "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
           "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
           "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
@@ -81,7 +81,7 @@ function ListBox({ className, render, variant = "default", acceptUnpairedRelease
     "data-selection-mode": selectionMode,
     "data-show-separators": showSeparators,
     "data-tab-behavior": tabBehavior,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", listBoxVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", listBoxVariants({ variant }), showSeparators && "separators", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

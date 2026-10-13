@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function StackSwitcherCircular() {
   return (
-    <StackSwitcher size="circular">
+    <StackSwitcher variant="circular">
       <Label label="Label" />
     </StackSwitcher>
   )

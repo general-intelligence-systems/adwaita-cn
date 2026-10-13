@@ -33,6 +33,7 @@
 # adwaita-cn                         October 12, 2026                         10-LINT-RULES(1)
 
 require "json"
+require "fileutils"
 
 module LintRules
   # React's own, which no GTK class declares and every component takes.
@@ -61,13 +62,23 @@ module LintRules
       }]
     end
 
-    File.write(self.output("rules.json"), "#{JSON.pretty_generate({
+    contents = "#{JSON.pretty_generate({
       "versions" => final.fetch("versions"),
       "react" => REACT + REGISTRY,
       "sources" => SOURCES,
       "components" => rules,
-    })}\n")
+    })}\n"
+
+    File.write(self.output("rules.json"), contents)
     warn("wrote bin/10-lint-rules.out/rules.json")
+
+    # And where lint/adwaita-plugin.js reads it from. Writing it only beside the script left
+    # the plugin loading a file which was never generated, and oxlint failed before it
+    # checked anything: `pnpm lint` could not run at all.
+    installed = File.join(root, "lint/rules.json")
+    FileUtils.mkdir_p(File.dirname(installed))
+    File.write(installed, contents)
+    warn("wrote lint/rules.json")
   end
 
   # Beside the script, in a directory named after it.

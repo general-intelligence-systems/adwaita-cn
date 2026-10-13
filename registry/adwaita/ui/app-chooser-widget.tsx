@@ -19,7 +19,7 @@ const appChooserWidgetVariants = cva(
       variant: {
         default: "",
         /** .heading */
-        heading: "font-bold",
+        heading: "heading font-bold",
       },
     },
     defaultVariants: { variant: "default" },

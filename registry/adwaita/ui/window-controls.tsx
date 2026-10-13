@@ -21,21 +21,17 @@ const windowControlsVariants = cva(
       variant: {
         default: "",
         /** .close */
-        close: "",
-        /** .empty */
-        empty: "",
+        close: "close",
         /** .end */
-        end: "",
+        end: "end",
         /** .icon */
-        icon: "",
+        icon: "icon",
         /** .maximize */
-        maximize: "",
+        maximize: "maximize",
         /** .minimize */
-        minimize: "",
+        minimize: "minimize",
         /** .native */
-        native: "",
-        /** .start */
-        start: "",
+        native: "native",
       },
     },
     defaultVariants: { variant: "default" },
@@ -69,16 +65,9 @@ function WindowControls({ className, render, variant = "default", decorationLayo
     "data-decoration-layout": decorationLayout,
     "data-side": side,
     "data-use-native-controls": useNativeControls,
-    className: cn("group/window-controls", "grid [&>*]:col-start-1 [&>*]:row-start-1", windowControlsVariants({ variant }), widgetClassName, className),
+    className: cn("group/window-controls", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", windowControlsVariants({ variant }), "empty", "start", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <WindowControlsButton>
-                <WindowControlsImage />
-              </WindowControlsButton>
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -95,7 +84,7 @@ function WindowControlsImage({ className, ...props }: React.ComponentProps<typeo
     <Icon
       data-slot="window-controls-image"
         data-node="image"
-      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn(className)}
       {...props}
     />
   )

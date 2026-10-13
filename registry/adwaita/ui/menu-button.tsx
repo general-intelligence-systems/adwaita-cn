@@ -16,33 +16,34 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ArrowType } from "@/lib/enums"
 
 const menuButtonVariants = cva(
-  "disabled:[filter:Opacity(var(--disabled-opacity))]",
+  [
+    "[&>*]:py-[5px] [&>*]:px-2.5 [&>*]:min-h-6 [&>*]:min-w-4 [&>*]:rounded-[9px] [&>*]:font-bold [&>*]:[outline-width:0px] [&>*]:[outline-style:solid] [&>*]:[outline-color:transparent] [&>*]:outline-offset-[4px] [&>*]:transition-[outline-color,outline-width,outline-offset,background,box-shadow] [&>*]:duration-200 [&>*]:ease-[cubic-bezier(0.25,0.46,0.45,0.94)] [&>*]:bg-[color-mix(in_srgb,currentColor_10%,transparent)] [&>*]:hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] [&>*]:active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] [&>*]:disabled:[filter:Opacity(var(--disabled-opacity))] [&>*]:disabled:[filter:none] [&>*]:data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] [&>*]:data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] [&>*]:data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+    "disabled:[filter:Opacity(var(--disabled-opacity))]",
+  ],
   {
     variants: {
       variant: {
         default: "",
         /** .arrow-button */
-        arrowButton: "",
+        arrowButton: "arrow-button",
         /** .down */
-        down: "",
+        down: "down",
         /** .flat */
-        flat: "disabled:[filter:none]",
+        flat: "flat disabled:[filter:none]",
         /** .left */
-        left: "",
+        left: "left",
         /** .none */
-        none: "",
+        none: "none",
         /** .opaque */
-        opaque: "bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)] rounded-[9px]",
+        opaque: "opaque bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)] rounded-[9px]",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding bg-none text-[inherit]",
-        /** .popup */
-        popup: "",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding bg-none text-[inherit]",
         /** .right */
-        right: "",
+        right: "right",
         /** .suggested-action */
-        suggestedAction: "bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)] rounded-[9px]",
+        suggestedAction: "suggested-action bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)] rounded-[9px]",
         /** .up */
-        up: "",
+        up: "up",
       },
     },
     defaultVariants: { variant: "default" },
@@ -78,7 +79,7 @@ export interface MenuButtonProps
   label?: string
 
   /** Gio.MenuModel, from Gtk.MenuButton */
-  menuModel?: ReactNode
+  menuModel?: unknown
 
   /** Popover, from Gtk.MenuButton */
   popover?: ReactNode
@@ -90,7 +91,7 @@ export interface MenuButtonProps
   useUnderline?: boolean
 }
 
-function MenuButton({ className, render, variant = "default", child, iconName, menuModel, popover, active, alwaysShowArrow, canShrink, direction, hasFrame, label, primary, useUnderline, children, ...props }: MenuButtonProps) {
+function MenuButton({ className, render, variant = "default", child, iconName, popover, menuModel: _menuModel, active, alwaysShowArrow, canShrink, direction, hasFrame, label, primary, useUnderline, children, ...props }: MenuButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -109,14 +110,14 @@ function MenuButton({ className, render, variant = "default", child, iconName, m
     "data-label": label,
     "data-primary": primary,
     "data-use-underline": useUnderline,
-    className: cn("group/menu-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", menuButtonVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", menuButtonVariants({ variant }), "popup", iconName && "image-button", widgetClassName, className),
     style,
     children: (
         <>
-                  <MenuButtonArrow />
-                  <Icon name={iconName} data-slot="menu-button-icon" />
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="menu-button-icon" />
+              )}
                   {child}
-                  {menuModel}
                   {popover}
                   {children}
         </>
@@ -132,15 +133,4 @@ function MenuButton({ className, render, variant = "default", child, iconName, m
   })
 }
 
-function MenuButtonArrow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="menu-button-arrow"
-        data-node="arrow"
-      className={cn("min-h-4 min-w-4", className)}
-      {...props}
-    />
-  )
-}
-
-export { MenuButton, MenuButtonArrow, menuButtonVariants }
+export { MenuButton, menuButtonVariants }

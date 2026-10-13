@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,7 +20,7 @@ const shortcutsShortcutVariants = cva(
       variant: {
         default: "",
         /** .dim-label */
-        dimLabel: "opacity-[var(--dim-opacity)]",
+        dimLabel: "dim-label opacity-[var(--dim-opacity)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -33,7 +32,7 @@ export interface ShortcutsShortcutProps
     WidgetProps,
     VariantProps<typeof shortcutsShortcutVariants> {
   /** SizeGroup, from Gtk.ShortcutsShortcut */
-  accelSizeGroup?: ReactNode
+  accelSizeGroup?: unknown
 
   /** utf8, from Gtk.ShortcutsShortcut */
   accelerator?: string
@@ -45,7 +44,7 @@ export interface ShortcutsShortcutProps
   direction?: TextDirection
 
   /** Gio.Icon, from Gtk.ShortcutsShortcut */
-  icon?: ReactNode
+  icon?: unknown
 
   /** gboolean, from Gtk.ShortcutsShortcut */
   iconSet?: boolean
@@ -63,10 +62,10 @@ export interface ShortcutsShortcutProps
   title?: string
 
   /** SizeGroup, from Gtk.ShortcutsShortcut */
-  titleSizeGroup?: ReactNode
+  titleSizeGroup?: unknown
 }
 
-function ShortcutsShortcut({ className, render, variant = "default", accelSizeGroup, icon, subtitle, titleSizeGroup, accelerator, actionName, direction, iconSet, shortcutType, subtitleSet, title, children, ...props }: ShortcutsShortcutProps) {
+function ShortcutsShortcut({ className, render, variant = "default", subtitle, accelSizeGroup: _accelSizeGroup, icon: _icon, titleSizeGroup: _titleSizeGroup, accelerator, actionName, direction, iconSet, shortcutType, subtitleSet, title, children, ...props }: ShortcutsShortcutProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -83,19 +82,18 @@ function ShortcutsShortcut({ className, render, variant = "default", accelSizeGr
     "data-shortcut-type": shortcutType,
     "data-subtitle-set": subtitleSet,
     "data-title": title,
-    className: cn(shortcutsShortcutVariants({ variant }), widgetClassName, className),
+    className: cn("group/shortcuts-shortcut", "grid [&>*]:col-start-1 [&>*]:row-start-1", shortcutsShortcutVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <ShortcutsShortcutBox>
+                {children}
+              </ShortcutsShortcutBox>
                   {subtitle === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {subtitle}
                 </span>
               )}
-                  {accelSizeGroup}
-                  {icon}
-                  {titleSizeGroup}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -109,4 +107,15 @@ function ShortcutsShortcut({ className, render, variant = "default", accelSizeGr
   })
 }
 
-export { ShortcutsShortcut, shortcutsShortcutVariants }
+function ShortcutsShortcutBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-shortcut-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+export { ShortcutsShortcut, ShortcutsShortcutBox, shortcutsShortcutVariants }

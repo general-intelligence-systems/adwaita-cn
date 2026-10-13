@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,18 +20,11 @@ const listViewVariants = cva(
       variant: {
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .inline */
-        inline: "",
+        inline: "inline",
         /** .separators */
-        separators: "",
-        /** .view */
-        view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        separators: "separators",
       },
     },
     defaultVariants: { variant: "default" },
@@ -47,19 +39,19 @@ export interface ListViewProps
   enableRubberband?: boolean
 
   /** ListItemFactory, from Gtk.ListView */
-  factory?: ReactNode
+  factory?: unknown
 
   /** Adjustment, from Gtk.ListView */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** ListItemFactory, from Gtk.ListView */
-  headerFactory?: ReactNode
+  headerFactory?: unknown
 
   /** ScrollablePolicy, from Gtk.ListView */
   hscrollPolicy?: ScrollablePolicy
 
   /** SelectionModel, from Gtk.ListView */
-  model?: ReactNode
+  model?: unknown
 
   /** Orientation, from Gtk.ListView */
   orientation?: Orientation
@@ -74,13 +66,13 @@ export interface ListViewProps
   tabBehavior?: ListTabBehavior
 
   /** Adjustment, from Gtk.ListView */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.ListView */
   vscrollPolicy?: ScrollablePolicy
 }
 
-function ListView({ className, render, variant = "default", factory, hadjustment, headerFactory, model, vadjustment, enableRubberband, hscrollPolicy, orientation, showSeparators, singleClickActivate, tabBehavior, vscrollPolicy, children, ...props }: ListViewProps) {
+function ListView({ className, render, variant = "default", factory: _factory, hadjustment: _hadjustment, headerFactory: _headerFactory, model: _model, vadjustment: _vadjustment, enableRubberband, hscrollPolicy, orientation, showSeparators, singleClickActivate, tabBehavior, vscrollPolicy, children, ...props }: ListViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -97,18 +89,14 @@ function ListView({ className, render, variant = "default", factory, hadjustment
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn(listViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/list-view", "flex flex-col grow min-h-0", listViewVariants({ variant }), [
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
+          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
+        ], showSeparators && "separators", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {factory}
-                  {hadjustment}
-                  {headerFactory}
-                  {model}
-                  {vadjustment}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -120,4 +108,29 @@ function ListView({ className, render, variant = "default", factory, hadjustment
   })
 }
 
-export { ListView, listViewVariants }
+function ListViewRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="list-view-row"
+        data-node="row"
+      className={cn([
+        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
+        "group-data-[selected]/list-view:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ListViewRubberband({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="list-view-rubberband"
+        data-node="rubberband"
+      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+export { ListView, ListViewRow, ListViewRubberband, listViewVariants }

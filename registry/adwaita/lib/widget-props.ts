@@ -16,14 +16,14 @@ export interface WidgetProps {
   /** gboolean, from Gtk.Widget */
   canTarget?: boolean
 
-  /** object, from Gtk.Widget */
-  cssClasses?: ReactNode
+  /** utf8, from Gtk.Widget */
+  cssClasses?: unknown
 
   /** utf8, from Gtk.Widget */
   cssName?: string
 
   /** Gdk.Cursor, from Gtk.Widget */
-  cursor?: ReactNode
+  cursor?: unknown
 
   /** gboolean, from Gtk.Widget */
   focusOnClick?: boolean
@@ -47,7 +47,7 @@ export interface WidgetProps {
   hexpandSet?: boolean
 
   /** LayoutManager, from Gtk.Widget */
-  layoutManager?: ReactNode
+  layoutManager?: unknown
 
   /** gboolean, from Gtk.Widget */
   limitEvents?: boolean

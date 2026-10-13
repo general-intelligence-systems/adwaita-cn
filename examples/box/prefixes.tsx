@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxPrefixes() {
   return (
-    <Box size="prefixes">
+    <Box variant="prefixes">
       <Label label="Label" />
     </Box>
   )

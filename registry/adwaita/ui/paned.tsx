@@ -15,13 +15,13 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation } from "@/lib/enums"
 
 const panedVariants = cva(
-  "",
+  "[&>*]:bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [&>*]:min-w-[1px] [&>*]:min-h-[1px] [&>*]:bg-none [&>*]:bg-[size:1px_1px] [&>*]:shadow-[inset_-1px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
   {
     variants: {
       variant: {
         default: "",
         /** .wide */
-        wide: "",
+        wide: "wide",
       },
     },
     defaultVariants: { variant: "default" },
@@ -81,13 +81,12 @@ function Paned({ className, render, variant = "default", endChild, startChild, o
     "data-shrink-end-child": shrinkEndChild,
     "data-shrink-start-child": shrinkStartChild,
     "data-wide-handle": wideHandle,
-    className: cn("group/paned", "grid [&>*]:col-start-1 [&>*]:row-start-1", panedVariants({ variant }), widgetClassName, className),
-    style,
+    className: cn("grid [&>*]:min-w-0", panedVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    style: { ...style, ...(position === undefined ? {} : orientation === "vertical" ? { gridTemplateRows: `${position}px 1fr` } : { gridTemplateColumns: `${position}px 1fr` }) } as React.CSSProperties,
     children: (
         <>
-                  <PanedSeparator />
-                  {endChild}
                   {startChild}
+                  {endChild}
                   {children}
         </>
       ),
@@ -102,15 +101,4 @@ function Paned({ className, render, variant = "default", endChild, startChild, o
   })
 }
 
-function PanedSeparator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="paned-separator"
-        data-node="separator"
-      className={cn("bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] bg-none bg-[size:1px_1px] shadow-[inset_-1px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-export { Paned, PanedSeparator, panedVariants }
+export { Paned, panedVariants }

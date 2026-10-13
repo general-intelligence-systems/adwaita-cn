@@ -39,14 +39,15 @@ function ButtonContent({ className, render, iconName, label, canShrink, useUnder
     "data-node": "buttoncontent",
     "data-can-shrink": canShrink,
     "data-use-underline": useUnderline,
-    className: cn("group/button-content", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/button-content", "grid [&>*]:col-start-1 [&>*]:row-start-1", label && iconName && "image-text-button", widgetClassName, className),
     style,
     children: (
         <>
                   <ButtonContentBox>
+                <ButtonContentImage name={iconName} />
+                <ButtonContentLabel />
                 {children}
               </ButtonContentBox>
-                  <Icon name={iconName} data-slot="button-content-icon" />
                   {label === undefined ? null : (
                 <span data-slot="label" data-node="label" className="caret-[currentColor]">
                   {label}
@@ -65,15 +66,67 @@ function ButtonContent({ className, render, iconName, label, canShrink, useUnder
   })
 }
 
-function ButtonContentBox({ className, ...props }: React.ComponentProps<"div">) {
+function ButtonContentImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
   return (
-    <div
-      data-slot="button-content-box"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
+    <Icon
+      data-slot="button-content-image"
+        data-node="image"
+      className={cn(className)}
       {...props}
     />
   )
 }
 
-export { ButtonContent, ButtonContentBox }
+function ButtonContentSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button-content-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function ButtonContentLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button-content-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/button-content:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/button-content:text-[var(--accent-color)]",
+        "group-disabled/button-content:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ButtonContentLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="button-content-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor] px-0.5 font-bold",
+        "group-disabled/button-content:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ButtonContentBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button-content-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+export { ButtonContent, ButtonContentImage, ButtonContentSelection, ButtonContentLink, ButtonContentLabel, ButtonContentBox }

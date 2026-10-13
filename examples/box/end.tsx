@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function BoxEnd() {
   return (
-    <Box size="end">
+    <Box variant="end">
       <Label label="Label" />
     </Box>
   )

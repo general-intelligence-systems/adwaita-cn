@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
-import type { LengthUnit } from "@/lib/enums"
+import type { LengthUnit, Orientation } from "@/lib/enums"
 
 export interface ClampProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "child" | "maximumSize" | "orientation" | "tighteningThreshold" | "unit">,
@@ -24,7 +24,7 @@ export interface ClampProps
   maximumSize?: number
 
   /** Orientation, from Adw.Clamp */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** gint, from Adw.Clamp */
   tighteningThreshold?: number
@@ -33,7 +33,7 @@ export interface ClampProps
   unit?: LengthUnit
 }
 
-function Clamp({ className, render, child, orientation, maximumSize, tighteningThreshold, unit, children, ...props }: ClampProps) {
+function Clamp({ className, render, child, maximumSize, orientation, tighteningThreshold, unit, children, ...props }: ClampProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   const { ref: clampRef, columns: clampColumns } = useClamp<HTMLDivElement>({ maximumSize, tighteningThreshold, unit })
@@ -45,6 +45,7 @@ function Clamp({ className, render, child, orientation, maximumSize, tighteningT
     "data-node": "clamp",
     ref: clampRef,
     "data-maximum-size": maximumSize,
+    "data-orientation": orientation,
     "data-tightening-threshold": tighteningThreshold,
     "data-unit": unit,
     className: cn("grid", "[&>*]:min-w-0 [&>*]:col-start-2", widgetClassName, className),
@@ -52,7 +53,6 @@ function Clamp({ className, render, child, orientation, maximumSize, tighteningT
     children: (
         <>
                   {child}
-                  {orientation}
                   {children}
         </>
       ),

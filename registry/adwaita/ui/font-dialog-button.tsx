@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,7 +20,7 @@ const fontDialogButtonVariants = cva(
       variant: {
         default: "",
         /** .font */
-        font: "",
+        font: "font",
       },
     },
     defaultVariants: { variant: "default" },
@@ -33,16 +32,16 @@ export interface FontDialogButtonProps
     WidgetProps,
     VariantProps<typeof fontDialogButtonVariants> {
   /** FontDialog, from Gtk.FontDialogButton */
-  dialog?: ReactNode
+  dialog?: unknown
 
   /** Pango.FontDescription, from Gtk.FontDialogButton */
-  fontDesc?: ReactNode
+  fontDesc?: unknown
 
   /** utf8, from Gtk.FontDialogButton */
   fontFeatures?: string
 
   /** Pango.Language, from Gtk.FontDialogButton */
-  language?: ReactNode
+  language?: unknown
 
   /** FontLevel, from Gtk.FontDialogButton */
   level?: FontLevel
@@ -54,7 +53,7 @@ export interface FontDialogButtonProps
   useSize?: boolean
 }
 
-function FontDialogButton({ className, render, variant = "default", dialog, fontDesc, language, fontFeatures, level, useFont, useSize, children, ...props }: FontDialogButtonProps) {
+function FontDialogButton({ className, render, variant = "default", dialog: _dialog, fontDesc: _fontDesc, language: _language, fontFeatures, level, useFont, useSize, children, ...props }: FontDialogButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -68,13 +67,11 @@ function FontDialogButton({ className, render, variant = "default", dialog, font
     "data-level": level,
     "data-use-font": useFont,
     "data-use-size": useSize,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", fontDialogButtonVariants({ variant }), widgetClassName, className),
+    className: cn("group/font-dialog-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", fontDialogButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {dialog}
-                  {fontDesc}
-                  {language}
+                  <FontDialogButtonButton />
                   {children}
         </>
       ),
@@ -89,4 +86,34 @@ function FontDialogButton({ className, render, variant = "default", dialog, font
   })
 }
 
-export { FontDialogButton, fontDialogButtonVariants }
+function FontDialogButtonContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="font-dialog-button-content"
+        data-node="content"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function FontDialogButtonButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="font-dialog-button-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/font-dialog-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/font-dialog-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/font-dialog-button:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/font-dialog-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/font-dialog-button:group-hover/font-dialog-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/font-dialog-button:group-active/font-dialog-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { FontDialogButton, FontDialogButtonContent, FontDialogButtonButton, fontDialogButtonVariants }

@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function CenterBoxWide() {
   return (
-    <CenterBox size="wide">
+    <CenterBox variant="wide">
       <Label label="Label" />
     </CenterBox>
   )

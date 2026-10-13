@@ -14,6 +14,7 @@ import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
+import type { WindowGravity } from "@/lib/enums"
 
 const preferencesWindowVariants = cva(
   "",
@@ -22,15 +23,15 @@ const preferencesWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .preferences */
-        preferences: "",
+        preferences: "preferences",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -45,7 +46,7 @@ export interface PreferencesWindowProps
   adaptivePreview?: boolean
 
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** gboolean, from Adw.PreferencesWindow */
   canNavigateBack?: boolean
@@ -63,7 +64,7 @@ export interface PreferencesWindowProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -75,19 +76,19 @@ export interface PreferencesWindowProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
 
   /** WindowGravity, from Gtk.Window */
-  gravity?: ReactNode
+  gravity?: WindowGravity
 
   /** gboolean, from Gtk.Window */
   handleMenubarAccel?: boolean
@@ -123,16 +124,16 @@ export interface PreferencesWindowProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 
   /** Gtk.Widget, from Adw.PreferencesWindow */
-  visiblePage?: ReactNode
+  visiblePage?: unknown
 
   /** utf8, from Adw.PreferencesWindow */
   visiblePageName?: string
 }
 
-function PreferencesWindow({ className, render, variant = "default", application, child, content, defaultWidget, display, focusWidget, gravity, iconName, titlebar, transientFor, visiblePage, adaptivePreview, canNavigateBack, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, searchEnabled, startupId, title, visiblePageName, children, ...props }: PreferencesWindowProps) {
+function PreferencesWindow({ className, render, variant = "default", child, content, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, focusWidget: _focusWidget, transientFor: _transientFor, visiblePage: _visiblePage, adaptivePreview, canNavigateBack, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, searchEnabled, startupId, title, visiblePageName, children, ...props }: PreferencesWindowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -152,6 +153,7 @@ function PreferencesWindow({ className, render, variant = "default", application
     "data-destroy-with-parent": destroyWithParent,
     "data-focus-visible": focusVisible,
     "data-fullscreened": fullscreened,
+    "data-gravity": gravity,
     "data-handle-menubar-accel": handleMenubarAccel,
     "data-hide-on-close": hideOnClose,
     "data-maximized": maximized,
@@ -162,7 +164,7 @@ function PreferencesWindow({ className, render, variant = "default", application
     "data-startup-id": startupId,
     "data-title": title,
     "data-visible-page-name": visiblePageName,
-    className: cn("group/preferences-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesWindowVariants({ variant }), widgetClassName, className),
+    className: cn("group/preferences-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesWindowVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -187,17 +189,12 @@ function PreferencesWindow({ className, render, variant = "default", application
                   </PreferencesWindowSubpagesNavView>
                 </PreferencesWindowSubpagesLeaflet>
               </PreferencesWindowToastOverlay>
-                  <Icon name={iconName} data-slot="preferences-window-icon" />
-                  {content}
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {focusWidget}
-                  {gravity}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="preferences-window-icon" />
+              )}
                   {titlebar}
-                  {transientFor}
-                  {visiblePage}
+                  {content}
+                  {child}
         </>
       ),
     ...widgetAttributes,
@@ -216,7 +213,7 @@ function PreferencesWindowContentStack({ className, ...props }: React.ComponentP
     <div
       data-slot="preferences-window-content-stack"
         data-node="stack"
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )
@@ -228,7 +225,7 @@ function PreferencesWindowTitleStack({ className, ...props }: React.ComponentPro
       data-slot="preferences-window-title-stack"
         data-node="stack"
         data-hexpand=""
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )
@@ -313,7 +310,7 @@ function PreferencesWindowSubpagesLeaflet({ className, ...props }: React.Compone
     <div
       data-slot="preferences-window-subpages-leaflet"
         data-node="leaflet"
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )

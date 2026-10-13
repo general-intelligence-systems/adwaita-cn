@@ -22,26 +22,24 @@ const shortcutsWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .dim-label */
-        dimLabel: "opacity-[var(--dim-opacity)]",
+        dimLabel: "dim-label opacity-[var(--dim-opacity)]",
         /** .flat */
-        flat: "",
+        flat: "flat",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
-        /** .shortcuts */
-        shortcuts: "",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
         /** .title */
-        title: "",
+        title: "title",
       },
       size: {
         default: "",
         /** .shortcuts-search-results */
-        shortcutsSearchResults: "m-5 gap-[24px]",
+        shortcutsSearchResults: "shortcuts-search-results m-5 gap-[24px]",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -53,7 +51,7 @@ export interface ShortcutsWindowProps
     WidgetProps,
     VariantProps<typeof shortcutsWindowVariants> {
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** Widget, from Gtk.Window */
   child?: ReactNode
@@ -65,7 +63,7 @@ export interface ShortcutsWindowProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -77,13 +75,13 @@ export interface ShortcutsWindowProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
@@ -125,13 +123,13 @@ export interface ShortcutsWindowProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 
   /** utf8, from Gtk.ShortcutsWindow */
   viewName?: string
 }
 
-function ShortcutsWindow({ className, render, variant = "default", size = "default", application, child, defaultWidget, display, focusWidget, iconName, titlebar, transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, sectionName, startupId, title, viewName, children, ...props }: ShortcutsWindowProps) {
+function ShortcutsWindow({ className, render, variant = "default", size = "default", child, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, focusWidget: _focusWidget, transientFor: _transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, sectionName, startupId, title, viewName, children, ...props }: ShortcutsWindowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -161,26 +159,19 @@ function ShortcutsWindow({ className, render, variant = "default", size = "defau
     "data-startup-id": startupId,
     "data-title": title,
     "data-view-name": viewName,
-    className: cn("group/shortcuts-window", shortcutsWindowVariants({ variant, size }), widgetClassName, className),
+    className: cn("group/shortcuts-window", shortcutsWindowVariants({ variant, size }), "background", "shortcuts", widgetClassName, className),
     style,
     children: (
         <>
+                  <ShortcutsWindowSheet />
                   <ShortcutsWindowDrawing>
                 <ShortcutsWindowPaper />
               </ShortcutsWindowDrawing>
-                  <ShortcutsWindowSheet>
-                <ShortcutsWindowHeaderbar>
-                  <ShortcutsWindowWindowhandle />
-                </ShortcutsWindowHeaderbar>
-              </ShortcutsWindowSheet>
-                  <Icon name={iconName} data-slot="shortcuts-window-icon" />
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {focusWidget}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="shortcuts-window-icon" />
+              )}
                   {titlebar}
-                  {transientFor}
+                  {child}
                   {children}
         </>
       ),
@@ -193,6 +184,17 @@ function ShortcutsWindow({ className, render, variant = "default", size = "defau
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function ShortcutsWindowSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-window-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function ShortcutsWindowPaper({ className, ...props }: React.ComponentProps<"div">) {
@@ -217,37 +219,4 @@ function ShortcutsWindowDrawing({ className, ...props }: React.ComponentProps<"d
   )
 }
 
-function ShortcutsWindowWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-window-windowhandle"
-        data-node="windowhandle"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsWindowHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-window-headerbar"
-        data-node="headerbar"
-      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutsWindowSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcuts-window-sheet"
-        data-node="sheet"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { ShortcutsWindow, ShortcutsWindowPaper, ShortcutsWindowDrawing, ShortcutsWindowWindowhandle, ShortcutsWindowHeaderbar, ShortcutsWindowSheet, shortcutsWindowVariants }
+export { ShortcutsWindow, ShortcutsWindowSheet, ShortcutsWindowPaper, ShortcutsWindowDrawing, shortcutsWindowVariants }

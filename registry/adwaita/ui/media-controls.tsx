@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -16,10 +15,10 @@ export interface MediaControlsProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "mediaStream">,
     WidgetProps {
   /** MediaStream, from Gtk.MediaControls */
-  mediaStream?: ReactNode
+  mediaStream?: unknown
 }
 
-function MediaControls({ className, render, mediaStream, children, ...props }: MediaControlsProps) {
+function MediaControls({ className, render, mediaStream: _mediaStream, children, ...props }: MediaControlsProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -30,12 +29,7 @@ function MediaControls({ className, render, mediaStream, children, ...props }: M
     "data-node": "controls",
     className: cn(widgetClassName, className),
     style,
-    children: (
-        <>
-                  {mediaStream}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

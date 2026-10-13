@@ -8,6 +8,7 @@ import { Button } from "@/ui/button"
 import { ComboRow } from "@/ui/combo-row"
 import { EntryRow } from "@/ui/entry-row"
 import { HeaderBar } from "@/ui/header-bar"
+import { Label } from "@/ui/label"
 import { PreferencesGroup } from "@/ui/preferences-group"
 import { PreferencesPage } from "@/ui/preferences-page"
 import { SpinRow } from "@/ui/spin-row"
@@ -21,14 +22,16 @@ export default function PreferencesApp() {
       content={
         <PreferencesPage>
           <PreferencesGroup title="Appearance" description="How the window looks.">
-            <ComboRow title="Theme" subtitle="Follows the system by default" selected={0} />
+            <ComboRow title="Theme" subtitle="Follows the system by default" selected={0}>
+              <Label label="System" />
+            </ComboRow>
             <SwitchRow title="Animations" subtitle="200ms on Adwaita's own curve" active />
             <SpinRow title="Spacing" value={12} />
           </PreferencesGroup>
 
           <PreferencesGroup title="Account">
-            <EntryRow title="Name" />
-            <EntryRow title="Email" />
+            <EntryRow title="Name" text="Ada Lovelace" />
+            <EntryRow title="Email" text="ada@example.org" />
             <ActionRow title="Last synchronised" subtitle="Today at 09:41">
               <Button variant="suggestedAction" label="Sync now" valign="center" />
             </ActionRow>

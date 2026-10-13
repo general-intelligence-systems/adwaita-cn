@@ -20,7 +20,7 @@ const flowBoxChildVariants = cva(
       variant: {
         default: "",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
       },
     },
     defaultVariants: { variant: "default" },

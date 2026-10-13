@@ -19,9 +19,9 @@ const actionBarVariants = cva(
       variant: {
         default: "",
         /** .end */
-        end: "",
+        end: "end",
         /** .start */
-        start: "",
+        start: "start",
       },
     },
     defaultVariants: { variant: "default" },
@@ -52,7 +52,9 @@ function ActionBar({ className, render, variant = "default", revealed, children,
     style,
     children: (
         <ActionBarRevealer>
-                {children}
+                <ActionBarBox>
+                  {children}
+                </ActionBarBox>
               </ActionBarRevealer>
       ),
     ...widgetAttributes,
@@ -66,6 +68,50 @@ function ActionBar({ className, render, variant = "default", revealed, children,
   })
 }
 
+function ActionBarStart({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="action-bar-start"
+        data-node="start"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ActionBarBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="action-bar-box2"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      {...props}
+    />
+  )
+}
+
+function ActionBarCenter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="action-bar-center"
+        data-node="center"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ActionBarBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="action-bar-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "pt-[7px] pb-1.5 px-1.5 bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_1px_var(--headerbar-shade-color)] gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
 function ActionBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -77,4 +123,4 @@ function ActionBarRevealer({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-export { ActionBar, ActionBarRevealer, actionBarVariants }
+export { ActionBar, ActionBarStart, ActionBarBox2, ActionBarCenter, ActionBarBox, ActionBarRevealer, actionBarVariants }

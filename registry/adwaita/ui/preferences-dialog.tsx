@@ -22,32 +22,32 @@ const preferencesDialogVariants = cva(
     variants: {
       variant: {
         /** .background */
-        background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
         /** .bottom-sheet */
-        bottomSheet: "",
+        bottomSheet: "bottom-sheet",
         /** .default */
-        default: "",
+        default: "default",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .dialog-window */
-        dialogWindow: "",
+        dialogWindow: "dialog-window",
         /** .floating */
-        floating: "",
+        floating: "floating",
         /** .landscape */
-        landscape: "",
+        landscape: "landscape",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .portrait */
-        portrait: "",
+        portrait: "portrait",
         /** .preferences */
-        preferences: "",
+        preferences: "preferences",
         /** .short */
-        short: "",
+        short: "short",
         /** .view */
         view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
           "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
           "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
           "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
@@ -75,10 +75,10 @@ export interface PreferencesDialogProps
   contentWidth?: number
 
   /** Gtk.Widget, from Adw.Dialog */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** Gtk.Widget, from Adw.Dialog */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Adw.Dialog */
   followsContentSize?: boolean
@@ -93,13 +93,13 @@ export interface PreferencesDialogProps
   title?: string
 
   /** Gtk.Widget, from Adw.PreferencesDialog */
-  visiblePage?: ReactNode
+  visiblePage?: unknown
 
   /** utf8, from Adw.PreferencesDialog */
   visiblePageName?: string
 }
 
-function PreferencesDialog({ className, render, variant = "default", child, defaultWidget, focusWidget, visiblePage, canClose, contentHeight, contentWidth, followsContentSize, presentationMode, searchEnabled, title, visiblePageName, children, ...props }: PreferencesDialogProps) {
+function PreferencesDialog({ className, render, variant = "default", child, defaultWidget: _defaultWidget, focusWidget: _focusWidget, visiblePage: _visiblePage, canClose, contentHeight, contentWidth, followsContentSize, presentationMode, searchEnabled, title, visiblePageName, children, ...props }: PreferencesDialogProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -142,9 +142,6 @@ function PreferencesDialog({ className, render, variant = "default", child, defa
                 </PreferencesDialogSubpagesNavView>
               </PreferencesDialogToastOverlay>
                   {child}
-                  {defaultWidget}
-                  {focusWidget}
-                  {visiblePage}
         </>
       ),
     ...widgetAttributes,
@@ -163,7 +160,7 @@ function PreferencesDialogContentStack({ className, ...props }: React.ComponentP
     <div
       data-slot="preferences-dialog-content-stack"
         data-node="stack"
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )
@@ -175,7 +172,7 @@ function PreferencesDialogTitleStack({ className, ...props }: React.ComponentPro
       data-slot="preferences-dialog-title-stack"
         data-node="stack"
         data-hexpand=""
-      className={cn(className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )

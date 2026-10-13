@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 import type { SidebarMode } from "@/lib/enums"
 
 const viewSwitcherSidebarVariants = cva(
@@ -21,13 +22,13 @@ const viewSwitcherSidebarVariants = cva(
       variant: {
         default: "",
         /** .dot */
-        dot: "",
+        dot: "dot",
         /** .indicator */
-        indicator: "",
+        indicator: "indicator",
         /** .needs-attention */
-        needsAttention: "",
+        needsAttention: "needs-attention",
         /** .numeric */
-        numeric: "",
+        numeric: "numeric",
       },
     },
     defaultVariants: { variant: "default" },
@@ -39,7 +40,7 @@ export interface ViewSwitcherSidebarProps
     WidgetProps,
     VariantProps<typeof viewSwitcherSidebarVariants> {
   /** Gtk.Filter, from Adw.ViewSwitcherSidebar */
-  filter?: ReactNode
+  filter?: unknown
 
   /** SidebarMode, from Adw.ViewSwitcherSidebar */
   mode?: SidebarMode
@@ -48,10 +49,10 @@ export interface ViewSwitcherSidebarProps
   placeholder?: ReactNode
 
   /** ViewStack, from Adw.ViewSwitcherSidebar */
-  stack?: ReactNode
+  stack?: unknown
 }
 
-function ViewSwitcherSidebar({ className, render, variant = "default", filter, placeholder, stack, mode, children, ...props }: ViewSwitcherSidebarProps) {
+function ViewSwitcherSidebar({ className, render, variant = "default", placeholder, filter: _filter, stack: _stack, mode, children, ...props }: ViewSwitcherSidebarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -62,14 +63,22 @@ function ViewSwitcherSidebar({ className, render, variant = "default", filter, p
     "data-node": "view-switcher-sidebar",
     "data-variant": variant,
     "data-mode": mode,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", viewSwitcherSidebarVariants({ variant }), widgetClassName, className),
+    className: cn("group/view-switcher-sidebar", "grid [&>*]:col-start-1 [&>*]:row-start-1", viewSwitcherSidebarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {filter}
+                  <ViewSwitcherSidebarSidebar>
+                <ViewSwitcherSidebarPreferencesPage>
+                  <ViewSwitcherSidebarScrolledWindow>
+                    <ViewSwitcherSidebarClamp>
+                      <ViewSwitcherSidebarBox>
+                        {children}
+                      </ViewSwitcherSidebarBox>
+                    </ViewSwitcherSidebarClamp>
+                  </ViewSwitcherSidebarScrolledWindow>
+                </ViewSwitcherSidebarPreferencesPage>
+              </ViewSwitcherSidebarSidebar>
                   {placeholder}
-                  {stack}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -83,4 +92,104 @@ function ViewSwitcherSidebar({ className, render, variant = "default", filter, p
   })
 }
 
-export { ViewSwitcherSidebar, viewSwitcherSidebarVariants }
+function ViewSwitcherSidebarSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-sidebar-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherSidebarLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-sidebar-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/view-switcher-sidebar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/view-switcher-sidebar:text-[var(--accent-color)]",
+        "group-disabled/view-switcher-sidebar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherSidebarDescription({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="view-switcher-sidebar-description"
+        data-node="label"
+      className={cn("body dimmed description", [
+        "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
+        "group-disabled/view-switcher-sidebar:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherSidebarBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-sidebar-box"
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-6 mx-3 gap-[24px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherSidebarClamp({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="view-switcher-sidebar-clamp"
+        data-node="clamp"
+      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherSidebarScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-sidebar-scrolled-window"
+        data-node="scrolledwindow"
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherSidebarPreferencesPage({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-sidebar-preferences-page"
+        data-node="preferencespage"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherSidebarSidebar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-sidebar-sidebar"
+        data-node="sidebar"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      {...props}
+    />
+  )
+}
+
+export { ViewSwitcherSidebar, ViewSwitcherSidebarSelection, ViewSwitcherSidebarLink, ViewSwitcherSidebarDescription, ViewSwitcherSidebarBox, ViewSwitcherSidebarClamp, ViewSwitcherSidebarScrolledWindow, ViewSwitcherSidebarPreferencesPage, ViewSwitcherSidebarSidebar, viewSwitcherSidebarVariants }

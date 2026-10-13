@@ -7,6 +7,6 @@ import { LockButton } from "@/ui/lock-button"
 
 export default function LockButtonToggle() {
   return (
-    <LockButton size="toggle" label="Label" />
+    <LockButton variant="toggle" label="Label" />
   )
 }

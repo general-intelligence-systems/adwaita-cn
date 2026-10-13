@@ -4,19 +4,19 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import type { GLAPI } from "@/lib/enums"
 
 export interface GLAreaProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "allowedApis" | "autoRender" | "hasDepthBuffer" | "hasStencilBuffer" | "useEs">,
     WidgetProps {
   /** Gdk.GLAPI, from Gtk.GLArea */
-  allowedApis?: ReactNode
+  allowedApis?: GLAPI[]
 
   /** gboolean, from Gtk.GLArea */
   autoRender?: boolean
@@ -39,18 +39,14 @@ function GLArea({ className, render, allowedApis, autoRender, hasDepthBuffer, ha
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "glarea",
+    "data-allowed-apis": allowedApis,
     "data-auto-render": autoRender,
     "data-has-depth-buffer": hasDepthBuffer,
     "data-has-stencil-buffer": hasStencilBuffer,
     "data-use-es": useEs,
     className: cn(widgetClassName, className),
     style,
-    children: (
-        <>
-                  {allowedApis}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

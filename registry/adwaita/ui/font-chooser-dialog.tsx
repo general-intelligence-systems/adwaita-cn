@@ -21,29 +21,29 @@ const fontChooserDialogVariants = cva(
     variants: {
       variant: {
         /** .bottom-sheet */
-        bottomSheet: "",
+        bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .default */
-        default: "",
+        default: "default",
         /** .dialog-window */
-        dialogWindow: "",
+        dialogWindow: "dialog-window",
         /** .floating */
-        floating: "",
+        floating: "floating",
         /** .landscape */
-        landscape: "",
+        landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .portrait */
-        portrait: "",
+        portrait: "portrait",
         /** .short */
-        short: "",
+        short: "short",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -55,7 +55,7 @@ export interface FontChooserDialogProps
     WidgetProps,
     VariantProps<typeof fontChooserDialogVariants> {
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** Widget, from Gtk.Window */
   child?: ReactNode
@@ -67,7 +67,7 @@ export interface FontChooserDialogProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -79,19 +79,19 @@ export interface FontChooserDialogProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** utf8, from Gtk.FontChooserDialog */
   font?: string
 
   /** Pango.FontDescription, from Gtk.FontChooserDialog */
-  fontDesc?: ReactNode
+  fontDesc?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
@@ -142,13 +142,13 @@ export interface FontChooserDialogProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 
   /** gint, from Gtk.Dialog */
   useHeaderBar?: number
 }
 
-function FontChooserDialog({ className, render, variant = "default", application, child, defaultWidget, display, focusWidget, fontDesc, iconName, titlebar, transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, font, fullscreened, gravity, handleMenubarAccel, hideOnClose, language, level, maximized, mnemonicsVisible, modal, previewText, resizable, showPreviewEntry, startupId, title, useHeaderBar, children, ...props }: FontChooserDialogProps) {
+function FontChooserDialog({ className, render, variant = "default", child, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, focusWidget: _focusWidget, fontDesc: _fontDesc, transientFor: _transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, font, fullscreened, gravity, handleMenubarAccel, hideOnClose, language, level, maximized, mnemonicsVisible, modal, previewText, resizable, showPreviewEntry, startupId, title, useHeaderBar, children, ...props }: FontChooserDialogProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -181,27 +181,19 @@ function FontChooserDialog({ className, render, variant = "default", application
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/font-chooser-dialog", fontChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/font-chooser-dialog", fontChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>
+                  <FontChooserDialogSheet />
                   <FontChooserDialogDrawing>
                 <FontChooserDialogPaper />
               </FontChooserDialogDrawing>
-                  <FontChooserDialogSheet>
-                <FontChooserDialogHeaderbar>
-                  <FontChooserDialogWindowhandle />
-                </FontChooserDialogHeaderbar>
-              </FontChooserDialogSheet>
-                  <Icon name={iconName} data-slot="font-chooser-dialog-icon" />
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {focusWidget}
-                  {fontDesc}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="font-chooser-dialog-icon" />
+              )}
                   {titlebar}
-                  {transientFor}
+                  {child}
                   {children}
         </>
       ),
@@ -214,6 +206,17 @@ function FontChooserDialog({ className, render, variant = "default", application
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function FontChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="font-chooser-dialog-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function FontChooserDialogPaper({ className, ...props }: React.ComponentProps<"div">) {
@@ -238,37 +241,4 @@ function FontChooserDialogDrawing({ className, ...props }: React.ComponentProps<
   )
 }
 
-function FontChooserDialogWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="font-chooser-dialog-windowhandle"
-        data-node="windowhandle"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FontChooserDialogHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="font-chooser-dialog-headerbar"
-        data-node="headerbar"
-      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function FontChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="font-chooser-dialog-sheet"
-        data-node="sheet"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { FontChooserDialog, FontChooserDialogPaper, FontChooserDialogDrawing, FontChooserDialogWindowhandle, FontChooserDialogHeaderbar, FontChooserDialogSheet, fontChooserDialogVariants }
+export { FontChooserDialog, FontChooserDialogSheet, FontChooserDialogPaper, FontChooserDialogDrawing, fontChooserDialogVariants }

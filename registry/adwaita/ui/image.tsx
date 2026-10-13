@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -22,39 +21,39 @@ const imageVariants = cva(
       variant: {
         default: "",
         /** .caps-lock-indicator */
-        capsLockIndicator: "",
+        capsLockIndicator: "caps-lock-indicator",
         /** .dropdown-arrow */
-        dropdownArrow: "",
+        dropdownArrow: "dropdown-arrow",
         /** .edit-icon */
-        editIcon: "",
+        editIcon: "edit-icon",
         /** .end */
-        end: "",
+        end: "end",
         /** .expander-row-arrow */
-        expanderRowArrow: "",
+        expanderRowArrow: "expander-row-arrow",
         /** .icon */
-        icon: "",
+        icon: "icon",
         /** .icon-dropshadow */
-        iconDropshadow: "",
+        iconDropshadow: "icon-dropshadow",
         /** .indicator */
-        indicator: "",
+        indicator: "indicator",
         /** .large-icons */
-        largeIcons: "[--adw-icon-size:32px]",
+        largeIcons: "large-icons [--adw-icon-size:32px]",
         /** .left */
-        left: "",
+        left: "left",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .right */
-        right: "",
+        right: "right",
         /** .sidebar-icon */
-        sidebarIcon: "",
+        sidebarIcon: "sidebar-icon",
         /** .spinner */
-        spinner: "disabled:opacity-[var(--disabled-opacity)]",
+        spinner: "spinner disabled:opacity-[var(--disabled-opacity)]",
         /** .start */
-        start: "",
+        start: "start",
         /** .tab-icon */
-        tabIcon: "",
+        tabIcon: "tab-icon",
         /** .tab-unpin-icon */
-        tabUnpinIcon: "",
+        tabUnpinIcon: "tab-unpin-icon",
       },
     },
     defaultVariants: { variant: "default" },
@@ -69,7 +68,7 @@ export interface ImageProps
   file?: string
 
   /** Gio.Icon, from Gtk.Image */
-  gicon?: ReactNode
+  gicon?: unknown
 
   /** utf8, from Gtk.Image */
   iconName?: string
@@ -78,7 +77,7 @@ export interface ImageProps
   iconSize?: IconSize
 
   /** Gdk.Paintable, from Gtk.Image */
-  paintable?: ReactNode
+  paintable?: unknown
 
   /** gint, from Gtk.Image */
   pixelSize?: number
@@ -90,7 +89,7 @@ export interface ImageProps
   useFallback?: boolean
 }
 
-function Image({ className, render, variant = "default", gicon, iconName, paintable, file, iconSize, pixelSize, resource, useFallback, children, ...props }: ImageProps) {
+function Image({ className, render, variant = "default", iconName, gicon: _gicon, paintable: _paintable, file, iconSize, pixelSize, resource, useFallback, children, ...props }: ImageProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -109,9 +108,9 @@ function Image({ className, render, variant = "default", gicon, iconName, painta
     style,
     children: (
         <>
-                  <Icon name={iconName} data-slot="image-icon" />
-                  {gicon}
-                  {paintable}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="image-icon" />
+              )}
                   {children}
         </>
       ),

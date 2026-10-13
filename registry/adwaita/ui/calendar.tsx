@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -20,28 +19,21 @@ const calendarVariants = cva(
       variant: {
         default: "",
         /** .day-name */
-        dayName: "",
+        dayName: "day-name",
         /** .day-number */
-        dayNumber: "",
+        dayNumber: "day-number",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .month */
-        month: "",
+        month: "month",
         /** .other-month */
-        otherMonth: "",
+        otherMonth: "other-month",
         /** .today */
-        today: "",
-        /** .view */
-        view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        today: "today",
         /** .week-number */
-        weekNumber: "",
+        weekNumber: "week-number",
         /** .year */
-        year: "",
+        year: "year",
       },
     },
     defaultVariants: { variant: "default" },
@@ -53,7 +45,7 @@ export interface CalendarProps
     WidgetProps,
     VariantProps<typeof calendarVariants> {
   /** GLib.DateTime, from Gtk.Calendar */
-  date?: ReactNode
+  date?: unknown
 
   /** gint, from Gtk.Calendar */
   day?: number
@@ -74,7 +66,7 @@ export interface CalendarProps
   year?: number
 }
 
-function Calendar({ className, render, variant = "default", date, day, month, showDayNames, showHeading, showWeekNumbers, year, children, ...props }: CalendarProps) {
+function Calendar({ className, render, variant = "default", date: _date, day, month, showDayNames, showHeading, showWeekNumbers, year, children, ...props }: CalendarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -91,17 +83,24 @@ function Calendar({ className, render, variant = "default", date, day, month, sh
     "data-show-heading": showHeading,
     "data-show-week-numbers": showWeekNumbers,
     "data-year": year,
-    className: cn("group/calendar", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", calendarVariants({ variant }), widgetClassName, className),
+    className: cn("group/calendar", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", calendarVariants({ variant }), [
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
+          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
+        ], widgetClassName, className),
     style,
     children: (
         <>
-                  <CalendarGrid>
-                {children}
-              </CalendarGrid>
                   <CalendarHeader>
-                <CalendarButton />
+                <CalendarStack>
+                  {children}
+                </CalendarStack>
+                <CalendarLabel />
               </CalendarHeader>
-                  {date}
+                  <CalendarGrid>
+                <CalendarLabel2 />
+              </CalendarGrid>
         </>
       ),
     ...widgetAttributes,
@@ -113,17 +112,6 @@ function Calendar({ className, render, variant = "default", date, day, month, sh
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
-}
-
-function CalendarGrid({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="calendar-grid"
-        data-node="grid"
-      className={cn("grid", "pb-[3px] pl-[3px]", className)}
-      {...props}
-    />
-  )
 }
 
 function CalendarButton({ className, ...props }: React.ComponentProps<"button">) {
@@ -145,6 +133,58 @@ function CalendarButton({ className, ...props }: React.ComponentProps<"button">)
   )
 }
 
+function CalendarStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-stack"
+        data-node="stack"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/calendar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/calendar:text-[var(--accent-color)]",
+        "group-disabled/calendar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="calendar-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor]",
+        "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function CalendarHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -156,4 +196,57 @@ function CalendarHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Calendar, CalendarGrid, CalendarButton, CalendarHeader, calendarVariants }
+function CalendarSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/calendar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/calendar:text-[var(--accent-color)]",
+        "group-disabled/calendar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarLabel2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="calendar-label2"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor] mt-[3px] mr-[3px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))]",
+        "group-focus/calendar:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] group-focus/calendar:outline-2 group-focus/calendar:outline-offset-[-2px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarGrid({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-grid"
+        data-node="grid"
+      className={cn("grid", "horizontal", "pb-[3px] pl-[3px]", className)}
+      {...props}
+    />
+  )
+}
+
+export { Calendar, CalendarButton, CalendarStack, CalendarSelection, CalendarLink, CalendarLabel, CalendarHeader, CalendarSelection2, CalendarLink2, CalendarLabel2, CalendarGrid, calendarVariants }

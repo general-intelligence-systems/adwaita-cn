@@ -21,33 +21,33 @@ const fileChooserDialogVariants = cva(
     variants: {
       variant: {
         /** .bottom-sheet */
-        bottomSheet: "",
+        bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .default */
-        default: "",
+        default: "default",
         /** .dialog-window */
-        dialogWindow: "",
+        dialogWindow: "dialog-window",
         /** .floating */
-        floating: "",
+        floating: "floating",
         /** .landscape */
-        landscape: "",
+        landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .narrow */
-        narrow: "",
+        narrow: "narrow",
         /** .portrait */
-        portrait: "",
+        portrait: "portrait",
         /** .short */
-        short: "",
+        short: "short",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
         /** .subtitle */
-        subtitle: "",
+        subtitle: "subtitle",
         /** .title */
-        title: "",
+        title: "title",
       },
     },
     defaultVariants: { variant: "default" },
@@ -62,7 +62,7 @@ export interface FileChooserDialogProps
   action?: FileChooserAction
 
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** Widget, from Gtk.Window */
   child?: ReactNode
@@ -77,7 +77,7 @@ export interface FileChooserDialogProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -89,16 +89,16 @@ export interface FileChooserDialogProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** FileFilter, from Gtk.FileChooserDialog */
-  filter?: ReactNode
+  filter?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
@@ -140,13 +140,13 @@ export interface FileChooserDialogProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 
   /** gint, from Gtk.Dialog */
   useHeaderBar?: number
 }
 
-function FileChooserDialog({ className, render, variant = "default", application, child, defaultWidget, display, filter, focusWidget, iconName, titlebar, transientFor, action, createFolders, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, selectMultiple, startupId, title, useHeaderBar, children, ...props }: FileChooserDialogProps) {
+function FileChooserDialog({ className, render, variant = "default", child, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, filter: _filter, focusWidget: _focusWidget, transientFor: _transientFor, action, createFolders, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, selectMultiple, startupId, title, useHeaderBar, children, ...props }: FileChooserDialogProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -177,27 +177,19 @@ function FileChooserDialog({ className, render, variant = "default", application
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/file-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", fileChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("group/file-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", fileChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>
+                  <FileChooserDialogSheet />
                   <FileChooserDialogDrawing>
                 <FileChooserDialogPaper />
               </FileChooserDialogDrawing>
-                  <FileChooserDialogSheet>
-                <FileChooserDialogHeaderbar>
-                  <FileChooserDialogWindowhandle />
-                </FileChooserDialogHeaderbar>
-              </FileChooserDialogSheet>
-                  <Icon name={iconName} data-slot="file-chooser-dialog-icon" />
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {filter}
-                  {focusWidget}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="file-chooser-dialog-icon" />
+              )}
                   {titlebar}
-                  {transientFor}
+                  {child}
                   {children}
         </>
       ),
@@ -210,6 +202,17 @@ function FileChooserDialog({ className, render, variant = "default", application
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function FileChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="file-chooser-dialog-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function FileChooserDialogPaper({ className, ...props }: React.ComponentProps<"div">) {
@@ -234,37 +237,4 @@ function FileChooserDialogDrawing({ className, ...props }: React.ComponentProps<
   )
 }
 
-function FileChooserDialogWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-dialog-windowhandle"
-        data-node="windowhandle"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserDialogHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-dialog-headerbar"
-        data-node="headerbar"
-      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-dialog-sheet"
-        data-node="sheet"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { FileChooserDialog, FileChooserDialogPaper, FileChooserDialogDrawing, FileChooserDialogWindowhandle, FileChooserDialogHeaderbar, FileChooserDialogSheet, fileChooserDialogVariants }
+export { FileChooserDialog, FileChooserDialogSheet, FileChooserDialogPaper, FileChooserDialogDrawing, fileChooserDialogVariants }

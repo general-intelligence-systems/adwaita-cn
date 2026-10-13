@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import type { WindowGravity } from "@/lib/enums"
 
 const windowVariants = cva(
   "",
@@ -21,13 +22,13 @@ const windowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -42,7 +43,7 @@ export interface WindowProps
   adaptivePreview?: boolean
 
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** Widget, from Gtk.Window */
   child?: ReactNode
@@ -57,7 +58,7 @@ export interface WindowProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -69,19 +70,19 @@ export interface WindowProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
 
   /** WindowGravity, from Gtk.Window */
-  gravity?: ReactNode
+  gravity?: WindowGravity
 
   /** gboolean, from Gtk.Window */
   handleMenubarAccel?: boolean
@@ -114,10 +115,10 @@ export interface WindowProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 }
 
-function Window({ className, render, variant = "default", application, child, content, defaultWidget, display, focusWidget, gravity, iconName, titlebar, transientFor, adaptivePreview, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, startupId, title, children, ...props }: WindowProps) {
+function Window({ className, render, variant = "default", child, content, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, focusWidget: _focusWidget, transientFor: _transientFor, adaptivePreview, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, startupId, title, children, ...props }: WindowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -136,6 +137,7 @@ function Window({ className, render, variant = "default", application, child, co
     "data-destroy-with-parent": destroyWithParent,
     "data-focus-visible": focusVisible,
     "data-fullscreened": fullscreened,
+    "data-gravity": gravity,
     "data-handle-menubar-accel": handleMenubarAccel,
     "data-hide-on-close": hideOnClose,
     "data-maximized": maximized,
@@ -144,28 +146,20 @@ function Window({ className, render, variant = "default", application, child, co
     "data-resizable": resizable,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn("group/window", windowVariants({ variant }), widgetClassName, className),
+    className: cn("group/window", windowVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>
+                  <WindowSheet />
                   <WindowDrawing>
                 <WindowPaper />
               </WindowDrawing>
-                  <WindowSheet>
-                <WindowHeaderbar>
-                  <WindowWindowhandle />
-                </WindowHeaderbar>
-              </WindowSheet>
-                  <Icon name={iconName} data-slot="window-icon" />
-                  {content}
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {focusWidget}
-                  {gravity}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="window-icon" />
+              )}
                   {titlebar}
-                  {transientFor}
+                  {content}
+                  {child}
                   {children}
         </>
       ),
@@ -178,6 +172,17 @@ function Window({ className, render, variant = "default", application, child, co
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function WindowSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function WindowPaper({ className, ...props }: React.ComponentProps<"div">) {
@@ -202,37 +207,4 @@ function WindowDrawing({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function WindowWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="window-windowhandle"
-        data-node="windowhandle"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function WindowHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="window-headerbar"
-        data-node="headerbar"
-      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function WindowSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="window-sheet"
-        data-node="sheet"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { Window, WindowPaper, WindowDrawing, WindowWindowhandle, WindowHeaderbar, WindowSheet, windowVariants }
+export { Window, WindowSheet, WindowPaper, WindowDrawing, windowVariants }

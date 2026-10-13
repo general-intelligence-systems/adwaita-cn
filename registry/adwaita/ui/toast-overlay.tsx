@@ -28,7 +28,7 @@ function ToastOverlay({ className, render, child, children, ...props }: ToastOve
   const defaultProps = {
     "data-slot": "toast-overlay",
     "data-node": "toastoverlay",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/toast-overlay", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
@@ -47,4 +47,45 @@ function ToastOverlay({ className, render, child, children, ...props }: ToastOve
   })
 }
 
-export { ToastOverlay }
+function ToastOverlayChild({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toast-overlay-child"
+        data-node="child"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ToastOverlayButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="toast-overlay-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/toast-overlay:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/toast-overlay:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/toast-overlay:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/toast-overlay:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/toast-overlay:group-hover/toast-overlay:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/toast-overlay:group-active/toast-overlay:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ToastOverlayToast({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toast-overlay-toast"
+        data-node="toast"
+      className={cn("py-1.5 px-3 mt-3 mb-6 mx-3 bg-[#505053] text-[white] shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] rounded-[150px] gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+export { ToastOverlay, ToastOverlayChild, ToastOverlayButton, ToastOverlayToast }

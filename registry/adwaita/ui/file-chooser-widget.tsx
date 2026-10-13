@@ -4,13 +4,11 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
-import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { FileChooserAction } from "@/lib/enums"
@@ -22,9 +20,9 @@ const fileChooserWidgetVariants = cva(
       variant: {
         default: "",
         /** .error */
-        error: "text-[var(--accent-color)] [--accent-bg-color:var(--error-bg-color)] [--accent-fg-color:var(--error-fg-color)] [--accent-color:var(--error-color)]",
+        error: "error text-[var(--accent-color)] [--accent-bg-color:var(--error-bg-color)] [--accent-fg-color:var(--error-fg-color)] [--accent-color:var(--error-color)]",
         /** .search-bar */
-        searchBar: "",
+        searchBar: "search-bar",
       },
     },
     defaultVariants: { variant: "default" },
@@ -42,7 +40,7 @@ export interface FileChooserWidgetProps
   createFolders?: boolean
 
   /** FileFilter, from Gtk.FileChooserWidget */
-  filter?: ReactNode
+  filter?: unknown
 
   /** gboolean, from Gtk.FileChooserWidget */
   searchMode?: boolean
@@ -51,7 +49,7 @@ export interface FileChooserWidgetProps
   selectMultiple?: boolean
 }
 
-function FileChooserWidget({ className, render, variant = "default", filter, action, createFolders, searchMode, selectMultiple, children, ...props }: FileChooserWidgetProps) {
+function FileChooserWidget({ className, render, variant = "default", filter: _filter, action, createFolders, searchMode, selectMultiple, children, ...props }: FileChooserWidgetProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -65,51 +63,9 @@ function FileChooserWidget({ className, render, variant = "default", filter, act
     "data-create-folders": createFolders,
     "data-search-mode": searchMode,
     "data-select-multiple": selectMultiple,
-    className: cn("group/file-chooser-widget", "grid [&>*]:col-start-1 [&>*]:row-start-1", fileChooserWidgetVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", fileChooserWidgetVariants({ variant }), widgetClassName, className),
     style,
-    children: (
-        <>
-                  <FileChooserWidgetBox />
-                  <FileChooserWidgetGridview>
-                <FileChooserWidgetChild>
-                  <FileChooserWidgetFilelistcell />
-                  <FileChooserWidgetBox2 />
-                  <FileChooserWidgetFilethumbnail>
-                    <FileChooserWidgetImage />
-                  </FileChooserWidgetFilethumbnail>
-                </FileChooserWidgetChild>
-              </FileChooserWidgetGridview>
-                  <FileChooserWidgetPlacessidebar />
-                  <FileChooserWidgetColumnview>
-                <FileChooserWidgetListview />
-              </FileChooserWidgetColumnview>
-                  <FileChooserWidgetPaned>
-                <FileChooserWidgetSeparator />
-              </FileChooserWidgetPaned>
-                  <FileChooserWidgetPathbar>
-                <FileChooserWidgetButton>
-                  <FileChooserWidgetBox3 />
-                </FileChooserWidgetButton>
-              </FileChooserWidgetPathbar>
-                  <FileChooserWidgetPlacesview>
-                <FileChooserWidgetStack />
-                <FileChooserWidgetActionbar>
-                  <FileChooserWidgetRevealer>
-                    {children}
-                  </FileChooserWidgetRevealer>
-                </FileChooserWidgetActionbar>
-              </FileChooserWidgetPlacesview>
-                  <FileChooserWidgetTreeview>
-                <FileChooserWidgetListview2 />
-              </FileChooserWidgetTreeview>
-                  <FileChooserWidgetWindow>
-                <FileChooserWidgetTreeview2>
-                  <FileChooserWidgetListview3 />
-                </FileChooserWidgetTreeview2>
-              </FileChooserWidgetWindow>
-                  {filter}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -121,279 +77,4 @@ function FileChooserWidget({ className, render, variant = "default", filter, act
   })
 }
 
-function FileChooserWidgetBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-box"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetFilelistcell({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-filelistcell"
-        data-node="filelistcell"
-      className={cn("py-1.5 px-3", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetBox2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-box2"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="file-chooser-widget-image"
-        data-node="image"
-      className={cn("[filter:drop-shadow(0px_1px_1px_RGB(0_0_6/30%))]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetFilethumbnail({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-filethumbnail"
-        data-node="filethumbnail"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetChild({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-child"
-        data-node="child"
-      className={cn([
-        "p-[3px] rounded-[9px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0 m-[3px] rounded-[12px]",
-        "group-data-[selected]/file-chooser-widget:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetGridview({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-gridview"
-        data-node="gridview"
-      className={cn("p-[15px] [--accent-bg-color:#959595] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetPlacessidebar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-placessidebar"
-        data-node="placessidebar"
-      className={cn("bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetListview({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-listview"
-        data-node="listview"
-      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [--accent-bg-color:#959595] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetColumnview({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-columnview"
-        data-node="columnview"
-      className={cn("[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetSeparator({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-separator"
-        data-node="separator"
-      className={cn("bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] bg-none bg-[size:1px_1px] shadow-[inset_-1px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-[inset_-1px_0_var(--sidebar-bg-color),inset_-1px_0_var(--sidebar-border-color)]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetPaned({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-paned"
-        data-node="paned"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetBox3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-box3"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[4px]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="file-chooser-widget-button"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[9px]",
-        "group-hover/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/file-chooser-widget:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/file-chooser-widget:group-hover/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/file-chooser-widget:group-active/file-chooser-widget:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetPathbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-pathbar"
-        data-node="pathbar"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetStack({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-stack"
-        data-node="stack"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetRevealer({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-revealer"
-        data-node="revealer"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetActionbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-actionbar"
-        data-node="actionbar"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetPlacesview({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-placesview"
-        data-node="placesview"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetListview2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-listview2"
-        data-node="listview"
-      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetTreeview({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-treeview"
-        data-node="treeview"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetListview3({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-listview3"
-        data-node="listview"
-      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetTreeview2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-treeview2"
-        data-node="treeview"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function FileChooserWidgetWindow({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="file-chooser-widget-window"
-        data-node="window"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { FileChooserWidget, FileChooserWidgetBox, FileChooserWidgetFilelistcell, FileChooserWidgetBox2, FileChooserWidgetImage, FileChooserWidgetFilethumbnail, FileChooserWidgetChild, FileChooserWidgetGridview, FileChooserWidgetPlacessidebar, FileChooserWidgetListview, FileChooserWidgetColumnview, FileChooserWidgetSeparator, FileChooserWidgetPaned, FileChooserWidgetBox3, FileChooserWidgetButton, FileChooserWidgetPathbar, FileChooserWidgetStack, FileChooserWidgetRevealer, FileChooserWidgetActionbar, FileChooserWidgetPlacesview, FileChooserWidgetListview2, FileChooserWidgetTreeview, FileChooserWidgetListview3, FileChooserWidgetTreeview2, FileChooserWidgetWindow, fileChooserWidgetVariants }
+export { FileChooserWidget, fileChooserWidgetVariants }

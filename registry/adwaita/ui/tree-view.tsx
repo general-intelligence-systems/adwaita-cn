@@ -4,13 +4,11 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
-import { Icon } from "@/lib/icon"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { ScrollablePolicy, TreeViewGridLines } from "@/lib/enums"
@@ -22,19 +20,12 @@ const treeViewVariants = cva(
       variant: {
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .navigation-sidebar */
         navigationSidebar: [
-          "pt-1.5 pb-1 bg-[transparent] text-[inherit] p-0",
+          "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit] p-0",
           "data-[selected]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
           "data-[selected]:focus:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        ],
-        /** .view */
-        view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] border-l-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] border-t-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] bg-[color-mix(in_srgb,var(--accent-bg-color)_0.0001%,var(--view-bg-color))]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px] data-[selected]:rounded-none",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px] data-[selected]:focus:rounded-none",
         ],
       },
     },
@@ -59,13 +50,13 @@ export interface TreeViewProps
   enableTreeLines?: boolean
 
   /** TreeViewColumn, from Gtk.TreeView */
-  expanderColumn?: ReactNode
+  expanderColumn?: unknown
 
   /** gboolean, from Gtk.TreeView */
   fixedHeightMode?: boolean
 
   /** Adjustment, from Gtk.TreeView */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** gboolean, from Gtk.TreeView */
   headersClickable?: boolean
@@ -86,7 +77,7 @@ export interface TreeViewProps
   levelIndentation?: number
 
   /** TreeModel, from Gtk.TreeView */
-  model?: ReactNode
+  model?: unknown
 
   /** gboolean, from Gtk.TreeView */
   reorderable?: boolean
@@ -104,13 +95,13 @@ export interface TreeViewProps
   tooltipColumn?: number
 
   /** Adjustment, from Gtk.TreeView */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.TreeView */
   vscrollPolicy?: ScrollablePolicy
 }
 
-function TreeView({ className, render, variant = "default", expanderColumn, hadjustment, model, vadjustment, activateOnSingleClick, enableGridLines, enableSearch, enableTreeLines, fixedHeightMode, headersClickable, headersVisible, hoverExpand, hoverSelection, hscrollPolicy, levelIndentation, reorderable, rubberBanding, searchColumn, showExpanders, tooltipColumn, vscrollPolicy, children, ...props }: TreeViewProps) {
+function TreeView({ className, render, variant = "default", expanderColumn: _expanderColumn, hadjustment: _hadjustment, model: _model, vadjustment: _vadjustment, activateOnSingleClick, enableGridLines, enableSearch, enableTreeLines, fixedHeightMode, headersClickable, headersVisible, hoverExpand, hoverSelection, hscrollPolicy, levelIndentation, reorderable, rubberBanding, searchColumn, showExpanders, tooltipColumn, vscrollPolicy, children, ...props }: TreeViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -138,42 +129,17 @@ function TreeView({ className, render, variant = "default", expanderColumn, hadj
     "data-show-expanders": showExpanders,
     "data-tooltip-column": tooltipColumn,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("group/tree-view", treeViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/tree-view", "flex flex-col grow min-h-0", treeViewVariants({ variant }), [
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] border-l-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] border-t-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] bg-[color-mix(in_srgb,var(--accent-bg-color)_0.0001%,var(--view-bg-color))]",
+          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
+          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px] data-[selected]:rounded-none",
+          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px] data-[selected]:focus:rounded-none",
+        ], widgetClassName, className),
     style,
     children: (
         <>
-                  <TreeViewEntry>
-                <TreeViewImage />
-                <TreeViewProgress>
-                  <TreeViewTrough>
-                    <TreeViewProgress2 />
-                  </TreeViewTrough>
-                </TreeViewProgress>
-                <TreeViewText>
-                  <TreeViewBlockCursor />
-                  <TreeViewPlaceholder />
-                </TreeViewText>
-              </TreeViewEntry>
-                  <TreeViewSpinbutton>
-                <TreeViewText2 />
-              </TreeViewSpinbutton>
-                  <TreeViewListview />
-                  <TreeViewButton />
-                  <TreeViewHeader>
-                <TreeViewButton2>
-                  <TreeViewBox>
-                    {children}
-                  </TreeViewBox>
-                  <TreeViewSortIndicator />
-                </TreeViewButton2>
-              </TreeViewHeader>
-                  <TreeViewAcceleditor>
-                <TreeViewLabel />
-              </TreeViewAcceleditor>
-                  {expanderColumn}
-                  {hadjustment}
-                  {model}
-                  {vadjustment}
+                  <TreeViewHeader />
+                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -187,167 +153,6 @@ function TreeView({ className, render, variant = "default", expanderColumn, hadj
   })
 }
 
-function TreeViewImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
-  return (
-    <Icon
-      data-slot="tree-view-image"
-        data-node="image"
-      className={cn([
-        "opacity-70",
-        "group-hover/tree-view:opacity-100",
-        "group-active/tree-view:opacity-80",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewProgress2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-progress2"
-        data-node="progress"
-      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewTrough({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-trough"
-        data-node="trough"
-      className={cn("min-h-0.5", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewProgress({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-progress"
-        data-node="progress"
-      className={cn("mb-[3px]", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-block-cursor"
-        data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-placeholder"
-        data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewText({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-text"
-        data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewEntry({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-entry"
-        data-node="entry"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-none bg-[image:none] bg-[var(--view-bg-color)]",
-        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewText2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-text2"
-        data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 min-w-7 py-[1px] px-0.5 min-h-0", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewSpinbutton({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-spinbutton"
-        data-node="spinbutton"
-      className={cn([
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-0 border-none rounded-none",
-        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewListview({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-listview"
-        data-node="listview"
-      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      data-slot="tree-view-button"
-        data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/tree-view:group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/tree-view:group-active/tree-view:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-function TreeViewBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="tree-view-box"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
-      {...props}
-    />
-  )
-}
-
 function TreeViewSortIndicator({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -359,10 +164,10 @@ function TreeViewSortIndicator({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function TreeViewButton2({ className, ...props }: React.ComponentProps<"button">) {
+function TreeViewButton({ className, ...props }: React.ComponentProps<"button">) {
   return (
     <button
-      data-slot="tree-view-button2"
+      data-slot="tree-view-button"
         data-node="button"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
         "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
@@ -389,29 +194,26 @@ function TreeViewHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function TreeViewLabel({ className, ...props }: React.ComponentProps<"span">) {
+function TreeViewRubberband({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <span
-      data-slot="tree-view-label"
-        data-node="label"
-      className={cn([
-        "caret-[currentColor]",
-        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+    <div
+      data-slot="tree-view-rubberband"
+        data-node="rubberband"
+      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
       {...props}
     />
   )
 }
 
-function TreeViewAcceleditor({ className, ...props }: React.ComponentProps<"div">) {
+function TreeViewDndtarget({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="tree-view-acceleditor"
-        data-node="acceleditor"
+      data-slot="tree-view-dndtarget"
+        data-node="dndtarget"
       className={cn(className)}
       {...props}
     />
   )
 }
 
-export { TreeView, TreeViewImage, TreeViewProgress2, TreeViewTrough, TreeViewProgress, TreeViewBlockCursor, TreeViewPlaceholder, TreeViewText, TreeViewEntry, TreeViewText2, TreeViewSpinbutton, TreeViewListview, TreeViewButton, TreeViewBox, TreeViewSortIndicator, TreeViewButton2, TreeViewHeader, TreeViewLabel, TreeViewAcceleditor, treeViewVariants }
+export { TreeView, TreeViewSortIndicator, TreeViewButton, TreeViewHeader, TreeViewRubberband, TreeViewDndtarget, treeViewVariants }

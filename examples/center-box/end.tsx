@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function CenterBoxEnd() {
   return (
-    <CenterBox size="end">
+    <CenterBox variant="end">
       <Label label="Label" />
     </CenterBox>
   )

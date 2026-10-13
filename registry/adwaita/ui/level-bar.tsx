@@ -50,12 +50,12 @@ function LevelBar({ className, render, inverted, maxValue, minValue, mode, orien
     "data-mode": mode,
     "data-orientation": orientation,
     "data-value": value,
-    className: cn("group/level-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", "disabled:[filter:Opacity(var(--disabled-opacity))]", widgetClassName, className),
+    className: cn("group/level-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", "disabled:[filter:Opacity(var(--disabled-opacity))]", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
                   <LevelBarTrough>
-                <LevelBarBlock />
+                <LevelBarBlock style={{ [orientation === "vertical" ? "blockSize" : "inlineSize"]: `${Math.max(0, Math.min(100, (((value ?? 0) - (minValue ?? 0)) / ((maxValue ?? 1) - (minValue ?? 0) || 1)) * 100))}%`, [orientation === "vertical" ? "inlineSize" : "blockSize"]: "100%" }} />
               </LevelBarTrough>
                   {children}
         </>

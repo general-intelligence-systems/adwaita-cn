@@ -20,7 +20,7 @@ const searchBarVariants = cva(
       variant: {
         default: "",
         /** .close */
-        close: "",
+        close: "close",
       },
     },
     defaultVariants: { variant: "default" },
@@ -35,7 +35,7 @@ export interface SearchBarProps
   child?: ReactNode
 
   /** Widget, from Gtk.SearchBar */
-  keyCaptureWidget?: ReactNode
+  keyCaptureWidget?: unknown
 
   /** gboolean, from Gtk.SearchBar */
   searchModeEnabled?: boolean
@@ -44,7 +44,7 @@ export interface SearchBarProps
   showCloseButton?: boolean
 }
 
-function SearchBar({ className, render, variant = "default", child, keyCaptureWidget, searchModeEnabled, showCloseButton, children, ...props }: SearchBarProps) {
+function SearchBar({ className, render, variant = "default", child, keyCaptureWidget: _keyCaptureWidget, searchModeEnabled, showCloseButton, children, ...props }: SearchBarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -56,13 +56,16 @@ function SearchBar({ className, render, variant = "default", child, keyCaptureWi
     "data-variant": variant,
     "data-search-mode-enabled": searchModeEnabled,
     "data-show-close-button": showCloseButton,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", searchBarVariants({ variant }), widgetClassName, className),
+    className: cn("group/search-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", searchBarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {child}
-                  {keyCaptureWidget}
+                  <SearchBarRevealer>
+                <SearchBarBox>
                   {children}
+                </SearchBarBox>
+              </SearchBarRevealer>
+                  {child}
         </>
       ),
     ...widgetAttributes,
@@ -76,4 +79,56 @@ function SearchBar({ className, render, variant = "default", child, keyCaptureWi
   })
 }
 
-export { SearchBar, searchBarVariants }
+function SearchBarChild({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-bar-child"
+        data-node="child"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function SearchBarButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="search-bar-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "group-hover/search-bar:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "group-active/search-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-disabled/search-bar:[filter:Opacity(var(--disabled-opacity))]",
+        "group-data-[state=checked]/search-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "group-data-[state=checked]/search-bar:group-hover/search-bar:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "group-data-[state=checked]/search-bar:group-active/search-bar:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SearchBarBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-bar-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "pt-1.5 pb-[7px] px-1.5 bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-bar-revealer"
+        data-node="revealer"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { SearchBar, SearchBarChild, SearchBarButton, SearchBarBox, SearchBarRevealer, searchBarVariants }

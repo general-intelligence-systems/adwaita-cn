@@ -20,11 +20,11 @@ const preferencesGroupVariants = cva(
       variant: {
         default: "",
         /** .boxed-list */
-        boxedList: "",
+        boxedList: "boxed-list",
         /** .boxed-list-separate */
-        boxedListSeparate: "",
+        boxedListSeparate: "boxed-list-separate",
         /** .single-line */
-        singleLine: "",
+        singleLine: "single-line",
       },
     },
     defaultVariants: { variant: "default" },
@@ -96,6 +96,33 @@ function PreferencesGroup({ className, render, variant = "default", description,
   })
 }
 
+function PreferencesGroupSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/preferences-group:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/preferences-group:text-[var(--accent-color)]",
+        "group-disabled/preferences-group:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function PreferencesGroupTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -104,6 +131,33 @@ function PreferencesGroupTitle({ className, ...props }: React.ComponentProps<"sp
       className={cn("heading h4", [
         "caret-[currentColor] font-bold",
         "group-disabled/preferences-group:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesGroupLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-group-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/preferences-group:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/preferences-group:text-[var(--accent-color)]",
+        "group-disabled/preferences-group:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -131,7 +185,7 @@ function PreferencesGroupBox2({ className, ...props }: React.ComponentProps<"div
         data-node="box"
         data-valign="center"
         data-hexpand=""
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "labels", "gap-[6px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "labels vertical", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -142,7 +196,7 @@ function PreferencesGroupHeaderBox({ className, ...props }: React.ComponentProps
     <div
       data-slot="preferences-group-header-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "gap-[6px] mb-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "gap-[6px] mb-1.5", className)}
       {...props}
     />
   )
@@ -164,7 +218,7 @@ function PreferencesGroupListboxBox({ className, ...props }: React.ComponentProp
     <div
       data-slot="preferences-group-listbox-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "gap-[6px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -175,10 +229,10 @@ function PreferencesGroupBox({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="preferences-group-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "gap-[6px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[6px]", className)}
       {...props}
     />
   )
 }
 
-export { PreferencesGroup, PreferencesGroupTitle, PreferencesGroupDescription, PreferencesGroupBox2, PreferencesGroupHeaderBox, PreferencesGroupListbox, PreferencesGroupListboxBox, PreferencesGroupBox, preferencesGroupVariants }
+export { PreferencesGroup, PreferencesGroupSelection, PreferencesGroupLink, PreferencesGroupTitle, PreferencesGroupSelection2, PreferencesGroupLink2, PreferencesGroupDescription, PreferencesGroupBox2, PreferencesGroupHeaderBox, PreferencesGroupListbox, PreferencesGroupListboxBox, PreferencesGroupBox, preferencesGroupVariants }

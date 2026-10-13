@@ -4,7 +4,6 @@
 // of its stylesheet and out of adw-preferences-page.ui. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -22,7 +21,7 @@ const preferencesPageVariants = cva(
       variant: {
         default: "",
         /** .contents */
-        contents: "",
+        contents: "contents",
       },
     },
     defaultVariants: { variant: "default" },
@@ -34,7 +33,7 @@ export interface PreferencesPageProps
     WidgetProps,
     VariantProps<typeof preferencesPageVariants> {
   /** Banner, from Adw.PreferencesPage */
-  banner?: ReactNode
+  banner?: unknown
 
   /** utf8, from Adw.PreferencesPage */
   description?: string
@@ -52,7 +51,7 @@ export interface PreferencesPageProps
   useUnderline?: boolean
 }
 
-function PreferencesPage({ className, render, variant = "default", banner, description, iconName, descriptionCentered, title, useUnderline, children, ...props }: PreferencesPageProps) {
+function PreferencesPage({ className, render, variant = "default", description, iconName, banner: _banner, descriptionCentered, title, useUnderline, children, ...props }: PreferencesPageProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -79,8 +78,9 @@ function PreferencesPage({ className, render, variant = "default", banner, descr
                   </PreferencesPageBox>
                 </PreferencesPageClamp>
               </PreferencesPageScrolledWindow>
-                  <Icon name={iconName} data-slot="preferences-page-icon" />
-                  {banner}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="preferences-page-icon" />
+              )}
         </>
       ),
     ...widgetAttributes,
@@ -92,6 +92,33 @@ function PreferencesPage({ className, render, variant = "default", banner, descr
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function PreferencesPageSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-page-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function PreferencesPageLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="preferences-page-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/preferences-page:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/preferences-page:text-[var(--accent-color)]",
+        "group-disabled/preferences-page:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
 }
 
 function PreferencesPageDescription({ className, ...props }: React.ComponentProps<"span">) {
@@ -113,7 +140,7 @@ function PreferencesPageBox({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="preferences-page-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "my-6 mx-3 gap-[24px]", className)}
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-6 mx-3 gap-[24px]", className)}
       {...props}
     />
   )
@@ -139,10 +166,10 @@ function PreferencesPageScrolledWindow({ className, ...props }: React.ComponentP
     <div
       data-slot="preferences-page-scrolled-window"
         data-node="scrolledwindow"
-      className={cn(className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
       {...props}
     />
   )
 }
 
-export { PreferencesPage, PreferencesPageDescription, PreferencesPageBox, PreferencesPageClamp, PreferencesPageScrolledWindow, preferencesPageVariants }
+export { PreferencesPage, PreferencesPageSelection, PreferencesPageLink, PreferencesPageDescription, PreferencesPageBox, PreferencesPageClamp, PreferencesPageScrolledWindow, preferencesPageVariants }

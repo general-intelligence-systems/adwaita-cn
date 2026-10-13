@@ -4,25 +4,25 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import type { Orientation } from "@/lib/enums"
 
 export interface CarouselIndicatorDotsProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "carousel" | "orientation">,
     WidgetProps {
   /** Carousel, from Adw.CarouselIndicatorDots */
-  carousel?: ReactNode
+  carousel?: unknown
 
   /** Orientation, from Adw.CarouselIndicatorDots */
-  orientation?: ReactNode
+  orientation?: Orientation
 }
 
-function CarouselIndicatorDots({ className, render, carousel, orientation, children, ...props }: CarouselIndicatorDotsProps) {
+function CarouselIndicatorDots({ className, render, carousel: _carousel, orientation, children, ...props }: CarouselIndicatorDotsProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -31,15 +31,10 @@ function CarouselIndicatorDots({ className, render, carousel, orientation, child
   const defaultProps = {
     "data-slot": "carousel-indicator-dots",
     "data-node": "carouselindicatordots",
+    "data-orientation": orientation,
     className: cn(widgetClassName, className),
     style,
-    children: (
-        <>
-                  {carousel}
-                  {orientation}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

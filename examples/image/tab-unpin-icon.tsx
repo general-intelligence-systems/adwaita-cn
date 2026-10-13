@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function ImageTabunpinicon() {
   return (
-    <Image size="tabUnpinIcon">
+    <Image variant="tabUnpinIcon">
       <Label label="Label" />
     </Image>
   )

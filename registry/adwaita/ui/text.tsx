@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,13 +20,13 @@ const textVariants = cva(
       variant: {
         default: "",
         /** .linked */
-        linked: "",
+        linked: "linked",
         /** .magnifier */
-        magnifier: "",
+        magnifier: "magnifier",
         /** .read-only */
-        readOnly: "",
+        readOnly: "read-only",
         /** .touch-selection */
-        touchSelection: "",
+        touchSelection: "touch-selection",
       },
     },
     defaultVariants: { variant: "default" },
@@ -35,17 +34,17 @@ const textVariants = cva(
 )
 
 export interface TextProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "activatesDefault" | "attributes" | "buffer" | "editable" | "enableEmojiCompletion" | "enableUndo" | "extraMenu" | "imModule" | "inputHints" | "inputPurpose" | "invisibleChar" | "invisibleCharSet" | "maxLength" | "maxWidthChars" | "overwriteMode" | "placeholderText" | "propagateTextWidth" | "tabs" | "text" | "truncateMultiline" | "visibility" | "widthChars" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "activatesDefault" | "attributes" | "buffer" | "editable" | "enableEmojiCompletion" | "enableUndo" | "extraMenu" | "imModule" | "inputHints" | "inputPurpose" | "invisibleChar" | "invisibleCharSet" | "maxLength" | "maxWidthChars" | "overwriteMode" | "placeholderText" | "propagateTextWidth" | "tabs" | "text" | "truncateMultiline" | "visibility" | "widthChars" | "xalign" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof textVariants> {
   /** gboolean, from Gtk.Text */
   activatesDefault?: boolean
 
   /** Pango.AttrList, from Gtk.Text */
-  attributes?: ReactNode
+  attributes?: unknown
 
   /** EntryBuffer, from Gtk.Text */
-  buffer?: ReactNode
+  buffer?: unknown
 
   /** gboolean, from Gtk.Text */
   editable?: boolean
@@ -57,7 +56,7 @@ export interface TextProps
   enableUndo?: boolean
 
   /** Gio.MenuModel, from Gtk.Text */
-  extraMenu?: ReactNode
+  extraMenu?: unknown
 
   /** utf8, from Gtk.Text */
   imModule?: string
@@ -90,7 +89,7 @@ export interface TextProps
   propagateTextWidth?: boolean
 
   /** Pango.TabArray, from Gtk.Text */
-  tabs?: ReactNode
+  tabs?: unknown
 
   /** utf8, from Gtk.Text */
   text?: string
@@ -108,7 +107,7 @@ export interface TextProps
   xalign?: number
 }
 
-function Text({ className, render, variant = "default", activatesDefault, attributes, buffer, editable, enableEmojiCompletion, enableUndo, extraMenu, imModule, inputHints, inputPurpose, invisibleChar, invisibleCharSet, maxLength, maxWidthChars, overwriteMode, placeholderText, propagateTextWidth, tabs, text, truncateMultiline, visibility, widthChars, xalign, children: _children, ...props }: TextProps) {
+function Text({ className, render, variant = "default", placeholderText, attributes: _attributes, buffer: _buffer, extraMenu: _extraMenu, tabs: _tabs, activatesDefault, editable, enableEmojiCompletion, enableUndo, imModule, inputHints, inputPurpose, invisibleChar, invisibleCharSet, maxLength, maxWidthChars, overwriteMode, propagateTextWidth, text, truncateMultiline, visibility, widthChars, xalign, children, ...props }: TextProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -118,14 +117,10 @@ function Text({ className, render, variant = "default", activatesDefault, attrib
     "data-slot": "text",
     "data-node": "text",
     "data-variant": variant,
-    type: "text",
     "data-activates-default": activatesDefault,
-    "data-attributes": attributes,
-    "data-buffer": buffer,
-    contentEditable: editable,
+    "data-editable": editable,
     "data-enable-emoji-completion": enableEmojiCompletion,
     "data-enable-undo": enableUndo,
-    "data-extra-menu": extraMenu,
     "data-im-module": imModule,
     "data-input-hints": inputHints,
     "data-input-purpose": inputPurpose,
@@ -134,25 +129,100 @@ function Text({ className, render, variant = "default", activatesDefault, attrib
     "data-max-length": maxLength,
     "data-max-width-chars": maxWidthChars,
     "data-overwrite-mode": overwriteMode,
-    placeholder: placeholderText,
     "data-propagate-text-width": propagateTextWidth,
-    "data-tabs": tabs,
     "data-text": text,
     "data-truncate-multiline": truncateMultiline,
     "data-visibility": visibility,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textVariants({ variant }), widgetClassName, className),
+    className: cn("group/text", "flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textVariants({ variant }), editable === false && "read-only", widgetClassName, className),
     style,
+    children: (
+        <>
+                  <TextPlaceholder />
+                  {placeholderText === undefined ? null : (
+                <span data-slot="label" data-node="label" className="caret-[currentColor]">
+                  {placeholderText}
+                </span>
+              )}
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { Text, textVariants }
+function TextPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-placeholder"
+        data-node="placeholder"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function TextUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function TextSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function TextCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function TextBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-block-cursor"
+        data-node="block-cursor"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function TextWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { Text, TextPlaceholder, TextUndershoot, TextSelection, TextCursorHandle, TextBlockCursor, TextWindow, textVariants }

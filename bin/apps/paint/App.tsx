@@ -25,7 +25,7 @@ export default function PaintApp() {
             <ColorDialogButton />
             <FontButton />
             <FontDialogButton />
-            <ScaleButton iconName="zoom-in-symbolic" className="self-start" />
+            <ScaleButton icons={["zoom-in-symbolic"]} className="self-start" />
             <Scale value={80} />
           </Box>
           <Separator orientation="vertical" />

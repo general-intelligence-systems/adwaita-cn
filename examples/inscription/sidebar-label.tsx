@@ -7,6 +7,6 @@ import { Inscription } from "@/ui/inscription"
 
 export default function InscriptionSidebarlabel() {
   return (
-    <Inscription size="sidebarLabel" markup="Markup" text="Text" />
+    <Inscription variant="sidebarLabel" markup="Markup" text="Text" />
   )
 }

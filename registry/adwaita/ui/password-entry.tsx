@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -24,14 +23,12 @@ const passwordEntryVariants = cva(
       variant: {
         default: "",
         /** .caps-lock-indicator */
-        capsLockIndicator: "",
+        capsLockIndicator: "caps-lock-indicator",
         /** .flat */
         flat: [
-          "p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
+          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
           "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
         ],
-        /** .password */
-        password: "",
       },
     },
     defaultVariants: { variant: "default" },
@@ -52,7 +49,7 @@ export interface PasswordEntryProps
   enableUndo?: boolean
 
   /** Gio.MenuModel, from Gtk.PasswordEntry */
-  extraMenu?: ReactNode
+  extraMenu?: unknown
 
   /** gint, from Gtk.PasswordEntry */
   maxWidthChars?: number
@@ -73,7 +70,7 @@ export interface PasswordEntryProps
   xalign?: number
 }
 
-function PasswordEntry({ className, render, variant = "default", extraMenu, activatesDefault, editable, enableUndo, maxWidthChars, placeholderText, showPeekIcon, text, widthChars, xalign, children, ...props }: PasswordEntryProps) {
+function PasswordEntry({ className, render, variant = "default", extraMenu: _extraMenu, activatesDefault, editable, enableUndo, maxWidthChars, placeholderText, showPeekIcon, text, widthChars, xalign, children, ...props }: PasswordEntryProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -92,18 +89,11 @@ function PasswordEntry({ className, render, variant = "default", extraMenu, acti
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/password-entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", passwordEntryVariants({ variant }), widgetClassName, className),
+    className: cn("group/password-entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", passwordEntryVariants({ variant }), "password", widgetClassName, className),
     style,
     children: (
         <>
-                  <PasswordEntryImage />
-                  <PasswordEntryProgress>
-                <PasswordEntryTrough>
-                  <PasswordEntryProgress2 />
-                </PasswordEntryTrough>
-              </PasswordEntryProgress>
                   <PasswordEntryText placeholder={placeholderText} defaultValue={text} />
-                  {extraMenu}
                   {children}
         </>
       ),
@@ -116,6 +106,83 @@ function PasswordEntry({ className, render, variant = "default", extraMenu, acti
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function PasswordEntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntrySelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="password-entry-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      {...props}
+    />
+  )
 }
 
 function PasswordEntryImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
@@ -133,28 +200,6 @@ function PasswordEntryImage({ className, ...props }: React.ComponentProps<typeof
   )
 }
 
-function PasswordEntryProgress2({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-progress2"
-        data-node="progress"
-      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryTrough({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-trough"
-        data-node="trough"
-      className={cn("min-h-0.5", className)}
-      {...props}
-    />
-  )
-}
-
 function PasswordEntryProgress({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -166,37 +211,4 @@ function PasswordEntryProgress({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function PasswordEntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-block-cursor"
-        data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="password-entry-placeholder"
-        data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
-      {...props}
-    />
-  )
-}
-
-function PasswordEntryText({ className, ...props }: React.ComponentProps<"input">) {
-  return (
-    <input
-      data-slot="password-entry-text"
-        data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
-      {...props}
-    />
-  )
-}
-
-export { PasswordEntry, PasswordEntryImage, PasswordEntryProgress2, PasswordEntryTrough, PasswordEntryProgress, PasswordEntryBlockCursor, PasswordEntryPlaceholder, PasswordEntryText, passwordEntryVariants }
+export { PasswordEntry, PasswordEntryPlaceholder, PasswordEntryUndershoot, PasswordEntrySelection, PasswordEntryCursorHandle, PasswordEntryBlockCursor, PasswordEntryWindow, PasswordEntryText, PasswordEntryImage, PasswordEntryProgress, passwordEntryVariants }

@@ -4,8 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -14,32 +12,23 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation } from "@/lib/enums"
 
-const volumeButtonVariants = cva(
-  "",
-  {
-    variants: {
-      variant: {
-        default: "",
-        /** .scale */
-        scale: "",
-      },
-    },
-    defaultVariants: { variant: "default" },
-  },
-)
-
 export interface VolumeButtonProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adjustment" | "hasFrame" | "icons" | "orientation" | "useSymbolic" | "value" | "variant" | "size">,
-    WidgetProps,
-    VariantProps<typeof volumeButtonVariants> {
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adjustment" | "hasFrame" | "icons" | "orientation" | "useSymbolic" | "value" | "minValue" | "maxValue">,
+    WidgetProps {
   /** Adjustment, from Gtk.ScaleButton */
-  adjustment?: ReactNode
+  adjustment?: unknown
 
   /** gboolean, from Gtk.ScaleButton */
   hasFrame?: boolean
 
-  /** object, from Gtk.ScaleButton */
-  icons?: ReactNode
+  /** utf8, from Gtk.ScaleButton */
+  icons?: unknown
+
+  /** gdouble, from Gtk.Adjustment */
+  maxValue?: number
+
+  /** gdouble, from Gtk.Adjustment */
+  minValue?: number
 
   /** Orientation, from Gtk.VolumeButton */
   orientation?: Orientation
@@ -51,7 +40,7 @@ export interface VolumeButtonProps
   value?: number
 }
 
-function VolumeButton({ className, render, variant = "default", adjustment, icons, hasFrame, orientation, useSymbolic, value, children, ...props }: VolumeButtonProps) {
+function VolumeButton({ className, render, adjustment: _adjustment, icons: _icons, hasFrame, maxValue, minValue, orientation, useSymbolic, value, children, ...props }: VolumeButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -60,20 +49,15 @@ function VolumeButton({ className, render, variant = "default", adjustment, icon
   const defaultProps = {
     "data-slot": "volume-button",
     "data-node": "scalebutton",
-    "data-variant": variant,
     "data-has-frame": hasFrame,
+    "data-max-value": maxValue,
+    "data-min-value": minValue,
     "data-orientation": orientation,
     "data-use-symbolic": useSymbolic,
     "data-value": value,
-    className: cn(volumeButtonVariants({ variant }), widgetClassName, className),
+    className: cn("[&>*]:py-[5px] [&>*]:px-2.5 [&>*]:min-h-6 [&>*]:min-w-4 [&>*]:rounded-[9px] [&>*]:font-bold [&>*]:[outline-width:0px] [&>*]:[outline-style:solid] [&>*]:[outline-color:transparent] [&>*]:outline-offset-[4px] [&>*]:transition-[outline-color,outline-width,outline-offset,background,box-shadow] [&>*]:duration-200 [&>*]:ease-[cubic-bezier(0.25,0.46,0.45,0.94)] [&>*]:bg-[color-mix(in_srgb,currentColor_10%,transparent)] [&>*]:hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] [&>*]:active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] [&>*]:disabled:[filter:Opacity(var(--disabled-opacity))] [&>*]:data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] [&>*]:data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] [&>*]:data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]", "scale", widgetClassName, className),
     style,
-    children: (
-        <>
-                  {adjustment}
-                  {icons}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -85,4 +69,4 @@ function VolumeButton({ className, render, variant = "default", adjustment, icon
   })
 }
 
-export { VolumeButton, volumeButtonVariants }
+export { VolumeButton }

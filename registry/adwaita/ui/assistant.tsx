@@ -21,20 +21,18 @@ const assistantVariants = cva(
     variants: {
       variant: {
         default: "",
-        /** .assistant */
-        assistant: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
         /** .highlight */
-        highlight: "",
+        highlight: "highlight",
         /** .messagedialog */
-        messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
-        ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
         /** .suggested-action */
-        suggestedAction: "",
+        suggestedAction: "suggested-action",
       },
     },
     defaultVariants: { variant: "default" },
@@ -46,7 +44,7 @@ export interface AssistantProps
     WidgetProps,
     VariantProps<typeof assistantVariants> {
   /** Application, from Gtk.Window */
-  application?: ReactNode
+  application?: unknown
 
   /** Widget, from Gtk.Window */
   child?: ReactNode
@@ -58,7 +56,7 @@ export interface AssistantProps
   defaultHeight?: number
 
   /** Widget, from Gtk.Window */
-  defaultWidget?: ReactNode
+  defaultWidget?: unknown
 
   /** gint, from Gtk.Window */
   defaultWidth?: number
@@ -70,13 +68,13 @@ export interface AssistantProps
   destroyWithParent?: boolean
 
   /** Gdk.Display, from Gtk.Window */
-  display?: ReactNode
+  display?: unknown
 
   /** gboolean, from Gtk.Window */
   focusVisible?: boolean
 
   /** Widget, from Gtk.Window */
-  focusWidget?: ReactNode
+  focusWidget?: unknown
 
   /** gboolean, from Gtk.Window */
   fullscreened?: boolean
@@ -115,13 +113,13 @@ export interface AssistantProps
   titlebar?: ReactNode
 
   /** Window, from Gtk.Window */
-  transientFor?: ReactNode
+  transientFor?: unknown
 
   /** gint, from Gtk.Assistant */
   useHeaderBar?: number
 }
 
-function Assistant({ className, render, variant = "default", application, child, defaultWidget, display, focusWidget, iconName, titlebar, transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, startupId, title, useHeaderBar, children, ...props }: AssistantProps) {
+function Assistant({ className, render, variant = "default", child, iconName, titlebar, application: _application, defaultWidget: _defaultWidget, display: _display, focusWidget: _focusWidget, transientFor: _transientFor, decorated, defaultHeight, defaultWidth, deletable, destroyWithParent, focusVisible, fullscreened, gravity, handleMenubarAccel, hideOnClose, maximized, mnemonicsVisible, modal, resizable, startupId, title, useHeaderBar, children, ...props }: AssistantProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -149,26 +147,19 @@ function Assistant({ className, render, variant = "default", application, child,
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/assistant", assistantVariants({ variant }), widgetClassName, className),
+    className: cn("group/assistant", assistantVariants({ variant }), "assistant", "background", widgetClassName, className),
     style,
     children: (
         <>
+                  <AssistantSheet />
                   <AssistantDrawing>
                 <AssistantPaper />
               </AssistantDrawing>
-                  <AssistantSheet>
-                <AssistantHeaderbar>
-                  <AssistantWindowhandle />
-                </AssistantHeaderbar>
-              </AssistantSheet>
-                  <Icon name={iconName} data-slot="assistant-icon" />
-                  {application}
-                  {child}
-                  {defaultWidget}
-                  {display}
-                  {focusWidget}
+                  {iconName === undefined ? null : (
+                <Icon name={iconName} data-slot="assistant-icon" />
+              )}
                   {titlebar}
-                  {transientFor}
+                  {child}
                   {children}
         </>
       ),
@@ -181,6 +172,17 @@ function Assistant({ className, render, variant = "default", application, child,
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function AssistantSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="assistant-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function AssistantPaper({ className, ...props }: React.ComponentProps<"div">) {
@@ -205,37 +207,4 @@ function AssistantDrawing({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-function AssistantWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="assistant-windowhandle"
-        data-node="windowhandle"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-function AssistantHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="assistant-headerbar"
-        data-node="headerbar"
-      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
-      {...props}
-    />
-  )
-}
-
-function AssistantSheet({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="assistant-sheet"
-        data-node="sheet"
-      className={cn(className)}
-      {...props}
-    />
-  )
-}
-
-export { Assistant, AssistantPaper, AssistantDrawing, AssistantWindowhandle, AssistantHeaderbar, AssistantSheet, assistantVariants }
+export { Assistant, AssistantSheet, AssistantPaper, AssistantDrawing, assistantVariants }

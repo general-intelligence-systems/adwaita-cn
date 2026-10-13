@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -17,7 +16,7 @@ export interface AvatarProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "customImage" | "iconName" | "showInitials" | "size" | "text">,
     WidgetProps {
   /** Gdk.Paintable, from Adw.Avatar */
-  customImage?: ReactNode
+  customImage?: unknown
 
   /** utf8, from Adw.Avatar */
   iconName?: string
@@ -32,7 +31,7 @@ export interface AvatarProps
   text?: string
 }
 
-function Avatar({ className, render, customImage, iconName, showInitials, size, text, children, ...props }: AvatarProps) {
+function Avatar({ className, render, iconName, customImage: _customImage, showInitials, size, text, children, ...props }: AvatarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -43,14 +42,15 @@ function Avatar({ className, render, customImage, iconName, showInitials, size, 
     "data-show-initials": showInitials,
     "data-size": size,
     "data-text": text,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/avatar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style: { ...style, ...(size === undefined ? {} : { minWidth: size }), ...(size === undefined ? {} : { minHeight: size }) } as React.CSSProperties,
     children: (
-        <>
-                  <Icon name={iconName} data-slot="avatar-icon" />
-                  {customImage}
-                  {children}
-        </>
+        <AvatarGizmo>
+                <AvatarLabel />
+                <AvatarImage name={iconName} />
+                <AvatarImage2 name={iconName} />
+                {children}
+              </AvatarGizmo>
       ),
     ...widgetAttributes,
   }
@@ -63,4 +63,78 @@ function Avatar({ className, render, customImage, iconName, showInitials, size, 
   })
 }
 
-export { Avatar }
+function AvatarSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="avatar-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function AvatarLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="avatar-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/avatar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/avatar:text-[var(--accent-color)]",
+        "group-disabled/avatar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function AvatarLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="avatar-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor]",
+        "group-disabled/avatar:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function AvatarImage({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="avatar-image"
+        data-node="image"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function AvatarImage2({ className, ...props }: React.ComponentProps<typeof Icon>) {
+  return (
+    <Icon
+      data-slot="avatar-image2"
+        data-node="image"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function AvatarGizmo({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="avatar-gizmo"
+        data-node="avatar"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "rounded-full font-bold", className)}
+      {...props}
+    />
+  )
+}
+
+export { Avatar, AvatarSelection, AvatarLink, AvatarLabel, AvatarImage, AvatarImage2, AvatarGizmo }

@@ -4,7 +4,6 @@
 // of its stylesheet and out of adw-tab-button.ui. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -21,7 +20,7 @@ const tabButtonVariants = cva(
       variant: {
         default: "",
         /** .small */
-        small: "",
+        small: "small",
       },
     },
     defaultVariants: { variant: "default" },
@@ -36,13 +35,13 @@ export interface TabButtonProps
   actionName?: string
 
   /** GLib.Variant, from Adw.TabButton */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** TabView, from Adw.TabButton */
-  view?: ReactNode
+  view?: unknown
 }
 
-function TabButton({ className, render, variant = "default", actionTarget, view, actionName, children, ...props }: TabButtonProps) {
+function TabButton({ className, render, variant = "default", actionTarget: _actionTarget, view: _view, actionName, children, ...props }: TabButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -56,8 +55,7 @@ function TabButton({ className, render, variant = "default", actionTarget, view,
     className: cn("group/tab-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", tabButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
-        <>
-                  <TabButtonButton>
+        <TabButtonButton>
                 <TabButtonIndicator>
                   <TabButtonOverlay>
                     <TabButtonIcon />
@@ -66,9 +64,6 @@ function TabButton({ className, render, variant = "default", actionTarget, view,
                   </TabButtonOverlay>
                 </TabButtonIndicator>
               </TabButtonButton>
-                  {actionTarget}
-                  {view}
-        </>
       ),
     ...widgetAttributes,
   }
@@ -87,6 +82,33 @@ function TabButtonIcon({ className, ...props }: React.ComponentProps<typeof Icon
       data-slot="tab-button-icon"
         data-node="image"
       className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function TabButtonSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-button-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function TabButtonLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="tab-button-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/tab-button:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/tab-button:text-[var(--accent-color)]",
+        "group-disabled/tab-button:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
       {...props}
     />
   )
@@ -150,4 +172,4 @@ function TabButtonButton({ className, ...props }: React.ComponentProps<"button">
   )
 }
 
-export { TabButton, TabButtonIcon, TabButtonLabel, TabButtonOverlay, TabButtonIndicator, TabButtonButton, tabButtonVariants }
+export { TabButton, TabButtonIcon, TabButtonSelection, TabButtonLink, TabButtonLabel, TabButtonOverlay, TabButtonIndicator, TabButtonButton, tabButtonVariants }

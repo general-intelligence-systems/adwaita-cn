@@ -22,22 +22,22 @@ const headerBarVariants = cva(
       variant: {
         default: "",
         /** .adaptive-mode-flat */
-        adaptiveModeFlat: "",
+        adaptiveModeFlat: "adaptive-mode-flat",
         /** .end */
-        end: "",
+        end: "end",
         /** .flat */
-        flat: "bg-none shadow-none text-[inherit] min-h-11.5",
+        flat: "flat bg-none shadow-none text-[inherit] min-h-11.5",
         /** .start */
-        start: "",
+        start: "start",
         /** .title */
-        title: "",
+        title: "title",
         /** .titlebar */
-        titlebar: "shadow-[0_1px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent),0_2px_4px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent)] min-h-11.5",
+        titlebar: "titlebar shadow-[0_1px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent),0_2px_4px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent)] min-h-11.5",
       },
       size: {
         default: "",
         /** .default-decoration */
-        defaultDecoration: "min-h-[37px] min-h-9",
+        defaultDecoration: "default-decoration min-h-[37px] min-h-9",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -140,7 +140,7 @@ function HeaderBarBox2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-box2"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start", "mx-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
       {...props}
     />
   )
@@ -215,7 +215,7 @@ function HeaderBarBox3({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-box3"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end", "mx-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
       {...props}
     />
   )
@@ -237,7 +237,7 @@ function HeaderBarBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-box"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "pt-1.5 pb-[7px] px-[7px] pb-1.5", className)}
+      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px] pb-1.5", className)}
       {...props}
     />
   )

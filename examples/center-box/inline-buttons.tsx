@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function CenterBoxInlinebuttons() {
   return (
-    <CenterBox size="inlineButtons">
+    <CenterBox variant="inlineButtons">
       <Label label="Label" />
     </CenterBox>
   )

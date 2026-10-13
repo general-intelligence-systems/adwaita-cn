@@ -43,7 +43,7 @@ export default function ControlsApp() {
 
             <Entry placeholderText="Placeholder text" />
             <SearchEntry placeholderText="Search" />
-            <Scale value={60} />
+            <Scale value={60} minValue={0} maxValue={100} />
 
             <Box orientation="horizontal" className="gap-3 items-center">
               <Label label="Enabled" className="grow text-left" />
@@ -51,7 +51,9 @@ export default function ControlsApp() {
             </Box>
 
             <CheckButton label="Remember me" active />
-            <DropDown selected={0} />
+            <DropDown selected={0}>
+              <Label label="Everyone" />
+            </DropDown>
             <ProgressBar fraction={0.6} />
             <LevelBar value={0.4} />
             <SpinButton value={3} />

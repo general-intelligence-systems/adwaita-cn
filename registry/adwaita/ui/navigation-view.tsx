@@ -42,13 +42,7 @@ function NavigationView({ className, render, animateTransitions, hhomogeneous, p
     "data-vhomogeneous": vhomogeneous,
     className: cn("group/navigation-view", widgetClassName, className),
     style,
-    children: (
-        <>
-                  <NavigationViewDimming />
-                  <NavigationViewShadow />
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

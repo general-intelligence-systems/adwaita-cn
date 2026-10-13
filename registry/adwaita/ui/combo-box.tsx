@@ -21,9 +21,9 @@ const comboBoxVariants = cva(
       variant: {
         default: "",
         /** .combo */
-        combo: "",
+        combo: "combo",
         /** .toggle */
-        toggle: "",
+        toggle: "toggle",
       },
     },
     defaultVariants: { variant: "default" },
@@ -62,13 +62,13 @@ export interface ComboBoxProps
   idColumn?: number
 
   /** TreeModel, from Gtk.ComboBox */
-  model?: ReactNode
+  model?: unknown
 
   /** gboolean, from Gtk.ComboBox */
   popupFixedWidth?: boolean
 }
 
-function ComboBox({ className, render, variant = "default", child, model, active, activeId, buttonSensitivity, editingCanceled, entryTextColumn, hasEntry, hasFrame, idColumn, popupFixedWidth, children, ...props }: ComboBoxProps) {
+function ComboBox({ className, render, variant = "default", child, model: _model, active, activeId, buttonSensitivity, editingCanceled, entryTextColumn, hasEntry, hasFrame, idColumn, popupFixedWidth, children, ...props }: ComboBoxProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -93,7 +93,6 @@ function ComboBox({ className, render, variant = "default", child, model, active
         <>
                   <ComboBoxArrow />
                   {child}
-                  {model}
                   {children}
         </>
       ),

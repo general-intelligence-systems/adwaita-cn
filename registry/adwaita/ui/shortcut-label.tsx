@@ -19,9 +19,9 @@ const shortcutLabelVariants = cva(
       variant: {
         default: "",
         /** .dimmed */
-        dimmed: "opacity-[var(--dim-opacity)]",
+        dimmed: "dimmed opacity-[var(--dim-opacity)]",
         /** .keycap */
-        keycap: "",
+        keycap: "keycap",
       },
     },
     defaultVariants: { variant: "default" },
@@ -51,16 +51,9 @@ function ShortcutLabel({ className, render, variant = "default", accelerator, di
     "data-variant": variant,
     "data-accelerator": accelerator,
     "data-disabled-text": disabledText,
-    className: cn("group/shortcut-label", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", shortcutLabelVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", shortcutLabelVariants({ variant }), widgetClassName, className),
     style,
-    children: (
-        <>
-                  <ShortcutLabelBox>
-                {children}
-              </ShortcutLabelBox>
-                  <ShortcutLabelLabel />
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -72,29 +65,4 @@ function ShortcutLabel({ className, render, variant = "default", accelerator, di
   })
 }
 
-function ShortcutLabelBox({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="shortcut-label-box"
-        data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
-      {...props}
-    />
-  )
-}
-
-function ShortcutLabelLabel({ className, ...props }: React.ComponentProps<"span">) {
-  return (
-    <span
-      data-slot="shortcut-label-label"
-        data-node="label"
-      className={cn([
-        "caret-[currentColor]",
-        "group-disabled/shortcut-label:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
-      {...props}
-    />
-  )
-}
-
-export { ShortcutLabel, ShortcutLabelBox, ShortcutLabelLabel, shortcutLabelVariants }
+export { ShortcutLabel, shortcutLabelVariants }

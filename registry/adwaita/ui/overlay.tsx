@@ -20,19 +20,19 @@ const overlayVariants = cva(
       variant: {
         default: "",
         /** .arrow-button */
-        arrowButton: "",
+        arrowButton: "arrow-button",
         /** .card */
-        card: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        card: "card bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .image-button */
-        imageButton: "",
+        imageButton: "image-button",
         /** .image-text-button */
-        imageTextButton: "",
+        imageTextButton: "image-text-button",
         /** .keyboard-activating */
-        keyboardActivating: "",
+        keyboardActivating: "keyboard-activating",
         /** .text-button */
-        textButton: "",
+        textButton: "text-button",
         /** .thumbnail */
-        thumbnail: "",
+        thumbnail: "thumbnail",
       },
     },
     defaultVariants: { variant: "default" },

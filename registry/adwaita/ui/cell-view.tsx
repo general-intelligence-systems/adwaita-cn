@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -17,10 +16,10 @@ export interface CellViewProps
   extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "cellArea" | "cellAreaContext" | "drawSensitive" | "fitModel" | "model" | "orientation">,
     WidgetProps {
   /** CellArea, from Gtk.CellView */
-  cellArea?: ReactNode
+  cellArea?: unknown
 
   /** CellAreaContext, from Gtk.CellView */
-  cellAreaContext?: ReactNode
+  cellAreaContext?: unknown
 
   /** gboolean, from Gtk.CellView */
   drawSensitive?: boolean
@@ -29,13 +28,13 @@ export interface CellViewProps
   fitModel?: boolean
 
   /** TreeModel, from Gtk.CellView */
-  model?: ReactNode
+  model?: unknown
 
   /** Orientation, from Gtk.CellView */
   orientation?: Orientation
 }
 
-function CellView({ className, render, cellArea, cellAreaContext, model, drawSensitive, fitModel, orientation, children, ...props }: CellViewProps) {
+function CellView({ className, render, cellArea: _cellArea, cellAreaContext: _cellAreaContext, model: _model, drawSensitive, fitModel, orientation, children, ...props }: CellViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -49,14 +48,7 @@ function CellView({ className, render, cellArea, cellAreaContext, model, drawSen
     "data-orientation": orientation,
     className: cn(widgetClassName, className),
     style,
-    children: (
-        <>
-                  {cellArea}
-                  {cellAreaContext}
-                  {model}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 

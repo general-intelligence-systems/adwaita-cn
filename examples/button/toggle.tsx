@@ -7,6 +7,6 @@ import { Button } from "@/ui/button"
 
 export default function ButtonToggle() {
   return (
-    <Button size="toggle" label="Label" />
+    <Button variant="toggle" label="Label" />
   )
 }

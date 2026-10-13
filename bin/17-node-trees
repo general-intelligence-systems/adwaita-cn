@@ -1,0 +1,376 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 17-NODE-TREES(1)                 General Commands Manual                 17-NODE-TREES(1)
+#
+# NAME
+#      bin/17-node-trees — the CSS node tree each side builds, beside each other
+#
+# SYNOPSIS
+#      bin/17-node-trees [--app NAME] [--scene NAME] [--full] [--summary]
+#
+# DESCRIPTION
+#      bin/15-app-report compares where the two sides put a component. This compares WHAT
+#      THE TWO SIDES ARE, which is the question the stylesheet answers: Adwaita styles a
+#      CSS node carrying style classes, and every rule in registry/adwaita/styles.css is
+#      written against `[data-node]` and those same classes. Two trees of the same nodes
+#      with the same classes get the same styling; two trees which differ do not, and no
+#      amount of measuring one component at a time says which.
+#
+#      THE TOOLKIT'S TREE IS READ OFF THE WIDGETS. gtk_widget_get_css_name and
+#      gtk_widget_get_css_classes are what GTK's own cascade matches against, so the
+#      tree they give is the one Adwaita styled. Nothing is written down here.
+#
+#      THE COMPONENTS' TREE IS THE DOM, by `data-node` and `class`, which is what the
+#      browser's cascade matches against.
+#
+#      The two are walked together and reported as a diff: a node only one side has, a
+#      node whose style classes differ, and a node in a different place.
+#
+# OPTIONS
+#      --app NAME    One application rather than all of them.
+#      --scene NAME  One scene of it.
+#      --full        Every node, rather than only the ones which differ.
+#      --summary     Counts per node and per class rather than per scene.
+#
+# FILES
+#      bin/apps/manifest.json
+#      bin/14-app-screenshots.out/web/              the built page, from vite
+#      bin/17-node-trees.out/trees.json             every node, as data
+#
+# EXIT STATUS
+#      0 when both sides build the same tree everywhere, 1 when they do not.
+#
+# SEE ALSO
+#      bin/14-app-screenshots, bin/15-app-report
+#
+# adwaita-cn                        October 13, 2026                     17-NODE-TREES(1)
+
+require "fileutils"
+require "json"
+require "set"
+require "webrick"
+
+$stdout.sync = true
+
+require_relative "lib/offscreen"
+Offscreen.start
+
+require "gtk4"
+require "adwaita"
+require "ferrum"
+
+require_relative "lib/staging"
+
+Adwaita.init
+Offscreen.match_desktop
+Adwaita::StyleManager.default.color_scheme = Adwaita::ColorScheme::FORCE_LIGHT
+GLib::Log.always_fatal = GLib::Log::LEVEL_ERROR
+
+module NodeTrees
+  ROOT = File.expand_path("..", __dir__)
+  PORT = 7418
+  OUTPUT = "#{__FILE__}.out"
+
+  def self.run(argv)
+    only = argv.each_cons(2).find{|flag, _| flag == "--app" }&.last
+    scene_only = argv.each_cons(2).find{|flag, _| flag == "--scene" }&.last
+    full = argv.include?("--full")
+    summary = argv.include?("--summary")
+
+    wanted = apps.select{|one| only.nil? || one.fetch("name") == only }
+    abort("no such application: #{only}") if wanted.empty?
+
+    scenes = Staging.scenes(wanted).select{|_, scene| scene_only.nil? || scene.fetch("name") == scene_only }
+
+    theirs = toolkit(scenes)
+    ours = components(scenes)
+
+    FileUtils.mkdir_p(OUTPUT)
+    File.write(File.join(OUTPUT, "trees.json"), "#{JSON.pretty_generate({ "toolkit" => theirs, "components" => ours })}\n")
+
+    report(scenes, theirs, ours, full: full, summary: summary)
+  end
+
+  # ── the toolkit ──────────────────────────────────────────────────────────
+
+  def self.toolkit(scenes)
+    read = {}
+
+    app = Gtk::Application.new("dev.adwaita-cn.node-trees", :default_flags)
+    app.signal_connect("activate") do
+      scenes.each do |one, scene|
+        name = Staging.shot(one, scene)
+        read[name] = (Staging.stage(app, one, scene){|_painted, whole| gtk_tree(whole) } rescue nil)
+      end
+      app.quit
+    end
+    app.run([])
+
+    read
+  end
+
+  # A widget as { node, classes, children }. The name is what the cascade matches, so a
+  # widget which sets none is reported under its type lowercased, which is what GTK does.
+  def self.gtk_tree(widget)
+    node = {
+      "node" => widget.css_name,
+      "classes" => widget.css_classes.to_a.sort,
+      "children" => [],
+    }
+
+    child = widget.first_child
+    while child
+      node["children"] << gtk_tree(child) if child.visible?
+      child = child.next_sibling
+    end
+
+    node
+  end
+
+  # ── the components ───────────────────────────────────────────────────────
+
+  def self.components(scenes)
+    serving do |page|
+      scenes.to_h do |one, scene|
+        name = Staging.shot(one, scene)
+
+        [name, dom_tree(page, name)]
+      end
+    end
+  end
+
+  # Only the elements which ARE nodes: a component renders wrappers the toolkit has no
+  # widget for, and counting those as nodes made every tree differ everywhere. An element
+  # with no `data-node` is walked through rather than reported.
+  DOM = <<~JS
+    (() => {
+      const root = document.querySelector(SELECTOR);
+      if (!root) return null;
+      const read = (el) => ({
+        node: el.dataset.node,
+        classes: [...el.classList].filter(c => /^[a-z][a-z0-9-]*$/.test(c)).sort(),
+        children: collect(el),
+      });
+      const collect = (el) => {
+        const found = [];
+        for (const child of el.children) {
+          if (getComputedStyle(child).display === "none") continue;
+          if (child.dataset.node) found.push(read(child));
+          else found.push(...collect(child));
+        }
+        return found;
+      };
+      if (root.dataset.node) return read(root);
+      const found = collect(root);
+      // The scene's own element is not a node: it is the box the page puts a scene in.
+      // One child is the scene; several means the component rendered siblings at the top.
+      return found.length === 1 ? found[0] : { node: "(root)", classes: [], children: found };
+    })()
+  JS
+
+  def self.dom_tree(page, name)
+    page.evaluate(DOM.sub("SELECTOR", "[data-shot=#{name.to_json}]".to_json))
+  rescue StandardError => e
+    warn("#{name}: #{e.message.lines.first.to_s.strip}")
+    nil
+  end
+
+  def self.vite
+    command = ["pnpm", "exec", "vite", "build", "-c", "vite.comparison.config.ts", "--logLevel", "warn"]
+
+    Dir.chdir(ROOT){ system(*command, out: File::NULL) || abort("#{command.join(' ')} failed") }
+  end
+
+  def self.serving
+    self.vite
+
+    server = WEBrick::HTTPServer.new(
+      Port: PORT,
+      DocumentRoot: File.join(ROOT, "bin/14-app-screenshots.out/web"),
+      Logger: WEBrick::Log.new(File::NULL),
+      AccessLog: [],
+    )
+    Thread.new{server.start}
+
+    browser = Ferrum::Browser.new(
+      browser_path: ENV.fetch("BROWSER_PATH", nil),
+      headless: true,
+      window_size: [1600, 20_000],
+      timeout: 60,
+      browser_options: { "force-device-scale-factor" => "1", "hide-scrollbars" => nil },
+    )
+
+    begin
+      browser.go_to("http://127.0.0.1:#{PORT}/")
+      browser.network.wait_for_idle(timeout: 30)
+      yield(browser)
+    ensure
+      browser.quit
+      server.shutdown
+    end
+  end
+
+  # ── the two, beside each other ───────────────────────────────────────────
+
+  # Only the classes Adwaita's own stylesheet addresses. GTK puts classes on a widget
+  # which nothing styles -- `.suffixes`, `.labels`, `.dim-label` -- and a component
+  # carries a page of Tailwind utilities which are not style classes at all. Reporting
+  # either is a diff on every node which says nothing about how it is drawn.
+  STYLED = begin
+    found = Set.new
+    %w[bin/01-fetch-adwaita.out/adwaita.css bin/01-fetch-adwaita.out/gtk-default-light.css].each do |one|
+      sheet = File.read(File.join(ROOT, one)).gsub(/\{[^{}]*\}/, "")
+      sheet.scan(/\.(-?[a-zA-Z_][\w-]*)/){|(name)| found << name }
+    end
+    found.freeze
+  end
+
+  # Classes GTK puts on for the state of the moment rather than for what the widget is.
+  STATE = %w[keyboard-activating has-open-popup dnd drop-active insertion-cursor].to_set.freeze
+
+  def self.styled(classes) = classes.select{|one| STYLED.include?(one) && !STATE.include?(one) }.sort
+
+  # Walked together, parent beside parent. The children of a pair are aligned in order
+  # and by name, which is what the two sides are: the same screen built twice.
+  def self.walk(left, right, path, found, paired = true)
+    here = left.nil? ? right["node"] : left["node"]
+    where = path.empty? ? here.to_s : "#{path} #{here}"
+
+    if left && right
+      absent = styled(left.fetch("classes", [])) - styled(right.fetch("classes", []))
+      extra = styled(right.fetch("classes", [])) - styled(left.fetch("classes", []))
+
+      found << if absent.empty? && extra.empty?
+        { same: true, kind: "same", node: here, path: where, root: paired }
+      else
+        { same: false, kind: "classes", node: here, path: where, absent: absent, extra: extra, root: paired }
+      end
+    elsif left
+      found << { same: false, kind: "missing", node: here, path: where, classes: styled(left.fetch("classes", [])), root: paired }
+    else
+      found << { same: false, kind: "extra", node: here, path: where, classes: styled(right.fetch("classes", [])), root: paired }
+    end
+
+    # A node under one neither side paired is not a finding of its own: a component which
+    # renders no popover is missing the popover and everything in it, and counting the
+    # contents buries the one fact which explains them. `root` marks the finding whose
+    # parent both sides do have, which is the one to fix.
+    inside = paired && !(left && right).nil?
+
+    align(left&.fetch("children", []) || [], right&.fetch("children", []) || []).each do |one, other|
+      walk(one, other, where, found, inside)
+    end
+
+    found
+  end
+
+  # Two lists of children as pairs. In order, by node name: the first `row` on one side is
+  # the first `row` on the other, and a node only one side has is paired with nothing
+  # rather than stealing the next one along.
+  def self.align(left, right)
+    right = right.dup
+    pairs = []
+
+    left.each do |one|
+      at = right.index{|other| other["node"] == one["node"] }
+
+      if at.nil?
+        pairs << [one, nil]
+      else
+        right.shift(at).each{|skipped| pairs << [nil, skipped] }
+        pairs << [one, right.shift]
+      end
+    end
+
+    pairs + right.map{|one| [nil, one] }
+  end
+
+  def self.diff(left, right)
+    return [{ same: false, kind: "missing", node: "(nothing rendered)", path: "", classes: [] }] if right.nil?
+    return [] if left.nil?
+
+    walk(left, right, "", [])
+  end
+
+  LABEL = { "missing" => "-", "extra" => "+", "classes" => "~", "same" => " " }.freeze
+
+  def self.report(scenes, theirs, ours, full:, summary:)
+    rows = {}
+
+    scenes.each do |one, scene|
+      name = Staging.shot(one, scene)
+      rows[name] = diff(theirs[name], ours[name])
+    end
+
+    summary ? print_summary(rows) : print_scenes(rows, full: full)
+
+    exit(rows.values.all?{|found| found.all?{|row| row.fetch(:same) } } ? 0 : 1)
+  end
+
+  def self.print_scenes(rows, full:)
+    rows.each do |name, found|
+      shown = full ? found : found.reject{|row| row.fetch(:same) || !row.fetch(:root, true) }
+      out = found.count{|row| !row.fetch(:same) }
+
+      puts("\n#{name} — #{found.length} nodes, #{out} out")
+      shown.each do |row|
+        detail =
+          case row.fetch(:kind)
+          when "classes" then "#{row.fetch(:absent).map{|one| "-.#{one}" }.join(' ')} #{row.fetch(:extra).map{|one| "+.#{one}" }.join(' ')}".strip
+          else row.fetch(:classes, []).map{|one| ".#{one}" }.join("")
+          end
+
+        puts("  #{LABEL.fetch(row.fetch(:kind))} #{row.fetch(:path)}#{detail.empty? ? '' : "   #{detail}"}")
+      end
+    end
+  end
+
+  def self.print_summary(rows)
+    missing = Hash.new(0)
+    extra = Hash.new(0)
+    absent_class = Hash.new(0)
+    extra_class = Hash.new(0)
+    total = 0
+    out = 0
+
+    rows.each_value do |found|
+      found.each do |row|
+        total += 1
+        next if row.fetch(:same)
+
+        next unless row.fetch(:root, true)
+
+        out += 1
+        case row.fetch(:kind)
+        when "missing" then missing[row.fetch(:node)] += 1
+        when "extra" then extra[row.fetch(:node)] += 1
+        when "classes"
+          row.fetch(:absent).each{|one| absent_class["#{row.fetch(:node)}.#{one}"] += 1 }
+          row.fetch(:extra).each{|one| extra_class["#{row.fetch(:node)}.#{one}"] += 1 }
+        end
+      end
+    end
+
+    puts("#{total} nodes, #{out} out at the top of a difference\n")
+    table("nodes the components never render", missing)
+    table("nodes the components render and the toolkit has not", extra)
+    table("style classes the components never put on", absent_class)
+    table("style classes the components put on and the toolkit has not", extra_class)
+  end
+
+  def self.table(title, counts)
+    return if counts.empty?
+
+    puts("\n#{title}")
+    counts.sort_by{|name, count| [-count, name] }.first(40).each do |name, count|
+      puts("  #{count.to_s.rjust(5)}  #{name}")
+    end
+  end
+
+  def self.apps
+    @apps ||= JSON.parse(File.read(File.join(ROOT, "bin/apps/manifest.json"))).fetch("apps")
+  end
+end
+
+NodeTrees.run(ARGV)

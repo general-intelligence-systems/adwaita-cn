@@ -28,12 +28,17 @@ function WindowHandle({ className, render, child, children, ...props }: WindowHa
   const defaultProps = {
     "data-slot": "window-handle",
     "data-node": "windowhandle",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("group/window-handle", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
-                  {child}
+                  <WindowHandlePopoverMenu>
+                <WindowHandleArrow />
+                <WindowHandleContents>
                   {children}
+                </WindowHandleContents>
+              </WindowHandlePopoverMenu>
+                  {child}
         </>
       ),
     ...widgetAttributes,
@@ -47,4 +52,37 @@ function WindowHandle({ className, render, child, children, ...props }: WindowHa
   })
 }
 
-export { WindowHandle }
+function WindowHandleArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-handle-arrow"
+        data-node="arrow"
+      className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowHandleContents({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-handle-contents"
+        data-node="contents"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function WindowHandlePopoverMenu({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="window-handle-popover-menu"
+        data-node="popover"
+      className={cn("hidden", "[--shade-color:var(--popover-shade-color)] p-2 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)] rounded-[15px]", className)}
+      {...props}
+    />
+  )
+}
+
+export { WindowHandle, WindowHandleArrow, WindowHandleContents, WindowHandlePopoverMenu }

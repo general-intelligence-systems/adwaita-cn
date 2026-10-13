@@ -48,6 +48,7 @@ require "set"
 require "fileutils"
 
 require_relative "lib/classes"
+require_relative "lib/enum_names"
 
 module GenerateComponents
   TYPES = {
@@ -55,6 +56,11 @@ module GenerateComponents
     "boolean" => "boolean",
     "number" => "number",
     "node" => "ReactNode",
+    # A value the caller passes which the DOM has no place for: a GListModel, a
+    # GtkAdjustment, a GtkExpression, a GVariant, a GdkRGBA. It is accepted and it is not
+    # rendered. Before bin/07-gtk-schemas told these apart from a widget they were all
+    # "node", and every one of them was written into the DOM as a child.
+    "object" => "unknown",
     "void" => "void",
   }.freeze
 
@@ -64,8 +70,8 @@ module GenerateComponents
     "appchooserbutton" => "button", "button" => "button", "checkbutton" => "button",
     "colorbutton" => "button", "fontbutton" => "button", "menubutton" => "button",
     "splitbutton" => "button", "switch" => "button", "tabbutton" => "button",
-    "editablelabel" => "input", "entry" => "input", "range" => "input",
-    "scale" => "input", "spinbutton" => "input", "text" => "input",
+    "editablelabel" => "input", "entry" => "input",
+    "spinbutton" => "input", "text" => "input",
     "textview" => "textarea",
     "buttoncontent" => "span", "image" => "span", "label" => "span",
     "windowtitle" => "span",
@@ -122,6 +128,10 @@ module GenerateComponents
     Bin Box Clamp ClampScrollable FlowBox Gizmo Grid ListBox Overlay Revealer
     ScrolledWindow Stack ToolbarView WrapBox
   ].to_set
+
+  # The CSS nodes a widget draws its own content inside, for a tree which has no slot of its
+  # own because it was read out of the stylesheet rather than out of a .ui file.
+  CONTENT_SLOTS = %w[button box contents child].to_set
 
   # A template holds more than widgets: a gesture, an event controller, an adjustment or a
   # list model is a child object rather than markup, so it is not a part.
@@ -183,6 +193,15 @@ module GenerateComponents
     "wrap" => "flex flex-wrap",
     # The sidebar's track and the content's, from lib/split-view.ts.
     "split" => "grid [&>*]:min-w-0",
+    # The widget takes the whole of what it is given, and scrolls what will not fit. `min-h-0`
+    # is what lets it: a flex item will not shrink below its content without it, so a scroller
+    # in a page pushed the page open instead of scrolling.
+    "fill" => "flex flex-col grow min-h-0",
+    # The same, and what will not fit is scrolled rather than pushing the page open.
+    "scroll" => "flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0",
+    # Items across, wrapped, packed to the top of whatever height the view is given.
+    "fill-grid" =>
+      "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0",
   }.freeze
 
   # The widgets which lay their children out in C rather than by naming a
@@ -205,6 +224,8 @@ module GenerateComponents
     "ToastOverlay" => "overlay",
     # The sidebar and the content, side by side.
     "NavigationSplitView" => "split", "OverlaySplitView" => "split",
+    # Two panes, the first of them `position` long.
+    "Paned" => "split",
     # Rows, one under the next.
     "ListBox" => "box-vertical",
     # The text, with whatever icons the entry carries either side of it.
@@ -218,6 +239,18 @@ module GenerateComponents
     "CheckButton" => "box-horizontal",
     # The page's bars, with the content between them.
     "ToolbarView" => "box-vertical",
+    # A stack shows ONE of its children, and that child is given the whole stack. Left with
+    # no arrangement at all its child fell into the document's flow and was as tall as its own
+    # content: the file grid in bin/apps/files came out 15px tall in a 574px pane.
+    "Stack" => "bin", "ViewStack" => "bin", "Squeezer" => "bin", "Leaflet" => "bin",
+    "MultiLayoutView" => "bin", "Carousel" => "bin",
+    # A scroller, its viewport and the list inside it each fill what they are given: GTK
+    # measures them against the window, and a `div` measures itself against its content.
+    "ScrolledWindow" => "scroll", "Viewport" => "fill", "ListView" => "fill",
+    "ColumnView" => "fill", "TabOverview" => "scroll", "TreeView" => "fill",
+    "ListBase" => "fill",
+    # A grid view runs its items across and wraps them, and fills what it is given.
+    "GridView" => "fill-grid", "IconView" => "fill-grid",
   }.freeze
 
   # The prop a hand-laid widget gives whatever space is left once the rest is placed:
@@ -257,7 +290,13 @@ module GenerateComponents
   VOID = %w[input hr img].to_set
 
   # What the element does not say on its own.
+  # A GtkScale is not an `<input type=range>`: it is a trough with a highlight and a handle in
+  # it, and each of those is a node the stylesheet measures. Rendering it as an input made it a
+  # void element, which holds nothing, so the generator dropped the whole tree -- a scale came
+  # out as an empty rounded box with no trough, no fill and no handle. The element is a div and
+  # the role says what it is.
   ROLES = {
+    "range" => "slider", "scale" => "slider",
     "actionbar" => "toolbar", "banner" => "status", "bottom-sheet" => "dialog",
     "calendar" => "grid", "columnview" => "grid", "dialog" => "dialog",
     "infobar" => "alert", "inline-view-switcher" => "tablist", "levelbar" => "meter",
@@ -335,11 +374,15 @@ module GenerateComponents
   # clamped between a minimum and a maximum, neither of which a grid can state.
   SPLIT = %w[NavigationSplitView OverlaySplitView].freeze
 
+  # The components whose two panes are sized by a `position` rather than by a fraction.
+  PANED = %w[Paned].freeze
+
   def self.run(argv)
     root = File.expand_path("..", __dir__)
     force = !argv.delete("--force").nil?
     final = JSON.parse(File.read(File.join(root, "bin/08-final-components.out/final-components.json")))
     flags = final.fetch("enums").select{|_name, enum| enum.fetch("flags")}.keys.to_set
+    self.enum_names = EnumNames.map(final.fetch("enums"))
     components = final.fetch("components").slice(*final.fetch("buildable"))
 
     self.write(root, "styles.css", self.styles_css(final.fetch("styles", {})), true)
@@ -348,6 +391,9 @@ module GenerateComponents
 
     shared = final.fetch("widget")
     self.write(root, "lib/widget-props.ts", self.widget_props(shared, flags), force)
+    self.write(root, "lib/stack.ts", STACK_TS, true)
+    self.write(root, "lib/style-classes.ts", self.style_classes_ts(final.fetch("styleClasses", [])), true)
+    self.write(root, "lib/utils.ts", UTILS_TS, true)
 
     written = []
     skipped = []
@@ -363,10 +409,29 @@ module GenerateComponents
       end
     end
 
+    self.prune(root, components)
     self.register(root, components)
 
     puts("written: #{written.size}")
     puts("left alone: #{skipped.size}#{skipped.empty? ? '' : " (#{skipped.join(', ')})"}")
+  end
+
+  # The components which are no longer components. A widget whose only structure came from the
+  # stylesheet's own over-matching -- AdwLinkRow with thirteen children it does not have,
+  # AdwViewSwitcherButton with a colour swatch in it -- is not buildable once the match is
+  # honest, and the file it had written stays behind and is imported by applications and by
+  # the lint as though it still were.
+  def self.prune(root, components)
+    directory = File.join(root, "registry/adwaita/ui")
+    return unless Dir.exist?(directory)
+
+    wanted = components.keys.map{|name| "#{self.kebab(name)}.tsx" }.to_set
+    gone = Dir.children(directory).select{|one| one.end_with?(".tsx") && !wanted.include?(one) }
+
+    gone.sort.each do |one|
+      File.delete(File.join(directory, one))
+      warn("removed registry/adwaita/ui/#{one}: no longer a component")
+    end
   end
 
   # True when the file was written, false when it was already there.
@@ -627,6 +692,91 @@ module GenerateComponents
     parts.first.to_s + parts.drop(1).map(&:capitalize).join
   end
 
+  # The components which show ONE of their children, and the file which picks it.
+  STACKS = %w[Stack ViewStack Leaflet Squeezer MultiLayoutView Notebook].to_set
+
+  # Adwaita's own class names, for `cn` to hold aside.
+  #
+  # A component writes the class the stylesheet addresses as well as the measurements it
+  # resolves to, and a few of those names read as Tailwind utilities: `text-button` is a
+  # `text-` class to tailwind-merge, so putting it on a button dropped the
+  # `text-[var(--destructive-color)]` that `.destructive-action` had just set and every
+  # Delete button in the registry came out grey. `hidden`, `block`, `border`, `inline`,
+  # `top`, `bottom`, `left` and `right` are the same hazard.
+  def self.style_classes_ts(names)
+    <<~TS
+      // Generated by bin/11-generate-components. Do not edit.
+      //
+      // Every class name Adwaita's stylesheet addresses. `cn` keeps these out of
+      // tailwind-merge, which would otherwise read `text-button` as a text colour and
+      // drop the colour the class beside it had just set.
+
+      export const STYLE_CLASSES: ReadonlySet<string> = new Set([
+      #{names.map{|one| "  #{one.inspect}," }.join("\n")}
+      ])
+    TS
+  end
+
+  UTILS_TS = <<~'TS'
+    // Generated by bin/11-generate-components. Do not edit.
+
+    import { type ClassValue, clsx } from "clsx"
+    import { twMerge } from "tailwind-merge"
+
+    import { STYLE_CLASSES } from "./style-classes"
+
+    // Tailwind's utilities are merged; Adwaita's style classes are not.
+    //
+    // The components carry both -- the class the stylesheet addresses and the
+    // measurements that class resolves to -- and tailwind-merge cannot tell them apart:
+    // `text-button` is one of Adwaita's and a `text-` utility to tailwind-merge, which
+    // dropped the `text-[var(--destructive-color)]` sitting beside it. So the style
+    // classes are taken out, the rest is merged, and they are put back in front, where
+    // a utility written later still wins.
+    export function cn(...inputs: ClassValue[]) {
+      const names = clsx(inputs).split(" ").filter(Boolean)
+      const styles = [...new Set(names.filter((one) => STYLE_CLASSES.has(one)))]
+      const utilities = names.filter((one) => !STYLE_CLASSES.has(one))
+
+      return [...styles, twMerge(utilities)].join(" ").trim()
+    }
+  TS
+
+  STACK_TS = <<~'TS'
+    // Generated by bin/11-generate-components. Do not edit.
+    //
+    // A GtkStack shows ONE of its children. Every other toolkit widget in this registry draws
+    // everything it is given, so the components rendered a stack's pages all at once: the file
+    // grid and the file list in bin/apps/files were drawn one under the other, and a view stack
+    // showed every page of a preferences window at the same time.
+    //
+    // Which one shows is `visible-child-name`, matched against the child's own `name` -- the
+    // property GTK matches it against too. With no name on either side the first child shows,
+    // which is what an unset `visible-child-name` means in GTK.
+
+    import * as React from "react"
+
+    export function visibleChild(children: React.ReactNode, name?: string): React.ReactNode {
+      const list = React.Children.toArray(children).filter(React.isValidElement)
+
+      if (list.length === 0) {
+        return children
+      }
+
+      if (name === undefined) {
+        return list[0]
+      }
+
+      const found = list.find((child) => {
+        const props = child.props as { name?: string } | null
+
+        return props?.name === name
+      })
+
+      return found ?? list[0]
+    }
+  TS
+
   # `Button` -> `buttonVariants`.
   def self.variants_name(name)
     "#{name.sub(/\A./, &:downcase)}Variants"
@@ -639,7 +789,7 @@ module GenerateComponents
 
   def self.annotation(attributes, flags)
     if attributes.fetch("type") == "enum"
-      name = attributes.fetch("enum").split(".").last
+      name = self.enum_names.fetch(attributes.fetch("enum"), attributes.fetch("enum").split(".").last)
 
       flags.include?(attributes.fetch("enum")) ? "#{name}[]" : name
     else
@@ -673,16 +823,26 @@ module GenerateComponents
   def self.enums_used(props)
     props.values
       .select{|attributes| attributes.fetch("type") == "enum"}
-      .map{|attributes| attributes.fetch("enum").split(".").last}
+      .map{|attributes| self.enum_names.fetch(attributes.fetch("enum"), attributes.fetch("enum").split(".").last)}
       .uniq
       .sort
   end
 
+  # The TypeScript name of every enumeration, by the same rule bin/09-gtk-enums declares them
+  # under: a bare name where it is unambiguous and the namespace in front of it where two
+  # namespaces claim one.
+  class << self
+    attr_accessor :enum_names
+  end
+  self.enum_names = {}
+
   # The style classes a caller chooses between. The ones the toolkit applies from the
   # component's own content are not a choice, so they are not props.
   def self.offered(component)
+    automatic = self.automatic(component)
+
     self.content(component).then do |applied|
-      component.fetch("variants", {}).reject{|style, _| applied.key?(style) }
+      component.fetch("variants", {}).reject{|style, _| applied.key?(style) || automatic.include?(style) }
     end
   end
 
@@ -765,12 +925,15 @@ module GenerateComponents
     named = { text: text, icon: icon }
 
     found = self.content(component).filter_map do |style, variant|
-      value = AdwaitaClasses.expression(variant["classes"], 8)
+      # The class itself, and the measurements it resolves to. The name even where it
+      # resolves to nothing on this node: `.horizontal` carries no declarations of its
+      # own on a box, and `box.linked.horizontal > button` is written against it.
+      value = AdwaitaClasses.expression(variant["classes"], 8, name: style)
 
       if BY_PROPERTY.key?(style)
         rule = BY_PROPERTY.fetch(style)
 
-        next if value.nil? || !props.key?(rule.fetch(:prop))
+        next unless props.key?(rule.fetch(:prop))
 
         next "#{rule.fetch(:when)} && #{value}"
       end
@@ -778,7 +941,7 @@ module GenerateComponents
       rule = CONTENT.fetch(style)
       needs = Array(rule.fetch(:needs)).map{|one| named[one] }
 
-      next if value.nil? || needs.any?(&:nil?)
+      next if needs.any?(&:nil?)
 
       without = named[rule[:without]]
       terms = needs + (without ? ["!#{without}"] : [])
@@ -788,6 +951,38 @@ module GenerateComponents
 
     found.empty? ? "" : "#{found.join(', ')}, "
   end
+
+  # The classes the widget puts on itself and nothing takes off, and the ones a property
+  # of its own turns on and off. bin/05 reads both off the call site in the toolkit's C:
+  # `.toggle` is added in gtk_toggle_button_init, and `.flat` in the branch of
+  # gtk_button_set_has_frame where `has-frame` is false.
+  #
+  # Written as the class and the measurements both, because the stylesheet addresses the
+  # class: `window.background` is where a window's own background colour is stated, and a
+  # Window which carried neither was drawn on whatever it happened to sit on.
+  def self.applied_classes(component)
+    found = component.fetch("always", []).map do |style|
+      AdwaitaClasses.expression(component.dig("variants", style, "classes"), 8, name: style)
+    end
+
+    component.fetch("byProperty", {}).each do |prop, polarities|
+      polarities.each do |polarity, styles|
+        styles.each do |style|
+          value = AdwaitaClasses.expression(component.dig("variants", style, "classes"), 8, name: style)
+          found << "#{polarity == 'false' ? "#{prop} === false" : prop} && #{value}"
+        end
+      end
+    end
+
+    found.empty? ? "" : "#{found.join(', ')}, "
+  end
+
+  # The style classes which are not the caller's to choose at all, so they are not
+  # offered as variants. Only the unconditional ones: `.flat` is `has-frame` being false
+  # and a caller setting that gets it, but a caller may also just ask for a flat button,
+  # which is what `gtk_widget_add_css_class (button, "flat")` is in every application
+  # that writes it.
+  def self.automatic(component) = component.fetch("always", []).to_set
 
   # The classes this component applies itself: the ones its content decides, and the ones
   # a property decides. Neither is a prop, because neither is the caller's to choose.
@@ -828,7 +1023,7 @@ module GenerateComponents
       import { useRender } from "@base-ui/react/use-render"
 
       import { cn } from "@/lib/utils"
-      #{self.draws_icon?(component, parts) ? "import { Icon } from \"@/lib/icon\"\n" : ''}import { widget } from "@/lib/widget"
+      #{self.draws_icon?(component, parts) ? "import { Icon } from \"@/lib/icon\"\n" : ''}#{STACKS.include?(name) ? "import { visibleChild } from \"@/lib/stack\"\n" : ''}import { widget } from "@/lib/widget"
       import type { WidgetProps } from "@/lib/widget-props"
       #{self.clamped?(name, component) ? "import { useClamp } from \"@/lib/clamp\"\n" : ''}#{SPLIT.include?(name) ? "import { useSplitView } from \"@/lib/split-view\"\n" : ''}#{enums.empty? ? '' : "import type { #{enums.join(', ')} } from \"@/lib/enums\"\n"}#{cva ? "\n#{self.cva(name, component, appearance, sizes)}\n" : ''}
       #{self.interface(name, component, props, flags, cva, element)}
@@ -855,7 +1050,7 @@ module GenerateComponents
 
     unless appearance.empty?
       entries = appearance.sort.map do |style, variant|
-        value = AdwaitaClasses.expression(variant["classes"], 8) || '""'
+        value = AdwaitaClasses.expression(variant["classes"], 8, name: style)
         "        /** .#{style}#{variant['summary'] ? " — #{variant['summary']}" : ''} */\n        #{self.camel(style)}: #{value},"
       end
       keys << "      variant: {\n#{appearance.key?('default') ? '' : "        default: \"\",\n"}#{entries.join("\n")}\n      },"
@@ -863,7 +1058,7 @@ module GenerateComponents
 
     unless sizes.empty?
       entries = sizes.sort.map do |style, variant|
-        value = AdwaitaClasses.expression(variant["classes"], 8) || '""'
+        value = AdwaitaClasses.expression(variant["classes"], 8, name: style)
         "        /** .#{style}#{variant['summary'] ? " — #{variant['summary']}" : ''} */\n        #{self.camel(style)}: #{value},"
       end
       keys << "      size: {\n#{sizes.key?('default') ? '' : "        default: \"\",\n"}#{entries.join("\n")}\n      },"
@@ -964,6 +1159,13 @@ module GenerateComponents
       "              )}"
   end
 
+  # What goes where the children go. A stack shows one of them.
+  def self.children_markup(name, props)
+    return "{children}" unless STACKS.include?(name)
+
+    props.key?("visibleChildName") ? "{visibleChild(children, visibleChildName)}" : "{visibleChild(children)}"
+  end
+
   def self.root(name, component, props, cva, element, parts)
     void = VOID.include?(element)
     appearance, sizes = AdwaitaClasses.split(self.offered(component))
@@ -973,7 +1175,11 @@ module GenerateComponents
     nodes = void ? [] : props.select{|_prop, one| one.fetch("type") == "node"}.keys
     icons = props.keys.select{|prop| prop == "iconName"}
     markup = text + nodes + icons
-    data = props.keys - markup
+    # Neither markup nor an attribute. A GListModel is not a string and `data-model="[object
+    # Object]"` is what writing one to the DOM produces, so these are destructured out of the
+    # rest and go no further.
+    objects = props.select{|_prop, one| one.fetch("type") == "object"}.keys - markup
+    data = props.keys - markup - objects
 
     attributes = ["\"data-slot\": #{slug.inspect}"]
     # The CSS node the widget is, which is what the stylesheet addresses it by. A style
@@ -1018,6 +1224,7 @@ module GenerateComponents
     taken << "variant = \"default\"" unless appearance.empty?
     taken << "size = \"default\"" unless sizes.empty?
     taken.concat(markup.sort)
+    taken.concat(objects.sort.map{|prop| "#{prop}: _#{prop}" })
     taken.concat(data.sort.map do |prop|
       # A property whose attribute another one claimed is still destructured, so
       # that it does not reach the DOM, and named as the unused value it now is.
@@ -1037,13 +1244,20 @@ module GenerateComponents
 
     inner = []
 
-    slot = component["tree"] ? self.slot(component.fetch("tree")) : nil
+    # A template says where its children go; a tree read out of the stylesheet does not, and
+    # only the second needs the node guessed at. Guessing at it for a template put a
+    # preferences group's rows in the box its own .ui builds rather than in its boxed list, and
+    # the group lost the card it draws around them.
+    slot = component["tree"] ? self.slot(component.fetch("tree"), derived: component["template"].nil?) : nil
 
     if component["tree"]
       children = (component.fetch("tree").fetch("slots", {}).values +
         component.fetch("tree").fetch("children", []))
-        .select{|child| self.widget_node?(child)}
-      inner.concat(children.map{|child| self.tree(child, props, 14, slot, self.control_attributes(props))}.reject(&:empty?))
+        .select{|child| self.rendered?(child, props)}
+      inner.concat(
+        children.map{|child| self.tree(child, props, 14, slot, self.control_attributes(props), slug) }
+          .reject(&:empty?),
+      )
       bound = parts.map{|part| part.fetch(:bound)}.compact
       placed = []
       self.each_node(component.fetch("tree")) do |one|
@@ -1058,7 +1272,13 @@ module GenerateComponents
       # The name is a GTK icon name and `Icon` is what turns one into a drawing:
       # `gtk_button_set_icon_name (button, "go-previous-symbolic")` and
       # `<Button iconName="go-previous-symbolic" />` reach the same icon in adwaita_react.
-      inner << "              <Icon name={#{prop}} data-slot=#{"#{slug}-icon".inspect} />"
+      # Only when the caller named one. An Icon with no name drew its own empty box, and a
+      # button which takes an icon but was given a label rendered that box beside the label:
+      # the blank squares in every toolbar, every file in the icon grid, and the gap before
+      # the first toggle in a toggle group.
+      inner << "              {#{prop} === undefined ? null : (\n" \
+        "                <Icon name={#{prop}} data-slot=#{"#{slug}-icon".inspect} />\n" \
+        "              )}"
     end
     # A widget's text is a label node, not a bare run of characters. gtk_button_set_label
     # builds a GtkLabel inside the button and the stylesheet addresses it --
@@ -1075,14 +1295,14 @@ module GenerateComponents
     # by one. Where the content goes on the screen is `order`, below, and not where it is
     # written.
     inner.concat(self.in_order(nodes).map{|prop| "              #{self.node_markup(slug, name, prop)}"})
-    inner << "              {children}" unless void || slot
+    inner << "              #{self.children_markup(name, props)}" unless void || slot
 
     fields = attributes.dup
     clamped = CLAMPED.include?(name) ? "#{CLAMP_CLASSES.inspect}, " : ""
     # The group the parts read the widget's state off, named after the component so
     # that a component nested in another answers only its own.
     group = parts.empty? ? "" : "\"group/#{slug}\", "
-    fields << "className: cn(#{group}#{self.layout(name, component)}#{clamped}#{classes ? "#{classes}, " : ''}#{self.content_classes(component)}widgetClassName, className)"
+    fields << "className: cn(#{group}#{self.layout(name, component)}#{clamped}#{classes ? "#{classes}, " : ''}#{self.track(component)}#{self.applied_classes(component)}#{self.content_classes(component)}widgetClassName, className)"
     fields << self.style(name, component, props)
     # One child needs no fragment; several do. A lone `{expr}` is the expression
     # itself, because an object literal's value is not JSX.
@@ -1144,7 +1364,13 @@ module GenerateComponents
 
   # The order a widget's own child props are packed in, where the alphabet is not it: a
   # split view puts its sidebar before its content, and `content` sorts first.
-  ORDER = %w[sidebar content].freeze
+  # `endChild` sorts before `startChild`, and a paned drew its second pane in its first
+  # track: the clock list where bin/apps/clocks puts its sidebar, and the sidebar where it
+  # puts the list.
+  ORDER = %w[
+    titlebar startWidget startChild start sidebar centerWidget center content child
+    endChild endWidget end bottomBar
+  ].freeze
 
   def self.in_order(nodes)
     nodes.sort_by{|prop| [ORDER.index(prop) || ORDER.length, prop] }
@@ -1179,6 +1405,15 @@ module GenerateComponents
       found << "...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns })"
     end
 
+    # A GtkPaned's `position` is how long its first pane is, in pixels, and the second takes
+    # what is left. The stylesheet states neither, because GtkPanedLayout measures it, so a
+    # paned with no tracks of its own ran its two panes one under the other: the clock list and
+    # the sidebar beside it in bin/apps/clocks came out stacked.
+    if PANED.include?(name)
+      found << "...(position === undefined ? {} : orientation === \"vertical\" " \
+        "? { gridTemplateRows: `${position}px 1fr` } : { gridTemplateColumns: `${position}px 1fr` })"
+    end
+
     return "style" if found.empty?
 
     "style: { ...style, #{found.join(', ')} } as React.CSSProperties"
@@ -1187,8 +1422,19 @@ module GenerateComponents
   # A composite's parts, as sibling functions in the same file: libadwaita ships a .ui
   # for twenty-nine of these and bin/06-component-trees read them, so each widget under
   # the root becomes one function, named for the id the template gave it.
+  # Marks the node the component's children are rendered into, so that the parts know not to
+  # hide the one thing the component is for.
+  def self.mark_slot!(component)
+    tree = component["tree"]
+    return if tree.nil?
+
+    slot = self.slot(tree, derived: component["template"].nil?)
+    slot["slot?"] = true if slot
+  end
+
   def self.parts(name, component)
     found = []
+    self.mark_slot!(component)
     self.walk(component.fetch("tree"), name, component, found, Set.new, root: true)
     found
   end
@@ -1197,6 +1443,23 @@ module GenerateComponents
     klass = node.fetch("class")
 
     !NOT_WIDGETS.include?(klass) && NOT_WIDGET_PREFIXES.none?{|one| klass.start_with?(one)}
+  end
+
+  # Whether a node is DRAWN, which is a narrower question than whether it is a widget. A node
+  # the toolkit's documentation puts in brackets -- `[progress[.pulse]]` under entry, `[value]`
+  # under scale -- is one the widget adds when it is asked for it, so it is not written into
+  # the markup. The part is still generated, because a caller who does want one needs it.
+  def self.rendered?(node, props = {})
+    return false unless self.widget_node?(node)
+    # The item node is the shape of what the caller puts in, not a thing to put in.
+    return false if node["item"]
+    # Unless the component has the value which fills it: a level bar's block is drawn twice in
+    # the documentation to say there can be several, and a scale's highlight is bracketed
+    # because it appears only with an origin, but a bar given a value HAS one of each and
+    # drawing neither left both of them an empty trough.
+    return true if self.proportion(node, props)
+
+    !node["optional"]
   end
 
   def self.walk(node, parent, component, found, seen, root: false)
@@ -1261,7 +1524,11 @@ module GenerateComponents
   # is not a statement GTK's text node makes: a GtkText is as narrow as it is allowed to
   # be and the entry around it carries the minimum. Left alone, the search entry in a
   # sidebar's header bar made the sidebar 287px wide where the toolkit makes it 225.
-  TEXT_CLASSES = "min-w-0 w-0 grow"
+  # `basis-0` and not `w-0`: a flex item sized from its basis fills the line, and a GRID item
+  # ignores the basis and stretches to its cell. adw-entry-row.ui stacks its text and its two
+  # titles in one place, which is a grid, and `w-0` left the text 0px wide -- an entry row drew
+  # its title and never its value.
+  TEXT_CLASSES = "min-w-0 basis-0 grow"
 
   # A popover is not part of what a widget looks like at rest. GTK puts one on a surface
   # of its own and only maps it when it is opened, which is why the toolkit measures a
@@ -1272,7 +1539,13 @@ module GenerateComponents
   def self.part(node, element, group = nil)
     classes = AdwaitaClasses.expression(self.grouped(node["classes"], group), 6)
     utility = [node["styles"]&.join(" "), node["utility"],
-               (POPOVER_NODES.include?(node["node"]) ? "hidden" : nil),
+               # Unless it is where the component's own children go. A popover nested inside
+               # another widget is not drawn inline, but AdwPopover IS the popover: hiding the
+               # `contents` its children are rendered into hid the popover's own menu, and
+               # every one in the registry measured 20x20.
+               (POPOVER_NODES.include?(node["node"]) && !node["slot?"] ? "hidden" : nil),
+               self.trough_classes(node),
+               self.track_part(node),
                (%w[input textarea].include?(element) ? TEXT_CLASSES : nil)].compact.join(" ")
     layout = "#{self.part_layout(node)}#{utility.empty? ? '' : "#{utility.inspect}, "}"
 
@@ -1362,14 +1635,40 @@ module GenerateComponents
   # Where a composite's children go: the last container the template leaves
   # empty, which is the slot it keeps for them; failing that the innermost
   # container it does fill; failing that the root.
-  def self.slot(node)
+  def self.slot(node, derived: true)
     said = nil
     self.each_node(node){|one| said ||= one if one["takes"] == "children" }
 
     return said if said
 
+    # A tree read out of the stylesheet or the documentation names no slot, because neither
+    # says where a widget puts what it is given. The node which holds it is the one the widget
+    # draws its own content in: a drop down's `button`, a menu button's `button`, the `box` in
+    # a composite. Without this the children were written after the widget's parts rather than
+    # inside them, and a drop down rendered an empty button with its label beside it.
+    return self.fallback_slot(node) unless derived
+
+    found_slot = nil
+    self.each_node(node) do |one|
+      next unless one["css-node"] && CONTENT_SLOTS.include?(one["node"])
+      next unless (one.fetch("children", []) + one.fetch("slots", {}).values).empty?
+      next unless self.rendered?(one)
+
+      found_slot ||= one
+    end
+
+    return found_slot if found_slot
+
+    self.fallback_slot(node)
+  end
+
+  # Where a template puts them: the last container it leaves empty, failing that the innermost
+  # container it does fill, failing that the root.
+  def self.fallback_slot(node)
     found = []
     self.containers(node, found, 0)
+
+    found = found.select{|one| self.rendered?(one.fetch(:node)) }
 
     found.select{|one| one.fetch(:empty) }.last&.fetch(:node) ||
       found.max_by{|one| one.fetch(:depth) }&.fetch(:node)
@@ -1466,6 +1765,126 @@ module GenerateComponents
   end
 
   # A composite's tree, as the parts which were generated for it.
+  # The nodes whose length along the widget is the value the widget holds, and the prop which
+  # gives it. A scale's slider is placed rather than stretched, which is why it is separate.
+  PROPORTIONS = {
+    "progress" => :fraction,
+    "block" => :value,
+    "highlight" => :value,
+  }.freeze
+
+  # `fraction` is already 0..1. `value` is somewhere between `minValue` and `maxValue`, which
+  # is what a GtkAdjustment holds and what bin/08-final-components gives a range as props.
+  def self.proportion(node, props)
+    wanted = PROPORTIONS[node["node"]]
+    return nil if wanted.nil?
+
+    expression =
+      if wanted == :fraction && props.key?("fraction")
+        "(fraction ?? 0) * 100"
+      elsif wanted == :value && props.key?("value")
+        "(((value ?? 0) - (minValue ?? 0)) / ((maxValue ?? 1) - (minValue ?? 0) || 1)) * 100"
+      end
+
+    return nil if expression.nil?
+
+    length = "`${Math.max(0, Math.min(100, #{expression}))}%`"
+
+    # Along the widget, so one statement serves both orientations: a vertical progress bar
+    # grows upwards and `inline-size` is its width, which is not what fills.
+    # And the whole of the way across: a highlight is the trough's own thickness, which the
+    # stylesheet never states because GTK's box model gives it one. Left to its content it was
+    # nothing tall, so a scale drew its trough grey with no fill in it at all.
+    if props.key?("orientation")
+      "[orientation === \"vertical\" ? \"blockSize\" : \"inlineSize\"]: #{length}, " \
+        "[orientation === \"vertical\" ? \"inlineSize\" : \"blockSize\"]: \"100%\""
+    else
+      "inlineSize: #{length}, blockSize: \"100%\""
+    end
+  end
+
+  # A switch is as wide as its slider can travel: two slider widths and its own padding. GTK
+  # measures that in gtkswitch.c -- the stylesheet states the 20px handle and the 3px padding
+  # and never states the 46px track -- so a switch built from the stylesheet alone came out
+  # square, a 26px circle beside every label it belongs to.
+  def self.track(component)
+    found = self.track_width(component["node"], component["classes"], component.dig("tree", "children"))
+
+    found ? "#{found.inspect}, " : ""
+  end
+
+  # The same for a switch which is a PART of something else: a switch row builds one into its
+  # suffixes, and a track measured only on the component's own root left that one square.
+  def self.track_part(node)
+    self.track_width(node["node"], node["classes"], node["children"])
+  end
+
+  def self.track_width(node, classes, children)
+    return nil unless node == "switch"
+
+    slider = (children || []).find{|one| one["node"] == "slider" }
+    return nil if slider.nil?
+
+    width = self.pixels(slider.dig("classes", "base") || [], /\Amin-w-([0-9.]+)\z/)
+    padding = self.pixels((classes || {}).fetch("base", []), /\Ap-\[([0-9.]+)px\]\z/, scale: 1)
+    return nil if width.nil?
+
+    "min-w-[#{(width * 2 + (padding || 0) * 2).round}px]"
+  end
+
+  # A Tailwind length as pixels. The spacing scale is in quarters of a rem, so `min-w-5` is
+  # 20px; a bracketed length is already in pixels.
+  def self.pixels(classes, pattern, scale: 4)
+    classes.filter_map{|one| one[pattern, 1]&.to_f }.first&.*(scale)
+  end
+
+  # Where a switch's slider sits: the start of the track, or the end of it once it is on.
+  def self.thrown(node, props, group)
+    return nil unless node["node"] == "slider" && group
+    return nil unless props.key?("active") && !props.key?("value")
+
+    "justify-self-start self-center group-data-[state=checked]/#{group}:justify-self-end"
+  end
+
+  # A range's slider is placed along the trough at the value, not stretched to it.
+  def self.placement(node, props)
+    return nil unless node["node"] == "slider"
+    return nil unless props.key?("value")
+
+    along = "(((value ?? 0) - (minValue ?? 0)) / ((maxValue ?? 1) - (minValue ?? 0) || 1)) * 100"
+    along = "`${Math.max(0, Math.min(100, #{along}))}%`"
+
+    if props.key?("orientation")
+      "[orientation === \"vertical\" ? \"insetBlockStart\" : \"insetInlineStart\"]: #{along}"
+    else
+      "insetInlineStart: #{along}"
+    end
+  end
+
+  # The trough a placed slider sits in is what the slider is placed AGAINST, so it is the box
+  # the offset is measured from. Its thickness is the slider's own box with the slider's
+  # negative margin taken off it, which is how GTK arrives at a 4px trough under a 20px handle:
+  # the stylesheet states both numbers and neither states the trough.
+  def self.trough_classes(node)
+    return nil unless node["node"] == "trough"
+
+    slider = node.fetch("children", []).find{|child| child["node"] == "slider" }
+    return nil if slider.nil?
+
+    "relative #{self.thickness(slider)}"
+  end
+
+  # `min-h-5` and `-m-2` is 20px of handle with 8px taken off each side: a 4px trough.
+  def self.thickness(slider)
+    classes = slider.dig("classes", "base") || []
+    size = classes.filter_map{|one| one[/\Amin-h-([0-9.]+)\z/, 1]&.to_f }.first
+    margin = classes.filter_map{|one| one[/\A-m-([0-9.]+)\z/, 1]&.to_f }.first
+
+    return "min-h-1" if size.nil?
+
+    [((size - (margin || 0) * 2) * 4).round, 1].max.then{|px| "min-h-[#{px}px]" }
+  end
+
   # Whether this node is the element the control's own properties belong on.
   def self.control?(node, props = {}) = %w[input textarea].include?(self.element_for(node, props))
 
@@ -1480,27 +1899,96 @@ module GenerateComponents
       .map{|attribute, pairs| "#{attribute}={#{pairs.map(&:first).join(' ?? ')}}" }
   end
 
-  def self.tree(node, props, indent, slot = nil, control = [])
+  # A template which stacks two nodes in the same place and fades between them says so with
+  # `opacity="0"` on the one which starts hidden: adw-entry-row.ui stacks a large title for the
+  # empty row over a small one for the filled row, and stacks the text itself under both.
+  #
+  # Which is showing is whether the row HAS text. The stylesheet cannot say that and the
+  # template only states the resting state, so an entry row given a value drew the empty row's
+  # title and nothing else -- the value was there, at opacity 0.
+  def self.fade(node, props)
+    return nil unless props.key?("text")
+    return "opacity: text === undefined ? 1 : 0" if node["fade-out"]
+
+    hidden = node.fetch("properties", {})["opacity"] == "0"
+
+    hidden ? "opacity: text === undefined ? 0 : 1" : nil
+  end
+
+  # The other half of a cross-fade: the node stacked under the hidden one, bound to the same
+  # property, which is the one showing until there is text. Without this an entry row with a
+  # value drew both titles over each other.
+  def self.pair_fades(children, props)
+    hidden = children.select{|one| one.fetch("properties", {})["opacity"] == "0" }
+    return if hidden.empty?
+
+    hidden.each do |one|
+      bound = self.bound(one, props)
+      next if bound.nil?
+
+      children.each do |other|
+        next if other.equal?(one)
+        next unless self.bound(other, props) == bound
+        next if other.fetch("properties", {}).key?("opacity")
+
+        other["fade-out"] = true
+      end
+    end
+  end
+
+  def self.tree(node, props, indent, slot = nil, control = [], group = nil)
     pad = " " * indent
     children = (node.fetch("slots", {}).values + node.fetch("children", []))
-      .select{|child| self.widget_node?(child)}
+      .select{|child| self.rendered?(child, props)}
     # An `<input>` holds nothing: a text node's cursor and placeholder are things the
     # element draws itself, and rendering them into it is an error React refuses the
     # whole tree for rather than a part that comes out wrong.
     children = [] if VOID.include?(self.element_for(node, props))
-    inner = children.map{|child| self.tree(child, props, indent + 2, slot, control)}.reject(&:empty?)
+    self.pair_fades(children, props)
+    inner = children.map{|child| self.tree(child, props, indent + 2, slot, control, group)}.reject(&:empty?)
     inner << "#{pad}  {children}" if node.equal?(slot)
     taken = node["takes"] unless node["takes"] == "children"
     inner << "#{pad}  {#{taken}}" if taken
     text = self.bound(node, props)
 
+    size = self.proportion(node, props)
+    placed = self.placement(node, props)
+    thrown = self.thrown(node, props, group)
+
     markup =
-      if text && node.fetch("class") == "Image"
+      if thrown
+        # A switch's slider is thrown from one end of its track to the other by the state. The
+        # stylesheet says how big the handle is and says nothing about where it sits, because
+        # GTK slides it in gtkswitch.c; left in the overlay layout it filled the whole track.
+        "<#{node.fetch('part')} className=#{thrown.inspect} />"
+      elsif placed
+        # A node which is POSITIONED at the value rather than sized by it: a range's slider
+        # sits where the value is and keeps its own 20px. Left in the flow it was stretched
+        # across the whole trough by the overlay layout, and a scale came out as one long
+        # white pill with no trough and no fill behind it.
+        "<#{node.fetch('part')} className=\"absolute top-1/2 -translate-x-1/2 -translate-y-1/2\" style={{ #{placed} }} />"
+      elsif size
+        # A node whose length IS the value: a progress bar's progress, a level bar's block, a
+        # scale's highlight. GTK sizes these from the adjustment every time it draws; nothing
+        # in a stylesheet can, so the proportion is written onto the element.
+        "<#{node.fetch('part')} style={{ #{size} }} />"
+      elsif text && node.fetch("class") == "Image"
         # An image node draws the name it is given. The part is an `Icon` of its own, so
         # the name goes through as a prop rather than as a class.
         "<#{node.fetch('part')} name={#{text}} />"
+      elsif text && VOID.include?(self.element_for(node, props))
+        # A text node renders as an `<input>`, which holds nothing: React refuses the whole
+        # tree rather than the one element, so an entry row given its text rendered the page
+        # blank. What an input shows is its value.
+        "<#{node.fetch('part')} defaultValue={#{text}}#{self.fade(node, props).then{|one| one ? " style={{ #{one} }}" : '' }} />"
       elsif text
-        "<#{node.fetch('part')}>{#{text}}</#{node.fetch('part')}>"
+        self.fade(node, props).then do |one|
+          if one
+            "<#{node.fetch('part')} style={{ #{one} }}>{#{text}}</#{node.fetch('part')}>"
+          else
+            "<#{node.fetch('part')}>{#{text}}</#{node.fetch('part')}>"
+          end
+        end
       elsif inner.empty?
         "<#{node.fetch('part')}#{self.control?(node, props) && !control.empty? ? " #{control.join(' ')}" : ''} />"
       else

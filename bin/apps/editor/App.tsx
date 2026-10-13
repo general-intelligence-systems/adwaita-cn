@@ -17,11 +17,9 @@ import { SearchEntry } from "@/ui/search-entry"
 import { ShortcutsDialog } from "@/ui/shortcuts-dialog"
 import { SplitButton } from "@/ui/split-button"
 import { Statusbar } from "@/ui/statusbar"
-import { Tab } from "@/ui/tab"
 import { TabBar } from "@/ui/tab-bar"
 import { TabButton } from "@/ui/tab-button"
 import { TabOverview } from "@/ui/tab-overview"
-import { TabThumbnail } from "@/ui/tab-thumbnail"
 import { TabView } from "@/ui/tab-view"
 import { Text } from "@/ui/text"
 import { TextView } from "@/ui/text-view"
@@ -57,7 +55,7 @@ export default function EditorApp() {
           </HeaderBar>
           <TabBar>
             {["notes.md", "README", "LICENCE"].map((name) => (
-              <Tab key={name} />
+              <TabButton key={name}>{name}</TabButton>
             ))}
           </TabBar>
           <SearchBar searchModeEnabled>
@@ -94,7 +92,7 @@ export function Tabs() {
               {/* The overview builds a thumbnail per page into its own grid, and the
                   component renders only its `child`, so they are rendered here. */}
               {["notes.md", "README", "LICENCE"].map((name) => (
-                <TabThumbnail key={name} />
+                <Box key={name} orientation="vertical" />
               ))}
             </TabView>
           }
@@ -102,7 +100,7 @@ export function Tabs() {
           <HeaderBar />
           <TabBar>
             {["notes.md", "README", "LICENCE"].map((name) => (
-              <Tab key={name} />
+              <TabButton key={name}>{name}</TabButton>
             ))}
           </TabBar>
         </ToolbarView>

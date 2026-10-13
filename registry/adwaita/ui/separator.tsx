@@ -20,11 +20,11 @@ const separatorVariants = cva(
       variant: {
         default: "",
         /** .hidden */
-        hidden: "",
+        hidden: "hidden",
         /** .spacer */
-        spacer: "bg-none",
+        spacer: "spacer bg-none",
         /** .wide */
-        wide: "",
+        wide: "wide",
       },
     },
     defaultVariants: { variant: "default" },
@@ -50,7 +50,7 @@ function Separator({ className, render, variant = "default", orientation, childr
     "data-node": "separator",
     "data-variant": variant,
     "data-orientation": orientation,
-    className: cn(separatorVariants({ variant }), widgetClassName, className),
+    className: cn(separatorVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     ...widgetAttributes,
   }

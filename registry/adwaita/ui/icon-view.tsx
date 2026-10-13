@@ -4,8 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
@@ -14,38 +12,14 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation, ScrollablePolicy, SelectionMode } from "@/lib/enums"
 
-const iconViewVariants = cva(
-  [
-    "bg-[var(--view-bg-color)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--view-fg-color)]",
-    "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-    "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-  ],
-  {
-    variants: {
-      variant: {
-        default: "",
-        /** .view */
-        view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
-      },
-    },
-    defaultVariants: { variant: "default" },
-  },
-)
-
 export interface IconViewProps
-  extends Omit<useRender.ComponentProps<"ul">, keyof WidgetProps | "activateOnSingleClick" | "cellArea" | "columnSpacing" | "columns" | "hadjustment" | "hscrollPolicy" | "itemOrientation" | "itemPadding" | "itemWidth" | "margin" | "markupColumn" | "model" | "pixbufColumn" | "reorderable" | "rowSpacing" | "selectionMode" | "spacing" | "textColumn" | "tooltipColumn" | "vadjustment" | "vscrollPolicy" | "variant" | "size">,
-    WidgetProps,
-    VariantProps<typeof iconViewVariants> {
+  extends Omit<useRender.ComponentProps<"ul">, keyof WidgetProps | "activateOnSingleClick" | "cellArea" | "columnSpacing" | "columns" | "hadjustment" | "hscrollPolicy" | "itemOrientation" | "itemPadding" | "itemWidth" | "margin" | "markupColumn" | "model" | "pixbufColumn" | "reorderable" | "rowSpacing" | "selectionMode" | "spacing" | "textColumn" | "tooltipColumn" | "vadjustment" | "vscrollPolicy">,
+    WidgetProps {
   /** gboolean, from Gtk.IconView */
   activateOnSingleClick?: boolean
 
   /** CellArea, from Gtk.IconView */
-  cellArea?: ReactNode
+  cellArea?: unknown
 
   /** gint, from Gtk.IconView */
   columnSpacing?: number
@@ -54,7 +28,7 @@ export interface IconViewProps
   columns?: number
 
   /** Adjustment, from Gtk.IconView */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.IconView */
   hscrollPolicy?: ScrollablePolicy
@@ -75,7 +49,7 @@ export interface IconViewProps
   markupColumn?: number
 
   /** TreeModel, from Gtk.IconView */
-  model?: ReactNode
+  model?: unknown
 
   /** gint, from Gtk.IconView */
   pixbufColumn?: number
@@ -99,13 +73,13 @@ export interface IconViewProps
   tooltipColumn?: number
 
   /** Adjustment, from Gtk.IconView */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** ScrollablePolicy, from Gtk.IconView */
   vscrollPolicy?: ScrollablePolicy
 }
 
-function IconView({ className, render, variant = "default", cellArea, hadjustment, model, vadjustment, activateOnSingleClick, columnSpacing, columns, hscrollPolicy, itemOrientation, itemPadding, itemWidth, margin, markupColumn, pixbufColumn, reorderable, rowSpacing, selectionMode, spacing, textColumn, tooltipColumn, vscrollPolicy, children, ...props }: IconViewProps) {
+function IconView({ className, render, cellArea: _cellArea, hadjustment: _hadjustment, model: _model, vadjustment: _vadjustment, activateOnSingleClick, columnSpacing, columns, hscrollPolicy, itemOrientation, itemPadding, itemWidth, margin, markupColumn, pixbufColumn, reorderable, rowSpacing, selectionMode, spacing, textColumn, tooltipColumn, vscrollPolicy, children, ...props }: IconViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -114,7 +88,6 @@ function IconView({ className, render, variant = "default", cellArea, hadjustmen
   const defaultProps = {
     "data-slot": "icon-view",
     "data-node": "iconview",
-    "data-variant": variant,
     "data-activate-on-single-click": activateOnSingleClick,
     "data-column-spacing": columnSpacing,
     "data-columns": columns,
@@ -132,17 +105,18 @@ function IconView({ className, render, variant = "default", cellArea, hadjustmen
     "data-text-column": textColumn,
     "data-tooltip-column": tooltipColumn,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn(iconViewVariants({ variant }), widgetClassName, className),
+    className: cn("group/icon-view", "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0", [
+          "bg-[var(--view-bg-color)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--view-fg-color)]",
+          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
+          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+        ], [
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
+          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
+        ], widgetClassName, className),
     style,
-    children: (
-        <>
-                  {cellArea}
-                  {hadjustment}
-                  {model}
-                  {vadjustment}
-                  {children}
-        </>
-      ),
+    children: children,
     ...widgetAttributes,
   }
 
@@ -154,4 +128,15 @@ function IconView({ className, render, variant = "default", cellArea, hadjustmen
   })
 }
 
-export { IconView, iconViewVariants }
+function IconViewRubberband({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="icon-view-rubberband"
+        data-node="rubberband"
+      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+export { IconView, IconViewRubberband }

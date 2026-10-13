@@ -12,7 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
-import type { FlapFoldPolicy, FlapTransitionType, FoldThresholdPolicy, PackType } from "@/lib/enums"
+import type { FlapFoldPolicy, FlapTransitionType, FoldThresholdPolicy, Orientation, PackType } from "@/lib/enums"
 
 const flapVariants = cva(
   "",
@@ -21,9 +21,7 @@ const flapVariants = cva(
       variant: {
         default: "",
         /** .folded */
-        folded: "",
-        /** .unfolded */
-        unfolded: "",
+        folded: "folded",
       },
     },
     defaultVariants: { variant: "default" },
@@ -59,13 +57,13 @@ export interface FlapProps
   modal?: boolean
 
   /** Orientation, from Adw.Flap */
-  orientation?: ReactNode
+  orientation?: Orientation
 
   /** gboolean, from Adw.Flap */
   revealFlap?: boolean
 
   /** SpringParams, from Adw.Flap */
-  revealParams?: ReactNode
+  revealParams?: unknown
 
   /** Gtk.Widget, from Adw.Flap */
   separator?: ReactNode
@@ -80,7 +78,7 @@ export interface FlapProps
   transitionType?: FlapTransitionType
 }
 
-function Flap({ className, render, variant = "default", content, flap, orientation, revealParams, separator, flapPosition, foldDuration, foldPolicy, foldThresholdPolicy, locked, modal, revealFlap, swipeToClose, swipeToOpen, transitionType, children, ...props }: FlapProps) {
+function Flap({ className, render, variant = "default", content, flap, separator, revealParams: _revealParams, flapPosition, foldDuration, foldPolicy, foldThresholdPolicy, locked, modal, orientation, revealFlap, swipeToClose, swipeToOpen, transitionType, children, ...props }: FlapProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -96,20 +94,17 @@ function Flap({ className, render, variant = "default", content, flap, orientati
     "data-fold-threshold-policy": foldThresholdPolicy,
     "data-locked": locked,
     "data-modal": modal,
+    "data-orientation": orientation,
     "data-reveal-flap": revealFlap,
     "data-swipe-to-close": swipeToClose,
     "data-swipe-to-open": swipeToOpen,
     "data-transition-type": transitionType,
-    className: cn("group/flap", flapVariants({ variant }), widgetClassName, className),
+    className: cn("group/flap", flapVariants({ variant }), "unfolded", widgetClassName, className),
     style,
     children: (
         <>
-                  <FlapDimming />
-                  <FlapShadow />
                   {content}
                   {flap}
-                  {orientation}
-                  {revealParams}
                   {separator}
                   {children}
         </>

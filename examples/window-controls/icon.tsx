@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function WindowControlsIcon() {
   return (
-    <WindowControls size="icon">
+    <WindowControls variant="icon">
       <Label label="Label" />
     </WindowControls>
   )

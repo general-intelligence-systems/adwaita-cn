@@ -21,36 +21,36 @@ const scrolledWindowVariants = cva(
       variant: {
         default: "",
         /** .body-scrolled-window */
-        bodyScrolledWindow: "",
+        bodyScrolledWindow: "body-scrolled-window",
         /** .bottom */
-        bottom: "",
+        bottom: "bottom",
         /** .dialog-action-box */
-        dialogActionBox: "",
+        dialogActionBox: "dialog-action-box",
         /** .frame */
-        frame: "[border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        frame: "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .hovering */
-        hovering: "",
+        hovering: "hovering",
         /** .left */
-        left: "",
+        left: "left",
         /** .main-page */
-        mainPage: "",
+        mainPage: "main-page",
         /** .overlay-indicator */
-        overlayIndicator: "",
+        overlayIndicator: "overlay-indicator",
         /** .pinned */
-        pinned: "",
+        pinned: "pinned",
         /** .right */
-        right: "",
+        right: "right",
         /** .subpage */
-        subpage: "",
+        subpage: "subpage",
         /** .top */
-        top: "",
+        top: "top",
         /** .undershoot-bottom */
-        undershootBottom: "",
+        undershootBottom: "undershoot-bottom",
         /** .undershoot-top */
-        undershootTop: "",
+        undershootTop: "undershoot-top",
         /** .view */
         view: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
+          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
           "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
           "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
           "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
@@ -69,7 +69,7 @@ export interface ScrolledWindowProps
   child?: ReactNode
 
   /** Adjustment, from Gtk.ScrolledWindow */
-  hadjustment?: ReactNode
+  hadjustment?: unknown
 
   /** gboolean, from Gtk.ScrolledWindow */
   hasFrame?: boolean
@@ -102,7 +102,7 @@ export interface ScrolledWindowProps
   propagateNaturalWidth?: boolean
 
   /** Adjustment, from Gtk.ScrolledWindow */
-  vadjustment?: ReactNode
+  vadjustment?: unknown
 
   /** PolicyType, from Gtk.ScrolledWindow */
   vscrollbarPolicy?: PolicyType
@@ -111,7 +111,7 @@ export interface ScrolledWindowProps
   windowPlacement?: CornerType
 }
 
-function ScrolledWindow({ className, render, variant = "default", child, hadjustment, vadjustment, hasFrame, hscrollbarPolicy, kineticScrolling, maxContentHeight, maxContentWidth, minContentHeight, minContentWidth, overlayScrolling, propagateNaturalHeight, propagateNaturalWidth, vscrollbarPolicy, windowPlacement, children, ...props }: ScrolledWindowProps) {
+function ScrolledWindow({ className, render, variant = "default", child, hadjustment: _hadjustment, vadjustment: _vadjustment, hasFrame, hscrollbarPolicy, kineticScrolling, maxContentHeight, maxContentWidth, minContentHeight, minContentWidth, overlayScrolling, propagateNaturalHeight, propagateNaturalWidth, vscrollbarPolicy, windowPlacement, children, ...props }: ScrolledWindowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -133,15 +133,11 @@ function ScrolledWindow({ className, render, variant = "default", child, hadjust
     "data-propagate-natural-width": propagateNaturalWidth,
     "data-vscrollbar-policy": vscrollbarPolicy,
     "data-window-placement": windowPlacement,
-    className: cn("group/scrolled-window", scrolledWindowVariants({ variant }), widgetClassName, className),
+    className: cn("group/scrolled-window", "flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", scrolledWindowVariants({ variant }), hasFrame && "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
     style,
     children: (
         <>
-                  <ScrolledWindowOvershoot />
-                  <ScrolledWindowUndershoot />
                   {child}
-                  {hadjustment}
-                  {vadjustment}
                   {children}
         </>
       ),

@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function SpinnerRight() {
   return (
-    <Spinner size="right">
+    <Spinner variant="right">
       <Label label="Label" />
     </Spinner>
   )

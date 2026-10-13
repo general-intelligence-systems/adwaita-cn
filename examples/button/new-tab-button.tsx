@@ -7,6 +7,6 @@ import { Button } from "@/ui/button"
 
 export default function ButtonNewtabbutton() {
   return (
-    <Button size="newTabButton" label="Label" />
+    <Button variant="newTabButton" label="Label" />
   )
 }

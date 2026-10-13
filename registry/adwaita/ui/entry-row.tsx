@@ -24,35 +24,28 @@ const entryRowVariants = cva(
     variants: {
       variant: {
         default: "",
-        /** .activatable */
-        activatable: [
-          "hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ],
         /** .entry */
-        entry: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         /** .expander */
-        expander: "p-0 bg-none",
+        expander: "expander p-0 bg-none",
         /** .focused */
-        focused: "",
+        focused: "focused",
         /** .has-open-popup */
-        hasOpenPopup: "",
+        hasOpenPopup: "has-open-popup",
         /** .header */
-        header: "",
+        header: "header",
         /** .osd */
-        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
-        separator: "",
+        separator: "separator",
         /** .separators */
-        separators: "",
+        separators: "separators",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "",
+        sidebarNewBookmarkRow: "sidebar-new-bookmark-row",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "",
+        sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -67,7 +60,7 @@ export interface EntryRowProps
   actionName?: string
 
   /** GLib.Variant, from Adw.EntryRow */
-  actionTarget?: ReactNode
+  actionTarget?: unknown
 
   /** gboolean, from Gtk.ListBoxRow */
   activatable?: boolean
@@ -76,7 +69,7 @@ export interface EntryRowProps
   activatesDefault?: boolean
 
   /** Pango.AttrList, from Adw.EntryRow */
-  attributes?: ReactNode
+  attributes?: unknown
 
   /** Widget, from Gtk.ListBoxRow */
   child?: ReactNode
@@ -133,7 +126,7 @@ export interface EntryRowProps
   xalign?: number
 }
 
-function EntryRow({ className, render, variant = "default", actionTarget, attributes, child, prefix, title, actionName, activatable, activatesDefault, editable, enableEmojiCompletion, enableUndo, inputHints, inputPurpose, maxLength, maxWidthChars, selectable, showApplyButton, text, titleSelectable, useMarkup, useUnderline, widthChars, xalign, children, ...props }: EntryRowProps) {
+function EntryRow({ className, render, variant = "default", child, prefix, title, actionTarget: _actionTarget, attributes: _attributes, actionName, activatable, activatesDefault, editable, enableEmojiCompletion, enableUndo, inputHints, inputPurpose, maxLength, maxWidthChars, selectable, showApplyButton, text, titleSelectable, useMarkup, useUnderline, widthChars, xalign, children, ...props }: EntryRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -161,7 +154,12 @@ function EntryRow({ className, render, variant = "default", actionTarget, attrib
     "data-use-underline": useUnderline,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/entry-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", entryRowVariants({ variant }), widgetClassName, className),
+    className: cn("group/entry-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", entryRowVariants({ variant }), [
+          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
+          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
+          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
+          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
+        ], widgetClassName, className),
     style,
     children: (
         <>
@@ -172,9 +170,9 @@ function EntryRow({ className, render, variant = "default", actionTarget, attrib
                   </EntryRowPrefixes>
                 ) : null}
                 <EntryRowEditableArea>
-                  <EntryRowEmptyTitle>{title}</EntryRowEmptyTitle>
-                  <EntryRowTitle>{title}</EntryRowTitle>
-                  <EntryRowText>{text}</EntryRowText>
+                  <EntryRowEmptyTitle style={{ opacity: text === undefined ? 1 : 0 }}>{title}</EntryRowEmptyTitle>
+                  <EntryRowTitle style={{ opacity: text === undefined ? 0 : 1 }}>{title}</EntryRowTitle>
+                  <EntryRowText defaultValue={text} style={{ opacity: text === undefined ? 0 : 1 }} />
                   {editable ? (
                     <EntryRowEditIcon />
                   ) : null}
@@ -185,8 +183,6 @@ function EntryRow({ className, render, variant = "default", actionTarget, attrib
                   </EntryRowSuffixes>
                 ) : null}
               </EntryRowHeader>
-                  {actionTarget}
-                  {attributes}
                   {child}
         </>
       ),
@@ -206,7 +202,34 @@ function EntryRowPrefixes({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="entry-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes", "mx-1.5 gap-[6px]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowLink({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-link"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/entry-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/entry-row:text-[var(--accent-color)]",
+        "group-disabled/entry-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
+      ], className)}
       {...props}
     />
   )
@@ -221,6 +244,33 @@ function EntryRowEmptyTitle({ className, ...props }: React.ComponentProps<"span"
       className={cn("title dimmed", [
         "caret-[currentColor] opacity-[var(--dim-opacity)]",
         "group-disabled/entry-row:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowSelection2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-selection2"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowLink2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-link2"
+        data-node="link"
+      className={cn([
+        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "group-hover/entry-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
+        "group-active/entry-row:text-[var(--accent-color)]",
+        "group-disabled/entry-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
       ], className)}
       {...props}
     />
@@ -243,6 +293,72 @@ function EntryRowTitle({ className, ...props }: React.ComponentProps<"span">) {
   )
 }
 
+function EntryRowPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-placeholder"
+        data-node="placeholder"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowSelection3({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-selection3"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-block-cursor"
+        data-node="block-cursor"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EntryRowWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-row-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
 function EntryRowText({ className, ...props }: React.ComponentProps<"input">) {
   return (
     <input
@@ -252,7 +368,7 @@ function EntryRowText({ className, ...props }: React.ComponentProps<"input">) {
         data-hexpand=""
         data-vexpand=""
         style={{ opacity: 0 }}
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
       {...props}
     />
   )
@@ -321,7 +437,7 @@ function EntryRowSuffixes({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="entry-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", "gap-[6px] mx-1.5", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px] mx-1.5", className)}
       {...props}
     />
   )
@@ -333,10 +449,10 @@ function EntryRowHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="entry-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
       {...props}
     />
   )
 }
 
-export { EntryRow, EntryRowPrefixes, EntryRowEmptyTitle, EntryRowTitle, EntryRowText, EntryRowIndicator, EntryRowApplyButton, EntryRowEditIcon, EntryRowEditableArea, EntryRowSuffixes, EntryRowHeader, entryRowVariants }
+export { EntryRow, EntryRowPrefixes, EntryRowSelection, EntryRowLink, EntryRowEmptyTitle, EntryRowSelection2, EntryRowLink2, EntryRowTitle, EntryRowPlaceholder, EntryRowUndershoot, EntryRowSelection3, EntryRowCursorHandle, EntryRowBlockCursor, EntryRowWindow, EntryRowText, EntryRowIndicator, EntryRowApplyButton, EntryRowEditIcon, EntryRowEditableArea, EntryRowSuffixes, EntryRowHeader, entryRowVariants }

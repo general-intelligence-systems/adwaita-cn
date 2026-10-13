@@ -8,7 +8,7 @@ import { Label } from "@/ui/label"
 
 export default function ImageIcon() {
   return (
-    <Image size="icon">
+    <Image variant="icon">
       <Label label="Label" />
     </Image>
   )

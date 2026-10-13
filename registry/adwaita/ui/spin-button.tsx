@@ -4,7 +4,6 @@
 // of its stylesheet. The shape is shadcn/ui's, on Base UI.
 
 import * as React from "react"
-import type { ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
@@ -25,14 +24,14 @@ const spinButtonVariants = cva(
       variant: {
         default: "",
         /** .down */
-        down: "",
+        down: "down",
         /** .flat */
         flat: [
-          "p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
+          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
           "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
         ],
         /** .up */
-        up: "",
+        up: "up",
       },
     },
     defaultVariants: { variant: "default" },
@@ -40,14 +39,14 @@ const spinButtonVariants = cva(
 )
 
 export interface SpinButtonProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "activatesDefault" | "adjustment" | "climbRate" | "digits" | "editable" | "editingCanceled" | "enableUndo" | "maxWidthChars" | "numeric" | "orientation" | "snapToTicks" | "text" | "updatePolicy" | "value" | "widthChars" | "wrap" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "activatesDefault" | "adjustment" | "climbRate" | "digits" | "editable" | "editingCanceled" | "enableUndo" | "maxWidthChars" | "numeric" | "orientation" | "snapToTicks" | "text" | "updatePolicy" | "value" | "widthChars" | "wrap" | "xalign" | "minValue" | "maxValue" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof spinButtonVariants> {
   /** gboolean, from Gtk.SpinButton */
   activatesDefault?: boolean
 
   /** Adjustment, from Gtk.SpinButton */
-  adjustment?: ReactNode
+  adjustment?: unknown
 
   /** gdouble, from Gtk.SpinButton */
   climbRate?: number
@@ -64,8 +63,14 @@ export interface SpinButtonProps
   /** gboolean, from Gtk.SpinButton */
   enableUndo?: boolean
 
+  /** gdouble, from Gtk.Adjustment */
+  maxValue?: number
+
   /** gint, from Gtk.SpinButton */
   maxWidthChars?: number
+
+  /** gdouble, from Gtk.Adjustment */
+  minValue?: number
 
   /** gboolean, from Gtk.SpinButton */
   numeric?: boolean
@@ -95,7 +100,7 @@ export interface SpinButtonProps
   xalign?: number
 }
 
-function SpinButton({ className, render, variant = "default", adjustment, activatesDefault, climbRate, digits, editable, editingCanceled, enableUndo, maxWidthChars, numeric, orientation, snapToTicks, text, updatePolicy, value, widthChars, wrap, xalign, children, ...props }: SpinButtonProps) {
+function SpinButton({ className, render, variant = "default", adjustment: _adjustment, activatesDefault, climbRate, digits, editable, editingCanceled, enableUndo, maxValue, maxWidthChars, minValue, numeric, orientation, snapToTicks, text, updatePolicy, value, widthChars, wrap, xalign, children, ...props }: SpinButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -111,7 +116,9 @@ function SpinButton({ className, render, variant = "default", adjustment, activa
     "data-editable": editable,
     "data-editing-canceled": editingCanceled,
     "data-enable-undo": enableUndo,
+    "data-max-value": maxValue,
     "data-max-width-chars": maxWidthChars,
+    "data-min-value": minValue,
     "data-numeric": numeric,
     "data-orientation": orientation,
     "data-snap-to-ticks": snapToTicks,
@@ -121,7 +128,7 @@ function SpinButton({ className, render, variant = "default", adjustment, activa
     "data-width-chars": widthChars,
     "data-wrap": wrap,
     "data-xalign": xalign,
-    className: cn("group/spin-button", "flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), spinButtonVariants({ variant }), widgetClassName, className),
+    className: cn("group/spin-button", "flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), spinButtonVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
@@ -132,7 +139,6 @@ function SpinButton({ className, render, variant = "default", adjustment, activa
                   <SpinButtonSpinUp>
                 <SpinButtonImage2 />
               </SpinButtonSpinUp>
-                  {adjustment}
                   {children}
         </>
       ),
@@ -147,13 +153,79 @@ function SpinButton({ className, render, variant = "default", adjustment, activa
   })
 }
 
+function SpinButtonPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonSelection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-selection"
+        data-node="selection"
+      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonCursorHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-cursor-handle"
+        data-node="cursor-handle"
+      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-button-window"
+        data-node="window"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
 function SpinButtonText({ className, ...props }: React.ComponentProps<"input">) {
   return (
     <input
       data-slot="spin-button-text"
         data-node="text"
         data-hexpand=""
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", "p-1.5 min-w-7", className)}
       {...props}
     />
   )
@@ -233,4 +305,4 @@ function SpinButtonSpinUp({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
-export { SpinButton, SpinButtonText, SpinButtonImage, SpinButtonSpinDown, SpinButtonImage2, SpinButtonSpinUp, spinButtonVariants }
+export { SpinButton, SpinButtonPlaceholder, SpinButtonUndershoot, SpinButtonSelection, SpinButtonCursorHandle, SpinButtonBlockCursor, SpinButtonWindow, SpinButtonText, SpinButtonImage, SpinButtonSpinDown, SpinButtonImage2, SpinButtonSpinUp, spinButtonVariants }

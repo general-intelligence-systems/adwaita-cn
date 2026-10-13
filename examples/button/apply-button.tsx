@@ -7,6 +7,6 @@ import { Button } from "@/ui/button"
 
 export default function ButtonApplybutton() {
   return (
-    <Button size="applyButton" label="Label" />
+    <Button variant="applyButton" label="Label" />
   )
 }
