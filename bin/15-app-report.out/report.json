@@ -1,0 +1,2001 @@
+{
+  "tolerance": 2.0,
+  "apps": {
+    "preferences": [
+      {
+        "component": "ToolbarView",
+        "toolkit": [
+          0.0,
+          0.0,
+          480.0,
+          640.0
+        ],
+        "components": [
+          0,
+          0,
+          480,
+          432
+        ],
+        "delta": [
+          0.0,
+          0.0,
+          0.0,
+          -208.0
+        ],
+        "out": true
+      },
+      {
+        "component": "PreferencesPage",
+        "toolkit": [
+          0.0,
+          46.0,
+          480.0,
+          594.0
+        ],
+        "components": [
+          0,
+          72,
+          480,
+          360
+        ],
+        "delta": [
+          0.0,
+          26.0,
+          0.0,
+          -234.0
+        ],
+        "out": true
+      },
+      {
+        "component": "PreferencesGroup",
+        "toolkit": [
+          30.0,
+          70.0,
+          419.0,
+          215.0
+        ],
+        "components": [
+          0,
+          72,
+          299.2,
+          144
+        ],
+        "delta": [
+          -30.0,
+          2.0,
+          -119.8,
+          -71.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ComboRow",
+        "toolkit": [
+          30.0,
+          121.0,
+          419.0,
+          55.0
+        ],
+        "components": [
+          0,
+          120,
+          299.2,
+          24
+        ],
+        "delta": [
+          -30.0,
+          -1.0,
+          -119.8,
+          -31.0
+        ],
+        "out": true
+      },
+      {
+        "component": "SwitchRow",
+        "toolkit": [
+          30.0,
+          176.0,
+          419.0,
+          55.0
+        ],
+        "components": [
+          0,
+          144,
+          299.2,
+          48
+        ],
+        "delta": [
+          -30.0,
+          -32.0,
+          -119.8,
+          -7.0
+        ],
+        "out": true
+      },
+      {
+        "component": "SpinRow",
+        "toolkit": [
+          30.0,
+          231.0,
+          419.0,
+          54.0
+        ],
+        "components": [
+          0,
+          192,
+          299.2,
+          24
+        ],
+        "delta": [
+          -30.0,
+          -39.0,
+          -119.8,
+          -30.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          363.0,
+          243.0,
+          30.0,
+          30.0
+        ],
+        "components": [
+          0,
+          64,
+          0,
+          0
+        ],
+        "delta": [
+          -363.0,
+          -179.0,
+          -30.0,
+          -30.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          403.0,
+          243.0,
+          30.0,
+          30.0
+        ],
+        "components": [
+          149.6,
+          384,
+          70.4,
+          48
+        ],
+        "delta": [
+          -253.4,
+          141.0,
+          40.4,
+          18.0
+        ],
+        "out": true
+      },
+      {
+        "component": "PreferencesGroup",
+        "toolkit": [
+          30.0,
+          309.0,
+          419.0,
+          204.0
+        ],
+        "components": [
+          0,
+          216,
+          299.2,
+          216
+        ],
+        "delta": [
+          -30.0,
+          -93.0,
+          -119.8,
+          12.0
+        ],
+        "out": true
+      },
+      {
+        "component": "EntryRow",
+        "toolkit": [
+          30.0,
+          349.0,
+          419.0,
+          55.0
+        ],
+        "components": [
+          0,
+          240,
+          299.2,
+          72
+        ],
+        "delta": [
+          -30.0,
+          -109.0,
+          -119.8,
+          17.0
+        ],
+        "out": true
+      },
+      {
+        "component": "EntryRow",
+        "toolkit": [
+          30.0,
+          404.0,
+          419.0,
+          55.0
+        ],
+        "components": [
+          0,
+          312,
+          299.2,
+          72
+        ],
+        "delta": [
+          -30.0,
+          -92.0,
+          -119.8,
+          17.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ActionRow",
+        "toolkit": [
+          30.0,
+          459.0,
+          419.0,
+          54.0
+        ],
+        "components": [
+          0,
+          384,
+          299.2,
+          48
+        ],
+        "delta": [
+          -30.0,
+          -75.0,
+          -119.8,
+          -6.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          346.0,
+          469.0,
+          89.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "HeaderBar",
+        "toolkit": [
+          -1.0,
+          0.0,
+          482.0,
+          46.0
+        ],
+        "components": [
+          0,
+          0,
+          480,
+          72
+        ],
+        "delta": [
+          1.0,
+          0.0,
+          -2.0,
+          26.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          1.0,
+          1.0,
+          10.0,
+          10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          6.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "WindowTitle",
+        "toolkit": [
+          190.0,
+          0.0,
+          100.0,
+          46.0
+        ],
+        "components": [
+          0,
+          0,
+          480,
+          48
+        ],
+        "delta": [
+          -190.0,
+          0.0,
+          380.0,
+          2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          440.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      }
+    ],
+    "library": [
+      {
+        "component": "NavigationSplitView",
+        "toolkit": [
+          0.0,
+          0.0,
+          900.0,
+          600.0
+        ],
+        "components": [
+          0,
+          0,
+          900,
+          360
+        ],
+        "delta": [
+          0.0,
+          0.0,
+          0.0,
+          -240.0
+        ],
+        "out": true
+      },
+      {
+        "component": "NavigationPage",
+        "toolkit": [
+          0.0,
+          0.0,
+          225.0,
+          600.0
+        ],
+        "components": [
+          0,
+          0,
+          900,
+          144
+        ],
+        "delta": [
+          0.0,
+          0.0,
+          675.0,
+          -456.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ToolbarView",
+        "toolkit": [
+          0.0,
+          0.0,
+          225.0,
+          600.0
+        ],
+        "components": [
+          0,
+          0,
+          900,
+          144
+        ],
+        "delta": [
+          0.0,
+          0.0,
+          675.0,
+          -456.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ListBox",
+        "toolkit": [
+          0.0,
+          46.0,
+          225.0,
+          554.0
+        ],
+        "components": [
+          0,
+          168,
+          900,
+          192
+        ],
+        "delta": [
+          0.0,
+          122.0,
+          675.0,
+          -362.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ActionRow",
+        "toolkit": [
+          6.0,
+          52.0,
+          213.0,
+          50.0
+        ],
+        "components": [
+          0,
+          168,
+          900,
+          48
+        ],
+        "delta": [
+          -6.0,
+          116.0,
+          687.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Avatar",
+        "toolkit": [
+          26.0,
+          52.0,
+          32.0,
+          50.0
+        ],
+        "components": [
+          114.4,
+          168,
+          0,
+          48
+        ],
+        "delta": [
+          88.4,
+          116.0,
+          -32.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ActionRow",
+        "toolkit": [
+          6.0,
+          104.0,
+          213.0,
+          50.0
+        ],
+        "components": [
+          0,
+          216,
+          900,
+          48
+        ],
+        "delta": [
+          -6.0,
+          112.0,
+          687.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Avatar",
+        "toolkit": [
+          26.0,
+          104.0,
+          32.0,
+          50.0
+        ],
+        "components": [
+          158.4,
+          216,
+          0,
+          48
+        ],
+        "delta": [
+          132.4,
+          112.0,
+          -32.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ActionRow",
+        "toolkit": [
+          6.0,
+          156.0,
+          213.0,
+          50.0
+        ],
+        "components": [
+          0,
+          264,
+          900,
+          48
+        ],
+        "delta": [
+          -6.0,
+          108.0,
+          687.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Avatar",
+        "toolkit": [
+          26.0,
+          156.0,
+          32.0,
+          50.0
+        ],
+        "components": [
+          105.6,
+          264,
+          0,
+          48
+        ],
+        "delta": [
+          79.6,
+          108.0,
+          -32.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ActionRow",
+        "toolkit": [
+          6.0,
+          208.0,
+          213.0,
+          50.0
+        ],
+        "components": [
+          0,
+          312,
+          900,
+          48
+        ],
+        "delta": [
+          -6.0,
+          104.0,
+          687.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Avatar",
+        "toolkit": [
+          26.0,
+          208.0,
+          32.0,
+          50.0
+        ],
+        "components": [
+          149.6,
+          312,
+          0,
+          48
+        ],
+        "delta": [
+          123.6,
+          104.0,
+          -32.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "HeaderBar",
+        "toolkit": [
+          -1.0,
+          0.0,
+          227.0,
+          46.0
+        ],
+        "components": [
+          0,
+          0,
+          900,
+          72
+        ],
+        "delta": [
+          1.0,
+          0.0,
+          673.0,
+          26.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          1.0,
+          1.0,
+          10.0,
+          10.0
+        ],
+        "components": [
+          0,
+          64,
+          0,
+          0
+        ],
+        "delta": [
+          -1.0,
+          63.0,
+          -10.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "SearchEntry",
+        "toolkit": [
+          6.0,
+          6.0,
+          173.0,
+          34.0
+        ],
+        "components": [
+          0,
+          144,
+          190,
+          24
+        ],
+        "delta": [
+          -6.0,
+          138.0,
+          17.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          185.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": [
+          0,
+          120,
+          900,
+          24
+        ],
+        "delta": [
+          -185.0,
+          114.0,
+          866.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "NavigationPage",
+        "toolkit": [
+          225.0,
+          0.0,
+          675.0,
+          600.0
+        ],
+        "components": [
+          0,
+          144,
+          900,
+          216
+        ],
+        "delta": [
+          -225.0,
+          144.0,
+          225.0,
+          -384.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ToolbarView",
+        "toolkit": [
+          225.0,
+          0.0,
+          675.0,
+          600.0
+        ],
+        "components": [
+          0,
+          144,
+          900,
+          216
+        ],
+        "delta": [
+          -225.0,
+          144.0,
+          225.0,
+          -384.0
+        ],
+        "out": true
+      },
+      {
+        "component": "StatusPage",
+        "toolkit": [
+          225.0,
+          46.0,
+          675.0,
+          554.0
+        ],
+        "components": [
+          0,
+          72,
+          900,
+          72
+        ],
+        "delta": [
+          -225.0,
+          26.0,
+          225.0,
+          -482.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          516.0,
+          430.0,
+          92.0,
+          44.0
+        ],
+        "components": [
+          190,
+          160,
+          0,
+          0
+        ],
+        "delta": [
+          -326.0,
+          -270.0,
+          -92.0,
+          -44.0
+        ],
+        "out": true
+      },
+      {
+        "component": "HeaderBar",
+        "toolkit": [
+          224.0,
+          0.0,
+          677.0,
+          46.0
+        ],
+        "components": [
+          0,
+          144,
+          900,
+          24
+        ],
+        "delta": [
+          -224.0,
+          144.0,
+          223.0,
+          -22.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          226.0,
+          1.0,
+          10.0,
+          10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          820.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          860.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      }
+    ],
+    "controls": [
+      {
+        "component": "Clamp",
+        "toolkit": [
+          24.0,
+          70.0,
+          512.0,
+          626.0
+        ],
+        "components": [
+          0,
+          48,
+          560,
+          184
+        ],
+        "delta": [
+          -24.0,
+          -22.0,
+          48.0,
+          -442.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          105.0,
+          70.0,
+          349.0,
+          626.0
+        ],
+        "components": [
+          0,
+          48,
+          560,
+          184
+        ],
+        "delta": [
+          -105.0,
+          -22.0,
+          211.0,
+          -442.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          105.0,
+          70.0,
+          349.0,
+          34.0
+        ],
+        "components": [
+          0,
+          48,
+          560,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -22.0,
+          211.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          105.0,
+          70.0,
+          69.0,
+          34.0
+        ],
+        "components": [
+          0,
+          48,
+          44,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -22.0,
+          -25.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          122.0,
+          75.0,
+          35.0,
+          24.0
+        ],
+        "components": [
+          0,
+          160,
+          61.6,
+          24
+        ],
+        "delta": [
+          -122.0,
+          85.0,
+          26.6,
+          0.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          182.0,
+          70.0,
+          62.0,
+          34.0
+        ],
+        "components": [
+          44,
+          48,
+          35.2,
+          24
+        ],
+        "delta": [
+          -138.0,
+          -22.0,
+          -26.8,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          199.0,
+          75.0,
+          28.0,
+          24.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          252.0,
+          70.0,
+          76.0,
+          34.0
+        ],
+        "components": [
+          79.2,
+          48,
+          52.8,
+          24
+        ],
+        "delta": [
+          -172.8,
+          -22.0,
+          -23.2,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          269.0,
+          75.0,
+          42.0,
+          24.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          336.0,
+          70.0,
+          76.0,
+          34.0
+        ],
+        "components": [
+          132,
+          48,
+          52.8,
+          24
+        ],
+        "delta": [
+          -204.0,
+          -22.0,
+          -23.2,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          353.0,
+          75.0,
+          42.0,
+          24.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          420.0,
+          70.0,
+          34.0,
+          34.0
+        ],
+        "components": [
+          184.8,
+          48,
+          0,
+          24
+        ],
+        "delta": [
+          -235.2,
+          -22.0,
+          -34.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ToggleGroup",
+        "toolkit": [
+          105.0,
+          122.0,
+          349.0,
+          34.0
+        ],
+        "components": [
+          0,
+          72,
+          560,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -50.0,
+          211.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Separator",
+        "toolkit": [
+          108.0,
+          125.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          116.0,
+          125.0,
+          92.0,
+          28.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Separator",
+        "toolkit": [
+          217.0,
+          128.0,
+          1.0,
+          22.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          227.0,
+          125.0,
+          95.0,
+          28.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Separator",
+        "toolkit": [
+          331.0,
+          128.0,
+          1.0,
+          22.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          341.0,
+          125.0,
+          102.0,
+          28.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Entry",
+        "toolkit": [
+          105.0,
+          174.0,
+          349.0,
+          34.0
+        ],
+        "components": [
+          0,
+          96,
+          560,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -78.0,
+          211.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          114.0,
+          174.0,
+          331.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "SearchEntry",
+        "toolkit": [
+          105.0,
+          226.0,
+          349.0,
+          34.0
+        ],
+        "components": [
+          0,
+          120,
+          560,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -106.0,
+          211.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          136.0,
+          226.0,
+          309.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Scale",
+        "toolkit": [
+          105.0,
+          278.0,
+          349.0,
+          34.0
+        ],
+        "components": [
+          0,
+          144,
+          560,
+          16
+        ],
+        "delta": [
+          -105.0,
+          -134.0,
+          211.0,
+          -18.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          105.0,
+          330.0,
+          349.0,
+          26.0
+        ],
+        "components": [
+          0,
+          160,
+          560,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -170.0,
+          211.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          105.0,
+          330.0,
+          291.0,
+          26.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Switch",
+        "toolkit": [
+          408.0,
+          330.0,
+          46.0,
+          26.0
+        ],
+        "components": [
+          61.6,
+          160,
+          0,
+          24
+        ],
+        "delta": [
+          -346.4,
+          -170.0,
+          -46.0,
+          -2.0
+        ],
+        "out": true
+      },
+      {
+        "component": "CheckButton",
+        "toolkit": [
+          105.0,
+          374.0,
+          349.0,
+          28.0
+        ],
+        "components": [
+          0,
+          184,
+          560,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -190.0,
+          211.0,
+          -4.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          133.0,
+          378.0,
+          317.0,
+          20.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "DropDown",
+        "toolkit": [
+          105.0,
+          420.0,
+          349.0,
+          34.0
+        ],
+        "components": [
+          0,
+          208,
+          560,
+          0
+        ],
+        "delta": [
+          -105.0,
+          -212.0,
+          211.0,
+          -34.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          115.0,
+          425.0,
+          329.0,
+          24.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          115.0,
+          425.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          115.0,
+          425.0,
+          307.0,
+          24.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          115.0,
+          425.0,
+          55.0,
+          24.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          99.0,
+          414.0,
+          12.0,
+          12.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "SearchEntry",
+        "toolkit": [
+          96.0,
+          420.0,
+          18.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          105.0,
+          420.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "ProgressBar",
+        "toolkit": [
+          105.0,
+          472.0,
+          349.0,
+          8.0
+        ],
+        "components": [
+          0,
+          208,
+          560,
+          0
+        ],
+        "delta": [
+          -105.0,
+          -264.0,
+          211.0,
+          -8.0
+        ],
+        "out": true
+      },
+      {
+        "component": "LevelBar",
+        "toolkit": [
+          105.0,
+          498.0,
+          349.0,
+          8.0
+        ],
+        "components": [
+          0,
+          208,
+          560,
+          0
+        ],
+        "delta": [
+          -105.0,
+          -290.0,
+          211.0,
+          -8.0
+        ],
+        "out": true
+      },
+      {
+        "component": "SpinButton",
+        "toolkit": [
+          105.0,
+          524.0,
+          349.0,
+          34.0
+        ],
+        "components": [
+          0,
+          208,
+          560,
+          24
+        ],
+        "delta": [
+          -105.0,
+          -316.0,
+          211.0,
+          -10.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          388.0,
+          524.0,
+          33.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          421.0,
+          524.0,
+          33.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          0.0,
+          0.0,
+          560.0,
+          46.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          1.0,
+          1.0,
+          10.0,
+          10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          520.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          520.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          0.0,
+          720.0,
+          560.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      }
+    ],
+    "feedback": [
+      {
+        "component": "ToolbarView",
+        "toolkit": [
+          0.0,
+          0.0,
+          560.0,
+          420.0
+        ],
+        "components": [
+          0,
+          0,
+          560,
+          168
+        ],
+        "delta": [
+          0.0,
+          0.0,
+          0.0,
+          -252.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ToastOverlay",
+        "toolkit": [
+          0.0,
+          46.0,
+          560.0,
+          374.0
+        ],
+        "components": [
+          0,
+          48,
+          560,
+          120
+        ],
+        "delta": [
+          0.0,
+          2.0,
+          0.0,
+          -254.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          0.0,
+          46.0,
+          560.0,
+          374.0
+        ],
+        "components": [
+          0,
+          48,
+          560,
+          120
+        ],
+        "delta": [
+          0.0,
+          2.0,
+          0.0,
+          -254.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Banner",
+        "toolkit": [
+          0.0,
+          46.0,
+          560.0,
+          46.0
+        ],
+        "components": [
+          0,
+          48,
+          560,
+          48
+        ],
+        "delta": [
+          0.0,
+          2.0,
+          0.0,
+          2.0
+        ],
+        "out": false
+      },
+      {
+        "component": "StatusPage",
+        "toolkit": [
+          0.0,
+          92.0,
+          560.0,
+          328.0
+        ],
+        "components": [
+          0,
+          96,
+          560,
+          72
+        ],
+        "delta": [
+          0.0,
+          4.0,
+          0.0,
+          -256.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          206.0,
+          386.0,
+          147.0,
+          44.0
+        ],
+        "components": [
+          0,
+          144,
+          560,
+          24
+        ],
+        "delta": [
+          -206.0,
+          -242.0,
+          413.0,
+          -20.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          208.0,
+          356.0,
+          110.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          185.0,
+          351.0,
+          34.0,
+          10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          202.0,
+          356.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          330.0,
+          356.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          0.0,
+          0.0,
+          560.0,
+          46.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "HeaderBar",
+        "toolkit": [
+          -1.0,
+          0.0,
+          562.0,
+          46.0
+        ],
+        "components": [
+          0,
+          0,
+          560,
+          48
+        ],
+        "delta": [
+          1.0,
+          0.0,
+          -2.0,
+          2.0
+        ],
+        "out": false
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          1.0,
+          1.0,
+          10.0,
+          10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          520.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Button",
+        "toolkit": [
+          520.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          0.0,
+          420.0,
+          560.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      }
+    ]
+  }
+}

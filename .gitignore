@@ -5,9 +5,12 @@ node_modules
 # `shadcn build` output, regenerated from registry.json.
 /public/r
 
-# The harness bundle and the screenshots, both rebuilt by bin/14-app-screenshots.
+# The harness bundle.
 /harness/dist
-/screenshots
+
+# The page vite builds for bin/14-app-screenshots, which is a build of the registry
+# rather than anything written here.
+/bin/14-app-screenshots.out/web
 
 # The toolkit source bin/02-fetch-gir clones, pinned by bin/02-fetch-gir.out/src/VERSIONS.
 /bin/02-fetch-gir.out/src

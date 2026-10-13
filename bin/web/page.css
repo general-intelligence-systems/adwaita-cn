@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "../../registry/adwaita/adwaita.css";
 
+/* Where the classes are written. Tailwind finds its sources from the stylesheet's own
+ * directory, which is bin/web and holds none of them: every utility a component names
+ * is in registry/adwaita, and every one an application names is in bin/apps. Without
+ * these the page builds and renders unstyled, which is a comparison of nothing. */
+@source "../../registry/adwaita";
+@source "../apps";
+
 /* The page the shots are taken from. Each case sits alone in a box the
  * screenshotter measures, on the window background Adwaita would give it, so
  * that a component which is a tint of what it sits on is tinted against the
