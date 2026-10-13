@@ -50,7 +50,7 @@ function LevelBar({ className, render, orientation, value, minValue, maxValue, m
     "data-min-value": minValue,
     "data-max-value": maxValue,
     "data-inverted": inverted,
-    className: cn("levelbar", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("levelbar", "horizontal", "continuous", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

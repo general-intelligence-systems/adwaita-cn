@@ -71,7 +71,7 @@ function ProgressBar({ className, render, orientation, fraction, pulseStep, inve
     "data-inverted": inverted,
     "data-text": text,
     "data-show-text": showText,
-    className: cn("progressbar", "box-layout", "vertical", "gtk-alignment", progressBarVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("progressbar", "horizontal", "box-layout", "vertical", "gtk-alignment", progressBarVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

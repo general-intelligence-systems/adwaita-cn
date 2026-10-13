@@ -162,7 +162,7 @@ function PrintUnixDialog({ className, render, title, resizable, modal, defaultWi
     "data-support-selection": supportSelection,
     "data-has-selection": hasSelection,
     "data-embed-page-setup": embedPageSetup,
-    className: cn("window", "bin-layout", "gtk-alignment", printUnixDialogVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "dialog", "print", "bin-layout", "gtk-alignment", printUnixDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

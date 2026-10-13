@@ -119,7 +119,7 @@ function LockButton({ className, render, actionName, actionTarget, label, hasFra
     "data-tooltip-lock": tooltipLock,
     "data-tooltip-unlock": tooltipUnlock,
     "data-tooltip-not-authorized": tooltipNotAuthorized,
-    className: cn("button", "bin-layout", "gtk-alignment", lockButtonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
+    className: cn("button", "text-button", "lock", "bin-layout", "gtk-alignment", lockButtonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
     style,
     children: (
       <>

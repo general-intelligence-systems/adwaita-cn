@@ -48,7 +48,7 @@ function Separator({ className, render, orientation, variant, children, ...props
   const defaultProps = {
     "data-slot": "separator",
     "data-node": "separator",
-    className: cn("separator", "gtk-alignment", separatorVariants({ variant }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("separator", "horizontal", "gtk-alignment", separatorVariants({ variant }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     ...widgetAttributes,
   }

@@ -34,7 +34,7 @@ function StackSwitcher({ className, render, orientation, stack, children, ...pro
   const defaultProps = {
     "data-slot": "stack-switcher",
     "data-node": "stackswitcher",
-    className: cn("stackswitcher", "box-layout", "horizontal", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("stackswitcher", "linked", "box-layout", "horizontal", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

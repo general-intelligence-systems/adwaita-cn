@@ -156,7 +156,7 @@ function SpinRow({ className, render, actionName, actionTarget, editable, enable
     "data-snap-to-ticks": snapToTicks,
     "data-value": value,
     "data-wrap": wrap,
-    className: cn("row", "bin-layout", "gtk-alignment", spinRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "activatable", "spin", "bin-layout", "gtk-alignment", spinRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

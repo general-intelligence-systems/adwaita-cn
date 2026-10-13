@@ -191,8 +191,15 @@ module Markup
   end
 
   # What the node is addressed by, what it carries, and what arranges its children.
+  # What the node is addressed by, what it carries, and what arranges its children.
+  #
+  # THE CLASS NAMES ARE COPIED, NOT DERIVED. `gtk_widget_get_css_classes` is what the
+  # walk asked every node at the moment it existed, so `box` carrying `header` and
+  # `horizontal` is what GTK itself put there -- the same names its own cascade matches
+  # against. `cn` turns them into utilities; nothing here has to work out which rule
+  # applies, and a step that tried to was a second opinion about something already known.
   def self.classes_for(child)
-    [child.fetch("node"), *child.fetch("classes", []), *arrangement(child)].compact
+    [child.fetch("node"), *child.fetch("classes", []), *arrangement(child).compact]
   end
 
   # The layout manager and the axis it runs along.

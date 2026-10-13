@@ -159,7 +159,7 @@ function FontChooserDialog({ className, render, font, fontDesc, language, level,
     "data-focus-visible": focusVisible,
     "data-maximized": maximized,
     "data-fullscreened": fullscreened,
-    className: cn("window", "bin-layout", "gtk-alignment", fontChooserDialogVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "dialog", "fontchooser", "bin-layout", "gtk-alignment", fontChooserDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

@@ -105,7 +105,7 @@ function SwitchRow({ className, render, actionName, actionTarget, activatable, s
     "data-subtitle-lines": subtitleLines,
     "data-subtitle-selectable": subtitleSelectable,
     "data-active": active,
-    className: cn("row", "bin-layout", "gtk-alignment", switchRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "activatable", "bin-layout", "gtk-alignment", switchRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

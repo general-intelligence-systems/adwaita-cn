@@ -27,7 +27,7 @@ function Spinner({ className, render, children, ...props }: SpinnerProps) {
   const defaultProps = {
     "data-slot": "spinner",
     "data-node": "image",
-    className: cn("image", "gtk-alignment", widgetClassName, className),
+    className: cn("image", "spinner", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

@@ -67,7 +67,7 @@ function Leaflet({ className, render, orientation, canUnfold, foldThresholdPolic
     "data-mode-transition-duration": modeTransitionDuration,
     "data-can-navigate-back": canNavigateBack,
     "data-can-navigate-forward": canNavigateForward,
-    className: cn("leaflet", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("leaflet", "unfolded", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

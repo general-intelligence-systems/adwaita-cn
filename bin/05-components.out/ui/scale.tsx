@@ -86,7 +86,7 @@ function Scale({ className, render, orientation, adjustment, inverted, showFillL
     "data-digits": digits,
     "data-draw-value": drawValue,
     "data-has-origin": hasOrigin,
-    className: cn("scale", "bin-layout", "gtk-alignment", scaleVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("scale", "horizontal", "bin-layout", "gtk-alignment", scaleVariants({ size }), orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

@@ -104,7 +104,7 @@ function LinkButton({ className, render, actionName, actionTarget, label, hasFra
     "data-can-shrink": canShrink,
     "data-uri": uri,
     "data-visited": visited,
-    className: cn("button", "bin-layout", "gtk-alignment", linkButtonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
+    className: cn("button", "flat", "text-button", "link", "bin-layout", "gtk-alignment", linkButtonVariants({ variant, size }), label !== undefined && iconName === undefined && "text-button", iconName !== undefined && label === undefined && "image-button", label !== undefined && iconName !== undefined && "image-text-button", widgetClassName, className),
     style,
     children: (
       <>

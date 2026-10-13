@@ -133,9 +133,9 @@ module Stage
   # composite drawn as a pile in the corner.
   def self.classes(c)
     chosen = c.cva? ? %(#{Components.camel(c.slug)}Variants({ #{variant_names(c).join(", ")} })) : nil
-    arranged = Markup.arrangement(c.tree).compact.map { |k| %("#{k}") }
+    names = [c.node, *c.tree.fetch("classes", []), *Markup.arrangement(c.tree).compact, "gtk-alignment"]
 
-    [%("#{c.node}"), *arranged, %("gtk-alignment"), chosen, *automatic(c)].compact.join(", ")
+    [*names.map { |k| %("#{k}") }, chosen, *automatic(c)].compact.join(", ")
   end
 
   # A class the widget puts on itself according to what it was given rather than one a

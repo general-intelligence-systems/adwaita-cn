@@ -79,7 +79,7 @@ function Flap({ className, render, orientation, content, flap, separator, flapPo
     "data-modal": modal,
     "data-swipe-to-open": swipeToOpen,
     "data-swipe-to-close": swipeToClose,
-    className: cn("flap", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("flap", "unfolded", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

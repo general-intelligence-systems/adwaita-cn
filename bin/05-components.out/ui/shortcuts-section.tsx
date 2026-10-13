@@ -62,7 +62,7 @@ function ShortcutsSection({ className, render, orientation, spacing, homogeneous
     "data-section-name": sectionName,
     "data-view-name": viewName,
     "data-max-height": maxHeight,
-    className: cn("shortcuts-section", "box-layout", "vertical", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("shortcuts-section", "vertical", "box-layout", "vertical", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style: { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties,
     children: (
       <>

@@ -134,7 +134,7 @@ function TextView({ className, render, hadjustment, hscrollPolicy, vadjustment, 
     "data-accepts-tab": acceptsTab,
     "data-im-module": imModule,
     "data-monospace": monospace,
-    className: cn("textview", "gtk-alignment", textViewVariants({ variant }), widgetClassName, className),
+    className: cn("textview", "view", "gtk-alignment", textViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

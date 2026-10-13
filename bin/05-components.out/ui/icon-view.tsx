@@ -101,7 +101,7 @@ function IconView({ className, render, hadjustment, hscrollPolicy, vadjustment, 
     "data-tooltip-column": tooltipColumn,
     "data-item-padding": itemPadding,
     "data-activate-on-single-click": activateOnSingleClick,
-    className: cn("iconview", "gtk-alignment", widgetClassName, className),
+    className: cn("iconview", "view", "gtk-alignment", widgetClassName, className),
     style: { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties,
     children: (
       <>

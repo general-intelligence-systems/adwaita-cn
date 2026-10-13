@@ -218,7 +218,7 @@ function AboutWindow({ className, render, title, resizable, modal, defaultWidth,
     "data-translator-credits": translatorCredits,
     "data-copyright": copyright,
     "data-license": license,
-    className: cn("window", "bin-layout", "gtk-alignment", aboutWindowVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "solid-csd", "about", "bin-layout", "gtk-alignment", aboutWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

@@ -58,7 +58,7 @@ function Carousel({ className, render, orientation, interactive, spacing, scroll
     "data-allow-scroll-wheel": allowScrollWheel,
     "data-allow-long-swipes": allowLongSwipes,
     "data-reveal-duration": revealDuration,
-    className: cn("carousel", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("carousel", "horizontal", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style: { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties,
     children: (
       <>

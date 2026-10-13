@@ -54,7 +54,7 @@ function Range({ className, render, orientation, adjustment, inverted, showFillL
     "data-restrict-to-fill-level": restrictToFillLevel,
     "data-fill-level": fillLevel,
     "data-round-digits": roundDigits,
-    className: cn("range", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("range", "horizontal", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>

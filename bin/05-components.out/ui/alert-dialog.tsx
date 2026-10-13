@@ -91,7 +91,7 @@ function AlertDialog({ className, render, child, title, canClose, contentWidth, 
     "data-prefer-wide-layout": preferWideLayout,
     "data-default-response": defaultResponse,
     "data-close-response": closeResponse,
-    className: cn("dialog", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("dialog", "alert", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

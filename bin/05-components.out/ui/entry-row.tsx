@@ -129,7 +129,7 @@ function EntryRow({ className, render, actionName, actionTarget, editable, enabl
     "data-enable-emoji-completion": enableEmojiCompletion,
     "data-activates-default": activatesDefault,
     "data-max-length": maxLength,
-    className: cn("row", "bin-layout", "gtk-alignment", entryRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "entry", "activatable", "bin-layout", "gtk-alignment", entryRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

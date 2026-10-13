@@ -148,7 +148,7 @@ function ApplicationWindow({ className, render, title, resizable, modal, default
     "data-fullscreened": fullscreened,
     "data-show-menubar": showMenubar,
     "data-adaptive-preview": adaptivePreview,
-    className: cn("window", "bin-layout", "gtk-alignment", applicationWindowVariants({ variant }), widgetClassName, className),
+    className: cn("window", "background", "solid-csd", "bin-layout", "gtk-alignment", applicationWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

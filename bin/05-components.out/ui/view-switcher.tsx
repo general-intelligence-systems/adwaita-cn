@@ -51,7 +51,7 @@ function ViewSwitcher({ className, render, policy, stack, size, children, ...pro
   const defaultProps = {
     "data-slot": "view-switcher",
     "data-node": "viewswitcher",
-    className: cn("viewswitcher", "box-layout", "horizontal", "gtk-alignment", viewSwitcherVariants({ size }), widgetClassName, className),
+    className: cn("viewswitcher", "narrow", "box-layout", "horizontal", "gtk-alignment", viewSwitcherVariants({ size }), widgetClassName, className),
     style,
     children: (
       <>

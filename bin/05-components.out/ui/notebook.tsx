@@ -55,7 +55,7 @@ function Notebook({ className, render, tabPos, showTabs, showBorder, scrollable,
     "data-page": page,
     "data-enable-popup": enablePopup,
     "data-group-name": groupName,
-    className: cn("notebook", "box-layout", "vertical", "gtk-alignment", widgetClassName, className),
+    className: cn("notebook", "frame", "box-layout", "vertical", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

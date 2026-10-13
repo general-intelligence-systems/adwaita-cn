@@ -60,7 +60,7 @@ function ShortcutsGroup({ className, render, orientation, spacing, homogeneous, 
     "data-baseline-child": baselineChild,
     "data-title": title,
     "data-view": view,
-    className: cn("shortcuts-group", "box-layout", "vertical", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("shortcuts-group", "vertical", "box-layout", "vertical", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style: { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties,
     children: (
       <>

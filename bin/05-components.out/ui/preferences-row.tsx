@@ -80,7 +80,7 @@ function PreferencesRow({ className, render, actionName, actionTarget, activatab
     "data-use-underline": useUnderline,
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
-    className: cn("row", "bin-layout", "gtk-alignment", preferencesRowVariants({ variant }), widgetClassName, className),
+    className: cn("row", "activatable", "bin-layout", "gtk-alignment", preferencesRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

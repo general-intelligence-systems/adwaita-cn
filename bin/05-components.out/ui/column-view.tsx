@@ -72,7 +72,7 @@ function ColumnView({ className, render, hadjustment, hscrollPolicy, vadjustment
     "data-show-row-separators": showRowSeparators,
     "data-show-column-separators": showColumnSeparators,
     "data-single-click-activate": singleClickActivate,
-    className: cn("columnview", "bin-layout", "gtk-alignment", widgetClassName, className),
+    className: cn("columnview", "view", "bin-layout", "gtk-alignment", widgetClassName, className),
     style,
     children: (
       <>

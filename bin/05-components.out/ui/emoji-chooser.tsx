@@ -77,7 +77,7 @@ function EmojiChooser({ className, render, pointingTo, position, autohide, defau
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-cascade-popdown": cascadePopdown,
-    className: cn("popover", "bin-layout", "gtk-alignment", emojiChooserVariants({ variant }), widgetClassName, className),
+    className: cn("popover", "background", "emoji-picker", "bin-layout", "gtk-alignment", emojiChooserVariants({ variant }), widgetClassName, className),
     style,
     children: (
       <>

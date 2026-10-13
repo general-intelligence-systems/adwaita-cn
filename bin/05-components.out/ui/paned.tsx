@@ -65,7 +65,7 @@ function Paned({ className, render, orientation, position, positionSet, wideHand
     "data-resize-end-child": resizeEndChild,
     "data-shrink-start-child": shrinkStartChild,
     "data-shrink-end-child": shrinkEndChild,
-    className: cn("paned", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
+    className: cn("paned", "horizontal", "bin-layout", "gtk-alignment", orientation === "vertical" ? "vertical" : "horizontal", widgetClassName, className),
     style,
     children: (
       <>
