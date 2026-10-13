@@ -144,11 +144,11 @@ done
 # A widget's CSS nodes are made in its own C, and nothing declarative states the result:
 # the stylesheet mentions whichever nodes it has a rule for and a doc comment draws a
 # picture of some of them. Both were being read as the structure, which is how a
-# GtkDropDown came out as a chevron with no button under it. bin/lib/widget-trees.c builds
+# GtkDropDown came out as a chevron with no button under it. bin/lib/widgets.c builds
 # every widget in the two libraries and walks it, so what the rest of the pipeline reads is
 # what GTK made rather than an account of it.
 if command -v gcc >/dev/null && command -v Xvfb >/dev/null; then
-  gcc -O2 -o "$out/widget-trees" bin/lib/widget-trees.c \
+  gcc -O2 -o "$out/widgets" bin/lib/widgets.c \
     $(pkg-config --cflags --libs gtk4 libadwaita-1 gobject-introspection-1.0)
 
   # Its own display, for the same reason every other script here has one: the widgets are
@@ -159,7 +159,7 @@ if command -v gcc >/dev/null && command -v Xvfb >/dev/null; then
   sleep 2
 
   DISPLAY=:79 GDK_BACKEND=x11 GSK_RENDERER=cairo WAYLAND_DISPLAY= \
-    "$out/widget-trees" > "$out/widget-trees.json"
+    "$out/widgets" > "$out/widgets.json"
 
   kill "$xvfb" 2>/dev/null || true
   trap - EXIT

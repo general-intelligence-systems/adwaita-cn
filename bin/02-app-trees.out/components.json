@@ -1,0 +1,1710 @@
+{
+  "controls": [
+    {
+      "selector": "toolbarview.vertical.box-layout.flex-col",
+      "path": "toolbarview.vertical.box-layout.flex-col",
+      "node": "toolbarview",
+      "rect": [
+        0,
+        0,
+        560,
+        720
+      ],
+      "paint": []
+    },
+    {
+      "selector": "revealer.top-bar.revealer.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > revealer.top-bar.revealer.bin-layout.gtk-alignment",
+      "node": "revealer",
+      "rect": [
+        0,
+        0,
+        560,
+        0
+      ],
+      "paint": []
+    },
+    {
+      "selector": "windowhandle.windowhandle.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > revealer.top-bar.revealer.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment",
+      "node": "windowhandle",
+      "rect": [
+        0,
+        0,
+        560,
+        0
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.vertical.box-layout.flex-col",
+      "path": "toolbarview.vertical.box-layout.flex-col > revealer.top-bar.revealer.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col",
+      "node": "box",
+      "rect": [
+        0,
+        0,
+        560,
+        0
+      ],
+      "paint": []
+    },
+    {
+      "selector": "revealer.bottom-bar.revealer.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > revealer.bottom-bar.revealer.bin-layout.gtk-alignment",
+      "node": "revealer",
+      "rect": [
+        0,
+        0,
+        560,
+        0
+      ],
+      "paint": []
+    },
+    {
+      "selector": "windowhandle.windowhandle.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > revealer.bottom-bar.revealer.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment",
+      "node": "windowhandle",
+      "rect": [
+        0,
+        0,
+        560,
+        0
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.vertical.box-layout.flex-col",
+      "path": "toolbarview.vertical.box-layout.flex-col > revealer.bottom-bar.revealer.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col",
+      "node": "box",
+      "rect": [
+        0,
+        0,
+        560,
+        0
+      ],
+      "paint": []
+    },
+    {
+      "selector": "clamp.horizontal.clamp.clamp-layout.flex-row.m-6",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6",
+      "node": "clamp",
+      "rect": [
+        24,
+        24,
+        512,
+        492
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.vertical.box-layout.flex-col",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col",
+      "node": "box",
+      "rect": [
+        24,
+        24,
+        512,
+        492
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.horizontal.box-layout.flex-row.gap-2",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2",
+      "node": "box",
+      "rect": [
+        24,
+        24,
+        512,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        24,
+        24,
+        54.25,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > label",
+      "node": "label",
+      "rect": [
+        34,
+        29,
+        34.25,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        86.25,
+        24,
+        47.40625,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > label",
+      "node": "label",
+      "rect": [
+        96.25,
+        29,
+        27.40625,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        141.65625,
+        24,
+        61.109375,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > label",
+      "node": "label",
+      "rect": [
+        151.65625,
+        29,
+        41.109375,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        210.765625,
+        24,
+        61.109375,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.text-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > label",
+      "node": "label",
+      "rect": [
+        220.765625,
+        29,
+        41.109375,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "button.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment",
+      "node": "button",
+      "rect": [
+        279.875,
+        24,
+        36,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "image.adw.adw-list-add.adw-list-add-symbolic.shrink-0",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > image.adw.adw-list-add.adw-list-add-symbolic.shrink-0",
+      "node": "image",
+      "rect": [
+        289.875,
+        29,
+        16,
+        16
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-2 > button.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > label",
+      "node": "label",
+      "rect": [
+        289.875,
+        29,
+        16,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "toggle-group.horizontal.box-layout.flex-row",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > toggle-group.horizontal.box-layout.flex-row",
+      "node": "toggle-group",
+      "rect": [
+        24,
+        76,
+        512,
+        40
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.08)"
+        }
+      ]
+    },
+    {
+      "selector": "button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > toggle-group.horizontal.box-layout.flex-row > button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        27,
+        79,
+        40.5625,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > toggle-group.horizontal.box-layout.flex-row > button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > label",
+      "node": "label",
+      "rect": [
+        37,
+        84,
+        20.5625,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > toggle-group.horizontal.box-layout.flex-row > button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        67.5625,
+        79,
+        47.40625,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > toggle-group.horizontal.box-layout.flex-row > button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > label",
+      "node": "label",
+      "rect": [
+        77.5625,
+        84,
+        27.40625,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > toggle-group.horizontal.box-layout.flex-row > button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        114.96875,
+        79,
+        54.25,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > toggle-group.horizontal.box-layout.flex-row > button.text-button.toggle.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > label",
+      "node": "label",
+      "rect": [
+        124.96875,
+        84,
+        34.25,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "entry.bg-clip-padding.duration-200.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > entry.bg-clip-padding.duration-200.bin-layout.gtk-alignment",
+      "node": "entry",
+      "rect": [
+        24,
+        134,
+        512,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.08)"
+        }
+      ]
+    },
+    {
+      "selector": "text.text.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > entry.bg-clip-padding.duration-200.bin-layout.gtk-alignment > text.text.bin-layout.gtk-alignment",
+      "node": "text",
+      "rect": [
+        33,
+        134,
+        494,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "entry.horizontal.bg-clip-padding.duration-200.box-layout.flex-row.search",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > entry.horizontal.bg-clip-padding.duration-200.box-layout.flex-row.search",
+      "node": "entry",
+      "rect": [
+        24,
+        186,
+        512,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.08)"
+        }
+      ]
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > entry.horizontal.bg-clip-padding.duration-200.box-layout.flex-row.search > image",
+      "node": "image",
+      "rect": [
+        33,
+        186,
+        0,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "text.text.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > entry.horizontal.bg-clip-padding.duration-200.box-layout.flex-row.search > text.text.bin-layout.gtk-alignment",
+      "node": "text",
+      "rect": [
+        39,
+        186,
+        147,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > entry.horizontal.bg-clip-padding.duration-200.box-layout.flex-row.search > image",
+      "node": "image",
+      "rect": [
+        192,
+        186,
+        0,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "scale.horizontal.p-3.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > scale.horizontal.p-3.bin-layout.gtk-alignment",
+      "node": "scale",
+      "rect": [
+        24,
+        238,
+        512,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "trough.trough.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > scale.horizontal.p-3.bin-layout.gtk-alignment > trough.trough.bin-layout.gtk-alignment",
+      "node": "trough",
+      "rect": [
+        36,
+        250,
+        488,
+        10
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.12)"
+        }
+      ]
+    },
+    {
+      "selector": "highlight.highlight.top",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > scale.horizontal.p-3.bin-layout.gtk-alignment > trough.trough.bin-layout.gtk-alignment > highlight.highlight.top",
+      "node": "highlight",
+      "rect": [
+        36,
+        250,
+        488,
+        10
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "box.box.horizontal.box-layout.flex-row.gap-3.items-center",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-3.items-center",
+      "node": "box",
+      "rect": [
+        24,
+        290,
+        512,
+        26
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label.grow.text-left",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-3.items-center > label.grow.text-left",
+      "node": "label",
+      "rect": [
+        24,
+        303,
+        474,
+        0
+      ],
+      "paint": []
+    },
+    {
+      "selector": "switch.horizontal.duration-200.box-layout.flex-row",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-3.items-center > switch.horizontal.duration-200.box-layout.flex-row",
+      "node": "switch",
+      "rect": [
+        510,
+        290,
+        26,
+        26
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            14,
+            14,
+            14,
+            14
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.12)"
+        }
+      ]
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-3.items-center > switch.horizontal.duration-200.box-layout.flex-row > image",
+      "node": "image",
+      "rect": [
+        513,
+        293,
+        0,
+        20
+      ],
+      "paint": []
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-3.items-center > switch.horizontal.duration-200.box-layout.flex-row > image",
+      "node": "image",
+      "rect": [
+        513,
+        293,
+        0,
+        20
+      ],
+      "paint": []
+    },
+    {
+      "selector": "slider.slider",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > box.box.horizontal.box-layout.flex-row.gap-3.items-center > switch.horizontal.duration-200.box-layout.flex-row > slider.slider",
+      "node": "slider",
+      "rect": [
+        513,
+        293,
+        20,
+        20
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            33554400,
+            33554400,
+            33554400,
+            33554400
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 1 1 1)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 6, 0.2) 0px 2px 4px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "checkbutton.text-button.box-layout.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > checkbutton.text-button.box-layout.duration-200",
+      "node": "checkbutton",
+      "rect": [
+        24,
+        334,
+        512,
+        26
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "check.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > checkbutton.text-button.box-layout.duration-200 > check.duration-200",
+      "node": "check",
+      "rect": [
+        27,
+        337,
+        20,
+        20
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            6,
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, color(srgb 0 0 0.0235294 / 0.12) 0px 0px 0px 2px inset"
+        }
+      ]
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > checkbutton.text-button.box-layout.duration-200 > label",
+      "node": "label",
+      "rect": [
+        51,
+        337,
+        75.34375,
+        20
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgba(0, 0, 6, 0.8)"
+        }
+      ]
+    },
+    {
+      "selector": "dropdown.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment",
+      "node": "dropdown",
+      "rect": [
+        24,
+        378,
+        512,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment",
+      "node": "button",
+      "rect": [
+        24,
+        378,
+        512,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "box.box.horizontal.box-layout.flex-row",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row",
+      "node": "box",
+      "rect": [
+        34,
+        383,
+        492,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "stack.stack.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row > stack.stack.bin-layout.gtk-alignment",
+      "node": "stack",
+      "rect": [
+        34,
+        383,
+        0,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row > stack.stack.bin-layout.gtk-alignment > label",
+      "node": "label",
+      "rect": [
+        34,
+        383,
+        0,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "row.activatable.p-0.bg-none.bin-layout.gtk-alignment.bg-clip-padding.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row > stack.stack.bin-layout.gtk-alignment > row.activatable.p-0.bg-none.bin-layout.gtk-alignment.bg-clip-padding.duration-200",
+      "node": "row",
+      "rect": [
+        34,
+        383,
+        0,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.25)"
+        }
+      ]
+    },
+    {
+      "selector": "box.box.horizontal.box-layout.flex-row",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row > stack.stack.bin-layout.gtk-alignment > row.activatable.p-0.bg-none.bin-layout.gtk-alignment.bg-clip-padding.duration-200 > box.box.horizontal.box-layout.flex-row",
+      "node": "box",
+      "rect": [
+        34,
+        383,
+        0,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row > stack.stack.bin-layout.gtk-alignment > row.activatable.p-0.bg-none.bin-layout.gtk-alignment.bg-clip-padding.duration-200 > box.box.horizontal.box-layout.flex-row > label",
+      "node": "label",
+      "rect": [
+        34,
+        383,
+        0,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row > stack.stack.bin-layout.gtk-alignment > row.activatable.p-0.bg-none.bin-layout.gtk-alignment.bg-clip-padding.duration-200 > box.box.horizontal.box-layout.flex-row > image",
+      "node": "image",
+      "rect": [
+        34,
+        383,
+        0,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "arrow.arrow",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > button.toggle.min-h-6.min-w-4.font-bold.duration-200.shadow-none.text-accent.bin-layout.gtk-alignment > box.box.horizontal.box-layout.flex-row > arrow.arrow",
+      "node": "arrow",
+      "rect": [
+        40,
+        383,
+        16,
+        24
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > dropdown.bin-layout.gtk-alignment > label",
+      "node": "label",
+      "rect": [
+        24,
+        378,
+        512,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "progressbar.horizontal.box-layout",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > progressbar.horizontal.box-layout",
+      "node": "progressbar",
+      "rect": [
+        24,
+        430,
+        512,
+        8
+      ],
+      "paint": []
+    },
+    {
+      "selector": "trough.trough.empty.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > progressbar.horizontal.box-layout > trough.trough.empty.bin-layout.gtk-alignment",
+      "node": "trough",
+      "rect": [
+        24,
+        430,
+        150,
+        8
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.12)"
+        }
+      ]
+    },
+    {
+      "selector": "progress.left.progress",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > progressbar.horizontal.box-layout > trough.trough.empty.bin-layout.gtk-alignment > progress.left.progress",
+      "node": "progress",
+      "rect": [
+        24,
+        430,
+        150,
+        8
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "rgb(53, 132, 228)"
+        }
+      ]
+    },
+    {
+      "selector": "levelbar.horizontal.bin-layout.gtk-alignment.continuous",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > levelbar.horizontal.bin-layout.gtk-alignment.continuous",
+      "node": "levelbar",
+      "rect": [
+        24,
+        456,
+        512,
+        8
+      ],
+      "paint": []
+    },
+    {
+      "selector": "trough.trough.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > levelbar.horizontal.bin-layout.gtk-alignment.continuous > trough.trough.bin-layout.gtk-alignment",
+      "node": "trough",
+      "rect": [
+        24,
+        456,
+        512,
+        8
+      ],
+      "paint": []
+    },
+    {
+      "selector": "block.low.block.filled",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > levelbar.horizontal.bin-layout.gtk-alignment.continuous > trough.trough.bin-layout.gtk-alignment > block.low.block.filled",
+      "node": "block",
+      "rect": [
+        24,
+        456,
+        512,
+        8
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "rgb(229, 165, 10)"
+        }
+      ]
+    },
+    {
+      "selector": "block.empty.block",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > levelbar.horizontal.bin-layout.gtk-alignment.continuous > trough.trough.bin-layout.gtk-alignment > block.empty.block",
+      "node": "block",
+      "rect": [
+        24,
+        456,
+        512,
+        8
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.12)"
+        }
+      ]
+    },
+    {
+      "selector": "spinbutton.horizontal.p-0.bg-clip-padding.duration-200.box-layout.flex-row",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > spinbutton.horizontal.p-0.bg-clip-padding.duration-200.box-layout.flex-row",
+      "node": "spinbutton",
+      "rect": [
+        24,
+        482,
+        512,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0 0 0.0235294 / 0.08)"
+        }
+      ]
+    },
+    {
+      "selector": "text.text",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > spinbutton.horizontal.p-0.bg-clip-padding.duration-200.box-layout.flex-row > text.text",
+      "node": "text",
+      "rect": [
+        24,
+        482,
+        159,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "button.image-button.down.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > spinbutton.horizontal.p-0.bg-clip-padding.duration-200.box-layout.flex-row > button.image-button.down.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        183,
+        482,
+        43,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > spinbutton.horizontal.p-0.bg-clip-padding.duration-200.box-layout.flex-row > button.image-button.down.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > image",
+      "node": "image",
+      "rect": [
+        193,
+        482,
+        22,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "button.image-button.up.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > spinbutton.horizontal.p-0.bg-clip-padding.duration-200.box-layout.flex-row > button.image-button.up.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        226,
+        482,
+        43,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > clamp.horizontal.clamp.clamp-layout.flex-row.m-6 > box.box.vertical.box-layout.flex-col > spinbutton.horizontal.p-0.bg-clip-padding.duration-200.box-layout.flex-row > button.image-button.up.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > image",
+      "node": "image",
+      "rect": [
+        236,
+        482,
+        22,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment",
+      "node": "headerbar",
+      "rect": [
+        -1,
+        540,
+        562,
+        47
+      ],
+      "paint": [
+        {
+          "draw": "background",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 6, 0.12) 0px -1px 0px 0px inset, color(srgb 0 0 0.0235294 / 0.12) 1px 0px 0px 0px inset, color(srgb 0 0 0.0235294 / 0.12) -1px 0px 0px 0px inset"
+        }
+      ]
+    },
+    {
+      "selector": "windowhandle.windowhandle.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment",
+      "node": "windowhandle",
+      "rect": [
+        -1,
+        540,
+        562,
+        47
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.center-layout",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout",
+      "node": "box",
+      "rect": [
+        -1,
+        540,
+        562,
+        47
+      ],
+      "paint": []
+    },
+    {
+      "selector": "widget.widget.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment",
+      "node": "widget",
+      "rect": [
+        6,
+        555,
+        86.78125,
+        16
+      ],
+      "paint": []
+    },
+    {
+      "selector": "windowtitle.min-h-3.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment",
+      "node": "windowtitle",
+      "rect": [
+        6,
+        549,
+        86.78125,
+        28
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.vertical.box-layout.flex-col",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col",
+      "node": "box",
+      "rect": [
+        6,
+        549,
+        86.78125,
+        28
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label.title",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col > label.title",
+      "node": "label",
+      "rect": [
+        6,
+        549,
+        86.78125,
+        15
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "700 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgba(0, 0, 6, 0.8)"
+        }
+      ]
+    },
+    {
+      "selector": "label.subtitle",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col > label.subtitle",
+      "node": "label",
+      "rect": [
+        6,
+        564,
+        86.78125,
+        13
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 10.3887px \"ComicShannsMono Nerd Font\"",
+          "color": "rgba(0, 0, 6, 0.8)"
+        }
+      ]
+    },
+    {
+      "selector": "widget.widget.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment",
+      "node": "widget",
+      "rect": [
+        236.609375,
+        555,
+        86.78125,
+        16
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label.title",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > label.title",
+      "node": "label",
+      "rect": [
+        236.609375,
+        555,
+        86.78125,
+        16
+      ],
+      "paint": []
+    },
+    {
+      "selector": "windowtitle.min-h-3.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment",
+      "node": "windowtitle",
+      "rect": [
+        236.609375,
+        549,
+        86.78125,
+        28
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.vertical.box-layout.flex-col",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col",
+      "node": "box",
+      "rect": [
+        236.609375,
+        549,
+        86.78125,
+        28
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label.title",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col > label.title",
+      "node": "label",
+      "rect": [
+        236.609375,
+        549,
+        86.78125,
+        15
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "700 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgba(0, 0, 6, 0.8)"
+        }
+      ]
+    },
+    {
+      "selector": "label.subtitle",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col > label.subtitle",
+      "node": "label",
+      "rect": [
+        236.609375,
+        564,
+        86.78125,
+        13
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 10.3887px \"ComicShannsMono Nerd Font\"",
+          "color": "rgba(0, 0, 6, 0.8)"
+        }
+      ]
+    },
+    {
+      "selector": "widget.widget.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment",
+      "node": "widget",
+      "rect": [
+        434,
+        546,
+        120,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.horizontal.end.box-layout.flex-row",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row",
+      "node": "box",
+      "rect": [
+        440,
+        546,
+        108,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "windowcontrols.end.box-layout",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row > windowcontrols.end.box-layout",
+      "node": "windowcontrols",
+      "rect": [
+        440,
+        546,
+        108,
+        34
+      ],
+      "paint": []
+    },
+    {
+      "selector": "button.image-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200.minimize",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row > windowcontrols.end.box-layout > button.image-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200.minimize",
+      "node": "button",
+      "rect": [
+        440,
+        546,
+        34,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row > windowcontrols.end.box-layout > button.image-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200.minimize > image",
+      "node": "image",
+      "rect": [
+        445,
+        551,
+        24,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            33554400,
+            33554400,
+            33554400,
+            33554400
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        }
+      ]
+    },
+    {
+      "selector": "button.image-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200.maximize",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row > windowcontrols.end.box-layout > button.image-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200.maximize",
+      "node": "button",
+      "rect": [
+        477,
+        546,
+        34,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row > windowcontrols.end.box-layout > button.image-button.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200.maximize > image",
+      "node": "image",
+      "rect": [
+        482,
+        551,
+        24,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            33554400,
+            33554400,
+            33554400,
+            33554400
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        }
+      ]
+    },
+    {
+      "selector": "button.image-button.close.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row > windowcontrols.end.box-layout > button.image-button.close.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200",
+      "node": "button",
+      "rect": [
+        514,
+        546,
+        34,
+        34
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "draw": "shadow",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        }
+      ]
+    },
+    {
+      "selector": "image",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > box.box.horizontal.end.box-layout.flex-row > windowcontrols.end.box-layout > button.image-button.close.shadow-none.text-accent.bin-layout.gtk-alignment.min-h-6.min-w-4.font-bold.duration-200 > image",
+      "node": "image",
+      "rect": [
+        519,
+        551,
+        24,
+        24
+      ],
+      "paint": [
+        {
+          "draw": "radius",
+          "radius": [
+            33554400,
+            33554400,
+            33554400,
+            33554400
+          ]
+        },
+        {
+          "draw": "background",
+          "color": "color(srgb 0.207843 0.517647 0.894118 / 0.1)"
+        }
+      ]
+    },
+    {
+      "selector": "windowtitle.min-h-3.bin-layout.gtk-alignment",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment",
+      "node": "windowtitle",
+      "rect": [
+        434,
+        540,
+        120,
+        46
+      ],
+      "paint": []
+    },
+    {
+      "selector": "box.box.vertical.box-layout.flex-col",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col",
+      "node": "box",
+      "rect": [
+        434,
+        540,
+        120,
+        46
+      ],
+      "paint": []
+    },
+    {
+      "selector": "label.title",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col > label.title",
+      "node": "label",
+      "rect": [
+        434,
+        540,
+        120,
+        15
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "700 12.4664px \"ComicShannsMono Nerd Font\"",
+          "color": "rgba(0, 0, 6, 0.8)"
+        }
+      ]
+    },
+    {
+      "selector": "label.subtitle",
+      "path": "toolbarview.vertical.box-layout.flex-col > headerbar.bg-headerbar-bg.text-headerbar-fg.bin-layout.gtk-alignment > windowhandle.windowhandle.bin-layout.gtk-alignment > box.box.center-layout > widget.widget.bin-layout.gtk-alignment > windowtitle.min-h-3.bin-layout.gtk-alignment > box.box.vertical.box-layout.flex-col > label.subtitle",
+      "node": "label",
+      "rect": [
+        434,
+        555,
+        120,
+        13
+      ],
+      "paint": [
+        {
+          "draw": "text",
+          "font": "400 10.3887px \"ComicShannsMono Nerd Font\"",
+          "color": "rgba(0, 0, 6, 0.8)"
+        }
+      ]
+    }
+  ]
+}

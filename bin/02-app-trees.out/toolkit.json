@@ -1,0 +1,2553 @@
+{
+  "controls": {
+    "width": 560,
+    "height": 720,
+    "nodes": [
+      {
+        "selector": "toolbarview.undershoot-top",
+        "path": "toolbarview.undershoot-top",
+        "node": "toolbarview",
+        "type": "AdwToolbarView",
+        "rect": [
+          0,
+          0,
+          560,
+          720
+        ],
+        "minimum": [
+          560,
+          720
+        ],
+        "natural": [
+          560,
+          720
+        ],
+        "paint": []
+      },
+      {
+        "selector": "clamp",
+        "path": "toolbarview.undershoot-top > clamp",
+        "node": "clamp",
+        "type": "AdwClamp",
+        "rect": [
+          24,
+          70,
+          512,
+          626
+        ],
+        "minimum": [
+          397,
+          536
+        ],
+        "natural": [
+          397,
+          536
+        ],
+        "layout": "AdwClampLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "box.vertical.large",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          105,
+          70,
+          349,
+          626
+        ],
+        "minimum": [
+          349,
+          488
+        ],
+        "natural": [
+          349,
+          488
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "vertical",
+        "paint": []
+      },
+      {
+        "selector": "box.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          105,
+          70,
+          349,
+          34
+        ],
+        "minimum": [
+          349,
+          34
+        ],
+        "natural": [
+          349,
+          34
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "button.text-button",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.text-button",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          105,
+          70,
+          69,
+          34
+        ],
+        "minimum": [
+          69,
+          34
+        ],
+        "natural": [
+          69,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.text-button > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          122,
+          75,
+          35,
+          24
+        ],
+        "minimum": [
+          35,
+          16
+        ],
+        "natural": [
+          35,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "button.text-button.suggested-action",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.text-button.suggested-action",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          182,
+          70,
+          62,
+          34
+        ],
+        "minimum": [
+          62,
+          34
+        ],
+        "natural": [
+          62,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(53,132,228,1)"
+          }
+        ]
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.text-button.suggested-action > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          199,
+          75,
+          28,
+          24
+        ],
+        "minimum": [
+          28,
+          16
+        ],
+        "natural": [
+          28,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(255,255,255,1)"
+          }
+        ]
+      },
+      {
+        "selector": "button.text-button.destructive-action",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.text-button.destructive-action",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          252,
+          70,
+          76,
+          34
+        ],
+        "minimum": [
+          76,
+          34
+        ],
+        "natural": [
+          76,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(195,-50,-1,0.15)"
+          }
+        ]
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.text-button.destructive-action > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          269,
+          75,
+          42,
+          24
+        ],
+        "minimum": [
+          42,
+          16
+        ],
+        "natural": [
+          42,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(128,51,26,1)"
+          }
+        ]
+      },
+      {
+        "selector": "button.flat.text-button",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.flat.text-button",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          336,
+          70,
+          76,
+          34
+        ],
+        "minimum": [
+          76,
+          34
+        ],
+        "natural": [
+          76,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.flat.text-button > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          353,
+          75,
+          42,
+          24
+        ],
+        "minimum": [
+          42,
+          16
+        ],
+        "natural": [
+          42,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "button.image-button.circular",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.image-button.circular",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          420,
+          70,
+          34,
+          34
+        ],
+        "minimum": [
+          34,
+          34
+        ],
+        "natural": [
+          34,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              17,
+              17,
+              17,
+              17
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > button.image-button.circular > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          420,
+          79,
+          34,
+          16
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "toggle-group",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group",
+        "node": "toggle-group",
+        "type": "AdwToggleGroup",
+        "rect": [
+          105,
+          122,
+          349,
+          34
+        ],
+        "minimum": [
+          132,
+          34
+        ],
+        "natural": [
+          147,
+          34
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "toggle.text-button.toggle",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > toggle.text-button.toggle",
+        "node": "toggle",
+        "type": "GtkToggleButton",
+        "rect": [
+          108,
+          125,
+          108,
+          28
+        ],
+        "minimum": [
+          40,
+          28
+        ],
+        "natural": [
+          40,
+          28
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "shadow",
+            "offset": [
+              0,
+              1
+            ],
+            "blur": 3,
+            "spread": 1,
+            "color": "rgba(0,0,6,0.07)"
+          },
+          {
+            "draw": "shadow",
+            "offset": [
+              0,
+              2
+            ],
+            "blur": 6,
+            "spread": 2,
+            "color": "rgba(0,0,6,0.03)"
+          },
+          {
+            "draw": "radius",
+            "radius": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(255,255,255,1)"
+          }
+        ]
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > toggle.text-button.toggle > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          116,
+          125,
+          92,
+          28
+        ],
+        "minimum": [
+          7,
+          16
+        ],
+        "natural": [
+          21,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "separator.horizontal.hidden",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > separator.horizontal.hidden",
+        "node": "separator",
+        "type": "GtkSeparator",
+        "rect": [
+          217,
+          128,
+          1,
+          22
+        ],
+        "minimum": [
+          3,
+          7
+        ],
+        "natural": [
+          3,
+          7
+        ],
+        "paint": []
+      },
+      {
+        "selector": "toggle.text-button.toggle",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > toggle.text-button.toggle",
+        "node": "toggle",
+        "type": "GtkToggleButton",
+        "rect": [
+          219,
+          125,
+          111,
+          28
+        ],
+        "minimum": [
+          40,
+          28
+        ],
+        "natural": [
+          44,
+          28
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > toggle.text-button.toggle > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          227,
+          125,
+          95,
+          28
+        ],
+        "minimum": [
+          7,
+          16
+        ],
+        "natural": [
+          28,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "separator.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > separator.horizontal",
+        "node": "separator",
+        "type": "GtkSeparator",
+        "rect": [
+          331,
+          128,
+          1,
+          22
+        ],
+        "minimum": [
+          3,
+          7
+        ],
+        "natural": [
+          3,
+          7
+        ],
+        "paint": [
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.12)"
+          }
+        ]
+      },
+      {
+        "selector": "toggle.text-button.toggle",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > toggle.text-button.toggle",
+        "node": "toggle",
+        "type": "GtkToggleButton",
+        "rect": [
+          333,
+          125,
+          118,
+          28
+        ],
+        "minimum": [
+          40,
+          28
+        ],
+        "natural": [
+          51,
+          28
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > toggle-group > toggle.text-button.toggle > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          341,
+          125,
+          102,
+          28
+        ],
+        "minimum": [
+          7,
+          16
+        ],
+        "natural": [
+          35,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "entry",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry",
+        "node": "entry",
+        "type": "GtkEntry",
+        "rect": [
+          105,
+          174,
+          349,
+          34
+        ],
+        "minimum": [
+          25,
+          34
+        ],
+        "natural": [
+          168,
+          34
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "text",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry > text",
+        "node": "text",
+        "type": "GtkText",
+        "rect": [
+          114,
+          174,
+          331,
+          34
+        ],
+        "minimum": [
+          7,
+          16
+        ],
+        "natural": [
+          150,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "placeholder",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry > text > placeholder",
+        "node": "placeholder",
+        "type": "GtkLabel",
+        "rect": [
+          114,
+          174,
+          331,
+          34
+        ],
+        "minimum": [
+          7,
+          16
+        ],
+        "natural": [
+          21,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "entry.search",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry.search",
+        "node": "entry",
+        "type": "GtkSearchEntry",
+        "rect": [
+          105,
+          226,
+          349,
+          34
+        ],
+        "minimum": [
+          69,
+          34
+        ],
+        "natural": [
+          212,
+          34
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry.search > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          114,
+          226,
+          16,
+          34
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "text",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry.search > text",
+        "node": "text",
+        "type": "GtkText",
+        "rect": [
+          136,
+          226,
+          309,
+          34
+        ],
+        "minimum": [
+          7,
+          16
+        ],
+        "natural": [
+          150,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "placeholder",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry.search > text > placeholder",
+        "node": "placeholder",
+        "type": "GtkLabel",
+        "rect": [
+          136,
+          226,
+          309,
+          34
+        ],
+        "minimum": [
+          7,
+          16
+        ],
+        "natural": [
+          21,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > entry.search > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          114,
+          226,
+          0,
+          0
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "scale.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > scale.horizontal",
+        "node": "scale",
+        "type": "GtkScale",
+        "rect": [
+          105,
+          278,
+          349,
+          34
+        ],
+        "minimum": [
+          34,
+          34
+        ],
+        "natural": [
+          34,
+          34
+        ],
+        "paint": []
+      },
+      {
+        "selector": "trough",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > scale.horizontal > trough",
+        "node": "trough",
+        "type": "GtkGizmo",
+        "rect": [
+          117,
+          293,
+          325,
+          4
+        ],
+        "minimum": [
+          4,
+          4
+        ],
+        "natural": [
+          4,
+          4
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              2,
+              2,
+              2,
+              2
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.12)"
+          }
+        ]
+      },
+      {
+        "selector": "highlight.top",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > scale.horizontal > trough > highlight.top",
+        "node": "highlight",
+        "type": "GtkGizmo",
+        "rect": [
+          117,
+          293,
+          195,
+          4
+        ],
+        "minimum": [
+          0,
+          0
+        ],
+        "natural": [
+          0,
+          0
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              2,
+              2,
+              2,
+              2
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(53,132,228,1)"
+          }
+        ]
+      },
+      {
+        "selector": "slider",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > scale.horizontal > trough > slider",
+        "node": "slider",
+        "type": "GtkGizmo",
+        "rect": [
+          301,
+          285,
+          20,
+          20
+        ],
+        "minimum": [
+          4,
+          4
+        ],
+        "natural": [
+          4,
+          4
+        ],
+        "paint": [
+          {
+            "draw": "shadow",
+            "offset": [
+              0,
+              0
+            ],
+            "blur": 0,
+            "spread": 1,
+            "color": "rgba(0,0,6,0.1)"
+          },
+          {
+            "draw": "shadow",
+            "offset": [
+              0,
+              2
+            ],
+            "blur": 4,
+            "spread": 0,
+            "color": "rgba(0,0,6,0.2)"
+          },
+          {
+            "draw": "radius",
+            "radius": [
+              10,
+              10,
+              10,
+              10
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(255,255,255,1)"
+          }
+        ]
+      },
+      {
+        "selector": "box.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          105,
+          330,
+          349,
+          26
+        ],
+        "minimum": [
+          107,
+          26
+        ],
+        "natural": [
+          107,
+          26
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          105,
+          330,
+          291,
+          26
+        ],
+        "minimum": [
+          49,
+          16
+        ],
+        "natural": [
+          49,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "switch",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > switch",
+        "node": "switch",
+        "type": "GtkSwitch",
+        "rect": [
+          408,
+          330,
+          46,
+          26
+        ],
+        "minimum": [
+          46,
+          26
+        ],
+        "natural": [
+          46,
+          26
+        ],
+        "layout": "GtkCustomLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              13,
+              13,
+              13,
+              13
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(53,132,228,1)"
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > switch > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          413,
+          335,
+          16,
+          16
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > switch > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          433,
+          335,
+          16,
+          16
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "slider",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > box.horizontal > switch > slider",
+        "node": "slider",
+        "type": "GtkGizmo",
+        "rect": [
+          431,
+          333,
+          20,
+          20
+        ],
+        "minimum": [
+          20,
+          20
+        ],
+        "natural": [
+          20,
+          20
+        ],
+        "paint": [
+          {
+            "draw": "shadow",
+            "offset": [
+              0,
+              2
+            ],
+            "blur": 4,
+            "spread": 0,
+            "color": "rgba(0,0,6,0.2)"
+          },
+          {
+            "draw": "radius",
+            "radius": [
+              10,
+              10,
+              10,
+              10
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(255,255,255,1)"
+          }
+        ]
+      },
+      {
+        "selector": "checkbutton.text-button",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > checkbutton.text-button",
+        "node": "checkbutton",
+        "type": "GtkCheckButton",
+        "rect": [
+          105,
+          374,
+          349,
+          28
+        ],
+        "minimum": [
+          108,
+          28
+        ],
+        "natural": [
+          108,
+          28
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "check",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > checkbutton.text-button > check",
+        "node": "check",
+        "type": "GtkBuiltinIcon",
+        "rect": [
+          109,
+          378,
+          20,
+          20
+        ],
+        "minimum": [
+          20,
+          20
+        ],
+        "natural": [
+          20,
+          20
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(53,132,228,1)"
+          }
+        ]
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > checkbutton.text-button > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          133,
+          378,
+          317,
+          20
+        ],
+        "minimum": [
+          76,
+          16
+        ],
+        "natural": [
+          76,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "dropdown",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown",
+        "node": "dropdown",
+        "type": "GtkDropDown",
+        "rect": [
+          105,
+          420,
+          349,
+          34
+        ],
+        "minimum": [
+          98,
+          34
+        ],
+        "natural": [
+          98,
+          34
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "button.toggle",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle",
+        "node": "button",
+        "type": "GtkToggleButton",
+        "rect": [
+          105,
+          420,
+          349,
+          34
+        ],
+        "minimum": [
+          98,
+          34
+        ],
+        "natural": [
+          98,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "box.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle > box.horizontal",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          115,
+          425,
+          329,
+          24
+        ],
+        "minimum": [
+          78,
+          16
+        ],
+        "natural": [
+          78,
+          16
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "stack",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle > box.horizontal > stack",
+        "node": "stack",
+        "type": "GtkStack",
+        "rect": [
+          115,
+          425,
+          307,
+          24
+        ],
+        "minimum": [
+          56,
+          16
+        ],
+        "natural": [
+          56,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle > box.horizontal > stack > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          115,
+          425,
+          0,
+          0
+        ],
+        "minimum": [
+          42,
+          16
+        ],
+        "natural": [
+          42,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "row.activatable",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle > box.horizontal > stack > row.activatable",
+        "node": "row",
+        "type": "GtkListItemWidget",
+        "rect": [
+          115,
+          425,
+          307,
+          24
+        ],
+        "minimum": [
+          56,
+          16
+        ],
+        "natural": [
+          56,
+          16
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "box.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle > box.horizontal > stack > row.activatable > box.horizontal",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          115,
+          425,
+          307,
+          24
+        ],
+        "minimum": [
+          56,
+          16
+        ],
+        "natural": [
+          56,
+          16
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "label",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle > box.horizontal > stack > row.activatable > box.horizontal > label",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          115,
+          425,
+          56,
+          24
+        ],
+        "minimum": [
+          56,
+          16
+        ],
+        "natural": [
+          56,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "arrow",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > dropdown > button.toggle > box.horizontal > arrow",
+        "node": "arrow",
+        "type": "GtkBuiltinIcon",
+        "rect": [
+          428,
+          425,
+          16,
+          24
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "progressbar.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > progressbar.horizontal",
+        "node": "progressbar",
+        "type": "GtkProgressBar",
+        "rect": [
+          105,
+          472,
+          349,
+          8
+        ],
+        "minimum": [
+          150,
+          8
+        ],
+        "natural": [
+          150,
+          8
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "vertical",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.12)"
+          }
+        ]
+      },
+      {
+        "selector": "trough",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > progressbar.horizontal > trough",
+        "node": "trough",
+        "type": "GtkGizmo",
+        "rect": [
+          105,
+          472,
+          349,
+          8
+        ],
+        "minimum": [
+          150,
+          8
+        ],
+        "natural": [
+          150,
+          8
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.12)"
+          }
+        ]
+      },
+      {
+        "selector": "progress.left",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > progressbar.horizontal > trough > progress.left",
+        "node": "progress",
+        "type": "GtkGizmo",
+        "rect": [
+          105,
+          472,
+          209,
+          8
+        ],
+        "minimum": [
+          0,
+          8
+        ],
+        "natural": [
+          0,
+          8
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(53,132,228,1)"
+          }
+        ]
+      },
+      {
+        "selector": "levelbar.horizontal.continuous",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > levelbar.horizontal.continuous",
+        "node": "levelbar",
+        "type": "GtkLevelBar",
+        "rect": [
+          105,
+          498,
+          349,
+          8
+        ],
+        "minimum": [
+          0,
+          8
+        ],
+        "natural": [
+          0,
+          8
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.12)"
+          }
+        ]
+      },
+      {
+        "selector": "trough",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > levelbar.horizontal.continuous > trough",
+        "node": "trough",
+        "type": "GtkGizmo",
+        "rect": [
+          105,
+          498,
+          349,
+          8
+        ],
+        "minimum": [
+          0,
+          8
+        ],
+        "natural": [
+          0,
+          8
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.12)"
+          }
+        ]
+      },
+      {
+        "selector": "block.high.filled",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > levelbar.horizontal.continuous > trough > block.high.filled",
+        "node": "block",
+        "type": "GtkGizmo",
+        "rect": [
+          105,
+          498,
+          139,
+          8
+        ],
+        "minimum": [
+          0,
+          8
+        ],
+        "natural": [
+          0,
+          8
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(53,132,228,1)"
+          }
+        ]
+      },
+      {
+        "selector": "block.empty",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > levelbar.horizontal.continuous > trough > block.empty",
+        "node": "block",
+        "type": "GtkGizmo",
+        "rect": [
+          105,
+          498,
+          349,
+          8
+        ],
+        "minimum": [
+          0,
+          8
+        ],
+        "natural": [
+          0,
+          8
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.12)"
+          }
+        ]
+      },
+      {
+        "selector": "spinbutton.horizontal",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > spinbutton.horizontal",
+        "node": "spinbutton",
+        "type": "GtkSpinButton",
+        "rect": [
+          105,
+          524,
+          349,
+          34
+        ],
+        "minimum": [
+          106,
+          34
+        ],
+        "natural": [
+          106,
+          34
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              9,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "text",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > spinbutton.horizontal > text",
+        "node": "text",
+        "type": "GtkText",
+        "rect": [
+          105,
+          524,
+          283,
+          34
+        ],
+        "minimum": [
+          40,
+          28
+        ],
+        "natural": [
+          40,
+          28
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "button.image-button.down",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > spinbutton.horizontal > button.image-button.down",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          388,
+          524,
+          33,
+          34
+        ],
+        "minimum": [
+          33,
+          16
+        ],
+        "natural": [
+          33,
+          16
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "border",
+            "widths": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "color": "rgba(0,0,6,0.08)",
+            "radius": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > spinbutton.horizontal > button.image-button.down > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          394,
+          533,
+          22,
+          16
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "button.image-button.up",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > spinbutton.horizontal > button.image-button.up",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          421,
+          524,
+          33,
+          34
+        ],
+        "minimum": [
+          33,
+          16
+        ],
+        "natural": [
+          33,
+          16
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "border",
+            "widths": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "color": "rgba(0,0,6,0.08)",
+            "radius": [
+              0,
+              9,
+              9,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > clamp > box.vertical.large > spinbutton.horizontal > button.image-button.up > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          427,
+          533,
+          22,
+          16
+        ],
+        "minimum": [
+          16,
+          16
+        ],
+        "natural": [
+          16,
+          16
+        ],
+        "paint": []
+      },
+      {
+        "selector": "revealer.top-bar",
+        "path": "toolbarview.undershoot-top > revealer.top-bar",
+        "node": "revealer",
+        "type": "GtkRevealer",
+        "rect": [
+          0,
+          0,
+          560,
+          46
+        ],
+        "minimum": [
+          185,
+          46
+        ],
+        "natural": [
+          328,
+          46
+        ],
+        "paint": []
+      },
+      {
+        "selector": "windowhandle",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle",
+        "node": "windowhandle",
+        "type": "GtkWindowHandle",
+        "rect": [
+          0,
+          0,
+          560,
+          46
+        ],
+        "minimum": [
+          185,
+          46
+        ],
+        "natural": [
+          328,
+          46
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "box.vertical",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          0,
+          0,
+          560,
+          46
+        ],
+        "minimum": [
+          185,
+          46
+        ],
+        "natural": [
+          328,
+          46
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "vertical",
+        "paint": []
+      },
+      {
+        "selector": "headerbar",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar",
+        "node": "headerbar",
+        "type": "AdwHeaderBar",
+        "rect": [
+          -1,
+          0,
+          562,
+          46
+        ],
+        "minimum": [
+          185,
+          46
+        ],
+        "natural": [
+          328,
+          46
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "windowhandle",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle",
+        "node": "windowhandle",
+        "type": "GtkWindowHandle",
+        "rect": [
+          -1,
+          0,
+          562,
+          46
+        ],
+        "minimum": [
+          187,
+          46
+        ],
+        "natural": [
+          330,
+          46
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "box",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box",
+        "node": "box",
+        "type": "GtkCenterBox",
+        "rect": [
+          -1,
+          0,
+          562,
+          46
+        ],
+        "minimum": [
+          187,
+          46
+        ],
+        "natural": [
+          330,
+          46
+        ],
+        "layout": "GtkCenterLayout",
+        "paint": []
+      },
+      {
+        "selector": "widget",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget",
+        "node": "widget",
+        "type": "AdwGizmo",
+        "rect": [
+          6,
+          6,
+          0,
+          34
+        ],
+        "minimum": [
+          0,
+          0
+        ],
+        "natural": [
+          0,
+          0
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "widget",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget",
+        "node": "widget",
+        "type": "AdwBin",
+        "rect": [
+          236,
+          6,
+          88,
+          34
+        ],
+        "minimum": [
+          59,
+          17
+        ],
+        "natural": [
+          88,
+          17
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "windowtitle",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > windowtitle",
+        "node": "windowtitle",
+        "type": "AdwWindowTitle",
+        "rect": [
+          236,
+          0,
+          88,
+          46
+        ],
+        "minimum": [
+          59,
+          17
+        ],
+        "natural": [
+          88,
+          17
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "box.vertical",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > windowtitle > box.vertical",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          236,
+          8,
+          88,
+          29
+        ],
+        "minimum": [
+          59,
+          29
+        ],
+        "natural": [
+          88,
+          29
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "vertical",
+        "paint": []
+      },
+      {
+        "selector": "label.title",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > windowtitle > box.vertical > label.title",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          236,
+          8,
+          88,
+          16
+        ],
+        "minimum": [
+          59,
+          16
+        ],
+        "natural": [
+          80,
+          16
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font Bold 10.999",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "label.subtitle",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > windowtitle > box.vertical > label.subtitle",
+        "node": "label",
+        "type": "GtkLabel",
+        "rect": [
+          236,
+          24,
+          88,
+          13
+        ],
+        "minimum": [
+          30,
+          13
+        ],
+        "natural": [
+          88,
+          13
+        ],
+        "paint": [
+          {
+            "draw": "text",
+            "font": "ComicShannsMono Nerd Font 9.166",
+            "color": "rgba(0,0,6,0.8)"
+          }
+        ]
+      },
+      {
+        "selector": "widget",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget",
+        "node": "widget",
+        "type": "AdwGizmo",
+        "rect": [
+          440,
+          6,
+          114,
+          34
+        ],
+        "minimum": [
+          114,
+          34
+        ],
+        "natural": [
+          114,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "box.horizontal.end",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          446,
+          6,
+          108,
+          34
+        ],
+        "minimum": [
+          114,
+          34
+        ],
+        "natural": [
+          114,
+          34
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "windowcontrols.end",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end > windowcontrols.end",
+        "node": "windowcontrols",
+        "type": "GtkWindowControls",
+        "rect": [
+          446,
+          6,
+          108,
+          34
+        ],
+        "minimum": [
+          108,
+          34
+        ],
+        "natural": [
+          108,
+          34
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "horizontal",
+        "paint": []
+      },
+      {
+        "selector": "button.image-button.minimize",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end > windowcontrols.end > button.image-button.minimize",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          446,
+          6,
+          34,
+          34
+        ],
+        "minimum": [
+          34,
+          34
+        ],
+        "natural": [
+          34,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              12,
+              12,
+              12,
+              12
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end > windowcontrols.end > button.image-button.minimize > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          451,
+          11,
+          24,
+          24
+        ],
+        "minimum": [
+          24,
+          24
+        ],
+        "natural": [
+          24,
+          24
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              12,
+              12,
+              12,
+              12
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "button.image-button.maximize",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end > windowcontrols.end > button.image-button.maximize",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          483,
+          6,
+          34,
+          34
+        ],
+        "minimum": [
+          34,
+          34
+        ],
+        "natural": [
+          34,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              12,
+              12,
+              12,
+              12
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end > windowcontrols.end > button.image-button.maximize > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          488,
+          11,
+          24,
+          24
+        ],
+        "minimum": [
+          24,
+          24
+        ],
+        "natural": [
+          24,
+          24
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              12,
+              12,
+              12,
+              12
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "button.image-button.close",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end > windowcontrols.end > button.image-button.close",
+        "node": "button",
+        "type": "GtkButton",
+        "rect": [
+          520,
+          6,
+          34,
+          34
+        ],
+        "minimum": [
+          34,
+          34
+        ],
+        "natural": [
+          34,
+          34
+        ],
+        "layout": "GtkBinLayout",
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              12,
+              12,
+              12,
+              12
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "image",
+        "path": "toolbarview.undershoot-top > revealer.top-bar > windowhandle > box.vertical > headerbar > windowhandle > box > widget > box.horizontal.end > windowcontrols.end > button.image-button.close > image",
+        "node": "image",
+        "type": "GtkImage",
+        "rect": [
+          525,
+          11,
+          24,
+          24
+        ],
+        "minimum": [
+          24,
+          24
+        ],
+        "natural": [
+          24,
+          24
+        ],
+        "paint": [
+          {
+            "draw": "radius",
+            "radius": [
+              12,
+              12,
+              12,
+              12
+            ]
+          },
+          {
+            "draw": "background",
+            "color": "rgba(0,0,6,0.08)"
+          }
+        ]
+      },
+      {
+        "selector": "revealer.bottom-bar",
+        "path": "toolbarview.undershoot-top > revealer.bottom-bar",
+        "node": "revealer",
+        "type": "GtkRevealer",
+        "rect": [
+          0,
+          720,
+          560,
+          0
+        ],
+        "minimum": [
+          0,
+          0
+        ],
+        "natural": [
+          0,
+          0
+        ],
+        "paint": []
+      },
+      {
+        "selector": "windowhandle",
+        "path": "toolbarview.undershoot-top > revealer.bottom-bar > windowhandle",
+        "node": "windowhandle",
+        "type": "GtkWindowHandle",
+        "rect": [
+          0,
+          720,
+          560,
+          0
+        ],
+        "minimum": [
+          0,
+          0
+        ],
+        "natural": [
+          0,
+          0
+        ],
+        "layout": "GtkBinLayout",
+        "paint": []
+      },
+      {
+        "selector": "box.vertical",
+        "path": "toolbarview.undershoot-top > revealer.bottom-bar > windowhandle > box.vertical",
+        "node": "box",
+        "type": "GtkBox",
+        "rect": [
+          0,
+          720,
+          560,
+          0
+        ],
+        "minimum": [
+          0,
+          0
+        ],
+        "natural": [
+          0,
+          0
+        ],
+        "layout": "GtkBoxLayout",
+        "orientation": "vertical",
+        "paint": []
+      }
+    ]
+  }
+}

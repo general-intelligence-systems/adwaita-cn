@@ -26,7 +26,7 @@ require "tmpdir"
 require "fileutils"
 
 module Scss
-  ROOT = "bin/02-fetch-gir.out/src/libadwaita/src/stylesheet"
+  ROOT = "bin/01-fetch-adwaita.out/src/libadwaita/src/stylesheet"
   ENTRY = "gtk.scss"
 
   # libadwaita's own source does not compile.

@@ -25,7 +25,7 @@
 module Theme
   ROOT = File.expand_path("../..", __dir__)
 
-  SOURCE = "bin/02-fetch-gir.out/src"
+  SOURCE = "bin/01-fetch-adwaita.out/src"
 
   # A variable's name against the namespace Tailwind generates utilities from. The suffix
   # libadwaita puts on every one of these -- `-color`, `-bg-color` -- is noise once the

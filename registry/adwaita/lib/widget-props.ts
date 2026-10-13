@@ -4,99 +4,111 @@
 // resolves them to the className, style and attributes which say the same thing.
 
 import type { ReactNode } from "react"
-import type { AccessibleRole, Align, Overflow } from "./enums"
+import type { Align, Overflow } from "./enums"
 
 export interface WidgetProps {
-  /** AccessibleRole, from Gtk.Widget */
-  accessibleRole?: AccessibleRole
+  /** gboolean, from Gtk.Widget */
+  can-focus?: boolean
 
   /** gboolean, from Gtk.Widget */
-  canFocus?: boolean
+  can-target?: boolean
 
-  /** gboolean, from Gtk.Widget */
-  canTarget?: boolean
+  /** GStrv, from Gtk.Widget */
+  css-classes?: unknown
 
-  /** utf8, from Gtk.Widget */
-  cssClasses?: unknown
+  /** gchararray, from Gtk.Widget */
+  css-name?: string
 
-  /** utf8, from Gtk.Widget */
-  cssName?: string
-
-  /** Gdk.Cursor, from Gtk.Widget */
+  /** GdkCursor, from Gtk.Widget */
   cursor?: unknown
 
   /** gboolean, from Gtk.Widget */
-  focusOnClick?: boolean
+  focus-on-click?: boolean
 
   /** gboolean, from Gtk.Widget */
   focusable?: boolean
 
-  /** Align, from Gtk.Widget */
+  /** GtkAlign, from Gtk.Widget */
   halign?: Align
 
   /** gboolean, from Gtk.Widget */
-  hasTooltip?: boolean
+  has-default?: boolean
+
+  /** gboolean, from Gtk.Widget */
+  has-focus?: boolean
+
+  /** gboolean, from Gtk.Widget */
+  has-tooltip?: boolean
 
   /** gint, from Gtk.Widget */
-  heightRequest?: number
+  height-request?: number
 
   /** gboolean, from Gtk.Widget */
   hexpand?: boolean
 
   /** gboolean, from Gtk.Widget */
-  hexpandSet?: boolean
+  hexpand-set?: boolean
 
-  /** LayoutManager, from Gtk.Widget */
-  layoutManager?: unknown
+  /** GtkLayoutManager, from Gtk.Widget */
+  layout-manager?: unknown
 
   /** gboolean, from Gtk.Widget */
-  limitEvents?: boolean
+  limit-events?: boolean
 
   /** gint, from Gtk.Widget */
-  marginBottom?: number
+  margin-bottom?: number
 
   /** gint, from Gtk.Widget */
-  marginEnd?: number
+  margin-end?: number
 
   /** gint, from Gtk.Widget */
-  marginStart?: number
+  margin-start?: number
 
   /** gint, from Gtk.Widget */
-  marginTop?: number
+  margin-top?: number
 
-  /** utf8, from Gtk.Widget */
+  /** gchararray, from Gtk.Widget */
   name?: string
 
   /** gdouble, from Gtk.Widget */
   opacity?: number
 
-  /** Overflow, from Gtk.Widget */
+  /** GtkOverflow, from Gtk.Widget */
   overflow?: Overflow
 
+  /** GtkWidget, from Gtk.Widget */
+  parent?: unknown
+
   /** gboolean, from Gtk.Widget */
-  receivesDefault?: boolean
+  receives-default?: boolean
+
+  /** GtkRoot, from Gtk.Widget */
+  root?: unknown
+
+  /** gint, from Gtk.Widget */
+  scale-factor?: number
 
   /** gboolean, from Gtk.Widget */
   sensitive?: boolean
 
-  /** utf8, from Gtk.Widget */
-  tooltipMarkup?: string
+  /** gchararray, from Gtk.Widget */
+  tooltip-markup?: string
 
-  /** utf8, from Gtk.Widget */
-  tooltipText?: string
+  /** gchararray, from Gtk.Widget */
+  tooltip-text?: string
 
-  /** Align, from Gtk.Widget */
+  /** GtkAlign, from Gtk.Widget */
   valign?: Align
 
   /** gboolean, from Gtk.Widget */
   vexpand?: boolean
 
   /** gboolean, from Gtk.Widget */
-  vexpandSet?: boolean
+  vexpand-set?: boolean
 
   /** gboolean, from Gtk.Widget */
   visible?: boolean
 
   /** gint, from Gtk.Widget */
-  widthRequest?: number
+  width-request?: number
 }

@@ -4,2747 +4,9 @@
   "homepage": "https://github.com/general-intelligence-systems/adwaita-cn",
   "items": [
     {
-      "name": "adwaita-theme",
-      "type": "registry:style",
-      "title": "Adwaita theme",
-      "description": "The variables every component here reads: libadwaita's radii, easing, opacities and colours. Install this first.",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/adwaita.css",
-          "type": "registry:file",
-          "target": "styles/adwaita.css"
-        },
-        {
-          "path": "registry/adwaita/lib/utils.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/adwaita/lib/adwaita-classes.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/adwaita/lib/style-classes.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "gtk-enums",
-      "type": "registry:lib",
-      "title": "GTK enums",
-      "description": "Every enumeration GTK and libadwaita define, as string-literal unions with their value arrays. Generated from the introspection data by bin/06-gtk-enums.",
-      "files": [
-        {
-          "path": "registry/adwaita/lib/enums.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "widget-props",
-      "type": "registry:lib",
-      "title": "Widget props",
-      "description": "Gtk.Widget's writable properties, which every component accepts, and the function which resolves them to the className, style and attributes the DOM carries.",
-      "files": [
-        {
-          "path": "registry/adwaita/lib/widget-props.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/adwaita/lib/widget.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "registry:lib",
-      "title": "Icon",
-      "description": "The icon a GTK `icon-name` names, as the component which draws it, from the Adwaita symbolic set.",
-      "dependencies": [
-        "adwaita_react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/lib/icon.tsx",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
       "name": "about-dialog",
       "type": "registry:ui",
       "title": "AboutDialog",
-      "description": "AboutDialog (Adw.AboutDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/about-dialog.tsx",
@@ -2756,17 +18,6 @@
       "name": "about-window",
       "type": "registry:ui",
       "title": "AboutWindow",
-      "description": "AboutWindow (Adw.AboutWindow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/about-window.tsx",
@@ -2778,16 +29,6 @@
       "name": "action-bar",
       "type": "registry:ui",
       "title": "ActionBar",
-      "description": "ActionBar (Gtk.ActionBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/action-bar.tsx",
@@ -2799,17 +40,6 @@
       "name": "action-row",
       "type": "registry:ui",
       "title": "ActionRow",
-      "description": "ActionRow (Adw.ActionRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/action-row.tsx",
@@ -2821,16 +51,6 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "AlertDialog",
-      "description": "AlertDialog (Adw.AlertDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/alert-dialog.tsx",
@@ -2842,16 +62,6 @@
       "name": "app-chooser-button",
       "type": "registry:ui",
       "title": "AppChooserButton",
-      "description": "AppChooserButton (Gtk.AppChooserButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/app-chooser-button.tsx",
@@ -2863,17 +73,6 @@
       "name": "app-chooser-dialog",
       "type": "registry:ui",
       "title": "AppChooserDialog",
-      "description": "AppChooserDialog (Gtk.AppChooserDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/app-chooser-dialog.tsx",
@@ -2885,16 +84,6 @@
       "name": "app-chooser-widget",
       "type": "registry:ui",
       "title": "AppChooserWidget",
-      "description": "AppChooserWidget (Gtk.AppChooserWidget).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/app-chooser-widget.tsx",
@@ -2906,17 +95,6 @@
       "name": "application-window",
       "type": "registry:ui",
       "title": "ApplicationWindow",
-      "description": "ApplicationWindow (Adw.ApplicationWindow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/application-window.tsx",
@@ -2928,16 +106,6 @@
       "name": "aspect-frame",
       "type": "registry:ui",
       "title": "AspectFrame",
-      "description": "AspectFrame (Gtk.AspectFrame).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/aspect-frame.tsx",
@@ -2949,17 +117,6 @@
       "name": "assistant",
       "type": "registry:ui",
       "title": "Assistant",
-      "description": "Assistant (Gtk.Assistant).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/assistant.tsx",
@@ -2971,17 +128,6 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "Avatar (Adw.Avatar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/avatar.tsx",
@@ -2993,16 +139,6 @@
       "name": "banner",
       "type": "registry:ui",
       "title": "Banner",
-      "description": "Banner (Adw.Banner).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/banner.tsx",
@@ -3014,16 +150,6 @@
       "name": "bin",
       "type": "registry:ui",
       "title": "Bin",
-      "description": "Bin (Adw.Bin).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/bin.tsx",
@@ -3035,16 +161,6 @@
       "name": "bottom-sheet",
       "type": "registry:ui",
       "title": "BottomSheet",
-      "description": "BottomSheet (Adw.BottomSheet).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/bottom-sheet.tsx",
@@ -3056,16 +172,6 @@
       "name": "box",
       "type": "registry:ui",
       "title": "Box",
-      "description": "Box (Gtk.Box).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/box.tsx",
@@ -3077,16 +183,6 @@
       "name": "breakpoint-bin",
       "type": "registry:ui",
       "title": "BreakpointBin",
-      "description": "BreakpointBin (Adw.BreakpointBin).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/breakpoint-bin.tsx",
@@ -3098,17 +194,6 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Button (Gtk.Button).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/button.tsx",
@@ -3120,17 +205,6 @@
       "name": "button-content",
       "type": "registry:ui",
       "title": "ButtonContent",
-      "description": "ButtonContent (Adw.ButtonContent).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/button-content.tsx",
@@ -3142,17 +216,6 @@
       "name": "button-row",
       "type": "registry:ui",
       "title": "ButtonRow",
-      "description": "ButtonRow (Adw.ButtonRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/button-row.tsx",
@@ -3164,16 +227,6 @@
       "name": "calendar",
       "type": "registry:ui",
       "title": "Calendar",
-      "description": "Calendar (Gtk.Calendar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/calendar.tsx",
@@ -3185,16 +238,6 @@
       "name": "carousel",
       "type": "registry:ui",
       "title": "Carousel",
-      "description": "Carousel (Adw.Carousel).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/carousel.tsx",
@@ -3206,16 +249,6 @@
       "name": "carousel-indicator-dots",
       "type": "registry:ui",
       "title": "CarouselIndicatorDots",
-      "description": "CarouselIndicatorDots (Adw.CarouselIndicatorDots).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/carousel-indicator-dots.tsx",
@@ -3227,16 +260,6 @@
       "name": "carousel-indicator-lines",
       "type": "registry:ui",
       "title": "CarouselIndicatorLines",
-      "description": "CarouselIndicatorLines (Adw.CarouselIndicatorLines).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/carousel-indicator-lines.tsx",
@@ -3248,16 +271,6 @@
       "name": "cell-view",
       "type": "registry:ui",
       "title": "CellView",
-      "description": "CellView (Gtk.CellView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/cell-view.tsx",
@@ -3269,16 +282,6 @@
       "name": "center-box",
       "type": "registry:ui",
       "title": "CenterBox",
-      "description": "CenterBox (Gtk.CenterBox).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/center-box.tsx",
@@ -3290,16 +293,6 @@
       "name": "check-button",
       "type": "registry:ui",
       "title": "CheckButton",
-      "description": "CheckButton (Gtk.CheckButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/check-button.tsx",
@@ -3311,16 +304,6 @@
       "name": "clamp",
       "type": "registry:ui",
       "title": "Clamp",
-      "description": "Clamp (Adw.Clamp).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/clamp.tsx",
@@ -3332,16 +315,6 @@
       "name": "clamp-scrollable",
       "type": "registry:ui",
       "title": "ClampScrollable",
-      "description": "ClampScrollable (Adw.ClampScrollable).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/clamp-scrollable.tsx",
@@ -3353,16 +326,6 @@
       "name": "color-button",
       "type": "registry:ui",
       "title": "ColorButton",
-      "description": "ColorButton (Gtk.ColorButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/color-button.tsx",
@@ -3374,17 +337,6 @@
       "name": "color-chooser-dialog",
       "type": "registry:ui",
       "title": "ColorChooserDialog",
-      "description": "ColorChooserDialog (Gtk.ColorChooserDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/color-chooser-dialog.tsx",
@@ -3396,16 +348,6 @@
       "name": "color-chooser-widget",
       "type": "registry:ui",
       "title": "ColorChooserWidget",
-      "description": "ColorChooserWidget (Gtk.ColorChooserWidget).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/color-chooser-widget.tsx",
@@ -3417,16 +359,6 @@
       "name": "color-dialog-button",
       "type": "registry:ui",
       "title": "ColorDialogButton",
-      "description": "ColorDialogButton (Gtk.ColorDialogButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/color-dialog-button.tsx",
@@ -3438,16 +370,6 @@
       "name": "column-view",
       "type": "registry:ui",
       "title": "ColumnView",
-      "description": "ColumnView (Gtk.ColumnView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/column-view.tsx",
@@ -3459,16 +381,6 @@
       "name": "combo-box",
       "type": "registry:ui",
       "title": "ComboBox",
-      "description": "ComboBox (Gtk.ComboBox).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/combo-box.tsx",
@@ -3480,17 +392,6 @@
       "name": "combo-box-text",
       "type": "registry:ui",
       "title": "ComboBoxText",
-      "description": "ComboBoxText (Gtk.ComboBoxText).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/combo-box-text.tsx",
@@ -3502,17 +403,6 @@
       "name": "combo-row",
       "type": "registry:ui",
       "title": "ComboRow",
-      "description": "ComboRow (Adw.ComboRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/combo-row.tsx",
@@ -3524,16 +414,6 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "Dialog (Adw.Dialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/dialog.tsx",
@@ -3545,16 +425,6 @@
       "name": "drag-icon",
       "type": "registry:ui",
       "title": "DragIcon",
-      "description": "DragIcon (Gtk.DragIcon).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/drag-icon.tsx",
@@ -3566,16 +436,6 @@
       "name": "drawing-area",
       "type": "registry:ui",
       "title": "DrawingArea",
-      "description": "DrawingArea (Gtk.DrawingArea).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/drawing-area.tsx",
@@ -3587,16 +447,6 @@
       "name": "drop-down",
       "type": "registry:ui",
       "title": "DropDown",
-      "description": "DropDown (Gtk.DropDown).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/drop-down.tsx",
@@ -3608,16 +458,6 @@
       "name": "editable-label",
       "type": "registry:ui",
       "title": "EditableLabel",
-      "description": "EditableLabel (Gtk.EditableLabel).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/editable-label.tsx",
@@ -3629,17 +469,6 @@
       "name": "emoji-chooser",
       "type": "registry:ui",
       "title": "EmojiChooser",
-      "description": "EmojiChooser (Gtk.EmojiChooser).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/emoji-chooser.tsx",
@@ -3651,17 +480,6 @@
       "name": "entry",
       "type": "registry:ui",
       "title": "Entry",
-      "description": "Entry (Gtk.Entry).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/entry.tsx",
@@ -3673,17 +491,6 @@
       "name": "entry-row",
       "type": "registry:ui",
       "title": "EntryRow",
-      "description": "EntryRow (Adw.EntryRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/entry-row.tsx",
@@ -3695,16 +502,6 @@
       "name": "expander",
       "type": "registry:ui",
       "title": "Expander",
-      "description": "Expander (Gtk.Expander).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/expander.tsx",
@@ -3716,17 +513,6 @@
       "name": "expander-row",
       "type": "registry:ui",
       "title": "ExpanderRow",
-      "description": "ExpanderRow (Adw.ExpanderRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/expander-row.tsx",
@@ -3738,17 +524,6 @@
       "name": "file-chooser-dialog",
       "type": "registry:ui",
       "title": "FileChooserDialog",
-      "description": "FileChooserDialog (Gtk.FileChooserDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/file-chooser-dialog.tsx",
@@ -3760,16 +535,6 @@
       "name": "file-chooser-widget",
       "type": "registry:ui",
       "title": "FileChooserWidget",
-      "description": "FileChooserWidget (Gtk.FileChooserWidget).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/file-chooser-widget.tsx",
@@ -3781,16 +546,6 @@
       "name": "fixed",
       "type": "registry:ui",
       "title": "Fixed",
-      "description": "Fixed (Gtk.Fixed).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/fixed.tsx",
@@ -3802,16 +557,6 @@
       "name": "flap",
       "type": "registry:ui",
       "title": "Flap",
-      "description": "Flap (Adw.Flap).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/flap.tsx",
@@ -3823,16 +568,6 @@
       "name": "flow-box",
       "type": "registry:ui",
       "title": "FlowBox",
-      "description": "FlowBox (Gtk.FlowBox).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/flow-box.tsx",
@@ -3844,16 +579,6 @@
       "name": "flow-box-child",
       "type": "registry:ui",
       "title": "FlowBoxChild",
-      "description": "FlowBoxChild (Gtk.FlowBoxChild).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/flow-box-child.tsx",
@@ -3865,16 +590,6 @@
       "name": "font-button",
       "type": "registry:ui",
       "title": "FontButton",
-      "description": "FontButton (Gtk.FontButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/font-button.tsx",
@@ -3886,17 +601,6 @@
       "name": "font-chooser-dialog",
       "type": "registry:ui",
       "title": "FontChooserDialog",
-      "description": "FontChooserDialog (Gtk.FontChooserDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/font-chooser-dialog.tsx",
@@ -3908,16 +612,6 @@
       "name": "font-chooser-widget",
       "type": "registry:ui",
       "title": "FontChooserWidget",
-      "description": "FontChooserWidget (Gtk.FontChooserWidget).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/font-chooser-widget.tsx",
@@ -3929,16 +623,6 @@
       "name": "font-dialog-button",
       "type": "registry:ui",
       "title": "FontDialogButton",
-      "description": "FontDialogButton (Gtk.FontDialogButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/font-dialog-button.tsx",
@@ -3950,16 +634,6 @@
       "name": "frame",
       "type": "registry:ui",
       "title": "Frame",
-      "description": "Frame (Gtk.Frame).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/frame.tsx",
@@ -3968,22 +642,12 @@
       ]
     },
     {
-      "name": "glarea",
+      "name": "gl-area",
       "type": "registry:ui",
       "title": "GLArea",
-      "description": "GLArea (Gtk.GLArea).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
-          "path": "registry/adwaita/ui/glarea.tsx",
+          "path": "registry/adwaita/ui/gl-area.tsx",
           "type": "registry:ui"
         }
       ]
@@ -3992,16 +656,6 @@
       "name": "graphics-offload",
       "type": "registry:ui",
       "title": "GraphicsOffload",
-      "description": "GraphicsOffload (Gtk.GraphicsOffload).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/graphics-offload.tsx",
@@ -4013,16 +667,6 @@
       "name": "grid",
       "type": "registry:ui",
       "title": "Grid",
-      "description": "Grid (Gtk.Grid).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/grid.tsx",
@@ -4034,16 +678,6 @@
       "name": "grid-view",
       "type": "registry:ui",
       "title": "GridView",
-      "description": "GridView (Gtk.GridView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/grid-view.tsx",
@@ -4055,17 +689,6 @@
       "name": "header-bar",
       "type": "registry:ui",
       "title": "HeaderBar",
-      "description": "HeaderBar (Adw.HeaderBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/header-bar.tsx",
@@ -4077,16 +700,6 @@
       "name": "icon-view",
       "type": "registry:ui",
       "title": "IconView",
-      "description": "IconView (Gtk.IconView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/icon-view.tsx",
@@ -4098,17 +711,6 @@
       "name": "image",
       "type": "registry:ui",
       "title": "Image",
-      "description": "Image (Gtk.Image).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/image.tsx",
@@ -4117,40 +719,9 @@
       ]
     },
     {
-      "name": "indicator-bin",
-      "type": "registry:ui",
-      "title": "IndicatorBin",
-      "description": "IndicatorBin.",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/ui/indicator-bin.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "info-bar",
       "type": "registry:ui",
       "title": "InfoBar",
-      "description": "InfoBar (Gtk.InfoBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/info-bar.tsx",
@@ -4162,16 +733,6 @@
       "name": "inline-view-switcher",
       "type": "registry:ui",
       "title": "InlineViewSwitcher",
-      "description": "InlineViewSwitcher (Adw.InlineViewSwitcher).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/inline-view-switcher.tsx",
@@ -4183,16 +744,6 @@
       "name": "inscription",
       "type": "registry:ui",
       "title": "Inscription",
-      "description": "Inscription (Gtk.Inscription).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/inscription.tsx",
@@ -4204,16 +755,6 @@
       "name": "label",
       "type": "registry:ui",
       "title": "Label",
-      "description": "Label (Gtk.Label).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/label.tsx",
@@ -4225,16 +766,6 @@
       "name": "layout-slot",
       "type": "registry:ui",
       "title": "LayoutSlot",
-      "description": "LayoutSlot (Adw.LayoutSlot).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/layout-slot.tsx",
@@ -4246,16 +777,6 @@
       "name": "leaflet",
       "type": "registry:ui",
       "title": "Leaflet",
-      "description": "Leaflet (Adw.Leaflet).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/leaflet.tsx",
@@ -4267,16 +788,6 @@
       "name": "level-bar",
       "type": "registry:ui",
       "title": "LevelBar",
-      "description": "LevelBar (Gtk.LevelBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/level-bar.tsx",
@@ -4288,17 +799,6 @@
       "name": "link-button",
       "type": "registry:ui",
       "title": "LinkButton",
-      "description": "LinkButton (Gtk.LinkButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/link-button.tsx",
@@ -4307,40 +807,9 @@
       ]
     },
     {
-      "name": "list-base",
-      "type": "registry:ui",
-      "title": "ListBase",
-      "description": "ListBase (Gtk.ListBase).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/ui/list-base.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "list-box",
       "type": "registry:ui",
       "title": "ListBox",
-      "description": "ListBox (Gtk.ListBox).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/list-box.tsx",
@@ -4352,16 +821,6 @@
       "name": "list-box-row",
       "type": "registry:ui",
       "title": "ListBoxRow",
-      "description": "ListBoxRow (Gtk.ListBoxRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/list-box-row.tsx",
@@ -4373,16 +832,6 @@
       "name": "list-view",
       "type": "registry:ui",
       "title": "ListView",
-      "description": "ListView (Gtk.ListView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/list-view.tsx",
@@ -4394,17 +843,6 @@
       "name": "lock-button",
       "type": "registry:ui",
       "title": "LockButton",
-      "description": "LockButton (Gtk.LockButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/lock-button.tsx",
@@ -4416,16 +854,6 @@
       "name": "media-controls",
       "type": "registry:ui",
       "title": "MediaControls",
-      "description": "MediaControls (Gtk.MediaControls).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/media-controls.tsx",
@@ -4437,17 +865,6 @@
       "name": "menu-button",
       "type": "registry:ui",
       "title": "MenuButton",
-      "description": "MenuButton (Gtk.MenuButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/menu-button.tsx",
@@ -4459,17 +876,6 @@
       "name": "message-dialog",
       "type": "registry:ui",
       "title": "MessageDialog",
-      "description": "MessageDialog (Adw.MessageDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/message-dialog.tsx",
@@ -4481,16 +887,6 @@
       "name": "multi-layout-view",
       "type": "registry:ui",
       "title": "MultiLayoutView",
-      "description": "MultiLayoutView (Adw.MultiLayoutView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/multi-layout-view.tsx",
@@ -4502,16 +898,6 @@
       "name": "navigation-page",
       "type": "registry:ui",
       "title": "NavigationPage",
-      "description": "NavigationPage (Adw.NavigationPage).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/navigation-page.tsx",
@@ -4523,16 +909,6 @@
       "name": "navigation-split-view",
       "type": "registry:ui",
       "title": "NavigationSplitView",
-      "description": "NavigationSplitView (Adw.NavigationSplitView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/navigation-split-view.tsx",
@@ -4544,16 +920,6 @@
       "name": "navigation-view",
       "type": "registry:ui",
       "title": "NavigationView",
-      "description": "NavigationView (Adw.NavigationView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/navigation-view.tsx",
@@ -4565,16 +931,6 @@
       "name": "notebook",
       "type": "registry:ui",
       "title": "Notebook",
-      "description": "Notebook (Gtk.Notebook).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/notebook.tsx",
@@ -4586,16 +942,6 @@
       "name": "overlay",
       "type": "registry:ui",
       "title": "Overlay",
-      "description": "Overlay (Gtk.Overlay).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/overlay.tsx",
@@ -4607,16 +953,6 @@
       "name": "overlay-split-view",
       "type": "registry:ui",
       "title": "OverlaySplitView",
-      "description": "OverlaySplitView (Adw.OverlaySplitView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/overlay-split-view.tsx",
@@ -4628,17 +964,6 @@
       "name": "page-setup-unix-dialog",
       "type": "registry:ui",
       "title": "PageSetupUnixDialog",
-      "description": "PageSetupUnixDialog (Gtk.PageSetupUnixDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/page-setup-unix-dialog.tsx",
@@ -4650,16 +975,6 @@
       "name": "paned",
       "type": "registry:ui",
       "title": "Paned",
-      "description": "Paned (Gtk.Paned).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/paned.tsx",
@@ -4671,17 +986,6 @@
       "name": "password-entry",
       "type": "registry:ui",
       "title": "PasswordEntry",
-      "description": "PasswordEntry (Gtk.PasswordEntry).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/password-entry.tsx",
@@ -4693,17 +997,6 @@
       "name": "password-entry-row",
       "type": "registry:ui",
       "title": "PasswordEntryRow",
-      "description": "PasswordEntryRow (Adw.PasswordEntryRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/password-entry-row.tsx",
@@ -4715,16 +1008,6 @@
       "name": "picture",
       "type": "registry:ui",
       "title": "Picture",
-      "description": "Picture (Gtk.Picture).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/picture.tsx",
@@ -4736,16 +1019,6 @@
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
-      "description": "Popover (Gtk.Popover).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/popover.tsx",
@@ -4757,16 +1030,6 @@
       "name": "popover-bin",
       "type": "registry:ui",
       "title": "PopoverBin",
-      "description": "PopoverBin (Gtk.PopoverBin).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/popover-bin.tsx",
@@ -4778,16 +1041,6 @@
       "name": "popover-menu",
       "type": "registry:ui",
       "title": "PopoverMenu",
-      "description": "PopoverMenu (Gtk.PopoverMenu).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/popover-menu.tsx",
@@ -4799,16 +1052,6 @@
       "name": "popover-menu-bar",
       "type": "registry:ui",
       "title": "PopoverMenuBar",
-      "description": "PopoverMenuBar (Gtk.PopoverMenuBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/popover-menu-bar.tsx",
@@ -4820,17 +1063,6 @@
       "name": "preferences-dialog",
       "type": "registry:ui",
       "title": "PreferencesDialog",
-      "description": "PreferencesDialog (Adw.PreferencesDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/preferences-dialog.tsx",
@@ -4842,16 +1074,6 @@
       "name": "preferences-group",
       "type": "registry:ui",
       "title": "PreferencesGroup",
-      "description": "PreferencesGroup (Adw.PreferencesGroup).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/preferences-group.tsx",
@@ -4863,17 +1085,6 @@
       "name": "preferences-page",
       "type": "registry:ui",
       "title": "PreferencesPage",
-      "description": "PreferencesPage (Adw.PreferencesPage).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/preferences-page.tsx",
@@ -4885,16 +1096,6 @@
       "name": "preferences-row",
       "type": "registry:ui",
       "title": "PreferencesRow",
-      "description": "PreferencesRow (Adw.PreferencesRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/preferences-row.tsx",
@@ -4906,17 +1107,6 @@
       "name": "preferences-window",
       "type": "registry:ui",
       "title": "PreferencesWindow",
-      "description": "PreferencesWindow (Adw.PreferencesWindow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/preferences-window.tsx",
@@ -4928,17 +1118,6 @@
       "name": "print-unix-dialog",
       "type": "registry:ui",
       "title": "PrintUnixDialog",
-      "description": "PrintUnixDialog (Gtk.PrintUnixDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/print-unix-dialog.tsx",
@@ -4950,16 +1129,6 @@
       "name": "progress-bar",
       "type": "registry:ui",
       "title": "ProgressBar",
-      "description": "ProgressBar (Gtk.ProgressBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/progress-bar.tsx",
@@ -4971,16 +1140,6 @@
       "name": "range",
       "type": "registry:ui",
       "title": "Range",
-      "description": "Range (Gtk.Range).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/range.tsx",
@@ -4992,16 +1151,6 @@
       "name": "revealer",
       "type": "registry:ui",
       "title": "Revealer",
-      "description": "Revealer (Gtk.Revealer).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/revealer.tsx",
@@ -5013,16 +1162,6 @@
       "name": "scale",
       "type": "registry:ui",
       "title": "Scale",
-      "description": "Scale (Gtk.Scale).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/scale.tsx",
@@ -5034,16 +1173,6 @@
       "name": "scale-button",
       "type": "registry:ui",
       "title": "ScaleButton",
-      "description": "ScaleButton (Gtk.ScaleButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/scale-button.tsx",
@@ -5055,16 +1184,6 @@
       "name": "scrollbar",
       "type": "registry:ui",
       "title": "Scrollbar",
-      "description": "Scrollbar (Gtk.Scrollbar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/scrollbar.tsx",
@@ -5076,16 +1195,6 @@
       "name": "scrolled-window",
       "type": "registry:ui",
       "title": "ScrolledWindow",
-      "description": "ScrolledWindow (Gtk.ScrolledWindow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/scrolled-window.tsx",
@@ -5097,16 +1206,6 @@
       "name": "search-bar",
       "type": "registry:ui",
       "title": "SearchBar",
-      "description": "SearchBar (Gtk.SearchBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/search-bar.tsx",
@@ -5118,17 +1217,6 @@
       "name": "search-entry",
       "type": "registry:ui",
       "title": "SearchEntry",
-      "description": "SearchEntry (Gtk.SearchEntry).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/search-entry.tsx",
@@ -5140,16 +1228,6 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "Separator (Gtk.Separator).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/separator.tsx",
@@ -5161,16 +1239,6 @@
       "name": "shortcut-label",
       "type": "registry:ui",
       "title": "ShortcutLabel",
-      "description": "ShortcutLabel (Adw.ShortcutLabel).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/shortcut-label.tsx",
@@ -5182,17 +1250,6 @@
       "name": "shortcuts-dialog",
       "type": "registry:ui",
       "title": "ShortcutsDialog",
-      "description": "ShortcutsDialog (Adw.ShortcutsDialog).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/shortcuts-dialog.tsx",
@@ -5204,16 +1261,6 @@
       "name": "shortcuts-group",
       "type": "registry:ui",
       "title": "ShortcutsGroup",
-      "description": "ShortcutsGroup (Gtk.ShortcutsGroup).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/shortcuts-group.tsx",
@@ -5222,19 +1269,20 @@
       ]
     },
     {
+      "name": "shortcuts-section",
+      "type": "registry:ui",
+      "title": "ShortcutsSection",
+      "files": [
+        {
+          "path": "registry/adwaita/ui/shortcuts-section.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "shortcuts-shortcut",
       "type": "registry:ui",
       "title": "ShortcutsShortcut",
-      "description": "ShortcutsShortcut (Gtk.ShortcutsShortcut).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/shortcuts-shortcut.tsx",
@@ -5246,17 +1294,6 @@
       "name": "shortcuts-window",
       "type": "registry:ui",
       "title": "ShortcutsWindow",
-      "description": "ShortcutsWindow (Gtk.ShortcutsWindow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/shortcuts-window.tsx",
@@ -5268,16 +1305,6 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "Sidebar (Adw.Sidebar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/sidebar.tsx",
@@ -5289,17 +1316,6 @@
       "name": "spin-button",
       "type": "registry:ui",
       "title": "SpinButton",
-      "description": "SpinButton (Gtk.SpinButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/spin-button.tsx",
@@ -5311,17 +1327,6 @@
       "name": "spin-row",
       "type": "registry:ui",
       "title": "SpinRow",
-      "description": "SpinRow (Adw.SpinRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/spin-row.tsx",
@@ -5333,16 +1338,6 @@
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "Spinner (Adw.Spinner).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/spinner.tsx",
@@ -5354,17 +1349,6 @@
       "name": "split-button",
       "type": "registry:ui",
       "title": "SplitButton",
-      "description": "SplitButton (Adw.SplitButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/split-button.tsx",
@@ -5376,16 +1360,6 @@
       "name": "squeezer",
       "type": "registry:ui",
       "title": "Squeezer",
-      "description": "Squeezer (Adw.Squeezer).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/squeezer.tsx",
@@ -5397,16 +1371,6 @@
       "name": "stack",
       "type": "registry:ui",
       "title": "Stack",
-      "description": "Stack (Gtk.Stack).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/stack.tsx",
@@ -5418,16 +1382,6 @@
       "name": "stack-sidebar",
       "type": "registry:ui",
       "title": "StackSidebar",
-      "description": "StackSidebar (Gtk.StackSidebar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/stack-sidebar.tsx",
@@ -5439,16 +1393,6 @@
       "name": "stack-switcher",
       "type": "registry:ui",
       "title": "StackSwitcher",
-      "description": "StackSwitcher (Gtk.StackSwitcher).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/stack-switcher.tsx",
@@ -5460,17 +1404,6 @@
       "name": "status-page",
       "type": "registry:ui",
       "title": "StatusPage",
-      "description": "StatusPage (Adw.StatusPage).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/status-page.tsx",
@@ -5482,16 +1415,6 @@
       "name": "statusbar",
       "type": "registry:ui",
       "title": "Statusbar",
-      "description": "Statusbar (Gtk.Statusbar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/statusbar.tsx",
@@ -5503,17 +1426,6 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "Switch (Gtk.Switch).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/switch.tsx",
@@ -5525,17 +1437,6 @@
       "name": "switch-row",
       "type": "registry:ui",
       "title": "SwitchRow",
-      "description": "SwitchRow (Adw.SwitchRow).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/switch-row.tsx",
@@ -5547,16 +1448,6 @@
       "name": "tab-bar",
       "type": "registry:ui",
       "title": "TabBar",
-      "description": "TabBar (Adw.TabBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/tab-bar.tsx",
@@ -5568,17 +1459,6 @@
       "name": "tab-button",
       "type": "registry:ui",
       "title": "TabButton",
-      "description": "TabButton (Adw.TabButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/tab-button.tsx",
@@ -5590,17 +1470,6 @@
       "name": "tab-overview",
       "type": "registry:ui",
       "title": "TabOverview",
-      "description": "TabOverview (Adw.TabOverview).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/tab-overview.tsx",
@@ -5612,16 +1481,6 @@
       "name": "tab-view",
       "type": "registry:ui",
       "title": "TabView",
-      "description": "TabView (Adw.TabView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/tab-view.tsx",
@@ -5633,16 +1492,6 @@
       "name": "text",
       "type": "registry:ui",
       "title": "Text",
-      "description": "Text (Gtk.Text).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/text.tsx",
@@ -5654,16 +1503,6 @@
       "name": "text-view",
       "type": "registry:ui",
       "title": "TextView",
-      "description": "TextView (Gtk.TextView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/text-view.tsx",
@@ -5675,16 +1514,6 @@
       "name": "toast-overlay",
       "type": "registry:ui",
       "title": "ToastOverlay",
-      "description": "ToastOverlay (Adw.ToastOverlay).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/toast-overlay.tsx",
@@ -5693,41 +1522,9 @@
       ]
     },
     {
-      "name": "toast-widget",
-      "type": "registry:ui",
-      "title": "ToastWidget",
-      "description": "ToastWidget.",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
-      "files": [
-        {
-          "path": "registry/adwaita/ui/toast-widget.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "toggle-button",
       "type": "registry:ui",
       "title": "ToggleButton",
-      "description": "ToggleButton (Gtk.ToggleButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/toggle-button.tsx",
@@ -5739,16 +1536,6 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "ToggleGroup",
-      "description": "ToggleGroup (Adw.ToggleGroup).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/toggle-group.tsx",
@@ -5760,16 +1547,6 @@
       "name": "toolbar-view",
       "type": "registry:ui",
       "title": "ToolbarView",
-      "description": "ToolbarView (Adw.ToolbarView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/toolbar-view.tsx",
@@ -5781,16 +1558,6 @@
       "name": "tree-expander",
       "type": "registry:ui",
       "title": "TreeExpander",
-      "description": "TreeExpander (Gtk.TreeExpander).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/tree-expander.tsx",
@@ -5802,16 +1569,6 @@
       "name": "tree-view",
       "type": "registry:ui",
       "title": "TreeView",
-      "description": "TreeView (Gtk.TreeView).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/tree-view.tsx",
@@ -5823,16 +1580,6 @@
       "name": "video",
       "type": "registry:ui",
       "title": "Video",
-      "description": "Video (Gtk.Video).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/video.tsx",
@@ -5844,16 +1591,6 @@
       "name": "view-stack",
       "type": "registry:ui",
       "title": "ViewStack",
-      "description": "ViewStack (Adw.ViewStack).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/view-stack.tsx",
@@ -5865,16 +1602,6 @@
       "name": "view-switcher",
       "type": "registry:ui",
       "title": "ViewSwitcher",
-      "description": "ViewSwitcher (Adw.ViewSwitcher).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/view-switcher.tsx",
@@ -5886,16 +1613,6 @@
       "name": "view-switcher-bar",
       "type": "registry:ui",
       "title": "ViewSwitcherBar",
-      "description": "ViewSwitcherBar (Adw.ViewSwitcherBar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/view-switcher-bar.tsx",
@@ -5907,16 +1624,6 @@
       "name": "view-switcher-sidebar",
       "type": "registry:ui",
       "title": "ViewSwitcherSidebar",
-      "description": "ViewSwitcherSidebar (Adw.ViewSwitcherSidebar).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/view-switcher-sidebar.tsx",
@@ -5928,16 +1635,6 @@
       "name": "view-switcher-title",
       "type": "registry:ui",
       "title": "ViewSwitcherTitle",
-      "description": "ViewSwitcherTitle (Adw.ViewSwitcherTitle).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/view-switcher-title.tsx",
@@ -5949,16 +1646,6 @@
       "name": "viewport",
       "type": "registry:ui",
       "title": "Viewport",
-      "description": "Viewport (Gtk.Viewport).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/viewport.tsx",
@@ -5970,16 +1657,6 @@
       "name": "volume-button",
       "type": "registry:ui",
       "title": "VolumeButton",
-      "description": "VolumeButton (Gtk.VolumeButton).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/volume-button.tsx",
@@ -5991,17 +1668,6 @@
       "name": "window",
       "type": "registry:ui",
       "title": "Window",
-      "description": "Window (Adw.Window).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/window.tsx",
@@ -6013,17 +1679,6 @@
       "name": "window-controls",
       "type": "registry:ui",
       "title": "WindowControls",
-      "description": "WindowControls (Gtk.WindowControls).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props",
-        "icon"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/window-controls.tsx",
@@ -6035,16 +1690,6 @@
       "name": "window-handle",
       "type": "registry:ui",
       "title": "WindowHandle",
-      "description": "WindowHandle (Gtk.WindowHandle).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/window-handle.tsx",
@@ -6056,16 +1701,6 @@
       "name": "window-title",
       "type": "registry:ui",
       "title": "WindowTitle",
-      "description": "WindowTitle (Adw.WindowTitle).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/window-title.tsx",
@@ -6077,16 +1712,6 @@
       "name": "wrap-box",
       "type": "registry:ui",
       "title": "WrapBox",
-      "description": "WrapBox (Adw.WrapBox).",
-      "registryDependencies": [
-        "adwaita-theme",
-        "gtk-enums",
-        "widget-props"
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@base-ui/react"
-      ],
       "files": [
         {
           "path": "registry/adwaita/ui/wrap-box.tsx",

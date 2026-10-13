@@ -1,0 +1,306 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# 02-APP-TREES(1)                  General Commands Manual                  02-APP-TREES(1)
+#
+# NAME
+#      bin/02-app-trees — every application as the toolkit lays it out, and as the components do
+#
+# SYNOPSIS
+#      bin/02-app-trees [--app NAME] [--differences]
+#
+# DESCRIPTION
+#      THE APPLICATIONS ARE THE SUCCESS CRITERION, so this measures the applications.
+#
+#      bin/apps/<name>/app.c builds a scene with real GTK and libadwaita. bin/lib/app-trees.c
+#      walks what it built and writes, for every CSS node in it, the selector it is addressed
+#      by, the path of selectors from the window down, where the toolkit put it, what it asked
+#      for, what arranges its children and what it actually draws -- the background, the
+#      radius, the border, the shadow, the font and the colour, read off the frame GTK
+#      rendered rather than out of a stylesheet.
+#
+#      The same questions are then asked of the components in the browser, which answers them
+#      with getBoundingClientRect and getComputedStyle, and the two are written out in one
+#      shape. What comes out is a diff -- this node is 11px narrower, this one has no
+#      background, this one's radius is 6px where the toolkit's is 9 -- rather than two
+#      pictures somebody has to hold up against each other.
+#
+# OPTIONS
+#      --app NAME      One application rather than all of them.
+#      --differences   Only the nodes which differ.
+#
+# FILES
+#      bin/apps/<name>/app.c                 the toolkit's build of each scene
+#      bin/lib/app-trees.c                   the walk
+#      bin/lib/apps.h                        which scenes there are
+#      bin/02-app-trees.out/toolkit.json     what the toolkit laid out
+#      bin/02-app-trees.out/components.json  what the components laid out
+#
+# EXIT STATUS
+#      0 when every node matches within the tolerance, 1 when any does not.
+#
+# SEE ALSO
+#      bin/14-app-screenshots, bin/15-app-report
+#
+# adwaita-cn                        October 13, 2026                       02-APP-TREES(1)
+
+require "fileutils"
+require "json"
+require "webrick"
+
+$stdout.sync = true
+
+require_relative "lib/offscreen"
+
+module AppTrees
+  ROOT = File.expand_path("..", __dir__)
+  OUTPUT = "#{__FILE__}.out"
+  PORT = 7417
+  TOLERANCE = 2.0
+
+  # What a node is compared on, beyond where it was put: what the toolkit drew and what
+  # the browser computed, in the same terms.
+  DRAWN = %w[background radius shadow border text].freeze
+
+  def self.run(argv)
+    only = argv.each_cons(2).find{|flag, _| flag == "--app" }&.last
+    differences = argv.include?("--differences")
+
+    FileUtils.mkdir_p(OUTPUT)
+
+    toolkit = self.toolkit
+    components = self.components(toolkit.keys)
+
+    File.write(File.join(OUTPUT, "toolkit.json"), "#{JSON.pretty_generate(toolkit)}\n")
+    File.write(File.join(OUTPUT, "components.json"), "#{JSON.pretty_generate(components)}\n")
+
+    out = 0
+
+    toolkit.each do |scene, theirs|
+      next unless only.nil? || scene == only
+
+      ours = components[scene] || []
+      out += self.report(scene, theirs.fetch("nodes"), ours, differences)
+    end
+
+    exit(out.zero? ? 0 : 1)
+  end
+
+  # ── the toolkit ──────────────────────────────────────────────────────────
+
+  # Built here rather than checked in: the measurements are the toolkit's and they move
+  # with it, so the walk is compiled against whichever libadwaita is on the machine.
+  def self.build
+    sources = Dir[File.join(ROOT, "bin/apps/*/app.c")].sort
+    binary = File.join(OUTPUT, "app-trees")
+
+    command = [
+      "gcc", "-O2", "-I", File.join(ROOT, "bin/lib"), "-o", binary,
+      File.join(ROOT, "bin/lib/app-trees.c"), *sources,
+      *`pkg-config --cflags --libs gtk4 libadwaita-1`.split,
+    ]
+
+    system(*command) || abort("#{command.first} failed")
+
+    binary
+  end
+
+  def self.toolkit
+    binary = self.build
+
+    Offscreen.start
+
+    # The desktop's own font, carried onto the display this run makes for itself, because
+    # the components are laid out in it too. A scene measured in GTK's fallback font is a
+    # comparison of two faces rather than of two layouts.
+    environment = {
+      "ADW_CN_FONT" => self.setting("font-name"),
+      "ADW_CN_DPI" => (96 * self.scaling).round.to_s,
+    }.compact
+
+    found = IO.popen(environment, [binary], err: File::NULL, &:read)
+
+    JSON.parse(found).fetch("scenes")
+  rescue JSON::ParserError => e
+    abort("app-trees: #{e.message.lines.first}")
+  end
+
+  def self.setting(key)
+    `gsettings get org.gnome.desktop.interface #{key} 2>/dev/null`.strip.then do |value|
+      value.empty? ? nil : value.delete_prefix("'").delete_suffix("'")
+    end
+  rescue StandardError
+    nil
+  end
+
+  def self.scaling
+    self.setting("text-scaling-factor")&.to_f&.then{|one| one.positive? ? one : 1.0 } || 1.0
+  end
+
+  # ── the components ───────────────────────────────────────────────────────
+
+  # The same walk, of the same screen, in the browser. `data-node` and the Adwaita names a
+  # component writes are the selector; getBoundingClientRect is the rectangle; and what the
+  # toolkit drew is what getComputedStyle resolved.
+  WALK = <<~JS
+    (() => {
+      const scenes = {};
+      const DRAWN = (cs) => {
+        const paint = [];
+        const radius = Number.parseFloat(cs.borderTopLeftRadius) || 0;
+        if (radius > 0) paint.push({ draw: "radius", radius: [radius, radius, radius, radius] });
+        if (cs.backgroundColor && cs.backgroundColor !== "rgba(0, 0, 0, 0)")
+          paint.push({ draw: "background", color: cs.backgroundColor });
+        const width = Number.parseFloat(cs.borderTopWidth) || 0;
+        if (width > 0) paint.push({ draw: "border", widths: [width, width, width, width], color: cs.borderTopColor });
+        if (cs.boxShadow && cs.boxShadow !== "none") paint.push({ draw: "shadow", shadow: cs.boxShadow });
+        return paint;
+      };
+
+      for (const scene of document.querySelectorAll("[data-shot]")) {
+        const origin = scene.getBoundingClientRect();
+        const nodes = [];
+
+        const walk = (el, above) => {
+          const node = el.dataset.node;
+          if (node === undefined) { for (const child of el.children) walk(child, above); return; }
+
+          // The names a component writes are Adwaita's; everything else on the element is a
+          // utility the name resolved to, and is not part of the selector.
+          const classes = [...el.classList].filter((one) => /^[a-z][a-z0-9-]*$/.test(one) && !one.includes(":"));
+          const selector = node + classes.map((one) => "." + one).join("");
+          const path = above === null ? selector : above + " > " + selector;
+          const rect = el.getBoundingClientRect();
+          const cs = getComputedStyle(el);
+          const leaf = el.children.length === 0;
+
+          const paint = DRAWN(cs);
+          if (leaf && el.textContent.trim().length > 0)
+            paint.push({ draw: "text", font: cs.fontWeight + " " + cs.fontSize + " " + cs.fontFamily.split(",")[0], color: cs.color });
+
+          nodes.push({
+            selector, path, node,
+            rect: [rect.x - origin.x, rect.y - origin.y, rect.width, rect.height],
+            paint,
+          });
+
+          for (const child of el.children) walk(child, path);
+        };
+
+        for (const child of scene.children) walk(child, null);
+        scenes[scene.dataset.shot] = nodes;
+      }
+
+      return scenes;
+    })()
+  JS
+
+  def self.components(wanted)
+    require "ferrum"
+
+    self.vite
+
+    server = WEBrick::HTTPServer.new(
+      Port: PORT,
+      DocumentRoot: File.join(ROOT, "bin/14-app-screenshots.out/web"),
+      Logger: WEBrick::Log.new(File::NULL),
+      AccessLog: [],
+    )
+    Thread.new{server.start}
+
+    browser = Ferrum::Browser.new(
+      browser_path: ENV.fetch("BROWSER_PATH", nil),
+      headless: true,
+      window_size: [1600, 2000],
+      timeout: 60,
+      browser_options: { "force-device-scale-factor" => "1", "hide-scrollbars" => nil },
+    )
+
+    begin
+      browser.go_to("http://127.0.0.1:#{PORT}/")
+      browser.network.wait_for_idle(timeout: 30)
+
+      found = browser.evaluate(WALK)
+
+      found.slice(*wanted)
+    ensure
+      browser.quit
+      server.shutdown
+    end
+  end
+
+  def self.vite
+    command = ["pnpm", "exec", "vite", "build", "-c", "vite.comparison.config.ts", "--logLevel", "error"]
+
+    Dir.chdir(ROOT){ system(*command, out: File::NULL) || abort("#{command.join(' ')} failed") }
+  end
+
+  # ── the two, beside each other ───────────────────────────────────────────
+
+  # Paired in order within a path: the two sides are the same screen built twice, so the
+  # third `row` under a list is the third row on the other side.
+  def self.report(scene, theirs, ours, differences)
+    mine = ours.group_by{|one| self.key(one.fetch("path")) }
+    taken = Hash.new(0)
+    out = 0
+
+    puts("")
+    puts("#{scene} — #{theirs.length} nodes, #{ours.length} drawn")
+
+    theirs.each do |node|
+      key = self.key(node.fetch("path"))
+      found = (mine[key] || [])[taken[key]]
+      taken[key] += 1
+
+      wrong = self.wrong(node, found)
+
+      out += 1 unless wrong.empty?
+
+      next if differences && wrong.empty?
+
+      puts("  #{wrong.empty? ? ' ' : '!'} #{node.fetch('selector').ljust(34)} #{self.rect(node['rect'])}  #{wrong.join('; ')}")
+    end
+
+    puts("  #{out} out of #{theirs.length}")
+
+    out
+  end
+
+  # The path, by node name alone. The classes are compared separately: a node which is in
+  # the right place with the wrong class on it is a different fault from a missing node,
+  # and matching on both made the first look like the second.
+  def self.key(path) = path.split(" > ").map{|one| one[/\A[a-z0-9-]+/] }.join(" > ")
+
+  def self.rect(found) = found.nil? ? "—" : found.map{|one| one.round }.join(",").ljust(20)
+
+  def self.wrong(theirs, ours)
+    return ["missing"] if ours.nil?
+
+    found = []
+
+    %w[x y width height].each_with_index do |name, index|
+      delta = ours.fetch("rect")[index] - theirs.fetch("rect")[index]
+
+      found << "#{name} #{delta.positive? ? '+' : ''}#{delta.round(1)}" if delta.abs > TOLERANCE
+    end
+
+    found + self.undrawn(theirs, ours)
+  end
+
+  # What the toolkit drew and the components did not, by kind. The values are not compared
+  # yet -- a colour in one is `rgba(0,0,6,0.08)` and in the other a `color-mix` the browser
+  # resolved -- but whether a background, a radius, a border or a shadow is there at all is
+  # the same question on both sides, and it is the one which is wrong.
+  def self.undrawn(theirs, ours)
+    DRAWN.filter_map do |kind|
+      drawn = theirs.fetch("paint", []).any?{|one| one.fetch("draw") == kind }
+      ours_drawn = ours.fetch("paint", []).any?{|one| one.fetch("draw") == kind }
+
+      next if drawn == ours_drawn
+
+      "#{drawn ? 'no' : 'extra'} #{kind}"
+    end
+  end
+end
+
+AppTrees.run(ARGV)
