@@ -1,3 +1,19 @@
+/* Every variable libadwaita's stylesheet defines, generated beside this by
+ * bin/11-generate-components. Imported first, so that what this file states below
+ * overrides it -- which is what makes this the place to point the components at a
+ * brand's palette. */
+@import "./variables.css";
+
+/* Adwaita's style classes, generated beside this by bin/11-generate-components: the
+ * rules its stylesheet states without naming a widget, which an application puts on
+ * whichever widget it likes. Imported here so that a project installing the registry
+ * gets them with everything else. */
+@import "./styles.css";
+
+/* Adwaita's icons, generated beside this by bin/11-generate-components. An `icon-name`
+ * names one of these the way it names one in GTK. */
+@import "./icons.css";
+
 /* The variables the components read, which are libadwaita's own names.
  *
  * COLOUR IS THE ONE THING A PORT SHOULD NOT TAKE FROM ADWAITA WHOLESALE, so

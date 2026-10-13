@@ -3,7 +3,7 @@
 # 01-FETCH-ADWAITA(1)               General Commands Manual                01-FETCH-ADWAITA(1)
 #
 # NAME
-#      bin/01-fetch-adwaita — vendor the Adwaita and GTK stylesheets
+#      bin/01-fetch-adwaita — vendor the Adwaita and GTK stylesheets, templates and icons
 #
 # SYNOPSIS
 #      bin/01-fetch-adwaita
@@ -21,6 +21,13 @@
 #              The composite widgets' templates: the child tree of each Adw widget, which is the
 #              toolkit saying which widgets it is built out of rather than anybody guessing.
 #
+#      icons/*.svg
+#              The Adwaita symbolic icon set, and libadwaita's own. An `icon-name` is not
+#              decoration: GTK draws a named icon out of this theme, so a port with no icons
+#              has an empty circle everywhere the toolkit has a back arrow, a close button, a
+#              menu, a checkmark or an expander. They are symbolic, which means one colour --
+#              the widget's -- so bin/11 writes each one out as a mask.
+#
 #      gtk-default-light.css
 #              GTK's own Default theme, which is the base widget sheet Adwaita sits on. GTK 4
 #              no longer ships an Adwaita of its own; gtk/theme/ holds Default and Empty, and
@@ -33,6 +40,7 @@
 #      bin/01-fetch-adwaita.out/adwaita.css
 #      bin/01-fetch-adwaita.out/gtk-default-light.css
 #      bin/01-fetch-adwaita.out/ui/*.ui
+#      bin/01-fetch-adwaita.out/icons/*.svg
 #      bin/01-fetch-adwaita.out/VERSIONS
 #
 # EXIT STATUS
@@ -93,11 +101,44 @@ for resource in $(gresource list "$adwaita" | grep "/ui/.*\.ui$"); do
   gresource extract "$adwaita" "$resource" > "$out/ui/$(basename "$resource")"
 done
 
+# The icons GTK draws a named icon out of. The theme is a directory of SVGs rather than a
+# resource, so it is found the same way the libraries are.
+icons="${ADWAITA_ICONS:-}"
+
+if [ ! -d "$icons" ]; then
+  icons="$(find /nix/store -maxdepth 5 -type d -path "*adwaita-icon-theme*/share/icons/Adwaita/symbolic" 2>/dev/null | sort | tail -1)"
+fi
+
+if [ ! -d "$icons" ]; then
+  for candidate in /usr/share/icons/Adwaita/symbolic /run/current-system/sw/share/icons/Adwaita/symbolic; do
+    [ -d "$candidate" ] && icons="$candidate" && break
+  done
+fi
+
+if [ ! -d "$icons" ]; then
+  echo "fetch-adwaita: cannot find the Adwaita symbolic icons; add adwaita-icon-theme to the devshell" >&2
+  exit 1
+fi
+
+mkdir -p "$out/icons"
+rm -f "$out/icons"/*.svg
+# `install` rather than `cp`: the theme's files come out of the store read-only, and a
+# second run cannot overwrite what the first one copied.
+find "$icons" -name "*-symbolic.svg" -exec install -m 644 {} "$out/icons/" \;
+
+# libadwaita ships icons of its own -- the entry row's apply and edit marks, the expander
+# arrow -- in its resource bundle rather than in the theme.
+for resource in $(gresource list "$adwaita" | grep "/icons/.*\.svg$"); do
+  gresource extract "$adwaita" "$resource" > "$out/icons/$(basename "$resource")"
+done
+
 # The store path carries the version, which is the only place it is written down.
 {
   echo "libadwaita $(basename "$(dirname "$(dirname "$adwaita")")")"
   echo "gtk4       $(basename "$(dirname "$(dirname "$gtk")")")"
+  echo "icons      $(basename "$(dirname "$(dirname "$(dirname "$(dirname "$icons")")")")")"
 } > "$out/VERSIONS"
 
 wc -c "$out"/*.css
+echo "icons      $(ls "$out/icons" | wc -l)"
 cat "$out/VERSIONS"

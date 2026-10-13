@@ -52,6 +52,7 @@ function PopoverBin({ className, render, variant = "default", child, menuModel, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "popover-bin",
+    "data-node": "popoverbin",
     "data-variant": variant,
     "data-handle-input": handleInput,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", popoverBinVariants({ variant }), widgetClassName, className),

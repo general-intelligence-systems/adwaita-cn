@@ -15,37 +15,34 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { BaselinePosition, Orientation } from "@/lib/enums"
 
 const centerBoxVariants = cva(
-  "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]",
+  "",
   {
     variants: {
       variant: {
         default: "",
-        /** .narrow */
-        narrow: "pt-1 text-[0.75rem]",
-        /** .title */
-        title: "px-3 font-bold",
-      },
-      size: {
-        default: "",
         /** .circular-buttons */
-        circularButtons: "pt-3 pb-1.5 px-3",
+        circularButtons: "",
         /** .end */
-        end: "gap-[6px] mx-1.5",
+        end: "",
         /** .header */
-        header: "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]",
+        header: "",
         /** .inline-buttons */
-        inlineButtons: "py-0 px-3",
+        inlineButtons: "",
         /** .labels */
-        labels: "gap-[6px]",
+        labels: "",
+        /** .narrow */
+        narrow: "",
         /** .single-line */
-        singleLine: "min-h-8.5",
+        singleLine: "",
         /** .start */
-        start: "gap-[6px] mx-1.5",
+        start: "",
+        /** .title */
+        title: "",
         /** .wide */
-        wide: "py-0.5 px-3 gap-[6px]",
+        wide: "",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -72,7 +69,7 @@ export interface CenterBoxProps
   startWidget?: ReactNode
 }
 
-function CenterBox({ className, render, variant = "default", size = "default", centerWidget, endWidget, startWidget, baselinePosition, orientation, shrinkCenterLast, children, ...props }: CenterBoxProps) {
+function CenterBox({ className, render, variant = "default", centerWidget, endWidget, startWidget, baselinePosition, orientation, shrinkCenterLast, children, ...props }: CenterBoxProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -80,12 +77,12 @@ function CenterBox({ className, render, variant = "default", size = "default", c
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "center-box",
+    "data-node": "box",
     "data-variant": variant,
-    "data-size": size,
     "data-baseline-position": baselinePosition,
     "data-orientation": orientation,
     "data-shrink-center-last": shrinkCenterLast,
-    className: cn("flex items-center justify-between", centerBoxVariants({ variant, size }), orientation === "vertical" && "-my-1.5 min-h-3", widgetClassName, className),
+    className: cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", centerBoxVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

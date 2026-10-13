@@ -52,20 +52,32 @@ function DropDown({ className, render, expression, factory, headerFactory, listF
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "drop-down",
+    "data-node": "dropdown",
     "data-enable-search": enableSearch,
     "data-search-match-mode": searchMatchMode,
     "data-selected": selected,
     "data-show-arrow": showArrow,
-    className: cn("flex", "flex-row", "shadow-none", widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
     style,
     children: (
         <>
+                  <DropDownArrow />
+                  <DropDownPopover>
+                <DropDownArrow2 />
+                <DropDownAccelerator />
+                <DropDownCheck />
+                <DropDownRadio />
+              </DropDownPopover>
+                  <DropDownButton>
+                <DropDownBox>
+                  {children}
+                </DropDownBox>
+              </DropDownButton>
                   {expression}
                   {factory}
                   {headerFactory}
                   {listFactory}
                   {model}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -79,4 +91,122 @@ function DropDown({ className, render, expression, factory, headerFactory, listF
   })
 }
 
-export { DropDown }
+function DropDownArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-arrow"
+        data-node="arrow"
+      className={cn("adw-icon [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4", className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownArrow2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-arrow2"
+        data-node="arrow"
+      className={cn("adw-icon [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownAccelerator({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-accelerator"
+        data-node="accelerator"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownCheck({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-check"
+        data-node="check"
+      className={cn([
+        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
+        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
+        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
+        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
+        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownRadio({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-radio"
+        data-node="radio"
+      className={cn([
+        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
+        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
+        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
+        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
+        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownPopover({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-popover"
+        data-node="popover"
+      className={cn("hidden", "[--shade-color:var(--popover-shade-color)] p-2 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)] rounded-[15px]", className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drop-down-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function DropDownButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="drop-down-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { DropDown, DropDownArrow, DropDownArrow2, DropDownAccelerator, DropDownCheck, DropDownRadio, DropDownPopover, DropDownBox, DropDownButton }

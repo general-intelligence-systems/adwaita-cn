@@ -26,11 +26,7 @@ const dialogVariants = cva(
         /** .default */
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .dialog-window */
         dialogWindow: "",
         /** .floating */
@@ -40,7 +36,7 @@ const dialogVariants = cva(
         /** .narrow */
         narrow: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .portrait */
         portrait: "",
         /** .short */
@@ -98,6 +94,7 @@ function Dialog({ className, render, variant = "default", child, defaultWidget, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "dialog",
+    "data-node": "dialog",
     "data-variant": variant,
     role: "dialog",
     "data-can-close": canClose,
@@ -110,6 +107,9 @@ function Dialog({ className, render, variant = "default", child, defaultWidget, 
     style,
     children: (
         <>
+                  <DialogSheet>
+                <DialogOutline />
+              </DialogSheet>
                   {child}
                   {defaultWidget}
                   {focusWidget}
@@ -127,4 +127,26 @@ function Dialog({ className, render, variant = "default", child, defaultWidget, 
   })
 }
 
-export { Dialog, dialogVariants }
+function DialogOutline({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="dialog-outline"
+        data-node="outline"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function DialogSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="dialog-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { Dialog, DialogOutline, DialogSheet, dialogVariants }

@@ -17,7 +17,6 @@ import type { InputHints, InputPurpose } from "@/lib/enums"
 const passwordEntryRowVariants = cva(
   [
     "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -40,14 +39,11 @@ const passwordEntryRowVariants = cva(
         /** .focused */
         focused: "",
         /** .has-open-popup */
-        hasOpenPopup: "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        hasOpenPopup: "",
         /** .header */
-        header: [
-          "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-tl-[12px] rounded-tr-[12px] rounded-bl-[12px] rounded-br-[12px] border-b-[0]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-1px]",
-        ],
+        header: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .password */
         password: "",
         /** .separator */
@@ -55,9 +51,9 @@ const passwordEntryRowVariants = cva(
         /** .separators */
         separators: "",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "text-[var(--accent-color)]",
+        sidebarNewBookmarkRow: "",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "py-0 px-2 min-h-0.5 bg-[image:image(var(--accent-bg-color))] bg-clip-content",
+        sidebarPlaceholderRow: "",
         /** .spin */
         spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
@@ -67,7 +63,7 @@ const passwordEntryRowVariants = cva(
 )
 
 export interface PasswordEntryRowProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "actionName" | "actionTarget" | "activatable" | "activatesDefault" | "attributes" | "child" | "editable" | "enableEmojiCompletion" | "enableUndo" | "inputHints" | "inputPurpose" | "maxLength" | "maxWidthChars" | "selectable" | "showApplyButton" | "text" | "title" | "titleSelectable" | "useMarkup" | "useUnderline" | "widthChars" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "actionName" | "actionTarget" | "activatable" | "activatesDefault" | "attributes" | "child" | "editable" | "enableEmojiCompletion" | "enableUndo" | "inputHints" | "inputPurpose" | "maxLength" | "maxWidthChars" | "selectable" | "showApplyButton" | "text" | "title" | "titleSelectable" | "useMarkup" | "useUnderline" | "widthChars" | "xalign" | "prefix" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof passwordEntryRowVariants> {
   /** utf8, from Adw.PasswordEntryRow */
@@ -109,6 +105,9 @@ export interface PasswordEntryRowProps
   /** gint, from Adw.PasswordEntryRow */
   maxWidthChars?: number
 
+  /** Gtk.Widget, from Adw.PasswordEntryRow */
+  prefix?: ReactNode
+
   /** gboolean, from Gtk.ListBoxRow */
   selectable?: boolean
 
@@ -137,7 +136,7 @@ export interface PasswordEntryRowProps
   xalign?: number
 }
 
-function PasswordEntryRow({ className, render, variant = "default", actionTarget, attributes, child, title, actionName, activatable, activatesDefault, editable, enableEmojiCompletion, enableUndo, inputHints, inputPurpose, maxLength, maxWidthChars, selectable, showApplyButton, text, titleSelectable, useMarkup, useUnderline, widthChars, xalign, children, ...props }: PasswordEntryRowProps) {
+function PasswordEntryRow({ className, render, variant = "default", actionTarget, attributes, child, prefix, title, actionName, activatable, activatesDefault, editable, enableEmojiCompletion, enableUndo, inputHints, inputPurpose, maxLength, maxWidthChars, selectable, showApplyButton, text, titleSelectable, useMarkup, useUnderline, widthChars, xalign, children, ...props }: PasswordEntryRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -145,11 +144,12 @@ function PasswordEntryRow({ className, render, variant = "default", actionTarget
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "password-entry-row",
+    "data-node": "row",
     "data-variant": variant,
     "data-action-name": actionName,
     "data-activatable": activatable,
     "data-activates-default": activatesDefault,
-    contentEditable: editable,
+    "data-editable": editable,
     "data-enable-emoji-completion": enableEmojiCompletion,
     "data-enable-undo": enableUndo,
     "data-input-hints": inputHints,
@@ -164,23 +164,29 @@ function PasswordEntryRow({ className, render, variant = "default", actionTarget
     "data-use-underline": useUnderline,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn(passwordEntryRowVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", passwordEntryRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <PasswordEntryRowHeader>
-                <PasswordEntryRowPrefixes />
+                {prefix ? (
+                  <PasswordEntryRowPrefixes>
+                    {prefix}
+                  </PasswordEntryRowPrefixes>
+                ) : null}
                 <PasswordEntryRowEditableArea>
                   <PasswordEntryRowEmptyTitle>{title}</PasswordEntryRowEmptyTitle>
                   <PasswordEntryRowTitle>{title}</PasswordEntryRowTitle>
                   <PasswordEntryRowText>{text}</PasswordEntryRowText>
-                  <PasswordEntryRowIndicator />
-                  <PasswordEntryRowApplyButton />
-                  <PasswordEntryRowEditIcon />
+                  {editable ? (
+                    <PasswordEntryRowEditIcon />
+                  ) : null}
                 </PasswordEntryRowEditableArea>
-                <PasswordEntryRowSuffixes>
-                  {children}
-                </PasswordEntryRowSuffixes>
+                {children ? (
+                  <PasswordEntryRowSuffixes>
+                    {children}
+                  </PasswordEntryRowSuffixes>
+                ) : null}
               </PasswordEntryRowHeader>
                   {actionTarget}
                   {attributes}
@@ -202,7 +208,8 @@ function PasswordEntryRowPrefixes({ className, ...props }: React.ComponentProps<
   return (
     <div
       data-slot="password-entry-row-prefixes"
-      className={cn("flex flex-row", "mx-1.5 gap-[6px]", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes", "mx-1.5 gap-[6px]", className)}
       {...props}
     />
   )
@@ -212,7 +219,12 @@ function PasswordEntryRowEmptyTitle({ className, ...props }: React.ComponentProp
   return (
     <span
       data-slot="password-entry-row-empty-title"
-      className={cn("opacity-0", className)}
+        data-node="label"
+        data-halign="start"
+      className={cn("title dimmed", [
+        "caret-[currentColor] opacity-[var(--dim-opacity)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -222,8 +234,11 @@ function PasswordEntryRowTitle({ className, ...props }: React.ComponentProps<"sp
   return (
     <span
       data-slot="password-entry-row-title"
-      className={cn([
-        "caret-[currentColor]",
+        data-node="label"
+        data-halign="start"
+        style={{ opacity: 0 }}
+      className={cn("subtitle", [
+        "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -235,11 +250,12 @@ function PasswordEntryRowText({ className, ...props }: React.ComponentProps<"inp
   return (
     <input
       data-slot="password-entry-row-text"
-      className={cn("flex flex-row", [
-        "p-1.5 min-h-7.5 opacity-100 text-[inherit] bg-[transparent] font-[var(--monospace-font-family)] text-[smaller] min-w-7.5",
-        "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[transparent]",
-        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-      ], className)}
+        data-node="text"
+        data-valign="baseline-fill"
+        data-hexpand=""
+        data-vexpand=""
+        style={{ opacity: 0 }}
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
       {...props}
     />
   )
@@ -249,7 +265,9 @@ function PasswordEntryRowIndicator({ className, ...props }: React.ComponentProps
   return (
     <span
       data-slot="password-entry-row-indicator"
-      className={cn("p-[5px] mx-1.5 min-w-6 min-h-6 opacity-30", className)}
+        data-node="image"
+        data-valign="center"
+      className={cn("indicator", "p-[5px] mx-1.5 min-w-6 min-h-6 opacity-30", className)}
       {...props}
     />
   )
@@ -259,7 +277,17 @@ function PasswordEntryRowApplyButton({ className, ...props }: React.ComponentPro
   return (
     <button
       data-slot="password-entry-row-apply-button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-1.5", className)}
+        data-node="button"
+        data-valign="center"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "suggested-action circular apply-button", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-0 min-w-8.5 min-h-8.5 rounded-full shadow-none outline-offset-[5px] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)] mx-1.5",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[image:image(RGB(0_0_6/20%))]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[image:image(RGB(0_0_6/15%))] data-[state=checked]:bg-[var(--accent-bg-color)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[image:image(RGB(0_0_6/5%))]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[image:image(RGB(0_0_6/30%))]",
+      ], className)}
       {...props}
     />
   )
@@ -269,7 +297,9 @@ function PasswordEntryRowEditIcon({ className, ...props }: React.ComponentProps<
   return (
     <span
       data-slot="password-entry-row-edit-icon"
-      className={cn([
+        data-node="image"
+        data-valign="center"
+      className={cn("edit-icon", [
         "p-[5px] mx-1.5 min-w-6 min-h-6",
         "disabled:opacity-30",
       ], className)}
@@ -282,7 +312,8 @@ function PasswordEntryRowEditableArea({ className, ...props }: React.ComponentPr
   return (
     <div
       data-slot="password-entry-row-editable-area"
-      className={cn("py-0 px-1.5", className)}
+        data-hexpand=""
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "editable-area", "py-0 px-1.5", className)}
       {...props}
     />
   )
@@ -292,7 +323,8 @@ function PasswordEntryRowSuffixes({ className, ...props }: React.ComponentProps<
   return (
     <div
       data-slot="password-entry-row-suffixes"
-      className={cn("flex flex-row", "gap-[6px]", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", "gap-[6px] mx-1.5", className)}
       {...props}
     />
   )
@@ -302,7 +334,9 @@ function PasswordEntryRowHeader({ className, ...props }: React.ComponentProps<"d
   return (
     <div
       data-slot="password-entry-row-header"
-      className={cn("flex flex-row", "mx-3 gap-[6px] min-h-12.5", className)}
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]", className)}
       {...props}
     />
   )

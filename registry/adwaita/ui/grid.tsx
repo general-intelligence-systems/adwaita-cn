@@ -42,13 +42,14 @@ function Grid({ className, render, baselineRow, columnHomogeneous, columnSpacing
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "grid",
+    "data-node": "grid",
     "data-baseline-row": baselineRow,
     "data-column-homogeneous": columnHomogeneous,
     "data-column-spacing": columnSpacing,
     "data-orientation": orientation,
     "data-row-homogeneous": rowHomogeneous,
     "data-row-spacing": rowSpacing,
-    className: cn("grid", "pb-[3px] pl-[3px]", widgetClassName, className),
+    className: cn("grid", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

@@ -30,16 +30,22 @@ function ViewSwitcherBar({ className, render, stack, reveal, children, ...props 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "view-switcher-bar",
+    "data-node": "viewswitcherbar",
     "data-reveal": reveal,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
                   <ViewSwitcherBarActionBar>
-                <ViewSwitcherBarViewSwitcher />
+                <ViewSwitcherBarViewSwitcher>
+                  <ViewSwitcherBarButton>
+                    <ViewSwitcherBarStack>
+                      {children}
+                    </ViewSwitcherBarStack>
+                  </ViewSwitcherBarButton>
+                </ViewSwitcherBarViewSwitcher>
               </ViewSwitcherBarActionBar>
                   {stack}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -53,11 +59,42 @@ function ViewSwitcherBar({ className, render, stack, reveal, children, ...props 
   })
 }
 
+function ViewSwitcherBarStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-bar-stack"
+        data-node="stack"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherBarButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="view-switcher-bar-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function ViewSwitcherBarViewSwitcher({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="view-switcher-bar-view-switcher"
-      className={cn("flex flex-row", "gap-[3px] min-h-8.5", className)}
+        data-node="viewswitcher"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5", className)}
       {...props}
     />
   )
@@ -67,10 +104,11 @@ function ViewSwitcherBarActionBar({ className, ...props }: React.ComponentProps<
   return (
     <div
       data-slot="view-switcher-bar-action-bar"
+        data-node="actionbar"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )
 }
 
-export { ViewSwitcherBar, ViewSwitcherBarViewSwitcher, ViewSwitcherBarActionBar }
+export { ViewSwitcherBar, ViewSwitcherBarStack, ViewSwitcherBarButton, ViewSwitcherBarViewSwitcher, ViewSwitcherBarActionBar }

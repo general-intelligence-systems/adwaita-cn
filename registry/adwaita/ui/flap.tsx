@@ -88,6 +88,7 @@ function Flap({ className, render, variant = "default", content, flap, orientati
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "flap",
+    "data-node": "flap",
     "data-variant": variant,
     "data-flap-position": flapPosition,
     "data-fold-duration": foldDuration,
@@ -103,12 +104,14 @@ function Flap({ className, render, variant = "default", content, flap, orientati
     style,
     children: (
         <>
-                  {children}
+                  <FlapDimming />
+                  <FlapShadow />
                   {content}
                   {flap}
                   {orientation}
                   {revealParams}
                   {separator}
+                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -122,4 +125,26 @@ function Flap({ className, render, variant = "default", content, flap, orientati
   })
 }
 
-export { Flap, flapVariants }
+function FlapDimming({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="flap-dimming"
+        data-node="dimming"
+      className={cn("bg-[var(--shade-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function FlapShadow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="flap-shadow"
+        data-node="shadow"
+      className={cn("min-w-14 min-h-14", className)}
+      {...props}
+    />
+  )
+}
+
+export { Flap, FlapDimming, FlapShadow, flapVariants }

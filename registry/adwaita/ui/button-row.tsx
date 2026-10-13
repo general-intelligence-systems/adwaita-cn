@@ -16,7 +16,6 @@ import type { WidgetProps } from "@/lib/widget-props"
 const buttonRowVariants = cva(
   [
     "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -37,22 +36,19 @@ const buttonRowVariants = cva(
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
-        hasOpenPopup: "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        hasOpenPopup: "",
         /** .header */
-        header: [
-          "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-tl-[12px] rounded-tr-[12px] rounded-bl-[12px] rounded-br-[12px] border-b-[0]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-1px]",
-        ],
+        header: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
         separator: "",
         /** .separators */
         separators: "",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "text-[var(--accent-color)]",
+        sidebarNewBookmarkRow: "",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "py-0 px-2 min-h-0.5 bg-[image:image(var(--accent-bg-color))] bg-clip-content",
+        sidebarPlaceholderRow: "",
         /** .spin */
         spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
@@ -107,6 +103,7 @@ function ButtonRow({ className, render, variant = "default", actionTarget, child
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "button-row",
+    "data-node": "row",
     "data-variant": variant,
     "data-action-name": actionName,
     "data-activatable": activatable,
@@ -116,13 +113,15 @@ function ButtonRow({ className, render, variant = "default", actionTarget, child
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn(buttonRowVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", buttonRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <ButtonRowContents>
                 <ButtonRowStartImage />
-                <ButtonRowTitle>{title}</ButtonRowTitle>
+                {title ? (
+                  <ButtonRowTitle>{title}</ButtonRowTitle>
+                ) : null}
                 <ButtonRowEndImage />
                 {children}
               </ButtonRowContents>
@@ -145,7 +144,9 @@ function ButtonRowStartImage({ className, ...props }: React.ComponentProps<"span
   return (
     <span
       data-slot="button-row-start-image"
-      className={cn("disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+        data-node="image"
+        data-valign="center"
+      className={cn("icon start", "disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -155,8 +156,9 @@ function ButtonRowTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="button-row-title"
-      className={cn([
-        "caret-[currentColor]",
+        data-node="label"
+      className={cn("title", [
+        "caret-[currentColor] font-bold",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -168,7 +170,9 @@ function ButtonRowEndImage({ className, ...props }: React.ComponentProps<"span">
   return (
     <span
       data-slot="button-row-end-image"
-      className={cn("disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
+        data-node="image"
+        data-valign="center"
+      className={cn("icon end", "disabled:[filter:Opacity(var(--disabled-opacity))]", className)}
       {...props}
     />
   )
@@ -178,7 +182,9 @@ function ButtonRowContents({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="button-row-contents"
-      className={cn("flex flex-row", "mx-3 gap-[6px] min-h-10", className)}
+        data-node="box"
+        data-halign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "mx-3 gap-[6px] min-h-10", className)}
       {...props}
     />
   )

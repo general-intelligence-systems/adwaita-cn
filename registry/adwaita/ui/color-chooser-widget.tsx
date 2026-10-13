@@ -55,10 +55,11 @@ function ColorChooserWidget({ className, render, variant = "default", rgba, show
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "color-chooser-widget",
+    "data-node": "colorchooser",
     "data-variant": variant,
     "data-show-editor": showEditor,
     "data-use-alpha": useAlpha,
-    className: cn("flex", "flex-row", colorChooserWidgetVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", colorChooserWidgetVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

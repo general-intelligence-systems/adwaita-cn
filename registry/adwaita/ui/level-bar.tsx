@@ -42,6 +42,7 @@ function LevelBar({ className, render, inverted, maxValue, minValue, mode, orien
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "level-bar",
+    "data-node": "levelbar",
     role: "meter",
     "data-inverted": inverted,
     "data-max-value": maxValue,
@@ -51,7 +52,14 @@ function LevelBar({ className, render, inverted, maxValue, minValue, mode, orien
     "data-value": value,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "disabled:[filter:Opacity(var(--disabled-opacity))]", widgetClassName, className),
     style,
-    children: children,
+    children: (
+        <>
+                  <LevelBarTrough>
+                <LevelBarBlock />
+              </LevelBarTrough>
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
@@ -63,4 +71,26 @@ function LevelBar({ className, render, inverted, maxValue, minValue, mode, orien
   })
 }
 
-export { LevelBar }
+function LevelBarBlock({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="level-bar-block"
+        data-node="block"
+      className={cn("bg-[var(--accent-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function LevelBarTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="level-bar-trough"
+        data-node="trough"
+      className={cn("p-0", className)}
+      {...props}
+    />
+  )
+}
+
+export { LevelBar, LevelBarBlock, LevelBarTrough }

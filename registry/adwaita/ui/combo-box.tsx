@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { SensitivityType } from "@/lib/enums"
 
 const comboBoxVariants = cva(
-  "shadow-none",
+  "",
   {
     variants: {
       variant: {
@@ -76,6 +76,7 @@ function ComboBox({ className, render, variant = "default", child, model, active
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "combo-box",
+    "data-node": "combobox",
     "data-variant": variant,
     "data-active": active,
     "data-active-id": activeId,
@@ -86,10 +87,11 @@ function ComboBox({ className, render, variant = "default", child, model, active
     "data-has-frame": hasFrame,
     "data-id-column": idColumn,
     "data-popup-fixed-width": popupFixedWidth,
-    className: cn(comboBoxVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", comboBoxVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <ComboBoxArrow />
                   {child}
                   {model}
                   {children}
@@ -106,4 +108,15 @@ function ComboBox({ className, render, variant = "default", child, model, active
   })
 }
 
-export { ComboBox, comboBoxVariants }
+function ComboBoxArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combo-box-arrow"
+        data-node="arrow"
+      className={cn("adw-icon [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4", className)}
+      {...props}
+    />
+  )
+}
+
+export { ComboBox, ComboBoxArrow, comboBoxVariants }

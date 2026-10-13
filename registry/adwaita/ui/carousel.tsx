@@ -48,6 +48,7 @@ function Carousel({ className, render, orientation, scrollParams, allowLongSwipe
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "carousel",
+    "data-node": "carousel",
     "data-allow-long-swipes": allowLongSwipes,
     "data-allow-mouse-drag": allowMouseDrag,
     "data-allow-scroll-wheel": allowScrollWheel,

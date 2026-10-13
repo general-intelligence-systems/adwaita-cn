@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 
 const passwordEntryVariants = cva(
   [
-    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[-2px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] outline-2 border-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
   ],
   {
@@ -38,7 +38,7 @@ const passwordEntryVariants = cva(
 )
 
 export interface PasswordEntryProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "activatesDefault" | "editable" | "enableUndo" | "extraMenu" | "maxWidthChars" | "placeholderText" | "showPeekIcon" | "text" | "widthChars" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "activatesDefault" | "editable" | "enableUndo" | "extraMenu" | "maxWidthChars" | "placeholderText" | "showPeekIcon" | "text" | "widthChars" | "xalign" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof passwordEntryVariants> {
   /** gboolean, from Gtk.PasswordEntry */
@@ -72,7 +72,7 @@ export interface PasswordEntryProps
   xalign?: number
 }
 
-function PasswordEntry({ className, render, variant = "default", activatesDefault, editable, enableUndo, extraMenu, maxWidthChars, placeholderText, showPeekIcon, text, widthChars, xalign, children: _children, ...props }: PasswordEntryProps) {
+function PasswordEntry({ className, render, variant = "default", extraMenu, activatesDefault, editable, enableUndo, maxWidthChars, placeholderText, showPeekIcon, text, widthChars, xalign, children, ...props }: PasswordEntryProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -80,29 +80,122 @@ function PasswordEntry({ className, render, variant = "default", activatesDefaul
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "password-entry",
+    "data-node": "entry",
     "data-variant": variant,
-    type: "text",
     "data-activates-default": activatesDefault,
-    contentEditable: editable,
+    "data-editable": editable,
     "data-enable-undo": enableUndo,
-    "data-extra-menu": extraMenu,
     "data-max-width-chars": maxWidthChars,
-    placeholder: placeholderText,
+    "data-placeholder-text": placeholderText,
     "data-show-peek-icon": showPeekIcon,
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn(passwordEntryVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", passwordEntryVariants({ variant }), widgetClassName, className),
     style,
+    children: (
+        <>
+                  <PasswordEntryImage />
+                  <PasswordEntryProgress>
+                <PasswordEntryTrough>
+                  <PasswordEntryProgress2 />
+                </PasswordEntryTrough>
+              </PasswordEntryProgress>
+                  <PasswordEntryText placeholder={placeholderText} defaultValue={text} />
+                  {extraMenu}
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { PasswordEntry, passwordEntryVariants }
+function PasswordEntryImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="password-entry-image"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "hover:opacity-100",
+        "active:opacity-80",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryProgress2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-progress2"
+        data-node="progress"
+      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-trough"
+        data-node="trough"
+      className={cn("min-h-0.5", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryProgress({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-progress"
+        data-node="progress"
+      className={cn("mb-[3px]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="password-entry-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function PasswordEntryText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="password-entry-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      {...props}
+    />
+  )
+}
+
+export { PasswordEntry, PasswordEntryImage, PasswordEntryProgress2, PasswordEntryTrough, PasswordEntryProgress, PasswordEntryBlockCursor, PasswordEntryPlaceholder, PasswordEntryText, passwordEntryVariants }

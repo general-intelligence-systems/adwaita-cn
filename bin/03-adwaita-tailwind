@@ -65,7 +65,7 @@ module AdwaitaTailwind
   # and filter are the toolkit recolouring a symbolic icon, which is a thing the web does to an
   # <svg> rather than a declaration anything can carry over.
   GTK_ONLY = %w[
-    -gtk-icon-palette -gtk-icon-shadow -gtk-icon-source -gtk-icon-filter -gtk-icon-transform
+    -gtk-icon-palette -gtk-icon-shadow -gtk-icon-filter -gtk-icon-transform
     -gtk-secondary-caret-color -gtk-dpi
   ].freeze
 
@@ -154,6 +154,13 @@ module AdwaitaTailwind
   # The arbitrary form is used freely: Adwaita's measurements are its own and rounding 9px to
   # `rounded-lg` is exactly the drift this script exists to avoid.
   def self.classes_for(property, value)
+    # A rule which sets a variable rather than a property. Adwaita leans on this: a
+    # destructive button is not written in red, it is written as `--accent-bg-color:
+    # var(--destructive-bg-color)` and then everything downstream reads the accent. The
+    # same trick gives `.osd` its own palette, a card its shade and a sidebar pane its
+    # colours. Dropped, a destructive button came out in the accent's blue.
+    return ["[#{property}:#{self.arbitrary(value)}]"] if property.start_with?("--")
+
     case property
     when "min-height"   then [self.length("min-h", value)]
     when "min-width"    then [self.length("min-w", value)]
@@ -162,7 +169,19 @@ module AdwaitaTailwind
     when "padding"      then self.box("p", value)
     when "margin"       then self.box("m", value)
     when "border-radius" then self.radius(value)
-    when "opacity"      then ["opacity-#{(value.to_f * (value.include?("%") ? 1 : 100)).round}"]
+    when "opacity"      then self.opacity(value)
+    # How big GTK draws a named icon. The browser has no such property, but the registry's
+    # icons are masks sized by `--adw-icon-size`, so the statement carries over exactly --
+    # and without it every icon in the registry was the 16px default, which is a status
+    # page with a thumbnail where the toolkit has a 128px illustration.
+    when "-gtk-icon-size" then ["[--adw-icon-size:#{self.arbitrary(value)}]"]
+    # Which icon a node draws, where the stylesheet rather than a property says so: a
+    # drop down's arrow, a check button's check, an expander's triangle, the glyph on
+    # every window control. Dropped as a GTK-only property, those nodes were empty boxes
+    # -- the dropdown had no arrow, the check button no tick and the close button no
+    # cross. icons.css declares one variable per icon, and `adw-icon` is the rule which
+    # draws whichever one a node is pointed at.
+    when "-gtk-icon-source" then self.icon_source(value)
     when "font-weight"  then [self.weight(value)]
     when "font-size"    then ["text-[#{value}]"]
     when "font-family"  then ["font-[#{value.tr(' ', '_')}]"]
@@ -173,6 +192,7 @@ module AdwaitaTailwind
     when "outline-offset" then ["outline-offset-[#{self.arbitrary(value)}]"]
     when "outline-style" then self.style("outline", value)
     when "border-width" then self.border(value)
+    when "border", /\Aborder-(top|right|bottom|left)\z/ then self.border_shorthand(property, value)
     when "border-style" then self.style("border", value)
     when "border-spacing" then ["gap-[#{self.arbitrary(value)}]"]
     when "transition"   then self.transition(value)
@@ -201,13 +221,35 @@ module AdwaitaTailwind
     when /\Aborder-(top|bottom)-(left|right)-radius\z/
       ["rounded-#{::Regexp.last_match(1)[0]}#{::Regexp.last_match(2)[0]}-[#{self.arbitrary(value)}]"]
     when /\Aborder-(top|right|bottom|left)-width\z/
-      ["border-#{SIDES.fetch(::Regexp.last_match(1))}-[#{value}]"]
+      # The same arbitrary property the shorthand writes, so that a rule turning a border
+      # off beats the one that turned it on: Tailwind orders its own width utilities
+      # before any arbitrary property, so `border-b-[0]` on the last row of a boxed list
+      # lost to the `[border-bottom-width:1px]` on every row.
+      ["[border-#{::Regexp.last_match(1)}-width:#{value}]"]
     else []
     end
   end
 
   # The `background` shorthand, which libadwaita writes as a colour, as `none`, or as an image.
   # Tailwind has a utility for the first two and an arbitrary value for the third.
+  # `opacity: 55%` is `opacity-55`, and `opacity: var(--dim-opacity)` is not a number at
+  # all: `String#to_f` reads it as 0, so every dimmed label in the registry -- every
+  # subtitle, every description, the caption under every title -- was `opacity-0` and
+  # drew nothing.
+  def self.icon_source(value)
+    name = value[/-gtk-icontheme\(\s*["']([a-z0-9-]+)["']\s*\)/, 1]
+
+    name.nil? ? [] : ["adw-icon", "[--adw-icon:var(--icon-#{name})]"]
+  end
+
+  def self.opacity(value)
+    number = value[/\A([\d.]+)%?\z/, 1]
+
+    return ["opacity-[#{self.arbitrary(value)}]"] if number.nil?
+
+    ["opacity-#{(number.to_f * (value.include?("%") ? 1 : 100)).round}"]
+  end
+
   def self.background(value)
     if value == "none"
       ["bg-none"]
@@ -250,20 +292,45 @@ module AdwaitaTailwind
   end
 
   # Which edges a border-width shorthand actually draws.
+  # `border-bottom: 1px solid var(--card-shade-color)` as the three properties it is.
+  #
+  # Nothing read the shorthand at all, so `list.boxed-list > row` lost the line under
+  # every row in every boxed list -- and the pixel of height that goes with it, which is
+  # why a row was 54px tall where the toolkit makes it 55.
+  #
+  # As arbitrary properties rather than as `border-b-[...]`, because that name is a width
+  # and a colour at once and which one it is depends on what is in the brackets.
+  def self.border_shorthand(property, value)
+    side = property == "border" ? "" : "-#{property.delete_prefix('border-')}"
+    parts = self.values(value)
+
+    return ["[border#{side}-width:0]"] if parts == ["none"] || parts == ["0"]
+
+    parts.filter_map do |part|
+      case part
+      when /\A[\d.]+px\z/, "thin", "medium", "thick" then "[border#{side}-width:#{part}]"
+      when "none", "hidden", "solid", "dashed", "dotted", "double" then "[border#{side}-style:#{part}]"
+      else "[border#{side}-color:#{self.arbitrary(part)}]"
+      end
+    end
+  end
+
+  # A border width is not a length on the spacing scale: Tailwind's `border-2` is 2px and
+  # its `border-0.5` is nothing at all, so a 1px border read as a quarter of a spacing
+  # step came out as `border-b-0.5`, which has no rule behind it and which `@apply`
+  # refuses outright.
   def self.border(value)
     parts = value.split(/\s+/)
 
     if parts.length == 1
-      [self.length("border", parts[0])]
+      ["[border-width:#{parts[0]}]"]
     else
       sides = self.expand("border-width", value)
 
       sides.filter_map do |property, part|
-        side = SIDES.fetch(property.delete_prefix("border-width-").delete_suffix(""))
+        side = property.delete_prefix("border-width-")
 
-        unless part == "0" || part == "0px"
-          self.length("border-#{side}", part)
-        end
+        "[border-#{side}-width:#{part}]"
       end
     end
   end
@@ -325,6 +392,11 @@ module AdwaitaTailwind
     ":selected" => "data-[selected]", ":indeterminate" => "indeterminate",
     ":first-child" => "first", ":last-child" => "last", ":only-child" => "only",
   }.freeze
+
+  # A pseudo-class which says which element the rule is about rather than what state it is
+  # in. `:dir(ltr)` and `:not(...)` narrow a selector; they do not describe a widget which
+  # is any different, so a rule carrying one is kept as the widget's own.
+  SHAPES = [":dir(ltr)", ":dir(rtl)", ":first-child", ":last-child", ":only-child"].freeze
 
   # Split a selector list on the commas which are not inside brackets.
   def self.split_selectors(list)
@@ -473,13 +545,15 @@ module AdwaitaTailwind
 
   # Fold the rules into one declaration set per widget and state, last writer winning.
   def self.collect(rules, contexts:)
-    # A widget which is ever styled on its own is described by those rules alone. One which is
-    # only ever styled inside something else -- a row inside a boxed list, say -- has nothing
-    # else to go on, so for those the contexts are all there is.
-    unless contexts
-      direct = rules.select{|rule| self.bare?(rule)}.map(&:subject).to_set
-      rules = rules.select{|rule| !direct.include?(rule.subject) || self.bare?(rule)}
-    end
+    # A widget is described by the rules which style it on its own, and by nothing else.
+    #
+    # Taking the contexts as a fallback for a node which is never styled bare looked like
+    # the generous reading and was the wrong one: `box` is never styled on its own, so it
+    # collected the union of every `... box` rule in the sheet -- a popover's padding, a
+    # boxed list's background, a header's font weight -- and every plain box in every
+    # template came out as a grey card. A node with no bare rule has no classes of its
+    # own; where it sits is what styles it, and that is what the contexts are for.
+    rules = rules.select{|rule| self.bare?(rule)} unless contexts
 
     {}.tap do |widgets|
       rules.each do |rule|
@@ -489,8 +563,20 @@ module AdwaitaTailwind
           states -= ["focus"]
         end
 
-        # A rule whose subject carries a state this does not translate still describes that
-        # widget, so it is kept under the plain key rather than dropped.
+        # A rule whose subject carries a state this cannot translate is a rule about that
+        # widget in that state, and keeping it under the plain key stated it about the
+        # widget always: `headerbar:backdrop` is the bar in a window which is not focused,
+        # and folding it in gave every header bar the backdrop colour and
+        # `filter: opacity(0.5)`. A state with no web equivalent takes its rule with it.
+        next if rule.states.length != states.length && !rule.states.all?{|state| SHAPES.include?(state) }
+
+        # And the same about the ancestors the rule names. `headerbar:backdrop >
+        # windowhandle` is the inside of a header bar in a window which is not focused,
+        # and nothing in the subject's own selector says so: every header bar was drawn
+        # at `filter: opacity(0.5)`, which is what a backdrop looks like. A state on an
+        # ancestor cannot be selected from here, so the rule goes.
+        next unless self.ancestor_states(rule).all?{|state| SHAPES.include?(state) }
+
         if contexts
           key = rule.context.sub(/(::?[a-z-]+(?:\([^)]*\))?)+\z/, "")
         else
@@ -515,6 +601,13 @@ module AdwaitaTailwind
         end
       end
     end
+  end
+
+  # The pseudo-classes the rule puts on anything other than the element it styles.
+  def self.ancestor_states(rule)
+    rule.context
+      .sub(/(::?[a-z-]+(?:\([^)]*\))?)+\z/, "")
+      .scan(/::?[a-z-]+(?:\([^)]*\))?/)
   end
 
   # An option written `--sheet PATH`, taken out of the arguments along with its value so that
@@ -547,6 +640,122 @@ module AdwaitaTailwind
       File.write(self.output(name),
                  "#{JSON.pretty_generate(self.widgets(PATHS.fetch(which), contexts: contexts, all: contexts))}\n")
       warn("wrote bin/03-adwaita-tailwind.out/#{name}")
+    end
+
+    File.write(self.output("variables.json"), "#{JSON.pretty_generate(self.variables)}\n")
+    warn("wrote bin/03-adwaita-tailwind.out/variables.json")
+  end
+
+  # The custom properties the stylesheets define for themselves.
+  #
+  # Nothing was reading them. `subject` cannot name `:root` -- it is a pseudo-class and
+  # not a widget -- and `@define-color` is an at-rule, which the parse strips. So every
+  # colour Adwaita names fell out, and the registry's own list of variables was a
+  # hand-copied subset: 41 of the 114 the sheet defines. Every rule naming one of the
+  # others resolved to nothing at all, which is a banner with no background, a card with
+  # no shade, a sidebar with no colour and an avatar with no face.
+  #
+  # Both of the ways a sheet names a colour, because Adwaita uses both: `@define-color
+  # banner_color #7d7d83` is GTK's own form, which GTK itself also exposes to CSS as
+  # `--banner-color`, and `:root { --accent-bg-color: ... }` is the plain one.
+  #
+  # Light and dark, because the dark values are an override inside a media query -- which
+  # the rule parse strips whole, for the good reason that a nested override is not what a
+  # widget looks like. A variable is not a widget.
+  def self.variables
+    { "light" => {}, "dark" => {} }.tap do |found|
+      PATHS.each_value do |sheet|
+        css = File.read(File.join(File.expand_path("..", __dir__), sheet)).gsub(%r{/\*.*?\*/}m, "")
+        dark = self.dark_blocks(css)
+        # Without taking the dark blocks out of the light sheet the dark value is simply
+        # the later of the two and wins: every card in the light scheme had the dark
+        # scheme's shade.
+        light = self.without_dark(css)
+
+        # The `:root` entries first and the named colours over them: Adwaita writes
+        # `--card-shade-color: @card_shade_color`, which is the variable pointing at the
+        # named colour rather than a value, and reading it last left the variable pointing
+        # at itself.
+        found["light"].merge!(self.custom_properties(light)).merge!(self.named_colours(light))
+        found["dark"].merge!(self.custom_properties(dark)).merge!(self.named_colours(dark))
+      end
+
+      # A variable which is only itself carries no value: GTK works the accent colour out
+      # at run time from the desktop's setting, and the sheet's `--accent-bg-color:
+      # @accent_bg_color` is where that lands rather than a colour anybody can read.
+      found.each_value{|one| one.reject!{|name, value| value == "var(#{name})" } }
+    end
+  end
+
+  # Everything inside a `@media (prefers-color-scheme: dark)` block, with the braces
+  # counted rather than guessed at: the blocks nest, and a regular expression which stops
+  # at the first closing brace reads one declaration and misses the other hundred.
+  def self.dark_blocks(css)
+    self.dark_spans(css).map{|start, finish| css[start...finish].to_s }.join("\n")
+  end
+
+  # Where each dark block begins and ends, with the braces counted rather than guessed at:
+  # the blocks nest, and a regular expression which stops at the first closing brace reads
+  # one declaration and misses the other hundred.
+  def self.dark_spans(css)
+    [].tap do |found|
+      index = 0
+
+      while (start = css.index(/@media[^{]*prefers-color-scheme:\s*dark[^{]*\{/, index))
+        cursor = css.index("{", start)
+        depth = 0
+
+        while cursor < css.length
+          depth += 1 if css[cursor] == "{"
+          depth -= 1 if css[cursor] == "}"
+          break if depth.zero?
+
+          cursor += 1
+        end
+
+        found << [start, cursor + 1]
+        index = cursor + 1
+      end
+    end
+  end
+
+  # The sheet with every dark block cut out of it.
+  def self.without_dark(css)
+    found = +""
+    index = 0
+
+    self.dark_spans(css).each do |start, finish|
+      found << css[index...start].to_s
+      index = finish
+    end
+
+    found << css[index..].to_s
+  end
+
+  # `@define-color banner_color #7d7d83` is `--banner-color: #7d7d83`, which is the name
+  # GTK itself answers to in CSS.
+  def self.named_colours(css)
+    {}.tap do |found|
+      css.scan(/@define-color\s+([a-z0-9_]+)\s+([^;]+);/) do |name, value|
+        found["--#{name.tr('_', '-')}"] = self.dereference(value.strip)
+      end
+    end
+  end
+
+  # `@accent_bg_color` in a value is a reference to a named colour, which on the web is
+  # the variable it became.
+  def self.dereference(value)
+    value.gsub(/@([a-z0-9_]+)/) { "var(--#{::Regexp.last_match(1).tr('_', '-')})" }
+  end
+
+  # The `--name: value` pairs in every `:root` block of a stylesheet.
+  def self.custom_properties(css)
+    {}.tap do |found|
+      css.scan(/:root[^{]*\{([^{}]*)\}/m) do |body|
+        body.first.scan(/(--[a-z0-9-]+)\s*:\s*([^;]+)/) do |name, value|
+          found[name] = self.dereference(value.strip)
+        end
+      end
     end
   end
 

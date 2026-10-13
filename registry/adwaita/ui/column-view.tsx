@@ -15,10 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, ScrollablePolicy } from "@/lib/enums"
 
 const columnViewVariants = cva(
-  [
-    "outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-none",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-  ],
+  "outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
   {
     variants: {
       variant: {
@@ -26,11 +23,7 @@ const columnViewVariants = cva(
         /** .column-separators */
         columnSeparators: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .dnd */
         dnd: "",
         /** .view */
@@ -98,6 +91,7 @@ function ColumnView({ className, render, variant = "default", hadjustment, heade
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "column-view",
+    "data-node": "columnview",
     "data-variant": variant,
     role: "grid",
     "data-enable-rubberband": enableRubberband,
@@ -112,12 +106,21 @@ function ColumnView({ className, render, variant = "default", hadjustment, heade
     style,
     children: (
         <>
+                  <ColumnViewListview />
+                  <ColumnViewButton />
+                  <ColumnViewHeader>
+                <ColumnViewButton2>
+                  <ColumnViewBox>
+                    {children}
+                  </ColumnViewBox>
+                  <ColumnViewSortIndicator />
+                </ColumnViewButton2>
+              </ColumnViewHeader>
                   {hadjustment}
                   {headerFactory}
                   {model}
                   {rowFactory}
                   {vadjustment}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -131,4 +134,87 @@ function ColumnView({ className, render, variant = "default", hadjustment, heade
   })
 }
 
-export { ColumnView, columnViewVariants }
+function ColumnViewListview({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="column-view-listview"
+        data-node="listview"
+      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ColumnViewButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="column-view-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ColumnViewBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="column-view-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "text-[color-mix(in_srgb,currentColor_40%,transparent)] gap-[6px] font-bold text-[82%]", className)}
+      {...props}
+    />
+  )
+}
+
+function ColumnViewSortIndicator({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="column-view-sort-indicator"
+        data-node="sort-indicator"
+      className={cn("min-h-4 min-w-4", className)}
+      {...props}
+    />
+  )
+}
+
+function ColumnViewButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="column-view-button2"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-[3px] px-1.5 bg-[transparent] rounded-none shadow-none leading-[100%] [border-left-width:1px] [border-left-style:solid] [border-left-color:transparent]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "first:[border-left-width:0]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ColumnViewHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="column-view-header"
+        data-node="header"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { ColumnView, ColumnViewListview, ColumnViewButton, ColumnViewBox, ColumnViewSortIndicator, ColumnViewButton2, ColumnViewHeader, columnViewVariants }

@@ -11,6 +11,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 import type { LengthUnit } from "@/lib/enums"
 
 export interface ClampProps
@@ -35,16 +36,19 @@ export interface ClampProps
 function Clamp({ className, render, child, orientation, maximumSize, tighteningThreshold, unit, children, ...props }: ClampProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
+  const { ref: clampRef, columns: clampColumns } = useClamp<HTMLDivElement>({ maximumSize, tighteningThreshold, unit })
   // Named rather than passed inline: a fresh object literal handed straight
   // to mergeProps is excess-property checked against the element's props,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "clamp",
+    "data-node": "clamp",
+    ref: clampRef,
     "data-maximum-size": maximumSize,
     "data-tightening-threshold": tighteningThreshold,
     "data-unit": unit,
-    className: cn("", "[&>*]:mx-auto [&>*]:w-fit [&>*]:max-w-[var(--clamp-maximum-size)]", widgetClassName, className),
-    style: { ...style, ...(maximumSize === undefined ? {} : { "--clamp-maximum-size": `${maximumSize}px` }) } as React.CSSProperties,
+    className: cn("grid", "[&>*]:min-w-0 [&>*]:col-start-2", widgetClassName, className),
+    style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
                   {child}

@@ -76,6 +76,7 @@ function Leaflet({ className, render, variant = "default", childTransitionParams
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "leaflet",
+    "data-node": "leaflet",
     "data-variant": variant,
     "data-can-navigate-back": canNavigateBack,
     "data-can-navigate-forward": canNavigateForward,
@@ -89,6 +90,8 @@ function Leaflet({ className, render, variant = "default", childTransitionParams
     style,
     children: (
         <>
+                  <LeafletDimming />
+                  <LeafletShadow />
                   {childTransitionParams}
                   {orientation}
                   {visibleChild}
@@ -106,4 +109,26 @@ function Leaflet({ className, render, variant = "default", childTransitionParams
   })
 }
 
-export { Leaflet, leafletVariants }
+function LeafletDimming({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="leaflet-dimming"
+        data-node="dimming"
+      className={cn("bg-[var(--shade-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function LeafletShadow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="leaflet-shadow"
+        data-node="shadow"
+      className={cn("min-w-14 min-h-14", className)}
+      {...props}
+    />
+  )
+}
+
+export { Leaflet, LeafletDimming, LeafletShadow, leafletVariants }

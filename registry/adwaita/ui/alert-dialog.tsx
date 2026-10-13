@@ -32,11 +32,7 @@ const alertDialogVariants = cva(
         /** .destructive-action */
         destructiveAction: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .dialog-window */
         dialogWindow: "",
         /** .floating */
@@ -50,7 +46,7 @@ const alertDialogVariants = cva(
         /** .narrow */
         narrow: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .portrait */
         portrait: "",
         /** .short */
@@ -134,6 +130,7 @@ function AlertDialog({ className, render, variant = "default", body, child, defa
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "alert-dialog",
+    "data-node": "dialog",
     "data-variant": variant,
     role: "dialog",
     "data-body-use-markup": bodyUseMarkup,
@@ -147,7 +144,7 @@ function AlertDialog({ className, render, variant = "default", body, child, defa
     "data-prefer-wide-layout": preferWideLayout,
     "data-presentation-mode": presentationMode,
     "data-title": title,
-    className: cn(alertDialogVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", alertDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -160,8 +157,9 @@ function AlertDialog({ className, render, variant = "default", body, child, defa
                           <AlertDialogHeadingLabel>{heading}</AlertDialogHeadingLabel>
                           <AlertDialogHeadingLabelSmall />
                         </AlertDialogHeadingBin>
-                        <AlertDialogBodyLabel>{body}</AlertDialogBodyLabel>
-                        <AlertDialogChildBin />
+                        {body ? (
+                          <AlertDialogBodyLabel>{body}</AlertDialogBodyLabel>
+                        ) : null}
                       </AlertDialogMessageArea>
                     </AlertDialogScrolledWindow>
                     <AlertDialogResponseArea>
@@ -191,7 +189,11 @@ function AlertDialogHeadingLabel({ className, ...props }: React.ComponentProps<"
   return (
     <span
       data-slot="alert-dialog-heading-label"
-      className={cn("font-extrabold text-[136%]", className)}
+        data-node="label"
+      className={cn("title-2", [
+        "caret-[currentColor] font-extrabold text-[136%]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -201,7 +203,11 @@ function AlertDialogHeadingLabelSmall({ className, ...props }: React.ComponentPr
   return (
     <span
       data-slot="alert-dialog-heading-label-small"
-      className={cn("font-bold text-[118%]", className)}
+        data-node="label"
+      className={cn("title-4", [
+        "caret-[currentColor] font-bold text-[118%]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -211,7 +217,7 @@ function AlertDialogHeadingBin({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="alert-dialog-heading-bin"
-      className={cn(className)}
+      className={cn("heading-bin", "px-6", className)}
       {...props}
     />
   )
@@ -221,7 +227,12 @@ function AlertDialogBodyLabel({ className, ...props }: React.ComponentProps<"spa
   return (
     <span
       data-slot="alert-dialog-body-label"
-      className={cn("font-normal leading-[140%]", className)}
+        data-node="label"
+        data-vexpand=""
+      className={cn("body", [
+        "caret-[currentColor] font-normal leading-[140%] px-6",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -231,7 +242,7 @@ function AlertDialogChildBin({ className, ...props }: React.ComponentProps<"div"
   return (
     <div
       data-slot="alert-dialog-child-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "child", "px-6", className)}
       {...props}
     />
   )
@@ -241,7 +252,8 @@ function AlertDialogMessageArea({ className, ...props }: React.ComponentProps<"d
   return (
     <div
       data-slot="alert-dialog-message-area"
-      className={cn("flex flex-col", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area", "pt-8 pb-[9px] gap-[24px]", className)}
       {...props}
     />
   )
@@ -251,7 +263,8 @@ function AlertDialogScrolledWindow({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="alert-dialog-scrolled-window"
-      className={cn(className)}
+        data-node="scrolledwindow"
+      className={cn("body-scrolled-window undershoot-bottom", className)}
       {...props}
     />
   )
@@ -261,7 +274,7 @@ function AlertDialogResponseArea({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="alert-dialog-response-area"
-      className={cn(className)}
+      className={cn("response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
       {...props}
     />
   )
@@ -271,7 +284,8 @@ function AlertDialogBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-dialog-box"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
       {...props}
     />
   )
@@ -281,7 +295,8 @@ function AlertDialogWindowHandle({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="alert-dialog-window-handle"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "pt-[3px] min-h-0 [filter:opacity(0.5)] transition-[filter] duration-200 ease-[ease-out] bg-[image:unset] bg-repeat", className)}
+        data-node="windowhandle"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )

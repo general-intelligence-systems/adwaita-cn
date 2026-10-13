@@ -36,6 +36,7 @@ function NavigationPage({ className, render, child, canPop, tag, title, children
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "navigation-page",
+    "data-node": "navigation-view-page",
     "data-can-pop": canPop,
     "data-tag": tag,
     "data-title": title,

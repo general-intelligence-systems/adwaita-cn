@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { BannerButtonStyle } from "@/lib/enums"
 
 const bannerVariants = cva(
-  "",
+  "[--banner-color:#7d7d83]",
   {
     variants: {
       variant: {
@@ -62,6 +62,7 @@ function Banner({ className, render, variant = "default", actionTarget, buttonLa
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "banner",
+    "data-node": "banner",
     "data-variant": variant,
     role: "status",
     "data-action-name": actionName,
@@ -75,11 +76,12 @@ function Banner({ className, render, variant = "default", actionTarget, buttonLa
                   <BannerRevealer>
                 <BannerGizmo>
                   <BannerTitle>{title}</BannerTitle>
-                  <BannerButton />
+                  {buttonLabel ? (
+                    <BannerButton>{buttonLabel}</BannerButton>
+                  ) : null}
                   {children}
                 </BannerGizmo>
               </BannerRevealer>
-                  {buttonLabel}
                   {actionTarget}
         </>
       ),
@@ -98,7 +100,12 @@ function BannerTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="banner-title"
-      className={cn("font-bold", className)}
+        data-node="label"
+        data-hexpand=""
+      className={cn("heading", [
+        "caret-[currentColor] font-bold",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -108,12 +115,13 @@ function BannerButton({ className, ...props }: React.ComponentProps<"button">) {
   return (
     <button
       data-slot="banner-button"
+        data-node="button"
+        data-valign="center"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] text-[var(--accent-bg-color)] shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
         "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
         "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
         "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
         "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
         "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
@@ -127,7 +135,8 @@ function BannerGizmo({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="banner-gizmo"
-      className={cn(className)}
+        data-hexpand=""
+      className={cn("p-1.5 bg-[color-mix(in_srgb,var(--banner-color)_30%,var(--window-bg-color))] text-[var(--window-fg-color)]", className)}
       {...props}
     />
   )
@@ -137,7 +146,8 @@ function BannerRevealer({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="banner-revealer"
-      className={cn("py-0 px-3.5", className)}
+        data-node="revealer"
+      className={cn(className)}
       {...props}
     />
   )

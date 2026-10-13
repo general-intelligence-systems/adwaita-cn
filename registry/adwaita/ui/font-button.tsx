@@ -71,6 +71,7 @@ function FontButton({ className, render, variant = "default", fontDesc, font, la
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "font-button",
+    "data-node": "fontbutton",
     "data-variant": variant,
     "data-font": font,
     "data-language": language,

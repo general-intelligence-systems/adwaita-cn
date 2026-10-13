@@ -56,6 +56,7 @@ function ScaleButton({ className, render, variant = "default", adjustment, icons
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "scale-button",
+    "data-node": "scalebutton",
     "data-variant": variant,
     "data-has-frame": hasFrame,
     "data-orientation": orientation,

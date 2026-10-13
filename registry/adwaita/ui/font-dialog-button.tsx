@@ -62,6 +62,7 @@ function FontDialogButton({ className, render, variant = "default", dialog, font
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "font-dialog-button",
+    "data-node": "fontbutton",
     "data-variant": variant,
     "data-font-features": fontFeatures,
     "data-level": level,

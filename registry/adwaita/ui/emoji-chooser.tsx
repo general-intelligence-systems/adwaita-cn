@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { PositionType } from "@/lib/enums"
 
 const emojiChooserVariants = cva(
-  "",
+  "[--shade-color:var(--popover-shade-color)] p-2 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)] rounded-[15px]",
   {
     variants: {
       variant: {
@@ -23,9 +23,9 @@ const emojiChooserVariants = cva(
         /** .background */
         background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]",
         /** .magnifier */
-        magnifier: "bg-[transparent] text-[RGB(255_255_255/90%)]",
+        magnifier: "bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
         /** .touch-selection */
-        touchSelection: "bg-[transparent] text-[RGB(255_255_255/90%)]",
+        touchSelection: "bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
         /** .view */
         view: [
           "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
@@ -37,7 +37,7 @@ const emojiChooserVariants = cva(
       size: {
         default: "",
         /** .menu */
-        menu: "pt-1.5",
+        menu: "p-0 min-w-30",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -81,6 +81,7 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "emoji-chooser",
+    "data-node": "popover",
     "data-variant": variant,
     "data-size": size,
     role: "dialog",
@@ -89,10 +90,14 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("flex", "flex-row", emojiChooserVariants({ variant, size }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", emojiChooserVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>
+                  <EmojiChooserArrow />
+                  <EmojiChooserAccelerator />
+                  <EmojiChooserCheck />
+                  <EmojiChooserRadio />
                   {child}
                   {defaultWidget}
                   {pointingTo}
@@ -110,4 +115,70 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
   })
 }
 
-export { EmojiChooser, emojiChooserVariants }
+function EmojiChooserArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="emoji-chooser-arrow"
+        data-node="arrow"
+      className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EmojiChooserAccelerator({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="emoji-chooser-accelerator"
+        data-node="accelerator"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function EmojiChooserCheck({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="emoji-chooser-check"
+        data-node="check"
+      className={cn([
+        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
+        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
+        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
+        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
+        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function EmojiChooserRadio({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="emoji-chooser-radio"
+        data-node="radio"
+      className={cn([
+        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
+        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
+        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
+        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
+        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { EmojiChooser, EmojiChooserArrow, EmojiChooserAccelerator, EmojiChooserCheck, EmojiChooserRadio, emojiChooserVariants }

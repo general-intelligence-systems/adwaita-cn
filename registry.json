@@ -137,6 +137,27 @@
       ]
     },
     {
+      "name": "adaptive-preview",
+      "type": "registry:ui",
+      "title": "AdaptivePreview",
+      "description": "AdaptivePreview.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums",
+        "widget-props"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/adaptive-preview.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "AlertDialog",
@@ -1418,6 +1439,27 @@
       ]
     },
     {
+      "name": "indicator-bin",
+      "type": "registry:ui",
+      "title": "IndicatorBin",
+      "description": "IndicatorBin.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums",
+        "widget-props"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/indicator-bin.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "info-bar",
       "type": "registry:ui",
       "title": "InfoBar",
@@ -1581,6 +1623,27 @@
       "files": [
         {
           "path": "registry/adwaita/ui/link-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "link-row",
+      "type": "registry:ui",
+      "title": "LinkRow",
+      "description": "LinkRow.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums",
+        "widget-props"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/link-row.tsx",
           "type": "registry:ui"
         }
       ]
@@ -2867,6 +2930,27 @@
       ]
     },
     {
+      "name": "tab-thumbnail",
+      "type": "registry:ui",
+      "title": "TabThumbnail",
+      "description": "TabThumbnail.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums",
+        "widget-props"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/tab-thumbnail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tab-view",
       "type": "registry:ui",
       "title": "TabView",
@@ -2946,6 +3030,27 @@
       "files": [
         {
           "path": "registry/adwaita/ui/toast-overlay.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast-widget",
+      "type": "registry:ui",
+      "title": "ToastWidget",
+      "description": "ToastWidget.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums",
+        "widget-props"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/toast-widget.tsx",
           "type": "registry:ui"
         }
       ]
@@ -3135,6 +3240,27 @@
       "files": [
         {
           "path": "registry/adwaita/ui/view-switcher-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "view-switcher-button",
+      "type": "registry:ui",
+      "title": "ViewSwitcherButton",
+      "description": "ViewSwitcherButton.",
+      "registryDependencies": [
+        "adwaita-theme",
+        "gtk-enums",
+        "widget-props"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/adwaita/ui/view-switcher-button.tsx",
           "type": "registry:ui"
         }
       ]

@@ -33,7 +33,7 @@ const menuButtonVariants = cva(
         /** .opaque */
         opaque: "bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)] rounded-[9px]",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding bg-none text-[inherit]",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding bg-none text-[inherit]",
         /** .popup */
         popup: "",
         /** .right */
@@ -97,6 +97,7 @@ function MenuButton({ className, render, variant = "default", child, iconName, m
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "menu-button",
+    "data-node": "menubutton",
     "data-variant": variant,
     "data-state": active ? "checked" : "unchecked",
     "aria-checked": active,
@@ -107,11 +108,12 @@ function MenuButton({ className, render, variant = "default", child, iconName, m
     "data-label": label,
     "data-primary": primary,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row", menuButtonVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", menuButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="menu-button-icon" className={iconName} aria-hidden /> : null}
+                  <MenuButtonArrow />
+                  {iconName ? <span data-slot="menu-button-icon" data-icon className={iconName} aria-hidden /> : null}
                   {child}
                   {menuModel}
                   {popover}
@@ -129,4 +131,15 @@ function MenuButton({ className, render, variant = "default", child, iconName, m
   })
 }
 
-export { MenuButton, menuButtonVariants }
+function MenuButtonArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="menu-button-arrow"
+        data-node="arrow"
+      className={cn("min-h-4 min-w-4", className)}
+      {...props}
+    />
+  )
+}
+
+export { MenuButton, MenuButtonArrow, menuButtonVariants }

@@ -30,6 +30,7 @@ function MultiLayoutView({ className, render, layout, layoutName, children, ...p
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "multi-layout-view",
+    "data-node": "multi-layout-view",
     "data-layout-name": layoutName,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,

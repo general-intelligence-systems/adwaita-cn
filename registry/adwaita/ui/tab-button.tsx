@@ -49,6 +49,7 @@ function TabButton({ className, render, variant = "default", actionTarget, view,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "tab-button",
+    "data-node": "tabbutton",
     "data-variant": variant,
     "data-action-name": actionName,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", tabButtonVariants({ variant }), widgetClassName, className),
@@ -83,12 +84,8 @@ function TabButtonIcon({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="tab-button-icon"
-      className={cn([
-        "p-1 m-1.5 bg-[image:radial-gradient(farthest-side,var(--accent-color)_96%,transparent)] bg-[size:6px_6px] bg-no-repeat bg-[position:left_3px] opacity-70 transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] [filter:drop-shadow(0px_1px_1px_RGB(0_0_6/30%))] bg-[color-mix(in_srgb,var(--thumbnail-bg-color)_calc(0.8_*_75%),currentColor_calc(0.2_*_75%))] rounded-full min-w-6 min-h-6",
-        "hover:opacity-100",
-        "active:opacity-80",
-        "disabled:[filter:opacity(30%)]",
-      ], className)}
+        data-node="image"
+      className={cn(className)}
       {...props}
     />
   )
@@ -98,7 +95,12 @@ function TabButtonLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="tab-button-label"
-      className={cn(className)}
+        data-node="label"
+        data-halign="center"
+      className={cn("numeric", [
+        "caret-[currentColor] font-extrabold text-[10.5px]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -108,16 +110,8 @@ function TabButtonOverlay({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="tab-button-overlay"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9.5px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] text-[RGB(0_0_6/75%)] shadow-[inset_0_0_0_2px_var(--accent-bg-color)] border-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] rounded-tl-[9px] rounded-tr-[9px] rounded-bl-[9px] rounded-br-[9px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+        data-node="overlay"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )
@@ -127,7 +121,10 @@ function TabButtonIndicator({ className, ...props }: React.ComponentProps<"div">
   return (
     <div
       data-slot="tab-button-indicator"
-      className={cn("px-[calc(11px_-_var(---group-padding))]", className)}
+        data-node="indicatorbin"
+        data-halign="center"
+        data-valign="center"
+      className={cn(className)}
       {...props}
     />
   )
@@ -137,12 +134,12 @@ function TabButtonButton({ className, ...props }: React.ComponentProps<"button">
   return (
     <button
       data-slot="tab-button-button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] text-[var(--accent-bg-color)] shadow-[inset_0_0_0_2px_var(--accent-bg-color)]",
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button", [
+        "px-[5px] min-w-6 py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
         "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
         "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
         "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
         "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
         "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",

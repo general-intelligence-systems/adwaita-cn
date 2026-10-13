@@ -16,7 +16,7 @@ import type { InputHints, InputPurpose } from "@/lib/enums"
 
 const entryVariants = cva(
   [
-    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[-2px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] outline-2 border-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
   ],
   {
@@ -35,7 +35,7 @@ const entryVariants = cva(
 )
 
 export interface EntryProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "activatesDefault" | "attributes" | "buffer" | "completion" | "editable" | "editingCanceled" | "enableEmojiCompletion" | "enableUndo" | "extraMenu" | "hasFrame" | "imModule" | "inputHints" | "inputPurpose" | "invisibleChar" | "invisibleCharSet" | "maxLength" | "maxWidthChars" | "menuEntryIconPrimaryText" | "menuEntryIconSecondaryText" | "overwriteMode" | "placeholderText" | "primaryIconActivatable" | "primaryIconGicon" | "primaryIconName" | "primaryIconPaintable" | "primaryIconSensitive" | "primaryIconTooltipMarkup" | "primaryIconTooltipText" | "progressFraction" | "progressPulseStep" | "secondaryIconActivatable" | "secondaryIconGicon" | "secondaryIconName" | "secondaryIconPaintable" | "secondaryIconSensitive" | "secondaryIconTooltipMarkup" | "secondaryIconTooltipText" | "showEmojiIcon" | "tabs" | "text" | "truncateMultiline" | "visibility" | "widthChars" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "activatesDefault" | "attributes" | "buffer" | "completion" | "editable" | "editingCanceled" | "enableEmojiCompletion" | "enableUndo" | "extraMenu" | "hasFrame" | "imModule" | "inputHints" | "inputPurpose" | "invisibleChar" | "invisibleCharSet" | "maxLength" | "maxWidthChars" | "menuEntryIconPrimaryText" | "menuEntryIconSecondaryText" | "overwriteMode" | "placeholderText" | "primaryIconActivatable" | "primaryIconGicon" | "primaryIconName" | "primaryIconPaintable" | "primaryIconSensitive" | "primaryIconTooltipMarkup" | "primaryIconTooltipText" | "progressFraction" | "progressPulseStep" | "secondaryIconActivatable" | "secondaryIconGicon" | "secondaryIconName" | "secondaryIconPaintable" | "secondaryIconSensitive" | "secondaryIconTooltipMarkup" | "secondaryIconTooltipText" | "showEmojiIcon" | "tabs" | "text" | "truncateMultiline" | "visibility" | "widthChars" | "xalign" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof entryVariants> {
   /** gboolean, from Gtk.Entry */
@@ -171,7 +171,7 @@ export interface EntryProps
   xalign?: number
 }
 
-function Entry({ className, render, variant = "default", activatesDefault, attributes, buffer, completion, editable, editingCanceled, enableEmojiCompletion, enableUndo, extraMenu, hasFrame, imModule, inputHints, inputPurpose, invisibleChar, invisibleCharSet, maxLength, maxWidthChars, menuEntryIconPrimaryText, menuEntryIconSecondaryText, overwriteMode, placeholderText, primaryIconActivatable, primaryIconGicon, primaryIconName, primaryIconPaintable, primaryIconSensitive, primaryIconTooltipMarkup, primaryIconTooltipText, progressFraction, progressPulseStep, secondaryIconActivatable, secondaryIconGicon, secondaryIconName, secondaryIconPaintable, secondaryIconSensitive, secondaryIconTooltipMarkup, secondaryIconTooltipText, showEmojiIcon, tabs, text, truncateMultiline, visibility, widthChars, xalign, children: _children, ...props }: EntryProps) {
+function Entry({ className, render, variant = "default", attributes, buffer, completion, extraMenu, primaryIconGicon, primaryIconPaintable, secondaryIconGicon, secondaryIconPaintable, tabs, activatesDefault, editable, editingCanceled, enableEmojiCompletion, enableUndo, hasFrame, imModule, inputHints, inputPurpose, invisibleChar, invisibleCharSet, maxLength, maxWidthChars, menuEntryIconPrimaryText, menuEntryIconSecondaryText, overwriteMode, placeholderText, primaryIconActivatable, primaryIconName, primaryIconSensitive, primaryIconTooltipMarkup, primaryIconTooltipText, progressFraction, progressPulseStep, secondaryIconActivatable, secondaryIconName, secondaryIconSensitive, secondaryIconTooltipMarkup, secondaryIconTooltipText, showEmojiIcon, text, truncateMultiline, visibility, widthChars, xalign, children, ...props }: EntryProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -179,17 +179,13 @@ function Entry({ className, render, variant = "default", activatesDefault, attri
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "entry",
+    "data-node": "entry",
     "data-variant": variant,
-    type: "text",
     "data-activates-default": activatesDefault,
-    "data-attributes": attributes,
-    "data-buffer": buffer,
-    "data-completion": completion,
-    contentEditable: editable,
+    "data-editable": editable,
     "data-editing-canceled": editingCanceled,
     "data-enable-emoji-completion": enableEmojiCompletion,
     "data-enable-undo": enableUndo,
-    "data-extra-menu": extraMenu,
     "data-has-frame": hasFrame,
     "data-im-module": imModule,
     "data-input-hints": inputHints,
@@ -201,41 +197,138 @@ function Entry({ className, render, variant = "default", activatesDefault, attri
     "data-menu-entry-icon-primary-text": menuEntryIconPrimaryText,
     "data-menu-entry-icon-secondary-text": menuEntryIconSecondaryText,
     "data-overwrite-mode": overwriteMode,
-    placeholder: placeholderText,
+    "data-placeholder-text": placeholderText,
     "data-primary-icon-activatable": primaryIconActivatable,
-    "data-primary-icon-gicon": primaryIconGicon,
     "data-primary-icon-name": primaryIconName,
-    "data-primary-icon-paintable": primaryIconPaintable,
     "data-primary-icon-sensitive": primaryIconSensitive,
     "data-primary-icon-tooltip-markup": primaryIconTooltipMarkup,
     "data-primary-icon-tooltip-text": primaryIconTooltipText,
     "data-progress-fraction": progressFraction,
     "data-progress-pulse-step": progressPulseStep,
     "data-secondary-icon-activatable": secondaryIconActivatable,
-    "data-secondary-icon-gicon": secondaryIconGicon,
     "data-secondary-icon-name": secondaryIconName,
-    "data-secondary-icon-paintable": secondaryIconPaintable,
     "data-secondary-icon-sensitive": secondaryIconSensitive,
     "data-secondary-icon-tooltip-markup": secondaryIconTooltipMarkup,
     "data-secondary-icon-tooltip-text": secondaryIconTooltipText,
     "data-show-emoji-icon": showEmojiIcon,
-    "data-tabs": tabs,
     "data-text": text,
     "data-truncate-multiline": truncateMultiline,
     "data-visibility": visibility,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn(entryVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", entryVariants({ variant }), widgetClassName, className),
     style,
+    children: (
+        <>
+                  <EntryImage />
+                  <EntryProgress>
+                <EntryTrough>
+                  <EntryProgress2 />
+                </EntryTrough>
+              </EntryProgress>
+                  <EntryText placeholder={placeholderText} defaultValue={text} />
+                  {attributes}
+                  {buffer}
+                  {completion}
+                  {extraMenu}
+                  {primaryIconGicon}
+                  {primaryIconPaintable}
+                  {secondaryIconGicon}
+                  {secondaryIconPaintable}
+                  {tabs}
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { Entry, entryVariants }
+function EntryImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="entry-image"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "hover:opacity-100",
+        "active:opacity-80",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function EntryProgress2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-progress2"
+        data-node="progress"
+      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-trough"
+        data-node="trough"
+      className={cn("min-h-0.5", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryProgress({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-progress"
+        data-node="progress"
+      className={cn("mb-[3px]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="entry-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function EntryText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="entry-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      {...props}
+    />
+  )
+}
+
+export { Entry, EntryImage, EntryProgress2, EntryTrough, EntryProgress, EntryBlockCursor, EntryPlaceholder, EntryText, entryVariants }

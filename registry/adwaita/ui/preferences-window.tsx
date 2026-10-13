@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 
 const preferencesWindowVariants = cva(
   "",
@@ -20,13 +21,13 @@ const preferencesWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_transparent,0_0_10px_5px_RGB(0_0_0/8%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px] transition-[box-shadow] duration-200 ease-[ease-out]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
         /** .messagedialog */
         messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .preferences */
         preferences: "",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-backdrop-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
         ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
       },
@@ -138,6 +139,7 @@ function PreferencesWindow({ className, render, variant = "default", application
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "preferences-window",
+    "data-node": "window",
     "data-variant": variant,
     role: "dialog",
     "data-adaptive-preview": adaptivePreview,
@@ -159,7 +161,7 @@ function PreferencesWindow({ className, render, variant = "default", application
     "data-startup-id": startupId,
     "data-title": title,
     "data-visible-page-name": visiblePageName,
-    className: cn(preferencesWindowVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesWindowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -174,7 +176,9 @@ function PreferencesWindow({ className, render, variant = "default", application
                             <PreferencesWindowTitleStack>
                               {children}
                             </PreferencesWindowTitleStack>
-                            <PreferencesWindowSearchButton />
+                            {searchEnabled ? (
+                              <PreferencesWindowSearchButton />
+                            ) : null}
                           </PreferencesWindowHeaderBar>
                         </PreferencesWindowToolbarView>
                       </PreferencesWindowBreakpointBin>
@@ -182,10 +186,10 @@ function PreferencesWindow({ className, render, variant = "default", application
                   </PreferencesWindowSubpagesNavView>
                 </PreferencesWindowSubpagesLeaflet>
               </PreferencesWindowToastOverlay>
-                  {iconName ? <span data-slot="preferences-window-icon" className={iconName} aria-hidden /> : null}
+                  {iconName ? <span data-slot="preferences-window-icon" data-icon className={iconName} aria-hidden /> : null}
+                  {content}
                   {application}
                   {child}
-                  {content}
                   {defaultWidget}
                   {display}
                   {focusWidget}
@@ -210,6 +214,7 @@ function PreferencesWindowContentStack({ className, ...props }: React.ComponentP
   return (
     <div
       data-slot="preferences-window-content-stack"
+        data-node="stack"
       className={cn(className)}
       {...props}
     />
@@ -220,6 +225,8 @@ function PreferencesWindowTitleStack({ className, ...props }: React.ComponentPro
   return (
     <div
       data-slot="preferences-window-title-stack"
+        data-node="stack"
+        data-hexpand=""
       className={cn(className)}
       {...props}
     />
@@ -230,15 +237,16 @@ function PreferencesWindowSearchButton({ className, ...props }: React.ComponentP
   return (
     <button
       data-slot="preferences-window-search-button"
-      className={cn("flex flex-row", [
-        "text-[var(--accent-bg-color)] shadow-none bg-[transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[9px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:opacity(30%)]",
-        "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        data-node="button"
+        data-valign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -249,7 +257,8 @@ function PreferencesWindowHeaderBar({ className, ...props }: React.ComponentProp
   return (
     <div
       data-slot="preferences-window-header-bar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-backdrop-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)] transition-[background-color] duration-200 ease-[ease-out]", className)}
+        data-node="headerbar"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -259,7 +268,8 @@ function PreferencesWindowToolbarView({ className, ...props }: React.ComponentPr
   return (
     <div
       data-slot="preferences-window-toolbar-view"
-      className={cn("flex flex-row", className)}
+        data-node="toolbarview"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -279,6 +289,7 @@ function PreferencesWindowNavigationPage({ className, ...props }: React.Componen
   return (
     <div
       data-slot="preferences-window-navigation-page"
+        data-node="navigation-view-page"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
@@ -289,6 +300,7 @@ function PreferencesWindowSubpagesNavView({ className, ...props }: React.Compone
   return (
     <div
       data-slot="preferences-window-subpages-nav-view"
+        data-node="navigation-view"
       className={cn(className)}
       {...props}
     />
@@ -299,6 +311,7 @@ function PreferencesWindowSubpagesLeaflet({ className, ...props }: React.Compone
   return (
     <div
       data-slot="preferences-window-subpages-leaflet"
+        data-node="leaflet"
       className={cn(className)}
       {...props}
     />
@@ -309,6 +322,7 @@ function PreferencesWindowToastOverlay({ className, ...props }: React.ComponentP
   return (
     <div
       data-slot="preferences-window-toast-overlay"
+        data-node="toastoverlay"
       className={cn(className)}
       {...props}
     />

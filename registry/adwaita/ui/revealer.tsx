@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { RevealerTransitionType } from "@/lib/enums"
 
 const revealerVariants = cva(
-  "py-0 px-3.5",
+  "",
   {
     variants: {
       variant: {
@@ -53,6 +53,7 @@ function Revealer({ className, render, variant = "default", child, revealChild, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "revealer",
+    "data-node": "revealer",
     "data-variant": variant,
     "data-reveal-child": revealChild,
     "data-transition-duration": transitionDuration,

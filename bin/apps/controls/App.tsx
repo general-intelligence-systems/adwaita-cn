@@ -47,7 +47,7 @@ export default function ControlsApp() {
 
             <Box orientation="horizontal" className="gap-3 items-center">
               <Label label="Enabled" className="grow text-left" />
-              <Switch active />
+              <Switch active halign="end" />
             </Box>
 
             <CheckButton label="Remember me" active />

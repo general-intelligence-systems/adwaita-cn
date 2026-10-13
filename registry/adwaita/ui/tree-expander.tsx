@@ -39,10 +39,11 @@ function TreeExpander({ className, render, child, listRow, hideExpander, indentF
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "tree-expander",
+    "data-node": "treeexpander",
     "data-hide-expander": hideExpander,
     "data-indent-for-depth": indentForDepth,
     "data-indent-for-icon": indentForIcon,
-    className: cn("flex", "flex-row", "gap-[4px]", widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[4px]", widgetClassName, className),
     style,
     children: (
         <>

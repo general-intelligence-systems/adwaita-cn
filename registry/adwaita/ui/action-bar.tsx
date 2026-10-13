@@ -44,12 +44,17 @@ function ActionBar({ className, render, variant = "default", revealed, children,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "action-bar",
+    "data-node": "actionbar",
     "data-variant": variant,
     role: "toolbar",
     "data-revealed": revealed,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", actionBarVariants({ variant }), widgetClassName, className),
     style,
-    children: children,
+    children: (
+        <ActionBarRevealer>
+                {children}
+              </ActionBarRevealer>
+      ),
     ...widgetAttributes,
   }
 
@@ -61,4 +66,15 @@ function ActionBar({ className, render, variant = "default", revealed, children,
   })
 }
 
-export { ActionBar, actionBarVariants }
+function ActionBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="action-bar-revealer"
+        data-node="revealer"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { ActionBar, ActionBarRevealer, actionBarVariants }

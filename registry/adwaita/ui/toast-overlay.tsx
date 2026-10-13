@@ -27,7 +27,8 @@ function ToastOverlay({ className, render, child, children, ...props }: ToastOve
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "toast-overlay",
-    className: cn(widgetClassName, className),
+    "data-node": "toastoverlay",
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>

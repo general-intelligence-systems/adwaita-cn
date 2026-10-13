@@ -30,6 +30,23 @@ body {
   font-family: "ComicShannsMono Nerd Font", monospace;
 }
 
+/* And the size it is rendered at, for the same reason. GTK asks Pango for the font in
+ * points and Pango turns those into pixels with the desktop's Xft DPI, so
+ * `ComicShannsMono Nerd Font 11` at the 81.6 DPI this machine reports is 12.47px and not
+ * the browser's 16px default. Three and a half pixels of em is every label in every
+ * application a different width, which is a comparison of two type sizes rather than of
+ * two layouts.
+ *
+ * ON THE BODY AND NOT ON `html`. A `rem` is the root's font size, and every length
+ * Adwaita states in pixels is a `rem` by the time Tailwind has written it -- `min-height:
+ * 24px` is `min-h-6`, which is 1.5rem -- so shrinking the root shrank every measurement
+ * in the stylesheet with it and a 34px button came out 28.7px tall. The root stays at the
+ * 16px those rems were converted against, and the text is sized here. */
+body {
+  font-size: 12.4664px;
+  line-height: normal;
+}
+
 body {
   margin: 0;
   background: var(--window-bg-color);
@@ -38,7 +55,10 @@ body {
 
 /* An application is shot whole, at the size its manifest gives it, so the shot is
  * the same kind of thing as the window beside it. */
+/* `display: block` here, after Tailwind's utilities, beat the `flex` the page asks for
+ * and every application was its natural height inside a window of the size the manifest
+ * gives it: a toolbar view 163px tall in a 420px window. A window is a column, and what
+ * is in it fills it. */
 [data-app] {
-  display: block;
   margin: 0 0 24px;
 }

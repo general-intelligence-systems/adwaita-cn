@@ -16,9 +16,8 @@ import type { Orientation, ScrollablePolicy, SelectionMode } from "@/lib/enums"
 
 const iconViewVariants = cva(
   [
-    "bg-[var(--view-bg-color)] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-none text-[var(--view-fg-color)]",
+    "bg-[var(--view-bg-color)] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[var(--view-fg-color)]",
     "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
   ],
   {
@@ -114,6 +113,7 @@ function IconView({ className, render, variant = "default", cellArea, hadjustmen
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "icon-view",
+    "data-node": "iconview",
     "data-variant": variant,
     "data-activate-on-single-click": activateOnSingleClick,
     "data-column-spacing": columnSpacing,

@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 import type { DialogPresentationMode } from "@/lib/enums"
 
 const shortcutsDialogVariants = cva(
@@ -26,11 +27,7 @@ const shortcutsDialogVariants = cva(
         /** .default */
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .dialog-window */
         dialogWindow: "",
         /** .floating */
@@ -40,7 +37,7 @@ const shortcutsDialogVariants = cva(
         /** .narrow */
         narrow: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .portrait */
         portrait: "",
         /** .short */
@@ -100,6 +97,7 @@ function ShortcutsDialog({ className, render, variant = "default", child, defaul
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "shortcuts-dialog",
+    "data-node": "dialog",
     "data-variant": variant,
     role: "dialog",
     "data-can-close": canClose,
@@ -108,7 +106,7 @@ function ShortcutsDialog({ className, render, variant = "default", child, defaul
     "data-follows-content-size": followsContentSize,
     "data-presentation-mode": presentationMode,
     "data-title": title,
-    className: cn(shortcutsDialogVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", shortcutsDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -126,12 +124,34 @@ function ShortcutsDialog({ className, render, variant = "default", child, defaul
                       </ShortcutsDialogSearchList>
                     </ShortcutsDialogPreferencesGroup>
                   </ShortcutsDialogSearch>
-                  <ShortcutsDialogEmpty />
+                  <ShortcutsDialogEmpty>
+                    <ShortcutsDialogScrolledWindow>
+                      <ShortcutsDialogToplevelBox>
+                        <ShortcutsDialogClamp>
+                          <ShortcutsDialogBox>
+                            <ShortcutsDialogImage />
+                            {title ? (
+                              <ShortcutsDialogTitleLabel>{title}</ShortcutsDialogTitleLabel>
+                            ) : null}
+                            <ShortcutsDialogDescriptionLabel />
+                          </ShortcutsDialogBox>
+                        </ShortcutsDialogClamp>
+                      </ShortcutsDialogToplevelBox>
+                    </ShortcutsDialogScrolledWindow>
+                  </ShortcutsDialogEmpty>
                 </ShortcutsDialogStack>
                 <ShortcutsDialogHeaderBar>
-                  <ShortcutsDialogClamp>
-                    <ShortcutsDialogSearchEntry />
-                  </ShortcutsDialogClamp>
+                  <ShortcutsDialogClamp2>
+                    <ShortcutsDialogSearchEntry>
+                      <ShortcutsDialogImage2 />
+                      <ShortcutsDialogProgress>
+                        <ShortcutsDialogTrough>
+                          <ShortcutsDialogProgress2 />
+                        </ShortcutsDialogTrough>
+                      </ShortcutsDialogProgress>
+                      <ShortcutsDialogText />
+                    </ShortcutsDialogSearchEntry>
+                  </ShortcutsDialogClamp2>
                 </ShortcutsDialogHeaderBar>
               </ShortcutsDialogToolbarView>
                   {child}
@@ -154,7 +174,9 @@ function ShortcutsDialogNavBox({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="shortcuts-dialog-nav-box"
-      className={cn("flex flex-wrap", className)}
+        data-node="wrap-box"
+        data-halign="center"
+      className={cn("flex flex-wrap", "navigation-box", "-mt-3", className)}
       {...props}
     />
   )
@@ -164,6 +186,7 @@ function ShortcutsDialogNavGroup({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="shortcuts-dialog-nav-group"
+        data-node="preferencesgroup"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
@@ -174,7 +197,8 @@ function ShortcutsDialogContents({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="shortcuts-dialog-contents"
-      className={cn("flex flex-row", className)}
+        data-node="preferencespage"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "contents", className)}
       {...props}
     />
   )
@@ -184,10 +208,8 @@ function ShortcutsDialogSearchList({ className, ...props }: React.ComponentProps
   return (
     <ul
       data-slot="shortcuts-dialog-search-list"
-      className={cn([
-        "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-none",
-        "focus:shadow-none",
-      ], className)}
+        data-node="list"
+      className={cn("boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -197,6 +219,7 @@ function ShortcutsDialogPreferencesGroup({ className, ...props }: React.Componen
   return (
     <div
       data-slot="shortcuts-dialog-preferences-group"
+        data-node="preferencesgroup"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
@@ -207,7 +230,101 @@ function ShortcutsDialogSearch({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="shortcuts-dialog-search"
-      className={cn("flex flex-row", className)}
+        data-node="preferencespage"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-image"
+        data-node="image"
+        data-halign="center"
+      className={cn("icon", [
+        "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
+        "disabled:opacity-[var(--disabled-opacity)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-title-label"
+        data-node="label"
+      className={cn("title", [
+        "caret-[currentColor] font-extrabold text-[181%]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogDescriptionLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-description-label"
+        data-node="label"
+      className={cn("body description", [
+        "caret-[currentColor] font-normal leading-[140%]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-box"
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "gap-[12px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogClamp({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
+  return (
+    <div
+      ref={ref}
+      data-slot="shortcuts-dialog-clamp"
+        data-node="clamp"
+      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogToplevelBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-toplevel-box"
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "my-9 mx-3 gap-[36px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-scrolled-window"
+        data-node="scrolledwindow"
+      className={cn(className)}
       {...props}
     />
   )
@@ -217,6 +334,7 @@ function ShortcutsDialogEmpty({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="shortcuts-dialog-empty"
+        data-node="statuspage"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
@@ -227,7 +345,89 @@ function ShortcutsDialogStack({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="shortcuts-dialog-stack"
+        data-node="stack"
       className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogImage2({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcuts-dialog-image2"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "hover:opacity-100",
+        "active:opacity-80",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogProgress2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-progress2"
+        data-node="progress"
+      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-trough"
+        data-node="trough"
+      className={cn("min-h-0.5", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogProgress({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-progress"
+        data-node="progress"
+      className={cn("mb-[3px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcuts-dialog-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutsDialogText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="shortcuts-dialog-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
       {...props}
     />
   )
@@ -237,8 +437,9 @@ function ShortcutsDialogSearchEntry({ className, ...props }: React.ComponentProp
   return (
     <div
       data-slot="shortcuts-dialog-search-entry"
+        data-node="entry"
       className={cn([
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[-2px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] outline-2 border-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -246,11 +447,16 @@ function ShortcutsDialogSearchEntry({ className, ...props }: React.ComponentProp
   )
 }
 
-function ShortcutsDialogClamp({ className, ...props }: React.ComponentProps<"div">) {
+function ShortcutsDialogClamp2({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({ maximumSize: 400 })
+
   return (
     <div
-      data-slot="shortcuts-dialog-clamp"
-      className={cn("", className)}
+      ref={ref}
+      data-slot="shortcuts-dialog-clamp2"
+        data-node="clamp"
+      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
@@ -260,7 +466,8 @@ function ShortcutsDialogHeaderBar({ className, ...props }: React.ComponentProps<
   return (
     <div
       data-slot="shortcuts-dialog-header-bar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-backdrop-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)] transition-[background-color] duration-200 ease-[ease-out]", className)}
+        data-node="headerbar"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -270,10 +477,11 @@ function ShortcutsDialogToolbarView({ className, ...props }: React.ComponentProp
   return (
     <div
       data-slot="shortcuts-dialog-toolbar-view"
-      className={cn("flex flex-row", className)}
+        data-node="toolbarview"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
 }
 
-export { ShortcutsDialog, ShortcutsDialogNavBox, ShortcutsDialogNavGroup, ShortcutsDialogContents, ShortcutsDialogSearchList, ShortcutsDialogPreferencesGroup, ShortcutsDialogSearch, ShortcutsDialogEmpty, ShortcutsDialogStack, ShortcutsDialogSearchEntry, ShortcutsDialogClamp, ShortcutsDialogHeaderBar, ShortcutsDialogToolbarView, shortcutsDialogVariants }
+export { ShortcutsDialog, ShortcutsDialogNavBox, ShortcutsDialogNavGroup, ShortcutsDialogContents, ShortcutsDialogSearchList, ShortcutsDialogPreferencesGroup, ShortcutsDialogSearch, ShortcutsDialogImage, ShortcutsDialogTitleLabel, ShortcutsDialogDescriptionLabel, ShortcutsDialogBox, ShortcutsDialogClamp, ShortcutsDialogToplevelBox, ShortcutsDialogScrolledWindow, ShortcutsDialogEmpty, ShortcutsDialogStack, ShortcutsDialogImage2, ShortcutsDialogProgress2, ShortcutsDialogTrough, ShortcutsDialogProgress, ShortcutsDialogBlockCursor, ShortcutsDialogPlaceholder, ShortcutsDialogText, ShortcutsDialogSearchEntry, ShortcutsDialogClamp2, ShortcutsDialogHeaderBar, ShortcutsDialogToolbarView, shortcutsDialogVariants }

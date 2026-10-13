@@ -10,14 +10,25 @@ import type { CSSProperties } from "react"
 
 import type { WidgetProps } from "./widget-props"
 
+// GTK's alignments, as the four words a container can select on.
+//
+// NOT as a class of its own. `halign` is horizontal and `valign` vertical whichever way
+// the thing holding the widget runs, and the web's `align-self` is whichever way its
+// container does not: in a row `align-self` is vertical and in a column it is horizontal.
+// Writing `halign: center` as `self-center` was therefore right in a column and the
+// wrong axis in a row, which is how a button asked to sit in the middle of a header bar
+// ended up centred against the bar's height instead.
+//
+// The widget states which alignment it was given and the container, which is the one
+// that knows which way it runs, turns it into the `align-self` that means it.
 const ALIGN = {
-  fill: "self-stretch",
-  start: "self-start",
-  end: "self-end",
-  center: "self-center",
-  baseline: "self-baseline",
-  "baseline-fill": "self-stretch",
-  "baseline-center": "self-baseline",
+  fill: undefined,
+  start: "start",
+  end: "end",
+  center: "center",
+  baseline: "baseline",
+  "baseline-fill": undefined,
+  "baseline-center": "baseline",
 } as const
 
 const OVERFLOW = { visible: "overflow-visible", hidden: "overflow-hidden" } as const
@@ -92,14 +103,20 @@ export function widget<T extends WidgetProps>(props: T): ResolvedWidget<Omit<T, 
   if (canFocus === false || focusable === false) attributes.tabIndex = -1
   if (canTarget === false) attributes["aria-hidden"] = true
 
+  // Expansion is the same story as alignment: `hexpand` is extra width and `vexpand`
+  // extra height, and whether that is the axis a flex container distributes along is
+  // the container's business rather than the widget's. `grow` for either of them grew
+  // a widget along whichever way its container happened to run, so a label asking for
+  // width got height.
+  if (halign !== undefined && ALIGN[halign]) attributes["data-halign"] = ALIGN[halign]
+  if (valign !== undefined && ALIGN[valign]) attributes["data-valign"] = ALIGN[valign]
+  if (hexpand) attributes["data-hexpand"] = ""
+  if (vexpand) attributes["data-vexpand"] = ""
+
   return {
     hidden: visible === false,
     className:
       [
-        halign ? ALIGN[halign] : undefined,
-        valign ? ALIGN[valign] : undefined,
-        hexpand ? "grow" : undefined,
-        vexpand ? "grow" : undefined,
         overflow ? OVERFLOW[overflow] : undefined,
         typeof cssClasses === "string" ? cssClasses : undefined,
       ]

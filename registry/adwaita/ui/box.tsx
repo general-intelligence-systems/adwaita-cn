@@ -14,47 +14,44 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { BaselinePosition, Orientation } from "@/lib/enums"
 
 const boxVariants = cva(
-  "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]",
+  "",
   {
     variants: {
       variant: {
         default: "",
         /** .box */
-        box: "pt-0 pb-[1px] px-[1px] bg-[var(--headerbar-backdrop-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color)] transition-[background-color] duration-200 ease-[ease-out] pb-0 bg-[transparent] text-[inherit] shadow-none",
-        /** .narrow */
-        narrow: "pt-1 text-[0.75rem]",
-        /** .title */
-        title: "px-3 font-bold",
-      },
-      size: {
-        default: "",
+        box: "",
         /** .circular-buttons */
-        circularButtons: "pt-3 pb-1.5 px-3",
+        circularButtons: "",
         /** .end */
-        end: "gap-[6px] mx-1.5",
+        end: "",
         /** .header */
-        header: "mx-3 gap-[6px] min-h-12.5 mx-1.5 gap-[0]",
+        header: "",
         /** .icon-title-box */
-        iconTitleBox: "gap-[6px]",
+        iconTitleBox: "",
         /** .inline-buttons */
-        inlineButtons: "py-0 px-3",
+        inlineButtons: "",
         /** .labels */
-        labels: "gap-[6px]",
+        labels: "",
         /** .message-area */
-        messageArea: "pt-8 pb-[9px] gap-[24px] pt-6 gap-[18px]",
+        messageArea: "",
+        /** .narrow */
+        narrow: "",
         /** .prefixes */
-        prefixes: "mx-1.5 gap-[6px]",
+        prefixes: "",
         /** .single-line */
-        singleLine: "min-h-8.5",
+        singleLine: "",
         /** .start */
-        start: "gap-[6px] mx-1.5",
+        start: "",
         /** .suffixes */
-        suffixes: "gap-[6px] mx-1.5",
+        suffixes: "",
+        /** .title */
+        title: "",
         /** .wide */
-        wide: "py-0.5 px-3 gap-[6px]",
+        wide: "",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -78,7 +75,7 @@ export interface BoxProps
   spacing?: number
 }
 
-function Box({ className, render, variant = "default", size = "default", baselineChild, baselinePosition, homogeneous, orientation, spacing, children, ...props }: BoxProps) {
+function Box({ className, render, variant = "default", baselineChild, baselinePosition, homogeneous, orientation, spacing, children, ...props }: BoxProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -86,15 +83,15 @@ function Box({ className, render, variant = "default", size = "default", baselin
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "box",
+    "data-node": "box",
     "data-variant": variant,
-    "data-size": size,
     "data-baseline-child": baselineChild,
     "data-baseline-position": baselinePosition,
     "data-homogeneous": homogeneous,
     "data-orientation": orientation,
     "data-spacing": spacing,
-    className: cn("flex", (orientation === "vertical" ? "flex-col" : "flex-row"), spacing !== undefined && `gap-[${spacing}px]`, boxVariants({ variant, size }), orientation === "vertical" && "-my-1.5 min-h-3", widgetClassName, className),
-    style,
+    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), boxVariants({ variant }), widgetClassName, className),
+    style: { ...style, ...(spacing === undefined ? {} : { gap: `${spacing}px` }) } as React.CSSProperties,
     children: children,
     ...widgetAttributes,
   }

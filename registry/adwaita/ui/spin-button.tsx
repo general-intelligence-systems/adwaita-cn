@@ -16,7 +16,7 @@ import type { Orientation, SpinButtonUpdatePolicy } from "@/lib/enums"
 
 const spinButtonVariants = cva(
   [
-    "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[-2px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] outline-2 border-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+    "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
   ],
   {
@@ -39,7 +39,7 @@ const spinButtonVariants = cva(
 )
 
 export interface SpinButtonProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "activatesDefault" | "adjustment" | "climbRate" | "digits" | "editable" | "editingCanceled" | "enableUndo" | "maxWidthChars" | "numeric" | "orientation" | "snapToTicks" | "text" | "updatePolicy" | "value" | "widthChars" | "wrap" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "activatesDefault" | "adjustment" | "climbRate" | "digits" | "editable" | "editingCanceled" | "enableUndo" | "maxWidthChars" | "numeric" | "orientation" | "snapToTicks" | "text" | "updatePolicy" | "value" | "widthChars" | "wrap" | "xalign" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof spinButtonVariants> {
   /** gboolean, from Gtk.SpinButton */
@@ -94,7 +94,7 @@ export interface SpinButtonProps
   xalign?: number
 }
 
-function SpinButton({ className, render, variant = "default", activatesDefault, adjustment, climbRate, digits, editable, editingCanceled, enableUndo, maxWidthChars, numeric, orientation, snapToTicks, text, updatePolicy, value, widthChars, wrap, xalign, children: _children, ...props }: SpinButtonProps) {
+function SpinButton({ className, render, variant = "default", adjustment, activatesDefault, climbRate, digits, editable, editingCanceled, enableUndo, maxWidthChars, numeric, orientation, snapToTicks, text, updatePolicy, value, widthChars, wrap, xalign, children, ...props }: SpinButtonProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -102,13 +102,12 @@ function SpinButton({ className, render, variant = "default", activatesDefault, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "spin-button",
+    "data-node": "spinbutton",
     "data-variant": variant,
-    type: "number",
     "data-activates-default": activatesDefault,
-    "data-adjustment": adjustment,
     "data-climb-rate": climbRate,
     "data-digits": digits,
-    contentEditable: editable,
+    "data-editable": editable,
     "data-editing-canceled": editingCanceled,
     "data-enable-undo": enableUndo,
     "data-max-width-chars": maxWidthChars,
@@ -121,17 +120,80 @@ function SpinButton({ className, render, variant = "default", activatesDefault, 
     "data-width-chars": widthChars,
     "data-wrap": wrap,
     "data-xalign": xalign,
-    className: cn("flex", (orientation === "vertical" ? "flex-col" : "flex-row"), spinButtonVariants({ variant }), widgetClassName, className),
+    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), spinButtonVariants({ variant }), widgetClassName, className),
     style,
+    children: (
+        <>
+                  <SpinButtonText defaultValue={text} defaultValue={value} />
+                  <SpinButtonSpinDown />
+                  <SpinButtonSpinUp />
+                  {adjustment}
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { SpinButton, spinButtonVariants }
+function SpinButtonText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="spin-button-text"
+        data-node="text"
+        data-hexpand=""
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonSpinDown({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button down", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "last:rounded-[0_9px_9px_0]",
+        "first:rounded-[9px_0_0_9px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinButtonSpinUp({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button up", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "last:rounded-[0_9px_9px_0]",
+        "first:rounded-[9px_0_0_9px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { SpinButton, SpinButtonText, SpinButtonSpinDown, SpinButtonSpinUp, spinButtonVariants }

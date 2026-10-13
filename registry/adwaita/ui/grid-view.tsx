@@ -15,17 +15,13 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, Orientation, ScrollablePolicy } from "@/lib/enums"
 
 const gridViewVariants = cva(
-  "p-[15px]",
+  "",
   {
     variants: {
       variant: {
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .navigation-sidebar */
         navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
         /** .view */
@@ -90,6 +86,7 @@ function GridView({ className, render, variant = "default", factory, hadjustment
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "grid-view",
+    "data-node": "gridview",
     "data-variant": variant,
     "data-enable-rubberband": enableRubberband,
     "data-hscroll-policy": hscrollPolicy,
@@ -99,10 +96,11 @@ function GridView({ className, render, variant = "default", factory, hadjustment
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn(gridViewVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", gridViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <GridViewChild />
                   {factory}
                   {hadjustment}
                   {model}
@@ -121,4 +119,18 @@ function GridView({ className, render, variant = "default", factory, hadjustment
   })
 }
 
-export { GridView, gridViewVariants }
+function GridViewChild({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="grid-view-child"
+        data-node="child"
+      className={cn([
+        "p-[3px] rounded-[9px] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { GridView, GridViewChild, gridViewVariants }

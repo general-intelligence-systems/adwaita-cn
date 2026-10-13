@@ -16,7 +16,6 @@ import type { WidgetProps } from "@/lib/widget-props"
 const expanderRowVariants = cva(
   [
     "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -37,22 +36,19 @@ const expanderRowVariants = cva(
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
-        hasOpenPopup: "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        hasOpenPopup: "",
         /** .header */
-        header: [
-          "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-tl-[12px] rounded-tr-[12px] rounded-bl-[12px] rounded-br-[12px] border-b-[0]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-1px]",
-        ],
+        header: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
         separator: "",
         /** .separators */
         separators: "",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "text-[var(--accent-color)]",
+        sidebarNewBookmarkRow: "",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "py-0 px-2 min-h-0.5 bg-[image:image(var(--accent-bg-color))] bg-clip-content",
+        sidebarPlaceholderRow: "",
         /** .spin */
         spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
@@ -122,6 +118,7 @@ function ExpanderRow({ className, render, variant = "default", actionTarget, chi
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "expander-row",
+    "data-node": "row",
     "data-variant": variant,
     "data-action-name": actionName,
     "data-activatable": activatable,
@@ -136,22 +133,26 @@ function ExpanderRow({ className, render, variant = "default", actionTarget, chi
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row", expanderRowVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", expanderRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <ExpanderRowBox>
                 <ExpanderRowListBox>
                   <ExpanderRowActionRow>
-                    <ExpanderRowSuffixes />
-                    <ExpanderRowEnableSwitch />
-                    <ExpanderRowImage className={iconName} />
+                    {children ? (
+                      <ExpanderRowSuffixes>
+                        {children}
+                      </ExpanderRowSuffixes>
+                    ) : null}
+                    <ExpanderRowEnableSwitch>
+                      <ExpanderRowSlider />
+                    </ExpanderRowEnableSwitch>
+                    <ExpanderRowImage data-icon className={iconName} />
                   </ExpanderRowActionRow>
                 </ExpanderRowListBox>
                 <ExpanderRowRevealer>
-                  <ExpanderRowList>
-                    {children}
-                  </ExpanderRowList>
+                  <ExpanderRowList />
                 </ExpanderRowRevealer>
               </ExpanderRowBox>
                   {actionTarget}
@@ -173,7 +174,22 @@ function ExpanderRowSuffixes({ className, ...props }: React.ComponentProps<"div"
   return (
     <div
       data-slot="expander-row-suffixes"
-      className={cn("flex flex-row", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", className)}
+      {...props}
+    />
+  )
+}
+
+function ExpanderRowSlider({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="expander-row-slider"
+        data-node="slider"
+      className={cn([
+        "min-w-5 min-h-5 rounded-full bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_2px_4px_RGB(0_0_6/20%)]",
+        "disabled:shadow-[0_2px_4px_transparent]",
+      ], className)}
       {...props}
     />
   )
@@ -183,12 +199,13 @@ function ExpanderRowEnableSwitch({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="expander-row-enable-switch"
+        data-node="switch"
+        data-valign="center"
       className={cn([
         "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "hover:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
         "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[1px]",
         "data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:bg-[var(--accent-bg-color)]",
         "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
         "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
@@ -202,8 +219,9 @@ function ExpanderRowImage({ className, ...props }: React.ComponentProps<"span">)
   return (
     <span
       data-slot="expander-row-image"
-      className={cn([
-        "py-1.5 px-0 mx-[3px] opacity-100 transition-[-gtk-icon-transform] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] text-[inherit]",
+        data-node="image"
+      className={cn("expander-row-arrow", [
+        "mx-[3px] opacity-[var(--dim-opacity)] transition-[-gtk-icon-transform] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -215,7 +233,11 @@ function ExpanderRowActionRow({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="expander-row-action-row"
-      className={cn("p-0.5 bg-clip-padding", className)}
+        data-node="row"
+      className={cn("header", [
+        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
+        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+      ], className)}
       {...props}
     />
   )
@@ -225,7 +247,8 @@ function ExpanderRowListBox({ className, ...props }: React.ComponentProps<"ul">)
   return (
     <ul
       data-slot="expander-row-list-box"
-      className={cn("bg-none text-[inherit]", className)}
+        data-node="list"
+      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-none text-[inherit]", className)}
       {...props}
     />
   )
@@ -235,10 +258,8 @@ function ExpanderRowList({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-slot="expander-row-list"
-      className={cn([
-        "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-none",
-        "focus:shadow-none",
-      ], className)}
+        data-node="list"
+      className={cn("nested", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-[color-mix(in_srgb,var(--card-shade-color)_50%,transparent)] text-[inherit]", className)}
       {...props}
     />
   )
@@ -248,7 +269,8 @@ function ExpanderRowRevealer({ className, ...props }: React.ComponentProps<"div"
   return (
     <div
       data-slot="expander-row-revealer"
-      className={cn("py-0 px-3.5", className)}
+        data-node="revealer"
+      className={cn(className)}
       {...props}
     />
   )
@@ -258,10 +280,11 @@ function ExpanderRowBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="expander-row-box"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
       {...props}
     />
   )
 }
 
-export { ExpanderRow, ExpanderRowSuffixes, ExpanderRowEnableSwitch, ExpanderRowImage, ExpanderRowActionRow, ExpanderRowListBox, ExpanderRowList, ExpanderRowRevealer, ExpanderRowBox, expanderRowVariants }
+export { ExpanderRow, ExpanderRowSuffixes, ExpanderRowSlider, ExpanderRowEnableSwitch, ExpanderRowImage, ExpanderRowActionRow, ExpanderRowListBox, ExpanderRowList, ExpanderRowRevealer, ExpanderRowBox, expanderRowVariants }

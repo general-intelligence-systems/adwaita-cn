@@ -43,10 +43,11 @@ function Viewport({ className, render, child, hadjustment, vadjustment, hscrollP
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "viewport",
+    "data-node": "viewport",
     "data-hscroll-policy": hscrollPolicy,
     "data-scroll-to-focus": scrollToFocus,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("rounded-tl-[18px] rounded-tr-[18px]", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     children: (
         <>

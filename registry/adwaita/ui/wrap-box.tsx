@@ -21,7 +21,7 @@ const wrapBoxVariants = cva(
       variant: {
         default: "",
         /** .navigation-box */
-        navigationBox: "-mt-3",
+        navigationBox: "",
       },
     },
     defaultVariants: { variant: "default" },
@@ -83,6 +83,7 @@ function WrapBox({ className, render, variant = "default", orientation, align, c
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "wrap-box",
+    "data-node": "wrap-box",
     "data-variant": variant,
     "data-align": align,
     "data-child-spacing": childSpacing,

@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 
 const preferencesPageVariants = cva(
   "",
@@ -58,23 +59,26 @@ function PreferencesPage({ className, render, variant = "default", banner, descr
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "preferences-page",
+    "data-node": "preferencespage",
     "data-variant": variant,
     "data-description-centered": descriptionCentered,
     "data-title": title,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row", preferencesPageVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesPageVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <PreferencesPageScrolledWindow>
                 <PreferencesPageClamp>
                   <PreferencesPageBox>
-                    <PreferencesPageDescription>{description}</PreferencesPageDescription>
+                    {description ? (
+                      <PreferencesPageDescription>{description}</PreferencesPageDescription>
+                    ) : null}
                     {children}
                   </PreferencesPageBox>
                 </PreferencesPageClamp>
               </PreferencesPageScrolledWindow>
-                  {iconName ? <span data-slot="preferences-page-icon" className={iconName} aria-hidden /> : null}
+                  {iconName ? <span data-slot="preferences-page-icon" data-icon className={iconName} aria-hidden /> : null}
                   {banner}
         </>
       ),
@@ -93,7 +97,11 @@ function PreferencesPageDescription({ className, ...props }: React.ComponentProp
   return (
     <span
       data-slot="preferences-page-description"
-      className={cn("font-normal leading-[140%]", className)}
+        data-node="label"
+      className={cn("body dimmed description", [
+        "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -103,17 +111,23 @@ function PreferencesPageBox({ className, ...props }: React.ComponentProps<"div">
   return (
     <div
       data-slot="preferences-page-box"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "my-6 mx-3 gap-[24px]", className)}
       {...props}
     />
   )
 }
 
-function PreferencesPageClamp({ className, ...props }: React.ComponentProps<"div">) {
+function PreferencesPageClamp({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
   return (
     <div
+      ref={ref}
       data-slot="preferences-page-clamp"
-      className={cn("", className)}
+        data-node="clamp"
+      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
@@ -123,7 +137,8 @@ function PreferencesPageScrolledWindow({ className, ...props }: React.ComponentP
   return (
     <div
       data-slot="preferences-page-scrolled-window"
-      className={cn("[filter:none]", className)}
+        data-node="scrolledwindow"
+      className={cn(className)}
       {...props}
     />
   )

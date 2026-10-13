@@ -36,6 +36,10 @@ class Guard extends Component<{ name: string; children: ReactNode }, { failed: s
   }
 }
 
+// A window gives its child the whole content area: GTK allocates the child the window's
+// own rectangle and it fills it, because `halign` and `valign` are FILL until something
+// says otherwise. Without `grow` on the child every application stopped short of the
+// bottom of its own window.
 function App({ name, width, height }: { name: string; width: number; height: number }) {
   const found = apps[`../apps/${name}/App.tsx`]
 
@@ -48,7 +52,7 @@ function App({ name, width, height }: { name: string; width: number; height: num
       <div
         data-app={name}
         style={{ width, height, overflow: "hidden", background: "var(--window-bg-color)" }}
-        className="flex flex-col"
+        className="flex flex-col [&>*]:grow"
       >
         <Screen />
       </div>

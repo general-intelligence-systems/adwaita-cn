@@ -1893,7 +1893,10 @@
                 ],
                 "properties": {
                   "valign": "center",
-                  "accessible-role": "presentation"
+                  "accessible-role": "presentation",
+                  "visible": {
+                    "bind": "icon-name"
+                  }
                 }
               },
               {
@@ -1934,6 +1937,9 @@
                       "xalign": "0",
                       "use-markup": {
                         "bind": "use-markup"
+                      },
+                      "visible": {
+                        "bind": "label"
                       }
                     }
                   },
@@ -1955,6 +1961,9 @@
                       "xalign": "0",
                       "use-markup": {
                         "bind": "use-markup"
+                      },
+                      "visible": {
+                        "bind": "label"
                       }
                     }
                   }
@@ -2620,7 +2629,10 @@
                     "bind": "start-icon-name"
                   },
                   "accessible-role": "presentation",
-                  "valign": "center"
+                  "valign": "center",
+                  "visible": {
+                    "bind": "icon-name"
+                  }
                 }
               },
               {
@@ -2643,6 +2655,9 @@
                   "justify": "center",
                   "use-markup": {
                     "bind": "use-markup"
+                  },
+                  "visible": {
+                    "bind": "label"
                   }
                 }
               },
@@ -2659,7 +2674,10 @@
                     "bind": "end-icon-name"
                   },
                   "accessible-role": "presentation",
-                  "valign": "center"
+                  "valign": "center",
+                  "visible": {
+                    "bind": "icon-name"
+                  }
                 }
               }
             ]
@@ -3111,7 +3129,10 @@
                     "id": "color_scheme_row",
                     "properties": {
                       "title": "Preferred Color Scheme",
-                      "expression": ""
+                      "expression": "",
+                      "sensitive": {
+                        "bind": "active"
+                      }
                     },
                     "slots": {
                       "model": {
@@ -3149,7 +3170,10 @@
                     ],
                     "properties": {
                       "title": "Preferred Accent Color",
-                      "expression": ""
+                      "expression": "",
+                      "sensitive": {
+                        "bind": "active"
+                      }
                     },
                     "slots": {
                       "model": {
@@ -4238,7 +4262,10 @@
                             ],
                             "properties": {
                               "accessible-role": "presentation",
-                              "halign": "center"
+                              "halign": "center",
+                              "visible": {
+                                "bind": "icon-name"
+                              }
                             }
                           },
                           {
@@ -4251,7 +4278,10 @@
                             "properties": {
                               "wrap": "True",
                               "wrap-mode": "word-char",
-                              "justify": "center"
+                              "justify": "center",
+                              "visible": {
+                                "bind": "label"
+                              }
                             }
                           },
                           {
@@ -4266,7 +4296,10 @@
                               "wrap": "True",
                               "wrap-mode": "word-char",
                               "justify": "center",
-                              "use-markup": "True"
+                              "use-markup": "True",
+                              "visible": {
+                                "bind": "label"
+                              }
                             }
                           }
                         ]
@@ -4318,7 +4351,10 @@
             ],
             "properties": {
               "margin-start": "4",
-              "margin-end": "4"
+              "margin-end": "4",
+              "label": {
+                "bind": "title"
+              }
             }
           },
           {
@@ -4332,13 +4368,21 @@
             ],
             "properties": {
               "can-focus": "False",
-              "valign": "center"
+              "valign": "center",
+              "tooltip-markup": {
+                "bind": "indicator-tooltip"
+              }
             },
             "slots": {
               "child": {
                 "class": "Image",
                 "gtk": "GtkImage",
-                "id": "indicator_icon"
+                "id": "indicator_icon",
+                "properties": {
+                  "gicon": {
+                    "bind": "indicator-icon"
+                  }
+                }
               }
             }
           },
@@ -4824,7 +4868,10 @@
                         "properties": {
                           "can-focus": "False",
                           "valign": "start",
-                          "halign": "start"
+                          "halign": "start",
+                          "tooltip-markup": {
+                            "bind": "indicator-tooltip"
+                          }
                         },
                         "slots": {
                           "child": {
@@ -4850,7 +4897,10 @@
                       "valign": "start",
                       "transition-type": "crossfade",
                       "can-focus": "False",
-                      "can-target": "False"
+                      "can-target": "False",
+                      "reveal-child": {
+                        "bind": "needs-attention"
+                      }
                     },
                     "slots": {
                       "child": {
@@ -4884,7 +4934,12 @@
                   },
                   {
                     "class": "FadingLabel",
-                    "gtk": "AdwFadingLabel"
+                    "gtk": "AdwFadingLabel",
+                    "properties": {
+                      "label": {
+                        "bind": "title"
+                      }
+                    }
                   }
                 ]
               }
@@ -4933,7 +4988,19 @@
               "valign": "center",
               "use-underline": "True",
               "focus-on-click": "False",
-              "can-shrink": "True"
+              "can-shrink": "True",
+              "visible": {
+                "bind": "button-label"
+              },
+              "label": {
+                "bind": "button-label"
+              },
+              "action-name": {
+                "bind": "action-name"
+              },
+              "action-target": {
+                "bind": "action-target"
+              }
             }
           },
           {
@@ -5019,7 +5086,13 @@
                     "class": "IndicatorBin",
                     "gtk": "AdwIndicatorBin",
                     "properties": {
-                      "valign": "center"
+                      "valign": "center",
+                      "badge-number": {
+                        "bind": "badge-number"
+                      },
+                      "needs-attention": {
+                        "bind": "needs-attention"
+                      }
                     },
                     "slots": {
                       "child": {
@@ -5069,7 +5142,13 @@
                     "gtk": "AdwIndicatorBin",
                     "properties": {
                       "halign": "center",
-                      "valign": "center"
+                      "valign": "center",
+                      "badge-number": {
+                        "bind": "badge-number"
+                      },
+                      "needs-attention": {
+                        "bind": "needs-attention"
+                      }
                     },
                     "slots": {
                       "child": {

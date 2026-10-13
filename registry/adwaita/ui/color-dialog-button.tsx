@@ -48,6 +48,7 @@ function ColorDialogButton({ className, render, variant = "default", dialog, rgb
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "color-dialog-button",
+    "data-node": "colorbutton",
     "data-variant": variant,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", colorDialogButtonVariants({ variant }), widgetClassName, className),
     style,

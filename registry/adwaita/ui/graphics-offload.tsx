@@ -34,6 +34,7 @@ function GraphicsOffload({ className, render, child, blackBackground, enabled, c
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "graphics-offload",
+    "data-node": "graphicsoffload",
     "data-black-background": blackBackground,
     "data-enabled": enabled,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),

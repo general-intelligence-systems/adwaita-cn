@@ -20,11 +20,11 @@ const separatorVariants = cva(
       variant: {
         default: "",
         /** .hidden */
-        hidden: "opacity-0",
+        hidden: "",
         /** .spacer */
         spacer: "bg-none",
         /** .wide */
-        wide: "min-w-[5px] min-h-[5px] shadow-[inset_1px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-[inset_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        wide: "",
       },
     },
     defaultVariants: { variant: "default" },
@@ -47,9 +47,10 @@ function Separator({ className, render, variant = "default", orientation, childr
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "separator",
+    "data-node": "separator",
     "data-variant": variant,
     "data-orientation": orientation,
-    className: cn(separatorVariants({ variant }), orientation !== "vertical" && "my-[calc(6px_-_var(---group-padding))] mx-[1px] my-[calc(9px_-_var(---group-padding))]", orientation === "vertical" && "my-[1px] mx-[calc(6px_-_var(---group-padding))] mx-[calc(9px_-_var(---group-padding))]", widgetClassName, className),
+    className: cn(separatorVariants({ variant }), widgetClassName, className),
     style,
     ...widgetAttributes,
   }

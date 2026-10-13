@@ -35,15 +35,18 @@ function ButtonContent({ className, render, iconName, label, canShrink, useUnder
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "button-content",
+    "data-node": "buttoncontent",
     "data-can-shrink": canShrink,
     "data-use-underline": useUnderline,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="button-content-icon" className={iconName} aria-hidden /> : null}
+                  <ButtonContentBox>
+                {children}
+              </ButtonContentBox>
+                  {iconName ? <span data-slot="button-content-icon" data-icon className={iconName} aria-hidden /> : null}
                   {label}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -57,4 +60,15 @@ function ButtonContent({ className, render, iconName, label, canShrink, useUnder
   })
 }
 
-export { ButtonContent }
+function ButtonContentBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button-content-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+export { ButtonContent, ButtonContentBox }

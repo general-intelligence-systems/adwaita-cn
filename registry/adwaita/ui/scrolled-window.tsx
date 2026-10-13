@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { CornerType, PolicyType } from "@/lib/enums"
 
 const scrolledWindowVariants = cva(
-  "[filter:none]",
+  "",
   {
     variants: {
       variant: {
@@ -25,13 +25,9 @@ const scrolledWindowVariants = cva(
         /** .bottom */
         bottom: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .frame */
-        frame: "",
+        frame: "[border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .hovering */
         hovering: "",
         /** .left */
@@ -123,6 +119,7 @@ function ScrolledWindow({ className, render, variant = "default", child, hadjust
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "scrolled-window",
+    "data-node": "scrolledwindow",
     "data-variant": variant,
     "data-has-frame": hasFrame,
     "data-hscrollbar-policy": hscrollbarPolicy,
@@ -140,6 +137,8 @@ function ScrolledWindow({ className, render, variant = "default", child, hadjust
     style,
     children: (
         <>
+                  <ScrolledWindowOvershoot />
+                  <ScrolledWindowUndershoot />
                   {child}
                   {hadjustment}
                   {vadjustment}
@@ -157,4 +156,26 @@ function ScrolledWindow({ className, render, variant = "default", child, hadjust
   })
 }
 
-export { ScrolledWindow, scrolledWindowVariants }
+function ScrolledWindowOvershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scrolled-window-overshoot"
+        data-node="overshoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ScrolledWindowUndershoot({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scrolled-window-undershoot"
+        data-node="undershoot"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { ScrolledWindow, ScrolledWindowOvershoot, ScrolledWindowUndershoot, scrolledWindowVariants }

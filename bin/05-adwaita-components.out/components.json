@@ -9,9 +9,9 @@
     "withInheritedNode": 60,
     "nodes": 136,
     "internalNodes": 44,
-    "styleClasses": 107,
-    "styledElements": 104,
-    "unowned": 8
+    "styleClasses": 65,
+    "styledElements": 50,
+    "unowned": 1
   },
   "widgets": {
     "AccessibleAttribute": {
@@ -61,6 +61,26 @@
         "heading",
         "lowres-icon"
       ],
+      "hides": {
+        "credits_legal_group": "gtk_widget_get_visible (self->credits_box) ||\n                          gtk_widget_get_visible (self->legal_box) ||\n                          gtk_widget_get_visible (self->acknowledgements_box)",
+        "credits_box": "!!gtk_widget_get_first_child (self->credits_box)",
+        "legal_box": "!!gtk_widget_get_first_child (self->legal_box)",
+        "whats_new_row": "FALSE",
+        "comments_label": "has_comments",
+        "website_row": "has_website && !show_details",
+        "details_website_row": "has_website && show_details",
+        "links_group": "show_links",
+        "details_row": "has_comments || show_links",
+        "details_group": "has_website || has_comments ||\n                          show_links || has_release_notes",
+        "support_row": "has_support_url",
+        "issue_row": "has_issue_url",
+        "troubleshooting_row": "has_debug_info",
+        "support_group": "has_support_url || has_issue_url || has_debug_info",
+        "app_icon_image": "application_icon && *application_icon",
+        "app_name_label": "application_name && *application_name",
+        "developer_name_label": "developer_name && *developer_name",
+        "version_button": "version && *version"
+      },
       "inheritedFrom": "AdwDialog"
     },
     "AdwAboutWindow": {
@@ -79,6 +99,26 @@
         "body",
         "heading"
       ],
+      "hides": {
+        "credits_legal_group": "gtk_widget_get_visible (self->credits_box) ||\n                          gtk_widget_get_visible (self->legal_box) ||\n                          gtk_widget_get_visible (self->acknowledgements_box)",
+        "credits_box": "!!gtk_widget_get_first_child (self->credits_box)",
+        "legal_box": "!!gtk_widget_get_first_child (self->legal_box)",
+        "whats_new_row": "FALSE",
+        "comments_label": "has_comments",
+        "website_row": "has_website && !show_details",
+        "details_website_row": "has_website && show_details",
+        "links_group": "show_links",
+        "details_row": "has_comments || show_links",
+        "details_group": "has_website || has_comments ||\n                          show_links || has_release_notes",
+        "support_row": "has_support_url",
+        "issue_row": "has_issue_url",
+        "troubleshooting_row": "has_debug_info",
+        "support_group": "has_support_url || has_issue_url || has_debug_info",
+        "app_icon_image": "application_icon && *application_icon",
+        "app_name_label": "application_name && *application_name",
+        "developer_name_label": "developer_name && *developer_name",
+        "version_button": "version && *version"
+      },
       "inheritedFrom": "GtkWindow"
     },
     "AdwActionRow": {
@@ -111,7 +151,11 @@
       ],
       "declared": [
         "highlight"
-      ]
+      ],
+      "hides": {
+        "top_bar": "top_bar > 0",
+        "bottom_bar": "bottom_bar > 0"
+      }
     },
     "AdwAlertDialog": {
       "library": "libadwaita",
@@ -142,6 +186,13 @@
         "heading",
         "responseLabel"
       ],
+      "hides": {
+        "heading_label": "!small_label",
+        "heading_label_small": "small_label",
+        "heading_bin": "heading && *heading",
+        "body_label": "body && *body",
+        "child_bin": "FALSE"
+      },
       "inheritedFrom": "AdwDialog"
     },
     "AdwAnimation": {
@@ -187,6 +238,9 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "hides": {
+        "titlebar": "FALSE"
+      },
       "inheritedFrom": "GtkApplicationWindow"
     },
     "AdwAvatar": {
@@ -204,7 +258,12 @@
       "declared": [
         "contrasted",
         "image"
-      ]
+      ],
+      "hides": {
+        "label": "!has_custom_image && has_initials",
+        "icon": "!has_custom_image && !has_initials",
+        "custom_image": "has_custom_image"
+      }
     },
     "AdwBackButton": {
       "library": "libadwaita",
@@ -238,7 +297,10 @@
       "showsText": [
         "buttonLabel",
         "title"
-      ]
+      ],
+      "hides": {
+        "button": "label && label[0]"
+      }
     },
     "AdwBin": {
       "library": "libadwaita",
@@ -276,7 +338,13 @@
         "has-drag-handle",
         "hidden",
         "inert"
-      ]
+      ],
+      "hides": {
+        "dimming": "self->modal",
+        "sheet_bin": "self->bottom_bar != NULL &&\n                                  self->reveal_bottom_bar",
+        "content_bin": "content != NULL",
+        "drag_handle": "show_drag_handle"
+      }
     },
     "AdwBreakpoint": {
       "library": "libadwaita",
@@ -305,7 +373,10 @@
       ],
       "declared": [
         "title-1"
-      ]
+      ],
+      "hides": {
+        "child": "FALSE"
+      }
     },
     "AdwButtonContent": {
       "library": "libadwaita",
@@ -323,7 +394,10 @@
       ],
       "showsText": [
         "label"
-      ]
+      ],
+      "hides": {
+        "label": "label[0]"
+      }
     },
     "AdwButtonRow": {
       "library": "libadwaita",
@@ -446,6 +520,10 @@
       "showsText": [
         "enableSearch"
       ],
+      "hides": {
+        "arrow_box": "n_items > 1",
+        "search_entry": "enable_search"
+      },
       "inheritedFrom": "AdwActionRow"
     },
     "AdwDialog": {
@@ -513,6 +591,11 @@
       "declared": [
         "focused"
       ],
+      "hides": {
+        "edit_icon": "!priv->text_changed && (!priv->editing || !editable)",
+        "indicator": "FALSE",
+        "apply_button": "FALSE"
+      },
       "inheritedFrom": "GtkListBoxRow"
     },
     "AdwEnumListItem": {
@@ -583,7 +666,10 @@
       "declared": [
         "folded",
         "unfolded"
-      ]
+      ],
+      "hides": {
+        "shield": "self->modal &&\n                                  self->fold_progress > 0 &&\n                                  self->reveal_progress > 0"
+      }
     },
     "AdwFloatingSheet": {
       "library": "libadwaita",
@@ -598,7 +684,11 @@
       ],
       "declared": [
         "background"
-      ]
+      ],
+      "hides": {
+        "dimming": "FALSE",
+        "sheet_bin": "FALSE"
+      }
     },
     "AdwGizmo": {
       "library": "libadwaita",
@@ -628,7 +718,10 @@
         "end",
         "start",
         "title"
-      ]
+      ],
+      "hides": {
+        "center_bin": "show_title"
+      }
     },
     "AdwIndicatorBin": {
       "library": "libadwaita",
@@ -650,7 +743,10 @@
       ],
       "showsText": [
         "badgeNumber"
-      ]
+      ],
+      "hides": {
+        "label": "badge_number > 0"
+      }
     },
     "AdwInlineViewSwitcher": {
       "library": "libadwaita",
@@ -815,6 +911,13 @@
         "heading",
         "responseLabel"
       ],
+      "hides": {
+        "heading_label": "!small_label",
+        "heading_label_small": "small_label",
+        "heading_bin": "heading && *heading",
+        "body_label": "body && *body",
+        "child_bin": "FALSE"
+      },
       "inheritedFrom": "GtkWindow"
     },
     "AdwMultiLayoutView": {
@@ -837,7 +940,10 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "shield": "FALSE"
+      }
     },
     "AdwNavigationSplitView": {
       "library": "libadwaita",
@@ -867,7 +973,10 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "shield": "FALSE"
+      }
     },
     "AdwNavigationViewModel": {
       "library": "libadwaita",
@@ -878,7 +987,10 @@
       "ownNode": false,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "shield": "FALSE"
+      }
     },
     "AdwNoneAnimationTarget": {
       "library": "libadwaita",
@@ -910,7 +1022,11 @@
         "content-pane",
         "end",
         "sidebar-pane"
-      ]
+      ],
+      "hides": {
+        "shield": "self->collapsed && self->show_progress > 0",
+        "sidebar_bin": "FALSE"
+      }
     },
     "AdwPasswordEntryRow": {
       "library": "libadwaita",
@@ -940,6 +1056,9 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "hides": {
+        "search_button": "search_enabled"
+      },
       "inheritedFrom": "AdwDialog"
     },
     "AdwPreferencesGroup": {
@@ -963,7 +1082,13 @@
       "showsText": [
         "description",
         "title"
-      ]
+      ],
+      "hides": {
+        "title": "gtk_label_get_text (priv->title) != NULL &&\n                          g_strcmp0 (gtk_label_get_text (priv->title), \"\") != 0",
+        "description": "gtk_label_get_text (priv->description) != NULL &&\n                          g_strcmp0 (gtk_label_get_text (priv->description), \"\") != 0",
+        "listbox": "g_list_model_get_n_items (priv->rows) > 0",
+        "header_box": "gtk_widget_get_visible (GTK_WIDGET (priv->title)) ||\n                          gtk_widget_get_visible (GTK_WIDGET (priv->description)) ||\n                          priv->header_suffix != NULL"
+      }
     },
     "AdwPreferencesPage": {
       "library": "libadwaita",
@@ -977,7 +1102,10 @@
       "declared": [],
       "showsText": [
         "description"
-      ]
+      ],
+      "hides": {
+        "description": "description && *description"
+      }
     },
     "AdwPreferencesRow": {
       "library": "libadwaita",
@@ -1001,6 +1129,9 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "hides": {
+        "search_button": "search_enabled"
+      },
       "inheritedFrom": "GtkWindow"
     },
     "AdwPropertyAnimationTarget": {
@@ -1100,7 +1231,13 @@
       "ownNode": false,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "dimming": "progress < 1",
+        "shadow": "progress < 1",
+        "border": "progress < 1",
+        "outline": "progress < 1"
+      }
     },
     "AdwSheetControls": {
       "library": "libadwaita",
@@ -1173,6 +1310,9 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "hides": {
+        "nav_group": "has_many_sections && has_many_shortcuts"
+      },
       "inheritedFrom": "AdwDialog"
     },
     "AdwShortcutsItem": {
@@ -1230,7 +1370,12 @@
         "page",
         "subtitle",
         "title"
-      ]
+      ],
+      "hides": {
+        "page": "n_items > 0 || self->placeholder == NULL",
+        "swindow": "n_items > 0 || self->placeholder == NULL",
+        "placeholder": "n_items == 0"
+      }
     },
     "AdwSidebarItem": {
       "library": "libadwaita",
@@ -1277,7 +1422,12 @@
         "subtitle",
         "title"
       ],
-      "direction": "horizontal"
+      "direction": "horizontal",
+      "hides": {
+        "page": "n_items > 0 || self->placeholder == NULL",
+        "swindow": "n_items > 0 || self->placeholder == NULL",
+        "placeholder": "n_items == 0"
+      }
     },
     "AdwSidebarSection": {
       "library": "libadwaita",
@@ -1335,7 +1485,12 @@
         "subtitle",
         "title"
       ],
-      "direction": "horizontal"
+      "direction": "horizontal",
+      "hides": {
+        "page": "n_items > 0 || self->placeholder == NULL",
+        "swindow": "n_items > 0 || self->placeholder == NULL",
+        "placeholder": "n_items == 0"
+      }
     },
     "AdwSpinRow": {
       "library": "libadwaita",
@@ -1509,7 +1664,13 @@
       ],
       "declared": [
         "pinned"
-      ]
+      ],
+      "hides": {
+        "icon": "(gicon != NULL || loading) &&\n                          (!self->pinned || indicator == NULL)",
+        "indicator_btn": "indicator != NULL",
+        "title": "FALSE",
+        "close_btn": "FALSE"
+      }
     },
     "AdwTabBar": {
       "library": "libadwaita",
@@ -1520,7 +1681,11 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "start_action_bin": "widget != NULL",
+        "end_action_bin": "widget != NULL"
+      }
     },
     "AdwTabBox": {
       "library": "libadwaita",
@@ -1577,7 +1742,10 @@
       ],
       "declared": [
         "small"
-      ]
+      ],
+      "hides": {
+        "label": "display_label"
+      }
     },
     "AdwTabGrid": {
       "library": "libadwaita",
@@ -1614,7 +1782,16 @@
       ],
       "declared": [
         "background"
-      ]
+      ],
+      "hides": {
+        "empty_state": "empty && !self->search_active",
+        "search_empty_state": "empty && self->search_active",
+        "header_bar": "self->enable_search ||\n                          adw_tab_overview_get_secondary_menu (self) ||\n                          adw_tab_overview_get_show_start_title_buttons (self) ||\n                          adw_tab_overview_get_show_end_title_buttons (self)",
+        "new_tab_button": "self->enable_new_tab && !self->search_active",
+        "overview": "FALSE",
+        "search_button": "enable_search",
+        "secondary_menu_button": "!!secondary_menu"
+      }
     },
     "AdwTabOverviewScrollable": {
       "library": "libadwaita",
@@ -1632,7 +1809,16 @@
       ],
       "showsText": [
         "property"
-      ]
+      ],
+      "hides": {
+        "empty_state": "empty && !self->search_active",
+        "search_empty_state": "empty && self->search_active",
+        "header_bar": "self->enable_search ||\n                          adw_tab_overview_get_secondary_menu (self) ||\n                          adw_tab_overview_get_show_start_title_buttons (self) ||\n                          adw_tab_overview_get_show_end_title_buttons (self)",
+        "new_tab_button": "self->enable_new_tab && !self->search_active",
+        "overview": "FALSE",
+        "search_button": "enable_search",
+        "secondary_menu_button": "!!secondary_menu"
+      }
     },
     "AdwTabPage": {
       "library": "libadwaita",
@@ -1643,7 +1829,10 @@
       "ownNode": false,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "bin": "should_be_visible"
+      }
     },
     "AdwTabPages": {
       "library": "libadwaita",
@@ -1654,7 +1843,10 @@
       "ownNode": false,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "bin": "should_be_visible"
+      }
     },
     "AdwTabPaintable": {
       "library": "libadwaita",
@@ -1665,7 +1857,10 @@
       "ownNode": false,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "bin": "should_be_visible"
+      }
     },
     "AdwTabThumbnail": {
       "library": "libadwaita",
@@ -1682,7 +1877,14 @@
       "declared": [
         "pinned",
         "pinned-box"
-      ]
+      ],
+      "hides": {
+        "icon": "(gicon != NULL || loading)",
+        "indicator_btn": "indicator != NULL",
+        "unpin_icon": "self->pinned",
+        "close_btn": "!self->pinned",
+        "picture": "FALSE"
+      }
     },
     "AdwTabView": {
       "library": "libadwaita",
@@ -1693,7 +1895,10 @@
       "ownNode": true,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "bin": "should_be_visible"
+      }
     },
     "AdwTimedAnimation": {
       "library": "libadwaita",
@@ -1931,6 +2136,9 @@
       "layout": null,
       "applies": [],
       "declared": [],
+      "hides": {
+        "titlebar": "FALSE"
+      },
       "inheritedFrom": "GtkWindow"
     },
     "AdwWindowTitle": {
@@ -1946,7 +2154,11 @@
       "showsText": [
         "subtitle",
         "title"
-      ]
+      ],
+      "hides": {
+        "title_label": "title && title[0]",
+        "subtitle_label": "subtitle && subtitle[0]"
+      }
     },
     "AdwWrapBox": {
       "library": "libadwaita",
@@ -2271,7 +2483,10 @@
       "direction": "horizontal",
       "showsText": [
         "property"
-      ]
+      ],
+      "hides": {
+        "no_apps": "!apps_added"
+      }
     },
     "GtkAppItem": {
       "library": "gtk",
@@ -2287,7 +2502,10 @@
       "declared": [
         "heading"
       ],
-      "direction": "horizontal"
+      "direction": "horizontal",
+      "hides": {
+        "no_apps": "!apps_added"
+      }
     },
     "GtkApplication": {
       "library": "gtk",
@@ -2687,7 +2905,10 @@
         "view",
         "week-number",
         "year"
-      ]
+      ],
+      "hides": {
+        "header_box": "value"
+      }
     },
     "GtkCallbackAction": {
       "library": "gtk",
@@ -2871,10 +3092,7 @@
       "node": "box",
       "ownNode": true,
       "layout": "center",
-      "applies": [
-        "end",
-        "start"
-      ],
+      "applies": [],
       "declared": []
     },
     "GtkCenterLayout": {
@@ -3168,7 +3386,10 @@
       "ownNode": false,
       "layout": null,
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "header": "visible"
+      }
     },
     "GtkColumnViewRow": {
       "library": "gtk",
@@ -3190,8 +3411,7 @@
       "ownNode": false,
       "layout": null,
       "applies": [
-        "activatable",
-        "header"
+        "activatable"
       ],
       "declared": [],
       "inheritedFrom": "GtkListFactoryWidget"
@@ -3228,7 +3448,10 @@
       "direction": "horizontal",
       "showsText": [
         "title"
-      ]
+      ],
+      "hides": {
+        "sort": "FALSE"
+      }
     },
     "GtkComboBox": {
       "library": "gtk",
@@ -3629,6 +3852,9 @@
         "dialog",
         "suggested-action"
       ],
+      "hides": {
+        "action_box": "!priv->use_header_bar"
+      },
       "inheritedFrom": "GtkWindow"
     },
     "GtkDirectoryList": {
@@ -3704,7 +3930,11 @@
       "showsText": [
         "enableSearch",
         "property"
-      ]
+      ],
+      "hides": {
+        "search_box": "enable_search",
+        "arrow": "show_arrow"
+      }
     },
     "GtkDropTarget": {
       "library": "gtk",
@@ -3809,7 +4039,10 @@
       ],
       "declared": [
         "flat"
-      ]
+      ],
+      "hides": {
+        "progress_widget": "fraction > 0"
+      }
     },
     "GtkEntryBuffer": {
       "library": "gtk",
@@ -4006,7 +4239,10 @@
       "declared": [],
       "showsText": [
         "property"
-      ]
+      ],
+      "hides": {
+        "dialog": "FALSE"
+      }
     },
     "GtkFileChooserWidget": {
       "library": "gtk",
@@ -4256,7 +4492,10 @@
       ],
       "showsText": [
         "property"
-      ]
+      ],
+      "hides": {
+        "font_size_box": "self->level >= GTK_FONT_LEVEL_FONT"
+      }
     },
     "GtkFontFilter": {
       "library": "gtk",
@@ -4923,8 +5162,7 @@
       "ownNode": false,
       "layout": null,
       "applies": [
-        "dim-label",
-        "title"
+        "dim-label"
       ],
       "declared": [
         "dim-label"
@@ -4968,8 +5206,7 @@
       "ownNode": false,
       "layout": "box",
       "applies": [
-        "cell",
-        "title"
+        "cell"
       ],
       "declared": [
         "cell"
@@ -5215,8 +5452,7 @@
       "ownNode": true,
       "layout": null,
       "applies": [
-        "link",
-        "title"
+        "link"
       ],
       "declared": [
         "link"
@@ -5611,7 +5847,10 @@
         "text-button",
         "up"
       ],
-      "direction": "horizontal"
+      "direction": "horizontal",
+      "hides": {
+        "popover": "FALSE"
+      }
     },
     "GtkMenuSectionBox": {
       "library": "gtk",
@@ -5687,6 +5926,9 @@
         "markup",
         "property"
       ],
+      "hides": {
+        "secondary_label": "priv->has_secondary_text"
+      },
       "inheritedFrom": "GtkDialog"
     },
     "GtkMnemonicAction": {
@@ -5737,7 +5979,13 @@
       ],
       "showsText": [
         "popover"
-      ]
+      ],
+      "hides": {
+        "label": "has_text && (!self->iconic || !has_icon)",
+        "accel_label": "has_text && (!self->iconic || !has_icon)",
+        "image": "has_icon && (self->iconic || !has_text)",
+        "start_box": "!iconic"
+      }
     },
     "GtkMountOperation": {
       "library": "gtk",
@@ -6205,6 +6453,9 @@
       "showsText": [
         "property"
       ],
+      "hides": {
+        "mount_stack": "FALSE"
+      },
       "inheritedFrom": "GtkListBoxRow"
     },
     "GtkPopover": {
@@ -6235,7 +6486,10 @@
       ],
       "declared": [
         "has-open-popup"
-      ]
+      ],
+      "hides": {
+        "popover": "FALSE"
+      }
     },
     "GtkPopoverContent": {
       "library": "gtk",
@@ -6461,6 +6715,9 @@
         "linked"
       ],
       "direction": "horizontal",
+      "hides": {
+        "image": "source->has_conflict"
+      },
       "inheritedFrom": "GtkBox"
     },
     "GtkProgressBar": {
@@ -6535,7 +6792,10 @@
         "dragging",
         "fine-tune",
         "top"
-      ]
+      ],
+      "hides": {
+        "slider_widget": "upper != lower || !GTK_IS_SCALE (range)"
+      }
     },
     "GtkRecentManager": {
       "library": "gtk",
@@ -6635,7 +6895,11 @@
         "overlay-indicator",
         "right",
         "top"
-      ]
+      ],
+      "hides": {
+        "hscrollbar": "priv->hscrollbar_visible",
+        "vscrollbar": "priv->vscrollbar_visible"
+      }
     },
     "GtkSearchBar": {
       "library": "gtk",
@@ -6827,7 +7091,11 @@
         "circular",
         "linked"
       ],
-      "direction": "horizontal"
+      "direction": "horizontal",
+      "hides": {
+        "show_all": "self->has_filtered_group",
+        "switcher": "(n_pages > 1)"
+      }
     },
     "GtkShortcutsShortcut": {
       "library": "gtk",
@@ -6847,7 +7115,12 @@
         "property",
         "subtitle",
         "titleSizeGroup"
-      ]
+      ],
+      "hides": {
+        "subtitle": "subtitle && subtitle[0]",
+        "accelerator": "type == GTK_SHORTCUT_ACCELERATOR",
+        "image": "type != GTK_SHORTCUT_ACCELERATOR"
+      }
     },
     "GtkShortcutsWindow": {
       "library": "gtk",
@@ -6892,7 +7165,11 @@
       ],
       "showsText": [
         "property"
-      ]
+      ],
+      "hides": {
+        "end_icon_widget": "object != NULL",
+        "eject_button": "self->ejectable"
+      }
     },
     "GtkSignalAction": {
       "library": "gtk",
@@ -7235,7 +7512,11 @@
       "direction": "vertical",
       "showsText": [
         "placeholderText"
-      ]
+      ],
+      "hides": {
+        "placeholder": "priv->preedit_length == 0 &&\n                                  (priv->buffer == NULL ||\n                                   gtk_entry_buffer_get_length (priv->buffer) == 0)",
+        "selection_bubble": "FALSE"
+      }
     },
     "GtkTextBuffer": {
       "library": "gtk",
@@ -7292,7 +7573,11 @@
         "read-only",
         "touch-selection"
       ],
-      "direction": "vertical"
+      "direction": "vertical",
+      "hides": {
+        "placeholder": "priv->preedit_length == 0 &&\n                                  (priv->buffer == NULL ||\n                                   gtk_entry_buffer_get_length (priv->buffer) == 0)",
+        "selection_bubble": "FALSE"
+      }
     },
     "GtkTextHandle": {
       "library": "gtk",
@@ -7392,7 +7677,11 @@
         "touch-selection",
         "view"
       ],
-      "direction": "vertical"
+      "direction": "vertical",
+      "hides": {
+        "magnifier_popover": "FALSE",
+        "selection_bubble": "FALSE"
+      }
     },
     "GtkTextViewChild": {
       "library": "gtk",
@@ -7603,7 +7892,10 @@
         "ascending",
         "descending"
       ],
-      "direction": "horizontal"
+      "direction": "horizontal",
+      "hides": {
+        "button": "visible"
+      }
     },
     "GtkUpdatesOverlay": {
       "library": "gtk",
@@ -7636,7 +7928,10 @@
       "ownNode": true,
       "layout": "bin",
       "applies": [],
-      "declared": []
+      "declared": [],
+      "hides": {
+        "overlay_icon": "!playing"
+      }
     },
     "GtkViewport": {
       "library": "gtk",
@@ -7692,7 +7987,10 @@
         "tiled-right",
         "tiled-top",
         "titlebar"
-      ]
+      ],
+      "hides": {
+        "title_box": "visible"
+      }
     },
     "GtkWindowButtonsQuartz": {
       "library": "gtk",
@@ -7901,7 +8199,7 @@
         "gtk/gtk/gtkmenubutton.c",
         "gtk/gtk/gtkpopover.c"
       ],
-      "styled": true
+      "styled": false
     },
     "avatar": {
       "kind": "internal",
@@ -7925,7 +8223,7 @@
       "madeIn": [
         "gtk/gtk/gtklevelbar.c"
       ],
-      "styled": true
+      "styled": false
     },
     "block-cursor": {
       "kind": "internal",
@@ -7933,7 +8231,7 @@
       "madeIn": [
         "gtk/gtk/gtktext.c"
       ],
-      "styled": true
+      "styled": false
     },
     "border": {
       "kind": "internal",
@@ -7942,7 +8240,7 @@
         "gtk/gtk/gtktextviewchild.c",
         "libadwaita/src/adw-shadow-helper.c"
       ],
-      "styled": true
+      "styled": false
     },
     "bottom-sheet": {
       "kind": "widget",
@@ -7972,7 +8270,7 @@
         "GtkPrinterOptionWidget"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "button": {
       "kind": "widget",
@@ -8035,7 +8333,7 @@
         "GtkColumnViewCellWidget"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "cellview": {
       "kind": "widget",
@@ -8068,7 +8366,7 @@
       "madeIn": [
         "gtk/gtk/gtktextviewchild.c"
       ],
-      "styled": true
+      "styled": false
     },
     "clamp": {
       "kind": "widget",
@@ -8085,7 +8383,7 @@
       "madeIn": [
         "libadwaita/src/adw-inspector-page.c"
       ],
-      "styled": true
+      "styled": false
     },
     "colorbutton": {
       "kind": "widget",
@@ -8138,7 +8436,7 @@
         "gtk/gtk/gtkmenubutton.c",
         "gtk/gtk/gtktexthandle.c"
       ],
-      "styled": true
+      "styled": false
     },
     "controls": {
       "kind": "widget",
@@ -8183,7 +8481,7 @@
         "libadwaita/src/adw-bottom-sheet.c",
         "libadwaita/src/adw-shadow-helper.c"
       ],
-      "styled": true
+      "styled": false
     },
     "dnd": {
       "kind": "widget",
@@ -8200,7 +8498,7 @@
         "gtk/gtk/deprecated/gtkiconview.c",
         "gtk/gtk/deprecated/gtktreeview.c"
       ],
-      "styled": true
+      "styled": false
     },
     "drag-handle": {
       "kind": "internal",
@@ -8208,7 +8506,7 @@
       "madeIn": [
         "libadwaita/src/adw-bottom-sheet.c"
       ],
-      "styled": true
+      "styled": false
     },
     "dropdown": {
       "kind": "widget",
@@ -8232,7 +8530,7 @@
         "GtkEmojiChooserChild"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "entry": {
       "kind": "widget",
@@ -8275,7 +8573,7 @@
         "GtkFileChooserCell"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "filethumbnail": {
       "kind": "widget",
@@ -8291,7 +8589,7 @@
       "madeIn": [
         "gtk/gtk/gtkrange.c"
       ],
-      "styled": true
+      "styled": false
     },
     "flap": {
       "kind": "widget",
@@ -8323,7 +8621,7 @@
         "GtkFlowBoxChild"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "fontbutton": {
       "kind": "widget",
@@ -8365,7 +8663,7 @@
         "GtkGrid"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "gridview": {
       "kind": "widget",
@@ -8383,7 +8681,7 @@
       "madeIn": [
         "gtk/gtk/deprecated/gtktreeview.c"
       ],
-      "styled": true
+      "styled": false
     },
     "headerbar": {
       "kind": "widget",
@@ -8400,7 +8698,7 @@
       "madeIn": [
         "gtk/gtk/gtkrange.c"
       ],
-      "styled": true
+      "styled": false
     },
     "iconview": {
       "kind": "widget",
@@ -8417,7 +8715,7 @@
         "GtkImage"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "indicator": {
       "kind": "internal",
@@ -8427,7 +8725,7 @@
         "libadwaita/src/adw-indicator-bin.c",
         "libadwaita/src/adw-tab-box.c"
       ],
-      "styled": true
+      "styled": false
     },
     "indicatorbin": {
       "kind": "widget",
@@ -8435,7 +8733,7 @@
         "AdwIndicatorBin"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "infobar": {
       "kind": "widget",
@@ -8459,7 +8757,7 @@
         "GtkPopoverMenuBarItem"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "junction": {
       "kind": "internal",
@@ -8542,7 +8840,7 @@
       "madeIn": [
         "gtk/gtk/gtkscale.c"
       ],
-      "styled": true
+      "styled": false
     },
     "mask": {
       "kind": "internal",
@@ -8550,7 +8848,7 @@
       "madeIn": [
         "libadwaita/src/adw-indicator-bin.c"
       ],
-      "styled": true
+      "styled": false
     },
     "menubar": {
       "kind": "widget",
@@ -8577,7 +8875,7 @@
         "gtk/gtk/deprecated/gtktreepopover.c",
         "gtk/gtk/gtkmodelbutton.c"
       ],
-      "styled": true
+      "styled": false
     },
     "multi-layout-view": {
       "kind": "widget",
@@ -8644,7 +8942,7 @@
         "libadwaita/src/adw-bottom-sheet.c",
         "libadwaita/src/adw-shadow-helper.c"
       ],
-      "styled": true
+      "styled": false
     },
     "overlay": {
       "kind": "widget",
@@ -8652,7 +8950,7 @@
         "GtkOverlay"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "overlay-split-view": {
       "kind": "widget",
@@ -8668,7 +8966,7 @@
       "madeIn": [
         "gtk/gtk/gtkscrolledwindow.c"
       ],
-      "styled": true
+      "styled": false
     },
     "page-thumbnail": {
       "kind": "widget",
@@ -8700,7 +8998,7 @@
         "GtkPicture"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "placessidebar": {
       "kind": "widget",
@@ -8708,7 +9006,7 @@
         "GtkPlacesSidebar"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "placesview": {
       "kind": "widget",
@@ -8769,7 +9067,7 @@
       "madeIn": [
         "gtk/gtk/gtkprogressbar.c"
       ],
-      "styled": true
+      "styled": false
     },
     "progressbar": {
       "kind": "widget",
@@ -8802,7 +9100,7 @@
         "GtkRevealer"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "row": {
       "kind": "widget",
@@ -8872,7 +9170,7 @@
         "GtkScrolledWindow"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "searchbar": {
       "kind": "widget",
@@ -8907,7 +9205,7 @@
       "madeIn": [
         "libadwaita/src/adw-shadow-helper.c"
       ],
-      "styled": true
+      "styled": false
     },
     "sheet": {
       "kind": "internal",
@@ -8916,7 +9214,7 @@
         "libadwaita/src/adw-bottom-sheet.c",
         "libadwaita/src/adw-floating-sheet.c"
       ],
-      "styled": true
+      "styled": false
     },
     "shortcut": {
       "kind": "widget",
@@ -8966,7 +9264,7 @@
         "gtk/gtk/gtkrange.c",
         "gtk/gtk/gtkswitch.c"
       ],
-      "styled": true
+      "styled": false
     },
     "sort-indicator": {
       "kind": "internal",
@@ -8975,7 +9273,7 @@
         "gtk/gtk/deprecated/gtktreeviewcolumn.c",
         "gtk/gtk/gtkcolumnviewtitle.c"
       ],
-      "styled": true
+      "styled": false
     },
     "spinbutton": {
       "kind": "widget",
@@ -9066,7 +9364,7 @@
       "madeIn": [
         "gtk/gtk/gtknotebook.c"
       ],
-      "styled": true
+      "styled": false
     },
     "tabbar": {
       "kind": "widget",
@@ -9090,7 +9388,7 @@
       "madeIn": [
         "libadwaita/src/adw-tab-box.c"
       ],
-      "styled": true
+      "styled": false
     },
     "tabbutton": {
       "kind": "widget",
@@ -9130,7 +9428,7 @@
       "madeIn": [
         "gtk/gtk/gtknotebook.c"
       ],
-      "styled": true
+      "styled": false
     },
     "tabthumbnail": {
       "kind": "widget",
@@ -9156,7 +9454,7 @@
       "madeIn": [
         "gtk/gtk/gtktextview.c"
       ],
-      "styled": true
+      "styled": false
     },
     "textview": {
       "kind": "widget",
@@ -9230,7 +9528,7 @@
         "gtk/gtk/gtkprogressbar.c",
         "gtk/gtk/gtkrange.c"
       ],
-      "styled": true
+      "styled": false
     },
     "undershoot": {
       "kind": "internal",
@@ -9239,7 +9537,7 @@
         "gtk/gtk/gtkscrolledwindow.c",
         "gtk/gtk/gtktext.c"
       ],
-      "styled": true
+      "styled": false
     },
     "video": {
       "kind": "widget",
@@ -9263,7 +9561,7 @@
         "GtkViewport"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "viewswitcher": {
       "kind": "widget",
@@ -9298,7 +9596,7 @@
         "libadwaita/src/adw-flap.c",
         "libadwaita/src/adw-header-bar.c"
       ],
-      "styled": true
+      "styled": false
     },
     "window": {
       "kind": "widget",
@@ -9350,7 +9648,7 @@
         "GtkWindowHandle"
       ],
       "madeIn": [],
-      "styled": true
+      "styled": false
     },
     "windowtitle": {
       "kind": "widget",
@@ -9419,20 +9717,6 @@
         "gtk/gtk/gtknotebook.c"
       ]
     },
-    "bottom-bar": {
-      "appliedIn": [
-        "libadwaita/src/adw-bottom-sheet.c",
-        "libadwaita/src/adw-toolbar-view.c"
-      ]
-    },
-    "box": {
-      "appliedIn": [
-        "gtk/gtk/gtkbox.c",
-        "gtk/gtk/gtkcenterbox.c",
-        "libadwaita/src/adw-breakpoint.c",
-        "libadwaita/src/adw-inspector-page.c"
-      ]
-    },
     "boxed-list": {
       "appliedIn": [
         "libadwaita/src/adw-preferences-group.c"
@@ -9463,42 +9747,11 @@
         "gtk/gtk/roaring/roaring.c"
       ]
     },
-    "child": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkassistant.c",
-        "gtk/gtk/deprecated/gtkcelllayout.c",
-        "gtk/gtk/deprecated/gtkcombobox.c",
-        "gtk/gtk/gtkaspectframe.c",
-        "gtk/gtk/gtkbuilder.c",
-        "gtk/gtk/gtkbuilderlistitemfactory.c"
-      ]
-    },
     "circular": {
       "appliedIn": [
         "gtk/gtk/deprecated/gtkshortcutssection.c",
         "gtk/gtk/gtkmenusectionbox.c",
         "gtk/gtk/inspector/prop-editor.c"
-      ]
-    },
-    "circular-buttons": {
-      "appliedIn": [
-        "gtk/gtk/gtkmenusectionbox.c",
-        "gtk/gtk/gtkpopovermenu.c"
-      ]
-    },
-    "close": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkassistant.c",
-        "gtk/gtk/deprecated/gtkdialog.c",
-        "gtk/gtk/deprecated/gtkinfobar.c",
-        "gtk/gtk/deprecated/gtkshortcutswindow.c",
-        "gtk/gtk/gtksearchbar.c",
-        "gtk/gtk/gtkwindowbuttonsquartz.c"
-      ]
-    },
-    "collapse-spacing": {
-      "appliedIn": [
-        "libadwaita/src/adw-toolbar-view.c"
       ]
     },
     "color": {
@@ -9511,11 +9764,6 @@
         "gtk/gtk/gtkcolorscale.c"
       ]
     },
-    "combo": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkcombobox.c"
-      ]
-    },
     "content": {
       "appliedIn": [
         "gtk/gtk/gtkdragsource.c",
@@ -9526,29 +9774,10 @@
         "libadwaita/src/adw-multi-layout-view.c"
       ]
     },
-    "content-pane": {
-      "appliedIn": [
-        "libadwaita/src/adw-navigation-split-view.c",
-        "libadwaita/src/adw-overlay-split-view.c"
-      ]
-    },
     "csd": {
       "appliedIn": [
         "gtk/gtk/gtkwindow.c",
         "libadwaita/src/adw-tab-overview.c"
-      ]
-    },
-    "custom": {
-      "appliedIn": [
-        "gtk/gtk/gtkfilechoosererrorstack.c",
-        "gtk/gtk/gtkmenutrackeritem.c",
-        "gtk/gtk/gtkpopovermenu.c",
-        "gtk/gtk/print/gtkpapersize.c"
-      ]
-    },
-    "day-number": {
-      "appliedIn": [
-        "gtk/gtk/gtkcalendar.c"
       ]
     },
     "destructive-action": {
@@ -9572,52 +9801,9 @@
         "libadwaita/src/adw-dialog.c"
       ]
     },
-    "dnd": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtktreeview.c",
-        "gtk/gtk/gtkcolumnview.c",
-        "gtk/gtk/gtkdragicon.c",
-        "gtk/gtk/gtknotebook.c"
-      ]
-    },
     "document": {
       "appliedIn": [
         "gtk/gtk/gtkaccessible.c"
-      ]
-    },
-    "dot": {
-      "appliedIn": [
-        "libadwaita/src/adw-view-switcher-sidebar.c"
-      ]
-    },
-    "down": {
-      "appliedIn": [
-        "gtk/gtk/gtkcsscalcvalue.c",
-        "gtk/gtk/gtkcssnumbervalue.c",
-        "gtk/gtk/gtkgesturestylus.c",
-        "gtk/gtk/gtkmenubutton.c",
-        "gtk/gtk/gtknotebook.c",
-        "gtk/gtk/gtkspinbutton.c"
-      ]
-    },
-    "empty": {
-      "appliedIn": [
-        "gtk/gtk/gtkdropdown.c",
-        "gtk/gtk/gtkemojichooser.c",
-        "gtk/gtk/gtkfilechooserwidget.c",
-        "gtk/gtk/gtkfontchooserwidget.c",
-        "gtk/gtk/gtkheaderbar.c",
-        "gtk/gtk/gtklevelbar.c"
-      ]
-    },
-    "end": {
-      "appliedIn": [
-        "gtk/gtk/gtkactionbar.c",
-        "gtk/gtk/gtkcenterbox.c",
-        "gtk/gtk/gtkconstraintlayout.c",
-        "gtk/gtk/gtkconstraintvflparser.c",
-        "gtk/gtk/gtkcsseasevalue.c",
-        "gtk/gtk/gtkgesture.c"
       ]
     },
     "entry": {
@@ -9669,11 +9855,6 @@
         "libadwaita/src/adw-spin-row.c"
       ]
     },
-    "full": {
-      "appliedIn": [
-        "gtk/gtk/gtkprogressbar.c"
-      ]
-    },
     "fullscreen": {
       "appliedIn": [
         "gtk/gtk/gtkwindow.c"
@@ -9686,44 +9867,6 @@
         "libadwaita/src/adw-combo-row.c",
         "libadwaita/src/adw-link-row.c",
         "libadwaita/src/adw-sidebar.c"
-      ]
-    },
-    "header": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtktreeview.c",
-        "gtk/gtk/gtkcalendar.c",
-        "gtk/gtk/gtkcolumnviewrowwidget.c",
-        "gtk/gtk/gtklistheaderwidget.c",
-        "gtk/gtk/gtknotebook.c",
-        "libadwaita/src/adw-sidebar.c"
-      ]
-    },
-    "highlight": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkassistant.c",
-        "gtk/gtk/gtkrange.c",
-        "gtk/gtk/inspector/recorderrow.c",
-        "libadwaita/src/adw-adaptive-preview.c"
-      ]
-    },
-    "horizontal": {
-      "appliedIn": [
-        "gtk/gtk/a11y/gtkatspicontext.c",
-        "gtk/gtk/gtkaccessiblevaluestatic.c",
-        "gtk/gtk/gtkconstraintlayout.c",
-        "gtk/gtk/gtkexpander.c",
-        "gtk/gtk/gtksizerequest.c",
-        "gtk/gtk/gtkwidget.c"
-      ]
-    },
-    "icon": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkshortcutsshortcut.c",
-        "gtk/gtk/deprecated/gtkshortcutswindow.c",
-        "gtk/gtk/gtkapplication-quartz-menu.c",
-        "gtk/gtk/gtkmenusectionbox.c",
-        "gtk/gtk/gtkmenutrackeritem.c",
-        "gtk/gtk/gtkmodelbutton.c"
       ]
     },
     "image-button": {
@@ -9741,42 +9884,16 @@
         "libadwaita/src/adw-button-content.c"
       ]
     },
-    "indicator": {
-      "appliedIn": [
-        "gtk/gtk/gtkscale.c",
-        "libadwaita/src/adw-indicator-bin.c",
-        "libadwaita/src/adw-tab-box.c",
-        "libadwaita/src/adw-tab-thumbnail.c",
-        "libadwaita/src/adw-view-switcher-sidebar.c"
-      ]
-    },
-    "inert": {
-      "appliedIn": [
-        "libadwaita/src/adw-bottom-sheet.c"
-      ]
-    },
     "inline": {
       "appliedIn": [
         "gtk/gtk/gtkaccessiblevaluestatic.c",
         "gtk/gtk/gtksvg.c"
       ]
     },
-    "inline-buttons": {
-      "appliedIn": [
-        "gtk/gtk/gtkmenusectionbox.c",
-        "gtk/gtk/gtkpopovermenu.c"
-      ]
-    },
     "keyboard-activating": {
       "appliedIn": [
         "gtk/gtk/gtkbutton.c",
         "libadwaita/src/adw-split-button.c"
-      ]
-    },
-    "keycap": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkshortcutlabel.c",
-        "libadwaita/src/adw-shortcut-label.c"
       ]
     },
     "left": {
@@ -9813,35 +9930,10 @@
         "gtk/gtk/gtkwindowcontrols.c"
       ]
     },
-    "menu": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtktreepopover.c",
-        "gtk/gtk/gtkaccessible.c",
-        "gtk/gtk/gtkbuilderparser.c",
-        "gtk/gtk/gtknotebook.c",
-        "gtk/gtk/gtkplacesview.c",
-        "gtk/gtk/gtkplacesviewrow.c"
-      ]
-    },
     "message": {
       "appliedIn": [
         "gtk/gtk/gtkalertdialog.c",
         "gtk/gtk/gtkmessagedialog.c"
-      ]
-    },
-    "message-area": {
-      "appliedIn": [
-        "gtk/gtk/gtkmessagedialog.c"
-      ]
-    },
-    "model": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkcellrenderercombo.c",
-        "gtk/gtk/deprecated/gtkcellview.c",
-        "gtk/gtk/deprecated/gtkcombobox.c",
-        "gtk/gtk/deprecated/gtkentrycompletion.c",
-        "gtk/gtk/deprecated/gtkiconview.c",
-        "gtk/gtk/deprecated/gtktreemodelsort.c"
       ]
     },
     "monospace": {
@@ -9874,11 +9966,6 @@
         "gtk/gtk/gtkscrolledwindow.c"
       ]
     },
-    "overview": {
-      "appliedIn": [
-        "libadwaita/src/adw-tab-overview.c"
-      ]
-    },
     "pill": {
       "appliedIn": [
         "libadwaita/src/adw-navigation-view.c"
@@ -9900,11 +9987,6 @@
         "gtk/gtk/gtkwidget.c"
       ]
     },
-    "raised": {
-      "appliedIn": [
-        "libadwaita/src/adw-toolbar-view.c"
-      ]
-    },
     "right": {
       "appliedIn": [
         "gtk/gtk/deprecated/gtktreepopover.c",
@@ -9923,11 +10005,6 @@
         "gtk/gtk/gtkpanedhandle.c",
         "gtk/gtk/gtkseparator.c",
         "gtk/gtk/print/gtkpagesetupunixdialog.c"
-      ]
-    },
-    "shortcut-row": {
-      "appliedIn": [
-        "libadwaita/src/adw-shortcut-row.c"
       ]
     },
     "shortcuts-search-results": {
@@ -9956,35 +10033,10 @@
         "libadwaita/src/adw-overlay-split-view.c"
       ]
     },
-    "sidebar-placeholder-row": {
-      "appliedIn": [
-        "gtk/gtk/gtksidebarrow.c"
-      ]
-    },
     "solid-csd": {
       "appliedIn": [
         "gtk/gtk/gtkwindow.c",
         "libadwaita/src/adw-tab-overview.c"
-      ]
-    },
-    "start": {
-      "appliedIn": [
-        "gtk/gtk/gtkactionbar.c",
-        "gtk/gtk/gtkcenterbox.c",
-        "gtk/gtk/gtkconstraintlayout.c",
-        "gtk/gtk/gtkconstraintvflparser.c",
-        "gtk/gtk/gtkcsseasevalue.c",
-        "gtk/gtk/gtkheaderbar.c"
-      ]
-    },
-    "subtitle": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkappchooserdialog.c",
-        "gtk/gtk/deprecated/gtkshortcutsshortcut.c",
-        "gtk/gtk/deprecated/gtkshortcutswindow.c",
-        "gtk/gtk/gtkfilechooserdialog.c",
-        "gtk/gtk/gtkfilechooserwidget.c",
-        "libadwaita/src/adw-action-row.c"
       ]
     },
     "success": {
@@ -9995,11 +10047,6 @@
         "gtk/gtk/gtkcsspalettevalue.c",
         "gtk/gtk/gtkcssstyle.c",
         "gtk/gtk/gtksvg.c"
-      ]
-    },
-    "suffixes": {
-      "appliedIn": [
-        "gtk/gtk/gtkfilefilter.c"
       ]
     },
     "suggested-action": {
@@ -10047,16 +10094,6 @@
         "gtk/gtk/gtkwindow.c"
       ]
     },
-    "title": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkappchooserdialog.c",
-        "gtk/gtk/deprecated/gtkassistant.c",
-        "gtk/gtk/deprecated/gtkcolorbutton.c",
-        "gtk/gtk/deprecated/gtkfontbutton.c",
-        "gtk/gtk/deprecated/gtkshortcutsgroup.c",
-        "gtk/gtk/deprecated/gtkshortcutssection.c"
-      ]
-    },
     "title-1": {
       "appliedIn": [
         "libadwaita/src/adw-breakpoint-bin.c"
@@ -10065,28 +10102,6 @@
     "title-3": {
       "appliedIn": [
         "gtk/gtk/gtkmountoperation.c"
-      ]
-    },
-    "titlebar": {
-      "appliedIn": [
-        "gtk/gtk/deprecated/gtkassistant.c",
-        "gtk/gtk/deprecated/gtkdialog.c",
-        "gtk/gtk/gtkwindow.c",
-        "libadwaita/src/adw-application-window.c",
-        "libadwaita/src/adw-window.c"
-      ]
-    },
-    "today": {
-      "appliedIn": [
-        "gtk/gtk/gtkcalendar.c"
-      ]
-    },
-    "toggle": {
-      "appliedIn": [
-        "gtk/gtk/a11y/gtkatspiaction.c",
-        "gtk/gtk/deprecated/gtkcombobox.c",
-        "gtk/gtk/gtktogglebutton.c",
-        "libadwaita/src/adw-toggle-group.c"
       ]
     },
     "top": {
@@ -10099,35 +10114,10 @@
         "gtk/gtk/gtkmountoperation-x11.c"
       ]
     },
-    "top-bar": {
-      "appliedIn": [
-        "libadwaita/src/adw-toolbar-view.c"
-      ]
-    },
     "touch-selection": {
       "appliedIn": [
         "gtk/gtk/gtktext.c",
         "gtk/gtk/gtktextview.c"
-      ]
-    },
-    "up": {
-      "appliedIn": [
-        "gtk/gtk/gtkcsscalcvalue.c",
-        "gtk/gtk/gtkcssnumbervalue.c",
-        "gtk/gtk/gtkgesturestylus.c",
-        "gtk/gtk/gtkmenubutton.c",
-        "gtk/gtk/gtknotebook.c",
-        "gtk/gtk/gtkspinbutton.c"
-      ]
-    },
-    "vertical": {
-      "appliedIn": [
-        "gtk/gtk/a11y/gtkatspicontext.c",
-        "gtk/gtk/gtkaccessiblevaluestatic.c",
-        "gtk/gtk/gtkconstraintlayout.c",
-        "gtk/gtk/gtksizerequest.c",
-        "gtk/gtk/gtkwidget.c",
-        "gtk/gtk/print/backends/gtkprintbackendcups.c"
       ]
     },
     "view": {
@@ -10149,63 +10139,12 @@
         "gtk/gtk/gtkcsspalettevalue.c",
         "gtk/gtk/gtkcssprovider.c"
       ]
-    },
-    "wide": {
-      "appliedIn": [
-        "gtk/gtk/gtkpaned.c",
-        "gtk/gtk/roaring/roaring.c",
-        "libadwaita/src/adw-view-switcher.c"
-      ]
     }
   },
   "unowned": {
-    "accelerator": {
-      "selectors": [
-        "accelerator"
-      ],
-      "alsoAStyleClass": false
-    },
-    "drawing": {
-      "selectors": [
-        "drawing"
-      ],
-      "alsoAStyleClass": false
-    },
     "emoji-completion-row": {
       "selectors": [
         "emoji-completion-row"
-      ],
-      "alsoAStyleClass": false
-    },
-    "paper": {
-      "selectors": [
-        "paper"
-      ],
-      "alsoAStyleClass": false
-    },
-    "title": {
-      "selectors": [
-        "title"
-      ],
-      "alsoAStyleClass": true
-    },
-    "toggle": {
-      "selectors": [
-        "toggle",
-        "toggle.image-text-button",
-        "toggle.text-button"
-      ],
-      "alsoAStyleClass": true
-    },
-    "toolbar": {
-      "selectors": [
-        "toolbar"
-      ],
-      "alsoAStyleClass": true
-    },
-    "value": {
-      "selectors": [
-        "value"
       ],
       "alsoAStyleClass": false
     }

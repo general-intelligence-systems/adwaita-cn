@@ -59,6 +59,7 @@ function VolumeButton({ className, render, variant = "default", adjustment, icon
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "volume-button",
+    "data-node": "scalebutton",
     "data-variant": variant,
     "data-has-frame": hasFrame,
     "data-orientation": orientation,

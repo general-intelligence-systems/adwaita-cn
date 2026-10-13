@@ -71,6 +71,7 @@ function Paned({ className, render, variant = "default", endChild, startChild, o
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "paned",
+    "data-node": "paned",
     "data-variant": variant,
     "data-orientation": orientation,
     "data-position": position,
@@ -80,10 +81,11 @@ function Paned({ className, render, variant = "default", endChild, startChild, o
     "data-shrink-end-child": shrinkEndChild,
     "data-shrink-start-child": shrinkStartChild,
     "data-wide-handle": wideHandle,
-    className: cn(panedVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", panedVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <PanedSeparator />
                   {endChild}
                   {startChild}
                   {children}
@@ -100,4 +102,15 @@ function Paned({ className, render, variant = "default", endChild, startChild, o
   })
 }
 
-export { Paned, panedVariants }
+function PanedSeparator({ className, ...props }: React.ComponentProps<"hr">) {
+  return (
+    <hr
+      data-slot="paned-separator"
+        data-node="separator"
+      className={cn("bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] bg-none bg-[size:1px_1px]", className)}
+      {...props}
+    />
+  )
+}
+
+export { Paned, PanedSeparator, panedVariants }

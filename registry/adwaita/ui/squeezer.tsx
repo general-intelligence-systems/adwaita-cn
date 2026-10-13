@@ -52,6 +52,7 @@ function Squeezer({ className, render, orientation, allowNone, homogeneous, inte
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "squeezer",
+    "data-node": "squeezer",
     "data-allow-none": allowNone,
     "data-homogeneous": homogeneous,
     "data-interpolate-size": interpolateSize,

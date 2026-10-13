@@ -1,34 +1,12 @@
 {
-  "cover": {
-    "base": [
-      "text-[black]",
-      "bg-[#ffffff]"
-    ]
-  },
   "expander-widget": {
     "base": [
-      "duration-[300ms]",
-      "shadow-none"
-    ],
-    "focus": [
-      "shadow-none"
-    ]
-  },
-  "filechooserbutton": {
-    "base": [
-      "shadow-none",
-      "border-[transparent]"
+      "duration-[300ms]"
     ]
   },
   "notebook": {
     "base": [
       "duration-[300ms]"
-    ]
-  },
-  "page-thumbnail": {
-    "base": [
-      "bg-[white]",
-      "text-[#2e3436]"
     ]
   }
 }

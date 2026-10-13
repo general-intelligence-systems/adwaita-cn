@@ -18,15 +18,18 @@ const viewSwitcherVariants = cva(
   "gap-[3px] min-h-8.5",
   {
     variants: {
+      variant: {
+        default: "",
+        /** .wide */
+        wide: "",
+      },
       size: {
         default: "",
         /** .narrow */
         narrow: "my-[-3px] min-h-1.5",
-        /** .wide */
-        wide: "my-1.5",
       },
     },
-    defaultVariants: { size: "default" },
+    defaultVariants: { variant: "default", size: "default" },
   },
 )
 
@@ -41,7 +44,7 @@ export interface ViewSwitcherProps
   stack?: ReactNode
 }
 
-function ViewSwitcher({ className, render, size = "default", stack, policy, children, ...props }: ViewSwitcherProps) {
+function ViewSwitcher({ className, render, variant = "default", size = "default", stack, policy, children, ...props }: ViewSwitcherProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -49,15 +52,21 @@ function ViewSwitcher({ className, render, size = "default", stack, policy, chil
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "view-switcher",
+    "data-node": "viewswitcher",
+    "data-variant": variant,
     "data-size": size,
     role: "tablist",
     "data-policy": policy,
-    className: cn("flex", "flex-row", viewSwitcherVariants({ size }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", viewSwitcherVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>
-                  {stack}
+                  <ViewSwitcherButton>
+                <ViewSwitcherStack>
                   {children}
+                </ViewSwitcherStack>
+              </ViewSwitcherButton>
+                  {stack}
         </>
       ),
     ...widgetAttributes,
@@ -71,4 +80,34 @@ function ViewSwitcher({ className, render, size = "default", stack, policy, chil
   })
 }
 
-export { ViewSwitcher, viewSwitcherVariants }
+function ViewSwitcherStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-stack"
+        data-node="stack"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="view-switcher-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { ViewSwitcher, ViewSwitcherStack, ViewSwitcherButton, viewSwitcherVariants }

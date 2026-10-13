@@ -45,6 +45,7 @@ function TabBar({ className, render, endActionWidget, startActionWidget, view, a
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "tab-bar",
+    "data-node": "tabbar",
     role: "tablist",
     "data-autohide": autohide,
     "data-expand-tabs": expandTabs,
@@ -56,16 +57,17 @@ function TabBar({ className, render, endActionWidget, startActionWidget, view, a
         <>
                   <TabBarRevealer>
                 <TabBarBox>
-                  <TabBarStartActionBin />
                   <TabBarPinnedScrolledWindow>
                     <TabBarPinnedBox />
                   </TabBarPinnedScrolledWindow>
                   <TabBarScrolledWindow>
                     <TabBarBox2 />
                   </TabBarScrolledWindow>
-                  <TabBarEndActionBin>
-                    {children}
-                  </TabBarEndActionBin>
+                  {children ? (
+                    <TabBarEndActionBin>
+                      {children}
+                    </TabBarEndActionBin>
+                  ) : null}
                 </TabBarBox>
               </TabBarRevealer>
                   {endActionWidget}
@@ -88,7 +90,7 @@ function TabBarStartActionBin({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="tab-bar-start-action-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "start-action", "py-1.5 px-0", className)}
       {...props}
     />
   )
@@ -98,7 +100,8 @@ function TabBarPinnedBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-bar-pinned-box"
-      className={cn("shadow-none", className)}
+        data-node="tabbox"
+      className={cn("py-1.5 min-h-8.5", className)}
       {...props}
     />
   )
@@ -108,7 +111,8 @@ function TabBarPinnedScrolledWindow({ className, ...props }: React.ComponentProp
   return (
     <div
       data-slot="tab-bar-pinned-scrolled-window"
-      className={cn(className)}
+        data-node="scrolledwindow"
+      className={cn("pinned", className)}
       {...props}
     />
   )
@@ -118,7 +122,8 @@ function TabBarBox2({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-bar-box2"
-      className={cn("shadow-none", className)}
+        data-node="tabbox"
+      className={cn("py-1.5 min-h-8.5", className)}
       {...props}
     />
   )
@@ -128,7 +133,9 @@ function TabBarScrolledWindow({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="tab-bar-scrolled-window"
-      className={cn("[filter:none]", className)}
+        data-node="scrolledwindow"
+        data-hexpand=""
+      className={cn(className)}
       {...props}
     />
   )
@@ -138,7 +145,7 @@ function TabBarEndActionBin({ className, ...props }: React.ComponentProps<"div">
   return (
     <div
       data-slot="tab-bar-end-action-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "end-action", "py-1.5 px-0", className)}
       {...props}
     />
   )
@@ -148,7 +155,8 @@ function TabBarBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-bar-box"
-      className={cn("flex flex-row", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "box", "pt-0 pb-[1px] px-[1px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color)]", className)}
       {...props}
     />
   )
@@ -158,7 +166,8 @@ function TabBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-bar-revealer"
-      className={cn("py-0 px-3.5", className)}
+        data-node="revealer"
+      className={cn(className)}
       {...props}
     />
   )

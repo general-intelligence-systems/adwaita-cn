@@ -22,16 +22,7 @@ const infoBarVariants = cva(
         /** .action */
         action: "",
         /** .close */
-        close: [
-          "p-1 text-[var(--accent-bg-color)] shadow-none bg-[transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-w-4.5 min-h-4.5 rounded-full",
-          "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-          "disabled:[filter:opacity(30%)]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-          "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-          "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-          "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-        ],
+        close: "",
       },
     },
     defaultVariants: { variant: "default" },
@@ -60,6 +51,7 @@ function InfoBar({ className, render, variant = "default", messageType, revealed
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "info-bar",
+    "data-node": "infobar",
     "data-variant": variant,
     role: "alert",
     "data-message-type": messageType,
@@ -67,7 +59,11 @@ function InfoBar({ className, render, variant = "default", messageType, revealed
     "data-show-close-button": showCloseButton,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", infoBarVariants({ variant }), widgetClassName, className),
     style,
-    children: children,
+    children: (
+        <InfoBarRevealer>
+                {children}
+              </InfoBarRevealer>
+      ),
     ...widgetAttributes,
   }
 
@@ -79,4 +75,15 @@ function InfoBar({ className, render, variant = "default", messageType, revealed
   })
 }
 
-export { InfoBar, infoBarVariants }
+function InfoBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="info-bar-revealer"
+        data-node="revealer"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { InfoBar, InfoBarRevealer, infoBarVariants }

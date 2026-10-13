@@ -27,7 +27,8 @@ function WindowHandle({ className, render, child, children, ...props }: WindowHa
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "window-handle",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "pt-[3px] min-h-0 [filter:opacity(0.5)] transition-[filter] duration-200 ease-[ease-out] bg-[image:unset] bg-repeat", widgetClassName, className),
+    "data-node": "windowhandle",
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>

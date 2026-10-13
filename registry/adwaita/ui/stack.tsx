@@ -46,6 +46,7 @@ function Stack({ className, render, visibleChild, hhomogeneous, interpolateSize,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "stack",
+    "data-node": "stack",
     "data-hhomogeneous": hhomogeneous,
     "data-interpolate-size": interpolateSize,
     "data-transition-duration": transitionDuration,

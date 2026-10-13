@@ -22,7 +22,7 @@ const printUnixDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_transparent,0_0_10px_5px_RGB(0_0_0/8%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px] transition-[box-shadow] duration-200 ease-[ease-out]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
         /** .default */
         default: "",
         /** .dialog-window */
@@ -46,7 +46,7 @@ const printUnixDialogVariants = cva(
         /** .short */
         short: "",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-backdrop-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
         ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
       },
@@ -164,6 +164,7 @@ function PrintUnixDialog({ className, render, variant = "default", application, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "print-unix-dialog",
+    "data-node": "window",
     "data-variant": variant,
     role: "dialog",
     "data-current-page": currentPage,
@@ -188,11 +189,19 @@ function PrintUnixDialog({ className, render, variant = "default", application, 
     "data-support-selection": supportSelection,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("flex", "flex-col", printUnixDialogVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", printUnixDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="print-unix-dialog-icon" className={iconName} aria-hidden /> : null}
+                  <PrintUnixDialogDrawing>
+                <PrintUnixDialogPaper />
+              </PrintUnixDialogDrawing>
+                  <PrintUnixDialogSheet>
+                <PrintUnixDialogHeaderbar>
+                  <PrintUnixDialogWindowhandle />
+                </PrintUnixDialogHeaderbar>
+              </PrintUnixDialogSheet>
+                  {iconName ? <span data-slot="print-unix-dialog-icon" data-icon className={iconName} aria-hidden /> : null}
                   {application}
                   {child}
                   {defaultWidget}
@@ -216,4 +225,59 @@ function PrintUnixDialog({ className, render, variant = "default", application, 
   })
 }
 
-export { PrintUnixDialog, printUnixDialogVariants }
+function PrintUnixDialogPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="print-unix-dialog-paper"
+        data-node="paper"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PrintUnixDialogDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="print-unix-dialog-drawing"
+        data-node="drawing"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PrintUnixDialogWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="print-unix-dialog-windowhandle"
+        data-node="windowhandle"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function PrintUnixDialogHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="print-unix-dialog-headerbar"
+        data-node="headerbar"
+      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+function PrintUnixDialogSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="print-unix-dialog-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { PrintUnixDialog, PrintUnixDialogPaper, PrintUnixDialogDrawing, PrintUnixDialogWindowhandle, PrintUnixDialogHeaderbar, PrintUnixDialogSheet, printUnixDialogVariants }

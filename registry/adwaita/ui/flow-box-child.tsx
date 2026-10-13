@@ -14,24 +14,13 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const flowBoxChildVariants = cva(
-  [
-    "p-[3px] m-[3px] rounded-[9px] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-    "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-    "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-    "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-    "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-  ],
+  "",
   {
     variants: {
       variant: {
         default: "",
         /** .has-open-popup */
-        hasOpenPopup: [
-          "bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-          "data-[selected]:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        ],
+        hasOpenPopup: "",
       },
     },
     defaultVariants: { variant: "default" },
@@ -54,6 +43,7 @@ function FlowBoxChild({ className, render, variant = "default", child, children,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "flow-box-child",
+    "data-node": "flowboxchild",
     "data-variant": variant,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", flowBoxChildVariants({ variant }), widgetClassName, className),
     style,

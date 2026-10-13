@@ -36,9 +36,10 @@ function Frame({ className, render, child, labelWidget, label, labelXalign, chil
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "frame",
+    "data-node": "frame",
     "data-label": label,
     "data-label-xalign": labelXalign,
-    className: cn("rounded-[12px]", widgetClassName, className),
+    className: cn("[border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] rounded-[12px]", widgetClassName, className),
     style,
     children: (
         <>

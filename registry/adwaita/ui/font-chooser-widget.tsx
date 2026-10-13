@@ -43,6 +43,7 @@ function FontChooserWidget({ className, render, font, fontDesc, previewText, lan
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "font-chooser-widget",
+    "data-node": "fontchooser",
     "data-language": language,
     "data-level": level,
     "data-show-preview-entry": showPreviewEntry,

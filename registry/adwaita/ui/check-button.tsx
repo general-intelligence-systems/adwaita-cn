@@ -14,10 +14,7 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const checkButtonVariants = cva(
-  [
-    "p-[3px] gap-[4px] rounded-[9px] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-  ],
+  "p-[3px] gap-[4px] rounded-[9px] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
   {
     variants: {
       size: {
@@ -69,16 +66,19 @@ function CheckButton({ className, render, size = "default", actionTarget, child,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "check-button",
+    "data-node": "checkbutton",
     "data-size": size,
     "data-action-name": actionName,
     "data-state": active ? "checked" : "unchecked",
     "aria-checked": active,
     "data-inconsistent": inconsistent,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row", checkButtonVariants({ size }), label && "p-1", widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", checkButtonVariants({ size }), label && "p-1", widgetClassName, className),
     style,
     children: (
         <>
+                  <CheckButtonCheck />
+                  <CheckButtonRadio />
                   {label}
                   {actionTarget}
                   {child}
@@ -97,4 +97,48 @@ function CheckButton({ className, render, size = "default", actionTarget, child,
   })
 }
 
-export { CheckButton, checkButtonVariants }
+function CheckButtonCheck({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="check-button-check"
+        data-node="check"
+      className={cn([
+        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
+        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
+        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
+        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
+        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function CheckButtonRadio({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="check-button-radio"
+        data-node="radio"
+      className={cn([
+        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-full",
+        "hover:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)] active:shadow-none",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "indeterminate:bg-[var(--accent-bg-color)] indeterminate:text-[var(--accent-fg-color)] indeterminate:shadow-none",
+        "indeterminate:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:bg-[var(--accent-bg-color)] data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:shadow-none",
+        "indeterminate:active:bg-[image:image(RGB(0_0_6/20%))]",
+        "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
+        "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { CheckButton, CheckButtonCheck, CheckButtonRadio, checkButtonVariants }

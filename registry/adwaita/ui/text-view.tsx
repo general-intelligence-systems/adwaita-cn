@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { InputHints, InputPurpose, Justification, ScrollablePolicy, WrapMode } from "@/lib/enums"
 
 const textViewVariants = cva(
-  "caret-[var(--accent-bg-color)]",
+  "caret-[currentColor]",
   {
     variants: {
       variant: {
@@ -136,6 +136,7 @@ function TextView({ className, render, variant = "default", buffer, extraMenu, h
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "text-view",
+    "data-node": "textview",
     "data-variant": variant,
     "data-accepts-tab": acceptsTab,
     "data-bottom-margin": bottomMargin,
@@ -157,10 +158,12 @@ function TextView({ className, render, variant = "default", buffer, extraMenu, h
     "data-top-margin": topMargin,
     "data-vscroll-policy": vscrollPolicy,
     "data-wrap-mode": wrapMode,
-    className: cn("flex", "flex-col", textViewVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <TextViewBorder />
+                  <TextViewText />
                   {buffer}
                   {extraMenu}
                   {hadjustment}
@@ -180,4 +183,30 @@ function TextView({ className, render, variant = "default", buffer, extraMenu, h
   })
 }
 
-export { TextView, textViewVariants }
+function TextViewBorder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="text-view-border"
+        data-node="border"
+      className={cn("bg-[color-mix(in_srgb,var(--window-bg-color),var(--view-bg-color)_50%)]", className)}
+      {...props}
+    />
+  )
+}
+
+function TextViewText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="text-view-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", [
+        "text-[var(--view-fg-color)] bg-[transparent]",
+        "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[transparent]",
+        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { TextView, TextViewBorder, TextViewText, textViewVariants }

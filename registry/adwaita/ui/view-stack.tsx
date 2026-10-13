@@ -42,6 +42,7 @@ function ViewStack({ className, render, visibleChild, enableTransitions, hhomoge
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "view-stack",
+    "data-node": "stack",
     "data-enable-transitions": enableTransitions,
     "data-hhomogeneous": hhomogeneous,
     "data-transition-duration": transitionDuration,

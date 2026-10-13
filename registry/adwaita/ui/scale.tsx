@@ -16,7 +16,7 @@ import type { Orientation, PositionType } from "@/lib/enums"
 
 const scaleVariants = cva(
   [
-    "p-3 min-h-2.5 min-w-2.5",
+    "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
   ],
   {
@@ -51,7 +51,7 @@ const scaleVariants = cva(
 )
 
 export interface ScaleProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "adjustment" | "digits" | "drawValue" | "fillLevel" | "hasOrigin" | "inverted" | "orientation" | "restrictToFillLevel" | "roundDigits" | "showFillLevel" | "valuePos" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "adjustment" | "digits" | "drawValue" | "fillLevel" | "hasOrigin" | "inverted" | "orientation" | "restrictToFillLevel" | "roundDigits" | "showFillLevel" | "valuePos" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof scaleVariants> {
   /** Adjustment, from Gtk.Range */
@@ -88,7 +88,7 @@ export interface ScaleProps
   valuePos?: PositionType
 }
 
-function Scale({ className, render, variant = "default", size = "default", adjustment, digits, drawValue, fillLevel, hasOrigin, inverted, orientation, restrictToFillLevel, roundDigits, showFillLevel, valuePos, children: _children, ...props }: ScaleProps) {
+function Scale({ className, render, variant = "default", size = "default", adjustment, digits, drawValue, fillLevel, hasOrigin, inverted, orientation, restrictToFillLevel, roundDigits, showFillLevel, valuePos, children, ...props }: ScaleProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -96,10 +96,9 @@ function Scale({ className, render, variant = "default", size = "default", adjus
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "scale",
+    "data-node": "scale",
     "data-variant": variant,
     "data-size": size,
-    type: "range",
-    "data-adjustment": adjustment,
     "data-digits": digits,
     "data-draw-value": drawValue,
     "data-fill-level": fillLevel,
@@ -110,17 +109,109 @@ function Scale({ className, render, variant = "default", size = "default", adjus
     "data-round-digits": roundDigits,
     "data-show-fill-level": showFillLevel,
     "data-value-pos": valuePos,
-    className: cn(scaleVariants({ variant, size }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", scaleVariants({ variant, size }), widgetClassName, className),
     style,
+    children: (
+        <>
+                  <ScaleTrough>
+                <ScaleFill />
+                <ScaleHighlight />
+                <ScaleSlider />
+              </ScaleTrough>
+                  <ScaleValue />
+                  <ScaleMarks>
+                <ScaleIndicator />
+              </ScaleMarks>
+                  {adjustment}
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { Scale, scaleVariants }
+function ScaleFill({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scale-fill"
+        data-node="fill"
+      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ScaleHighlight({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scale-highlight"
+        data-node="highlight"
+      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ScaleSlider({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scale-slider"
+        data-node="slider"
+      className={cn("-m-2 outline-offset-[6px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_0_0_1px_var(---slider-border-color),0_2px_4px_RGB(0_0_6/20%)] rounded-full min-w-5 min-h-5", className)}
+      {...props}
+    />
+  )
+}
+
+function ScaleTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scale-trough"
+        data-node="trough"
+      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ScaleValue({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scale-value"
+        data-node="value"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ScaleIndicator({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scale-indicator"
+        data-node="indicator"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ScaleMarks({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scale-marks"
+        data-node="marks"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { Scale, ScaleFill, ScaleHighlight, ScaleSlider, ScaleTrough, ScaleValue, ScaleIndicator, ScaleMarks, scaleVariants }

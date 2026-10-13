@@ -38,6 +38,7 @@ function AppChooserButton({ className, render, contentType, heading, modal, show
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "app-chooser-button",
+    "data-node": "appchooserbutton",
     "data-content-type": contentType,
     "data-heading": heading,
     "data-modal": modal,

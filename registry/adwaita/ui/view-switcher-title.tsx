@@ -36,6 +36,7 @@ function ViewSwitcherTitle({ className, render, stack, subtitle, title, viewSwit
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "view-switcher-title",
+    "data-node": "viewswitchertitle",
     "data-subtitle": subtitle,
     "data-title": title,
     "data-view-switcher-enabled": viewSwitcherEnabled,
@@ -44,12 +45,30 @@ function ViewSwitcherTitle({ className, render, stack, subtitle, title, viewSwit
     children: (
         <>
                   <ViewSwitcherTitleSqueezer>
-                <ViewSwitcherTitleWideViewSwitcher />
-                <ViewSwitcherTitleNarrowViewSwitcher />
-                <ViewSwitcherTitleTitleWidget />
+                <ViewSwitcherTitleWideViewSwitcher>
+                  <ViewSwitcherTitleButton>
+                    <ViewSwitcherTitleStack />
+                  </ViewSwitcherTitleButton>
+                </ViewSwitcherTitleWideViewSwitcher>
+                <ViewSwitcherTitleNarrowViewSwitcher>
+                  <ViewSwitcherTitleButton2>
+                    <ViewSwitcherTitleStack2>
+                      {children}
+                    </ViewSwitcherTitleStack2>
+                  </ViewSwitcherTitleButton2>
+                </ViewSwitcherTitleNarrowViewSwitcher>
+                <ViewSwitcherTitleTitleWidget>
+                  <ViewSwitcherTitleBox>
+                    {title ? (
+                      <ViewSwitcherTitleTitleLabel>{title}</ViewSwitcherTitleTitleLabel>
+                    ) : null}
+                    {subtitle ? (
+                      <ViewSwitcherTitleSubtitleLabel>{subtitle}</ViewSwitcherTitleSubtitleLabel>
+                    ) : null}
+                  </ViewSwitcherTitleBox>
+                </ViewSwitcherTitleTitleWidget>
               </ViewSwitcherTitleSqueezer>
                   {stack}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -63,11 +82,73 @@ function ViewSwitcherTitle({ className, render, stack, subtitle, title, viewSwit
   })
 }
 
+function ViewSwitcherTitleStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-title-stack"
+        data-node="stack"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherTitleButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="view-switcher-title-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
 function ViewSwitcherTitleWideViewSwitcher({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="view-switcher-title-wide-view-switcher"
-      className={cn("flex flex-row", "gap-[3px] min-h-8.5", className)}
+        data-node="viewswitcher"
+        data-halign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5 mx-3", className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherTitleStack2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-title-stack2"
+        data-node="stack"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherTitleButton2({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="view-switcher-title-button2"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
       {...props}
     />
   )
@@ -77,7 +158,49 @@ function ViewSwitcherTitleNarrowViewSwitcher({ className, ...props }: React.Comp
   return (
     <div
       data-slot="view-switcher-title-narrow-view-switcher"
-      className={cn("flex flex-row", "gap-[3px] min-h-8.5", className)}
+        data-node="viewswitcher"
+        data-halign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5 mx-3", className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherTitleTitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="view-switcher-title-title-label"
+        data-node="label"
+      className={cn("title", [
+        "caret-[currentColor] px-3 font-bold",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherTitleSubtitleLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="view-switcher-title-subtitle-label"
+        data-node="label"
+      className={cn("subtitle", [
+        "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ViewSwitcherTitleBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="view-switcher-title-box"
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
       {...props}
     />
   )
@@ -87,7 +210,8 @@ function ViewSwitcherTitleTitleWidget({ className, ...props }: React.ComponentPr
   return (
     <div
       data-slot="view-switcher-title-title-widget"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "-my-1.5 min-h-3", className)}
+        data-node="windowtitle"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "-my-1.5 min-h-3 my-0", className)}
       {...props}
     />
   )
@@ -97,10 +221,11 @@ function ViewSwitcherTitleSqueezer({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="view-switcher-title-squeezer"
+        data-node="squeezer"
       className={cn(className)}
       {...props}
     />
   )
 }
 
-export { ViewSwitcherTitle, ViewSwitcherTitleWideViewSwitcher, ViewSwitcherTitleNarrowViewSwitcher, ViewSwitcherTitleTitleWidget, ViewSwitcherTitleSqueezer }
+export { ViewSwitcherTitle, ViewSwitcherTitleStack, ViewSwitcherTitleButton, ViewSwitcherTitleWideViewSwitcher, ViewSwitcherTitleStack2, ViewSwitcherTitleButton2, ViewSwitcherTitleNarrowViewSwitcher, ViewSwitcherTitleTitleLabel, ViewSwitcherTitleSubtitleLabel, ViewSwitcherTitleBox, ViewSwitcherTitleTitleWidget, ViewSwitcherTitleSqueezer }

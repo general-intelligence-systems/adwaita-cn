@@ -21,7 +21,7 @@ const sidebarVariants = cva(
       variant: {
         default: "",
         /** .arrow */
-        arrow: "disabled:opacity-0",
+        arrow: "",
         /** .empty */
         empty: "",
         /** .first */
@@ -32,22 +32,19 @@ const sidebarVariants = cva(
         header: "",
         /** .heading */
         heading: "font-bold",
+        /** .icon */
+        icon: "",
         /** .navigation-sidebar */
         navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit]",
         /** .page */
         page: "",
         /** .subtitle */
-        subtitle: "px-3 text-[smaller] opacity-0 opacity-100",
+        subtitle: "",
         /** .title */
-        title: "px-3 font-bold",
-      },
-      size: {
-        default: "",
-        /** .icon */
-        icon: "m-[9px]",
+        title: "",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -74,7 +71,7 @@ export interface SidebarProps
   selected?: number
 }
 
-function Sidebar({ className, render, variant = "default", size = "default", filter, menuModel, placeholder, dropPreload, mode, selected, children, ...props }: SidebarProps) {
+function Sidebar({ className, render, variant = "default", filter, menuModel, placeholder, dropPreload, mode, selected, children, ...props }: SidebarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -82,15 +79,18 @@ function Sidebar({ className, render, variant = "default", size = "default", fil
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "sidebar",
+    "data-node": "sidebar",
     "data-variant": variant,
-    "data-size": size,
     "data-drop-preload": dropPreload,
     "data-mode": mode,
     "data-selected": selected,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", sidebarVariants({ variant, size }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", sidebarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <SidebarStatuspage>
+                <SidebarScrolledwindow />
+              </SidebarStatuspage>
                   {filter}
                   {menuModel}
                   {placeholder}
@@ -108,4 +108,26 @@ function Sidebar({ className, render, variant = "default", size = "default", fil
   })
 }
 
-export { Sidebar, sidebarVariants }
+function SidebarScrolledwindow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-scrolledwindow"
+        data-node="scrolledwindow"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function SidebarStatuspage({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sidebar-statuspage"
+        data-node="statuspage"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { Sidebar, SidebarScrolledwindow, SidebarStatuspage, sidebarVariants }

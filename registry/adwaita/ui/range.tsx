@@ -68,6 +68,7 @@ function Range({ className, render, variant = "default", adjustment, fillLevel, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "range",
+    "data-node": "range",
     "data-variant": variant,
     type: "range",
     "data-adjustment": adjustment,

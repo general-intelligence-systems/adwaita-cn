@@ -59,7 +59,7 @@ module ComponentTrees
       "gtk" => element.attribute("class").to_s,
       "id" => element.attribute("id")&.to_s,
       "styles" => styles,
-      "properties" => self.properties(element),
+      "properties" => self.properties(element).merge(self.bindings(element)),
       # A named slot holds one widget: `<property name="child"><object .../></property>`.
       "slots" => self.slots(element),
       # An ordinary child, of which there may be many.
@@ -76,6 +76,28 @@ module ComponentTrees
       bound = property.attribute("bind-property")&.to_s
 
       [name, bound ? { "bind" => bound } : property.text.to_s.strip]
+    end.to_h
+  end
+
+  # The properties a template computes rather than sets.
+  #
+  # `<binding name="visible"><closure function="string_is_not_empty"><lookup
+  # name="icon-name">image</lookup></closure></binding>` is how a .ui says "show this when
+  # that property has something in it", and it is how libadwaita hides an action row's
+  # image until it is given an icon, an entry row's apply button until it is edited, and a
+  # row's subtitle until there is one. Reading only `<property>` meant none of those
+  # bindings existed: every row rendered its apply button, its edit icon and an empty
+  # image box, and an entry row came out as a blue blob the width of the row.
+  #
+  # What is recorded is which property the binding reads, because that is the condition:
+  # the closures are all emptiness tests.
+  def self.bindings(element)
+    REXML::XPath.match(element, "binding").filter_map do |binding|
+      lookup = REXML::XPath.first(binding, ".//lookup")
+
+      next if lookup.nil?
+
+      [binding.attribute("name").to_s, { "bind" => lookup.attribute("name").to_s }]
     end.to_h
   end
 

@@ -30,6 +30,7 @@ function CarouselIndicatorDots({ className, render, carousel, orientation, child
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "carousel-indicator-dots",
+    "data-node": "carouselindicatordots",
     className: cn(widgetClassName, className),
     style,
     children: (

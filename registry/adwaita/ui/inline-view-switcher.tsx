@@ -29,7 +29,7 @@ const inlineViewSwitcherVariants = cva(
         /** .labels */
         labels: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .round */
         round: "",
       },
@@ -66,6 +66,7 @@ function InlineViewSwitcher({ className, render, variant = "default", orientatio
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "inline-view-switcher",
+    "data-node": "inline-view-switcher",
     "data-variant": variant,
     role: "tablist",
     "data-can-shrink": canShrink,
@@ -75,9 +76,22 @@ function InlineViewSwitcher({ className, render, variant = "default", orientatio
     style,
     children: (
         <>
+                  <InlineViewSwitcherToggleGroup>
+                <InlineViewSwitcherToggle>
+                  <InlineViewSwitcherWidget>
+                    <InlineViewSwitcherBox>
+                      {children}
+                    </InlineViewSwitcherBox>
+                    <InlineViewSwitcherIndicatorbin>
+                      <InlineViewSwitcherIndicator />
+                      <InlineViewSwitcherLabel />
+                      <InlineViewSwitcherMask />
+                    </InlineViewSwitcherIndicatorbin>
+                  </InlineViewSwitcherWidget>
+                </InlineViewSwitcherToggle>
+              </InlineViewSwitcherToggleGroup>
                   {orientation}
                   {stack}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -91,4 +105,104 @@ function InlineViewSwitcher({ className, render, variant = "default", orientatio
   })
 }
 
-export { InlineViewSwitcher, inlineViewSwitcherVariants }
+function InlineViewSwitcherBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="inline-view-switcher-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      {...props}
+    />
+  )
+}
+
+function InlineViewSwitcherIndicator({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="inline-view-switcher-indicator"
+        data-node="indicator"
+      className={cn("m-0.5 min-w-1.5 min-h-1.5 rounded-[100px] bg-[color-mix(in_srgb,currentColor_40%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+function InlineViewSwitcherLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="inline-view-switcher-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function InlineViewSwitcherMask({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="inline-view-switcher-mask"
+        data-node="mask"
+      className={cn("p-0.5 min-w-1.5 min-h-1.5 rounded-[100px] bg-[black]", className)}
+      {...props}
+    />
+  )
+}
+
+function InlineViewSwitcherIndicatorbin({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="inline-view-switcher-indicatorbin"
+        data-node="indicatorbin"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function InlineViewSwitcherWidget({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="inline-view-switcher-widget"
+        data-node="widget"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function InlineViewSwitcherToggle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="inline-view-switcher-toggle"
+        data-node="toggle"
+      className={cn([
+        "rounded-[calc(9px_-_var(---group-padding))] font-bold min-w-8.5 min-h-[calc(34px_-_var(---group-padding)_*_2)] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,color,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "data-[state=checked]:bg-[var(--active-toggle-bg-color)] data-[state=checked]:text-[var(--active-toggle-fg-color)] data-[state=checked]:shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+        "data-[state=checked]:disabled:bg-[color-mix(in_srgb,var(--active-toggle-bg-color)_var(--disabled-opacity),transparent)] data-[state=checked]:disabled:shadow-none",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function InlineViewSwitcherToggleGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="inline-view-switcher-toggle-group"
+        data-node="toggle-group"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+        "p-[var(---group-padding)] [---group-padding:3px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-[9px]",
+        "disabled:bg-[color-mix(in_srgb,color-mix(in_srgb,currentColor_10%,transparent)_var(--disabled-opacity),transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { InlineViewSwitcher, InlineViewSwitcherBox, InlineViewSwitcherIndicator, InlineViewSwitcherLabel, InlineViewSwitcherMask, InlineViewSwitcherIndicatorbin, InlineViewSwitcherWidget, InlineViewSwitcherToggle, InlineViewSwitcherToggleGroup, inlineViewSwitcherVariants }

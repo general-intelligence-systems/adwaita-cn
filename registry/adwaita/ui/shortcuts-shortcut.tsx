@@ -15,16 +15,13 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ShortcutType, TextDirection } from "@/lib/enums"
 
 const shortcutsShortcutVariants = cva(
-  [
-    "gap-[6px] rounded-[6px] outline-offset-[8px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[4px]",
-  ],
+  "gap-[6px] rounded-[6px] outline-offset-[8px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
   {
     variants: {
       variant: {
         default: "",
         /** .dim-label */
-        dimLabel: "opacity-0",
+        dimLabel: "opacity-[var(--dim-opacity)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -77,6 +74,7 @@ function ShortcutsShortcut({ className, render, variant = "default", accelSizeGr
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "shortcuts-shortcut",
+    "data-node": "shortcut",
     "data-variant": variant,
     "data-accelerator": accelerator,
     "data-action-name": actionName,

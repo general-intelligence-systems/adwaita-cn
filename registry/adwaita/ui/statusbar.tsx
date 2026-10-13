@@ -24,6 +24,7 @@ function Statusbar({ className, render, children, ...props }: StatusbarProps) {
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "statusbar",
+    "data-node": "statusbar",
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "py-1.5 px-2.5", widgetClassName, className),
     style,
     children: children,

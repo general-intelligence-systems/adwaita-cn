@@ -24,7 +24,7 @@ const stackSidebarVariants = cva(
         /** .needs-attention */
         needsAttention: "",
         /** .sidebar */
-        sidebar: "",
+        sidebar: "[border-right-width:1px] [border-right-style:solid] [border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-left-width:1px] [border-left-style:solid] [border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -47,11 +47,15 @@ function StackSidebar({ className, render, variant = "default", stack, children,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "stack-sidebar",
+    "data-node": "stacksidebar",
     "data-variant": variant,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", stackSidebarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <StackSidebarRow>
+                <StackSidebarLabel />
+              </StackSidebarRow>
                   {stack}
                   {children}
         </>
@@ -67,4 +71,32 @@ function StackSidebar({ className, render, variant = "default", stack, children,
   })
 }
 
-export { StackSidebar, stackSidebarVariants }
+function StackSidebarLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="stack-sidebar-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor] px-1.5",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function StackSidebarRow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="stack-sidebar-row"
+        data-node="row"
+      className={cn([
+        "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] py-2.5 px-1",
+        "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { StackSidebar, StackSidebarLabel, StackSidebarRow, stackSidebarVariants }

@@ -27,6 +27,7 @@ function MediaControls({ className, render, mediaStream, children, ...props }: M
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "media-controls",
+    "data-node": "controls",
     className: cn(widgetClassName, className),
     style,
     children: (

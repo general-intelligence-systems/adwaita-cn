@@ -52,6 +52,7 @@ function ShortcutsGroup({ className, render, accelSizeGroup, titleSizeGroup, bas
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "shortcuts-group",
+    "data-node": "shortcuts-group",
     "data-baseline-child": baselineChild,
     "data-baseline-position": baselinePosition,
     "data-homogeneous": homogeneous,

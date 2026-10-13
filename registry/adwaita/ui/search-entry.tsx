@@ -16,13 +16,15 @@ import type { InputHints, InputPurpose } from "@/lib/enums"
 
 const searchEntryVariants = cva(
   [
-    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[-2px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] outline-2 border-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
     "disabled:[filter:Opacity(var(--disabled-opacity))]",
   ],
   {
     variants: {
       variant: {
         default: "",
+        /** .combo-searchbar */
+        comboSearchbar: "",
         /** .flat */
         flat: [
           "p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
@@ -31,18 +33,13 @@ const searchEntryVariants = cva(
         /** .search */
         search: "",
       },
-      size: {
-        default: "",
-        /** .combo-searchbar */
-        comboSearchbar: "m-1.5",
-      },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
 export interface SearchEntryProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "activatesDefault" | "editable" | "enableUndo" | "inputHints" | "inputPurpose" | "keyCaptureWidget" | "maxWidthChars" | "placeholderText" | "searchDelay" | "text" | "widthChars" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "activatesDefault" | "editable" | "enableUndo" | "inputHints" | "inputPurpose" | "keyCaptureWidget" | "maxWidthChars" | "placeholderText" | "searchDelay" | "text" | "widthChars" | "xalign" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof searchEntryVariants> {
   /** gboolean, from Gtk.SearchEntry */
@@ -82,7 +79,7 @@ export interface SearchEntryProps
   xalign?: number
 }
 
-function SearchEntry({ className, render, variant = "default", size = "default", activatesDefault, editable, enableUndo, inputHints, inputPurpose, keyCaptureWidget, maxWidthChars, placeholderText, searchDelay, text, widthChars, xalign, children: _children, ...props }: SearchEntryProps) {
+function SearchEntry({ className, render, variant = "default", keyCaptureWidget, activatesDefault, editable, enableUndo, inputHints, inputPurpose, maxWidthChars, placeholderText, searchDelay, text, widthChars, xalign, children, ...props }: SearchEntryProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -90,32 +87,124 @@ function SearchEntry({ className, render, variant = "default", size = "default",
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "search-entry",
+    "data-node": "entry",
     "data-variant": variant,
-    "data-size": size,
-    type: "text",
     "data-activates-default": activatesDefault,
-    contentEditable: editable,
+    "data-editable": editable,
     "data-enable-undo": enableUndo,
     "data-input-hints": inputHints,
     "data-input-purpose": inputPurpose,
-    "data-key-capture-widget": keyCaptureWidget,
     "data-max-width-chars": maxWidthChars,
-    placeholder: placeholderText,
+    "data-placeholder-text": placeholderText,
     "data-search-delay": searchDelay,
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn(searchEntryVariants({ variant, size }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", searchEntryVariants({ variant }), widgetClassName, className),
     style,
+    children: (
+        <>
+                  <SearchEntryImage />
+                  <SearchEntryProgress>
+                <SearchEntryTrough>
+                  <SearchEntryProgress2 />
+                </SearchEntryTrough>
+              </SearchEntryProgress>
+                  <SearchEntryText placeholder={placeholderText} defaultValue={text} />
+                  {keyCaptureWidget}
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { SearchEntry, searchEntryVariants }
+function SearchEntryImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="search-entry-image"
+        data-node="image"
+      className={cn([
+        "opacity-70",
+        "hover:opacity-100",
+        "active:opacity-80",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryProgress2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-progress2"
+        data-node="progress"
+      className={cn("mb-[3px] bg-[transparent] bg-[image:none] rounded-none [border-top-width:0] [border-right-width:0] [border-bottom-width:2px] [border-left-width:0] border-[var(--accent-bg-color)] border-solid shadow-none", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-trough"
+        data-node="trough"
+      className={cn("min-h-0.5", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryProgress({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-progress"
+        data-node="progress"
+      className={cn("mb-[3px]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-block-cursor"
+        data-node="block-cursor"
+      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="search-entry-placeholder"
+        data-node="placeholder"
+      className={cn("opacity-[var(--dim-opacity)]", className)}
+      {...props}
+    />
+  )
+}
+
+function SearchEntryText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="search-entry-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", className)}
+      {...props}
+    />
+  )
+}
+
+export { SearchEntry, SearchEntryImage, SearchEntryProgress2, SearchEntryTrough, SearchEntryProgress, SearchEntryBlockCursor, SearchEntryPlaceholder, SearchEntryText, searchEntryVariants }

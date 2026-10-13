@@ -29,7 +29,7 @@ const progressBarVariants = cva(
         /** .left */
         left: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-0.5 min-h-0.5",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-0.5 min-h-0.5",
         /** .pulse */
         pulse: "",
         /** .right */
@@ -76,6 +76,7 @@ function ProgressBar({ className, render, variant = "default", ellipsize, text, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "progress-bar",
+    "data-node": "progressbar",
     "data-variant": variant,
     role: "progressbar",
     "data-fraction": fraction,
@@ -83,10 +84,14 @@ function ProgressBar({ className, render, variant = "default", ellipsize, text, 
     "data-orientation": orientation,
     "data-pulse-step": pulseStep,
     "data-show-text": showText,
-    className: cn("flex", (orientation === "vertical" ? "flex-col" : "flex-row"), progressBarVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", progressBarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <ProgressBarText defaultValue={text} defaultValue={fraction} />
+                  <ProgressBarTrough>
+                <ProgressBarProgress />
+              </ProgressBarTrough>
                   {text}
                   {ellipsize}
                   {children}
@@ -103,4 +108,37 @@ function ProgressBar({ className, render, variant = "default", ellipsize, text, 
   })
 }
 
-export { ProgressBar, progressBarVariants }
+function ProgressBarText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="progress-bar-text"
+        data-node="text"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      {...props}
+    />
+  )
+}
+
+function ProgressBarProgress({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="progress-bar-progress"
+        data-node="progress"
+      className={cn("rounded-[99px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ProgressBarTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="progress-bar-trough"
+        data-node="trough"
+      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+export { ProgressBar, ProgressBarText, ProgressBarProgress, ProgressBarTrough, progressBarVariants }

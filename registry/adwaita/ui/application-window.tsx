@@ -20,11 +20,11 @@ const applicationWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_transparent,0_0_10px_5px_RGB(0_0_0/8%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px] transition-[box-shadow] duration-200 ease-[ease-out]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
         /** .messagedialog */
         messagedialog: "bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-backdrop-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
         ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
       },
@@ -127,6 +127,7 @@ function ApplicationWindow({ className, render, variant = "default", application
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "application-window",
+    "data-node": "window",
     "data-variant": variant,
     role: "dialog",
     "data-adaptive-preview": adaptivePreview,
@@ -150,17 +151,25 @@ function ApplicationWindow({ className, render, variant = "default", application
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="application-window-icon" className={iconName} aria-hidden /> : null}
-                  {children}
+                  <ApplicationWindowDrawing>
+                <ApplicationWindowPaper />
+              </ApplicationWindowDrawing>
+                  <ApplicationWindowSheet>
+                <ApplicationWindowHeaderbar>
+                  <ApplicationWindowWindowhandle />
+                </ApplicationWindowHeaderbar>
+              </ApplicationWindowSheet>
+                  {iconName ? <span data-slot="application-window-icon" data-icon className={iconName} aria-hidden /> : null}
+                  {content}
                   {application}
                   {child}
-                  {content}
                   {defaultWidget}
                   {display}
                   {focusWidget}
                   {gravity}
                   {titlebar}
                   {transientFor}
+                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -174,4 +183,59 @@ function ApplicationWindow({ className, render, variant = "default", application
   })
 }
 
-export { ApplicationWindow, applicationWindowVariants }
+function ApplicationWindowPaper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="application-window-paper"
+        data-node="paper"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ApplicationWindowDrawing({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="application-window-drawing"
+        data-node="drawing"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ApplicationWindowWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="application-window-windowhandle"
+        data-node="windowhandle"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ApplicationWindowHeaderbar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="application-window-headerbar"
+        data-node="headerbar"
+      className={cn("mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+function ApplicationWindowSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="application-window-sheet"
+        data-node="sheet"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { ApplicationWindow, ApplicationWindowPaper, ApplicationWindowDrawing, ApplicationWindowWindowhandle, ApplicationWindowHeaderbar, ApplicationWindowSheet, applicationWindowVariants }

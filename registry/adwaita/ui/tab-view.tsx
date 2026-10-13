@@ -37,8 +37,9 @@ function TabView({ className, render, defaultIcon, menuModel, selectedPage, shor
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "tab-view",
+    "data-node": "tabview",
     "data-shortcuts": shortcuts,
-    className: cn("shadow-none", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     children: (
         <>

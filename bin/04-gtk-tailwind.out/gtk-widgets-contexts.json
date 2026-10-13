@@ -2,22 +2,15 @@
   "coverflow cover": {
     "base": [
       "text-[black]",
-      "bg-[#ffffff]"
+      "bg-[#ffffff]",
+      "[border-width:1px]",
+      "[border-style:solid]",
+      "[border-color:black]"
     ]
   },
   "expander-widget": {
     "base": [
-      "duration-[300ms]",
-      "shadow-none"
-    ],
-    "focus": [
-      "shadow-none"
-    ]
-  },
-  "filechooserbutton": {
-    "base": [
-      "shadow-none",
-      "border-[transparent]"
+      "duration-[300ms]"
     ]
   },
   "notebook": {

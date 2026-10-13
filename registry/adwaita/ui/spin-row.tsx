@@ -17,7 +17,6 @@ import type { SpinButtonUpdatePolicy } from "@/lib/enums"
 const spinRowVariants = cva(
   [
     "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -38,22 +37,19 @@ const spinRowVariants = cva(
         /** .focused */
         focused: "",
         /** .has-open-popup */
-        hasOpenPopup: "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        hasOpenPopup: "",
         /** .header */
-        header: [
-          "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-tl-[12px] rounded-tr-[12px] rounded-bl-[12px] rounded-br-[12px] border-b-[0]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-1px]",
-        ],
+        header: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
         separator: "",
         /** .separators */
         separators: "",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "text-[var(--accent-color)]",
+        sidebarNewBookmarkRow: "",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "py-0 px-2 min-h-0.5 bg-[image:image(var(--accent-bg-color))] bg-clip-content",
+        sidebarPlaceholderRow: "",
         /** .spin */
         spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
@@ -63,7 +59,7 @@ const spinRowVariants = cva(
 )
 
 export interface SpinRowProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "actionName" | "actionTarget" | "activatable" | "activatableWidget" | "adjustment" | "child" | "climbRate" | "digits" | "editable" | "enableUndo" | "iconName" | "maxWidthChars" | "numeric" | "selectable" | "snapToTicks" | "subtitle" | "subtitleLines" | "subtitleSelectable" | "text" | "title" | "titleLines" | "titleSelectable" | "updatePolicy" | "useMarkup" | "useUnderline" | "value" | "widthChars" | "wrap" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "actionName" | "actionTarget" | "activatable" | "activatableWidget" | "adjustment" | "child" | "climbRate" | "digits" | "editable" | "enableUndo" | "iconName" | "maxWidthChars" | "numeric" | "selectable" | "snapToTicks" | "subtitle" | "subtitleLines" | "subtitleSelectable" | "text" | "title" | "titleLines" | "titleSelectable" | "updatePolicy" | "useMarkup" | "useUnderline" | "value" | "widthChars" | "wrap" | "xalign" | "prefix" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof spinRowVariants> {
   /** utf8, from Adw.SpinRow */
@@ -104,6 +100,9 @@ export interface SpinRowProps
 
   /** gboolean, from Adw.SpinRow */
   numeric?: boolean
+
+  /** Gtk.Widget, from Adw.SpinRow */
+  prefix?: ReactNode
 
   /** gboolean, from Gtk.ListBoxRow */
   selectable?: boolean
@@ -154,7 +153,7 @@ export interface SpinRowProps
   xalign?: number
 }
 
-function SpinRow({ className, render, variant = "default", actionTarget, activatableWidget, adjustment, child, iconName, subtitle, title, actionName, activatable, climbRate, digits, editable, enableUndo, maxWidthChars, numeric, selectable, snapToTicks, subtitleLines, subtitleSelectable, text, titleLines, titleSelectable, updatePolicy, useMarkup, useUnderline, value, widthChars, wrap, xalign, children, ...props }: SpinRowProps) {
+function SpinRow({ className, render, variant = "default", actionTarget, activatableWidget, adjustment, child, iconName, prefix, subtitle, title, actionName, activatable, climbRate, digits, editable, enableUndo, maxWidthChars, numeric, selectable, snapToTicks, subtitleLines, subtitleSelectable, text, titleLines, titleSelectable, updatePolicy, useMarkup, useUnderline, value, widthChars, wrap, xalign, children, ...props }: SpinRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -162,12 +161,13 @@ function SpinRow({ className, render, variant = "default", actionTarget, activat
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "spin-row",
+    "data-node": "row",
     "data-variant": variant,
     "data-action-name": actionName,
     "data-activatable": activatable,
     "data-climb-rate": climbRate,
     "data-digits": digits,
-    contentEditable: editable,
+    "data-editable": editable,
     "data-enable-undo": enableUndo,
     "data-max-width-chars": maxWidthChars,
     "data-numeric": numeric,
@@ -185,19 +185,40 @@ function SpinRow({ className, render, variant = "default", actionTarget, activat
     "data-width-chars": widthChars,
     "data-wrap": wrap,
     "data-xalign": xalign,
-    className: cn(spinRowVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", spinRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  <SpinRowSpinButton />
-                  {iconName ? <span data-slot="spin-row-icon" className={iconName} aria-hidden /> : null}
-                  {subtitle}
-                  {title}
+                  <SpinRowHeader>
+                {prefix ? (
+                  <SpinRowPrefixes>
+                    {prefix}
+                  </SpinRowPrefixes>
+                ) : null}
+                {iconName ? (
+                  <SpinRowImage data-icon className={iconName} />
+                ) : null}
+                <SpinRowTitleBox>
+                  {title ? (
+                    <SpinRowTitle>{title}</SpinRowTitle>
+                  ) : null}
+                  {subtitle ? (
+                    <SpinRowSubtitle>{subtitle}</SpinRowSubtitle>
+                  ) : null}
+                </SpinRowTitleBox>
+                <SpinRowSuffixes>
+                  <SpinRowSpinButton>
+                    <SpinRowText defaultValue={text} defaultValue={value} />
+                    <SpinRowSpinDown />
+                    <SpinRowSpinUp />
+                  </SpinRowSpinButton>
+                  {children}
+                </SpinRowSuffixes>
+              </SpinRowHeader>
                   {actionTarget}
                   {activatableWidget}
                   {adjustment}
                   {child}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -211,12 +232,25 @@ function SpinRow({ className, render, variant = "default", actionTarget, activat
   })
 }
 
-function SpinRowSpinButton({ className, ...props }: React.ComponentProps<"div">) {
+function SpinRowPrefixes({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="spin-row-spin-button"
-      className={cn("flex flex-row", [
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[-2px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] outline-2 border-[var(--accent-bg-color)] shadow-[inset_0_0_0_1px_var(--accent-bg-color)]",
+      data-slot="spin-row-prefixes"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes", "mx-1.5 gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="spin-row-image"
+        data-node="image"
+        data-valign="center"
+      className={cn("icon", [
+        "mx-1.5",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -224,4 +258,138 @@ function SpinRowSpinButton({ className, ...props }: React.ComponentProps<"div">)
   )
 }
 
-export { SpinRow, SpinRowSpinButton, spinRowVariants }
+function SpinRowTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="spin-row-title"
+        data-node="label"
+      className={cn("title", [
+        "caret-[currentColor] p-0 [font-weight:inherit]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSubtitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="spin-row-subtitle"
+        data-node="label"
+      className={cn("subtitle", [
+        "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowTitleBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-title-box"
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowText({ className, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      data-slot="spin-row-text"
+        data-node="text"
+        data-hexpand=""
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 w-0 grow", "p-1.5 min-w-7", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSpinDown({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button down", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "last:rounded-[0_9px_9px_0]",
+        "first:rounded-[9px_0_0_9px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSpinUp({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button up", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        "last:rounded-[0_9px_9px_0]",
+        "first:rounded-[9px_0_0_9px]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSpinButton({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-spin-button"
+        data-node="spinbutton"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowSuffixes({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-suffixes"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", "gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function SpinRowHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="spin-row-header"
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "mx-3 gap-[6px] min-h-12.5", className)}
+      {...props}
+    />
+  )
+}
+
+export { SpinRow, SpinRowPrefixes, SpinRowImage, SpinRowTitle, SpinRowSubtitle, SpinRowTitleBox, SpinRowText, SpinRowSpinDown, SpinRowSpinUp, SpinRowSpinButton, SpinRowSuffixes, SpinRowHeader, spinRowVariants }

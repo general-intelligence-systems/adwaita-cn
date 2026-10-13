@@ -57,6 +57,7 @@ function ColorButton({ className, render, variant = "default", rgba, modal, show
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "color-button",
+    "data-node": "colorbutton",
     "data-variant": variant,
     "data-modal": modal,
     "data-show-editor": showEditor,

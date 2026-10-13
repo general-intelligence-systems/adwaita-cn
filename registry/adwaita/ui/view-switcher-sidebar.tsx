@@ -23,7 +23,7 @@ const viewSwitcherSidebarVariants = cva(
         /** .dot */
         dot: "",
         /** .indicator */
-        indicator: "bg-[color-mix(in_srgb,currentColor_40%,transparent)] rounded-[999px] min-w-[1.6em] min-h-[1.6em] font-bold text-[smaller]",
+        indicator: "",
         /** .needs-attention */
         needsAttention: "",
         /** .numeric */
@@ -59,6 +59,7 @@ function ViewSwitcherSidebar({ className, render, variant = "default", filter, p
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "view-switcher-sidebar",
+    "data-node": "view-switcher-sidebar",
     "data-variant": variant,
     "data-mode": mode,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", viewSwitcherSidebarVariants({ variant }), widgetClassName, className),

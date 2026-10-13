@@ -26,9 +26,12 @@ export default function LibraryApp() {
       sidebar={
         <NavigationPage title="Library">
           <ToolbarView content={<ListBox className="navigation-sidebar">{PEOPLE.map(([title, subtitle, initials]) => (
-            <ActionRow key={title} title={title} subtitle={subtitle}>
-              <Avatar size={32} text={initials} showInitials />
-            </ActionRow>
+            <ActionRow
+              key={title}
+              title={title}
+              subtitle={subtitle}
+              prefix={<Avatar size={32} text={initials} showInitials />}
+            />
           ))}</ListBox>}>
             <HeaderBar titleWidget={<SearchEntry placeholderText="Search" className="grow" />}>
               <Button variant="flat" iconName="list-add-symbolic" />
@@ -45,7 +48,7 @@ export default function LibraryApp() {
                 title="Ada Lovelace"
                 description="Select a different person to see their details."
               >
-                <Button size="pill" variant="suggestedAction" label="Open" />
+                <Button size="pill" variant="suggestedAction" label="Open" halign="center" />
               </StatusPage>
             }
           >

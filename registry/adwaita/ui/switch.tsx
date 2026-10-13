@@ -36,16 +36,16 @@ function Switch({ className, render, actionTarget, actionName, active, state: _s
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "switch",
+    "data-node": "switch",
     role: "switch",
     "data-action-name": actionName,
     "data-state": active ? "checked" : "unchecked",
     "aria-checked": active,
-    className: cn([
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
           "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
           "hover:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
           "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
           "disabled:[filter:Opacity(var(--disabled-opacity))]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[1px]",
           "data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:bg-[var(--accent-bg-color)]",
           "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
           "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
@@ -53,6 +53,7 @@ function Switch({ className, render, actionTarget, actionName, active, state: _s
     style,
     children: (
         <>
+                  <SwitchSlider />
                   {actionTarget}
                   {children}
         </>
@@ -68,4 +69,18 @@ function Switch({ className, render, actionTarget, actionName, active, state: _s
   })
 }
 
-export { Switch }
+function SwitchSlider({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="switch-slider"
+        data-node="slider"
+      className={cn([
+        "min-w-5 min-h-5 rounded-full bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_2px_4px_RGB(0_0_6/20%)]",
+        "disabled:shadow-[0_2px_4px_transparent]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { Switch, SwitchSlider }

@@ -24,7 +24,7 @@ const notebookVariants = cva(
         /** .down */
         down: "",
         /** .frame */
-        frame: "",
+        frame: "[border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .reorderable-page */
         reorderablePage: "",
         /** .top */
@@ -71,6 +71,7 @@ function Notebook({ className, render, variant = "default", enablePopup, groupNa
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "notebook",
+    "data-node": "notebook",
     "data-variant": variant,
     role: "tablist",
     "data-enable-popup": enablePopup,
@@ -80,9 +81,25 @@ function Notebook({ className, render, variant = "default", enablePopup, groupNa
     "data-show-border": showBorder,
     "data-show-tabs": showTabs,
     "data-tab-pos": tabPos,
-    className: cn("flex", "flex-row", notebookVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", notebookVariants({ variant }), widgetClassName, className),
     style,
-    children: children,
+    children: (
+        <>
+                  <NotebookHeader>
+                <NotebookTabs>
+                  <NotebookArrow>
+                    <NotebookBox />
+                  </NotebookArrow>
+                  <NotebookTab>
+                    <NotebookButton />
+                  </NotebookTab>
+                </NotebookTabs>
+              </NotebookHeader>
+                  <NotebookStack>
+                {children}
+              </NotebookStack>
+        </>
+      ),
     ...widgetAttributes,
   }
 
@@ -94,4 +111,103 @@ function Notebook({ className, render, variant = "default", enablePopup, groupNa
   })
 }
 
-export { Notebook, notebookVariants }
+function NotebookBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="notebook-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      {...props}
+    />
+  )
+}
+
+function NotebookArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="notebook-arrow"
+        data-node="arrow"
+      className={cn([
+        "py-[5px] px-2.5 min-h-4 min-w-4 rounded-none font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] hover:shadow-none",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "disabled:[filter:opacity(30%)]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function NotebookButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="notebook-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function NotebookTab({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="notebook-tab"
+        data-node="tab"
+      className={cn([
+        "py-[3px] px-3 transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-7.5 min-w-7.5 font-normal outline-[transparent]",
+        "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:outline-offset-[4px] data-[state=checked]:transition-[outline-color,outline-width,outline-offset] data-[state=checked]:duration-200 data-[state=checked]:ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function NotebookTabs({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="notebook-tabs"
+        data-node="tabs"
+      className={cn("m-[-1px]", className)}
+      {...props}
+    />
+  )
+}
+
+function NotebookHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="notebook-header"
+        data-node="header"
+      className={cn("p-[1px] border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-width:1px] bg-clip-padding", className)}
+      {...props}
+    />
+  )
+}
+
+function NotebookStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="notebook-stack"
+        data-node="stack"
+      className={cn("bg-[var(--view-bg-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+export { Notebook, NotebookBox, NotebookArrow, NotebookButton, NotebookTab, NotebookTabs, NotebookHeader, NotebookStack, notebookVariants }

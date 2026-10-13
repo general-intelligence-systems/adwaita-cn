@@ -22,7 +22,7 @@ const messageDialogVariants = cva(
         /** .compact */
         compact: "",
         /** .csd */
-        csd: "m-0 shadow-[0_0_14px_5px_transparent,0_0_10px_5px_RGB(0_0_0/8%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px] transition-[box-shadow] duration-200 ease-[ease-out]",
+        csd: "m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] outline-offset-[-1px]",
         /** .destructive-action */
         destructiveAction: "",
         /** .has-body */
@@ -36,7 +36,7 @@ const messageDialogVariants = cva(
         /** .short */
         short: "",
         /** .solid-csd */
-        solidCsd: "p-[5px] m-0 shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-backdrop-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
         /** .ssd */
         ssd: "shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
         /** .suggested-action */
@@ -153,6 +153,7 @@ function MessageDialog({ className, render, variant = "default", application, bo
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "message-dialog",
+    "data-node": "window",
     "data-variant": variant,
     role: "dialog",
     "data-body-use-markup": bodyUseMarkup,
@@ -178,7 +179,6 @@ function MessageDialog({ className, render, variant = "default", application, bo
     style,
     children: (
         <>
-                  <MessageDialogBox />
                   <MessageDialogWindowHandle>
                 <MessageDialogBox2>
                   <MessageDialogMessageArea>
@@ -186,15 +186,16 @@ function MessageDialog({ className, render, variant = "default", application, bo
                       <MessageDialogHeadingLabel>{heading}</MessageDialogHeadingLabel>
                       <MessageDialogHeadingLabelSmall />
                     </MessageDialogHeadingBin>
-                    <MessageDialogBodyLabel>{body}</MessageDialogBodyLabel>
-                    <MessageDialogChildBin />
+                    {body ? (
+                      <MessageDialogBodyLabel>{body}</MessageDialogBodyLabel>
+                    ) : null}
                   </MessageDialogMessageArea>
                   <MessageDialogResponseArea>
                     {children}
                   </MessageDialogResponseArea>
                 </MessageDialogBox2>
               </MessageDialogWindowHandle>
-                  {iconName ? <span data-slot="message-dialog-icon" className={iconName} aria-hidden /> : null}
+                  {iconName ? <span data-slot="message-dialog-icon" data-icon className={iconName} aria-hidden /> : null}
                   {application}
                   {child}
                   {defaultWidget}
@@ -221,7 +222,8 @@ function MessageDialogBox({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="message-dialog-box"
-      className={cn("flex flex-row", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -231,7 +233,11 @@ function MessageDialogHeadingLabel({ className, ...props }: React.ComponentProps
   return (
     <span
       data-slot="message-dialog-heading-label"
-      className={cn("font-extrabold text-[136%]", className)}
+        data-node="label"
+      className={cn("title-2", [
+        "caret-[currentColor] font-extrabold text-[136%]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -241,7 +247,11 @@ function MessageDialogHeadingLabelSmall({ className, ...props }: React.Component
   return (
     <span
       data-slot="message-dialog-heading-label-small"
-      className={cn("font-bold text-[118%]", className)}
+        data-node="label"
+      className={cn("title-4", [
+        "caret-[currentColor] font-bold text-[118%]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -251,7 +261,7 @@ function MessageDialogHeadingBin({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="message-dialog-heading-bin"
-      className={cn(className)}
+      className={cn("heading-bin", "px-6", className)}
       {...props}
     />
   )
@@ -261,7 +271,12 @@ function MessageDialogBodyLabel({ className, ...props }: React.ComponentProps<"s
   return (
     <span
       data-slot="message-dialog-body-label"
-      className={cn("font-normal leading-[140%]", className)}
+        data-node="label"
+        data-vexpand=""
+      className={cn("body", [
+        "caret-[currentColor] font-normal leading-[140%] px-6",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -271,7 +286,7 @@ function MessageDialogChildBin({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="message-dialog-child-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "child", "px-6", className)}
       {...props}
     />
   )
@@ -281,7 +296,8 @@ function MessageDialogMessageArea({ className, ...props }: React.ComponentProps<
   return (
     <div
       data-slot="message-dialog-message-area"
-      className={cn("flex flex-col", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area", "pt-8 pb-[9px] gap-[24px]", className)}
       {...props}
     />
   )
@@ -291,7 +307,7 @@ function MessageDialogResponseArea({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="message-dialog-response-area"
-      className={cn(className)}
+      className={cn("response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
       {...props}
     />
   )
@@ -301,7 +317,8 @@ function MessageDialogBox2({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="message-dialog-box2"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
       {...props}
     />
   )
@@ -311,7 +328,8 @@ function MessageDialogWindowHandle({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="message-dialog-window-handle"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "pt-[3px] min-h-0 [filter:opacity(0.5)] transition-[filter] duration-200 ease-[ease-out] bg-[image:unset] bg-repeat", className)}
+        data-node="windowhandle"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
   )

@@ -20,11 +20,7 @@ const flowBoxVariants = cva(
       variant: {
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .navigation-sidebar */
         navigationSidebar: "pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
         /** .view */
@@ -80,6 +76,7 @@ function FlowBox({ className, render, variant = "default", acceptUnpairedRelease
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "flow-box",
+    "data-node": "flowbox",
     "data-variant": variant,
     "data-accept-unpaired-release": acceptUnpairedRelease,
     "data-activate-on-single-click": activateOnSingleClick,

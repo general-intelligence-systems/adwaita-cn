@@ -47,12 +47,18 @@ function Scrollbar({ className, render, variant = "default", adjustment, orienta
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "scrollbar",
+    "data-node": "scrollbar",
     "data-variant": variant,
     "data-orientation": orientation,
-    className: cn("flex", (orientation === "vertical" ? "flex-col" : "flex-row"), scrollbarVariants({ variant }), orientation === "vertical" && "pt-1.5", widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", scrollbarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <ScrollbarRange>
+                <ScrollbarTrough>
+                  <ScrollbarSlider />
+                </ScrollbarTrough>
+              </ScrollbarRange>
                   {adjustment}
                   {children}
         </>
@@ -68,4 +74,42 @@ function Scrollbar({ className, render, variant = "default", adjustment, orienta
   })
 }
 
-export { Scrollbar, scrollbarVariants }
+function ScrollbarSlider({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scrollbar-slider"
+        data-node="slider"
+      className={cn([
+        "-m-2 min-w-2 min-h-2 [border-width:8px] [border-style:solid] [border-color:transparent] rounded-[99px] bg-clip-padding transition-[all] duration-200 ease-[linear] bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_60%,transparent)]",
+        "disabled:opacity-0",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ScrollbarTrough({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scrollbar-trough"
+        data-node="trough"
+      className={cn("m-[9px] transition-[all] duration-200 ease-[linear] rounded-[99px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ScrollbarRange({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="scrollbar-range"
+        data-node="range"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { Scrollbar, ScrollbarSlider, ScrollbarTrough, ScrollbarRange, scrollbarVariants }

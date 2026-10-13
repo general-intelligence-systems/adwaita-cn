@@ -85,6 +85,7 @@ function BottomSheet({ className, render, variant = "default", bottomBar, conten
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "bottom-sheet",
+    "data-node": "bottom-sheet",
     "data-variant": variant,
     role: "dialog",
     "data-align": align,
@@ -99,9 +100,18 @@ function BottomSheet({ className, render, variant = "default", bottomBar, conten
     style,
     children: (
         <>
+                  <BottomSheetDimming />
+                  <BottomSheetSheet>
+                <BottomSheetOutline />
+                <BottomSheetStack>
+                  <BottomSheetWidget>
+                    <BottomSheetDragHandle />
+                  </BottomSheetWidget>
                   {children}
-                  {bottomBar}
+                </BottomSheetStack>
+              </BottomSheetSheet>
                   {content}
+                  {bottomBar}
                   {sheet}
         </>
       ),
@@ -116,4 +126,70 @@ function BottomSheet({ className, render, variant = "default", bottomBar, conten
   })
 }
 
-export { BottomSheet, bottomSheetVariants }
+function BottomSheetDimming({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="bottom-sheet-dimming"
+        data-node="dimming"
+      className={cn("bg-[RGB(from_var(--shade-color)_r_g_b/calc(alpha_*_2))]", className)}
+      {...props}
+    />
+  )
+}
+
+function BottomSheetOutline({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="bottom-sheet-outline"
+        data-node="outline"
+      className={cn("shadow-[inset_1px_0_RGB(255_255_255/7%),inset_-1px_0_RGB(255_255_255/7%),inset_0_1px_RGB(255_255_255/7%)] transition-[border-radius] duration-100 ease-[ease-out] rounded-tl-[15px] rounded-tr-[15px]", className)}
+      {...props}
+    />
+  )
+}
+
+function BottomSheetDragHandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="bottom-sheet-drag-handle"
+        data-node="drag-handle"
+      className={cn("m-[15px] bg-[color-mix(in_srgb,currentColor_25%,transparent)] min-w-13.5 min-h-1.5 rounded-[99px]", className)}
+      {...props}
+    />
+  )
+}
+
+function BottomSheetWidget({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="bottom-sheet-widget"
+        data-node="widget"
+      className={cn("rounded-tl-[15px] rounded-tr-[15px]", className)}
+      {...props}
+    />
+  )
+}
+
+function BottomSheetStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="bottom-sheet-stack"
+        data-node="stack"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function BottomSheetSheet({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="bottom-sheet-sheet"
+        data-node="sheet"
+      className={cn("shadow-[0_0_14px_2px_RGB(0_0_6/3%),0_0_5px_2px_RGB(0_0_6/10%),0_0_0_1px_RGB(0_0_0/5%)] transition-[border-radius,box-shadow] duration-100 ease-[ease-out] rounded-tl-[15px] rounded-tr-[15px]", className)}
+      {...props}
+    />
+  )
+}
+
+export { BottomSheet, BottomSheetDimming, BottomSheetOutline, BottomSheetDragHandle, BottomSheetWidget, BottomSheetStack, BottomSheetSheet, bottomSheetVariants }

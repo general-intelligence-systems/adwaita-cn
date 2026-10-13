@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 import type { DialogPresentationMode } from "@/lib/enums"
 
 const preferencesDialogVariants = cva(
@@ -26,11 +27,7 @@ const preferencesDialogVariants = cva(
         /** .default */
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .dialog-window */
         dialogWindow: "",
         /** .floating */
@@ -40,7 +37,7 @@ const preferencesDialogVariants = cva(
         /** .narrow */
         narrow: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .portrait */
         portrait: "",
         /** .preferences */
@@ -109,6 +106,7 @@ function PreferencesDialog({ className, render, variant = "default", child, defa
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "preferences-dialog",
+    "data-node": "dialog",
     "data-variant": variant,
     role: "dialog",
     "data-can-close": canClose,
@@ -119,7 +117,7 @@ function PreferencesDialog({ className, render, variant = "default", child, defa
     "data-search-enabled": searchEnabled,
     "data-title": title,
     "data-visible-page-name": visiblePageName,
-    className: cn(preferencesDialogVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesDialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -133,7 +131,9 @@ function PreferencesDialog({ className, render, variant = "default", child, defa
                           <PreferencesDialogTitleStack>
                             {children}
                           </PreferencesDialogTitleStack>
-                          <PreferencesDialogSearchButton />
+                          {searchEnabled ? (
+                            <PreferencesDialogSearchButton />
+                          ) : null}
                         </PreferencesDialogHeaderBar>
                       </PreferencesDialogToolbarView>
                     </PreferencesDialogBreakpointBin>
@@ -161,6 +161,7 @@ function PreferencesDialogContentStack({ className, ...props }: React.ComponentP
   return (
     <div
       data-slot="preferences-dialog-content-stack"
+        data-node="stack"
       className={cn(className)}
       {...props}
     />
@@ -171,6 +172,8 @@ function PreferencesDialogTitleStack({ className, ...props }: React.ComponentPro
   return (
     <div
       data-slot="preferences-dialog-title-stack"
+        data-node="stack"
+        data-hexpand=""
       className={cn(className)}
       {...props}
     />
@@ -181,15 +184,16 @@ function PreferencesDialogSearchButton({ className, ...props }: React.ComponentP
   return (
     <button
       data-slot="preferences-dialog-search-button"
-      className={cn("flex flex-row", [
-        "text-[var(--accent-bg-color)] shadow-none bg-[transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[9px]",
-        "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "disabled:[filter:opacity(30%)]",
-        "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+        data-node="button"
+        data-valign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
       ], className)}
       {...props}
     />
@@ -200,7 +204,8 @@ function PreferencesDialogHeaderBar({ className, ...props }: React.ComponentProp
   return (
     <div
       data-slot="preferences-dialog-header-bar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-backdrop-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)] transition-[background-color] duration-200 ease-[ease-out]", className)}
+        data-node="headerbar"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -210,7 +215,8 @@ function PreferencesDialogToolbarView({ className, ...props }: React.ComponentPr
   return (
     <div
       data-slot="preferences-dialog-toolbar-view"
-      className={cn("flex flex-row", className)}
+        data-node="toolbarview"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
       {...props}
     />
   )
@@ -230,6 +236,7 @@ function PreferencesDialogNavigationPage({ className, ...props }: React.Componen
   return (
     <div
       data-slot="preferences-dialog-navigation-page"
+        data-node="navigation-view-page"
       className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
       {...props}
     />
@@ -240,6 +247,7 @@ function PreferencesDialogSubpagesNavView({ className, ...props }: React.Compone
   return (
     <div
       data-slot="preferences-dialog-subpages-nav-view"
+        data-node="navigation-view"
       className={cn(className)}
       {...props}
     />
@@ -250,6 +258,7 @@ function PreferencesDialogToastOverlay({ className, ...props }: React.ComponentP
   return (
     <div
       data-slot="preferences-dialog-toast-overlay"
+        data-node="toastoverlay"
       className={cn(className)}
       {...props}
     />

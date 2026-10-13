@@ -20,9 +20,9 @@ export default function FeedbackApp() {
               iconName="folder-symbolic"
               title="No documents"
               description="Documents you create will appear here."
-              className="grow"
+              vexpand
             >
-              <Button size="pill" variant="suggestedAction" label="New document" />
+              <Button size="pill" variant="suggestedAction" label="New document" halign="center" />
             </StatusPage>
           </Box>
         </ToastOverlay>

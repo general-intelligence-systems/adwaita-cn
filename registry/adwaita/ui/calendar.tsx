@@ -14,7 +14,7 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const calendarVariants = cva(
-  "text-[var(--view-fg-color)] bg-clip-padding",
+  "text-[var(--view-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
   {
     variants: {
       variant: {
@@ -24,11 +24,7 @@ const calendarVariants = cva(
         /** .day-number */
         dayNumber: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .month */
         month: "",
         /** .other-month */
@@ -86,6 +82,7 @@ function Calendar({ className, render, variant = "default", date, day, month, sh
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "calendar",
+    "data-node": "calendar",
     "data-variant": variant,
     role: "grid",
     "data-day": day,
@@ -94,12 +91,17 @@ function Calendar({ className, render, variant = "default", date, day, month, sh
     "data-show-heading": showHeading,
     "data-show-week-numbers": showWeekNumbers,
     "data-year": year,
-    className: cn("flex", "flex-row", calendarVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", calendarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <CalendarGrid>
+                {children}
+              </CalendarGrid>
+                  <CalendarHeader>
+                <CalendarButton />
+              </CalendarHeader>
                   {date}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -113,4 +115,45 @@ function Calendar({ className, render, variant = "default", date, day, month, sh
   })
 }
 
-export { Calendar, calendarVariants }
+function CalendarGrid({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-grid"
+        data-node="grid"
+      className={cn("grid", "pb-[3px] pl-[3px]", className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="calendar-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none rounded-none",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)] active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))] disabled:[filter:opacity(30%)]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)] data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)] data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)] data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function CalendarHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="calendar-header"
+        data-node="header"
+      className={cn("[border-bottom-width:1px] [border-bottom-style:solid] [border-bottom-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      {...props}
+    />
+  )
+}
+
+export { Calendar, CalendarGrid, CalendarButton, CalendarHeader, calendarVariants }

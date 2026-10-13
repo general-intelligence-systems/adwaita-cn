@@ -24,7 +24,7 @@ const splitButtonVariants = cva(
       variant: {
         default: "",
         /** .destructive-action */
-        destructiveAction: "text-[var(--accent-color)]",
+        destructiveAction: "[--accent-bg-color:var(--destructive-bg-color)] [--accent-fg-color:var(--destructive-fg-color)] [--accent-color:var(--destructive-color)] text-[var(--accent-color)]",
         /** .flat */
         flat: [
           "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
@@ -88,17 +88,18 @@ function SplitButton({ className, render, variant = "default", actionTarget, chi
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "split-button",
+    "data-node": "splitbutton",
     "data-variant": variant,
     "data-action-name": actionName,
     "data-can-shrink": canShrink,
     "data-direction": direction,
     "data-dropdown-tooltip": dropdownTooltip,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row", splitButtonVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", splitButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {iconName ? <span data-slot="split-button-icon" className={iconName} aria-hidden /> : null}
+                  {iconName ? <span data-slot="split-button-icon" data-icon className={iconName} aria-hidden /> : null}
                   {label}
                   {actionTarget}
                   {child}

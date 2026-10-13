@@ -20,7 +20,7 @@ const dragIconVariants = cva(
       variant: {
         default: "",
         /** .large-icons */
-        largeIcons: "",
+        largeIcons: "[--adw-icon-size:32px]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -43,6 +43,7 @@ function DragIcon({ className, render, variant = "default", child, children, ...
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "drag-icon",
+    "data-node": "dnd",
     "data-variant": variant,
     className: cn(dragIconVariants({ variant }), widgetClassName, className),
     style,

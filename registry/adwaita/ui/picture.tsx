@@ -46,6 +46,7 @@ function Picture({ className, render, alternativeText, canShrink, contentFit, fi
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "picture",
+    "data-node": "picture",
     "data-alternative-text": alternativeText,
     "data-can-shrink": canShrink,
     "data-content-fit": contentFit,
@@ -53,7 +54,7 @@ function Picture({ className, render, alternativeText, canShrink, contentFit, fi
     "data-isolate-contents": isolateContents,
     "data-keep-aspect-ratio": keepAspectRatio,
     "data-paintable": paintable,
-    className: cn("outline-offset-[-1px] rounded-[12px]", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     ...widgetAttributes,
   }

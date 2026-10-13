@@ -45,13 +45,18 @@ function WindowTitle({ className, render, variant = "default", subtitle, title, 
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "window-title",
+    "data-node": "windowtitle",
     "data-variant": variant,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", windowTitleVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <WindowTitleBox>
-                <WindowTitleTitleLabel>{title}</WindowTitleTitleLabel>
-                <WindowTitleSubtitleLabel>{subtitle}</WindowTitleSubtitleLabel>
+                {title ? (
+                  <WindowTitleTitleLabel>{title}</WindowTitleTitleLabel>
+                ) : null}
+                {subtitle ? (
+                  <WindowTitleSubtitleLabel>{subtitle}</WindowTitleSubtitleLabel>
+                ) : null}
                 {children}
               </WindowTitleBox>
       ),
@@ -70,8 +75,9 @@ function WindowTitleTitleLabel({ className, ...props }: React.ComponentProps<"sp
   return (
     <span
       data-slot="window-title-title-label"
-      className={cn([
-        "caret-[currentColor]",
+        data-node="label"
+      className={cn("title", [
+        "caret-[currentColor] px-3 font-bold",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -83,8 +89,9 @@ function WindowTitleSubtitleLabel({ className, ...props }: React.ComponentProps<
   return (
     <span
       data-slot="window-title-subtitle-label"
-      className={cn([
-        "caret-[currentColor]",
+        data-node="label"
+      className={cn("subtitle", [
+        "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -96,7 +103,9 @@ function WindowTitleBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="window-title-box"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
       {...props}
     />
   )

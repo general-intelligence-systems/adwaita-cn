@@ -57,6 +57,29 @@ module FinalComponents
   # widget's own source mentions them and the property is what says who carries them.
   BY_PROPERTY = { "orientation" => %w[horizontal vertical] }.freeze
 
+  # The orientable widgets, by name, filled in as each one's props are read.
+  #
+  # gtk_widget_update_orientation puts `.horizontal` or `.vertical` on every one of
+  # them, always, and the default is horizontal -- so a path built without it addresses
+  # a widget no running application has. Every rule the stylesheet states through that
+  # class was therefore unreachable: `progressbar.horizontal > trough` carries the only
+  # statement of a progress bar's 8px height and 150px minimum width, and
+  # `levelbar.horizontal trough > block` the only one of a level bar's block, so both
+  # came out of the generator as nodes with a colour and no size at all. 83 rules
+  # across 13 widgets were being dropped this way.
+  def self.orientable = @orientable ||= Set.new
+
+  # The class a node carries for its orientation, as a selector segment.
+  #
+  # Horizontal unless the template says otherwise, because that is the branch
+  # gtk_widget_update_orientation takes for the property's own default.
+  def self.orientation(klass, styles = [])
+    return "" unless self.orientable.include?(klass)
+    return "" if (styles & %w[horizontal vertical]).any?
+
+    ".horizontal"
+  end
+
   def self.run(_argv)
     catalogue = self.read("bin/05-adwaita-components.out/components.json")
     trees = self.read("bin/06-component-trees.out/trees.json")
@@ -75,6 +98,13 @@ module FinalComponents
     qualified = classes.to_h{|name, schema| [name, schema.fetch("class").sub(".", "")] }
 
     self.read_templates(trees)
+
+    # The CSS nodes which are widgets of their own, so that `node_tree` can tell what a
+    # widget builds inside itself from what gets put into it: `list > row` is in the
+    # stylesheet, but a row is a GtkListBoxRow an application adds, not a part a list box
+    # comes with -- read as structure it gave every list box an empty 40px row above
+    # whatever was actually in it.
+    @widget_nodes = source.values.filter_map{|one| one["node"] }.to_set
 
     names = classes.keys | trees.fetch("referenced").keys | trees.fetch("trees").keys
 
@@ -97,6 +127,8 @@ module FinalComponents
       "widget" => shared,
       "components" => components,
       "universal" => self.universal(contexts),
+      "styles" => self.style_sheet(contexts),
+      "variables" => self.read("bin/03-adwaita-tailwind.out/variables.json"),
     })}\n")
     warn("wrote bin/08-final-components.out/final-components.json")
   end
@@ -108,12 +140,15 @@ module FinalComponents
     schema = classes[name]
     own = self.source_for(name, qualified, source)
     props = schema.nil? ? {} : self.own_props(schema, shared)
+    self.orientable << name if props.key?("orientation")
     node = own && own["node"]
     tree = self.tree_for(name, classes, trees)
     found = self.enums_of(props)
 
+    structure = self.structure(name, node, tree, contexts, props)
+
     {
-      "kind" => self.kind(name, schema, classes, tree),
+      "kind" => self.kind(name, schema, classes, structure["tree"]),
       "gtk" => schema&.fetch("class"),
       "parent" => schema && schema["parent"],
       "props" => props,
@@ -124,26 +159,220 @@ module FinalComponents
       "node" => node,
       "nodes" => [node].compact,
       "source" => own && own["source"],
+      # Which of the template's children this widget's own source hides, and under what.
+      # Merged up the ancestry because the template is: an AdwSpinRow is built from
+      # adw-action-row.ui and hides what AdwActionRow hides.
+      "hides" => self.hides(name, classes, source, qualified),
       "layout" => own && own["layout"],
       "direction" => own && own["direction"],
-      "classes" => node ? self.classes_for([node], widgets, contexts) : {},
+      "classes" => node ? self.lookup(self.ambient(name, node) + ["#{node}#{self.orientation(name)}"], contexts, widgets) : {},
       "variants" => self.variants(name, node, own, source, classes, contexts, props),
-    }.merge(self.structure(name, node, tree, contexts))
+    }.merge(structure)
   end
 
-  # A component's structure: its template where it has one, and the nodes it builds
-  # inside itself where it does not.
-  def self.structure(name, node, tree, contexts)
-    return { "template" => tree.fetch("template"), "tree" => tree.fetch("tree") } if tree
+  # The widgets which build their insides in C, where the stylesheet does not spell the
+  # structure out either.
+  #
+  # A .ui is read by bin/06 and a chain of bare CSS nodes by `node_tree` below, and
+  # AdwHeaderBar is neither: it builds a GtkCenterBox holding three gizmos in its init,
+  # and the selectors which style them -- `headerbar > windowhandle > box > box.start` --
+  # name a style class, so they are read as a variant rather than as a node. The header
+  # bar therefore had nowhere to put the title it was given and rendered it over the top
+  # of its own buttons.
+  #
+  # `takes` is which of the widget's properties goes in that node, with `children` for
+  # whatever the application packs into it.
+  # The containers a template keeps for a caller, as the property each one is.
+  #
+  # adw-action-row.ui builds `prefixes` and `suffixes` hidden and the row shows whichever
+  # is filled; `adw_action_row_add_prefix` puts a widget in the first. Without a prop for
+  # it an application had nowhere to put the avatar the toolkit's side puts in the
+  # prefixes box, and it went in the suffixes instead -- the same row with its face on
+  # the wrong end.
+  TEMPLATE_TAKES = { "prefixes" => "prefix", "suffixes" => "children" }.freeze
 
-    self.node_tree(name, node, contexts).then{|found| found ? { "tree" => found } : {} }
+  CONSTRUCTED = {
+    # The content, then the revealer which holds the top bars, then the one which holds
+    # the bottom bars -- in that order, because that is the order AdwToolbarView parents
+    # them in and both sides of the comparison are walked in order. Where they go on the
+    # screen is the `order` in `utility`.
+    "ToolbarView" => {
+      "class" => "ToolbarView",
+      "children" => [
+        {
+          "class" => "Widget", "id" => "content", "takes" => "content",
+          "utility" => "order-2 flex flex-col [&>*]:grow min-h-0",
+          "properties" => { "vexpand" => "True" },
+        },
+        {
+          "class" => "Revealer", "node" => "revealer", "styles" => ["top-bar"],
+          "utility" => "order-1",
+          "children" => [{
+            "class" => "Windowhandle", "node" => "windowhandle",
+            "children" => [{
+              "class" => "InternalBox", "slot" => "box", "node" => "box", "layout" => "box",
+              "properties" => { "orientation" => "vertical" }, "takes" => "children",
+            }],
+          }],
+        },
+        {
+          "class" => "Revealer", "node" => "revealer", "styles" => ["bottom-bar"],
+          "utility" => "order-3",
+          "children" => [{
+            "class" => "Windowhandle", "node" => "windowhandle",
+            "children" => [{
+              "class" => "InternalBox", "slot" => "box", "node" => "box", "layout" => "box",
+              "properties" => { "orientation" => "vertical" },
+            }],
+          }],
+        },
+      ],
+    },
+    # `spinbutton > text` and `spinbutton > button.image-button.down` are in the
+    # stylesheet, but the second names a style class, so `node_tree` reads it as a
+    # variant of a button rather than as a button the widget builds. A spin button with
+    # no buttons in it is a text entry.
+    "SpinButton" => {
+      "class" => "SpinButton",
+      "children" => [
+        { "class" => "Text", "node" => "text", "properties" => { "hexpand" => "True" } },
+        {
+          "class" => "SpinDown", "slot" => "button", "node" => "button",
+          "styles" => %w[image-button down], "layout" => "bin",
+        },
+        {
+          "class" => "SpinUp", "slot" => "button", "node" => "button",
+          "styles" => %w[image-button up], "layout" => "bin",
+        },
+      ],
+    },
+    "HeaderBar" => {
+      "class" => "HeaderBar",
+      "children" => [{
+        "class" => "Windowhandle", "node" => "windowhandle",
+        "children" => [{
+          "class" => "Box", "node" => "box", "layout" => "center",
+          "children" => [
+            {
+              "class" => "Widget", "node" => "widget", "id" => "start",
+              "children" => [{
+                "class" => "Box", "node" => "box", "styles" => ["start"], "layout" => "box",
+                "properties" => { "orientation" => "horizontal", "spacing" => "6" },
+                "children" => [
+                  {
+                    "class" => "WindowControls", "node" => "windowcontrols",
+                    "styles" => %w[start empty], "layout" => "box",
+                  },
+                ],
+                "takes" => "children",
+              }],
+            },
+            { "class" => "Widget", "node" => "widget", "id" => "title", "takes" => "titleWidget" },
+            {
+              "class" => "Widget", "node" => "widget", "id" => "end",
+              "children" => [{
+                "class" => "Box", "node" => "box", "styles" => ["end"], "layout" => "box",
+                "properties" => { "orientation" => "horizontal", "spacing" => "6" },
+                "children" => [{
+                  "class" => "WindowControls", "node" => "windowcontrols", "styles" => ["end"],
+                  "layout" => "box",
+                  "children" => [{
+                    # A real GtkButton, which is why it keeps the slot a button has: the
+                    # toolkit reports the close button of every window it draws, and a
+                    # header bar which did not have one paired its neighbour's buttons
+                    # with the wrong ones all the way down the shot.
+                    "class" => "CloseButton", "slot" => "button", "node" => "button",
+                    "styles" => %w[close image-button], "layout" => "bin",
+                    "children" => [{ "class" => "Image", "node" => "image" }],
+                  }],
+                }],
+              }],
+            },
+          ],
+        }],
+      }],
+    },
+  }.freeze
+
+  # The props a template's own slots are, beside the properties the class declares.
+  def self.with_slot_props(entry)
+    return entry unless entry["tree"]
+
+    taken = []
+    self.each_node(entry.fetch("tree")){|one| taken << one["takes"] if one["takes"] }
+
+    (taken.uniq - ["children"]).each do |prop|
+      next if entry.fetch("props").key?(prop)
+
+      entry.fetch("props")[prop] =
+        { "type" => "node", "gir" => "Gtk.Widget", "from" => entry["gtk"] || "the template" }
+    end
+
+    entry
+  end
+
+  # A component's structure: its template where it has one, the structure written down
+  # for it where its source builds one in C, and the nodes the stylesheet shows it
+  # building where it does neither.
+  def self.structure(name, node, tree, contexts, props)
+    return { "template" => tree.fetch("template"), "tree" => tree.fetch("tree") } if tree
+    return { "tree" => Marshal.load(Marshal.dump(CONSTRUCTED.fetch(name))) } if CONSTRUCTED.key?(name)
+
+    self.node_tree(name, node, contexts, props).then{|found| found ? { "tree" => found } : {} }
   end
 
   # The template a component is built from. A subclass with none of its own is built
   # from its parent's: AdwSwitchRow ships no .ui and is an AdwActionRow with a switch in
   # its suffixes, so without this it renders its title and subtitle loose.
   def self.tree_for(name, classes, trees)
-    self.ancestry(name, classes).filter_map{|one| trees.fetch("trees")[one] }.first
+    found = self.ancestry(name, classes).filter_map{|one| trees.fetch("trees")[one] }
+
+    return nil if found.empty?
+
+    # A subclass's .ui adds to its parent's rather than replacing it. adw-spin-row.ui is
+    # `<template class="AdwSpinRow" parent="AdwActionRow">` with one `<child
+    # type="suffix">` in it, and taking that as the whole of what an AdwSpinRow builds
+    # left the row with a spin button and no title, no subtitle and none of the header
+    # box's 50px of height. What a subclass declares goes where the parent puts a child,
+    # which for a row is its suffixes box.
+    found.reverse.reduce do |into, one|
+      added = (one.fetch("tree").fetch("slots", {}).values + one.fetch("tree").fetch("children", []))
+
+      next into if added.empty?
+
+      merged = Marshal.load(Marshal.dump(into))
+      slot = self.slot_of(merged.fetch("tree"))
+      slot["children"] = slot.fetch("children", []) + Marshal.load(Marshal.dump(added))
+      merged.merge("template" => one.fetch("template"))
+    end
+  end
+
+  # The containers a template keeps for whatever is put into it.
+  SLOTS = %w[
+    Bin Box Clamp ClampScrollable FlowBox Gizmo Grid ListBox Overlay Revealer
+    ScrolledWindow Stack ToolbarView WrapBox
+  ].to_set
+
+  # Where a template's own children go: the last container it leaves empty, which is the
+  # one it kept for them.
+  def self.slot_of(node)
+    found = []
+    self.each_node(node) do |one|
+      children = (one.fetch("slots", {}).values + one.fetch("children", []))
+
+      found << one if SLOTS.include?(one.fetch("class")) && children.empty? && !one.equal?(node)
+
+    end
+
+    found.last || node
+  end
+
+  def self.hides(name, classes, source, qualified)
+    self.ancestry(name, classes).reverse.each_with_object({}) do |one, found|
+      entry = self.source_for(one, one == name ? qualified : classes.dig(one, "class")&.sub(".", ""), source)
+
+      found.merge!(entry["hides"]) if entry && entry["hides"]
+    end
   end
 
   def self.source_for(name, qualified, source)
@@ -202,7 +431,7 @@ module FinalComponents
       self.templated.fetch(name, [])
 
     candidates.uniq.sort.to_h do |style|
-      rules = self.variant_classes(style, node, contexts)
+      rules = self.variant_classes(style, name, node, contexts)
       merged = self.merged(rules.values)
 
       [style, {
@@ -233,7 +462,7 @@ module FinalComponents
   # Every class the stylesheet draws on this node, from a selector whose subject is it.
   def self.styled_on(node, contexts)
     contexts.keys.filter_map do |selector|
-      element, styles = self.segment(self.segments(selector).last.to_s)
+      element, styles = self.segment(self.segments(selector).last.to_a.last.to_s)
 
       styles.to_a.first if styles.length == 1 && element == node
     end.uniq
@@ -242,16 +471,25 @@ module FinalComponents
   # The rules which style a node carrying this class, taken at the shallowest context the
   # stylesheet states them in: `.flat` on a headerbar is not `.flat` on a button, and
   # merging every `.flat` rule gives a flat HeaderBar a button's padding.
-  def self.variant_classes(style, node, contexts)
-    own = contexts.select do |selector, _states|
-      element, styles = self.segment(self.segments(selector).last.to_s)
+  # The rules which style this node when it carries this one style class.
+  #
+  # Matched against the path the node actually sits at, not merely by the class being
+  # somewhere in the selector. Taking the shallowest rules naming the class instead gave
+  # GtkBox's `vertical` the declarations of
+  # `window.filechooser headerbar box.start + box.vertical`, so every vertical box in
+  # every application came out with -6px of margin and a 12px minimum height.
+  def self.variant_classes(style, name, node, contexts)
+    path = self.ambient(name, node) + ["#{node}.#{style}"]
 
-      styles.to_a == [style] && (element.nil? || element == node)
+    own = contexts.select do |selector, _states|
+      segments = self.addressing(selector)
+      _combinator, last = segments.last
+      element, styles = self.segment(last.to_s)
+
+      styles.to_a == [style] && (element.nil? || element == node) && self.matches?(segments, path)
     end
 
-    shallowest = own.keys.map{|selector| self.segments(selector).length }.min
-
-    own.select{|selector, _states| self.segments(selector).length == shallowest }
+    own.sort_by{|selector, _states| self.specificity(selector) }.to_h
   end
 
   # The classes the stylesheet states without naming an element.
@@ -263,10 +501,40 @@ module FinalComponents
     end.uniq
   end
 
+  # Every rule whose selector starts with a style class that names no element.
+  #
+  # `.navigation-sidebar`, `.card`, `.heading`: GTK applies these to whichever widget is
+  # given them, so they are not a variant of one component -- they are classes, and the
+  # rules they scope reach the widgets inside as well, which is why the whole selector is
+  # kept rather than only what it says about the class itself. bin/11 writes them out as
+  # a stylesheet, so a caller naming one gets what the toolkit gives it.
+  def self.style_sheet(contexts)
+    {}.tap do |found|
+      contexts.each do |selector, states|
+        segments = self.segments(selector)
+
+        # A rule about one node on its own is the component's own business and is already
+        # in its class list. What goes in the sheet is everything which says where the
+        # node has to be: `list.boxed-list > row`, `.navigation-sidebar > row`. A
+        # component cannot carry those, because the same AdwActionRow is a card in a
+        # preferences group and a flat line in a sidebar, and which one it is depends on
+        # what it was put in -- which is the cascade's question, not the component's.
+        element, styles = self.segment(segments.first.to_a.last.to_s)
+
+        # A rule about one node on its own is already in that component's class list. A
+        # rule about one *class* on its own belongs to no component -- `.navigation-sidebar`
+        # goes on whichever widget an application puts it on -- so it is a class here.
+        next if segments.length < 2 && !(element.nil? && !styles.empty?)
+
+        (found[selector] = states)
+      end
+    end
+  end
+
   # The classes which go on any widget at all, which are the rules naming no element.
   def self.universal(contexts)
     self.unscoped(contexts).sort.to_h do |style|
-      rules = self.variant_classes(style, nil, contexts)
+      rules = self.variant_classes(style, nil, nil, contexts)
       merged = self.merged(rules.values)
 
       [style, {
@@ -389,7 +657,7 @@ module FinalComponents
   def self.addressed(node, contexts)
     own = contexts.select do |selector, _states|
       segments = self.segments(selector)
-      element, styles = self.segment(segments.first.to_s)
+      element, styles = self.segment(segments.first.to_a.last.to_s)
 
       segments.length == 1 && element == node && styles.empty?
     end
@@ -403,7 +671,79 @@ module FinalComponents
     end
   end
 
-  def self.segments(selector) = selector.split(/\s*>\s*|\s+/).reject(&:empty?)
+  # A selector, as the segments it names and the combinator before each of them: `>` for a
+  # child and a space for a descendant.
+  def self.segments(selector)
+    selector.scan(/(>|^|\s)\s*([^\s>]+)/).map{|before, one| [before.strip == ">" ? :child : :descendant, one] }
+      .reject{|_combinator, one| one.empty? }
+  end
+
+  # Whether the rule addresses the node at the end of this path.
+  #
+  # The last segment has to be the node itself; a `>` before a segment means the one
+  # before it in the path, and a space means anywhere above it. Reading every combinator
+  # as `>` lost `preferencesgroup > box box.labels`, which is the 6px between a group's
+  # title and its description -- and with it 6px of every preferences group's height.
+  def self.matches?(segments, path)
+    return false if segments.empty? || path.empty?
+
+    combinator, last = segments.last
+
+    return false unless self.addresses?(last, path.last)
+    return combinator != :child || path.length > 1 if segments.length == 1
+
+    self.above?(segments[0..-2], path[0..-2])
+  end
+
+  def self.above?(segments, path)
+    return true if segments.empty?
+
+    combinator, one = segments.last
+
+    if combinator == :child
+      return false if path.empty? || !self.addresses?(one, path.last)
+
+      self.above?(segments[0..-2], path[0..-2])
+    else
+      path.length.downto(1).any? do |index|
+        self.addresses?(one, path[index - 1]) && self.above?(segments[0..-2], path[0...(index - 1)])
+      end
+    end
+  end
+
+  # The CSS nodes GTK builds that nothing declares, so nothing a template or a node tree
+  # knows about addresses them.
+  #
+  # A GtkScrolledWindow puts a viewport between itself and its child when the child does
+  # not scroll of its own accord, and the stylesheet says
+  # `preferencespage > scrolledwindow > viewport > clamp > box`. The template says
+  # scrolled window, clamp, box: without dropping the viewport the rule matched nothing,
+  # the box lost its `margin: 24px 12px`, and every preferences page was 24px wider than
+  # the toolkit's with its groups 12px to the left of them.
+  # NOT `widget`. A gizmo renders as `widget` and the trees now carry those nodes, so
+  # stripping the segment put `banner > revealer > widget` on the revealer and the banner
+  # drew its background one node too high.
+  IMPLICIT = %w[viewport contents].to_set
+
+  # A selector's segments, with the nodes neither side writes down taken out.
+  def self.addressing(selector)
+    self.segments(selector).reject do |_combinator, one|
+      element, styles = self.segment(one)
+
+      IMPLICIT.include?(element) && styles.empty?
+    end
+  end
+
+  # How specific a selector is, as CSS counts it: how much of the path it names, and then
+  # how many style classes it asks for. `list` and `.boxed-list` both name one segment, so
+  # without the second term the order between them was whichever the sheet happened to
+  # reach first -- and a boxed list came out with the plain list's flat background over
+  # the card it is supposed to be.
+  def self.specificity(selector)
+    segments = self.addressing(selector)
+
+    [segments.length, segments.sum{|_combinator, one| one.scan(/\.[a-z0-9-]+/).length }]
+  end
 
   # A selector segment, split into the element it names and the classes on it. A rule may
   # name no element at all -- `.prefixes` rather than `box.prefixes` -- which matches any.
@@ -421,11 +761,35 @@ module FinalComponents
   end
 
   # A node's CSS path, which is how the stylesheet addresses it.
+  #
+  # The fallback is `widget` and not the class's own name in lower case. A CSS name is
+  # inherited: a widget which sets none renders as whatever its parent class does, and at
+  # the root of that chain GtkWidget is `widget`. AdwGizmo sets none, so libadwaita's
+  # stylesheet says `banner > revealer > widget` -- and a path built out of the class name
+  # said `gizmo`, which addresses nothing, so the banner lost its background, the header
+  # bar's bins lost their margins and an entry row's editable area lost its padding.
+  #
+  # A template can also name the node itself, which is what AdwGizmo's `css-name`
+  # construct property is for.
   def self.selector(node, name = nil)
-    styles = node.fetch("styles", []).map{|style| ".#{style}" }.join
+    own = node.fetch("styles", [])
+    styles = own.map{|style| ".#{style}" }.join
     klass = node.fetch("class")
+    named = node.fetch("properties", {})["css-name"]
 
-    "#{name || node["node"] || self.nodes.fetch(klass, klass.downcase)}#{styles}"
+    # The orientation class GTK always draws, which the template never writes down.
+    # `.vertical` where the template asks for it, and `.horizontal` otherwise.
+    stated = node.fetch("properties", {})["orientation"]
+    orientation =
+      if (own & %w[horizontal vertical]).any? || !self.orientable.include?(klass)
+        ""
+      elsif stated == "vertical" || stated == "1"
+        ".vertical"
+      else
+        ".horizontal"
+      end
+
+    "#{name || (named.is_a?(String) ? named : nil) || node["node"] || self.nodes[klass] || 'widget'}#{styles}#{orientation}"
   end
 
   # The nodes a widget builds inside itself, as a tree, read from the selectors which
@@ -437,19 +801,43 @@ module FinalComponents
   # fill: it measured 0x0 and drew nothing. The same was true of the switch, which is a
   # slider in a box, of the level bar, and of the scale.
   #
-  # Only direct-child chains of bare nodes. A selector naming a style class is that
-  # node in a state rather than another node, and is already read as a variant.
-  def self.node_tree(name, node, contexts)
+  # EVERY direct-child chain the stylesheet writes, whatever classes it puts on the way.
+  #
+  # Reading only chains of bare node names was the assumption that a style class on a
+  # segment means that node in a state rather than another node, and for most of GTK's
+  # controls it is the wrong one: the only description of what a spin button builds is
+  # `spinbutton > button.image-button.up`, of what a level bar builds is
+  # `levelbar > trough > block.full`, of what a check button builds is
+  # `checkbutton > check`. Dropping the classed segments left those widgets with nothing
+  # inside them at all, which is a scale with no trough, a switch with no slider, a
+  # progress bar with no progress and a drop down with no button -- every control in the
+  # comparison was a flat grey bar.
+  #
+  # The classes are not read as structure, only the element names are: `progress.bottom`
+  # is the same progress node as `progress`, and which of them a particular widget is
+  # showing is a variant, which `annotate` reads separately. A node the stylesheet only
+  # ever names with a class is still a node.
+  def self.node_tree(name, node, contexts, props = {})
     return nil if node.nil?
 
     paths = contexts.keys.filter_map do |selector|
-      segments = selector.split(">").map(&:strip)
+      segments = self.segments(selector)
 
-      next if segments.length < 2 || segments.first != node
-      next unless segments.drop(1).all?{|one| one.match?(/\A[a-z][a-z0-9-]*\z/) }
+      # A chain rooted at this widget's own node. The combinator is not the test: GTK's
+      # own stylesheet writes `checkbutton.selection-mode check` with a descendant
+      # combinator for a node which is a direct child, so requiring `>` left the check
+      # button with no check in it. What keeps the chain honest is that it starts at this
+      # widget and that `structural` stops it where the widget stops.
+      next if segments.length < 2
 
-      segments.drop(1)
+      elements = segments.map{|_combinator, one| one[/\A[a-z][a-z0-9-]*/] }
+
+      next if elements.any?(&:nil?) || elements.first != node
+
+      elements.drop(1)
     end
+
+    paths = paths.map{|path| self.structural(node, path, props) }.reject(&:empty?).uniq
 
     return nil if paths.empty?
 
@@ -466,6 +854,43 @@ module FinalComponents
 
   def self.pascal(node) = node.split(/[-_]/).map{|part| part.capitalize }.join
 
+  def self.widget_nodes = @widget_nodes ||= Set.new
+
+  # The CSS nodes of the widgets whose children are put into them rather than built by
+  # them. A GtkListBox's rows are what an application adds; a GtkSpinButton's buttons are
+  # not, and a spin button with no buttons is a text entry.
+  CONTENT_NODES = %w[
+    list listview flowbox box grid stack overlay revealer scrolledwindow viewport clamp
+    toolbarview wrapbox popover contents
+  ].to_set
+
+  # The properties a widget puts whatever it is given into, which is what makes its CSS
+  # children content rather than structure.
+  HOLDS = %w[child content sidebar].freeze
+
+  # A path cut short where it stops being the widget's own structure.
+  #
+  # The stylesheet says `button > label` and `spinbutton > button` in the same voice, and
+  # one of those is a widget GTK builds while the other is whatever the caller put in. The
+  # test is whether the node could hold something: a container holds what is added to it,
+  # and so does a widget with a `child` or a `content` property. A GtkSpinButton has
+  # neither, so its buttons are its own; a GtkButton has `child`, so its label is not.
+  def self.structural(root, path, props = {})
+    holds = CONTENT_NODES.include?(root) || HOLDS.any?{|prop| props.key?(prop) }
+
+    [].tap do |found|
+      parent = root
+
+      path.each do |one|
+        break if holds && self.widget_nodes.include?(one)
+
+        found << one
+        parent = one
+        holds = CONTENT_NODES.include?(parent)
+      end
+    end
+  end
+
   # The trees are annotated once the nodes are known, because a tree's root is addressed
   # by the component's CSS node rather than by its class name.
   def self.annotate_trees(components, contexts, widgets)
@@ -479,12 +904,68 @@ module FinalComponents
     # built from the class name addresses nothing, so `.boxed-list` never reaches it.
     @nodes = components.transform_values{|entry| entry["node"] }.compact
 
+    # A template's children are widgets, and a widget has structure of its own: a spin
+    # row's template holds a GtkSpinButton, and a spin button is a text node with a button
+    # either side of it. Without this a composite rendered its parts as empty boxes -- a
+    # spin row with no value and no buttons, a combo row with a white rectangle where its
+    # list should be -- because the structure stopped at the template's own leaves.
     components.each_value do |entry|
+      next unless entry["tree"]
+
+      self.expand(entry.fetch("tree"), components, Set.new)
+    end
+
+    components.each_pair do |name, entry|
       next unless entry.key?("tree")
 
       root = entry["node"] || entry.fetch("nodes", []).first
-      entry["tree"] = self.annotate(entry.fetch("tree"), [], contexts, widgets, root, entry["classes"])
+      entry["tree"] =
+        self.annotate(entry.fetch("tree"), self.ambient(name, root), contexts, widgets, root,
+                      entry["classes"], entry.fetch("hides", {}))
+      self.with_slot_props(entry)
     end
+  end
+
+  # A template node which is a widget with structure of its own, filled in with it.
+  #
+  # `seen` is the classes already being expanded, so that a widget which builds one of
+  # itself -- an expander row holds rows -- does not expand for ever.
+  def self.expand(node, components, seen)
+    children = node.fetch("slots", {}).values + node.fetch("children", [])
+
+    children.each{|child| self.expand(child, components, seen) }
+
+    klass = node["class"]
+    found = klass && components.dig(klass, "tree")
+
+    return if found.nil? || seen.include?(klass) || children.any?
+
+    seen = seen + [klass]
+    own = (found.fetch("slots", {}).values + found.fetch("children", []))
+      .map{|child| Marshal.load(Marshal.dump(child)) }
+
+    own.each{|child| self.expand(child, components, seen) }
+
+    node["children"] = own unless own.empty?
+  end
+
+  # What a component sits inside once it is in an application, as the selector for it.
+  #
+  # The stylesheet addresses a widget through the window it is in and not only by itself:
+  # `headerbar` is 47px tall on its own and
+  # `window:not(.ssd-frame) > .titlebar headerbar` makes it 46 with 6px under its box
+  # rather than 7, and that second rule is the one every header bar in every application
+  # is actually drawn by. A path which started at the component matched the first and
+  # never the second, so every header bar was a pixel too tall and sat a pixel low.
+  #
+  # Every component is in a window. Only a header bar is a window's titlebar, which is
+  # why that segment is not given to the rest: `.titlebar` scopes rules which have
+  # nothing to say about a button in a list.
+  AMBIENT = { "HeaderBar" => %w[window.background.csd .titlebar] }.freeze
+  AMBIENT_DEFAULT = %w[window.background.csd].freeze
+
+  def self.ambient(name, node = nil)
+    AMBIENT.fetch(name, AMBIENT_DEFAULT)
   end
 
   def self.layouts = @layouts ||= {}
@@ -492,34 +973,53 @@ module FinalComponents
 
   # Every node in a tree, with the path it sits at and the classes that path is styled
   # with.
-  def self.annotate(node, ancestors, contexts, widgets, name = nil, own = nil)
+  def self.annotate(node, ancestors, contexts, widgets, name = nil, own = nil, hides = {})
+    node["takes"] ||= TEMPLATE_TAKES[node["id"]] if node["id"]
+
+    # What the widget's C says about whether this child is on screen, where the template
+    # itself does not say. A `.ui` says `visible="False"` or binds the property; the rest
+    # of the time the answer is in the source, and without it a template child which GTK
+    # keeps hidden until something happens was drawn in every one of these components.
+    if node["id"] && hides.key?(node["id"]) && !node.dig("properties", "visible")
+      (node["properties"] ||= {})["visible"] = { "when" => hides.fetch(node["id"]) }
+    end
+
     path = ancestors + [self.selector(node, name)]
     classes = own || self.lookup(path, contexts, widgets)
 
     node.merge(
       "css" => path.join(" > "),
+      # The CSS node this part renders as, so the sheet of contextual rules can address
+      # it: a template names GtkListBox and the stylesheet names `list`.
+      "node" => node["node"] || self.nodes[node.fetch("class")],
       "classes" => classes,
-      "layout" => self.layouts[node.fetch("class")],
-      "children" => node.fetch("children", []).map{|child| self.annotate(child, path, contexts, widgets) },
-      "slots" => node.fetch("slots", {}).transform_values{|slot| self.annotate(slot, path, contexts, widgets) },
+      "layout" => node["layout"] || self.layouts[node.fetch("class")],
+      "children" => node.fetch("children", []).map{|child| self.annotate(child, path, contexts, widgets, nil, nil, hides) },
+      "slots" => node.fetch("slots", {}).transform_values{|slot| self.annotate(slot, path, contexts, widgets, nil, nil, hides) },
     ).reject{|_key, value| value.respond_to?(:empty?) && value.empty? }
   end
 
-  # The rules which address this path: one whose segments are a suffix of it, matching
-  # loosely so that a rule naming no element still applies. The longest match wins.
+  # The rules which address this path: every one whose segments are a suffix of it,
+  # matching loosely so that a rule naming no element still applies.
+  #
+  # ALL of them, least specific first, rather than the longest alone. A row in a boxed
+  # list is styled by `row` for its height and by `listbox.boxed-list > row` for its
+  # corners, and keeping only the second gave it the corners and no height at all.
+  # Ordering by how many segments the rule names is CSS's own answer to which of two
+  # rules setting the same property wins.
   def self.lookup(path, contexts, widgets)
-    matches = contexts.select do |selector, _states|
-      segments = selector.split(">").map(&:strip)
+    # The nodes neither side writes down come out of the path as well as out of the rule:
+    # a header bar's gizmos are `widget` nodes, and a rule naming
+    # `headerbar > windowhandle > box > box.end` has to reach the box inside one.
+    walked = path.reject{|one| IMPLICIT.include?(self.segment(one).first) && self.segment(one).last.empty? }
 
-      segments.length <= path.length &&
-        path.last(segments.length).zip(segments).all?{|node, rule| self.addresses?(rule, node) }
-    end
+    return {} if walked.last != path.last
 
-    if matches.empty?
-      widgets.fetch(path.last, {})
-    else
-      matches.max_by{|selector, _states| selector.split(">").length }.last
-    end
+    matches = contexts.select{|selector, _states| self.matches?(self.addressing(selector), walked) }
+
+    ordered = matches.sort_by{|selector, _states| self.specificity(selector) }.map(&:last)
+
+    self.merged([widgets.fetch(walked.last, {})] + ordered)
   end
 
   def self.each_node(node, &block)

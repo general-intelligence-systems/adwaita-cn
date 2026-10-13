@@ -93,6 +93,20 @@ module AdwaitaComponents
   APPLIED = /gtk_widget_(?:add|remove)_css_class\s*\([^;]*?"([a-z][\w-]*)"/
   LITERAL = /"([a-z][a-z0-9-]*)"/
 
+  # What a widget's own source says about whether a template child is on screen.
+  #
+  # A .ui can say `visible="False"` and it can bind the property to one of the widget's
+  # own, and some of the time it says nothing because the C decides: AdwEntryRow builds
+  # its apply button and its edit icon in the template and then calls
+  # `gtk_widget_set_child_visible (priv->apply_button, priv->text_changed)` -- which is
+  # false in a row nobody has typed in. Read as always visible, every entry row in the
+  # registry rendered a full-width suggested-action button over its own text.
+  #
+  # The expression is kept as written: bin/08 hands it to the component, which shows the
+  # child when the expression names a property it has and never when it names state the
+  # widget keeps to itself.
+  VISIBILITY = /gtk_widget_set_(?:child_)?visible\s*\(\s*(?:GTK_WIDGET\s*\(\s*)?(?:priv|self)->(\w+)\s*\)?\s*,\s*([^;]+?)\s*\)\s*;/
+
   # A property setter, and the calls which mean the property it sets is shown to the
   # reader as text. `adw_action_row_set_subtitle` hands its argument to
   # gtk_label_set_label, so `subtitle` is text; `set_subtitle_lines` hands a number to
@@ -157,6 +171,7 @@ module AdwaitaComponents
       INTERNAL_NODE.each{|pattern| source.scan(pattern){|node| internal[node.first] << relative } }
 
       self.text_in(source, prefixes, widgets)
+      self.visibility_in(source, source.scan(TYPE).map(&:first), widgets)
 
       # The style classes this file writes belong to the types it defines.
       self.classes_in(source, relative, applied).then do |found, declared|
@@ -165,6 +180,27 @@ module AdwaitaComponents
           widgets[name]["declared"] = (widgets[name].fetch("declared", []) | declared).sort
         end
       end
+    end
+  end
+
+  # Which template children this file's widgets hide, and under what.
+  #
+  # Attributed to the types THIS FILE defines, and to no others: a template child belongs
+  # to the template it is in, and the running map of every prefix seen so far gave
+  # AdwActionRow the hidden children of every widget in libadwaita.
+  #
+  # A plain TRUE is not recorded: `gtk_widget_set_visible (priv->suffixes, TRUE)` is the
+  # end of a function which turns the box on when something has been put in it, which is
+  # what the template's own `visible="False"` already says.
+  def self.visibility_in(source, own, widgets)
+    found = source.scan(VISIBILITY).reject{|_child, expression| expression.strip == "TRUE" }
+
+    return if found.empty?
+
+    own.each do |name|
+      next if widgets[name].nil?
+
+      widgets[name]["hides"] = (widgets[name]["hides"] || {}).merge(found.to_h)
     end
   end
 

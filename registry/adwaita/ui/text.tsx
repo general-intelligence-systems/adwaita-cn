@@ -15,11 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { InputHints, InputPurpose } from "@/lib/enums"
 
 const textVariants = cva(
-  [
-    "p-1.5 min-h-7.5 opacity-100 text-[inherit] bg-[transparent] font-[var(--monospace-font-family)] text-[smaller] min-w-7.5",
-    "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[transparent]",
-    "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-  ],
+  "",
   {
     variants: {
       variant: {
@@ -120,6 +116,7 @@ function Text({ className, render, variant = "default", activatesDefault, attrib
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "text",
+    "data-node": "text",
     "data-variant": variant,
     type: "text",
     "data-activates-default": activatesDefault,
@@ -145,7 +142,7 @@ function Text({ className, render, variant = "default", activatesDefault, attrib
     "data-visibility": visibility,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("flex", "flex-col", textVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textVariants({ variant }), widgetClassName, className),
     style,
     ...widgetAttributes,
   }

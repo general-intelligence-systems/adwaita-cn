@@ -13,43 +13,32 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const spinnerVariants = cva(
-  [
-    "p-1 m-1.5 bg-[image:radial-gradient(farthest-side,var(--accent-color)_96%,transparent)] bg-[size:6px_6px] bg-no-repeat bg-[position:left_3px] opacity-70 transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] [filter:drop-shadow(0px_1px_1px_RGB(0_0_6/30%))] bg-[color-mix(in_srgb,var(--thumbnail-bg-color)_calc(0.8_*_75%),currentColor_calc(0.2_*_75%))] rounded-full min-w-6 min-h-6",
-    "hover:opacity-100",
-    "active:opacity-80",
-    "disabled:[filter:opacity(30%)]",
-  ],
+  "",
   {
     variants: {
       variant: {
         default: "",
         /** .caps-lock-indicator */
-        capsLockIndicator: "opacity-30",
+        capsLockIndicator: "",
         /** .dropdown-arrow */
-        dropdownArrow: "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        dropdownArrow: "",
         /** .expander-row-arrow */
-        expanderRowArrow: [
-          "mx-[3px] opacity-0 transition-[-gtk-icon-transform] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] opacity-100 text-[var(--accent-color)]",
-          "disabled:[filter:Opacity(var(--disabled-opacity))]",
-        ],
+        expanderRowArrow: "",
         /** .large-icons */
-        largeIcons: "",
-        /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
-        /** .sidebar-icon */
-        sidebarIcon: "opacity-70",
-        /** .spinner */
-        spinner: "disabled:opacity-0",
-      },
-      size: {
-        default: "",
+        largeIcons: "[--adw-icon-size:32px]",
         /** .left */
-        left: "mr-1.5",
+        left: "",
+        /** .osd */
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .right */
-        right: "ml-1.5",
+        right: "",
+        /** .sidebar-icon */
+        sidebarIcon: "",
+        /** .spinner */
+        spinner: "disabled:opacity-[var(--disabled-opacity)]",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -59,7 +48,7 @@ export interface SpinnerProps
     VariantProps<typeof spinnerVariants> {
 }
 
-function Spinner({ className, render, variant = "default", size = "default", children, ...props }: SpinnerProps) {
+function Spinner({ className, render, variant = "default", children, ...props }: SpinnerProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -67,9 +56,9 @@ function Spinner({ className, render, variant = "default", size = "default", chi
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "spinner",
+    "data-node": "image",
     "data-variant": variant,
-    "data-size": size,
-    className: cn(spinnerVariants({ variant, size }), widgetClassName, className),
+    className: cn(spinnerVariants({ variant }), widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

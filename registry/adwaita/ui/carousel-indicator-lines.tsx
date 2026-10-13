@@ -30,6 +30,7 @@ function CarouselIndicatorLines({ className, render, carousel, orientation, chil
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "carousel-indicator-lines",
+    "data-node": "carouselindicatorlines",
     className: cn(widgetClassName, className),
     style,
     children: (

@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useClamp } from "@/lib/clamp"
 
 const statusPageVariants = cva(
   "",
@@ -55,6 +56,7 @@ function StatusPage({ className, render, variant = "default", child, description
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "status-page",
+    "data-node": "statuspage",
     "data-variant": variant,
     role: "status",
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", statusPageVariants({ variant }), widgetClassName, className),
@@ -65,9 +67,15 @@ function StatusPage({ className, render, variant = "default", child, description
                 <StatusPageToplevelBox>
                   <StatusPageClamp>
                     <StatusPageBox>
-                      <StatusPageImage className={iconName} />
-                      <StatusPageTitleLabel>{title}</StatusPageTitleLabel>
-                      <StatusPageDescriptionLabel>{description}</StatusPageDescriptionLabel>
+                      {iconName ? (
+                        <StatusPageImage data-icon className={iconName} />
+                      ) : null}
+                      {title ? (
+                        <StatusPageTitleLabel>{title}</StatusPageTitleLabel>
+                      ) : null}
+                      {description ? (
+                        <StatusPageDescriptionLabel>{description}</StatusPageDescriptionLabel>
+                      ) : null}
                       {children}
                     </StatusPageBox>
                   </StatusPageClamp>
@@ -92,7 +100,12 @@ function StatusPageImage({ className, ...props }: React.ComponentProps<"span">) 
   return (
     <span
       data-slot="status-page-image"
-      className={cn(className)}
+        data-node="image"
+        data-halign="center"
+      className={cn("icon", [
+        "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
+        "disabled:opacity-[var(--disabled-opacity)]",
+      ], className)}
       {...props}
     />
   )
@@ -102,8 +115,9 @@ function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"spa
   return (
     <span
       data-slot="status-page-title-label"
-      className={cn([
-        "caret-[currentColor]",
+        data-node="label"
+      className={cn("title", [
+        "caret-[currentColor] font-extrabold text-[181%]",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
       {...props}
@@ -115,7 +129,11 @@ function StatusPageDescriptionLabel({ className, ...props }: React.ComponentProp
   return (
     <span
       data-slot="status-page-description-label"
-      className={cn("font-normal leading-[140%]", className)}
+        data-node="label"
+      className={cn("body description", [
+        "caret-[currentColor] font-normal leading-[140%]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -125,17 +143,24 @@ function StatusPageBox({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="status-page-box"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "gap-[12px]", className)}
       {...props}
     />
   )
 }
 
-function StatusPageClamp({ className, ...props }: React.ComponentProps<"div">) {
+function StatusPageClamp({ className, style, ...props }: React.ComponentProps<"div">) {
+  const { ref, columns } = useClamp<HTMLDivElement>({  })
+
   return (
     <div
+      ref={ref}
       data-slot="status-page-clamp"
-      className={cn("", className)}
+        data-node="clamp"
+      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
@@ -145,7 +170,9 @@ function StatusPageToplevelBox({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="status-page-toplevel-box"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "my-9 mx-3 gap-[36px]", className)}
       {...props}
     />
   )
@@ -155,7 +182,8 @@ function StatusPageScrolledWindow({ className, ...props }: React.ComponentProps<
   return (
     <div
       data-slot="status-page-scrolled-window"
-      className={cn("[filter:none]", className)}
+        data-node="scrolledwindow"
+      className={cn(className)}
       {...props}
     />
   )

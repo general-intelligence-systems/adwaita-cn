@@ -24,24 +24,21 @@ const toolbarViewVariants = cva(
         border: "",
         /** .bottom-bar */
         bottomBar: "",
+        /** .collapse-spacing */
+        collapseSpacing: "",
         /** .overview */
-        overview: "text-[var(--overview-fg-color)] bg-[var(--overview-bg-color)]",
+        overview: "",
         /** .raised */
         raised: "",
         /** .top-bar */
-        topBar: "bg-[image:cross-fade(5%_-gtk-recolor(url(\"assets/devel-symbolic.svg\")),image(transparent))] bg-repeat",
+        topBar: "",
         /** .undershoot-bottom */
         undershootBottom: "",
         /** .undershoot-top */
         undershootTop: "",
       },
-      size: {
-        default: "",
-        /** .collapse-spacing */
-        collapseSpacing: "py-[3px]",
-      },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -71,7 +68,7 @@ export interface ToolbarViewProps
   topBarStyle?: ToolbarStyle
 }
 
-function ToolbarView({ className, render, variant = "default", size = "default", content, bottomBarStyle, extendContentToBottomEdge, extendContentToTopEdge, revealBottomBars, revealTopBars, topBarStyle, children, ...props }: ToolbarViewProps) {
+function ToolbarView({ className, render, variant = "default", content, bottomBarStyle, extendContentToBottomEdge, extendContentToTopEdge, revealBottomBars, revealTopBars, topBarStyle, children, ...props }: ToolbarViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -79,8 +76,8 @@ function ToolbarView({ className, render, variant = "default", size = "default",
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "toolbar-view",
+    "data-node": "toolbarview",
     "data-variant": variant,
-    "data-size": size,
     role: "toolbar",
     "data-bottom-bar-style": bottomBarStyle,
     "data-extend-content-to-bottom-edge": extendContentToBottomEdge,
@@ -88,12 +85,23 @@ function ToolbarView({ className, render, variant = "default", size = "default",
     "data-reveal-bottom-bars": revealBottomBars,
     "data-reveal-top-bars": revealTopBars,
     "data-top-bar-style": topBarStyle,
-    className: cn("flex", "flex-col", toolbarViewVariants({ variant, size }), widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toolbarViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
-                  {children}
-                  {content}
+                  <ToolbarViewContent>{content}</ToolbarViewContent>
+                  <ToolbarViewRevealer>
+                <ToolbarViewWindowhandle>
+                  <ToolbarViewInternalBox>
+                    {children}
+                  </ToolbarViewInternalBox>
+                </ToolbarViewWindowhandle>
+              </ToolbarViewRevealer>
+                  <ToolbarViewRevealer2>
+                <ToolbarViewWindowhandle2>
+                  <ToolbarViewInternalBox2 />
+                </ToolbarViewWindowhandle2>
+              </ToolbarViewRevealer2>
         </>
       ),
     ...widgetAttributes,
@@ -107,4 +115,81 @@ function ToolbarView({ className, render, variant = "default", size = "default",
   })
 }
 
-export { ToolbarView, toolbarViewVariants }
+function ToolbarViewContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toolbar-view-content"
+        data-vexpand=""
+      className={cn("order-2 flex flex-col [&>*]:grow min-h-0", className)}
+      {...props}
+    />
+  )
+}
+
+function ToolbarViewInternalBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      {...props}
+    />
+  )
+}
+
+function ToolbarViewWindowhandle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toolbar-view-windowhandle"
+        data-node="windowhandle"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ToolbarViewRevealer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toolbar-view-revealer"
+        data-node="revealer"
+      className={cn("top-bar order-1", className)}
+      {...props}
+    />
+  )
+}
+
+function ToolbarViewInternalBox2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="box"
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      {...props}
+    />
+  )
+}
+
+function ToolbarViewWindowhandle2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toolbar-view-windowhandle2"
+        data-node="windowhandle"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ToolbarViewRevealer2({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toolbar-view-revealer2"
+        data-node="revealer"
+      className={cn("bottom-bar order-3", className)}
+      {...props}
+    />
+  )
+}
+
+export { ToolbarView, ToolbarViewContent, ToolbarViewInternalBox, ToolbarViewWindowhandle, ToolbarViewRevealer, ToolbarViewInternalBox2, ToolbarViewWindowhandle2, ToolbarViewRevealer2, toolbarViewVariants }

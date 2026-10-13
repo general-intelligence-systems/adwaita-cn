@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useSplitView } from "@/lib/split-view"
 import type { LengthUnit, PackType } from "@/lib/enums"
 
 const navigationSplitViewVariants = cva(
@@ -21,11 +22,11 @@ const navigationSplitViewVariants = cva(
       variant: {
         default: "",
         /** .content-pane */
-        contentPane: "bg-[var(--secondary-sidebar-backdrop-color)] text-[var(--secondary-sidebar-fg-color)] transition-[background-color] duration-200 ease-[ease-out] shadow-[inset_1px_0_var(--secondary-sidebar-border-color)]",
+        contentPane: "",
         /** .end */
         end: "",
         /** .sidebar-pane */
-        sidebarPane: "bg-[var(--sidebar-backdrop-color)] text-[var(--sidebar-fg-color)] transition-[background-color] duration-200 ease-[ease-out] shadow-[inset_1px_0_var(--sidebar-border-color)]",
+        sidebarPane: "bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)] [--shade-color:var(--sidebar-shade-color)] shadow-[inset_1px_0_var(--sidebar-border-color)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -67,11 +68,14 @@ export interface NavigationSplitViewProps
 function NavigationSplitView({ className, render, variant = "default", content, sidebar, collapsed, maxSidebarWidth, minSidebarWidth, showContent, sidebarPosition, sidebarWidthFraction, sidebarWidthUnit, children, ...props }: NavigationSplitViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
+  const { ref: clampRef, columns: clampColumns } = useSplitView<HTMLDivElement>({ minSidebarWidth, maxSidebarWidth, sidebarWidthFraction })
   // Named rather than passed inline: a fresh object literal handed straight
   // to mergeProps is excess-property checked against the element's props,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "navigation-split-view",
+    "data-node": "navigation-split-view",
+    ref: clampRef,
     "data-variant": variant,
     "data-collapsed": collapsed,
     "data-max-sidebar-width": maxSidebarWidth,
@@ -80,13 +84,13 @@ function NavigationSplitView({ className, render, variant = "default", content, 
     "data-sidebar-position": sidebarPosition,
     "data-sidebar-width-fraction": sidebarWidthFraction,
     "data-sidebar-width-unit": sidebarWidthUnit,
-    className: cn(navigationSplitViewVariants({ variant }), widgetClassName, className),
-    style,
+    className: cn("grid [&>*]:min-w-0", navigationSplitViewVariants({ variant }), widgetClassName, className),
+    style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
-                  {children}
-                  {content}
                   {sidebar}
+                  {content}
+                  {children}
         </>
       ),
     ...widgetAttributes,

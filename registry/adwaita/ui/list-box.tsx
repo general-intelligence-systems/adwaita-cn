@@ -14,10 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, SelectionMode } from "@/lib/enums"
 
 const listBoxVariants = cva(
-  [
-    "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-none",
-    "focus:shadow-none",
-  ],
+  "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
   {
     variants: {
       variant: {
@@ -31,13 +28,9 @@ const listBoxVariants = cva(
         /** .content */
         content: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .nested */
-        nested: "bg-[color-mix(in_srgb,var(--card-shade-color)_50%,transparent)] text-[inherit]",
+        nested: "",
         /** .separators */
         separators: "",
         /** .view */
@@ -81,13 +74,14 @@ function ListBox({ className, render, variant = "default", acceptUnpairedRelease
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "list-box",
+    "data-node": "list",
     "data-variant": variant,
     "data-accept-unpaired-release": acceptUnpairedRelease,
     "data-activate-on-single-click": activateOnSingleClick,
     "data-selection-mode": selectionMode,
     "data-show-separators": showSeparators,
     "data-tab-behavior": tabBehavior,
-    className: cn(listBoxVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", listBoxVariants({ variant }), widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

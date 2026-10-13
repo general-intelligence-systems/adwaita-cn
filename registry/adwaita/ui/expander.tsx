@@ -45,15 +45,13 @@ function Expander({ className, render, child, labelWidget, expanded, label, resi
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "expander",
+    "data-node": "expander-widget",
     "data-expanded": expanded,
     "data-label": label,
     "data-resize-toplevel": resizeToplevel,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-col", [
-          "duration-[300ms] shadow-none",
-          "focus:shadow-none",
-        ], widgetClassName, className),
+    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "duration-[300ms]", widgetClassName, className),
     style,
     children: (
         <>

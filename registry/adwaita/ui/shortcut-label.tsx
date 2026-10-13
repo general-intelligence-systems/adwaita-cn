@@ -13,18 +13,15 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const shortcutLabelVariants = cva(
-  [
-    "rounded-[6px] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] gap-[6px]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[1px]",
-  ],
+  "rounded-[6px] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] gap-[6px]",
   {
     variants: {
       variant: {
         default: "",
         /** .dimmed */
-        dimmed: "opacity-0",
+        dimmed: "opacity-[var(--dim-opacity)]",
         /** .keycap */
-        keycap: "py-0.5 px-1.5 min-w-5 min-h-[25px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] shadow-[inset_0_-2px_var(--card-shade-color)] rounded-[6px] text-[smaller] p-1.5",
+        keycap: "",
       },
     },
     defaultVariants: { variant: "default" },
@@ -50,12 +47,20 @@ function ShortcutLabel({ className, render, variant = "default", accelerator, di
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "shortcut-label",
+    "data-node": "shortcut-label",
     "data-variant": variant,
     "data-accelerator": accelerator,
     "data-disabled-text": disabledText,
-    className: cn("flex", "flex-row", shortcutLabelVariants({ variant }), widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", shortcutLabelVariants({ variant }), widgetClassName, className),
     style,
-    children: children,
+    children: (
+        <>
+                  <ShortcutLabelBox>
+                {children}
+              </ShortcutLabelBox>
+                  <ShortcutLabelLabel />
+        </>
+      ),
     ...widgetAttributes,
   }
 
@@ -67,4 +72,29 @@ function ShortcutLabel({ className, render, variant = "default", accelerator, di
   })
 }
 
-export { ShortcutLabel, shortcutLabelVariants }
+function ShortcutLabelBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="shortcut-label-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ShortcutLabelLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="shortcut-label-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { ShortcutLabel, ShortcutLabelBox, ShortcutLabelLabel, shortcutLabelVariants }

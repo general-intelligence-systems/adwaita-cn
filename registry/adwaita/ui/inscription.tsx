@@ -24,34 +24,24 @@ const inscriptionVariants = cva(
       variant: {
         default: "",
         /** .day-number */
-        dayNumber: [
-          "p-[3px]",
-          "data-[selected]:rounded-[9px] data-[selected]:bg-[var(--accent-bg-color)] data-[selected]:text-[var(--accent-fg-color)]",
-          "data-[state=checked]:rounded-[9px] data-[state=checked]:bg-[color-mix(in_srgb,var(--accent-bg-color)_30%,transparent)]",
-        ],
+        dayNumber: "",
         /** .highlight */
-        highlight: "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        highlight: "",
         /** .separator */
-        separator: "opacity-0",
-        /** .small */
-        small: "text-[8px]",
-        /** .subtitle */
-        subtitle: "px-3 text-[smaller] opacity-0 opacity-100",
-        /** .title */
-        title: "px-3 font-bold py-1 px-8",
-        /** .today */
-        today: [
-          "shadow-[inset_0px_-2px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
-          "data-[selected]:shadow-none",
-        ],
-      },
-      size: {
-        default: "",
+        separator: "opacity-[var(--dim-opacity)]",
         /** .sidebar-label */
-        sidebarLabel: "px-0.5",
+        sidebarLabel: "",
+        /** .small */
+        small: "",
+        /** .subtitle */
+        subtitle: "",
+        /** .title */
+        title: "",
+        /** .today */
+        today: "",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -93,7 +83,7 @@ export interface InscriptionProps
   yalign?: number
 }
 
-function Inscription({ className, render, variant = "default", size = "default", attributes, markup, text, wrapMode, minChars, minLines, natChars, natLines, textOverflow, xalign, yalign, children, ...props }: InscriptionProps) {
+function Inscription({ className, render, variant = "default", attributes, markup, text, wrapMode, minChars, minLines, natChars, natLines, textOverflow, xalign, yalign, children, ...props }: InscriptionProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -101,8 +91,8 @@ function Inscription({ className, render, variant = "default", size = "default",
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "inscription",
+    "data-node": "label",
     "data-variant": variant,
-    "data-size": size,
     "data-min-chars": minChars,
     "data-min-lines": minLines,
     "data-nat-chars": natChars,
@@ -110,7 +100,7 @@ function Inscription({ className, render, variant = "default", size = "default",
     "data-text-overflow": textOverflow,
     "data-xalign": xalign,
     "data-yalign": yalign,
-    className: cn(inscriptionVariants({ variant, size }), widgetClassName, className),
+    className: cn(inscriptionVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

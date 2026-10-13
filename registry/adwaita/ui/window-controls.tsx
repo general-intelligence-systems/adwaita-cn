@@ -20,20 +20,13 @@ const windowControlsVariants = cva(
       variant: {
         default: "",
         /** .close */
-        close: [
-          "p-1 text-[var(--accent-bg-color)] shadow-none bg-[transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-w-4.5 min-h-4.5 rounded-full",
-          "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-          "disabled:[filter:opacity(30%)]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-          "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-          "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-          "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-        ],
+        close: "",
         /** .empty */
         empty: "",
         /** .end */
         end: "",
+        /** .icon */
+        icon: "",
         /** .maximize */
         maximize: "",
         /** .minimize */
@@ -43,13 +36,8 @@ const windowControlsVariants = cva(
         /** .start */
         start: "",
       },
-      size: {
-        default: "",
-        /** .icon */
-        icon: "m-[9px]",
-      },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -67,7 +55,7 @@ export interface WindowControlsProps
   useNativeControls?: boolean
 }
 
-function WindowControls({ className, render, variant = "default", size = "default", decorationLayout, side, useNativeControls, children, ...props }: WindowControlsProps) {
+function WindowControls({ className, render, variant = "default", decorationLayout, side, useNativeControls, children, ...props }: WindowControlsProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -75,14 +63,21 @@ function WindowControls({ className, render, variant = "default", size = "defaul
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "window-controls",
+    "data-node": "windowcontrols",
     "data-variant": variant,
-    "data-size": size,
     "data-decoration-layout": decorationLayout,
     "data-side": side,
     "data-use-native-controls": useNativeControls,
-    className: cn("flex", "flex-row", windowControlsVariants({ variant, size }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", windowControlsVariants({ variant }), widgetClassName, className),
     style,
-    children: children,
+    children: (
+        <>
+                  <WindowControlsButton>
+                <WindowControlsImage />
+              </WindowControlsButton>
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
@@ -94,4 +89,34 @@ function WindowControls({ className, render, variant = "default", size = "defaul
   })
 }
 
-export { WindowControls, windowControlsVariants }
+function WindowControlsImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="window-controls-image"
+        data-node="image"
+      className={cn("p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      {...props}
+    />
+  )
+}
+
+function WindowControlsButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="window-controls-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { WindowControls, WindowControlsImage, WindowControlsButton, windowControlsVariants }

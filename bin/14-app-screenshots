@@ -228,7 +228,23 @@ module AppScreenshots
     nil
   end
 
+  # The page, built from the registry's own sources before it is served.
+  #
+  # Here rather than by hand: both this and the other of the pair serve
+  # bin/14-app-screenshots.out/web, and neither of them built it, so a run after a change
+  # to a component reported the page as it had been the last time somebody remembered to
+  # run vite. A comparison of a stale build is a comparison of nothing.
+  def self.vite
+    command = ["pnpm", "exec", "vite", "build", "-c", "vite.comparison.config.ts", "--logLevel", "warn"]
+
+    Dir.chdir(ROOT) do
+      system(*command, out: File::NULL) || abort("#{command.join(' ')} failed")
+    end
+  end
+
   def self.serving
+    self.vite
+
     server = WEBrick::HTTPServer.new(
       Port: PORT,
       DocumentRoot: File.join(ROOT, "bin/14-app-screenshots.out/web"),

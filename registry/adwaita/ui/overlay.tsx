@@ -14,46 +14,28 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const overlayVariants = cva(
-  [
-    "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9.5px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] text-[RGB(0_0_6/75%)] shadow-[inset_0_0_0_2px_var(--accent-bg-color)] border-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] rounded-tl-[9px] rounded-tr-[9px] rounded-bl-[9px] rounded-br-[9px]",
-    "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-    "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-    "disabled:[filter:Opacity(var(--disabled-opacity))]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
-    "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-    "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-    "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-  ],
+  "",
   {
     variants: {
       variant: {
         default: "",
+        /** .arrow-button */
+        arrowButton: "",
         /** .card */
-        card: [
-          "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-1px]",
-        ],
+        card: "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        /** .image-button */
+        imageButton: "",
+        /** .image-text-button */
+        imageTextButton: "",
         /** .keyboard-activating */
-        keyboardActivating: [
-          "bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-          "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-        ],
+        keyboardActivating: "",
+        /** .text-button */
+        textButton: "",
         /** .thumbnail */
         thumbnail: "",
       },
-      size: {
-        default: "",
-        /** .arrow-button */
-        arrowButton: "px-[9px]",
-        /** .image-button */
-        imageButton: "px-[5px] min-w-6",
-        /** .image-text-button */
-        imageTextButton: "px-[9px]",
-        /** .text-button */
-        textButton: "px-[17px]",
-      },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -65,7 +47,7 @@ export interface OverlayProps
   child?: ReactNode
 }
 
-function Overlay({ className, render, variant = "default", size = "default", child, children, ...props }: OverlayProps) {
+function Overlay({ className, render, variant = "default", child, children, ...props }: OverlayProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -73,9 +55,9 @@ function Overlay({ className, render, variant = "default", size = "default", chi
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "overlay",
+    "data-node": "overlay",
     "data-variant": variant,
-    "data-size": size,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", overlayVariants({ variant, size }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", overlayVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

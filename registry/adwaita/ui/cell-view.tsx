@@ -43,6 +43,7 @@ function CellView({ className, render, cellArea, cellAreaContext, model, drawSen
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "cell-view",
+    "data-node": "cellview",
     "data-draw-sensitive": drawSensitive,
     "data-fit-model": fitModel,
     "data-orientation": orientation,

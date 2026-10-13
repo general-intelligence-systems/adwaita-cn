@@ -16,7 +16,6 @@ import type { WidgetProps } from "@/lib/widget-props"
 const actionRowVariants = cva(
   [
     "bg-clip-padding outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-2px]",
     "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
   ],
   {
@@ -35,22 +34,19 @@ const actionRowVariants = cva(
         /** .expander */
         expander: "p-0 bg-none",
         /** .has-open-popup */
-        hasOpenPopup: "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        hasOpenPopup: "",
         /** .header */
-        header: [
-          "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-tl-[12px] rounded-tr-[12px] rounded-bl-[12px] rounded-br-[12px] border-b-[0]",
-          "focus-visible:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-[-1px]",
-        ],
+        header: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
         /** .separator */
         separator: "",
         /** .separators */
         separators: "",
         /** .sidebar-new-bookmark-row */
-        sidebarNewBookmarkRow: "text-[var(--accent-color)]",
+        sidebarNewBookmarkRow: "",
         /** .sidebar-placeholder-row */
-        sidebarPlaceholderRow: "py-0 px-2 min-h-0.5 bg-[image:image(var(--accent-bg-color))] bg-clip-content",
+        sidebarPlaceholderRow: "",
         /** .spin */
         spin: "outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
       },
@@ -60,7 +56,7 @@ const actionRowVariants = cva(
 )
 
 export interface ActionRowProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "actionName" | "actionTarget" | "activatable" | "activatableWidget" | "child" | "iconName" | "selectable" | "subtitle" | "subtitleLines" | "subtitleSelectable" | "title" | "titleLines" | "titleSelectable" | "useMarkup" | "useUnderline" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "actionName" | "actionTarget" | "activatable" | "activatableWidget" | "child" | "iconName" | "selectable" | "subtitle" | "subtitleLines" | "subtitleSelectable" | "title" | "titleLines" | "titleSelectable" | "useMarkup" | "useUnderline" | "prefix" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof actionRowVariants> {
   /** utf8, from Adw.ActionRow */
@@ -80,6 +76,9 @@ export interface ActionRowProps
 
   /** utf8, from Adw.ActionRow */
   iconName?: string
+
+  /** Gtk.Widget, from Adw.ActionRow */
+  prefix?: ReactNode
 
   /** gboolean, from Gtk.ListBoxRow */
   selectable?: boolean
@@ -109,7 +108,7 @@ export interface ActionRowProps
   useUnderline?: boolean
 }
 
-function ActionRow({ className, render, variant = "default", actionTarget, activatableWidget, child, iconName, subtitle, title, actionName, activatable, selectable, subtitleLines, subtitleSelectable, titleLines, titleSelectable, useMarkup, useUnderline, children, ...props }: ActionRowProps) {
+function ActionRow({ className, render, variant = "default", actionTarget, activatableWidget, child, iconName, prefix, subtitle, title, actionName, activatable, selectable, subtitleLines, subtitleSelectable, titleLines, titleSelectable, useMarkup, useUnderline, children, ...props }: ActionRowProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -117,6 +116,7 @@ function ActionRow({ className, render, variant = "default", actionTarget, activ
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "action-row",
+    "data-node": "row",
     "data-variant": variant,
     "data-action-name": actionName,
     "data-activatable": activatable,
@@ -127,20 +127,32 @@ function ActionRow({ className, render, variant = "default", actionTarget, activ
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn(actionRowVariants({ variant }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", actionRowVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   <ActionRowHeader>
-                <ActionRowPrefixes />
-                <ActionRowImage className={iconName} />
+                {prefix ? (
+                  <ActionRowPrefixes>
+                    {prefix}
+                  </ActionRowPrefixes>
+                ) : null}
+                {iconName ? (
+                  <ActionRowImage data-icon className={iconName} />
+                ) : null}
                 <ActionRowTitleBox>
-                  <ActionRowTitle>{title}</ActionRowTitle>
-                  <ActionRowSubtitle>{subtitle}</ActionRowSubtitle>
+                  {title ? (
+                    <ActionRowTitle>{title}</ActionRowTitle>
+                  ) : null}
+                  {subtitle ? (
+                    <ActionRowSubtitle>{subtitle}</ActionRowSubtitle>
+                  ) : null}
                 </ActionRowTitleBox>
-                <ActionRowSuffixes>
-                  {children}
-                </ActionRowSuffixes>
+                {children ? (
+                  <ActionRowSuffixes>
+                    {children}
+                  </ActionRowSuffixes>
+                ) : null}
               </ActionRowHeader>
                   {actionTarget}
                   {activatableWidget}
@@ -162,7 +174,8 @@ function ActionRowPrefixes({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="action-row-prefixes"
-      className={cn("flex flex-row", "mx-1.5 gap-[6px]", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes", "mx-1.5 gap-[6px]", className)}
       {...props}
     />
   )
@@ -172,7 +185,9 @@ function ActionRowImage({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="action-row-image"
-      className={cn([
+        data-node="image"
+        data-valign="center"
+      className={cn("icon", [
         "mx-1.5",
         "disabled:[filter:Opacity(var(--disabled-opacity))]",
       ], className)}
@@ -185,7 +200,11 @@ function ActionRowTitle({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="action-row-title"
-      className={cn("p-0 [font-weight:inherit]", className)}
+        data-node="label"
+      className={cn("title", [
+        "caret-[currentColor] p-0 [font-weight:inherit]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -195,7 +214,11 @@ function ActionRowSubtitle({ className, ...props }: React.ComponentProps<"span">
   return (
     <span
       data-slot="action-row-subtitle"
-      className={cn("p-0 [font-weight:inherit]", className)}
+        data-node="label"
+      className={cn("subtitle", [
+        "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -205,7 +228,10 @@ function ActionRowTitleBox({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="action-row-title-box"
-      className={cn("flex flex-col", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
       {...props}
     />
   )
@@ -215,7 +241,8 @@ function ActionRowSuffixes({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="action-row-suffixes"
-      className={cn("flex flex-row", "gap-[6px]", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -225,7 +252,9 @@ function ActionRowHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="action-row-header"
-      className={cn("flex flex-row", "mx-3 gap-[6px] min-h-12.5", className)}
+        data-node="box"
+        data-valign="center"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "mx-3 gap-[6px] min-h-12.5", className)}
       {...props}
     />
   )

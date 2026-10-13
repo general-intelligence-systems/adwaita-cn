@@ -35,13 +35,20 @@ function NavigationView({ className, render, animateTransitions, hhomogeneous, p
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "navigation-view",
+    "data-node": "navigation-view",
     "data-animate-transitions": animateTransitions,
     "data-hhomogeneous": hhomogeneous,
     "data-pop-on-escape": popOnEscape,
     "data-vhomogeneous": vhomogeneous,
     className: cn(widgetClassName, className),
     style,
-    children: children,
+    children: (
+        <>
+                  <NavigationViewDimming />
+                  <NavigationViewShadow />
+                  {children}
+        </>
+      ),
     ...widgetAttributes,
   }
 
@@ -53,4 +60,26 @@ function NavigationView({ className, render, animateTransitions, hhomogeneous, p
   })
 }
 
-export { NavigationView }
+function NavigationViewDimming({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navigation-view-dimming"
+        data-node="dimming"
+      className={cn("bg-[var(--shade-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function NavigationViewShadow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navigation-view-shadow"
+        data-node="shadow"
+      className={cn("min-w-14 min-h-14", className)}
+      {...props}
+    />
+  )
+}
+
+export { NavigationView, NavigationViewDimming, NavigationViewShadow }

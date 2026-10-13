@@ -20,18 +20,15 @@ const stackSwitcherVariants = cva(
     variants: {
       variant: {
         default: "",
+        /** .circular */
+        circular: "",
         /** .linked */
         linked: "",
         /** .needs-attention */
         needsAttention: "",
       },
-      size: {
-        default: "",
-        /** .circular */
-        circular: "gap-[12px]",
-      },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -46,7 +43,7 @@ export interface StackSwitcherProps
   stack?: ReactNode
 }
 
-function StackSwitcher({ className, render, variant = "default", size = "default", stack, orientation, children, ...props }: StackSwitcherProps) {
+function StackSwitcher({ className, render, variant = "default", stack, orientation, children, ...props }: StackSwitcherProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -54,14 +51,18 @@ function StackSwitcher({ className, render, variant = "default", size = "default
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "stack-switcher",
+    "data-node": "stackswitcher",
     "data-variant": variant,
-    "data-size": size,
     role: "tablist",
     "data-orientation": orientation,
-    className: cn("flex", (orientation === "vertical" ? "flex-col" : "flex-row"), stackSwitcherVariants({ variant, size }), widgetClassName, className),
+    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", stackSwitcherVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
+                  <StackSwitcherButton>
+                <StackSwitcherImage />
+                <StackSwitcherLabel />
+              </StackSwitcherButton>
                   {stack}
                   {children}
         </>
@@ -77,4 +78,48 @@ function StackSwitcher({ className, render, variant = "default", size = "default
   })
 }
 
-export { StackSwitcher, stackSwitcherVariants }
+function StackSwitcherImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="stack-switcher-image"
+        data-node="image"
+      className={cn("py-[3px] px-1.5 my-[-3px] -mx-1.5", className)}
+      {...props}
+    />
+  )
+}
+
+function StackSwitcherLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="stack-switcher-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor] py-0 px-1.5 my-0 -mx-1.5",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function StackSwitcherButton({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="stack-switcher-button"
+        data-node="button"
+      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
+        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+        "data-[state=checked]:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
+        "data-[state=checked]:hover:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
+        "data-[state=checked]:active:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { StackSwitcher, StackSwitcherImage, StackSwitcherLabel, StackSwitcherButton, stackSwitcherVariants }

@@ -15,25 +15,15 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, Orientation, ScrollablePolicy } from "@/lib/enums"
 
 const listViewVariants = cva(
-  [
-    "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-none",
-    "focus:shadow-none",
-  ],
+  "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
   {
     variants: {
       variant: {
         default: "",
         /** .dialog-action-box */
-        dialogActionBox: [
-          "text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-        ],
+        dialogActionBox: "",
         /** .inline */
-        inline: [
-          "bg-none shadow-none text-[inherit]",
-          "disabled:bg-none disabled:text-[inherit]",
-        ],
+        inline: "",
         /** .separators */
         separators: "",
         /** .view */
@@ -98,6 +88,7 @@ function ListView({ className, render, variant = "default", factory, hadjustment
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "list-view",
+    "data-node": "listview",
     "data-variant": variant,
     "data-enable-rubberband": enableRubberband,
     "data-hscroll-policy": hscrollPolicy,

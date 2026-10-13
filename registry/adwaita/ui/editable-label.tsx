@@ -27,7 +27,7 @@ const editableLabelVariants = cva(
 )
 
 export interface EditableLabelProps
-  extends Omit<useRender.ComponentProps<"input">, keyof WidgetProps | "editable" | "editing" | "enableUndo" | "maxWidthChars" | "text" | "widthChars" | "xalign" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "editable" | "editing" | "enableUndo" | "maxWidthChars" | "text" | "widthChars" | "xalign" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof editableLabelVariants> {
   /** gboolean, from Gtk.EditableLabel */
@@ -52,7 +52,7 @@ export interface EditableLabelProps
   xalign?: number
 }
 
-function EditableLabel({ className, render, variant = "default", editable, editing, enableUndo, maxWidthChars, text, widthChars, xalign, children: _children, ...props }: EditableLabelProps) {
+function EditableLabel({ className, render, variant = "default", editable, editing, enableUndo, maxWidthChars, text, widthChars, xalign, children, ...props }: EditableLabelProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -60,9 +60,9 @@ function EditableLabel({ className, render, variant = "default", editable, editi
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "editable-label",
+    "data-node": "editablelabel",
     "data-variant": variant,
-    type: "text",
-    contentEditable: editable,
+    "data-editable": editable,
     "data-editing": editing,
     "data-enable-undo": enableUndo,
     "data-max-width-chars": maxWidthChars,
@@ -71,15 +71,31 @@ function EditableLabel({ className, render, variant = "default", editable, editi
     "data-xalign": xalign,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", editableLabelVariants({ variant }), widgetClassName, className),
     style,
+    children: (
+        <EditableLabelStack>
+                {children}
+              </EditableLabelStack>
+      ),
     ...widgetAttributes,
   }
 
   return useRender({
-    defaultTagName: "input",
+    defaultTagName: "div",
     enabled: !hidden,
     render,
-    props: mergeProps<"input">(defaultProps, rest),
+    props: mergeProps<"div">(defaultProps, rest),
   })
 }
 
-export { EditableLabel, editableLabelVariants }
+function EditableLabelStack({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="editable-label-stack"
+        data-node="stack"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { EditableLabel, EditableLabelStack, editableLabelVariants }

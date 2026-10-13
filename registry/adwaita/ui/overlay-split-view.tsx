@@ -12,6 +12,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@/lib/utils"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
+import { useSplitView } from "@/lib/split-view"
 import type { LengthUnit, PackType } from "@/lib/enums"
 
 const overlaySplitViewVariants = cva(
@@ -23,13 +24,13 @@ const overlaySplitViewVariants = cva(
         /** .background */
         background: "text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
         /** .content-pane */
-        contentPane: "bg-[var(--secondary-sidebar-backdrop-color)] text-[var(--secondary-sidebar-fg-color)] transition-[background-color] duration-200 ease-[ease-out] shadow-[inset_1px_0_var(--secondary-sidebar-border-color)]",
+        contentPane: "",
         /** .end */
         end: "",
         /** .isolated */
         isolated: "",
         /** .sidebar-pane */
-        sidebarPane: "bg-[var(--sidebar-backdrop-color)] text-[var(--sidebar-fg-color)] transition-[background-color] duration-200 ease-[ease-out] shadow-[inset_1px_0_var(--sidebar-border-color)]",
+        sidebarPane: "bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)] [--shade-color:var(--sidebar-shade-color)] shadow-[inset_1px_0_var(--sidebar-border-color)]",
       },
     },
     defaultVariants: { variant: "default" },
@@ -80,11 +81,14 @@ export interface OverlaySplitViewProps
 function OverlaySplitView({ className, render, variant = "default", content, sidebar, collapsed, enableHideGesture, enableShowGesture, maxSidebarWidth, minSidebarWidth, pinSidebar, showSidebar, sidebarPosition, sidebarWidthFraction, sidebarWidthUnit, children, ...props }: OverlaySplitViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
+  const { ref: clampRef, columns: clampColumns } = useSplitView<HTMLDivElement>({ minSidebarWidth, maxSidebarWidth, sidebarWidthFraction })
   // Named rather than passed inline: a fresh object literal handed straight
   // to mergeProps is excess-property checked against the element's props,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "overlay-split-view",
+    "data-node": "overlay-split-view",
+    ref: clampRef,
     "data-variant": variant,
     "data-collapsed": collapsed,
     "data-enable-hide-gesture": enableHideGesture,
@@ -96,13 +100,15 @@ function OverlaySplitView({ className, render, variant = "default", content, sid
     "data-sidebar-position": sidebarPosition,
     "data-sidebar-width-fraction": sidebarWidthFraction,
     "data-sidebar-width-unit": sidebarWidthUnit,
-    className: cn(overlaySplitViewVariants({ variant }), widgetClassName, className),
-    style,
+    className: cn("grid [&>*]:min-w-0", overlaySplitViewVariants({ variant }), widgetClassName, className),
+    style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
-                  {children}
-                  {content}
+                  <OverlaySplitViewDimming />
+                  <OverlaySplitViewShadow />
                   {sidebar}
+                  {content}
+                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -116,4 +122,26 @@ function OverlaySplitView({ className, render, variant = "default", content, sid
   })
 }
 
-export { OverlaySplitView, overlaySplitViewVariants }
+function OverlaySplitViewDimming({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="overlay-split-view-dimming"
+        data-node="dimming"
+      className={cn("bg-[var(--shade-color)]", className)}
+      {...props}
+    />
+  )
+}
+
+function OverlaySplitViewShadow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="overlay-split-view-shadow"
+        data-node="shadow"
+      className={cn("min-w-14 min-h-14", className)}
+      {...props}
+    />
+  )
+}
+
+export { OverlaySplitView, OverlaySplitViewDimming, OverlaySplitViewShadow, overlaySplitViewVariants }

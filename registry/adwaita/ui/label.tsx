@@ -26,33 +26,31 @@ const labelVariants = cva(
         /** .body */
         body: "font-normal leading-[140%]",
         /** .day-number */
-        dayNumber: [
-          "p-[3px]",
-          "data-[selected]:rounded-[9px] data-[selected]:bg-[var(--accent-bg-color)] data-[selected]:text-[var(--accent-fg-color)]",
-          "data-[state=checked]:rounded-[9px] data-[state=checked]:bg-[color-mix(in_srgb,var(--accent-bg-color)_30%,transparent)]",
-        ],
+        dayNumber: "",
         /** .description */
         description: "",
         /** .dimmed */
-        dimmed: "opacity-0",
+        dimmed: "opacity-[var(--dim-opacity)]",
         /** .h4 */
         h4: "",
         /** .heading */
         heading: "font-bold",
         /** .highlight */
-        highlight: "bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
+        highlight: "",
         /** .link */
         link: "",
         /** .numeric */
         numeric: "",
         /** .separator */
-        separator: "opacity-0",
+        separator: "opacity-[var(--dim-opacity)]",
+        /** .sidebar-label */
+        sidebarLabel: "",
         /** .small */
-        small: "text-[8px]",
+        small: "",
         /** .subtitle */
-        subtitle: "px-3 text-[smaller] opacity-0 opacity-100",
+        subtitle: "",
         /** .title */
-        title: "px-3 font-bold py-1 px-8",
+        title: "",
         /** .title-1 */
         title1: "font-extrabold text-[181%]",
         /** .title-2 */
@@ -60,18 +58,10 @@ const labelVariants = cva(
         /** .title-4 */
         title4: "font-bold text-[118%]",
         /** .today */
-        today: [
-          "shadow-[inset_0px_-2px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
-          "data-[selected]:shadow-none",
-        ],
-      },
-      size: {
-        default: "",
-        /** .sidebar-label */
-        sidebarLabel: "px-0.5",
+        today: "",
       },
     },
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default" },
   },
 )
 
@@ -137,7 +127,7 @@ export interface LabelProps
   yalign?: number
 }
 
-function Label({ className, render, variant = "default", size = "default", attributes, ellipsize, extraMenu, label, mnemonicWidget, tabs, wrapMode, justify, lines, maxWidthChars, naturalWrapMode, selectable, singleLineMode, useMarkup, useUnderline, widthChars, wrap, xalign, yalign, children, ...props }: LabelProps) {
+function Label({ className, render, variant = "default", attributes, ellipsize, extraMenu, label, mnemonicWidget, tabs, wrapMode, justify, lines, maxWidthChars, naturalWrapMode, selectable, singleLineMode, useMarkup, useUnderline, widthChars, wrap, xalign, yalign, children, ...props }: LabelProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -145,8 +135,8 @@ function Label({ className, render, variant = "default", size = "default", attri
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "label",
+    "data-node": "label",
     "data-variant": variant,
-    "data-size": size,
     "data-justify": justify,
     "data-lines": lines,
     "data-max-width-chars": maxWidthChars,
@@ -159,7 +149,7 @@ function Label({ className, render, variant = "default", size = "default", attri
     "data-wrap": wrap,
     "data-xalign": xalign,
     "data-yalign": yalign,
-    className: cn(labelVariants({ variant, size }), widgetClassName, className),
+    className: cn(labelVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

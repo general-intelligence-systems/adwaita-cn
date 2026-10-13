@@ -56,6 +56,7 @@ function PreferencesGroup({ className, render, variant = "default", description,
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "preferences-group",
+    "data-node": "preferencesgroup",
     "data-variant": variant,
     "data-separate-rows": separateRows,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesGroupVariants({ variant }), widgetClassName, className),
@@ -65,14 +66,20 @@ function PreferencesGroup({ className, render, variant = "default", description,
                   <PreferencesGroupBox>
                 <PreferencesGroupHeaderBox>
                   <PreferencesGroupBox2>
-                    <PreferencesGroupTitle>{title}</PreferencesGroupTitle>
-                    <PreferencesGroupDescription>{description}</PreferencesGroupDescription>
+                    {title ? (
+                      <PreferencesGroupTitle>{title}</PreferencesGroupTitle>
+                    ) : null}
+                    {description ? (
+                      <PreferencesGroupDescription>{description}</PreferencesGroupDescription>
+                    ) : null}
                   </PreferencesGroupBox2>
                 </PreferencesGroupHeaderBox>
                 <PreferencesGroupListboxBox>
-                  <PreferencesGroupListbox>
-                    {children}
-                  </PreferencesGroupListbox>
+                  {children ? (
+                    <PreferencesGroupListbox>
+                      {children}
+                    </PreferencesGroupListbox>
+                  ) : null}
                 </PreferencesGroupListboxBox>
               </PreferencesGroupBox>
                   {headerSuffix}
@@ -93,7 +100,11 @@ function PreferencesGroupTitle({ className, ...props }: React.ComponentProps<"sp
   return (
     <span
       data-slot="preferences-group-title"
-      className={cn("font-bold", className)}
+        data-node="label"
+      className={cn("heading h4", [
+        "caret-[currentColor] font-bold",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -103,7 +114,11 @@ function PreferencesGroupDescription({ className, ...props }: React.ComponentPro
   return (
     <span
       data-slot="preferences-group-description"
-      className={cn("font-normal leading-[140%]", className)}
+        data-node="label"
+      className={cn("body dimmed", [
+        "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
       {...props}
     />
   )
@@ -113,7 +128,10 @@ function PreferencesGroupBox2({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="preferences-group-box2"
-      className={cn("flex flex-col", className)}
+        data-node="box"
+        data-valign="center"
+        data-hexpand=""
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "labels", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -123,7 +141,8 @@ function PreferencesGroupHeaderBox({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="preferences-group-header-box"
-      className={cn("flex flex-row", "mb-1.5", className)}
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header", "gap-[6px] mb-1.5", className)}
       {...props}
     />
   )
@@ -133,10 +152,8 @@ function PreferencesGroupListbox({ className, ...props }: React.ComponentProps<"
   return (
     <ul
       data-slot="preferences-group-listbox"
-      className={cn([
-        "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] shadow-none",
-        "focus:shadow-none",
-      ], className)}
+        data-node="list"
+      className={cn("boxed-list", "bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
       {...props}
     />
   )
@@ -146,7 +163,8 @@ function PreferencesGroupListboxBox({ className, ...props }: React.ComponentProp
   return (
     <div
       data-slot="preferences-group-listbox-box"
-      className={cn("flex flex-col", "pt-1.5 pb-[3px] px-0 m-1.5 gap-[6px] text-[inherit] shadow-none min-h-9 bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))] bg-[transparent] font-bold bg-[var(--view-bg-color)] text-[82%]", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "gap-[6px]", className)}
       {...props}
     />
   )
@@ -156,7 +174,8 @@ function PreferencesGroupBox({ className, ...props }: React.ComponentProps<"div"
   return (
     <div
       data-slot="preferences-group-box"
-      className={cn("flex flex-col", "gap-[6px]", className)}
+        data-node="box"
+      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "gap-[6px]", className)}
       {...props}
     />
   )

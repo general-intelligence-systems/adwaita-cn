@@ -40,6 +40,7 @@ function Video({ className, render, file, mediaStream, autoplay, graphicsOffload
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "video",
+    "data-node": "video",
     "data-autoplay": autoplay,
     "data-graphics-offload": graphicsOffload,
     "data-loop": loop,
@@ -47,6 +48,7 @@ function Video({ className, render, file, mediaStream, autoplay, graphicsOffload
     style,
     children: (
         <>
+                  <VideoImage />
                   {file}
                   {mediaStream}
                   {children}
@@ -63,4 +65,15 @@ function Video({ className, render, file, mediaStream, autoplay, graphicsOffload
   })
 }
 
-export { Video }
+function VideoImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="video-image"
+        data-node="image"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+export { Video, VideoImage }

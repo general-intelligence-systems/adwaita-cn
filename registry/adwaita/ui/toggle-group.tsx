@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 
 const toggleGroupVariants = cva(
   [
-    "p-[var(---group-padding)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-[9px]",
+    "p-[var(---group-padding)] [---group-padding:3px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-[9px]",
     "disabled:bg-[color-mix(in_srgb,color-mix(in_srgb,currentColor_10%,transparent)_var(--disabled-opacity),transparent)]",
   ],
   {
@@ -23,11 +23,11 @@ const toggleGroupVariants = cva(
       variant: {
         default: "",
         /** .flat */
-        flat: "bg-none text-[inherit] shadow-none",
+        flat: "[---group-padding:0px] bg-none text-[inherit] shadow-none",
         /** .hidden */
         hidden: "",
         /** .osd */
-        osd: "text-[RGB(255_255_255/90%)] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "[--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding [--active-toggle-bg-color:white] [--active-toggle-fg-color:rgb(0_0_0_/_80%)]",
       },
       size: {
         default: "",
@@ -67,6 +67,7 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "toggle-group",
+    "data-node": "toggle-group",
     "data-variant": variant,
     "data-size": size,
     role: "group",
@@ -74,12 +75,21 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
     "data-active-name": activeName,
     "data-can-shrink": canShrink,
     "data-homogeneous": homogeneous,
-    className: cn("flex", (orientation === "vertical" ? "flex-col" : "flex-row"), toggleGroupVariants({ variant, size }), widgetClassName, className),
+    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), toggleGroupVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <>
+                  <ToggleGroupSeparator />
+                  <ToggleGroupToggle>
+                <ToggleGroupImage />
+                <ToggleGroupLabel />
+                <ToggleGroupButtoncontent>
+                  <ToggleGroupBox>
+                    {children}
+                  </ToggleGroupBox>
+                </ToggleGroupButtoncontent>
+              </ToggleGroupToggle>
                   {orientation}
-                  {children}
         </>
       ),
     ...widgetAttributes,
@@ -93,4 +103,82 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
   })
 }
 
-export { ToggleGroup, toggleGroupVariants }
+function ToggleGroupSeparator({ className, ...props }: React.ComponentProps<"hr">) {
+  return (
+    <hr
+      data-slot="toggle-group-separator"
+        data-node="separator"
+      className={cn([
+        "bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] min-w-[1px] min-h-[1px] transition-[opacity] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ToggleGroupImage({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="toggle-group-image"
+        data-node="image"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ToggleGroupLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="toggle-group-label"
+        data-node="label"
+      className={cn([
+        "caret-[currentColor]",
+        "disabled:[filter:Opacity(var(--disabled-opacity))]",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+function ToggleGroupBox({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toggle-group-box"
+        data-node="box"
+      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[6px]", className)}
+      {...props}
+    />
+  )
+}
+
+function ToggleGroupButtoncontent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toggle-group-buttoncontent"
+        data-node="buttoncontent"
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
+
+function ToggleGroupToggle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="toggle-group-toggle"
+        data-node="toggle"
+      className={cn([
+        "rounded-[calc(9px_-_var(---group-padding))] font-bold min-w-8.5 min-h-[calc(34px_-_var(---group-padding)_*_2)] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,color,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        "hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
+        "active:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
+        "data-[state=checked]:bg-[var(--active-toggle-bg-color)] data-[state=checked]:text-[var(--active-toggle-fg-color)] data-[state=checked]:shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+        "data-[state=checked]:disabled:bg-[color-mix(in_srgb,var(--active-toggle-bg-color)_var(--disabled-opacity),transparent)] data-[state=checked]:disabled:shadow-none",
+      ], className)}
+      {...props}
+    />
+  )
+}
+
+export { ToggleGroup, ToggleGroupSeparator, ToggleGroupImage, ToggleGroupLabel, ToggleGroupBox, ToggleGroupButtoncontent, ToggleGroupToggle, toggleGroupVariants }
