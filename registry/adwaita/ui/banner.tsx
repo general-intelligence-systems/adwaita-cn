@@ -68,7 +68,7 @@ function Banner({ className, render, variant = "default", buttonLabel, title, ac
     "data-button-style": buttonStyle,
     "data-revealed": revealed,
     "data-use-markup": useMarkup,
-    className: cn("group/banner", "grid [&>*]:col-start-1 [&>*]:row-start-1", bannerVariants({ variant }), widgetClassName, className),
+    className: cn("banner", "group/banner", bannerVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <BannerRevealer>
@@ -97,7 +97,7 @@ function BannerSelection({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="banner-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -108,12 +108,7 @@ function BannerLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="banner-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/banner:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/banner:text-[var(--accent-color)]",
-        "group-disabled/banner:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -125,10 +120,9 @@ function BannerTitle({ className, ...props }: React.ComponentProps<"span">) {
       data-slot="banner-title"
         data-node="label"
         data-hexpand=""
-      className={cn("heading flex justify-center items-center text-center", [
-        "caret-[currentColor] font-bold",
-        "group-disabled/banner:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "heading", className)}
       {...props}
     />
   )
@@ -140,15 +134,7 @@ function BannerButton({ className, ...props }: React.ComponentProps<"button">) {
       data-slot="banner-button"
         data-node="button"
         data-valign="center"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/banner:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/banner:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/banner:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/banner:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/banner:group-hover/banner:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/banner:group-active/banner:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
@@ -159,7 +145,7 @@ function BannerGizmo({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="banner-gizmo"
         data-hexpand=""
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "p-1.5 bg-[color-mix(in_srgb,var(--banner-color)_30%,var(--window-bg-color))] text-[var(--window-fg-color)]", className)}
+      className={cn("lay-row", className)}
       {...props}
     />
   )
@@ -170,7 +156,7 @@ function BannerRevealer({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="banner-revealer"
         data-node="revealer"
-      className={cn(className)}
+      className={cn("revealer", className)}
       {...props}
     />
   )

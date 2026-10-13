@@ -32,18 +32,18 @@ function ToastWidget({ className, render, title, buttonLabel, children, ...props
     role: "status",
     // `justify-self`/`self-end` rather than the overlay's stretch: AdwToastOverlay
     // allocates the toast its natural size, centred, against the bottom edge.
-    className: cn("group/toast-widget", "flex flex-row items-center justify-self-center self-end", widgetClassName, className),
+    className: cn("toast", "box", "group/toast-widget", "lay-row", widgetClassName, className),
     style,
     children: (
       <>
-        <ToastWidgetWidget className="flex items-center">
+        <ToastWidgetWidget className={cn("toast-widget-inner")}>
           <span data-slot="label" data-node="label" className="heading whitespace-nowrap">{title}</span>
         </ToastWidgetWidget>
         {/* The action button is in the toolkit's tree whether or not the toast has
             one, and measures almost nothing when it does not. */}
         <Button variant="flat" className="text-button" label={buttonLabel} />
         <Button variant="flat" className="circular image-button">
-          <Icon name="window-close-symbolic" />
+          <Icon name="window-close-symbolic" data-node="image" className={cn("image")} />
         </Button>
         {children}
       </>
@@ -64,7 +64,7 @@ function ToastWidgetWidget({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="toast-widget-widget"
         data-node="widget"
-      className={cn("my-0 mx-1.5", className)}
+      className={cn("widget", className)}
       {...props}
     />
   )

@@ -50,7 +50,7 @@ function LevelBar({ className, render, inverted, maxValue, minValue, mode, orien
     "data-mode": mode,
     "data-orientation": orientation,
     "data-value": value,
-    className: cn("group/level-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("levelbar", "group/level-bar", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
@@ -76,7 +76,7 @@ function LevelBarBlock({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="level-bar-block"
         data-node="block"
-      className={cn("bg-[var(--accent-bg-color)] min-h-2 rounded-[99px]", className)}
+      className={cn("block", className)}
       {...props}
     />
   )
@@ -87,7 +87,7 @@ function LevelBarTrough({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="level-bar-trough"
         data-node="trough"
-      className={cn("p-0", className)}
+      className={cn("trough", className)}
       {...props}
     />
   )

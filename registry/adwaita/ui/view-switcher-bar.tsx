@@ -35,19 +35,19 @@ function ViewSwitcherBar({ className, render, stack: _stack, reveal, pages, visi
   const defaultProps = {
     "data-slot": "view-switcher-bar",
     "data-node": "viewswitcherbar",
-    className: cn("flex flex-col", widgetClassName, className),
+    className: cn("viewswitcherbar", "lay-col", widgetClassName, className),
     style,
     children: (
-      <div data-slot="view-switcher-bar-action-bar" data-node="actionbar" className="flex flex-col">
-        <div data-slot="view-switcher-bar-revealer" data-node="revealer" className={cn("flex flex-col", reveal ? "" : "hidden")}>
+      <div data-slot="view-switcher-bar-action-bar" data-node="actionbar" className={cn("actionbar", "lay-col")}>
+        <div data-slot="view-switcher-bar-revealer" data-node="revealer" className={cn("revealer", "lay-col", reveal ? "" : "hidden")}>
           <div
             data-slot="view-switcher-bar-center-box"
             data-node="box"
-            className="grid [grid-template-columns:1fr_auto_1fr] items-center"
+            className={cn("centerbox")}
           >
-            <div data-node="box" className="start flex flex-row" />
+            <div data-node="box" className={cn("box", "box", "horizontal", "start")} />
             <ViewSwitcher pages={pages} visiblePage={visiblePage} />
-            <div data-node="box" className="end flex flex-row justify-self-end" />
+            <div data-node="box" className={cn("box", "box", "horizontal", "end")} />
           </div>
         </div>
         {children}
@@ -69,7 +69,7 @@ function ViewSwitcherBarViewSwitcher({ className, ...props }: React.ComponentPro
     <div
       data-slot="view-switcher-bar-view-switcher"
         data-node="viewswitcher"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5", className)}
+      className={cn("viewswitcher", "lay-row", className)}
       {...props}
     />
   )
@@ -80,7 +80,7 @@ function ViewSwitcherBarActionBar({ className, ...props }: React.ComponentProps<
     <div
       data-slot="view-switcher-bar-action-bar"
         data-node="actionbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("actionbar", className)}
       {...props}
     />
   )

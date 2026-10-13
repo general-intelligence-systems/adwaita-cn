@@ -21,14 +21,14 @@ const popoverVariants = cva(
       variant: {
         default: "",
         /** .magnifier */
-        magnifier: "magnifier bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
+        magnifier: "magnifier",
         /** .touch-selection */
-        touchSelection: "touch-selection bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
+        touchSelection: "touch-selection",
       },
       size: {
         default: "",
         /** .menu */
-        menu: "menu p-0 min-w-30",
+        menu: "menu",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -81,7 +81,7 @@ function Popover({ className, render, variant = "default", size = "default", chi
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("group/popover", "grid [&>*]:col-start-1 [&>*]:row-start-1", popoverVariants({ variant, size }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", widgetClassName, className),
+    className: cn("popover", "group/popover", "bin", popoverVariants({ variant, size }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -108,7 +108,7 @@ function PopoverArrow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="popover-arrow"
         data-node="arrow"
-      className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
+      className={cn("arrow", className)}
       {...props}
     />
   )
@@ -119,7 +119,7 @@ function PopoverContents({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="popover-contents"
         data-node="contents"
-      className={cn(className)}
+      className={cn("contents", className)}
       {...props}
     />
   )

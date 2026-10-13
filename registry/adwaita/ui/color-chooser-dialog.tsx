@@ -23,7 +23,7 @@ const colorChooserDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .default */
         default: "default",
         /** .dialog-window */
@@ -33,7 +33,7 @@ const colorChooserDialogVariants = cva(
         /** .landscape */
         landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .narrow */
         narrow: "narrow",
         /** .portrait */
@@ -41,9 +41,9 @@ const colorChooserDialogVariants = cva(
         /** .short */
         short: "short",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
       },
     },
     defaultVariants: { variant: "default" },
@@ -169,7 +169,7 @@ function ColorChooserDialog({ className, render, variant = "default", child, ico
     "data-title": title,
     "data-use-alpha": useAlpha,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/color-chooser-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", colorChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
+    className: cn("window", "group/color-chooser-dialog", "bin", colorChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>
@@ -178,7 +178,7 @@ function ColorChooserDialog({ className, render, variant = "default", child, ico
                 <ColorChooserDialogPaper />
               </ColorChooserDialogDrawing>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="color-chooser-dialog-icon" />
+                <Icon name={iconName} data-slot="color-chooser-dialog-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {child}
@@ -201,7 +201,7 @@ function ColorChooserDialogSheet({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="color-chooser-dialog-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )
@@ -212,7 +212,7 @@ function ColorChooserDialogPaper({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="color-chooser-dialog-paper"
         data-node="paper"
-      className={cn(className)}
+      className={cn("paper", className)}
       {...props}
     />
   )
@@ -223,7 +223,7 @@ function ColorChooserDialogDrawing({ className, ...props }: React.ComponentProps
     <div
       data-slot="color-chooser-dialog-drawing"
         data-node="drawing"
-      className={cn(className)}
+      className={cn("drawing", className)}
       {...props}
     />
   )

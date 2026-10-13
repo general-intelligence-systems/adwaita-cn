@@ -62,7 +62,7 @@ function ClampScrollable({ className, render, child, hadjustment: _hadjustment, 
     "data-tightening-threshold": tighteningThreshold,
     "data-unit": unit,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("grid", "[&>*]:min-w-0 [&>*]:col-start-2", widgetClassName, className),
+    className: cn("clamp", "clamp", widgetClassName, className),
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>

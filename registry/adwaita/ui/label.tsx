@@ -20,17 +20,17 @@ const labelVariants = cva(
       variant: {
         default: "",
         /** .body */
-        body: "body font-normal leading-[140%]",
+        body: "body",
         /** .day-number */
         dayNumber: "day-number",
         /** .description */
         description: "description",
         /** .dimmed */
-        dimmed: "dimmed opacity-[var(--dim-opacity)]",
+        dimmed: "dimmed",
         /** .h4 */
         h4: "h4",
         /** .heading */
-        heading: "heading font-bold",
+        heading: "heading",
         /** .highlight */
         highlight: "highlight",
         /** .link */
@@ -38,7 +38,7 @@ const labelVariants = cva(
         /** .numeric */
         numeric: "numeric",
         /** .separator */
-        separator: "separator opacity-[var(--dim-opacity)]",
+        separator: "separator",
         /** .sidebar-label */
         sidebarLabel: "sidebar-label",
         /** .small */
@@ -48,11 +48,11 @@ const labelVariants = cva(
         /** .title */
         title: "title",
         /** .title-1 */
-        title1: "title-1 font-extrabold text-[181%]",
+        title1: "title-1",
         /** .title-2 */
-        title2: "title-2 font-extrabold text-[136%]",
+        title2: "title-2",
         /** .title-4 */
-        title4: "title-4 font-bold text-[118%]",
+        title4: "title-4",
         /** .today */
         today: "today",
       },
@@ -147,7 +147,7 @@ function Label({ className, render, variant = "default", label, attributes: _att
     "data-wrap-mode": wrapMode,
     "data-xalign": xalign,
     "data-yalign": yalign,
-    className: cn("group/label", "grid [&>*]:col-start-1 [&>*]:row-start-1", labelVariants({ variant }), widgetClassName, className),
+    className: cn("label", "group/label", labelVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -171,7 +171,7 @@ function LabelSelection({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="label-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -182,12 +182,7 @@ function LabelLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="label-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/label:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/label:text-[var(--accent-color)]",
-        "group-disabled/label:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )

@@ -51,7 +51,7 @@ function Expander({ className, render, child, labelWidget, expanded, label, resi
     "data-resize-toplevel": resizeToplevel,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("group/expander", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("expander-widget", "group/expander", "bin", widgetClassName, className),
     style,
     children: (
         <>
@@ -87,11 +87,7 @@ function ExpanderExpander2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="expander-expander2"
         data-node="expander"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)] opacity-70",
-        "group-disabled/expander:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/expander:adw-icon-source group-data-[state=checked]/expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
-      ], className)}
+      className={cn("expander", "lay-row", className)}
       {...props}
     />
   )
@@ -102,7 +98,7 @@ function ExpanderTitle2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-title2"
         data-node="title"
-      className={cn("[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[6px]", className)}
+      className={cn("title", className)}
       {...props}
     />
   )
@@ -113,7 +109,7 @@ function ExpanderBox2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-box2"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -124,11 +120,7 @@ function ExpanderExpander({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="expander-expander"
         data-node="expander"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)] opacity-70",
-        "group-disabled/expander:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/expander:adw-icon-source group-data-[state=checked]/expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
-      ], className)}
+      className={cn("expander", "lay-row", className)}
       {...props}
     />
   )
@@ -139,7 +131,7 @@ function ExpanderTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-title"
         data-node="title"
-      className={cn("[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[6px]", className)}
+      className={cn("title", className)}
       {...props}
     />
   )
@@ -150,7 +142,7 @@ function ExpanderBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )

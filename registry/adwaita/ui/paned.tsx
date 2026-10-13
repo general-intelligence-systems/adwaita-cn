@@ -81,7 +81,7 @@ function Paned({ className, render, variant = "default", endChild, startChild, o
     "data-shrink-end-child": shrinkEndChild,
     "data-shrink-start-child": shrinkStartChild,
     "data-wide-handle": wideHandle,
-    className: cn("grid [&>*]:min-w-0", panedVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("paned", panedVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style: { ...style, ...(position === undefined ? {} : orientation === "vertical" ? { gridTemplateRows: `${position}px 1fr` } : { gridTemplateColumns: `${position}px 1fr` }) } as React.CSSProperties,
     children: (
         <>

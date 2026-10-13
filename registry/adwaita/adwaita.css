@@ -4,11 +4,6 @@
  * brand's palette. */
 @import "./variables.css";
 
-/* Adwaita's style classes, generated beside this by bin/11-generate-components: the
- * rules its stylesheet states without naming a widget, which an application puts on
- * whichever widget it likes. Imported here so that a project installing the registry
- * gets them with everything else. */
-@import "./styles.css";
 
 /* Adwaita's icons, generated beside this by bin/11-generate-components. An `icon-name`
  * names one of these the way it names one in GTK. */

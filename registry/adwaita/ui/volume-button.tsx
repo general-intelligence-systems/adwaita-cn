@@ -55,7 +55,7 @@ function VolumeButton({ className, render, adjustment: _adjustment, icons: _icon
     "data-orientation": orientation,
     "data-use-symbolic": useSymbolic,
     "data-value": value,
-    className: cn("scale", widgetClassName, className),
+    className: cn("scalebutton", "scale", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

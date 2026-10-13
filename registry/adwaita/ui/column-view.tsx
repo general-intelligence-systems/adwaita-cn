@@ -26,12 +26,7 @@ const columnViewVariants = cva(
         /** .dnd */
         dnd: "dnd",
         /** .view */
-        view: [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        view: "view",
       },
     },
     defaultVariants: { variant: "default" },
@@ -101,7 +96,7 @@ function ColumnView({ className, render, variant = "default", hadjustment: _hadj
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("group/column-view", "flex flex-col grow min-h-0", columnViewVariants({ variant }), showColumnSeparators && "column-separators", widgetClassName, className),
+    className: cn("columnview", "group/column-view", columnViewVariants({ variant }), showColumnSeparators && "column-separators", widgetClassName, className),
     style,
     children: (
         <>
@@ -126,7 +121,7 @@ function ColumnViewHeader({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="column-view-header"
         data-node="header"
-      className={cn(className)}
+      className={cn("header", className)}
       {...props}
     />
   )
@@ -137,7 +132,7 @@ function ColumnViewListview({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="column-view-listview"
         data-node="listview"
-      className={cn("text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      className={cn("listview", className)}
       {...props}
     />
   )
@@ -148,7 +143,7 @@ function ColumnViewRubberband({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="column-view-rubberband"
         data-node="rubberband"
-      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      className={cn("rubberband", className)}
       {...props}
     />
   )

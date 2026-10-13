@@ -44,7 +44,7 @@ function AppChooserButton({ className, render, contentType, heading, modal, show
     "data-modal": modal,
     "data-show-default-item": showDefaultItem,
     "data-show-dialog-item": showDialogItem,
-    className: cn(widgetClassName, className),
+    className: cn("appchooserbutton", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

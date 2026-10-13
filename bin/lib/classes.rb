@@ -40,22 +40,23 @@ module AdwaitaClasses
     [base] + states
   end
 
-  # The state groups as one TypeScript expression: a string when there is one group, and
-  # an array of them when there are several, which is what cva and cn both take.
+  # A style class as the component writes it, which is THE NAME AND NOTHING ELSE.
   #
-  # `name` is the style class itself, written first. A component which carried only the
-  # measurements a style class resolves to was a component the rest of the stylesheet
-  # could not see: `.flat`, `.text-button` and `.horizontal` are what
-  # `headerbar button.flat`, `button.text-button > box` and `progressbar.horizontal >
-  # trough` are written against, and registry/adwaita/styles.css is six thousand lines
-  # of exactly those rules, addressing a class no component put on.
+  # The measurements used to be written here too, because the stylesheet addresses the class
+  # and a component carrying only what the class resolved to was invisible to it. That is
+  # what made the components unreadable and what made a six-thousand-line stylesheet
+  # necessary beside them: the same facts in two places, one of them a cascade.
+  #
+  # Now the name resolves. `cn` holds the table of what every name Adwaita addresses means,
+  # so `cn("button flat")` is the whole of it -- the class is in the DOM for the rules which
+  # reach it, and the utilities come out of the table.
+  #
+  # With no name there is no class to resolve, so the utilities are written as they are: that
+  # is a component's own structure -- a grid, a slot, an overlay -- and not Adwaita's.
   def self.expression(classes, indent, name: nil)
+    return name.inspect unless name.nil?
+
     groups = self.stated(classes).reject(&:empty?).map{|group| group.join(" ")}
-    groups = if name.nil?
-               groups
-             else
-               [[name, groups.first].compact.join(" ")] + groups.drop(1)
-             end
 
     case groups.length
     when 0 then nil

@@ -27,7 +27,7 @@ function MediaControls({ className, render, mediaStream: _mediaStream, children,
   const defaultProps = {
     "data-slot": "media-controls",
     "data-node": "controls",
-    className: cn(widgetClassName, className),
+    className: cn("controls", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

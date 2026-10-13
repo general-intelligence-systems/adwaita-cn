@@ -21,10 +21,7 @@ const entryVariants = cva(
       variant: {
         default: "",
         /** .flat */
-        flat: [
-          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
-          "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
-        ],
+        flat: "flat",
       },
     },
     defaultVariants: { variant: "default" },
@@ -213,10 +210,7 @@ function Entry({ className, render, variant = "default", attributes: _attributes
     "data-visibility": visibility,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", entryVariants({ variant }), hasFrame === false && [
-          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
-          "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
-        ], widgetClassName, className),
+    className: cn("entry", "group/entry", entryVariants({ variant }), hasFrame === false && "flat", widgetClassName, className),
     style,
     children: (
         <>
@@ -240,7 +234,7 @@ function EntryPlaceholder({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="entry-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -251,7 +245,7 @@ function EntryUndershoot({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="entry-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -262,7 +256,7 @@ function EntrySelection({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="entry-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -273,7 +267,7 @@ function EntryCursorHandle({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="entry-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -284,7 +278,7 @@ function EntryBlockCursor({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="entry-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -295,7 +289,7 @@ function EntryWindow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="entry-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -306,7 +300,7 @@ function EntryText({ className, ...props }: React.ComponentProps<"input">) {
     <input
       data-slot="entry-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -317,11 +311,7 @@ function EntryImage({ className, ...props }: React.ComponentProps<typeof Icon>) 
     <Icon
       data-slot="entry-image"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/entry:opacity-100",
-        "group-active/entry:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -332,7 +322,7 @@ function EntryProgress({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="entry-progress"
         data-node="progress"
-      className={cn("mb-[3px]", className)}
+      className={cn("progress", className)}
       {...props}
     />
   )

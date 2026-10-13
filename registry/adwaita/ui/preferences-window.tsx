@@ -23,15 +23,15 @@ const preferencesWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .preferences */
         preferences: "preferences",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
       },
     },
     defaultVariants: { variant: "default" },
@@ -164,7 +164,7 @@ function PreferencesWindow({ className, render, variant = "default", child, cont
     "data-startup-id": startupId,
     "data-title": title,
     "data-visible-page-name": visiblePageName,
-    className: cn("group/preferences-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesWindowVariants({ variant }), "background", widgetClassName, className),
+    className: cn("window", "group/preferences-window", "bin", preferencesWindowVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -190,7 +190,7 @@ function PreferencesWindow({ className, render, variant = "default", child, cont
                 </PreferencesWindowSubpagesLeaflet>
               </PreferencesWindowToastOverlay>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="preferences-window-icon" />
+                <Icon name={iconName} data-slot="preferences-window-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {content}
@@ -213,7 +213,7 @@ function PreferencesWindowContentStack({ className, ...props }: React.ComponentP
     <div
       data-slot="preferences-window-content-stack"
         data-node="stack"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("stack", className)}
       {...props}
     />
   )
@@ -225,7 +225,7 @@ function PreferencesWindowTitleStack({ className, ...props }: React.ComponentPro
       data-slot="preferences-window-title-stack"
         data-node="stack"
         data-hexpand=""
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("stack", className)}
       {...props}
     />
   )
@@ -237,15 +237,7 @@ function PreferencesWindowSearchButton({ className, ...props }: React.ComponentP
       data-slot="preferences-window-search-button"
         data-node="button"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/preferences-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/preferences-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/preferences-window:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/preferences-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/preferences-window:group-hover/preferences-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/preferences-window:group-active/preferences-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "box", "lay-row", className)}
       {...props}
     />
   )
@@ -256,7 +248,7 @@ function PreferencesWindowHeaderBar({ className, ...props }: React.ComponentProp
     <div
       data-slot="preferences-window-header-bar"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -267,7 +259,7 @@ function PreferencesWindowToolbarView({ className, ...props }: React.ComponentPr
     <div
       data-slot="preferences-window-toolbar-view"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -288,7 +280,7 @@ function PreferencesWindowNavigationPage({ className, ...props }: React.Componen
     <div
       data-slot="preferences-window-navigation-page"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -299,7 +291,7 @@ function PreferencesWindowSubpagesNavView({ className, ...props }: React.Compone
     <div
       data-slot="preferences-window-subpages-nav-view"
         data-node="navigation-view"
-      className={cn(className)}
+      className={cn("navigation-view", className)}
       {...props}
     />
   )
@@ -310,7 +302,7 @@ function PreferencesWindowSubpagesLeaflet({ className, ...props }: React.Compone
     <div
       data-slot="preferences-window-subpages-leaflet"
         data-node="leaflet"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("leaflet", className)}
       {...props}
     />
   )
@@ -321,7 +313,7 @@ function PreferencesWindowToastOverlay({ className, ...props }: React.ComponentP
     <div
       data-slot="preferences-window-toast-overlay"
         data-node="toastoverlay"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("toastoverlay", className)}
       {...props}
     />
   )

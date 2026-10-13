@@ -22,7 +22,7 @@ const overlaySplitViewVariants = cva(
       variant: {
         default: "",
         /** .background */
-        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background",
         /** .content-pane */
         contentPane: "content-pane",
         /** .end */
@@ -30,7 +30,7 @@ const overlaySplitViewVariants = cva(
         /** .isolated */
         isolated: "isolated",
         /** .sidebar-pane */
-        sidebarPane: "sidebar-pane bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)] [--shade-color:var(--sidebar-shade-color)] shadow-[inset_1px_0_var(--sidebar-border-color)]",
+        sidebarPane: "sidebar-pane",
       },
     },
     defaultVariants: { variant: "default" },
@@ -100,7 +100,7 @@ function OverlaySplitView({ className, render, variant = "default", content, sid
     "data-sidebar-position": sidebarPosition,
     "data-sidebar-width-fraction": sidebarWidthFraction,
     "data-sidebar-width-unit": sidebarWidthUnit,
-    className: cn("group/overlay-split-view", "grid [&>*]:min-w-0", overlaySplitViewVariants({ variant }), widgetClassName, className),
+    className: cn("overlay-split-view", "group/overlay-split-view", overlaySplitViewVariants({ variant }), widgetClassName, className),
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
@@ -125,7 +125,7 @@ function OverlaySplitViewDimming({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="overlay-split-view-dimming"
         data-node="dimming"
-      className={cn("bg-[var(--shade-color)]", className)}
+      className={cn("dimming", className)}
       {...props}
     />
   )
@@ -136,7 +136,7 @@ function OverlaySplitViewShadow({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="overlay-split-view-shadow"
         data-node="shadow"
-      className={cn("min-w-14 min-h-14", className)}
+      className={cn("shadow", className)}
       {...props}
     />
   )

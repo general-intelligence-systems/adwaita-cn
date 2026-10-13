@@ -27,7 +27,7 @@ function LayoutSlot({ className, render, id, children, ...props }: LayoutSlotPro
   const defaultProps = {
     "data-slot": "layout-slot",
     "data-id": id,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

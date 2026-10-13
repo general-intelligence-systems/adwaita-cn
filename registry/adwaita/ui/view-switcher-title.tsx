@@ -39,7 +39,7 @@ function ViewSwitcherTitle({ className, render, stack: _stack, subtitle, title, 
     "data-subtitle": subtitle,
     "data-title": title,
     "data-view-switcher-enabled": viewSwitcherEnabled,
-    className: cn("group/view-switcher-title", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("viewswitchertitle", "group/view-switcher-title", widgetClassName, className),
     style,
     children: (
         <ViewSwitcherTitleSqueezer>
@@ -75,7 +75,7 @@ function ViewSwitcherTitleWideViewSwitcher({ className, ...props }: React.Compon
       data-slot="view-switcher-title-wide-view-switcher"
         data-node="viewswitcher"
         data-halign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5 mx-3", className)}
+      className={cn("viewswitcher", "lay-row", className)}
       {...props}
     />
   )
@@ -87,7 +87,7 @@ function ViewSwitcherTitleNarrowViewSwitcher({ className, ...props }: React.Comp
       data-slot="view-switcher-title-narrow-view-switcher"
         data-node="viewswitcher"
         data-halign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[3px] min-h-8.5 mx-3", className)}
+      className={cn("viewswitcher", "lay-row", className)}
       {...props}
     />
   )
@@ -98,7 +98,7 @@ function ViewSwitcherTitleSelection({ className, ...props }: React.ComponentProp
     <div
       data-slot="view-switcher-title-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -109,12 +109,7 @@ function ViewSwitcherTitleLink({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="view-switcher-title-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/view-switcher-title:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/view-switcher-title:text-[var(--accent-color)]",
-        "group-disabled/view-switcher-title:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -125,10 +120,9 @@ function ViewSwitcherTitleTitleLabel({ className, ...props }: React.ComponentPro
     <span
       data-slot="view-switcher-title-title-label"
         data-node="label"
-      className={cn("title flex justify-center items-center", [
-        "caret-[currentColor] px-3 font-bold",
-        "group-disabled/view-switcher-title:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
       {...props}
     />
   )
@@ -139,7 +133,7 @@ function ViewSwitcherTitleSelection2({ className, ...props }: React.ComponentPro
     <div
       data-slot="view-switcher-title-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -150,12 +144,7 @@ function ViewSwitcherTitleLink2({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="view-switcher-title-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/view-switcher-title:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/view-switcher-title:text-[var(--accent-color)]",
-        "group-disabled/view-switcher-title:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -166,10 +155,9 @@ function ViewSwitcherTitleSubtitleLabel({ className, ...props }: React.Component
     <span
       data-slot="view-switcher-title-subtitle-label"
         data-node="label"
-      className={cn("subtitle flex justify-center items-center", [
-        "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
-        "group-disabled/view-switcher-title:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
       {...props}
     />
   )
@@ -181,7 +169,7 @@ function ViewSwitcherTitleBox({ className, ...props }: React.ComponentProps<"div
       data-slot="view-switcher-title-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -192,7 +180,7 @@ function ViewSwitcherTitleTitleWidget({ className, ...props }: React.ComponentPr
     <div
       data-slot="view-switcher-title-title-widget"
         data-node="windowtitle"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "-my-1.5 min-h-3 my-0", className)}
+      className={cn("windowtitle", className)}
       {...props}
     />
   )
@@ -203,7 +191,7 @@ function ViewSwitcherTitleSqueezer({ className, ...props }: React.ComponentProps
     <div
       data-slot="view-switcher-title-squeezer"
         data-node="squeezer"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("squeezer", className)}
       {...props}
     />
   )

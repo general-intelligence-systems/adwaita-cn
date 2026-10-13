@@ -19,7 +19,7 @@ const appChooserWidgetVariants = cva(
       variant: {
         default: "",
         /** .heading */
-        heading: "heading font-bold",
+        heading: "heading",
       },
     },
     defaultVariants: { variant: "default" },
@@ -69,7 +69,7 @@ function AppChooserWidget({ className, render, variant = "default", contentType,
     "data-show-fallback": showFallback,
     "data-show-other": showOther,
     "data-show-recommended": showRecommended,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", appChooserWidgetVariants({ variant }), widgetClassName, className),
+    className: cn("appchooser", "lay-row", appChooserWidgetVariants({ variant }), widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

@@ -23,7 +23,7 @@ const printUnixDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .default */
         default: "default",
         /** .dialog-window */
@@ -33,7 +33,7 @@ const printUnixDialogVariants = cva(
         /** .landscape */
         landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .narrow */
         narrow: "narrow",
         /** .portrait */
@@ -45,9 +45,9 @@ const printUnixDialogVariants = cva(
         /** .short */
         short: "short",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
       },
     },
     defaultVariants: { variant: "default" },
@@ -188,7 +188,7 @@ function PrintUnixDialog({ className, render, variant = "default", child, iconNa
     "data-support-selection": supportSelection,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/print-unix-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", printUnixDialogVariants({ variant }), "background", "dialog", "print", widgetClassName, className),
+    className: cn("window", "group/print-unix-dialog", "box", "lay-col", printUnixDialogVariants({ variant }), "background", "dialog", "print", widgetClassName, className),
     style,
     children: (
         <>
@@ -197,7 +197,7 @@ function PrintUnixDialog({ className, render, variant = "default", child, iconNa
                 <PrintUnixDialogPaper />
               </PrintUnixDialogDrawing>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="print-unix-dialog-icon" />
+                <Icon name={iconName} data-slot="print-unix-dialog-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {child}
@@ -220,7 +220,7 @@ function PrintUnixDialogSheet({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="print-unix-dialog-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )
@@ -231,7 +231,7 @@ function PrintUnixDialogPaper({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="print-unix-dialog-paper"
         data-node="paper"
-      className={cn(className)}
+      className={cn("paper", className)}
       {...props}
     />
   )
@@ -242,7 +242,7 @@ function PrintUnixDialogDrawing({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="print-unix-dialog-drawing"
         data-node="drawing"
-      className={cn(className)}
+      className={cn("drawing", className)}
       {...props}
     />
   )

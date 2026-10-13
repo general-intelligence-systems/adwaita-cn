@@ -22,24 +22,24 @@ const shortcutsWindowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .dim-label */
-        dimLabel: "dim-label opacity-[var(--dim-opacity)]",
+        dimLabel: "dim-label",
         /** .flat */
         flat: "flat",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
         /** .title */
         title: "title",
       },
       size: {
         default: "",
         /** .shortcuts-search-results */
-        shortcutsSearchResults: "shortcuts-search-results m-5 gap-[24px]",
+        shortcutsSearchResults: "shortcuts-search-results",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -159,7 +159,7 @@ function ShortcutsWindow({ className, render, variant = "default", size = "defau
     "data-startup-id": startupId,
     "data-title": title,
     "data-view-name": viewName,
-    className: cn("group/shortcuts-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", shortcutsWindowVariants({ variant, size }), "background", "shortcuts", widgetClassName, className),
+    className: cn("window", "group/shortcuts-window", "bin", shortcutsWindowVariants({ variant, size }), "background", "shortcuts", widgetClassName, className),
     style,
     children: (
         <>
@@ -168,7 +168,7 @@ function ShortcutsWindow({ className, render, variant = "default", size = "defau
                 <ShortcutsWindowPaper />
               </ShortcutsWindowDrawing>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="shortcuts-window-icon" />
+                <Icon name={iconName} data-slot="shortcuts-window-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {child}
@@ -191,7 +191,7 @@ function ShortcutsWindowSheet({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="shortcuts-window-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )
@@ -202,7 +202,7 @@ function ShortcutsWindowPaper({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="shortcuts-window-paper"
         data-node="paper"
-      className={cn(className)}
+      className={cn("paper", className)}
       {...props}
     />
   )
@@ -213,7 +213,7 @@ function ShortcutsWindowDrawing({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="shortcuts-window-drawing"
         data-node="drawing"
-      className={cn(className)}
+      className={cn("drawing", className)}
       {...props}
     />
   )

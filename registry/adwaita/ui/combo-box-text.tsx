@@ -88,7 +88,7 @@ function ComboBoxText({ className, render, variant = "default", child, model: _m
     "data-has-frame": hasFrame,
     "data-id-column": idColumn,
     "data-popup-fixed-width": popupFixedWidth,
-    className: cn("group/combo-box-text", "grid [&>*]:col-start-1 [&>*]:row-start-1", comboBoxTextVariants({ variant }), widgetClassName, className),
+    className: cn("combobox", "group/combo-box-text", comboBoxTextVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -121,7 +121,7 @@ function ComboBoxTextPlaceholder({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="combo-box-text-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -132,7 +132,7 @@ function ComboBoxTextUndershoot({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="combo-box-text-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -143,7 +143,7 @@ function ComboBoxTextSelection({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="combo-box-text-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -154,7 +154,7 @@ function ComboBoxTextCursorHandle({ className, ...props }: React.ComponentProps<
     <div
       data-slot="combo-box-text-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -165,7 +165,7 @@ function ComboBoxTextBlockCursor({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="combo-box-text-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -176,7 +176,7 @@ function ComboBoxTextWindow({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="combo-box-text-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -187,7 +187,7 @@ function ComboBoxTextText({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="combo-box-text-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -198,11 +198,7 @@ function ComboBoxTextImage({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="combo-box-text-image"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/combo-box-text:opacity-100",
-        "group-active/combo-box-text:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -213,7 +209,7 @@ function ComboBoxTextProgress({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="combo-box-text-progress"
         data-node="progress"
-      className={cn("mb-[3px]", className)}
+      className={cn("progress", className)}
       {...props}
     />
   )
@@ -224,10 +220,7 @@ function ComboBoxTextEntry({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="combo-box-text-entry"
         data-node="entry"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-disabled/combo-box-text:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+      className={cn("entry", className)}
       {...props}
     />
   )
@@ -238,15 +231,7 @@ function ComboBoxTextButton({ className, ...props }: React.ComponentProps<"butto
     <button
       data-slot="combo-box-text-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-0.5 min-h-7.5",
-        "group-hover/combo-box-text:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/combo-box-text:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/combo-box-text:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/combo-box-text:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/combo-box-text:group-hover/combo-box-text:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/combo-box-text:group-active/combo-box-text:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
@@ -257,7 +242,7 @@ function ComboBoxTextWindow2({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="combo-box-text-window2"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -268,7 +253,7 @@ function ComboBoxTextBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="combo-box-text-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )

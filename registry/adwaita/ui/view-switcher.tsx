@@ -60,7 +60,7 @@ function ViewSwitcherButtonContent({ page, wide, shown }: { page: ViewPage; wide
       )}
     >
       <IndicatorBin>
-        {page.iconName === undefined ? null : <Icon name={page.iconName} />}
+        {page.iconName === undefined ? null : <Icon name={page.iconName} data-node="image" className={cn("image")} />}
       </IndicatorBin>
       <span data-slot="label" data-node="label">{page.title}</span>
     </div>
@@ -75,7 +75,7 @@ function ViewSwitcherButton({ page, selected, wide }: { page: ViewPage; selected
       role="tab"
       aria-selected={selected}
       data-state={selected ? "checked" : "unchecked"}
-      className="toggle flat vertical grow basis-0 grid [&>*]:col-start-1 [&>*]:row-start-1"
+      className={cn("button", "toggle", "flat", "lay-col", "view-switcher-toggle", "bin")}
     >
       {/* BOTH LAYOUTS MEASURED, one of them shown. A GtkStack asks every child for
           its size and takes the largest, so a narrow switcher is still as wide as
@@ -83,7 +83,7 @@ function ViewSwitcherButton({ page, selected, wide }: { page: ViewPage; selected
           from, against the 36px a button came to when the layout it was not showing
           was `display: none` and measured nothing. Overlapped in one grid cell and
           hidden with `visibility`, the cell is the larger of the two either way. */}
-      <div data-slot="view-switcher-button-stack" data-node="stack" className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+      <div data-slot="view-switcher-button-stack" data-node="stack" className={cn("stack")}>
         <ViewSwitcherButtonContent page={page} wide shown={wide} />
         <ViewSwitcherButtonContent page={page} wide={false} shown={!wide} />
       </div>
@@ -104,7 +104,7 @@ function ViewSwitcher({ className, render, variant = "default", stack: _stack, p
     "data-variant": variant,
     role: "tablist",
     "data-policy": policy,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", viewSwitcherVariants({ variant }), wide ? "wide" : "narrow", "my-[-3px] min-h-1.5", widgetClassName, className),
+    className: cn("viewswitcher", "lay-row", viewSwitcherVariants({ variant }), wide ? "wide" : "narrow", widgetClassName, className),
     style,
     children: (
       <>

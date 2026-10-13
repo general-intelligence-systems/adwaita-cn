@@ -27,7 +27,7 @@ const scrolledWindowVariants = cva(
         /** .dialog-action-box */
         dialogActionBox: "dialog-action-box",
         /** .frame */
-        frame: "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        frame: "frame",
         /** .hovering */
         hovering: "hovering",
         /** .left */
@@ -49,12 +49,7 @@ const scrolledWindowVariants = cva(
         /** .undershoot-top */
         undershootTop: "undershoot-top",
         /** .view */
-        view: [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        view: "view",
       },
     },
     defaultVariants: { variant: "default" },
@@ -133,12 +128,28 @@ function ScrolledWindow({ className, render, variant = "default", child, hadjust
     "data-propagate-natural-width": propagateNaturalWidth,
     "data-vscrollbar-policy": vscrollbarPolicy,
     "data-window-placement": windowPlacement,
-    className: cn("group/scrolled-window", "flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", scrolledWindowVariants({ variant }), hasFrame && "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
+    className: cn("scrolledwindow", "group/scrolled-window", scrolledWindowVariants({ variant }), hasFrame && "frame", widgetClassName, className),
     style,
     children: (
         <>
-                  {child}
-                  {children}
+    <div data-slot="scrolled-window-viewport" data-node="viewport" className={cn("viewport")}>
+                    {child}
+                    {children}
+    </div>
+    <div data-slot="scrolled-window-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+      <div data-node="range" className={cn("range", "horizontal")}>
+        <div data-node="trough" className={cn("trough")}>
+          <div data-node="slider" className={cn("slider")} />
+        </div>
+      </div>
+    </div>
+    <div data-slot="scrolled-window-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+      <div data-node="range" className={cn("range", "vertical")}>
+        <div data-node="trough" className={cn("trough")}>
+          <div data-node="slider" className={cn("slider")} />
+        </div>
+      </div>
+    </div>
         </>
       ),
     ...widgetAttributes,
@@ -157,7 +168,7 @@ function ScrolledWindowOvershoot({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="scrolled-window-overshoot"
         data-node="overshoot"
-      className={cn(className)}
+      className={cn("overshoot", className)}
       {...props}
     />
   )
@@ -168,7 +179,7 @@ function ScrolledWindowUndershoot({ className, ...props }: React.ComponentProps<
     <div
       data-slot="scrolled-window-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )

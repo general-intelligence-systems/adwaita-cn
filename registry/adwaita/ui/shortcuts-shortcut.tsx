@@ -20,7 +20,7 @@ const shortcutsShortcutVariants = cva(
       variant: {
         default: "",
         /** .dim-label */
-        dimLabel: "dim-label opacity-[var(--dim-opacity)]",
+        dimLabel: "dim-label",
       },
     },
     defaultVariants: { variant: "default" },
@@ -82,7 +82,7 @@ function ShortcutsShortcut({ className, render, variant = "default", subtitle, a
     "data-shortcut-type": shortcutType,
     "data-subtitle-set": subtitleSet,
     "data-title": title,
-    className: cn("group/shortcuts-shortcut", "grid [&>*]:col-start-1 [&>*]:row-start-1", shortcutsShortcutVariants({ variant }), widgetClassName, className),
+    className: cn("shortcut", "group/shortcuts-shortcut", shortcutsShortcutVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -90,7 +90,7 @@ function ShortcutsShortcut({ className, render, variant = "default", subtitle, a
                 {children}
               </ShortcutsShortcutBox>
                   {subtitle === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
+                <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
                   {subtitle}
                 </span>
               )}
@@ -112,7 +112,7 @@ function ShortcutsShortcutBox({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="shortcuts-shortcut-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )

@@ -49,7 +49,7 @@ function ColorDialogButton({ className, render, variant = "default", dialog: _di
     "data-slot": "color-dialog-button",
     "data-node": "colorbutton",
     "data-variant": variant,
-    className: cn("group/color-dialog-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", colorDialogButtonVariants({ variant }), widgetClassName, className),
+    className: cn("colorbutton", "group/color-dialog-button", colorDialogButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -73,7 +73,7 @@ function ColorDialogButtonContent({ className, ...props }: React.ComponentProps<
     <div
       data-slot="color-dialog-button-content"
         data-node="content"
-      className={cn(className)}
+      className={cn("content", className)}
       {...props}
     />
   )
@@ -84,15 +84,7 @@ function ColorDialogButtonButton({ className, ...props }: React.ComponentProps<"
     <button
       data-slot="color-dialog-button-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/color-dialog-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/color-dialog-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/color-dialog-button:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/color-dialog-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/color-dialog-button:group-hover/color-dialog-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/color-dialog-button:group-active/color-dialog-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )

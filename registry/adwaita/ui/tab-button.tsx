@@ -52,7 +52,7 @@ function TabButton({ className, render, variant = "default", actionTarget: _acti
     "data-node": "tabbutton",
     "data-variant": variant,
     "data-action-name": actionName,
-    className: cn("group/tab-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", tabButtonVariants({ variant }), widgetClassName, className),
+    className: cn("tabbutton", "group/tab-button", tabButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <TabButtonButton>
@@ -81,7 +81,7 @@ function TabButtonIcon({ className, ...props }: React.ComponentProps<typeof Icon
     <Icon
       data-slot="tab-button-icon"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -92,7 +92,7 @@ function TabButtonSelection({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="tab-button-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -103,12 +103,7 @@ function TabButtonLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-button-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-button:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-button:text-[var(--accent-color)]",
-        "group-disabled/tab-button:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -120,10 +115,9 @@ function TabButtonLabel({ className, ...props }: React.ComponentProps<"span">) {
       data-slot="tab-button-label"
         data-node="label"
         data-halign="center"
-      className={cn("numeric flex justify-center items-center text-center", [
-        "caret-[currentColor] font-extrabold text-[10.5px]",
-        "group-disabled/tab-button:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "numeric", className)}
       {...props}
     />
   )
@@ -134,7 +128,7 @@ function TabButtonOverlay({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-button-overlay"
         data-node="overlay"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("overlay", className)}
       {...props}
     />
   )
@@ -147,7 +141,7 @@ function TabButtonIndicator({ className, ...props }: React.ComponentProps<"div">
         data-node="indicatorbin"
         data-halign="center"
         data-valign="center"
-      className={cn(className)}
+      className={cn("indicatorbin", className)}
       {...props}
     />
   )
@@ -158,15 +152,7 @@ function TabButtonButton({ className, ...props }: React.ComponentProps<"button">
     <button
       data-slot="tab-button-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button", [
-        "px-[5px] min-w-6 py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/tab-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/tab-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/tab-button:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/tab-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/tab-button:group-hover/tab-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/tab-button:group-active/tab-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "image-button", className)}
       {...props}
     />
   )

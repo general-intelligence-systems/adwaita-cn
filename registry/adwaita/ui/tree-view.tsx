@@ -22,11 +22,7 @@ const treeViewVariants = cva(
         /** .dialog-action-box */
         dialogActionBox: "dialog-action-box",
         /** .navigation-sidebar */
-        navigationSidebar: [
-          "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit] p-0",
-          "data-[selected]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        ],
+        navigationSidebar: "navigation-sidebar",
       },
     },
     defaultVariants: { variant: "default" },
@@ -129,12 +125,7 @@ function TreeView({ className, render, variant = "default", expanderColumn: _exp
     "data-show-expanders": showExpanders,
     "data-tooltip-column": tooltipColumn,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("group/tree-view", "flex flex-col grow min-h-0", treeViewVariants({ variant }), [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] border-l-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] border-t-[color-mix(in_srgb,currentColor_20%,var(--view-bg-color))] bg-[color-mix(in_srgb,var(--accent-bg-color)_0.0001%,var(--view-bg-color))]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px] data-[selected]:rounded-none",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px] data-[selected]:focus:rounded-none",
-        ], widgetClassName, className),
+    className: cn("treeview", "group/tree-view", treeViewVariants({ variant }), "view", widgetClassName, className),
     style,
     children: (
         <>
@@ -158,7 +149,7 @@ function TreeViewSortIndicator({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tree-view-sort-indicator"
         data-node="sort-indicator"
-      className={cn(className)}
+      className={cn("sort-indicator", className)}
       {...props}
     />
   )
@@ -169,15 +160,7 @@ function TreeViewButton({ className, ...props }: React.ComponentProps<"button">)
     <button
       data-slot="tree-view-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/tree-view:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/tree-view:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/tree-view:group-hover/tree-view:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/tree-view:group-active/tree-view:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
@@ -188,7 +171,7 @@ function TreeViewHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tree-view-header"
         data-node="header"
-      className={cn(className)}
+      className={cn("header", className)}
       {...props}
     />
   )
@@ -199,7 +182,7 @@ function TreeViewRubberband({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="tree-view-rubberband"
         data-node="rubberband"
-      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      className={cn("rubberband", className)}
       {...props}
     />
   )
@@ -210,7 +193,7 @@ function TreeViewDndtarget({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="tree-view-dndtarget"
         data-node="dndtarget"
-      className={cn(className)}
+      className={cn("dndtarget", className)}
       {...props}
     />
   )

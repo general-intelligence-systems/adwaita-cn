@@ -51,7 +51,7 @@ function Picture({ className, render, file: _file, paintable: _paintable, altern
     "data-content-fit": contentFit,
     "data-isolate-contents": isolateContents,
     "data-keep-aspect-ratio": keepAspectRatio,
-    className: cn(widgetClassName, className),
+    className: cn("picture", widgetClassName, className),
     style,
     ...widgetAttributes,
   }

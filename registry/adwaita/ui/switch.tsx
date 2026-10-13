@@ -41,7 +41,7 @@ function Switch({ className, render, actionTarget: _actionTarget, actionName, ac
     "data-action-name": actionName,
     "data-state": active ? "checked" : "unchecked",
     "aria-checked": active,
-    className: cn("group/switch", "grid [&>*]:col-start-1 [&>*]:row-start-1", "min-w-[46px]", widgetClassName, className),
+    className: cn("switch", "group/switch", "min-w-[46px]", widgetClassName, className),
     style,
     children: (
         <>
@@ -65,7 +65,7 @@ function SwitchImage({ className, ...props }: React.ComponentProps<typeof Icon>)
     <Icon
       data-slot="switch-image"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -76,10 +76,7 @@ function SwitchSlider({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="switch-slider"
         data-node="slider"
-      className={cn([
-        "min-w-5 min-h-5 rounded-full bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_2px_4px_RGB(0_0_6/20%)]",
-        "group-disabled/switch:shadow-[0_2px_4px_transparent]",
-      ], className)}
+      className={cn("slider", className)}
       {...props}
     />
   )

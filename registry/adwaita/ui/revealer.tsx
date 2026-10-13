@@ -58,7 +58,7 @@ function Revealer({ className, render, variant = "default", child, revealChild, 
     "data-reveal-child": revealChild,
     "data-transition-duration": transitionDuration,
     "data-transition-type": transitionType,
-    className: cn(revealerVariants({ variant }), widgetClassName, className),
+    className: cn("revealer", revealerVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

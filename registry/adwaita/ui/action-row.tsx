@@ -21,15 +21,15 @@ const actionRowVariants = cva(
       variant: {
         default: "",
         /** .entry */
-        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry",
         /** .expander */
-        expander: "expander p-0 bg-none",
+        expander: "expander",
         /** .has-open-popup */
         hasOpenPopup: "has-open-popup",
         /** .header */
         header: "header",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .separator */
         separator: "separator",
         /** .separators */
@@ -39,7 +39,7 @@ const actionRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin",
       },
     },
     defaultVariants: { variant: "default" },
@@ -118,12 +118,7 @@ function ActionRow({ className, render, variant = "default", child, iconName, pr
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("group/action-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", actionRowVariants({ variant }), [
-          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ], widgetClassName, className),
+    className: cn("row", "group/action-row", "bin", actionRowVariants({ variant }), "activatable", widgetClassName, className),
     style,
     children: (
         <>
@@ -169,7 +164,7 @@ function ActionRowPrefixes({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="action-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -181,10 +176,7 @@ function ActionRowImage({ className, ...props }: React.ComponentProps<typeof Ico
       data-slot="action-row-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon self-center", [
-        "mx-1.5",
-        "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+      className={cn("image", "icon", className)}
       {...props}
     />
   )
@@ -195,7 +187,7 @@ function ActionRowSelection({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="action-row-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -206,12 +198,7 @@ function ActionRowLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="action-row-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/action-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/action-row:text-[var(--accent-color)]",
-        "group-disabled/action-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -222,10 +209,9 @@ function ActionRowTitle({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="action-row-title"
         data-node="label"
-      className={cn("title flex justify-start items-center", [
-        "caret-[currentColor] p-0 [font-weight:inherit]",
-        "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
       {...props}
     />
   )
@@ -236,7 +222,7 @@ function ActionRowSelection2({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="action-row-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -247,12 +233,7 @@ function ActionRowLink2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="action-row-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/action-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/action-row:text-[var(--accent-color)]",
-        "group-disabled/action-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -263,10 +244,9 @@ function ActionRowSubtitle({ className, ...props }: React.ComponentProps<"span">
     <span
       data-slot="action-row-subtitle"
         data-node="label"
-      className={cn("subtitle flex justify-start items-center", [
-        "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
-        "group-disabled/action-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
       {...props}
     />
   )
@@ -279,7 +259,7 @@ function ActionRowTitleBox({ className, ...props }: React.ComponentProps<"div">)
         data-node="box"
         data-valign="center"
         data-hexpand=""
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title vertical", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -290,7 +270,7 @@ function ActionRowSuffixes({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="action-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px]", className)}
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -302,7 +282,7 @@ function ActionRowHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="action-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5", className)}
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
       {...props}
     />
   )

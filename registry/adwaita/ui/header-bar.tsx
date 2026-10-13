@@ -26,18 +26,18 @@ const headerBarVariants = cva(
         /** .end */
         end: "end",
         /** .flat */
-        flat: "flat bg-none shadow-none text-[inherit] min-h-11.5",
+        flat: "flat",
         /** .start */
         start: "start",
         /** .title */
         title: "title",
         /** .titlebar */
-        titlebar: "titlebar shadow-[0_1px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent),0_2px_4px_color-mix(in_srgb,var(--headerbar-shade-color)_50%,transparent)] min-h-11.5",
+        titlebar: "titlebar",
       },
       size: {
         default: "",
         /** .default-decoration */
-        defaultDecoration: "default-decoration min-h-[37px] min-h-9",
+        defaultDecoration: "default-decoration",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -90,7 +90,7 @@ function HeaderBar({ className, render, variant = "default", size = "default", p
     "data-show-end-title-buttons": showEndTitleButtons,
     "data-show-start-title-buttons": showStartTitleButtons,
     "data-show-title": showTitle,
-    className: cn("group/header-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", headerBarVariants({ variant, size }), widgetClassName, className),
+    className: cn("headerbar", "group/header-bar", headerBarVariants({ variant, size }), widgetClassName, className),
     style,
     children: (
         <HeaderBarWindowhandle>
@@ -133,7 +133,7 @@ function HeaderBarWindowControls({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="header-bar-window-controls"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -144,7 +144,7 @@ function HeaderBarBox2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-box2"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -155,7 +155,7 @@ function HeaderBarStart({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-start"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -166,7 +166,7 @@ function HeaderBarTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-title"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -178,7 +178,7 @@ function HeaderBarImage({ className, name = "window-close-symbolic", ...props }:
         name={name}
       data-slot="header-bar-image"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -189,15 +189,7 @@ function HeaderBarCloseButton({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/header-bar:bg-none group-hover/header-bar:shadow-none",
-        "group-active/header-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/header-bar:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/header-bar:bg-none group-active/header-bar:shadow-none",
-        "group-disabled/header-bar:[filter:Opacity(var(--disabled-opacity))] group-disabled/header-bar:[filter:opacity(30%)]",
-        "group-data-[state=checked]/header-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/header-bar:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/header-bar:group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/header-bar:group-hover/header-bar:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/header-bar:group-active/header-bar:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/header-bar:group-active/header-bar:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -208,7 +200,7 @@ function HeaderBarWindowControls2({ className, ...props }: React.ComponentProps<
     <div
       data-slot="header-bar-window-controls2"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -219,7 +211,7 @@ function HeaderBarBox3({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-box3"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -230,7 +222,7 @@ function HeaderBarEnd({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-end"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -241,7 +233,7 @@ function HeaderBarBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="header-bar-box"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px] pb-1.5", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -252,7 +244,7 @@ function HeaderBarWindowhandle({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="header-bar-windowhandle"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )

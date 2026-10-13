@@ -56,7 +56,7 @@ function SearchBar({ className, render, variant = "default", child, keyCaptureWi
     "data-variant": variant,
     "data-search-mode-enabled": searchModeEnabled,
     "data-show-close-button": showCloseButton,
-    className: cn("group/search-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", searchBarVariants({ variant }), widgetClassName, className),
+    className: cn("searchbar", "group/search-bar", searchBarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -84,7 +84,7 @@ function SearchBarChild({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="search-bar-child"
         data-node="child"
-      className={cn(className)}
+      className={cn("child", className)}
       {...props}
     />
   )
@@ -95,15 +95,7 @@ function SearchBarButton({ className, ...props }: React.ComponentProps<"button">
     <button
       data-slot="search-bar-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/search-bar:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/search-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/search-bar:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/search-bar:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/search-bar:group-hover/search-bar:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/search-bar:group-active/search-bar:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
@@ -114,7 +106,7 @@ function SearchBarBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="search-bar-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "pt-1.5 pb-[7px] px-1.5 bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color)]", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -125,7 +117,7 @@ function SearchBarRevealer({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="search-bar-revealer"
         data-node="revealer"
-      className={cn(className)}
+      className={cn("revealer", className)}
       {...props}
     />
   )

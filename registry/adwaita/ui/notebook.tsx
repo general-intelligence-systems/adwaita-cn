@@ -80,7 +80,7 @@ function Notebook({ className, render, variant = "default", enablePopup, groupNa
     "data-show-border": showBorder,
     "data-show-tabs": showTabs,
     "data-tab-pos": tabPos,
-    className: cn("group/notebook", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", notebookVariants({ variant }), "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", showBorder && "frame [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", widgetClassName, className),
+    className: cn("notebook", "group/notebook", "lay-row", notebookVariants({ variant }), "frame", showBorder && "frame", widgetClassName, className),
     style,
     children: (
         <>
@@ -108,15 +108,7 @@ function NotebookArrow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="notebook-arrow"
         data-node="arrow"
-      className={cn([
-        "py-[5px] px-2.5 min-h-4 min-w-4 rounded-none font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none",
-        "group-hover/notebook:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/notebook:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/notebook:shadow-none",
-        "group-active/notebook:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/notebook:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "group-disabled/notebook:[filter:opacity(30%)]",
-        "group-data-[state=checked]/notebook:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/notebook:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/notebook:group-hover/notebook:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/notebook:group-hover/notebook:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/notebook:group-active/notebook:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/notebook:group-active/notebook:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("arrow", className)}
       {...props}
     />
   )
@@ -127,13 +119,7 @@ function NotebookTab({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="notebook-tab"
         data-node="tab"
-      className={cn([
-        "py-[3px] px-3 transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-7.5 min-w-7.5 font-normal outline-[transparent]",
-        "group-hover/notebook:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-active/notebook:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-disabled/notebook:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/notebook:[outline-width:0px] group-data-[state=checked]/notebook:[outline-style:solid] group-data-[state=checked]/notebook:[outline-color:transparent] group-data-[state=checked]/notebook:outline-offset-[4px] group-data-[state=checked]/notebook:transition-[outline-color,outline-width,outline-offset] group-data-[state=checked]/notebook:duration-200 group-data-[state=checked]/notebook:ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-      ], className)}
+      className={cn("tab", className)}
       {...props}
     />
   )
@@ -144,7 +130,7 @@ function NotebookTabs({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="notebook-tabs"
         data-node="tabs"
-      className={cn("m-[-1px]", className)}
+      className={cn("tabs", className)}
       {...props}
     />
   )
@@ -155,7 +141,7 @@ function NotebookHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="notebook-header"
         data-node="header"
-      className={cn("p-[1px] border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-width:1px] bg-clip-padding", className)}
+      className={cn("header", className)}
       {...props}
     />
   )
@@ -166,7 +152,7 @@ function NotebookStack({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="notebook-stack"
         data-node="stack"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "bg-[var(--view-bg-color)]", className)}
+      className={cn("stack", className)}
       {...props}
     />
   )

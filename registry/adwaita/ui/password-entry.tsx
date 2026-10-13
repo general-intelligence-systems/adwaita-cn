@@ -22,10 +22,7 @@ const passwordEntryVariants = cva(
         /** .caps-lock-indicator */
         capsLockIndicator: "caps-lock-indicator",
         /** .flat */
-        flat: [
-          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
-          "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
-        ],
+        flat: "flat",
       },
     },
     defaultVariants: { variant: "default" },
@@ -86,7 +83,7 @@ function PasswordEntry({ className, render, variant = "default", extraMenu: _ext
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/password-entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", passwordEntryVariants({ variant }), "password", widgetClassName, className),
+    className: cn("entry", "group/password-entry", passwordEntryVariants({ variant }), "password", widgetClassName, className),
     style,
     children: (
         <>
@@ -110,7 +107,7 @@ function PasswordEntryPlaceholder({ className, ...props }: React.ComponentProps<
     <div
       data-slot="password-entry-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -121,7 +118,7 @@ function PasswordEntryUndershoot({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="password-entry-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -132,7 +129,7 @@ function PasswordEntrySelection({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="password-entry-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -143,7 +140,7 @@ function PasswordEntryCursorHandle({ className, ...props }: React.ComponentProps
     <div
       data-slot="password-entry-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -154,7 +151,7 @@ function PasswordEntryBlockCursor({ className, ...props }: React.ComponentProps<
     <div
       data-slot="password-entry-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -165,7 +162,7 @@ function PasswordEntryWindow({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="password-entry-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -176,7 +173,7 @@ function PasswordEntryText({ className, ...props }: React.ComponentProps<"input"
     <input
       data-slot="password-entry-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -187,11 +184,7 @@ function PasswordEntryImage({ className, ...props }: React.ComponentProps<typeof
     <Icon
       data-slot="password-entry-image"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/password-entry:opacity-100",
-        "group-active/password-entry:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -202,7 +195,7 @@ function PasswordEntryProgress({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="password-entry-progress"
         data-node="progress"
-      className={cn("mb-[3px]", className)}
+      className={cn("progress", className)}
       {...props}
     />
   )

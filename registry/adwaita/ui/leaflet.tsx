@@ -85,7 +85,7 @@ function Leaflet({ className, render, variant = "default", childTransitionParams
     "data-orientation": orientation,
     "data-transition-type": transitionType,
     "data-visible-child-name": visibleChildName,
-    className: cn("group/leaflet", "grid [&>*]:col-start-1 [&>*]:row-start-1", leafletVariants({ variant }), "unfolded", widgetClassName, className),
+    className: cn("leaflet", "group/leaflet", leafletVariants({ variant }), "unfolded", widgetClassName, className),
     style,
     children: visibleChild(children, visibleChildName),
     ...widgetAttributes,
@@ -104,7 +104,7 @@ function LeafletDimming({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="leaflet-dimming"
         data-node="dimming"
-      className={cn("bg-[var(--shade-color)]", className)}
+      className={cn("dimming", className)}
       {...props}
     />
   )
@@ -115,7 +115,7 @@ function LeafletShadow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="leaflet-shadow"
         data-node="shadow"
-      className={cn("min-w-14 min-h-14", className)}
+      className={cn("shadow", className)}
       {...props}
     />
   )

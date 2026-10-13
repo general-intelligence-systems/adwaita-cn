@@ -22,13 +22,13 @@ const windowVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
       },
     },
     defaultVariants: { variant: "default" },
@@ -146,7 +146,7 @@ function Window({ className, render, variant = "default", child, content, iconNa
     "data-resizable": resizable,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn("group/window", "grid [&>*]:col-start-1 [&>*]:row-start-1", windowVariants({ variant }), "background", widgetClassName, className),
+    className: cn("window", "group/window", "bin", windowVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -155,7 +155,7 @@ function Window({ className, render, variant = "default", child, content, iconNa
                 <WindowPaper />
               </WindowDrawing>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="window-icon" />
+                <Icon name={iconName} data-slot="window-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {content}
@@ -179,7 +179,7 @@ function WindowSheet({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="window-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )
@@ -190,7 +190,7 @@ function WindowPaper({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="window-paper"
         data-node="paper"
-      className={cn(className)}
+      className={cn("paper", className)}
       {...props}
     />
   )
@@ -201,7 +201,7 @@ function WindowDrawing({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="window-drawing"
         data-node="drawing"
-      className={cn(className)}
+      className={cn("drawing", className)}
       {...props}
     />
   )

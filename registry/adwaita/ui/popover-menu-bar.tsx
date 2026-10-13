@@ -28,7 +28,7 @@ function PopoverMenuBar({ className, render, menuModel: _menuModel, children, ..
     "data-slot": "popover-menu-bar",
     "data-node": "menubar",
     role: "menubar",
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
+    className: cn("menubar", "lay-row", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

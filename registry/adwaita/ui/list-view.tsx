@@ -89,12 +89,7 @@ function ListView({ className, render, variant = "default", factory: _factory, h
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("group/list-view", "flex flex-col grow min-h-0", listViewVariants({ variant }), [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ], showSeparators && "separators", widgetClassName, className),
+    className: cn("listview", "group/list-view", listViewVariants({ variant }), "view", showSeparators && "separators", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,
@@ -113,10 +108,7 @@ function ListViewRow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="list-view-row"
         data-node="row"
-      className={cn([
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
-        "group-data-[selected]/list-view:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", className)}
       {...props}
     />
   )
@@ -127,7 +119,7 @@ function ListViewRubberband({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="list-view-rubberband"
         data-node="rubberband"
-      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      className={cn("rubberband", className)}
       {...props}
     />
   )

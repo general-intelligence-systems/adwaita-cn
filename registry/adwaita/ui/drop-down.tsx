@@ -56,7 +56,7 @@ function DropDown({ className, render, expression: _expression, factory: _factor
     "data-search-match-mode": searchMatchMode,
     "data-selected-value": selected,
     "data-show-arrow": showArrow,
-    className: cn("group/drop-down", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("dropdown", "group/drop-down", "bin", widgetClassName, className),
     style,
     children: (
         <>
@@ -80,7 +80,7 @@ function DropDownArrow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="drop-down-arrow"
         data-node="arrow"
-      className={cn("adw-icon-source [--adw-icon:var(--icon-pan-down-symbolic)] min-h-4 min-w-4", className)}
+      className={cn("arrow", className)}
       {...props}
     />
   )

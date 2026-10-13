@@ -48,7 +48,7 @@ function ViewStack({ className, render, visibleChild: _visibleChild, enableTrans
     "data-transition-duration": transitionDuration,
     "data-vhomogeneous": vhomogeneous,
     "data-visible-child-name": visibleChildName,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("stack", widgetClassName, className),
     style,
     children: visibleChild(children, visibleChildName),
     ...widgetAttributes,

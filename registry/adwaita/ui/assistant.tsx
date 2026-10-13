@@ -22,15 +22,15 @@ const assistantVariants = cva(
       variant: {
         default: "",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .highlight */
         highlight: "highlight",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
         /** .suggested-action */
         suggestedAction: "suggested-action",
       },
@@ -147,7 +147,7 @@ function Assistant({ className, render, variant = "default", child, iconName, ti
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/assistant", "grid [&>*]:col-start-1 [&>*]:row-start-1", assistantVariants({ variant }), "assistant", "background", widgetClassName, className),
+    className: cn("window", "group/assistant", "bin", assistantVariants({ variant }), "assistant", "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -156,7 +156,7 @@ function Assistant({ className, render, variant = "default", child, iconName, ti
                 <AssistantPaper />
               </AssistantDrawing>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="assistant-icon" />
+                <Icon name={iconName} data-slot="assistant-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {child}
@@ -179,7 +179,7 @@ function AssistantSheet({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="assistant-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )
@@ -190,7 +190,7 @@ function AssistantPaper({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="assistant-paper"
         data-node="paper"
-      className={cn(className)}
+      className={cn("paper", className)}
       {...props}
     />
   )
@@ -201,7 +201,7 @@ function AssistantDrawing({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="assistant-drawing"
         data-node="drawing"
-      className={cn(className)}
+      className={cn("drawing", className)}
       {...props}
     />
   )

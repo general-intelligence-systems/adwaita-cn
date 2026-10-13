@@ -22,7 +22,7 @@ const overlayVariants = cva(
         /** .arrow-button */
         arrowButton: "arrow-button",
         /** .card */
-        card: "card bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        card: "card",
         /** .image-button */
         imageButton: "image-button",
         /** .image-text-button */
@@ -57,7 +57,7 @@ function Overlay({ className, render, variant = "default", child, children, ...p
     "data-slot": "overlay",
     "data-node": "overlay",
     "data-variant": variant,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", overlayVariants({ variant }), widgetClassName, className),
+    className: cn("overlay", overlayVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

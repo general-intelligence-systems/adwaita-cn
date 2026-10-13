@@ -65,7 +65,7 @@ function WindowControls({ className, render, variant = "default", decorationLayo
     "data-decoration-layout": decorationLayout,
     "data-side": side,
     "data-use-native-controls": useNativeControls,
-    className: cn("group/window-controls", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", windowControlsVariants({ variant }), "empty", "start", widgetClassName, className),
+    className: cn("windowcontrols", "group/window-controls", "lay-row", windowControlsVariants({ variant }), "empty", "start", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,
@@ -84,7 +84,7 @@ function WindowControlsImage({ className, ...props }: React.ComponentProps<typeo
     <Icon
       data-slot="window-controls-image"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -95,15 +95,7 @@ function WindowControlsButton({ className, ...props }: React.ComponentProps<"but
     <button
       data-slot="window-controls-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] p-[5px] min-w-6",
-        "group-hover/window-controls:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/window-controls:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/window-controls:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/window-controls:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/window-controls:group-hover/window-controls:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/window-controls:group-active/window-controls:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )

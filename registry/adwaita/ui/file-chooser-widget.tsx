@@ -20,7 +20,7 @@ const fileChooserWidgetVariants = cva(
       variant: {
         default: "",
         /** .error */
-        error: "error text-[var(--accent-color)] [--accent-bg-color:var(--error-bg-color)] [--accent-fg-color:var(--error-fg-color)] [--accent-color:var(--error-color)]",
+        error: "error",
         /** .search-bar */
         searchBar: "search-bar",
       },
@@ -63,7 +63,7 @@ function FileChooserWidget({ className, render, variant = "default", filter: _fi
     "data-create-folders": createFolders,
     "data-search-mode": searchMode,
     "data-select-multiple": selectMultiple,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", fileChooserWidgetVariants({ variant }), widgetClassName, className),
+    className: cn("filechooser", fileChooserWidgetVariants({ variant }), widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

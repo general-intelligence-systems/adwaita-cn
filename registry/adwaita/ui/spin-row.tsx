@@ -22,9 +22,9 @@ const spinRowVariants = cva(
       variant: {
         default: "",
         /** .entry */
-        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry",
         /** .expander */
-        expander: "expander p-0 bg-none",
+        expander: "expander",
         /** .focused */
         focused: "focused",
         /** .has-open-popup */
@@ -32,7 +32,7 @@ const spinRowVariants = cva(
         /** .header */
         header: "header",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .separator */
         separator: "separator",
         /** .separators */
@@ -42,7 +42,7 @@ const spinRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin",
       },
     },
     defaultVariants: { variant: "default" },
@@ -184,12 +184,7 @@ function SpinRow({ className, render, variant = "default", child, iconName, pref
     "data-width-chars": widthChars,
     "data-wrap": wrap,
     "data-xalign": xalign,
-    className: cn("group/spin-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", spinRowVariants({ variant }), [
-          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ], widgetClassName, className),
+    className: cn("row", "group/spin-row", "bin", spinRowVariants({ variant }), "activatable", widgetClassName, className),
     style,
     children: (
         <>
@@ -242,7 +237,7 @@ function SpinRowPrefixes({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="spin-row-prefixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "prefixes horizontal", "mx-1.5 gap-[6px]", className)}
+      className={cn("box", "box", "prefixes", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -254,10 +249,7 @@ function SpinRowImage({ className, ...props }: React.ComponentProps<typeof Icon>
       data-slot="spin-row-image"
         data-node="image"
         data-valign="center"
-      className={cn("icon self-center", [
-        "mx-1.5",
-        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+      className={cn("image", "icon", className)}
       {...props}
     />
   )
@@ -268,7 +260,7 @@ function SpinRowSelection({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="spin-row-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -279,12 +271,7 @@ function SpinRowLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="spin-row-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/spin-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/spin-row:text-[var(--accent-color)]",
-        "group-disabled/spin-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -295,10 +282,9 @@ function SpinRowTitle({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="spin-row-title"
         data-node="label"
-      className={cn("title flex justify-start items-center", [
-        "caret-[currentColor] p-0 [font-weight:inherit]",
-        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "title", className)}
       {...props}
     />
   )
@@ -309,7 +295,7 @@ function SpinRowSelection2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="spin-row-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -320,12 +306,7 @@ function SpinRowLink2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="spin-row-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/spin-row:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/spin-row:text-[var(--accent-color)]",
-        "group-disabled/spin-row:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -336,10 +317,9 @@ function SpinRowSubtitle({ className, ...props }: React.ComponentProps<"span">) 
     <span
       data-slot="spin-row-subtitle"
         data-node="label"
-      className={cn("subtitle flex justify-start items-center", [
-        "caret-[currentColor] opacity-[var(--dim-opacity)] text-[smaller] p-0 [font-weight:inherit]",
-        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
       {...props}
     />
   )
@@ -352,7 +332,7 @@ function SpinRowTitleBox({ className, ...props }: React.ComponentProps<"div">) {
         data-node="box"
         data-valign="center"
         data-hexpand=""
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "title vertical", "p-0 my-1.5 gap-[3px] [font-weight:inherit]", className)}
+      className={cn("box", "box", "title", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -363,7 +343,7 @@ function SpinRowPlaceholder({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="spin-row-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -374,7 +354,7 @@ function SpinRowUndershoot({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="spin-row-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -385,7 +365,7 @@ function SpinRowSelection3({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="spin-row-selection3"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -396,7 +376,7 @@ function SpinRowCursorHandle({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="spin-row-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -407,7 +387,7 @@ function SpinRowBlockCursor({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="spin-row-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -418,7 +398,7 @@ function SpinRowWindow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="spin-row-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -430,7 +410,7 @@ function SpinRowText({ className, ...props }: React.ComponentProps<"input">) {
       data-slot="spin-row-text"
         data-node="text"
         data-hexpand=""
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -442,11 +422,7 @@ function SpinRowImage2({ className, name = "value-decrease-symbolic", ...props }
         name={name}
       data-slot="spin-row-image2"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/spin-row:opacity-100",
-        "group-active/spin-row:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -457,17 +433,7 @@ function SpinRowSpinDown({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button down", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-active/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-row:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-row:[filter:opacity(30%)]",
-        "group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-        "last:rounded-[0_9px_9px_0]",
-        "first:rounded-[9px_0_0_9px]",
-      ], className)}
+      className={cn("button", "bin", "image-button", "down", className)}
       {...props}
     />
   )
@@ -479,11 +445,7 @@ function SpinRowImage3({ className, name = "value-increase-symbolic", ...props }
         name={name}
       data-slot="spin-row-image3"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/spin-row:opacity-100",
-        "group-active/spin-row:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -494,17 +456,7 @@ function SpinRowSpinUp({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button up", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-active/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-row:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-row:[filter:opacity(30%)]",
-        "group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-row:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-row:group-hover/spin-row:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-row:group-active/spin-row:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-        "last:rounded-[0_9px_9px_0]",
-        "first:rounded-[9px_0_0_9px]",
-      ], className)}
+      className={cn("button", "bin", "image-button", "up", className)}
       {...props}
     />
   )
@@ -517,10 +469,7 @@ function SpinRowSpinButton({ className, ...props }: React.ComponentProps<"div">)
         data-node="spinbutton"
         data-valign="center"
         data-hexpand=""
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", [
-        "p-0 min-h-8.5 rounded-[9px] gap-[0] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-disabled/spin-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+      className={cn("spinbutton", "horizontal", "lay-row", className)}
       {...props}
     />
   )
@@ -531,7 +480,7 @@ function SpinRowSuffixes({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="spin-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", "gap-[6px]", className)}
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -543,7 +492,7 @@ function SpinRowHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="spin-row-header"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "header horizontal", "mx-3 gap-[6px] min-h-12.5", className)}
+      className={cn("box", "box", "header", "horizontal", "horizontal", className)}
       {...props}
     />
   )

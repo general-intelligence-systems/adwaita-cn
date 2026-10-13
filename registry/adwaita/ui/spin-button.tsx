@@ -23,10 +23,7 @@ const spinButtonVariants = cva(
         /** .down */
         down: "down",
         /** .flat */
-        flat: [
-          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
-          "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
-        ],
+        flat: "flat",
         /** .up */
         up: "up",
       },
@@ -125,7 +122,7 @@ function SpinButton({ className, render, variant = "default", adjustment: _adjus
     "data-width-chars": widthChars,
     "data-wrap": wrap,
     "data-xalign": xalign,
-    className: cn("group/spin-button", "flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), spinButtonVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("spinbutton", "group/spin-button", (orientation === "vertical" ? "lay-col" : "lay-row"), spinButtonVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
@@ -155,7 +152,7 @@ function SpinButtonPlaceholder({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="spin-button-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -166,7 +163,7 @@ function SpinButtonUndershoot({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="spin-button-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -177,7 +174,7 @@ function SpinButtonSelection({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="spin-button-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -188,7 +185,7 @@ function SpinButtonCursorHandle({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="spin-button-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -199,7 +196,7 @@ function SpinButtonBlockCursor({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="spin-button-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -210,7 +207,7 @@ function SpinButtonWindow({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="spin-button-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -222,7 +219,7 @@ function SpinButtonText({ className, ...props }: React.ComponentProps<"input">) 
       data-slot="spin-button-text"
         data-node="text"
         data-hexpand=""
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", "p-1.5 min-w-7", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -234,11 +231,7 @@ function SpinButtonImage({ className, name = "value-decrease-symbolic", ...props
         name={name}
       data-slot="spin-button-image"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/spin-button:opacity-100",
-        "group-active/spin-button:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -249,17 +242,7 @@ function SpinButtonSpinDown({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button down", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-active/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-button:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "group-disabled/spin-button:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-button:[filter:opacity(30%)]",
-        "group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-        "last:rounded-[0_9px_9px_0]",
-        "first:rounded-[9px_0_0_9px]",
-      ], className)}
+      className={cn("button", "bin", "image-button", "down", className)}
       {...props}
     />
   )
@@ -271,11 +254,7 @@ function SpinButtonImage2({ className, name = "value-increase-symbolic", ...prop
         name={name}
       data-slot="spin-button-image2"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/spin-button:opacity-100",
-        "group-active/spin-button:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -286,17 +265,7 @@ function SpinButtonSpinUp({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "image-button up", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 py-0 m-0 bg-[transparent] shadow-none rounded-none border-solid border-[color-mix(in_srgb,currentColor_10%,transparent)] min-h-4 min-w-5.5 [border-left-width:0] [border-right-width:1px]",
-        "group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-active/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/spin-button:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "group-disabled/spin-button:[filter:Opacity(var(--disabled-opacity))] group-disabled/spin-button:[filter:opacity(30%)]",
-        "group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/spin-button:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/spin-button:group-hover/spin-button:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/spin-button:group-active/spin-button:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-        "last:rounded-[0_9px_9px_0]",
-        "first:rounded-[9px_0_0_9px]",
-      ], className)}
+      className={cn("button", "bin", "image-button", "up", className)}
       {...props}
     />
   )

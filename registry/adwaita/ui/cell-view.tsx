@@ -46,7 +46,7 @@ function CellView({ className, render, cellArea: _cellArea, cellAreaContext: _ce
     "data-draw-sensitive": drawSensitive,
     "data-fit-model": fitModel,
     "data-orientation": orientation,
-    className: cn(widgetClassName, className),
+    className: cn("cellview", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

@@ -47,7 +47,7 @@ function Viewport({ className, render, child, hadjustment: _hadjustment, vadjust
     "data-hscroll-policy": hscrollPolicy,
     "data-scroll-to-focus": scrollToFocus,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("flex flex-col grow min-h-0", widgetClassName, className),
+    className: cn("viewport", widgetClassName, className),
     style,
     children: (
         <>

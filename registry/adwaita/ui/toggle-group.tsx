@@ -20,16 +20,16 @@ const toggleGroupVariants = cva(
       variant: {
         default: "",
         /** .flat */
-        flat: "flat [---group-padding:0px] bg-none text-[inherit] shadow-none",
+        flat: "flat",
         /** .hidden */
         hidden: "hidden",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding [--active-toggle-bg-color:white] [--active-toggle-fg-color:rgb(0_0_0_/_80%)]",
+        osd: "osd",
       },
       size: {
         default: "",
         /** .round */
-        round: "round rounded-[17px]",
+        round: "round",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -73,7 +73,7 @@ function ToggleGroup({ className, render, variant = "default", size = "default",
     "data-can-shrink": canShrink,
     "data-homogeneous": homogeneous,
     "data-orientation": orientation,
-    className: cn("flex", (orientation === "vertical" ? "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end" : "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline"), toggleGroupVariants({ variant, size }), widgetClassName, className),
+    className: cn("toggle-group", (orientation === "vertical" ? "lay-col" : "lay-row"), toggleGroupVariants({ variant, size }), widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

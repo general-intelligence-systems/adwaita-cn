@@ -22,7 +22,7 @@ const tabOverviewVariants = cva(
       variant: {
         default: "",
         /** .background */
-        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background",
       },
     },
     defaultVariants: { variant: "default" },
@@ -81,7 +81,7 @@ function TabOverview({ className, render, variant = "default", child, secondaryM
     "data-open": open,
     "data-show-end-title-buttons": showEndTitleButtons,
     "data-show-start-title-buttons": showStartTitleButtons,
-    className: cn("group/tab-overview", "flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", tabOverviewVariants({ variant }), widgetClassName, className),
+    className: cn("taboverview", "group/tab-overview", "scroll", tabOverviewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -106,7 +106,7 @@ function TabOverviewChildBin({ className, ...props }: React.ComponentProps<"div"
   return (
     <div
       data-slot="tab-overview-child-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn(className)}
       {...props}
     />
   )
@@ -117,7 +117,7 @@ function TabOverviewPinnedGrid({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-pinned-grid"
         data-node="tabgrid"
-      className={cn(className)}
+      className={cn("tabgrid", className)}
       {...props}
     />
   )
@@ -128,7 +128,7 @@ function TabOverviewGrid({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-overview-grid"
         data-node="tabgrid"
-      className={cn(className)}
+      className={cn("tabgrid", className)}
       {...props}
     />
   )
@@ -144,14 +144,32 @@ function TabOverviewScrollable({ className, ...props }: React.ComponentProps<"di
   )
 }
 
-function TabOverviewScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-overview-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", className)}
+      className={cn("scrolledwindow", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -161,10 +179,7 @@ function TabOverviewImage({ className, ...props }: React.ComponentProps<typeof I
       data-slot="tab-overview-image"
         data-node="image"
         data-halign="center"
-      className={cn("icon self-center", [
-        "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
-        "group-disabled/tab-overview:opacity-[var(--disabled-opacity)]",
-      ], className)}
+      className={cn("image", "icon", className)}
       {...props}
     />
   )
@@ -175,7 +190,7 @@ function TabOverviewSelection({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="tab-overview-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -186,12 +201,7 @@ function TabOverviewLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-overview-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-overview:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-overview:text-[var(--accent-color)]",
-        "group-disabled/tab-overview:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -202,10 +212,9 @@ function TabOverviewTitleLabel({ className, ...props }: React.ComponentProps<"sp
     <span
       data-slot="tab-overview-title-label"
         data-node="label"
-      className={cn("title flex justify-center items-center text-center", [
-        "caret-[currentColor] font-extrabold text-[181%]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
       {...props}
     />
   )
@@ -216,7 +225,7 @@ function TabOverviewSelection2({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -227,12 +236,7 @@ function TabOverviewLink2({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-overview-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-overview:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-overview:text-[var(--accent-color)]",
-        "group-disabled/tab-overview:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -243,10 +247,9 @@ function TabOverviewDescriptionLabel({ className, ...props }: React.ComponentPro
     <span
       data-slot="tab-overview-description-label"
         data-node="label"
-      className={cn("body description flex justify-center items-center text-center", [
-        "caret-[currentColor] font-normal leading-[140%]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "body", "description", className)}
       {...props}
     />
   )
@@ -258,7 +261,7 @@ function TabOverviewBox({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="tab-overview-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[12px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -272,7 +275,7 @@ function TabOverviewClamp({ className, style, ...props }: React.ComponentProps<"
       ref={ref}
       data-slot="tab-overview-clamp"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
@@ -285,20 +288,38 @@ function TabOverviewToplevelBox({ className, ...props }: React.ComponentProps<"d
       data-slot="tab-overview-toplevel-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-9 mx-3 gap-[36px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
 }
 
-function TabOverviewScrolledWindow2({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewScrolledWindow2({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-overview-scrolled-window2"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", className)}
+      className={cn("scrolledwindow", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -307,7 +328,7 @@ function TabOverviewEmptyState({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-empty-state"
         data-node="statuspage"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("statuspage", className)}
       {...props}
     />
   )
@@ -319,10 +340,7 @@ function TabOverviewImage2({ className, ...props }: React.ComponentProps<typeof 
       data-slot="tab-overview-image2"
         data-node="image"
         data-halign="center"
-      className={cn("icon self-center", [
-        "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
-        "group-disabled/tab-overview:opacity-[var(--disabled-opacity)]",
-      ], className)}
+      className={cn("image", "icon", className)}
       {...props}
     />
   )
@@ -333,7 +351,7 @@ function TabOverviewSelection3({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-selection3"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -344,12 +362,7 @@ function TabOverviewLink3({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-overview-link3"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-overview:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-overview:text-[var(--accent-color)]",
-        "group-disabled/tab-overview:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -360,10 +373,9 @@ function TabOverviewTitleLabel2({ className, ...props }: React.ComponentProps<"s
     <span
       data-slot="tab-overview-title-label2"
         data-node="label"
-      className={cn("title flex justify-center items-center text-center", [
-        "caret-[currentColor] font-extrabold text-[181%]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
       {...props}
     />
   )
@@ -374,7 +386,7 @@ function TabOverviewSelection4({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-selection4"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -385,12 +397,7 @@ function TabOverviewLink4({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-overview-link4"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-overview:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-overview:text-[var(--accent-color)]",
-        "group-disabled/tab-overview:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -401,10 +408,9 @@ function TabOverviewDescriptionLabel2({ className, ...props }: React.ComponentPr
     <span
       data-slot="tab-overview-description-label2"
         data-node="label"
-      className={cn("body description flex justify-center items-center text-center", [
-        "caret-[currentColor] font-normal leading-[140%]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "body", "description", className)}
       {...props}
     />
   )
@@ -416,7 +422,7 @@ function TabOverviewBox2({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="tab-overview-box2"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[12px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -430,7 +436,7 @@ function TabOverviewClamp2({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="tab-overview-clamp2"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
@@ -443,20 +449,38 @@ function TabOverviewToplevelBox2({ className, ...props }: React.ComponentProps<"
       data-slot="tab-overview-toplevel-box2"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-9 mx-3 gap-[36px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
 }
 
-function TabOverviewScrolledWindow3({ className, ...props }: React.ComponentProps<"div">) {
+function TabOverviewScrolledWindow3({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-overview-scrolled-window3"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", className)}
+      className={cn("scrolledwindow", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -465,7 +489,7 @@ function TabOverviewSearchEmptyState({ className, ...props }: React.ComponentPro
     <div
       data-slot="tab-overview-search-empty-state"
         data-node="statuspage"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("statuspage", className)}
       {...props}
     />
   )
@@ -476,7 +500,7 @@ function TabOverviewImage3({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="tab-overview-image3"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -487,7 +511,7 @@ function TabOverviewSelection5({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-selection5"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -498,12 +522,7 @@ function TabOverviewLink5({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-overview-link5"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-overview:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-overview:text-[var(--accent-color)]",
-        "group-disabled/tab-overview:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -514,10 +533,9 @@ function TabOverviewLabel({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="tab-overview-label"
         data-node="label"
-      className={cn("flex justify-center items-center", [
-        "caret-[currentColor] px-0.5 font-bold",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", className)}
       {...props}
     />
   )
@@ -528,7 +546,7 @@ function TabOverviewBox3({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-overview-box3"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "gap-[6px]", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -539,7 +557,7 @@ function TabOverviewButtonContent({ className, ...props }: React.ComponentProps<
     <div
       data-slot="tab-overview-button-content"
         data-node="buttoncontent"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("buttoncontent", className)}
       {...props}
     />
   )
@@ -552,15 +570,7 @@ function TabOverviewNewTabButton({ className, ...props }: React.ComponentProps<"
         data-node="button"
         data-halign="center"
         data-valign="end"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "pill suggested-action new-tab-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-2.5 px-8 rounded-full shadow-none outline-offset-[5px] text-[var(--accent-fg-color)] bg-[var(--accent-bg-color)]",
-        "group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/tab-overview:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/tab-overview:bg-[image:image(RGB(0_0_6/20%))]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/tab-overview:bg-[image:image(RGB(0_0_6/15%))] group-data-[state=checked]/tab-overview:bg-[var(--accent-bg-color)]",
-        "group-data-[state=checked]/tab-overview:group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/tab-overview:group-hover/tab-overview:bg-[image:image(RGB(0_0_6/5%))]",
-        "group-data-[state=checked]/tab-overview:group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/tab-overview:group-active/tab-overview:bg-[image:image(RGB(0_0_6/30%))]",
-      ], className)}
+      className={cn("button", "bin", "pill", "suggested-action", "new-tab-button", className)}
       {...props}
     />
   )
@@ -572,7 +582,7 @@ function TabOverviewOverlay({ className, ...props }: React.ComponentProps<"div">
       data-slot="tab-overview-overlay"
         data-node="overlay"
         data-vexpand=""
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("overlay", className)}
       {...props}
     />
   )
@@ -583,7 +593,7 @@ function TabOverviewSelection6({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-selection6"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -594,12 +604,7 @@ function TabOverviewLink6({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-overview-link6"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-overview:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-overview:text-[var(--accent-color)]",
-        "group-disabled/tab-overview:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -610,10 +615,9 @@ function TabOverviewTitleLabel3({ className, ...props }: React.ComponentProps<"s
     <span
       data-slot="tab-overview-title-label3"
         data-node="label"
-      className={cn("title flex justify-center items-center", [
-        "caret-[currentColor] px-3 font-bold",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
       {...props}
     />
   )
@@ -624,7 +628,7 @@ function TabOverviewSelection7({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-selection7"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -635,12 +639,7 @@ function TabOverviewLink7({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-overview-link7"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/tab-overview:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/tab-overview:text-[var(--accent-color)]",
-        "group-disabled/tab-overview:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -651,10 +650,9 @@ function TabOverviewSubtitleLabel({ className, ...props }: React.ComponentProps<
     <span
       data-slot="tab-overview-subtitle-label"
         data-node="label"
-      className={cn("subtitle flex justify-center items-center", [
-        "caret-[currentColor] px-3 text-[smaller] opacity-[var(--dim-opacity)]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "subtitle", className)}
       {...props}
     />
   )
@@ -666,7 +664,7 @@ function TabOverviewBox4({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="tab-overview-box4"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -677,7 +675,7 @@ function TabOverviewTitle({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="tab-overview-title"
         data-node="windowtitle"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "numeric", "-my-1.5 min-h-3", className)}
+      className={cn("windowtitle", "numeric", className)}
       {...props}
     />
   )
@@ -688,15 +686,7 @@ function TabOverviewSearchButton({ className, ...props }: React.ComponentProps<"
     <button
       data-slot="tab-overview-search-button"
         data-node="button"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/tab-overview:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/tab-overview:group-hover/tab-overview:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/tab-overview:group-active/tab-overview:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "box", "lay-row", className)}
       {...props}
     />
   )
@@ -707,7 +697,7 @@ function TabOverviewSecondaryMenuButton({ className, ...props }: React.Component
     <button
       data-slot="tab-overview-secondary-menu-button"
         data-node="menubutton"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))] group-disabled/tab-overview:[filter:none]", className)}
+      className={cn("menubutton", "lay-row", className)}
       {...props}
     />
   )
@@ -718,7 +708,7 @@ function TabOverviewHeaderBar({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="tab-overview-header-bar"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -729,7 +719,7 @@ function TabOverviewPlaceholder({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="tab-overview-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -740,7 +730,7 @@ function TabOverviewUndershoot({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -751,7 +741,7 @@ function TabOverviewSelection8({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="tab-overview-selection8"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -762,7 +752,7 @@ function TabOverviewCursorHandle({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="tab-overview-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -773,7 +763,7 @@ function TabOverviewBlockCursor({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="tab-overview-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -784,7 +774,7 @@ function TabOverviewWindow({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="tab-overview-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -795,7 +785,7 @@ function TabOverviewText({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-overview-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -806,11 +796,7 @@ function TabOverviewImage4({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="tab-overview-image4"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/tab-overview:opacity-100",
-        "group-active/tab-overview:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -821,7 +807,7 @@ function TabOverviewProgress({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="tab-overview-progress"
         data-node="progress"
-      className={cn("mb-[3px]", className)}
+      className={cn("progress", className)}
       {...props}
     />
   )
@@ -833,10 +819,7 @@ function TabOverviewSearchEntry({ className, ...props }: React.ComponentProps<"d
       data-slot="tab-overview-search-entry"
         data-node="entry"
         data-hexpand=""
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-disabled/tab-overview:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+      className={cn("entry", className)}
       {...props}
     />
   )
@@ -850,7 +833,7 @@ function TabOverviewClamp3({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="tab-overview-clamp3"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
@@ -862,7 +845,7 @@ function TabOverviewSearchBar({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="tab-overview-search-bar"
         data-node="searchbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("searchbar", className)}
       {...props}
     />
   )
@@ -873,7 +856,7 @@ function TabOverviewOverview({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="tab-overview-overview"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "overview", "text-[var(--overview-fg-color)] bg-[var(--overview-bg-color)]", className)}
+      className={cn("toolbarview", "overview", "lay-row", className)}
       {...props}
     />
   )

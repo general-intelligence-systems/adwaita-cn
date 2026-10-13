@@ -25,11 +25,11 @@ const spinnerVariants = cva(
         /** .expander-row-arrow */
         expanderRowArrow: "expander-row-arrow",
         /** .large-icons */
-        largeIcons: "large-icons [--adw-icon-size:32px]",
+        largeIcons: "large-icons",
         /** .left */
         left: "left",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .right */
         right: "right",
         /** .sidebar-icon */
@@ -56,7 +56,7 @@ function Spinner({ className, render, variant = "default", children, ...props }:
     "data-slot": "spinner",
     "data-node": "image",
     "data-variant": variant,
-    className: cn(spinnerVariants({ variant }), "spinner disabled:opacity-[var(--disabled-opacity)]", widgetClassName, className),
+    className: cn("image", spinnerVariants({ variant }), "spinner", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

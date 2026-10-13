@@ -23,7 +23,7 @@ const appChooserDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .default */
         default: "default",
         /** .dialog-window */
@@ -33,7 +33,7 @@ const appChooserDialogVariants = cva(
         /** .landscape */
         landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .narrow */
         narrow: "narrow",
         /** .portrait */
@@ -41,9 +41,9 @@ const appChooserDialogVariants = cva(
         /** .short */
         short: "short",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
         /** .subtitle */
         subtitle: "subtitle",
         /** .title */
@@ -172,7 +172,7 @@ function AppChooserDialog({ className, render, variant = "default", child, headi
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/app-chooser-dialog", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", appChooserDialogVariants({ variant }), "background", "dialog", iconName && !heading && "image-button", heading && !iconName && "text-button", widgetClassName, className),
+    className: cn("window", "group/app-chooser-dialog", "box", "lay-col", appChooserDialogVariants({ variant }), "background", "dialog", iconName && !heading && "image-button", heading && !iconName && "text-button", widgetClassName, className),
     style,
     children: (
         <>
@@ -181,10 +181,10 @@ function AppChooserDialog({ className, render, variant = "default", child, headi
                 <AppChooserDialogPaper />
               </AppChooserDialogDrawing>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="app-chooser-dialog-icon" />
+                <Icon name={iconName} data-slot="app-chooser-dialog-icon" data-node="image" className={cn("image")} />
               )}
                   {heading === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
+                <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
                   {heading}
                 </span>
               )}
@@ -209,7 +209,7 @@ function AppChooserDialogSheet({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="app-chooser-dialog-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )
@@ -220,7 +220,7 @@ function AppChooserDialogPaper({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="app-chooser-dialog-paper"
         data-node="paper"
-      className={cn(className)}
+      className={cn("paper", className)}
       {...props}
     />
   )
@@ -231,7 +231,7 @@ function AppChooserDialogDrawing({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="app-chooser-dialog-drawing"
         data-node="drawing"
-      className={cn(className)}
+      className={cn("drawing", className)}
       {...props}
     />
   )

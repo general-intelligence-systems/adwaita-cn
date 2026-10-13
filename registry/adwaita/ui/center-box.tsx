@@ -84,7 +84,7 @@ function CenterBox({ className, render, variant = "default", centerWidget, endWi
     "data-baseline-position": baselinePosition,
     "data-orientation": orientation,
     "data-shrink-center-last": shrinkCenterLast,
-    className: cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", centerBoxVariants({ variant }), widgetClassName, className),
+    className: cn("box", "center", centerBoxVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

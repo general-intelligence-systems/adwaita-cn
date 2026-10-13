@@ -88,7 +88,7 @@ function ToolbarView({ className, render, variant = "default", bottomBars, conte
     "data-reveal-bottom-bars": revealBottomBars,
     "data-reveal-top-bars": revealTopBars,
     "data-top-bar-style": topBarStyle,
-    className: cn("group/toolbar-view", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", toolbarViewVariants({ variant }), widgetClassName, className),
+    className: cn("toolbarview", "group/toolbar-view", "lay-col", toolbarViewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -136,7 +136,7 @@ function ToolbarViewInternalBox({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
@@ -147,7 +147,7 @@ function ToolbarViewWindowhandle({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="toolbar-view-windowhandle"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -158,7 +158,7 @@ function ToolbarViewRevealer({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="toolbar-view-revealer"
         data-node="revealer"
-      className={cn("top-bar order-1", className)}
+      className={cn("revealer", "top-bar", "order-1", className)}
       {...props}
     />
   )
@@ -169,7 +169,7 @@ function ToolbarViewInternalBox2({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", className)}
+      className={cn("box", "box", "vertical", className)}
       {...props}
     />
   )
@@ -180,7 +180,7 @@ function ToolbarViewWindowhandle2({ className, ...props }: React.ComponentProps<
     <div
       data-slot="toolbar-view-windowhandle2"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -191,7 +191,7 @@ function ToolbarViewRevealer2({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="toolbar-view-revealer2"
         data-node="revealer"
-      className={cn("bottom-bar order-3", className)}
+      className={cn("revealer", "bottom-bar", "order-3", className)}
       {...props}
     />
   )

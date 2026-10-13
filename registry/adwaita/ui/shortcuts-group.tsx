@@ -59,7 +59,7 @@ function ShortcutsGroup({ className, render, accelSizeGroup: _accelSizeGroup, ti
     "data-spacing": spacing,
     "data-title": title,
     "data-view": view,
-    className: cn(orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("shortcuts-group", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

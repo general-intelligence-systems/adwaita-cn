@@ -43,7 +43,7 @@ function Video({ className, render, file: _file, mediaStream: _mediaStream, auto
     "data-autoplay": autoplay,
     "data-graphics-offload": graphicsOffload,
     "data-loop": loop,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("video", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

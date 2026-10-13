@@ -20,7 +20,7 @@ const bottomSheetVariants = cva(
       variant: {
         default: "",
         /** .background */
-        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background",
         /** .bottom-bar */
         bottomBar: "bottom-bar",
         /** .flush-left */
@@ -96,7 +96,7 @@ function BottomSheet({ className, render, variant = "default", bottomBar, conten
     "data-open": open,
     "data-reveal-bottom-bar": revealBottomBar,
     "data-show-drag-handle": showDragHandle,
-    className: cn("group/bottom-sheet", "grid [&>*]:col-start-1 [&>*]:row-start-1", bottomSheetVariants({ variant }), widgetClassName, className),
+    className: cn("bottom-sheet", "group/bottom-sheet", bottomSheetVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -123,7 +123,7 @@ function BottomSheetDimming({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="bottom-sheet-dimming"
         data-node="dimming"
-      className={cn("bg-[RGB(from_var(--shade-color)_r_g_b/calc(alpha_*_2))]", className)}
+      className={cn("dimming", className)}
       {...props}
     />
   )
@@ -134,7 +134,7 @@ function BottomSheetOutline({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="bottom-sheet-outline"
         data-node="outline"
-      className={cn("shadow-[inset_1px_0_RGB(255_255_255/7%),inset_-1px_0_RGB(255_255_255/7%),inset_0_1px_RGB(255_255_255/7%)] transition-[border-radius] duration-100 ease-[ease-out] rounded-tl-[15px] rounded-tr-[15px]", className)}
+      className={cn("outline", className)}
       {...props}
     />
   )
@@ -145,7 +145,7 @@ function BottomSheetSheet({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="bottom-sheet-sheet"
         data-node="sheet"
-      className={cn("shadow-[0_0_14px_2px_RGB(0_0_6/3%),0_0_5px_2px_RGB(0_0_6/10%),0_0_0_1px_RGB(0_0_0/5%)] transition-[border-radius,box-shadow] duration-100 ease-[ease-out] rounded-tl-[15px] rounded-tr-[15px]", className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )

@@ -20,7 +20,7 @@ const dialogVariants = cva(
     variants: {
       variant: {
         /** .background */
-        background: "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)]",
+        background: "background",
         /** .bottom-sheet */
         bottomSheet: "bottom-sheet",
         /** .default */
@@ -36,18 +36,13 @@ const dialogVariants = cva(
         /** .narrow */
         narrow: "narrow",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .portrait */
         portrait: "portrait",
         /** .short */
         short: "short",
         /** .view */
-        view: [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        view: "view",
       },
     },
     defaultVariants: { variant: "default" },
@@ -103,7 +98,7 @@ function Dialog({ className, render, variant = "default", child, defaultWidget: 
     "data-follows-content-size": followsContentSize,
     "data-presentation-mode": presentationMode,
     "data-title": title,
-    className: cn("group/dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", dialogVariants({ variant }), widgetClassName, className),
+    className: cn("dialog", "group/dialog", dialogVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -128,7 +123,7 @@ function DialogOutline({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="dialog-outline"
         data-node="outline"
-      className={cn(className)}
+      className={cn("outline", className)}
       {...props}
     />
   )
@@ -139,7 +134,7 @@ function DialogSheet({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="dialog-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )

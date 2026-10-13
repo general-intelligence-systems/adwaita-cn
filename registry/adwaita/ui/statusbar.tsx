@@ -25,7 +25,7 @@ function Statusbar({ className, render, children, ...props }: StatusbarProps) {
   const defaultProps = {
     "data-slot": "statusbar",
     "data-node": "statusbar",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("statusbar", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

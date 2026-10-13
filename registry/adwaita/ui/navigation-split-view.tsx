@@ -26,7 +26,7 @@ const navigationSplitViewVariants = cva(
         /** .end */
         end: "end",
         /** .sidebar-pane */
-        sidebarPane: "sidebar-pane bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)] [--shade-color:var(--sidebar-shade-color)] shadow-[inset_1px_0_var(--sidebar-border-color)]",
+        sidebarPane: "sidebar-pane",
       },
     },
     defaultVariants: { variant: "default" },
@@ -84,7 +84,7 @@ function NavigationSplitView({ className, render, variant = "default", content, 
     "data-sidebar-position": sidebarPosition,
     "data-sidebar-width-fraction": sidebarWidthFraction,
     "data-sidebar-width-unit": sidebarWidthUnit,
-    className: cn("group/navigation-split-view", "grid [&>*]:min-w-0", navigationSplitViewVariants({ variant }), widgetClassName, className),
+    className: cn("navigation-split-view", "group/navigation-split-view", navigationSplitViewVariants({ variant }), widgetClassName, className),
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
@@ -112,7 +112,7 @@ function NavigationSplitViewBin({ className, ...props }: React.ComponentProps<"d
   return (
     <div
       data-slot="navigation-split-view-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "sidebar-pane", "bg-[var(--sidebar-bg-color)] text-[var(--sidebar-fg-color)] [--shade-color:var(--sidebar-shade-color)] shadow-[inset_1px_0_var(--sidebar-border-color)]", className)}
+      className={cn("sidebar-pane", className)}
       {...props}
     />
   )
@@ -122,7 +122,7 @@ function NavigationSplitViewBin2({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="navigation-split-view-bin2"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "content-pane", className)}
+      className={cn("content-pane", className)}
       {...props}
     />
   )

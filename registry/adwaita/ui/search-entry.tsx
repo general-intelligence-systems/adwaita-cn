@@ -23,10 +23,7 @@ const searchEntryVariants = cva(
         /** .combo-searchbar */
         comboSearchbar: "combo-searchbar",
         /** .flat */
-        flat: [
-          "flat p-0.5 min-h-0 bg-[transparent] shadow-none rounded-none",
-          "disabled:p-0.5 disabled:min-h-0 disabled:bg-[transparent] disabled:shadow-none disabled:rounded-none",
-        ],
+        flat: "flat",
       },
     },
     defaultVariants: { variant: "default" },
@@ -95,7 +92,7 @@ function SearchEntry({ className, render, variant = "default", keyCaptureWidget:
     "data-text": text,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/search-entry", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", searchEntryVariants({ variant }), "search", widgetClassName, className),
+    className: cn("entry", "group/search-entry", searchEntryVariants({ variant }), "search", widgetClassName, className),
     style,
     children: (
         <>
@@ -119,7 +116,7 @@ function SearchEntryPlaceholder({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="search-entry-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -130,7 +127,7 @@ function SearchEntryUndershoot({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="search-entry-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -141,7 +138,7 @@ function SearchEntrySelection({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="search-entry-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -152,7 +149,7 @@ function SearchEntryCursorHandle({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="search-entry-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -163,7 +160,7 @@ function SearchEntryBlockCursor({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="search-entry-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -174,7 +171,7 @@ function SearchEntryWindow({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="search-entry-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -185,7 +182,7 @@ function SearchEntryText({ className, ...props }: React.ComponentProps<"input">)
     <input
       data-slot="search-entry-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "min-w-0 basis-0 grow", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -196,11 +193,7 @@ function SearchEntryImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="search-entry-image"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/search-entry:opacity-100",
-        "group-active/search-entry:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -211,7 +204,7 @@ function SearchEntryProgress({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="search-entry-progress"
         data-node="progress"
-      className={cn("mb-[3px]", className)}
+      className={cn("progress", className)}
       {...props}
     />
   )

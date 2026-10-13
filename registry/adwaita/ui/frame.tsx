@@ -39,7 +39,7 @@ function Frame({ className, render, child, labelWidget, label, labelXalign, chil
     "data-node": "frame",
     "data-label": label,
     "data-label-xalign": labelXalign,
-    className: cn(widgetClassName, className),
+    className: cn("frame", widgetClassName, className),
     style,
     children: (
         <>

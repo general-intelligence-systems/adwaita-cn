@@ -25,17 +25,17 @@ const aboutWindowVariants = cva(
         /** .about */
         about: "about",
         /** .body */
-        body: "body font-normal leading-[140%]",
+        body: "body",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .heading */
-        heading: "heading font-bold",
+        heading: "heading",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
       },
     },
     defaultVariants: { variant: "default" },
@@ -232,7 +232,7 @@ function AboutWindow({ className, render, variant = "default", applicationName, 
     "data-translator-credits": translatorCredits,
     "data-version": version,
     "data-website": website,
-    className: cn("group/about-window", "grid [&>*]:col-start-1 [&>*]:row-start-1", aboutWindowVariants({ variant }), "background", widgetClassName, className),
+    className: cn("window", "group/about-window", "bin", aboutWindowVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -559,7 +559,7 @@ function AboutWindowAppIconImage({ className, ...props }: React.ComponentProps<t
     <Icon
       data-slot="about-window-app-icon-image"
         data-node="image"
-      className={cn("icon-dropshadow self-center", className)}
+      className={cn("image", "icon-dropshadow", className)}
       {...props}
     />
   )
@@ -570,7 +570,7 @@ function AboutWindowSelection({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="about-window-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -581,12 +581,7 @@ function AboutWindowLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/about-window:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/about-window:text-[var(--accent-color)]",
-        "group-disabled/about-window:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -597,10 +592,9 @@ function AboutWindowAppNameLabel({ className, ...props }: React.ComponentProps<"
     <span
       data-slot="about-window-app-name-label"
         data-node="label"
-      className={cn("title-1 flex justify-center items-center text-center", [
-        "caret-[currentColor] font-extrabold text-[181%]",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title-1", className)}
       {...props}
     />
   )
@@ -611,7 +605,7 @@ function AboutWindowSelection2({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -622,12 +616,7 @@ function AboutWindowLink2({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/about-window:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/about-window:text-[var(--accent-color)]",
-        "group-disabled/about-window:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -638,10 +627,9 @@ function AboutWindowDeveloperNameLabel({ className, ...props }: React.ComponentP
     <span
       data-slot="about-window-developer-name-label"
         data-node="label"
-      className={cn("flex justify-center items-center text-center", [
-        "caret-[currentColor]",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", className)}
       {...props}
     />
   )
@@ -653,15 +641,7 @@ function AboutWindowVersionButton({ className, ...props }: React.ComponentProps<
       data-slot="about-window-version-button"
         data-node="button"
         data-halign="center"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "app-version", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] py-[3px] px-4.5 mt-[3px] text-[var(--accent-color)] rounded-[999px]",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "app-version", className)}
       {...props}
     />
   )
@@ -672,7 +652,7 @@ function AboutWindowImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="about-window-image"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -683,10 +663,7 @@ function AboutWindowWhatsNewRow({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="about-window-whats-new-row"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", className)}
       {...props}
     />
   )
@@ -697,7 +674,7 @@ function AboutWindowImage2({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image2"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -708,10 +685,7 @@ function AboutWindowDetailsRow({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-details-row"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", className)}
       {...props}
     />
   )
@@ -722,10 +696,7 @@ function AboutWindowWebsiteRow({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-website-row"
         data-node="row"
-      className={cn([
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", className)}
       {...props}
     />
   )
@@ -736,7 +707,7 @@ function AboutWindowDetailsGroup({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-details-group"
         data-node="preferencesgroup"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("preferencesgroup", className)}
       {...props}
     />
   )
@@ -747,10 +718,7 @@ function AboutWindowSupportRow({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-support-row"
         data-node="row"
-      className={cn([
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", className)}
       {...props}
     />
   )
@@ -761,10 +729,7 @@ function AboutWindowIssueRow({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="about-window-issue-row"
         data-node="row"
-      className={cn([
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", className)}
       {...props}
     />
   )
@@ -775,7 +740,7 @@ function AboutWindowImage3({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image3"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -786,10 +751,7 @@ function AboutWindowTroubleshootingRow({ className, ...props }: React.ComponentP
     <div
       data-slot="about-window-troubleshooting-row"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", className)}
       {...props}
     />
   )
@@ -800,7 +762,7 @@ function AboutWindowSupportGroup({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-support-group"
         data-node="preferencesgroup"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("preferencesgroup", className)}
       {...props}
     />
   )
@@ -811,7 +773,7 @@ function AboutWindowImage4({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image4"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -822,10 +784,7 @@ function AboutWindowActionRow({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="about-window-action-row"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", className)}
       {...props}
     />
   )
@@ -836,7 +795,7 @@ function AboutWindowImage5({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image5"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -847,10 +806,7 @@ function AboutWindowActionRow2({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-action-row2"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", className)}
       {...props}
     />
   )
@@ -861,7 +817,7 @@ function AboutWindowImage6({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="about-window-image6"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -872,10 +828,7 @@ function AboutWindowActionRow3({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-action-row3"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", className)}
       {...props}
     />
   )
@@ -886,7 +839,7 @@ function AboutWindowCreditsLegalGroup({ className, ...props }: React.ComponentPr
     <div
       data-slot="about-window-credits-legal-group"
         data-node="preferencesgroup"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("preferencesgroup", className)}
       {...props}
     />
   )
@@ -897,7 +850,7 @@ function AboutWindowBox2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box2"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "mt-4.5 mb-1.5 gap-[18px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -908,7 +861,7 @@ function AboutWindowBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "m-3 gap-[6px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -922,21 +875,39 @@ function AboutWindowClamp({ className, style, ...props }: React.ComponentProps<"
       ref={ref}
       data-slot="about-window-clamp"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowMainScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowMainScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-main-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "main-page", className)}
+      className={cn("scrolledwindow", "main-page", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -945,7 +916,7 @@ function AboutWindowWindowControls({ className, ...props }: React.ComponentProps
     <div
       data-slot="about-window-window-controls"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -956,7 +927,7 @@ function AboutWindowBox4({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box4"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -967,7 +938,7 @@ function AboutWindowStart({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-start"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -978,7 +949,7 @@ function AboutWindowTitle({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-title"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -990,7 +961,7 @@ function AboutWindowImage7({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-window-image7"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -1001,15 +972,7 @@ function AboutWindowCloseButton({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -1020,7 +983,7 @@ function AboutWindowWindowControls2({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls2"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -1031,7 +994,7 @@ function AboutWindowBox5({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box5"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1042,7 +1005,7 @@ function AboutWindowEnd({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1053,7 +1016,7 @@ function AboutWindowBox3({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box3"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -1064,7 +1027,7 @@ function AboutWindowWindowhandle({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-windowhandle"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -1075,7 +1038,7 @@ function AboutWindowMainHeaderbar({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-main-headerbar"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -1086,7 +1049,7 @@ function AboutWindowToolbarView({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="about-window-toolbar-view"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -1097,7 +1060,7 @@ function AboutWindowNavigationPage({ className, ...props }: React.ComponentProps
     <div
       data-slot="about-window-navigation-page"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -1108,7 +1071,7 @@ function AboutWindowTextView({ className, ...props }: React.ComponentProps<"text
     <textarea
       data-slot="about-window-text-view"
         data-node="textview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "body min-w-0 basis-0 grow", "caret-[currentColor] font-normal leading-[140%] bg-none text-[inherit]", className)}
+      className={cn("textview", "body", className)}
       {...props}
     />
   )
@@ -1122,21 +1085,39 @@ function AboutWindowClampScrollable({ className, style, ...props }: React.Compon
       ref={ref}
       data-slot="about-window-clamp-scrollable"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "subpage", className)}
+      className={cn("scrolledwindow", "subpage", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -1145,7 +1126,7 @@ function AboutWindowWindowControls3({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls3"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -1156,7 +1137,7 @@ function AboutWindowBox7({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box7"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1167,7 +1148,7 @@ function AboutWindowStart2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-start2"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1178,7 +1159,7 @@ function AboutWindowTitle2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-title2"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1190,7 +1171,7 @@ function AboutWindowImage8({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-window-image8"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -1201,15 +1182,7 @@ function AboutWindowCloseButton2({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -1220,7 +1193,7 @@ function AboutWindowWindowControls4({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls4"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -1231,7 +1204,7 @@ function AboutWindowBox8({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box8"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1242,7 +1215,7 @@ function AboutWindowEnd2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end2"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1253,7 +1226,7 @@ function AboutWindowBox6({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box6"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -1264,7 +1237,7 @@ function AboutWindowWindowhandle2({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-windowhandle2"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -1275,7 +1248,7 @@ function AboutWindowHeaderBar({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="about-window-header-bar"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -1286,7 +1259,7 @@ function AboutWindowToolbarView2({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toolbar-view2"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -1297,7 +1270,7 @@ function AboutWindowWhatsnewPage({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-whatsnew-page"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -1308,7 +1281,7 @@ function AboutWindowSelection3({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-selection3"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -1319,12 +1292,7 @@ function AboutWindowLink3({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-link3"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/about-window:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/about-window:text-[var(--accent-color)]",
-        "group-disabled/about-window:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -1335,10 +1303,9 @@ function AboutWindowCommentsLabel({ className, ...props }: React.ComponentProps<
     <span
       data-slot="about-window-comments-label"
         data-node="label"
-      className={cn("body flex justify-start items-center", [
-        "caret-[currentColor] font-normal leading-[140%]",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", className)}
       {...props}
     />
   )
@@ -1349,10 +1316,7 @@ function AboutWindowDetailsWebsiteRow({ className, ...props }: React.ComponentPr
     <div
       data-slot="about-window-details-website-row"
         data-node="row"
-      className={cn([
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", className)}
       {...props}
     />
   )
@@ -1363,7 +1327,7 @@ function AboutWindowLinksGroup({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-links-group"
         data-node="preferencesgroup"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("preferencesgroup", className)}
       {...props}
     />
   )
@@ -1374,7 +1338,7 @@ function AboutWindowBox9({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-box9"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-4.5 mx-3 gap-[18px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -1388,21 +1352,39 @@ function AboutWindowClamp2({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp2"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowScrolledWindow2({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowScrolledWindow2({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-scrolled-window2"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "subpage", className)}
+      className={cn("scrolledwindow", "subpage", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -1411,7 +1393,7 @@ function AboutWindowWindowControls5({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls5"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -1422,7 +1404,7 @@ function AboutWindowBox11({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box11"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1433,7 +1415,7 @@ function AboutWindowStart3({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-start3"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1444,7 +1426,7 @@ function AboutWindowTitle3({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-title3"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1456,7 +1438,7 @@ function AboutWindowImage9({ className, name = "window-close-symbolic", ...props
         name={name}
       data-slot="about-window-image9"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -1467,15 +1449,7 @@ function AboutWindowCloseButton3({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -1486,7 +1460,7 @@ function AboutWindowWindowControls6({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls6"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -1497,7 +1471,7 @@ function AboutWindowBox12({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box12"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1508,7 +1482,7 @@ function AboutWindowEnd3({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end3"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1519,7 +1493,7 @@ function AboutWindowBox10({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box10"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -1530,7 +1504,7 @@ function AboutWindowWindowhandle3({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-windowhandle3"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -1541,7 +1515,7 @@ function AboutWindowHeaderBar2({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-header-bar2"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -1552,7 +1526,7 @@ function AboutWindowToolbarView3({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toolbar-view3"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -1563,7 +1537,7 @@ function AboutWindowNavigationPage2({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-navigation-page2"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -1574,7 +1548,7 @@ function AboutWindowSelection4({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-selection4"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -1585,12 +1559,7 @@ function AboutWindowLink4({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-link4"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/about-window:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/about-window:text-[var(--accent-color)]",
-        "group-disabled/about-window:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -1601,10 +1570,9 @@ function AboutWindowLabel({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="about-window-label"
         data-node="label"
-      className={cn("body flex justify-start items-center", [
-        "caret-[currentColor] font-normal leading-[140%]",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", className)}
       {...props}
     />
   )
@@ -1615,7 +1583,7 @@ function AboutWindowImage10({ className, ...props }: React.ComponentProps<typeof
     <Icon
       data-slot="about-window-image10"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -1626,10 +1594,7 @@ function AboutWindowActionRow4({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-action-row4"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/about-window:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", className)}
       {...props}
     />
   )
@@ -1640,7 +1605,7 @@ function AboutWindowPreferencesGroup({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-preferences-group"
         data-node="preferencesgroup"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("preferencesgroup", className)}
       {...props}
     />
   )
@@ -1651,7 +1616,7 @@ function AboutWindowBox13({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box13"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-4.5 mx-3 gap-[18px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -1665,21 +1630,39 @@ function AboutWindowClamp3({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp3"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowScrolledWindow3({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowScrolledWindow3({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-scrolled-window3"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "subpage", className)}
+      className={cn("scrolledwindow", "subpage", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -1688,7 +1671,7 @@ function AboutWindowWindowControls7({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls7"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -1699,7 +1682,7 @@ function AboutWindowBox15({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box15"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1710,7 +1693,7 @@ function AboutWindowStart4({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-start4"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1721,7 +1704,7 @@ function AboutWindowTitle4({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-title4"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1733,7 +1716,7 @@ function AboutWindowImage11({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image11"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -1744,15 +1727,7 @@ function AboutWindowCloseButton4({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -1763,7 +1738,7 @@ function AboutWindowWindowControls8({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls8"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -1774,7 +1749,7 @@ function AboutWindowBox16({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box16"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1785,7 +1760,7 @@ function AboutWindowEnd4({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end4"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1796,7 +1771,7 @@ function AboutWindowBox14({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box14"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -1807,7 +1782,7 @@ function AboutWindowWindowhandle4({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-windowhandle4"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -1818,7 +1793,7 @@ function AboutWindowHeaderBar3({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-header-bar3"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -1829,7 +1804,7 @@ function AboutWindowToolbarView4({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toolbar-view4"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -1840,7 +1815,7 @@ function AboutWindowNavigationPage3({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-navigation-page3"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -1851,7 +1826,7 @@ function AboutWindowTextView2({ className, ...props }: React.ComponentProps<"tex
     <textarea
       data-slot="about-window-text-view2"
         data-node="textview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "body min-w-0 basis-0 grow", "caret-[currentColor] font-normal leading-[140%] bg-none text-[inherit]", className)}
+      className={cn("textview", "body", className)}
       {...props}
     />
   )
@@ -1865,21 +1840,39 @@ function AboutWindowClampScrollable2({ className, style, ...props }: React.Compo
       ref={ref}
       data-slot="about-window-clamp-scrollable2"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowScrolledWindow4({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowScrolledWindow4({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-scrolled-window4"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "subpage", className)}
+      className={cn("scrolledwindow", "subpage", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -1888,7 +1881,7 @@ function AboutWindowWindowControls9({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-window-controls9"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -1899,7 +1892,7 @@ function AboutWindowBox18({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box18"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1910,7 +1903,7 @@ function AboutWindowStart5({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-start5"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1921,7 +1914,7 @@ function AboutWindowTitle5({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-title5"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1933,7 +1926,7 @@ function AboutWindowImage12({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image12"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -1944,15 +1937,7 @@ function AboutWindowCloseButton5({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -1963,7 +1948,7 @@ function AboutWindowWindowControls10({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-window-controls10"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -1974,7 +1959,7 @@ function AboutWindowBox19({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box19"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -1985,7 +1970,7 @@ function AboutWindowEnd5({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end5"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -1996,7 +1981,7 @@ function AboutWindowBox17({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box17"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -2007,7 +1992,7 @@ function AboutWindowWindowhandle5({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-windowhandle5"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -2018,7 +2003,7 @@ function AboutWindowHeaderBar4({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-header-bar4"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -2029,15 +2014,7 @@ function AboutWindowButton({ className, ...props }: React.ComponentProps<"button
     <button
       data-slot="about-window-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
@@ -2048,15 +2025,7 @@ function AboutWindowButton2({ className, ...props }: React.ComponentProps<"butto
     <button
       data-slot="about-window-button2"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
@@ -2067,7 +2036,7 @@ function AboutWindowActionBar({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="about-window-action-bar"
         data-node="actionbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("actionbar", className)}
       {...props}
     />
   )
@@ -2078,7 +2047,7 @@ function AboutWindowToolbarView5({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toolbar-view5"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -2089,7 +2058,7 @@ function AboutWindowDebugInfoPage({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-debug-info-page"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -2100,7 +2069,7 @@ function AboutWindowCreditsBox({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-credits-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-4.5 mx-3 gap-[18px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -2114,21 +2083,39 @@ function AboutWindowClamp4({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp4"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowScrolledWindow5({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowScrolledWindow5({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-scrolled-window5"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "subpage", className)}
+      className={cn("scrolledwindow", "subpage", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -2137,7 +2124,7 @@ function AboutWindowWindowControls11({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-window-controls11"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -2148,7 +2135,7 @@ function AboutWindowBox21({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box21"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -2159,7 +2146,7 @@ function AboutWindowStart6({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-start6"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2170,7 +2157,7 @@ function AboutWindowTitle6({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-title6"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2182,7 +2169,7 @@ function AboutWindowImage13({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image13"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -2193,15 +2180,7 @@ function AboutWindowCloseButton6({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -2212,7 +2191,7 @@ function AboutWindowWindowControls12({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-window-controls12"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -2223,7 +2202,7 @@ function AboutWindowBox22({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box22"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -2234,7 +2213,7 @@ function AboutWindowEnd6({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end6"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2245,7 +2224,7 @@ function AboutWindowBox20({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box20"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -2256,7 +2235,7 @@ function AboutWindowWindowhandle6({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-windowhandle6"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -2267,7 +2246,7 @@ function AboutWindowHeaderBar5({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-header-bar5"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -2278,7 +2257,7 @@ function AboutWindowToolbarView6({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toolbar-view6"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -2289,7 +2268,7 @@ function AboutWindowNavigationPage4({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-navigation-page4"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -2300,7 +2279,7 @@ function AboutWindowLegalBox({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="about-window-legal-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-4.5 mx-3 gap-[18px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -2314,21 +2293,39 @@ function AboutWindowClamp5({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp5"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowScrolledWindow6({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowScrolledWindow6({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-scrolled-window6"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "subpage", className)}
+      className={cn("scrolledwindow", "subpage", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -2337,7 +2334,7 @@ function AboutWindowWindowControls13({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-window-controls13"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -2348,7 +2345,7 @@ function AboutWindowBox24({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box24"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -2359,7 +2356,7 @@ function AboutWindowStart7({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-start7"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2370,7 +2367,7 @@ function AboutWindowTitle7({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-title7"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2382,7 +2379,7 @@ function AboutWindowImage14({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image14"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -2393,15 +2390,7 @@ function AboutWindowCloseButton7({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -2412,7 +2401,7 @@ function AboutWindowWindowControls14({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-window-controls14"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -2423,7 +2412,7 @@ function AboutWindowBox25({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box25"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -2434,7 +2423,7 @@ function AboutWindowEnd7({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end7"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2445,7 +2434,7 @@ function AboutWindowBox23({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box23"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -2456,7 +2445,7 @@ function AboutWindowWindowhandle7({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-windowhandle7"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -2467,7 +2456,7 @@ function AboutWindowHeaderBar6({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-header-bar6"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -2478,7 +2467,7 @@ function AboutWindowToolbarView7({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toolbar-view7"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -2489,7 +2478,7 @@ function AboutWindowNavigationPage5({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-navigation-page5"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -2500,7 +2489,7 @@ function AboutWindowAcknowledgementsBox({ className, ...props }: React.Component
     <div
       data-slot="about-window-acknowledgements-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-4.5 mx-3 gap-[18px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -2514,21 +2503,39 @@ function AboutWindowClamp6({ className, style, ...props }: React.ComponentProps<
       ref={ref}
       data-slot="about-window-clamp6"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function AboutWindowScrolledWindow7({ className, ...props }: React.ComponentProps<"div">) {
+function AboutWindowScrolledWindow7({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="about-window-scrolled-window7"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "subpage", className)}
+      className={cn("scrolledwindow", "subpage", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -2537,7 +2544,7 @@ function AboutWindowWindowControls15({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-window-controls15"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "start empty", "gap-[3px]", className)}
+      className={cn("windowcontrols", "start", "empty", "lay-row", className)}
       {...props}
     />
   )
@@ -2548,7 +2555,7 @@ function AboutWindowBox27({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box27"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "start horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "start", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -2559,7 +2566,7 @@ function AboutWindowStart8({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-start8"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2570,7 +2577,7 @@ function AboutWindowTitle8({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="about-window-title8"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2582,7 +2589,7 @@ function AboutWindowImage15({ className, name = "window-close-symbolic", ...prop
         name={name}
       data-slot="about-window-image15"
         data-node="image"
-      className={cn("self-center", "p-1 bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-full transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -2593,15 +2600,7 @@ function AboutWindowCloseButton8({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "close image-button", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] px-[5px] min-w-6 p-[5px] bg-[transparent] shadow-none bg-none",
-        "group-hover/about-window:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/about-window:bg-[color-mix(in_srgb,currentColor_7%,transparent)] group-hover/about-window:bg-none group-hover/about-window:shadow-none",
-        "group-active/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/about-window:bg-[color-mix(in_srgb,currentColor_16%,transparent)] group-active/about-window:bg-none group-active/about-window:shadow-none",
-        "group-disabled/about-window:[filter:Opacity(var(--disabled-opacity))] group-disabled/about-window:[filter:opacity(30%)]",
-        "group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/about-window:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/about-window:group-hover/about-window:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/about-window:group-active/about-window:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", "close", "image-button", className)}
       {...props}
     />
   )
@@ -2612,7 +2611,7 @@ function AboutWindowWindowControls16({ className, ...props }: React.ComponentPro
     <div
       data-slot="about-window-window-controls16"
         data-node="windowcontrols"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "end", "gap-[3px]", className)}
+      className={cn("windowcontrols", "end", "lay-row", className)}
       {...props}
     />
   )
@@ -2623,7 +2622,7 @@ function AboutWindowBox28({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box28"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline gap-[6px]", "end horizontal", "mx-1.5", className)}
+      className={cn("box", "box", "end", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -2634,7 +2633,7 @@ function AboutWindowEnd8({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="about-window-end8"
         data-node="widget"
-      className={cn(className)}
+      className={cn("widget", className)}
       {...props}
     />
   )
@@ -2645,7 +2644,7 @@ function AboutWindowBox26({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="about-window-box26"
         data-node="box"
-      className={cn("grid [grid-template-columns:1fr_auto_1fr] items-center [&>*:first-child]:justify-self-start [&>*:last-child]:justify-self-end", "horizontal", "pt-1.5 pb-[7px] px-[7px]", className)}
+      className={cn("box", "center", "horizontal", className)}
       {...props}
     />
   )
@@ -2656,7 +2655,7 @@ function AboutWindowWindowhandle8({ className, ...props }: React.ComponentProps<
     <div
       data-slot="about-window-windowhandle8"
         data-node="windowhandle"
-      className={cn(className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )
@@ -2667,7 +2666,7 @@ function AboutWindowHeaderBar7({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="about-window-header-bar7"
         data-node="headerbar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)]", className)}
+      className={cn("headerbar", className)}
       {...props}
     />
   )
@@ -2678,7 +2677,7 @@ function AboutWindowToolbarView8({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toolbar-view8"
         data-node="toolbarview"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("toolbarview", "lay-row", className)}
       {...props}
     />
   )
@@ -2689,7 +2688,7 @@ function AboutWindowNavigationPage6({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-navigation-page6"
         data-node="navigation-view-page"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("navigation-view-page", className)}
       {...props}
     />
   )
@@ -2700,7 +2699,7 @@ function AboutWindowNavigationView({ className, ...props }: React.ComponentProps
     <div
       data-slot="about-window-navigation-view"
         data-node="navigation-view"
-      className={cn(className)}
+      className={cn("navigation-view", className)}
       {...props}
     />
   )
@@ -2711,7 +2710,7 @@ function AboutWindowToastOverlay({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="about-window-toast-overlay"
         data-node="toastoverlay"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("toastoverlay", className)}
       {...props}
     />
   )

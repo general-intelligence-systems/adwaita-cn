@@ -46,17 +46,17 @@ function FontChooserWidget({ className, render, font, previewText, fontDesc: _fo
     "data-language": language,
     "data-level": level,
     "data-show-preview-entry": showPreviewEntry,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("fontchooser", widgetClassName, className),
     style,
     children: (
         <>
                   {font === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
+                <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
                   {font}
                 </span>
               )}
                   {previewText === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
+                <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
                   {previewText}
                 </span>
               )}

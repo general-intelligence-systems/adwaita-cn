@@ -60,7 +60,7 @@ function StatusPage({ className, render, variant = "default", child, description
     "data-node": "statuspage",
     "data-variant": variant,
     role: "status",
-    className: cn("group/status-page", "grid [&>*]:col-start-1 [&>*]:row-start-1", statusPageVariants({ variant }), widgetClassName, className),
+    className: cn("statuspage", "group/status-page", statusPageVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -77,9 +77,9 @@ function StatusPage({ className, render, variant = "default", child, description
                       {description ? (
                         <StatusPageDescriptionLabel>{description}</StatusPageDescriptionLabel>
                       ) : null}
-                      {children}
                     </StatusPageBox>
                   </StatusPageClamp>
+                  {children}
                 </StatusPageToplevelBox>
               </StatusPageScrolledWindow>
                   {child}
@@ -102,10 +102,7 @@ function StatusPageImage({ className, ...props }: React.ComponentProps<typeof Ic
       data-slot="status-page-image"
         data-node="image"
         data-halign="center"
-      className={cn("icon self-center", [
-        "mb-6 text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)] [--adw-icon-size:128px]",
-        "group-disabled/status-page:opacity-[var(--disabled-opacity)]",
-      ], className)}
+      className={cn("image", "icon", className)}
       {...props}
     />
   )
@@ -116,7 +113,7 @@ function StatusPageSelection({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="status-page-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -127,12 +124,7 @@ function StatusPageLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="status-page-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/status-page:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/status-page:text-[var(--accent-color)]",
-        "group-disabled/status-page:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -143,10 +135,9 @@ function StatusPageTitleLabel({ className, ...props }: React.ComponentProps<"spa
     <span
       data-slot="status-page-title-label"
         data-node="label"
-      className={cn("title flex justify-center items-center text-center", [
-        "caret-[currentColor] font-extrabold text-[181%]",
-        "group-disabled/status-page:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title", className)}
       {...props}
     />
   )
@@ -157,7 +148,7 @@ function StatusPageSelection2({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="status-page-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -168,12 +159,7 @@ function StatusPageLink2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="status-page-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/status-page:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/status-page:text-[var(--accent-color)]",
-        "group-disabled/status-page:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -184,10 +170,9 @@ function StatusPageDescriptionLabel({ className, ...props }: React.ComponentProp
     <span
       data-slot="status-page-description-label"
         data-node="label"
-      className={cn("body description flex justify-center items-center text-center", [
-        "caret-[currentColor] font-normal leading-[140%]",
-        "group-disabled/status-page:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "body", "description", className)}
       {...props}
     />
   )
@@ -199,7 +184,7 @@ function StatusPageBox({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="status-page-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "gap-[12px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -213,7 +198,7 @@ function StatusPageClamp({ className, style, ...props }: React.ComponentProps<"d
       ref={ref}
       data-slot="status-page-clamp"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
@@ -226,20 +211,38 @@ function StatusPageToplevelBox({ className, ...props }: React.ComponentProps<"di
       data-slot="status-page-toplevel-box"
         data-node="box"
         data-valign="center"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-9 mx-3 gap-[36px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
 }
 
-function StatusPageScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function StatusPageScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="status-page-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", className)}
+      className={cn("scrolledwindow", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 

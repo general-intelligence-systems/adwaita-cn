@@ -32,11 +32,11 @@ const sidebarVariants = cva(
         /** .header */
         header: "header",
         /** .heading */
-        heading: "heading font-bold",
+        heading: "heading",
         /** .icon */
         icon: "icon",
         /** .navigation-sidebar */
-        navigationSidebar: "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit]",
+        navigationSidebar: "navigation-sidebar",
         /** .page */
         page: "page",
         /** .subtitle */
@@ -85,7 +85,7 @@ function Sidebar({ className, render, variant = "default", placeholder, filter: 
     "data-drop-preload": dropPreload,
     "data-mode": mode,
     "data-selected-value": selected,
-    className: cn("group/sidebar", "grid [&>*]:col-start-1 [&>*]:row-start-1", sidebarVariants({ variant }), widgetClassName, className),
+    className: cn("sidebar", "group/sidebar", sidebarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -117,7 +117,7 @@ function SidebarSelection({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="sidebar-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -128,12 +128,7 @@ function SidebarLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/sidebar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/sidebar:text-[var(--accent-color)]",
-        "group-disabled/sidebar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -144,10 +139,9 @@ function SidebarDescription({ className, ...props }: React.ComponentProps<"span"
     <span
       data-slot="sidebar-description"
         data-node="label"
-      className={cn("body dimmed description flex justify-start items-center", [
-        "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
-        "group-disabled/sidebar:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", "description", className)}
       {...props}
     />
   )
@@ -158,7 +152,7 @@ function SidebarBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-6 mx-3 gap-[24px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -172,21 +166,39 @@ function SidebarClamp({ className, style, ...props }: React.ComponentProps<"div"
       ref={ref}
       data-slot="sidebar-clamp"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function SidebarScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function SidebarScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", className)}
+      className={cn("scrolledwindow", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -195,7 +207,7 @@ function SidebarPreferencesPage({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="sidebar-preferences-page"
         data-node="preferencespage"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("preferencespage", "box", "lay-row", className)}
       {...props}
     />
   )

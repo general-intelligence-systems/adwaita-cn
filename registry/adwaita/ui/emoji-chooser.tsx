@@ -22,21 +22,16 @@ const emojiChooserVariants = cva(
       variant: {
         default: "",
         /** .magnifier */
-        magnifier: "magnifier bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
+        magnifier: "magnifier",
         /** .touch-selection */
-        touchSelection: "touch-selection bg-[transparent] text-[RGB(255_255_255/90%)] [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding border-[RGB(255_255_255/10%)] shadow-none",
+        touchSelection: "touch-selection",
         /** .view */
-        view: [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        view: "view",
       },
       size: {
         default: "",
         /** .menu */
-        menu: "menu p-0 min-w-30",
+        menu: "menu",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -89,7 +84,7 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("group/emoji-chooser", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", emojiChooserVariants({ variant, size }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", widgetClassName, className),
+    className: cn("popover", "group/emoji-chooser", "box", "lay-row", emojiChooserVariants({ variant, size }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -115,7 +110,7 @@ function EmojiChooserArrow({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="emoji-chooser-arrow"
         data-node="arrow"
-      className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
+      className={cn("arrow", className)}
       {...props}
     />
   )
@@ -126,7 +121,7 @@ function EmojiChooserPlaceholder({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="emoji-chooser-placeholder"
         data-node="placeholder"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -137,7 +132,7 @@ function EmojiChooserUndershoot({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="emoji-chooser-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -148,7 +143,7 @@ function EmojiChooserSelection({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="emoji-chooser-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -159,7 +154,7 @@ function EmojiChooserCursorHandle({ className, ...props }: React.ComponentProps<
     <div
       data-slot="emoji-chooser-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -170,7 +165,7 @@ function EmojiChooserBlockCursor({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="emoji-chooser-block-cursor"
         data-node="block-cursor"
-      className={cn("text-[var(--view-bg-color)] bg-[var(--view-fg-color)]", className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -181,7 +176,7 @@ function EmojiChooserWindow({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="emoji-chooser-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )
@@ -192,7 +187,7 @@ function EmojiChooserText({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="emoji-chooser-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -203,11 +198,7 @@ function EmojiChooserImage({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="emoji-chooser-image"
         data-node="image"
-      className={cn("self-center", [
-        "opacity-70",
-        "group-hover/emoji-chooser:opacity-100",
-        "group-active/emoji-chooser:opacity-80",
-      ], className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -218,7 +209,7 @@ function EmojiChooserProgress({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="emoji-chooser-progress"
         data-node="progress"
-      className={cn("mb-[3px]", className)}
+      className={cn("progress", className)}
       {...props}
     />
   )
@@ -229,10 +220,7 @@ function EmojiChooserEntry({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="emoji-chooser-entry"
         data-node="entry"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-disabled/emoji-chooser:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+      className={cn("entry", className)}
       {...props}
     />
   )
@@ -243,7 +231,7 @@ function EmojiChooserBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="emoji-chooser-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -254,7 +242,7 @@ function EmojiChooserContents({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="emoji-chooser-contents"
         data-node="contents"
-      className={cn("hidden", className)}
+      className={cn("contents", "hidden", className)}
       {...props}
     />
   )

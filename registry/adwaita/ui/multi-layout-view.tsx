@@ -32,7 +32,7 @@ function MultiLayoutView({ className, render, layout: _layout, layoutName, child
     "data-slot": "multi-layout-view",
     "data-node": "multi-layout-view",
     "data-layout-name": layoutName,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("multi-layout-view", widgetClassName, className),
     style,
     children: visibleChild(children),
     ...widgetAttributes,

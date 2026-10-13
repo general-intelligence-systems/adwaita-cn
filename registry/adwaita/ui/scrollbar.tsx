@@ -20,7 +20,7 @@ const scrollbarVariants = cva(
       variant: {
         default: "",
         /** .overlay-indicator */
-        overlayIndicator: "overlay-indicator p-0 bg-none text-[inherit] shadow-none",
+        overlayIndicator: "overlay-indicator",
       },
     },
     defaultVariants: { variant: "default" },
@@ -61,7 +61,7 @@ function Scrollbar({ className, render, variant = "default", adjustment: _adjust
     "data-min-value": minValue,
     "data-orientation": orientation,
     "data-value": value,
-    className: cn("group/scrollbar", "grid [&>*]:col-start-1 [&>*]:row-start-1", scrollbarVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("scrollbar", "group/scrollbar", "bin", scrollbarVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
@@ -89,12 +89,7 @@ function ScrollbarSlider({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scrollbar-slider"
         data-node="slider"
-      className={cn([
-        "-m-2 min-w-2 min-h-2 [border-width:8px] [border-style:solid] [border-color:transparent] rounded-[99px] bg-clip-padding transition-[all] duration-200 ease-[linear] bg-[color-mix(in_srgb,currentColor_20%,transparent)] min-w-10",
-        "group-hover/scrollbar:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-        "group-active/scrollbar:bg-[color-mix(in_srgb,currentColor_60%,transparent)]",
-        "group-disabled/scrollbar:opacity-0",
-      ], className)}
+      className={cn("slider", className)}
       {...props}
     />
   )
@@ -105,7 +100,7 @@ function ScrollbarTrough({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scrollbar-trough"
         data-node="trough"
-      className={cn("relative min-h-[1px]", "m-[9px] transition-[all] duration-200 ease-[linear] rounded-[99px] my-2", className)}
+      className={cn("trough", className)}
       {...props}
     />
   )
@@ -116,7 +111,7 @@ function ScrollbarRange({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scrollbar-range"
         data-node="range"
-      className={cn("horizontal", className)}
+      className={cn("range", "horizontal", className)}
       {...props}
     />
   )

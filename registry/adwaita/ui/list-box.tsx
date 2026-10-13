@@ -22,11 +22,11 @@ const listBoxVariants = cva(
         /** .activatable */
         activatable: "activatable",
         /** .boxed-list */
-        boxedList: "boxed-list bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+        boxedList: "boxed-list",
         /** .boxed-list-separate */
-        boxedListSeparate: "boxed-list-separate bg-none text-[var(--card-fg-color)]",
+        boxedListSeparate: "boxed-list-separate",
         /** .content */
-        content: "content bg-[var(--card-bg-color)] text-[var(--card-fg-color)] rounded-[12px] shadow-[0_0_0_1px_RGB(0_0_6/3%),0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
+        content: "content",
         /** .dialog-action-box */
         dialogActionBox: "dialog-action-box",
         /** .nested */
@@ -34,12 +34,7 @@ const listBoxVariants = cva(
         /** .separators */
         separators: "separators",
         /** .view */
-        view: [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ],
+        view: "view",
       },
     },
     defaultVariants: { variant: "default" },
@@ -81,7 +76,7 @@ function ListBox({ className, render, variant = "default", acceptUnpairedRelease
     "data-selection-mode": selectionMode,
     "data-show-separators": showSeparators,
     "data-tab-behavior": tabBehavior,
-    className: cn("flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", listBoxVariants({ variant }), showSeparators && "separators", widgetClassName, className),
+    className: cn("list", "lay-col", listBoxVariants({ variant }), showSeparators && "separators", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

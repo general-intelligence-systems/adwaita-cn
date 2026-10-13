@@ -20,9 +20,9 @@ const checkButtonVariants = cva(
       size: {
         default: "",
         /** .grouped */
-        grouped: "grouped rounded-[999px]",
+        grouped: "grouped",
         /** .selection-mode */
-        selectionMode: "selection-mode rounded-[100px]",
+        selectionMode: "selection-mode",
       },
     },
     defaultVariants: { size: "default" },
@@ -73,13 +73,13 @@ function CheckButton({ className, render, size = "default", child, label, action
     "aria-checked": active,
     "data-inconsistent": inconsistent,
     "data-use-underline": useUnderline,
-    className: cn("group/check-button", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", checkButtonVariants({ size }), label && "text-button p-1", widgetClassName, className),
+    className: cn("checkbutton", "group/check-button", "lay-row", checkButtonVariants({ size }), label && "text-button", widgetClassName, className),
     style,
     children: (
         <>
                   <CheckButtonCheck />
                   {label === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
+                <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
                   {label}
                 </span>
               )}
@@ -103,18 +103,7 @@ function CheckButtonCheck({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="check-button-check"
         data-node="check"
-      className={cn([
-        "p-[3px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] min-h-3.5 min-w-3.5 [--adw-icon-size:14px] shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_15%,transparent)] rounded-[6px]",
-        "group-hover/check-button:shadow-[inset_0_0_0_2px_color-mix(in_srgb,currentColor_20%,transparent)]",
-        "group-active/check-button:bg-[color-mix(in_srgb,currentColor_25%,transparent)] group-active/check-button:shadow-none",
-        "group-disabled/check-button:[filter:Opacity(var(--disabled-opacity))]",
-        "group-indeterminate/check-button:bg-[var(--accent-bg-color)] group-indeterminate/check-button:text-[var(--accent-fg-color)] group-indeterminate/check-button:shadow-none group-indeterminate/check-button:adw-icon-source group-indeterminate/check-button:[--adw-icon:var(--icon-dash-symbolic)]",
-        "group-indeterminate/check-button:group-hover/check-button:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "group-data-[state=checked]/check-button:bg-[var(--accent-bg-color)] group-data-[state=checked]/check-button:text-[var(--accent-fg-color)] group-data-[state=checked]/check-button:shadow-none group-data-[state=checked]/check-button:adw-icon-source group-data-[state=checked]/check-button:[--adw-icon:var(--icon-check-symbolic)]",
-        "group-indeterminate/check-button:group-active/check-button:bg-[image:image(RGB(0_0_6/20%))]",
-        "group-data-[state=checked]/check-button:group-hover/check-button:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "group-data-[state=checked]/check-button:group-active/check-button:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
+      className={cn("check", className)}
       {...props}
     />
   )
@@ -125,10 +114,9 @@ function CheckButtonLabel({ className, ...props }: React.ComponentProps<"span">)
     <span
       data-slot="check-button-label"
         data-node="label"
-      className={cn("flex justify-center items-center", [
-        "caret-[currentColor]",
-        "group-disabled/check-button:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", className)}
       {...props}
     />
   )

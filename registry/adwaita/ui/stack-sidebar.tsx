@@ -19,7 +19,7 @@ const stackSidebarVariants = cva(
       variant: {
         default: "",
         /** .navigation-sidebar */
-        navigationSidebar: "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit]",
+        navigationSidebar: "navigation-sidebar",
         /** .needs-attention */
         needsAttention: "needs-attention",
       },
@@ -46,7 +46,7 @@ function StackSidebar({ className, render, variant = "default", stack: _stack, c
     "data-slot": "stack-sidebar",
     "data-node": "stacksidebar",
     "data-variant": variant,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", stackSidebarVariants({ variant }), "sidebar [border-right-width:1px] [border-right-style:solid] [border-right-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-left-style:none] [border-left-width:1px] [border-left-style:solid] [border-left-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [border-right-style:none]", widgetClassName, className),
+    className: cn("stacksidebar", stackSidebarVariants({ variant }), "sidebar", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

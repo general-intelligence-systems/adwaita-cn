@@ -99,7 +99,7 @@ function Flap({ className, render, variant = "default", content, flap, separator
     "data-swipe-to-close": swipeToClose,
     "data-swipe-to-open": swipeToOpen,
     "data-transition-type": transitionType,
-    className: cn("group/flap", "grid [&>*]:col-start-1 [&>*]:row-start-1", flapVariants({ variant }), "unfolded", widgetClassName, className),
+    className: cn("flap", "group/flap", flapVariants({ variant }), "unfolded", widgetClassName, className),
     style,
     children: (
         <>
@@ -125,7 +125,7 @@ function FlapDimming({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="flap-dimming"
         data-node="dimming"
-      className={cn("bg-[var(--shade-color)]", className)}
+      className={cn("dimming", className)}
       {...props}
     />
   )
@@ -136,7 +136,7 @@ function FlapShadow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="flap-shadow"
         data-node="shadow"
-      className={cn("min-w-14 min-h-14", className)}
+      className={cn("shadow", className)}
       {...props}
     />
   )

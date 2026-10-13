@@ -26,19 +26,19 @@ const menuButtonVariants = cva(
         /** .down */
         down: "down",
         /** .flat */
-        flat: "flat disabled:[filter:none]",
+        flat: "flat",
         /** .left */
         left: "left",
         /** .none */
         none: "none",
         /** .opaque */
-        opaque: "opaque bg-[color-mix(in_srgb,var(--window-bg-color)_85%,var(--window-fg-color))] text-[var(--window-fg-color)] rounded-[9px]",
+        opaque: "opaque",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding bg-none text-[inherit]",
+        osd: "osd",
         /** .right */
         right: "right",
         /** .suggested-action */
-        suggestedAction: "suggested-action bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)] rounded-[9px]",
+        suggestedAction: "suggested-action",
         /** .up */
         up: "up",
       },
@@ -107,12 +107,12 @@ function MenuButton({ className, render, variant = "default", child, iconName, p
     "data-label": label,
     "data-primary": primary,
     "data-use-underline": useUnderline,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", menuButtonVariants({ variant }), "popup", iconName && "image-button", widgetClassName, className),
+    className: cn("menubutton", "lay-row", menuButtonVariants({ variant }), "popup", iconName && "image-button", widgetClassName, className),
     style,
     children: (
         <>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="menu-button-icon" />
+                <Icon name={iconName} data-slot="menu-button-icon" data-node="image" className={cn("image")} />
               )}
                   {child}
                   {popover}

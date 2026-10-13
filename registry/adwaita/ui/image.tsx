@@ -37,17 +37,17 @@ const imageVariants = cva(
         /** .indicator */
         indicator: "indicator",
         /** .large-icons */
-        largeIcons: "large-icons [--adw-icon-size:32px]",
+        largeIcons: "large-icons",
         /** .left */
         left: "left",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .right */
         right: "right",
         /** .sidebar-icon */
         sidebarIcon: "sidebar-icon",
         /** .spinner */
-        spinner: "spinner disabled:opacity-[var(--disabled-opacity)]",
+        spinner: "spinner",
         /** .start */
         start: "start",
         /** .tab-icon */
@@ -104,12 +104,12 @@ function Image({ className, render, variant = "default", iconName, gicon: _gicon
     "data-pixel-size": pixelSize,
     "data-resource": resource,
     "data-use-fallback": useFallback,
-    className: cn(imageVariants({ variant }), widgetClassName, className),
+    className: cn("image", imageVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="image-icon" />
+                <Icon name={iconName} data-slot="image-icon" data-node="image" className={cn("image")} />
               )}
                   {children}
         </>

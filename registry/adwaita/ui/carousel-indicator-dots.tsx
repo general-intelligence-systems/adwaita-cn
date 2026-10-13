@@ -32,7 +32,7 @@ function CarouselIndicatorDots({ className, render, carousel: _carousel, orienta
     "data-slot": "carousel-indicator-dots",
     "data-node": "carouselindicatordots",
     "data-orientation": orientation,
-    className: cn(widgetClassName, className),
+    className: cn("carouselindicatordots", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

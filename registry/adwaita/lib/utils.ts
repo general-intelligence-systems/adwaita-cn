@@ -3,20 +3,66 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
+import { NODES, SCOPED, UNIVERSAL } from "./adwaita-classes"
 import { STYLE_CLASSES } from "./style-classes"
 
-// Tailwind's utilities are merged; Adwaita's style classes are not.
+// Adwaita's names in, Tailwind out.
 //
-// The components carry both -- the class the stylesheet addresses and the
-// measurements that class resolves to -- and tailwind-merge cannot tell them apart:
-// `text-button` is one of Adwaita's and a `text-` utility to tailwind-merge, which
-// dropped the `text-[var(--destructive-color)]` sitting beside it. So the style
-// classes are taken out, the rest is merged, and they are put back in front, where
-// a utility written later still wins.
+// A component says what it is and what it carries, the way GTK does:
+//
+//     cn("button", "flat circular")
+//
+// The first argument is the CSS node, which is the context the names after it resolve
+// in -- `.flat` is not the same thing on a button as on a split button, and the node is
+// what tells them apart. Nothing is calculated here: the table holds what the stylesheet
+// says about every name it addresses, including what it says about the widgets INSIDE
+// one, which rides along as an arbitrary variant.
+//
+// THE NAME IS KEPT as well as resolved. A contextual rule reaches its subject through the
+// class that subject carries -- `.navigation-sidebar > listview.header > header` lives on
+// the sidebar as `[&>[data-node=listview].header>[data-node=header]]:m-3` -- so a list
+// view which resolved `.header` and then dropped it is a list view that rule cannot find.
+//
+// A first argument which is not a node is classes like any other, so the structural calls
+// -- `cn("flex flex-col", className)` -- still read the same.
+//
+// tailwind-merge is given only the utilities: `text-button` is one of Adwaita's names and
+// a `text-` utility to tailwind-merge, which dropped the colour sitting beside it.
 export function cn(...inputs: ClassValue[]) {
-  const names = clsx(inputs).split(" ").filter(Boolean)
-  const styles = [...new Set(names.filter((one) => STYLE_CLASSES.has(one)))]
-  const utilities = names.filter((one) => !STYLE_CLASSES.has(one))
+  const [first, ...rest] = inputs
+  const node = typeof first === "string" && NODES[first] !== undefined ? first : null
+  const tokens = clsx(node === null ? inputs : rest).split(" ").filter(Boolean)
 
-  return [...styles, twMerge(utilities)].join(" ").trim()
+  const names: string[] = []
+  const utilities: string[] = []
+
+  // The node is NOT written. It is `data-node`, which is what every rule selects it by,
+  // and writing it too put `.box` on every box and `.button` on every button -- markup the
+  // toolkit does not have, which any rule written against those classes then matched.
+  if (node !== null) utilities.push(NODES[node])
+
+  for (const token of tokens) {
+    const scoped = node === null ? undefined : SCOPED[`${node}.${token}`]
+    const resolved = scoped ?? UNIVERSAL[token]
+
+    if (resolved !== undefined) {
+      // ONLY A REAL STYLE CLASS IS WRITTEN. A name may resolve without being a class
+      // Adwaita states -- the layout manager a node is arranged by is one -- and writing
+      // it put `.box` on every box and `.button` on every button, which is markup the
+      // toolkit does not have and which any rule written against it would match wrongly.
+      // A name is written only when it is a class Adwaita states AND is not the name of a
+      // node: the manager a node is arranged by resolves like any other name and is not a
+      // class the toolkit puts on anything.
+      if (STYLE_CLASSES.has(token) && NODES[token] === undefined) names.push(token)
+      utilities.push(resolved)
+    } else if (STYLE_CLASSES.has(token) && NODES[token] === undefined) {
+      names.push(token)
+    } else {
+      utilities.push(token)
+    }
+  }
+
+  const merged = twMerge(utilities.join(" ").split(" ").filter(Boolean).join(" "))
+
+  return [...new Set(names), merged].join(" ").trim()
 }

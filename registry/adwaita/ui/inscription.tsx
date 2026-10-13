@@ -24,7 +24,7 @@ const inscriptionVariants = cva(
         /** .highlight */
         highlight: "highlight",
         /** .separator */
-        separator: "separator opacity-[var(--dim-opacity)]",
+        separator: "separator",
         /** .sidebar-label */
         sidebarLabel: "sidebar-label",
         /** .small */
@@ -97,7 +97,7 @@ function Inscription({ className, render, variant = "default", markup, text, att
     "data-wrap-mode": wrapMode,
     "data-xalign": xalign,
     "data-yalign": yalign,
-    className: cn(inscriptionVariants({ variant }), widgetClassName, className),
+    className: cn("label", inscriptionVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

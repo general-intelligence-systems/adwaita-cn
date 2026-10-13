@@ -63,7 +63,7 @@ function Avatar({ className, render, iconName, customImage: _customImage, showIn
     "data-show-initials": showInitials,
     "data-size": size,
     "data-text": text,
-    className: cn("group/avatar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("avatar", "group/avatar", widgetClassName, className),
     style: { ...style, ...(size === undefined ? {} : { minWidth: size }), ...(size === undefined ? {} : { minHeight: size }) } as React.CSSProperties,
     children: (
       <AvatarGizmo className={cn(avatarColor(text), "contrasted", "flex items-center justify-center overflow-hidden")}
@@ -92,7 +92,7 @@ function AvatarSelection({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="avatar-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -103,12 +103,7 @@ function AvatarLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="avatar-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/avatar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/avatar:text-[var(--accent-color)]",
-        "group-disabled/avatar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -119,10 +114,9 @@ function AvatarLabel({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="avatar-label"
         data-node="label"
-      className={cn("flex justify-center items-center", [
-        "caret-[currentColor]",
-        "group-disabled/avatar:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", className)}
       {...props}
     />
   )
@@ -133,7 +127,7 @@ function AvatarImage({ className, ...props }: React.ComponentProps<typeof Icon>)
     <Icon
       data-slot="avatar-image"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -144,7 +138,7 @@ function AvatarImage2({ className, ...props }: React.ComponentProps<typeof Icon>
     <Icon
       data-slot="avatar-image2"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -155,7 +149,7 @@ function AvatarGizmo({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="avatar-gizmo"
         data-node="avatar"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "rounded-full font-bold", className)}
+      className={cn("avatar", "lay-row", className)}
       {...props}
     />
   )

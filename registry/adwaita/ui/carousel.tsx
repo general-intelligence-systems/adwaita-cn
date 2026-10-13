@@ -56,7 +56,7 @@ function Carousel({ className, render, scrollParams: _scrollParams, allowLongSwi
     "data-orientation": orientation,
     "data-reveal-duration": revealDuration,
     "data-spacing": spacing,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("carousel", orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

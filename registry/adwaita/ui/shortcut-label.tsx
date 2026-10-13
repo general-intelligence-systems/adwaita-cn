@@ -19,7 +19,7 @@ const shortcutLabelVariants = cva(
       variant: {
         default: "",
         /** .dimmed */
-        dimmed: "dimmed opacity-[var(--dim-opacity)]",
+        dimmed: "dimmed",
         /** .keycap */
         keycap: "keycap",
       },
@@ -51,7 +51,7 @@ function ShortcutLabel({ className, render, variant = "default", accelerator, di
     "data-variant": variant,
     "data-accelerator": accelerator,
     "data-disabled-text": disabledText,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", shortcutLabelVariants({ variant }), widgetClassName, className),
+    className: cn("shortcut-label", "lay-row", shortcutLabelVariants({ variant }), widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

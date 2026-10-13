@@ -38,7 +38,7 @@ function TabView({ className, render, defaultIcon: _defaultIcon, menuModel: _men
     "data-slot": "tab-view",
     "data-node": "tabview",
     "data-shortcuts": shortcuts,
-    className: cn(widgetClassName, className),
+    className: cn("tabview", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

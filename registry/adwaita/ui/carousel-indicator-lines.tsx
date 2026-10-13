@@ -32,7 +32,7 @@ function CarouselIndicatorLines({ className, render, carousel: _carousel, orient
     "data-slot": "carousel-indicator-lines",
     "data-node": "carouselindicatorlines",
     "data-orientation": orientation,
-    className: cn(widgetClassName, className),
+    className: cn("carouselindicatorlines", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

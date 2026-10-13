@@ -30,7 +30,7 @@ function IndicatorBin({ className, render, badgeNumber, needsAttention, children
   const defaultProps = {
     "data-slot": "indicator-bin",
     "data-node": "indicatorbin",
-    className: cn("group/indicator-bin", "grid [&>*]:col-start-1 [&>*]:row-start-1", badge && "badge", needsAttention && "needs-attention", widgetClassName, className),
+    className: cn("indicatorbin", "group/indicator-bin", badge && "badge", needsAttention && "needs-attention", widgetClassName, className),
     style,
     children: (
       <>
@@ -58,7 +58,7 @@ function IndicatorBinIndicator({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="indicator-bin-indicator"
         data-node="indicator"
-      className={cn("m-0.5 min-w-1.5 min-h-1.5 rounded-[100px] bg-[color-mix(in_srgb,currentColor_40%,transparent)]", className)}
+      className={cn("indicator", className)}
       {...props}
     />
   )
@@ -69,7 +69,7 @@ function IndicatorBinMask({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="indicator-bin-mask"
         data-node="mask"
-      className={cn("p-0.5 min-w-1.5 min-h-1.5 rounded-[100px] bg-[black]", className)}
+      className={cn("mask", className)}
       {...props}
     />
   )

@@ -27,7 +27,7 @@ function Bin({ className, render, child, children, ...props }: BinProps) {
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "bin",
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     children: (
         <>

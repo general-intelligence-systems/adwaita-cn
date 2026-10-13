@@ -45,7 +45,7 @@ function FlowBoxChild({ className, render, variant = "default", child, children,
     "data-slot": "flow-box-child",
     "data-node": "flowboxchild",
     "data-variant": variant,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", flowBoxChildVariants({ variant }), widgetClassName, className),
+    className: cn("flowboxchild", flowBoxChildVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

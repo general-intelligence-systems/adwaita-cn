@@ -85,7 +85,11 @@ function Scene({
             ? { display: "inline-block", background: "var(--window-bg-color)" }
             : { width, height, overflow: "hidden", background: "var(--window-bg-color)" }
         }
-        className={overlay ? undefined : "flex flex-col [&>*]:grow"}
+        // `min-h-0` as well as `grow`: a window gives its child the window's height and the
+        // child scrolls what will not fit, and a flex child which may not shrink below its
+        // content took the height of the content instead -- 709px of application in a 620px
+        // window, with whatever sat at the bottom pushed off the edge.
+        className={overlay ? undefined : "flex flex-col [&>*]:grow [&>*]:min-h-0"}
       >
         <Screen />
       </div>

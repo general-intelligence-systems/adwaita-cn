@@ -24,7 +24,7 @@ function Fixed({ className, render, children, ...props }: FixedProps) {
   // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "fixed",
-    className: cn("relative [&>*]:absolute", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

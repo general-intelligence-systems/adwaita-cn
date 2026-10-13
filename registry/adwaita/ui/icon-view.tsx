@@ -105,12 +105,7 @@ function IconView({ className, render, cellArea: _cellArea, hadjustment: _hadjus
     "data-text-column": textColumn,
     "data-tooltip-column": tooltipColumn,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("group/icon-view", "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0", [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ], widgetClassName, className),
+    className: cn("iconview", "group/icon-view", "view", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,
@@ -129,7 +124,7 @@ function IconViewRubberband({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="icon-view-rubberband"
         data-node="rubberband"
-      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      className={cn("rubberband", className)}
       {...props}
     />
   )

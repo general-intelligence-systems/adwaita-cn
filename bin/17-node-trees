@@ -12,8 +12,8 @@
 # DESCRIPTION
 #      bin/15-app-report compares where the two sides put a component. This compares WHAT
 #      THE TWO SIDES ARE, which is the question the stylesheet answers: Adwaita styles a
-#      CSS node carrying style classes, and every rule in registry/adwaita/styles.css is
-#      written against `[data-node]` and those same classes. Two trees of the same nodes
+#      CSS node carrying style classes, and every rule in lib/adwaita-classes.ts is keyed
+#      by `[data-node]` and those same classes. Two trees of the same nodes
 #      with the same classes get the same styling; two trees which differ do not, and no
 #      amount of measuring one component at a time says which.
 #

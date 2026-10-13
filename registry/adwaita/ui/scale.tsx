@@ -39,7 +39,7 @@ const scaleVariants = cva(
       size: {
         default: "",
         /** .color */
-        color: "color p-0",
+        color: "color",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
@@ -118,7 +118,7 @@ function Scale({ className, render, variant = "default", size = "default", adjus
     "data-show-fill-level": showFillLevel,
     "data-value": value,
     "data-value-pos": valuePos,
-    className: cn("group/scale", "grid [&>*]:col-start-1 [&>*]:row-start-1", scaleVariants({ variant, size }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("scale", "group/scale", scaleVariants({ variant, size }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
@@ -145,7 +145,7 @@ function ScaleValue({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-value"
         data-node="value"
-      className={cn("opacity-[var(--dim-opacity)]", className)}
+      className={cn("value", className)}
       {...props}
     />
   )
@@ -156,7 +156,7 @@ function ScaleMark({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-mark"
         data-node="mark"
-      className={cn(className)}
+      className={cn("mark", className)}
       {...props}
     />
   )
@@ -167,7 +167,7 @@ function ScaleMarks({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-marks"
         data-node="marks"
-      className={cn("text-[color-mix(in_srgb,currentColor_var(--dim-opacity),transparent)]", className)}
+      className={cn("marks", className)}
       {...props}
     />
   )
@@ -178,7 +178,7 @@ function ScaleFill({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-fill"
         data-node="fill"
-      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)]", className)}
+      className={cn("fill", className)}
       {...props}
     />
   )
@@ -189,7 +189,7 @@ function ScaleHighlight({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-highlight"
         data-node="highlight"
-      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)]", className)}
+      className={cn("highlight", className)}
       {...props}
     />
   )
@@ -200,7 +200,7 @@ function ScaleSlider({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-slider"
         data-node="slider"
-      className={cn("-m-2 [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[6px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_0_0_1px_var(---slider-border-color),0_2px_4px_RGB(0_0_6/20%)] rounded-full min-w-5 min-h-5", className)}
+      className={cn("slider", className)}
       {...props}
     />
   )
@@ -211,7 +211,7 @@ function ScaleTrough({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="scale-trough"
         data-node="trough"
-      className={cn("relative min-h-[4px]", "transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)]", className)}
+      className={cn("trough", className)}
       {...props}
     />
   )

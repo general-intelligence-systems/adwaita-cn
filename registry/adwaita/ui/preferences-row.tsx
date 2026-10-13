@@ -20,15 +20,15 @@ const preferencesRowVariants = cva(
       variant: {
         default: "",
         /** .entry */
-        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry",
         /** .expander */
-        expander: "expander p-0 bg-none",
+        expander: "expander",
         /** .has-open-popup */
         hasOpenPopup: "has-open-popup",
         /** .header */
         header: "header",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .separator */
         separator: "separator",
         /** .separators */
@@ -38,7 +38,7 @@ const preferencesRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin",
       },
     },
     defaultVariants: { variant: "default" },
@@ -94,12 +94,7 @@ function PreferencesRow({ className, render, variant = "default", child, actionT
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", preferencesRowVariants({ variant }), [
-          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ], widgetClassName, className),
+    className: cn("row", "bin", preferencesRowVariants({ variant }), "activatable", widgetClassName, className),
     style,
     children: (
         <>

@@ -135,13 +135,13 @@ function Text({ className, render, variant = "default", placeholderText, attribu
     "data-visibility": visibility,
     "data-width-chars": widthChars,
     "data-xalign": xalign,
-    className: cn("group/text", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", textVariants({ variant }), editable === false && "read-only", widgetClassName, className),
+    className: cn("text", "group/text", textVariants({ variant }), editable === false && "read-only", widgetClassName, className),
     style,
     children: (
         <>
                   <TextPlaceholder />
                   {placeholderText === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
+                <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
                   {placeholderText}
                 </span>
               )}
@@ -164,7 +164,7 @@ function TextPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="text-placeholder"
         data-node="placeholder"
-      className={cn(className)}
+      className={cn("placeholder", className)}
       {...props}
     />
   )
@@ -175,7 +175,7 @@ function TextUndershoot({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="text-undershoot"
         data-node="undershoot"
-      className={cn(className)}
+      className={cn("undershoot", className)}
       {...props}
     />
   )
@@ -186,7 +186,7 @@ function TextSelection({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="text-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -197,7 +197,7 @@ function TextCursorHandle({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="text-cursor-handle"
         data-node="cursor-handle"
-      className={cn("py-6 px-5 min-w-5 min-h-5 rounded-full bg-[var(--accent-bg-color)]", className)}
+      className={cn("cursor-handle", className)}
       {...props}
     />
   )
@@ -208,7 +208,7 @@ function TextBlockCursor({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="text-block-cursor"
         data-node="block-cursor"
-      className={cn(className)}
+      className={cn("block-cursor", className)}
       {...props}
     />
   )
@@ -219,7 +219,7 @@ function TextWindow({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="text-window"
         data-node="window"
-      className={cn(className)}
+      className={cn("window", className)}
       {...props}
     />
   )

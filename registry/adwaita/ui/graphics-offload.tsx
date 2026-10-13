@@ -37,7 +37,7 @@ function GraphicsOffload({ className, render, child, blackBackground, enabled, c
     "data-node": "graphicsoffload",
     "data-black-background": blackBackground,
     "data-enabled": enabled,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("graphicsoffload", widgetClassName, className),
     style,
     children: (
         <>

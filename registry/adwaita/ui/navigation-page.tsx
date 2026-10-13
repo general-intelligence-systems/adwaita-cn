@@ -40,7 +40,7 @@ function NavigationPage({ className, render, child, canPop, tag, title, children
     "data-can-pop": canPop,
     "data-tag": tag,
     "data-title": title,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("navigation-view-page", widgetClassName, className),
     style,
     children: (
         <>

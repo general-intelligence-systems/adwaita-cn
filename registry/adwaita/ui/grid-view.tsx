@@ -22,7 +22,7 @@ const gridViewVariants = cva(
         /** .dialog-action-box */
         dialogActionBox: "dialog-action-box",
         /** .navigation-sidebar */
-        navigationSidebar: "navigation-sidebar pt-1.5 pb-1 bg-[transparent] text-[inherit] p-[3px]",
+        navigationSidebar: "navigation-sidebar",
       },
     },
     defaultVariants: { variant: "default" },
@@ -88,12 +88,7 @@ function GridView({ className, render, variant = "default", factory: _factory, h
     "data-single-click-activate": singleClickActivate,
     "data-tab-behavior": tabBehavior,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("group/grid-view", "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0", gridViewVariants({ variant }), [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ], widgetClassName, className),
+    className: cn("gridview", "group/grid-view", gridViewVariants({ variant }), "view", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,
@@ -112,10 +107,7 @@ function GridViewChild({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="grid-view-child"
         data-node="child"
-      className={cn([
-        "p-[3px] rounded-[9px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-data-[selected]/grid-view:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("child", className)}
       {...props}
     />
   )
@@ -126,7 +118,7 @@ function GridViewRubberband({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="grid-view-rubberband"
         data-node="rubberband"
-      className={cn("[border-width:1px] [border-style:solid] [border-color:var(--accent-color)] bg-[color-mix(in_srgb,var(--accent-color)_20%,transparent)]", className)}
+      className={cn("rubberband", className)}
       {...props}
     />
   )

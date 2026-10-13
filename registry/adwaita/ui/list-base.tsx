@@ -42,7 +42,7 @@ function ListBase({ className, render, hadjustment: _hadjustment, vadjustment: _
     "data-hscroll-policy": hscrollPolicy,
     "data-orientation": orientation,
     "data-vscroll-policy": vscrollPolicy,
-    className: cn("flex flex-col grow min-h-0", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

@@ -30,7 +30,7 @@ const inlineViewSwitcherVariants = cva(
         /** .labels */
         labels: "labels",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .round */
         round: "round",
       },
@@ -76,16 +76,16 @@ function InlineViewSwitcher({ className, render, variant = "default", stack: _st
     "data-node": "inline-view-switcher",
     "data-variant": variant,
     role: "tablist",
-    className: cn("flex flex-row", widgetClassName, className),
+    className: cn("inline-view-switcher", "lay-row", widgetClassName, className),
     style,
     children: (
-      <div data-slot="inline-view-switcher-toggle-group" data-node="toggle-group" className="labels flex flex-row items-center grow">
+      <div data-slot="inline-view-switcher-toggle-group" data-node="toggle-group" className={cn("toggle-group", "labels", "lay-row")}>
         {shown.map((page, index) => (
           <React.Fragment key={page.name}>
             <div
               data-slot="inline-view-switcher-separator"
               data-node="separator"
-              className={cn("horizontal self-stretch my-1.5", index === 0 && "hidden")}
+              className={cn("separator", "horizontal", index === 0 && "hidden")}
             />
             <div
               data-slot="inline-view-switcher-toggle"
@@ -93,9 +93,9 @@ function InlineViewSwitcher({ className, render, variant = "default", stack: _st
               role="tab"
               aria-selected={page.name === selected}
               data-state={page.name === selected ? "checked" : "unchecked"}
-              className="toggle grow basis-0 flex"
+              className={cn("button", "box", "toggle", "view-switcher-toggle")}
             >
-              <div data-slot="inline-view-switcher-bin" data-node="widget" className="grow flex items-center justify-center">
+              <div data-slot="inline-view-switcher-bin" data-node="widget" className={cn("widget", "view-switcher-bin")}>
                 <IndicatorBin>
                   <span data-slot="label" data-node="label" className="whitespace-nowrap">{page.title}</span>
                 </IndicatorBin>
@@ -122,13 +122,7 @@ function InlineViewSwitcherToggle({ className, ...props }: React.ComponentProps<
     <div
       data-slot="inline-view-switcher-toggle"
         data-node="toggle"
-      className={cn([
-        "rounded-[calc(9px_-_var(---group-padding))] font-bold min-w-8.5 min-h-[calc(34px_-_var(---group-padding)_*_2)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,color,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/inline-view-switcher:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-active/inline-view-switcher:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "group-data-[state=checked]/inline-view-switcher:bg-[var(--active-toggle-bg-color)] group-data-[state=checked]/inline-view-switcher:text-[var(--active-toggle-fg-color)] group-data-[state=checked]/inline-view-switcher:shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)]",
-        "group-data-[state=checked]/inline-view-switcher:group-disabled/inline-view-switcher:bg-[color-mix(in_srgb,var(--active-toggle-bg-color)_var(--disabled-opacity),transparent)] group-data-[state=checked]/inline-view-switcher:group-disabled/inline-view-switcher:shadow-none",
-      ], className)}
+      className={cn("toggle", className)}
       {...props}
     />
   )
@@ -139,10 +133,7 @@ function InlineViewSwitcherToggleGroup({ className, ...props }: React.ComponentP
     <div
       data-slot="inline-view-switcher-toggle-group"
         data-node="toggle-group"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "p-[var(---group-padding)] [---group-padding:3px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-[9px]",
-        "group-disabled/inline-view-switcher:bg-[color-mix(in_srgb,color-mix(in_srgb,currentColor_10%,transparent)_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("toggle-group", "lay-row", className)}
       {...props}
     />
   )

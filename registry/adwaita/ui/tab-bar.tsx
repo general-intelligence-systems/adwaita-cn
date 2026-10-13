@@ -51,7 +51,7 @@ function TabBar({ className, render, endActionWidget, startActionWidget, view: _
     "data-expand-tabs": expandTabs,
     "data-extra-drag-preload": extraDragPreload,
     "data-inverted": inverted,
-    className: cn("group/tab-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("tabbar", "group/tab-bar", widgetClassName, className),
     style,
     children: (
         <>
@@ -89,7 +89,7 @@ function TabBarStartActionBin({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="tab-bar-start-action-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "start-action", "py-1.5 px-0", className)}
+      className={cn("start-action", className)}
       {...props}
     />
   )
@@ -100,20 +100,38 @@ function TabBarPinnedBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-bar-pinned-box"
         data-node="tabbox"
-      className={cn("py-1.5 min-h-8.5", className)}
+      className={cn("tabbox", className)}
       {...props}
     />
   )
 }
 
-function TabBarPinnedScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function TabBarPinnedScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-bar-pinned-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", "pinned", className)}
+      className={cn("scrolledwindow", "pinned", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -122,21 +140,39 @@ function TabBarBox2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-bar-box2"
         data-node="tabbox"
-      className={cn("py-1.5 min-h-8.5", className)}
+      className={cn("tabbox", className)}
       {...props}
     />
   )
 }
 
-function TabBarScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function TabBarScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tab-bar-scrolled-window"
         data-node="scrolledwindow"
         data-hexpand=""
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", className)}
+      className={cn("scrolledwindow", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -144,7 +180,7 @@ function TabBarEndActionBin({ className, ...props }: React.ComponentProps<"div">
   return (
     <div
       data-slot="tab-bar-end-action-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "end-action", "py-1.5 px-0", className)}
+      className={cn("end-action", className)}
       {...props}
     />
   )
@@ -155,7 +191,7 @@ function TabBarBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-bar-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "box horizontal", "pt-0 pb-[1px] px-[1px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color)]", className)}
+      className={cn("box", "box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -166,7 +202,7 @@ function TabBarRevealer({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="tab-bar-revealer"
         data-node="revealer"
-      className={cn(className)}
+      className={cn("revealer", className)}
       {...props}
     />
   )

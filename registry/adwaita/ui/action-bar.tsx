@@ -48,7 +48,7 @@ function ActionBar({ className, render, variant = "default", revealed, children,
     "data-variant": variant,
     role: "toolbar",
     "data-revealed": revealed,
-    className: cn("group/action-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", actionBarVariants({ variant }), widgetClassName, className),
+    className: cn("actionbar", "group/action-bar", actionBarVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <ActionBarRevealer>
@@ -73,7 +73,7 @@ function ActionBarStart({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="action-bar-start"
         data-node="start"
-      className={cn(className)}
+      className={cn("start", className)}
       {...props}
     />
   )
@@ -84,7 +84,7 @@ function ActionBarBox2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="action-bar-box2"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -95,7 +95,7 @@ function ActionBarCenter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="action-bar-center"
         data-node="center"
-      className={cn(className)}
+      className={cn("center", className)}
       {...props}
     />
   )
@@ -106,7 +106,7 @@ function ActionBarBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="action-bar-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", "pt-[7px] pb-1.5 px-1.5 bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_1px_var(--headerbar-shade-color)] gap-[6px]", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -117,7 +117,7 @@ function ActionBarRevealer({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="action-bar-revealer"
         data-node="revealer"
-      className={cn(className)}
+      className={cn("revealer", className)}
       {...props}
     />
   )

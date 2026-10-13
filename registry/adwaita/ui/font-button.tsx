@@ -81,7 +81,7 @@ function FontButton({ className, render, variant = "default", fontDesc: _fontDes
     "data-title": title,
     "data-use-font": useFont,
     "data-use-size": useSize,
-    className: cn("group/font-button", "grid [&>*]:col-start-1 [&>*]:row-start-1", fontButtonVariants({ variant }), widgetClassName, className),
+    className: cn("fontbutton", "group/font-button", fontButtonVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -105,7 +105,7 @@ function FontButtonContent({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="font-button-content"
         data-node="content"
-      className={cn(className)}
+      className={cn("content", className)}
       {...props}
     />
   )
@@ -116,15 +116,7 @@ function FontButtonButton({ className, ...props }: React.ComponentProps<"button"
     <button
       data-slot="font-button-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-hover/font-button:bg-[color-mix(in_srgb,currentColor_15%,transparent)]",
-        "group-active/font-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-disabled/font-button:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/font-button:bg-[color-mix(in_srgb,currentColor_30%,transparent)]",
-        "group-data-[state=checked]/font-button:group-hover/font-button:bg-[color-mix(in_srgb,currentColor_35%,transparent)]",
-        "group-data-[state=checked]/font-button:group-active/font-button:bg-[color-mix(in_srgb,currentColor_40%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )

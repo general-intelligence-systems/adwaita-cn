@@ -88,7 +88,7 @@ function Range({ className, render, variant = "default", adjustment: _adjustment
     "data-round-digits": roundDigits,
     "data-show-fill-level": showFillLevel,
     "data-value": value,
-    className: cn("group/range", "grid [&>*]:col-start-1 [&>*]:row-start-1", rangeVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("range", "group/range", rangeVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <RangeGizmo>
@@ -111,7 +111,7 @@ function RangeGizmo2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="range-gizmo2"
         data-node="slider"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("slider", "lay-row", className)}
       {...props}
     />
   )
@@ -122,7 +122,7 @@ function RangeGizmo({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="range-gizmo"
         data-node="trough"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "relative min-h-1", className)}
+      className={cn("trough", "lay-row", className)}
       {...props}
     />
   )

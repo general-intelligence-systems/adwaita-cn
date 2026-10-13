@@ -57,18 +57,18 @@ function InfoBar({ className, render, variant = "default", messageType, revealed
     "data-show-close-button": showCloseButton,
     // `message-type` IS the style class: gtk_info_bar_set_message_type adds
     // `.warning` and the rest, and `other` adds none.
-    className: cn("flex flex-col", infoBarVariants({ variant }), messageType !== undefined && messageType !== "other" && messageType, widgetClassName, className),
+    className: cn("infobar", "lay-col", infoBarVariants({ variant }), messageType !== undefined && messageType !== "other" && messageType, widgetClassName, className),
     style,
     children: (
-      <div data-slot="info-bar-revealer" data-node="revealer" className={cn("flex flex-col", revealed === false && "hidden")}>
-        <div data-slot="info-bar-box" data-node="box" className="horizontal flex flex-row items-center">
-          <div data-slot="info-bar-content" data-node="box" className="horizontal flex flex-row items-center grow">
+      <div data-slot="info-bar-revealer" data-node="revealer" className={cn("revealer", "lay-col", revealed === false && "hidden")}>
+        <div data-slot="info-bar-box" data-node="box" className={cn("box", "box", "horizontal", "info-bar-box")}>
+          <div data-slot="info-bar-content" data-node="box" className={cn("box", "box", "horizontal", "info-bar-content")}>
             {children}
           </div>
-          <div data-slot="info-bar-actions" data-node="box" className="horizontal flex flex-row items-center" />
+          <div data-slot="info-bar-actions" data-node="box" className={cn("box", "box", "horizontal", "info-bar-box")} />
           {showCloseButton ? (
             <Button variant="flat" className="close image-button">
-              <Icon name="window-close-symbolic" />
+              <Icon name="window-close-symbolic" data-node="image" className={cn("image")} />
             </Button>
           ) : null}
         </div>

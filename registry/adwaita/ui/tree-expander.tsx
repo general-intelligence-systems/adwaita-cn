@@ -43,7 +43,7 @@ function TreeExpander({ className, render, child, listRow: _listRow, hideExpande
     "data-hide-expander": hideExpander,
     "data-indent-for-depth": indentForDepth,
     "data-indent-for-icon": indentForIcon,
-    className: cn("group/tree-expander", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
+    className: cn("treeexpander", "group/tree-expander", "lay-row", widgetClassName, className),
     style,
     children: (
         <>
@@ -67,7 +67,7 @@ function TreeExpanderIndent({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="tree-expander-indent"
         data-node="indent"
-      className={cn(className)}
+      className={cn("indent", className)}
       {...props}
     />
   )
@@ -78,11 +78,7 @@ function TreeExpanderExpander({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="tree-expander-expander"
         data-node="expander"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", [
-        "min-w-4 min-h-4 adw-icon-source [--adw-icon:var(--icon-pan-end-symbolic-rtl)]",
-        "group-disabled/tree-expander:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/tree-expander:adw-icon-source group-data-[state=checked]/tree-expander:[--adw-icon:var(--icon-pan-down-symbolic)]",
-      ], className)}
+      className={cn("expander", "lay-row", className)}
       {...props}
     />
   )

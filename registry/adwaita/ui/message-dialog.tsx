@@ -24,7 +24,7 @@ const messageDialogVariants = cva(
         /** .compact */
         compact: "compact",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .destructive-action */
         destructiveAction: "destructive-action",
         /** .has-body */
@@ -32,15 +32,15 @@ const messageDialogVariants = cva(
         /** .has-heading */
         hasHeading: "has-heading",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .narrow */
         narrow: "narrow",
         /** .short */
         short: "short",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
         /** .suggested-action */
         suggestedAction: "suggested-action",
       },
@@ -178,7 +178,7 @@ function MessageDialog({ className, render, variant = "default", body, child, ex
     "data-resizable": resizable,
     "data-startup-id": startupId,
     "data-title": title,
-    className: cn("group/message-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", messageDialogVariants({ variant }), "background", widgetClassName, className),
+    className: cn("window", "group/message-dialog", "bin", messageDialogVariants({ variant }), "background", widgetClassName, className),
     style,
     children: (
         <>
@@ -199,7 +199,7 @@ function MessageDialog({ className, render, variant = "default", body, child, ex
                 </MessageDialogBox2>
               </MessageDialogWindowHandle>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="message-dialog-icon" />
+                <Icon name={iconName} data-slot="message-dialog-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {child}
@@ -222,7 +222,7 @@ function MessageDialogBox({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="message-dialog-box"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "horizontal", className)}
+      className={cn("box", "box", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -233,7 +233,7 @@ function MessageDialogSelection({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="message-dialog-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -244,12 +244,7 @@ function MessageDialogLink({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="message-dialog-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/message-dialog:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/message-dialog:text-[var(--accent-color)]",
-        "group-disabled/message-dialog:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -260,10 +255,9 @@ function MessageDialogHeadingLabel({ className, ...props }: React.ComponentProps
     <span
       data-slot="message-dialog-heading-label"
         data-node="label"
-      className={cn("title-2 flex justify-center items-center text-center", [
-        "caret-[currentColor] font-extrabold text-[136%]",
-        "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title-2", className)}
       {...props}
     />
   )
@@ -274,7 +268,7 @@ function MessageDialogSelection2({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="message-dialog-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -285,12 +279,7 @@ function MessageDialogLink2({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="message-dialog-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/message-dialog:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/message-dialog:text-[var(--accent-color)]",
-        "group-disabled/message-dialog:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -301,10 +290,9 @@ function MessageDialogHeadingLabelSmall({ className, ...props }: React.Component
     <span
       data-slot="message-dialog-heading-label-small"
         data-node="label"
-      className={cn("title-4 flex justify-center items-center text-center", [
-        "caret-[currentColor] font-bold text-[118%]",
-        "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "title-4", className)}
       {...props}
     />
   )
@@ -314,7 +302,7 @@ function MessageDialogHeadingBin({ className, ...props }: React.ComponentProps<"
   return (
     <div
       data-slot="message-dialog-heading-bin"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "heading-bin", "px-6", className)}
+      className={cn("heading-bin", "lay-row", className)}
       {...props}
     />
   )
@@ -325,7 +313,7 @@ function MessageDialogSelection3({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="message-dialog-selection3"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -336,12 +324,7 @@ function MessageDialogLink3({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="message-dialog-link3"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/message-dialog:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/message-dialog:text-[var(--accent-color)]",
-        "group-disabled/message-dialog:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -353,10 +336,9 @@ function MessageDialogBodyLabel({ className, ...props }: React.ComponentProps<"s
       data-slot="message-dialog-body-label"
         data-node="label"
         data-vexpand=""
-      className={cn("body flex justify-center items-center text-center", [
-        "caret-[currentColor] font-normal leading-[140%] px-6",
-        "group-disabled/message-dialog:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", "body", className)}
       {...props}
     />
   )
@@ -366,7 +348,7 @@ function MessageDialogChildBin({ className, ...props }: React.ComponentProps<"di
   return (
     <div
       data-slot="message-dialog-child-bin"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "child", "px-6", className)}
+      className={cn("child", className)}
       {...props}
     />
   )
@@ -377,7 +359,7 @@ function MessageDialogMessageArea({ className, ...props }: React.ComponentProps<
     <div
       data-slot="message-dialog-message-area"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "message-area vertical", "pt-8 pb-[9px] gap-[24px]", className)}
+      className={cn("box", "box", "message-area", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -387,7 +369,7 @@ function MessageDialogResponseArea({ className, ...props }: React.ComponentProps
   return (
     <div
       data-slot="message-dialog-response-area"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "response-area", "pt-3 pb-6 px-6 gap-[12px]", className)}
+      className={cn("response-area", "lay-row", className)}
       {...props}
     />
   )
@@ -398,7 +380,7 @@ function MessageDialogBox2({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="message-dialog-box2"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -409,7 +391,7 @@ function MessageDialogWindowHandle({ className, ...props }: React.ComponentProps
     <div
       data-slot="message-dialog-window-handle"
         data-node="windowhandle"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("windowhandle", className)}
       {...props}
     />
   )

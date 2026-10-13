@@ -55,7 +55,7 @@ function PopoverBin({ className, render, variant = "default", child, popover, me
     "data-node": "popoverbin",
     "data-variant": variant,
     "data-handle-input": handleInput,
-    className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", popoverBinVariants({ variant }), widgetClassName, className),
+    className: cn("popoverbin", popoverBinVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>

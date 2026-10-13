@@ -40,7 +40,7 @@ function NavigationView({ className, render, animateTransitions, hhomogeneous, p
     "data-hhomogeneous": hhomogeneous,
     "data-pop-on-escape": popOnEscape,
     "data-vhomogeneous": vhomogeneous,
-    className: cn("group/navigation-view", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("navigation-view", "group/navigation-view", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,
@@ -59,7 +59,7 @@ function NavigationViewDimming({ className, ...props }: React.ComponentProps<"di
     <div
       data-slot="navigation-view-dimming"
         data-node="dimming"
-      className={cn("bg-[var(--shade-color)]", className)}
+      className={cn("dimming", className)}
       {...props}
     />
   )
@@ -70,7 +70,7 @@ function NavigationViewShadow({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="navigation-view-shadow"
         data-node="shadow"
-      className={cn("min-w-14 min-h-14", className)}
+      className={cn("shadow", className)}
       {...props}
     />
   )

@@ -28,7 +28,7 @@ const progressBarVariants = cva(
         /** .left */
         left: "left",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding min-w-0.5 min-h-0.5",
+        osd: "osd",
         /** .pulse */
         pulse: "pulse",
         /** .right */
@@ -84,7 +84,7 @@ function ProgressBar({ className, render, variant = "default", text, ellipsize, 
     "data-orientation": orientation,
     "data-pulse-step": pulseStep,
     "data-show-text": showText,
-    className: cn("group/progress-bar", "flex", "flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", progressBarVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    className: cn("progressbar", "group/progress-bar", "lay-col", progressBarVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
     style,
     children: (
         <>
@@ -92,7 +92,7 @@ function ProgressBar({ className, render, variant = "default", text, ellipsize, 
                 <ProgressBarProgress style={{ [orientation === "vertical" ? "blockSize" : "inlineSize"]: `${Math.max(0, Math.min(100, (fraction ?? 0) * 100))}%`, [orientation === "vertical" ? "inlineSize" : "blockSize"]: "100%" }} />
               </ProgressBarTrough>
                   {text === undefined ? null : (
-                <span data-slot="label" data-node="label" className="caret-[currentColor] flex justify-center items-center">
+                <span data-slot="label" data-node="label" data-xalign="center" data-yalign="center" className={cn("label")}>
                   {text}
                 </span>
               )}
@@ -115,7 +115,7 @@ function ProgressBarText({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="progress-bar-text"
         data-node="text"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "opacity-[var(--dim-opacity)] text-[smaller]", className)}
+      className={cn("text", className)}
       {...props}
     />
   )
@@ -126,7 +126,7 @@ function ProgressBarProgress({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="progress-bar-progress"
         data-node="progress"
-      className={cn("rounded-[99px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[var(--accent-bg-color)] text-[var(--accent-fg-color)] min-h-2", className)}
+      className={cn("progress", className)}
       {...props}
     />
   )
@@ -137,7 +137,7 @@ function ProgressBarTrough({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="progress-bar-trough"
         data-node="trough"
-      className={cn("transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] rounded-[99px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] min-w-37.5 min-h-2", className)}
+      className={cn("trough", className)}
       {...props}
     />
   )

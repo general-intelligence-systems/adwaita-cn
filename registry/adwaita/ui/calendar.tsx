@@ -83,12 +83,7 @@ function Calendar({ className, render, variant = "default", date: _date, day, mo
     "data-show-heading": showHeading,
     "data-show-week-numbers": showWeekNumbers,
     "data-year": year,
-    className: cn("group/calendar", "flex", "flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", calendarVariants({ variant }), [
-          "view text-[var(--view-fg-color)] bg-[var(--view-bg-color)]",
-          "disabled:text-[color-mix(in_srgb,var(--view-fg-color)_var(--disabled-opacity),transparent)] disabled:bg-[color-mix(in_srgb,var(--window-bg-color)_60%,var(--view-bg-color))] disabled:text-[var(--view-fg-color)]",
-          "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:rounded-[9px]",
-          "data-[selected]:focus:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)] data-[selected]:focus:rounded-[9px]",
-        ], widgetClassName, className),
+    className: cn("calendar", "group/calendar", "lay-row", calendarVariants({ variant }), "view", widgetClassName, className),
     style,
     children: (
         <>
@@ -119,15 +114,7 @@ function CalendarButton({ className, ...props }: React.ComponentProps<"button">)
     <button
       data-slot="calendar-button"
         data-node="button"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", [
-        "py-[5px] px-2.5 min-h-6 min-w-4 rounded-[9px] font-bold [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-[transparent] shadow-none rounded-none",
-        "group-hover/calendar:bg-[color-mix(in_srgb,currentColor_15%,transparent)] group-hover/calendar:bg-[color-mix(in_srgb,currentColor_7%,transparent)]",
-        "group-active/calendar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-active/calendar:bg-[color-mix(in_srgb,currentColor_16%,transparent)]",
-        "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))] group-disabled/calendar:[filter:opacity(30%)]",
-        "group-data-[state=checked]/calendar:bg-[color-mix(in_srgb,currentColor_30%,transparent)] group-data-[state=checked]/calendar:bg-[color-mix(in_srgb,currentColor_10%,transparent)]",
-        "group-data-[state=checked]/calendar:group-hover/calendar:bg-[color-mix(in_srgb,currentColor_35%,transparent)] group-data-[state=checked]/calendar:group-hover/calendar:bg-[color-mix(in_srgb,currentColor_13%,transparent)]",
-        "group-data-[state=checked]/calendar:group-active/calendar:bg-[color-mix(in_srgb,currentColor_40%,transparent)] group-data-[state=checked]/calendar:group-active/calendar:bg-[color-mix(in_srgb,currentColor_19%,transparent)]",
-      ], className)}
+      className={cn("button", "bin", className)}
       {...props}
     />
   )
@@ -138,7 +125,7 @@ function CalendarStack({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="calendar-stack"
         data-node="stack"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("stack", className)}
       {...props}
     />
   )
@@ -149,7 +136,7 @@ function CalendarSelection({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="calendar-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -160,12 +147,7 @@ function CalendarLink({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="calendar-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/calendar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/calendar:text-[var(--accent-color)]",
-        "group-disabled/calendar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -176,10 +158,9 @@ function CalendarLabel({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="calendar-label"
         data-node="label"
-      className={cn("flex justify-center items-center", [
-        "caret-[currentColor]",
-        "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", className)}
       {...props}
     />
   )
@@ -190,7 +171,7 @@ function CalendarHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="calendar-header"
         data-node="header"
-      className={cn("[border-bottom-width:1px] [border-bottom-style:solid] [border-bottom-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]", className)}
+      className={cn("header", className)}
       {...props}
     />
   )
@@ -201,7 +182,7 @@ function CalendarSelection2({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="calendar-selection2"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -212,12 +193,7 @@ function CalendarLink2({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="calendar-link2"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/calendar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/calendar:text-[var(--accent-color)]",
-        "group-disabled/calendar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -228,11 +204,9 @@ function CalendarLabel2({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="calendar-label2"
         data-node="label"
-      className={cn("flex justify-center items-center", [
-        "caret-[currentColor] mt-[3px] mr-[3px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-disabled/calendar:[filter:Opacity(var(--disabled-opacity))]",
-        "group-focus/calendar:outline-[color-mix(in_srgb,var(--accent-color)_50%,transparent)] group-focus/calendar:outline-2 group-focus/calendar:outline-offset-[-2px]",
-      ], className)}
+        data-xalign="center"
+        data-yalign="center"
+      className={cn("label", className)}
       {...props}
     />
   )
@@ -243,7 +217,7 @@ function CalendarGrid({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="calendar-grid"
         data-node="grid"
-      className={cn("grid", "horizontal", "pb-[3px] pl-[3px]", className)}
+      className={cn("grid", "horizontal", className)}
       {...props}
     />
   )

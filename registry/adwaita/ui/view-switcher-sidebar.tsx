@@ -69,18 +69,18 @@ function ViewSwitcherSidebar({ className, render, stack: _stack, filter, mode, p
   const defaultProps = {
     "data-slot": "view-switcher-sidebar",
     "data-node": "viewswitchersidebar",
-    className: cn("flex flex-col", widgetClassName, className),
+    className: cn("viewswitchersidebar", "lay-col", widgetClassName, className),
     style,
     children: (
-      <div data-slot="view-switcher-sidebar-sidebar" data-node="sidebar" className="flex flex-col grow min-h-0">
-        <div data-slot="view-switcher-sidebar-scrolled-window" data-node="scrolledwindow" className="flex flex-col grow min-h-0 overflow-auto">
-          <div data-slot="view-switcher-sidebar-viewport" data-node="viewport" className="flex flex-col grow min-h-0">
+      <div data-slot="view-switcher-sidebar-sidebar" data-node="sidebar" className={cn("sidebar", "lay-col", "fills")}>
+        <div data-slot="view-switcher-sidebar-scrolled-window" data-node="scrolledwindow" className={cn("scrolledwindow", "lay-col", "fills", "scrolls")}>
+          <div data-slot="view-switcher-sidebar-viewport" data-node="viewport" className={cn("viewport", "lay-col", "fills")}>
             {/* A LIST BOX AND LIST BOX ROWS, by their own slots: the toolkit builds a
                 GtkListBox here and the comparison walks both sides in order, so a list
                 under a slot of its own went uncounted on this side while the toolkit's
                 was counted -- and every row after it in the application paired with
                 the wrong one. */}
-            <div data-slot="list-box" data-node="list" className="navigation-sidebar flex flex-col">
+            <div data-slot="list-box" data-node="list" className={cn("list", "navigation-sidebar", "lay-col")}>
               {shown.map((page) => (
                 <div
                   key={page.name}
@@ -89,11 +89,11 @@ function ViewSwitcherSidebar({ className, render, stack: _stack, filter, mode, p
                   role="tab"
                   aria-selected={page.name === selected}
                   data-state={page.name === selected ? "checked" : "unchecked"}
-                  className="activatable flex flex-row"
+                  className={cn("row", "box", "activatable", "lay-row")}
                 >
-                  <div data-node="box" className="horizontal flex flex-row items-center grow gap-3 px-3">
-                    {page.iconName === undefined ? null : <Icon name={page.iconName} className="icon" />}
-                    <div data-node="box" className="vertical flex flex-col grow justify-center">
+                  <div data-node="box" className={cn("box", "box", "horizontal", "sidebar-row")}>
+                    {page.iconName === undefined ? null : <Icon name={page.iconName} data-node="image" className={cn("image", "icon")} />}
+                    <div data-node="box" className={cn("box", "box", "vertical", "sidebar-row-text")}>
                       <span data-slot="label" data-node="label" className="title">{page.title}</span>
                       {/* The toolkit's row has a subtitle label whether or not there is
                           a subtitle, and measures it at nothing when there is not. */}
@@ -124,7 +124,7 @@ function ViewSwitcherSidebarSelection({ className, ...props }: React.ComponentPr
     <div
       data-slot="view-switcher-sidebar-selection"
         data-node="selection"
-      className={cn("bg-[color-mix(in_srgb,var(--view-fg-color)_10%,transparent)] text-[transparent]", className)}
+      className={cn("selection", className)}
       {...props}
     />
   )
@@ -135,12 +135,7 @@ function ViewSwitcherSidebarLink({ className, ...props }: React.ComponentProps<"
     <div
       data-slot="view-switcher-sidebar-link"
         data-node="link"
-      className={cn([
-        "text-[var(--accent-color)] [font-weight:inherit] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/view-switcher-sidebar:text-[HSL(from_var(--accent-color)_h_calc(s_*_1.1)_calc(l_*_1.1))]",
-        "group-active/view-switcher-sidebar:text-[var(--accent-color)]",
-        "group-disabled/view-switcher-sidebar:text-[color-mix(in_srgb,currentColor_var(--disabled-opacity),transparent)]",
-      ], className)}
+      className={cn("link", className)}
       {...props}
     />
   )
@@ -151,10 +146,9 @@ function ViewSwitcherSidebarDescription({ className, ...props }: React.Component
     <span
       data-slot="view-switcher-sidebar-description"
         data-node="label"
-      className={cn("body dimmed description flex justify-start items-center", [
-        "caret-[currentColor] font-normal leading-[140%] opacity-[var(--dim-opacity)]",
-        "group-disabled/view-switcher-sidebar:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+        data-xalign="start"
+        data-yalign="center"
+      className={cn("label", "body", "dimmed", "description", className)}
       {...props}
     />
   )
@@ -165,7 +159,7 @@ function ViewSwitcherSidebarBox({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="view-switcher-sidebar-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", "my-6 mx-3 gap-[24px]", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )
@@ -179,21 +173,39 @@ function ViewSwitcherSidebarClamp({ className, style, ...props }: React.Componen
       ref={ref}
       data-slot="view-switcher-sidebar-clamp"
         data-node="clamp"
-      className={cn("grid [&>*]:min-w-0 [&>*]:col-start-2", className)}
+      className={cn("clamp", "clamp", className)}
       style={{ ...style, ...(columns === undefined ? {} : { gridTemplateColumns: columns }) }}
       {...props}
     />
   )
 }
 
-function ViewSwitcherSidebarScrolledWindow({ className, ...props }: React.ComponentProps<"div">) {
+function ViewSwitcherSidebarScrolledWindow({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="view-switcher-sidebar-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 has-[>[data-valign=center]]:justify-center has-[>[data-valign=end]]:justify-end has-[>[data-valign=start]]:justify-start", className)}
+      className={cn("scrolledwindow", className)}
       {...props}
-    />
+    >
+      <div data-slot="scrolledwindow-viewport" data-node="viewport" className={cn("viewport")}>
+        {children}
+      </div>
+      <div data-slot="scrolledwindow-scrollbar-horizontal" data-node="scrollbar" className={cn("scrollbar", "bottom", "horizontal", "overlay-indicator")}>
+              <div data-node="range" className={cn("range", "horizontal")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+            <div data-slot="scrolledwindow-scrollbar-vertical" data-node="scrollbar" className={cn("scrollbar", "overlay-indicator", "right", "vertical")}>
+              <div data-node="range" className={cn("range", "vertical")}>
+                <div data-node="trough" className={cn("trough")}>
+                  <div data-node="slider" className={cn("slider")} />
+                </div>
+              </div>
+            </div>
+    </div>
   )
 }
 
@@ -202,7 +214,7 @@ function ViewSwitcherSidebarPreferencesPage({ className, ...props }: React.Compo
     <div
       data-slot="view-switcher-sidebar-preferences-page"
         data-node="preferencespage"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", className)}
+      className={cn("preferencespage", "box", "lay-row", className)}
       {...props}
     />
   )
@@ -213,7 +225,7 @@ function ViewSwitcherSidebarSidebar({ className, ...props }: React.ComponentProp
     <div
       data-slot="view-switcher-sidebar-sidebar"
         data-node="sidebar"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", className)}
+      className={cn("sidebar", className)}
       {...props}
     />
   )

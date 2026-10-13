@@ -23,15 +23,15 @@ const expanderRowVariants = cva(
         /** .empty */
         empty: "empty",
         /** .entry */
-        entry: "entry [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        entry: "entry",
         /** .expander */
-        expander: "expander p-0 bg-none",
+        expander: "expander",
         /** .has-open-popup */
         hasOpenPopup: "has-open-popup",
         /** .header */
         header: "header",
         /** .osd */
-        osd: "osd [--accent-bg-color:RGB(255_255_255_/_75%)] [--accent-fg-color:RGB(0_0_0_/_75%)] [--scrollbar-outline-color:RGB(0_0_0_/_50%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] text-[RGB(255_255_255/90%)] [border-width:0] bg-[RGB(0_0_0/70%)] bg-clip-padding",
+        osd: "osd",
         /** .separator */
         separator: "separator",
         /** .separators */
@@ -41,7 +41,7 @@ const expanderRowVariants = cva(
         /** .sidebar-placeholder-row */
         sidebarPlaceholderRow: "sidebar-placeholder-row",
         /** .spin */
-        spin: "spin [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background-color,background-image,border-radius] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+        spin: "spin",
       },
     },
     defaultVariants: { variant: "default" },
@@ -124,12 +124,7 @@ function ExpanderRow({ className, render, variant = "default", child, iconName, 
     "data-title-selectable": titleSelectable,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("group/expander-row", "grid [&>*]:col-start-1 [&>*]:row-start-1", expanderRowVariants({ variant }), [
-          "activatable hover:bg-[color-mix(in_srgb,currentColor_4%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
-          "data-[selected]:hover:bg-[color-mix(in_srgb,var(--accent-bg-color)_32%,transparent)]",
-          "data-[selected]:active:bg-[color-mix(in_srgb,var(--accent-bg-color)_39%,transparent)]",
-        ], widgetClassName, className),
+    className: cn("row", "group/expander-row", "bin", expanderRowVariants({ variant }), "activatable", widgetClassName, className),
     style,
     children: (
         <>
@@ -170,7 +165,7 @@ function ExpanderRowSuffixes({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="expander-row-suffixes"
         data-node="box"
-      className={cn("flex flex-row [&>[data-hexpand]]:grow [&>*:has([data-hexpand])]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "suffixes horizontal", className)}
+      className={cn("box", "box", "suffixes", "horizontal", "horizontal", className)}
       {...props}
     />
   )
@@ -181,7 +176,7 @@ function ExpanderRowImage({ className, ...props }: React.ComponentProps<typeof I
     <Icon
       data-slot="expander-row-image"
         data-node="image"
-      className={cn("self-center", className)}
+      className={cn("image", className)}
       {...props}
     />
   )
@@ -192,10 +187,7 @@ function ExpanderRowSlider({ className, ...props }: React.ComponentProps<"div">)
     <div
       data-slot="expander-row-slider"
         data-node="slider"
-      className={cn([
-        "min-w-5 min-h-5 rounded-full bg-[color-mix(in_srgb,white_80%,var(--view-bg-color))] shadow-[0_2px_4px_RGB(0_0_6/20%)]",
-        "group-disabled/expander-row:shadow-[0_2px_4px_transparent]",
-      ], className)}
+      className={cn("slider", className)}
       {...props}
     />
   )
@@ -207,15 +199,7 @@ function ExpanderRowEnableSwitch({ className, ...props }: React.ComponentProps<"
       data-slot="expander-row-enable-switch"
         data-node="switch"
         data-valign="center"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "min-w-[46px]", [
-        "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-hover/expander-row:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
-        "group-active/expander-row:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
-        "group-disabled/expander-row:[filter:Opacity(var(--disabled-opacity))]",
-        "group-data-[state=checked]/expander-row:text-[var(--accent-fg-color)] group-data-[state=checked]/expander-row:bg-[var(--accent-bg-color)]",
-        "group-data-[state=checked]/expander-row:group-hover/expander-row:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-        "group-data-[state=checked]/expander-row:group-active/expander-row:bg-[image:image(RGB(0_0_6/20%))]",
-      ], className)}
+      className={cn("switch", className)}
       {...props}
     />
   )
@@ -226,10 +210,7 @@ function ExpanderRowImage2({ className, ...props }: React.ComponentProps<typeof 
     <Icon
       data-slot="expander-row-image2"
         data-node="image"
-      className={cn("expander-row-arrow self-center", [
-        "mx-[3px] opacity-[var(--dim-opacity)] transition-[-gtk-icon-transform] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-        "group-disabled/expander-row:[filter:Opacity(var(--disabled-opacity))]",
-      ], className)}
+      className={cn("image", "expander-row-arrow", className)}
       {...props}
     />
   )
@@ -240,10 +221,7 @@ function ExpanderRowActionRow({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="expander-row-action-row"
         data-node="row"
-      className={cn("grid [&>*]:col-start-1 [&>*]:row-start-1", "header", [
-        "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] p-0.5",
-        "group-data-[selected]/expander-row:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-      ], className)}
+      className={cn("row", "bin", "header", className)}
       {...props}
     />
   )
@@ -254,7 +232,7 @@ function ExpanderRowListBox({ className, ...props }: React.ComponentProps<"ul">)
     <ul
       data-slot="expander-row-list-box"
         data-node="list"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-none text-[inherit]", className)}
+      className={cn("list", "lay-col", className)}
       {...props}
     />
   )
@@ -265,7 +243,7 @@ function ExpanderRowList({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-slot="expander-row-list"
         data-node="list"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "nested", "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] bg-[color-mix(in_srgb,var(--card-shade-color)_50%,transparent)] text-[inherit]", className)}
+      className={cn("list", "nested", "lay-col", className)}
       {...props}
     />
   )
@@ -276,7 +254,7 @@ function ExpanderRowRevealer({ className, ...props }: React.ComponentProps<"div"
     <div
       data-slot="expander-row-revealer"
         data-node="revealer"
-      className={cn(className)}
+      className={cn("revealer", className)}
       {...props}
     />
   )
@@ -287,7 +265,7 @@ function ExpanderRowBox({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="expander-row-box"
         data-node="box"
-      className={cn("flex flex-col [&>[data-vexpand]]:grow [&>*:has([data-vexpand])]:grow [&>[data-halign=start]]:self-start [&>[data-halign=center]]:self-center [&>[data-halign=end]]:self-end", "vertical", className)}
+      className={cn("box", "box", "vertical", "vertical", className)}
       {...props}
     />
   )

@@ -23,7 +23,7 @@ const fontChooserDialogVariants = cva(
         /** .bottom-sheet */
         bottomSheet: "bottom-sheet",
         /** .csd */
-        csd: "csd m-0 shadow-[0_0_14px_5px_RGB(0_0_0/15%),0_0_5px_2px_RGB(0_0_0/10%),0_0_0_1px_RGB(0_0_0/5%)] rounded-[var(--window-radius)] [outline-width:1px] [outline-style:solid] [outline-color:RGB(255_255_255/7%)] outline-offset-[-1px]",
+        csd: "csd",
         /** .default */
         default: "default",
         /** .dialog-window */
@@ -33,7 +33,7 @@ const fontChooserDialogVariants = cva(
         /** .landscape */
         landscape: "landscape",
         /** .messagedialog */
-        messagedialog: "messagedialog bg-[var(--dialog-bg-color)] text-[var(--dialog-fg-color)]",
+        messagedialog: "messagedialog",
         /** .narrow */
         narrow: "narrow",
         /** .portrait */
@@ -41,9 +41,9 @@ const fontChooserDialogVariants = cva(
         /** .short */
         short: "short",
         /** .solid-csd */
-        solidCsd: "solid-csd p-[5px] m-0 [--window-radius:0px] shadow-[inset_0_0_0_5px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent),inset_0_0_0_4px_var(--headerbar-bg-color),inset_0_0_0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+        solidCsd: "solid-csd",
         /** .ssd */
-        ssd: "ssd shadow-[0_0_0_1px_RGB(0_0_0/5%)]",
+        ssd: "ssd",
       },
     },
     defaultVariants: { variant: "default" },
@@ -181,7 +181,7 @@ function FontChooserDialog({ className, render, variant = "default", child, icon
     "data-startup-id": startupId,
     "data-title": title,
     "data-use-header-bar": useHeaderBar,
-    className: cn("group/font-chooser-dialog", "grid [&>*]:col-start-1 [&>*]:row-start-1", fontChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
+    className: cn("window", "group/font-chooser-dialog", "bin", fontChooserDialogVariants({ variant }), "background", "dialog", widgetClassName, className),
     style,
     children: (
         <>
@@ -190,7 +190,7 @@ function FontChooserDialog({ className, render, variant = "default", child, icon
                 <FontChooserDialogPaper />
               </FontChooserDialogDrawing>
                   {iconName === undefined ? null : (
-                <Icon name={iconName} data-slot="font-chooser-dialog-icon" />
+                <Icon name={iconName} data-slot="font-chooser-dialog-icon" data-node="image" className={cn("image")} />
               )}
                   {titlebar}
                   {child}
@@ -213,7 +213,7 @@ function FontChooserDialogSheet({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="font-chooser-dialog-sheet"
         data-node="sheet"
-      className={cn(className)}
+      className={cn("sheet", className)}
       {...props}
     />
   )
@@ -224,7 +224,7 @@ function FontChooserDialogPaper({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="font-chooser-dialog-paper"
         data-node="paper"
-      className={cn(className)}
+      className={cn("paper", className)}
       {...props}
     />
   )
@@ -235,7 +235,7 @@ function FontChooserDialogDrawing({ className, ...props }: React.ComponentProps<
     <div
       data-slot="font-chooser-dialog-drawing"
         data-node="drawing"
-      className={cn(className)}
+      className={cn("drawing", className)}
       {...props}
     />
   )
