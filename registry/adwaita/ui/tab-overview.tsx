@@ -310,7 +310,7 @@ function TabOverviewClamp({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="tab-overview-clamp"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )

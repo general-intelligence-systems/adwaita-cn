@@ -142,7 +142,11 @@ module GenerateComponents
     "bin" => "grid [&>*]:col-start-1 [&>*]:row-start-1",
     "overlay" => "grid [&>*]:col-start-1 [&>*]:row-start-1",
     "center" => "flex items-center justify-between",
-    "clamp" => "mx-auto w-full",
+    # A clamp fills what it is given and limits the child; `w-full` made it the full
+    # width of its parent and ignored its own margins, so a clamp with 24px of margin
+    # overflowed its window by 24px. Stretching is the default for a flex child and
+    # takes the margins off for us.
+    "clamp" => "",
     "grid" => "grid",
     "fixed" => "relative [&>*]:absolute",
     "wrap" => "flex flex-wrap",
@@ -182,6 +186,28 @@ module GenerateComponents
     "editablelabel" => "text", "entry" => "text", "range" => "range",
     "scale" => "range", "spinbutton" => "number", "text" => "text",
   }.freeze
+
+  # A property the toolkit sizes a widget with. The browser has the same statement as a
+  # style, and writing it as a data attribute instead left it inert: an AdwClamp with
+  # `maximum-size` of 400 is 400px wide in GTK and was the full width of whatever held
+  # it here, and an AdwAvatar with a `size` of 32 has a box in GTK and measured nothing
+  # at all here, so every application overflowed its window and the list of people had
+  # no faces in it.
+  #
+  # The value is in pixels, which is what these properties are in: Adw.Avatar's `size`
+  # and Adw.Clamp's `maximum-size` are both documented as pixels.
+  GEOMETRY = {
+    "Avatar" => { "size" => %w[width height] },
+  }.freeze
+
+  # A clamp does not take its maximum size itself: it fills what it is given and limits
+  # the child inside it, which keeps its own width when that is under the maximum and is
+  # centred in the rest. Putting the maximum on the clamp made the clamp 400px wide in a
+  # 512px space, and stretching the child made the column 400 wide where the toolkit
+  # lays it out at 349, which moved everything in the window left by 75px.
+  CLAMPED = %w[Clamp ClampScrollable ClampLayout].freeze
+
+  CLAMP_CLASSES = "[&>*]:mx-auto [&>*]:w-fit [&>*]:max-w-[var(--clamp-maximum-size)]"
 
   def self.run(argv)
     root = File.expand_path("..", __dir__)
@@ -546,8 +572,9 @@ module GenerateComponents
     inner << "              {children}" unless void || slot || nodes.include?("content")
 
     fields = attributes.dup
-    fields << "className: cn(#{self.layout(component)}#{classes ? "#{classes}, " : ''}#{self.content_classes(component)}widgetClassName, className)"
-    fields << "style"
+    clamped = CLAMPED.include?(name) ? "#{CLAMP_CLASSES.inspect}, " : ""
+    fields << "className: cn(#{self.layout(component)}#{clamped}#{classes ? "#{classes}, " : ''}#{self.content_classes(component)}widgetClassName, className)"
+    fields << self.style(name, props)
     # One child needs no fragment; several do. A lone `{expr}` is the expression
     # itself, because an object literal's value is not JSX.
     unless inner.empty?
@@ -583,6 +610,21 @@ module GenerateComponents
         })
       }
     TS
+  end
+
+  # The style the element carries: what Gtk.Widget's own properties resolved to, and the
+  # sizing properties this component has of its own, which GEOMETRY names.
+  def self.style(name, props)
+    found = GEOMETRY.fetch(name, {}).select{|prop, _| props.key?(prop) }
+      .flat_map{|prop, properties| properties.map{|css| "...(#{prop} === undefined ? {} : { #{css}: #{prop} })" } }
+
+    if CLAMPED.include?(name) && props.key?("maximumSize")
+      found << '...(maximumSize === undefined ? {} : { "--clamp-maximum-size": `${maximumSize}px` })'
+    end
+
+    return "style" if found.empty?
+
+    "style: { ...style, #{found.join(', ')} } as React.CSSProperties"
   end
 
   # A composite's parts, as sibling functions in the same file: libadwaita ships a .ui

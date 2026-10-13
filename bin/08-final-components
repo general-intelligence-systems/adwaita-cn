@@ -128,7 +128,15 @@ module FinalComponents
       "direction" => own && own["direction"],
       "classes" => node ? self.classes_for([node], widgets, contexts) : {},
       "variants" => self.variants(name, node, own, source, classes, contexts, props),
-    }.merge(tree ? { "template" => tree.fetch("template"), "tree" => tree.fetch("tree") } : {})
+    }.merge(self.structure(name, node, tree, contexts))
+  end
+
+  # A component's structure: its template where it has one, and the nodes it builds
+  # inside itself where it does not.
+  def self.structure(name, node, tree, contexts)
+    return { "template" => tree.fetch("template"), "tree" => tree.fetch("tree") } if tree
+
+    self.node_tree(name, node, contexts).then{|found| found ? { "tree" => found } : {} }
   end
 
   # The template a component is built from. A subclass with none of its own is built
@@ -417,8 +425,46 @@ module FinalComponents
     styles = node.fetch("styles", []).map{|style| ".#{style}" }.join
     klass = node.fetch("class")
 
-    "#{name || self.nodes.fetch(klass, klass.downcase)}#{styles}"
+    "#{name || node["node"] || self.nodes.fetch(klass, klass.downcase)}#{styles}"
   end
+
+  # The nodes a widget builds inside itself, as a tree, read from the selectors which
+  # style them.
+  #
+  # A widget's structure is a .ui template or it is CSS nodes built in C, and only the
+  # first was being read. GtkProgressBar is `progressbar > trough > progress`, so a
+  # component with nothing inside it has no trough to be 8px high and no progress to
+  # fill: it measured 0x0 and drew nothing. The same was true of the switch, which is a
+  # slider in a box, of the level bar, and of the scale.
+  #
+  # Only direct-child chains of bare nodes. A selector naming a style class is that
+  # node in a state rather than another node, and is already read as a variant.
+  def self.node_tree(name, node, contexts)
+    return nil if node.nil?
+
+    paths = contexts.keys.filter_map do |selector|
+      segments = selector.split(">").map(&:strip)
+
+      next if segments.length < 2 || segments.first != node
+      next unless segments.drop(1).all?{|one| one.match?(/\A[a-z][a-z0-9-]*\z/) }
+
+      segments.drop(1)
+    end
+
+    return nil if paths.empty?
+
+    { "class" => name, "children" => [] }.tap do |root|
+      paths.sort_by(&:length).each do |path|
+        path.reduce(root) do |cursor, one|
+          cursor["children"].find{|child| child["node"] == one } ||
+            { "class" => self.pascal(one), "node" => one, "children" => [] }
+              .tap{|child| cursor.fetch("children") << child }
+        end
+      end
+    end
+  end
+
+  def self.pascal(node) = node.split(/[-_]/).map{|part| part.capitalize }.join
 
   # The trees are annotated once the nodes are known, because a tree's root is addressed
   # by the component's CSS node rather than by its class name.

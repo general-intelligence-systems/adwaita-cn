@@ -43,8 +43,8 @@ function Clamp({ className, render, child, orientation, maximumSize, tighteningT
     "data-maximum-size": maximumSize,
     "data-tightening-threshold": tighteningThreshold,
     "data-unit": unit,
-    className: cn("mx-auto w-full", widgetClassName, className),
-    style,
+    className: cn("", "[&>*]:mx-auto [&>*]:w-fit [&>*]:max-w-[var(--clamp-maximum-size)]", widgetClassName, className),
+    style: { ...style, ...(maximumSize === undefined ? {} : { "--clamp-maximum-size": `${maximumSize}px` }) } as React.CSSProperties,
     children: (
         <>
                   {child}

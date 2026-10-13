@@ -113,7 +113,7 @@ function PreferencesPageClamp({ className, ...props }: React.ComponentProps<"div
   return (
     <div
       data-slot="preferences-page-clamp"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )

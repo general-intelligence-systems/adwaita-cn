@@ -43,7 +43,7 @@ function Avatar({ className, render, customImage, iconName, showInitials, size, 
     "data-size": size,
     "data-text": text,
     className: cn("grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
-    style,
+    style: { ...style, ...(size === undefined ? {} : { width: size }), ...(size === undefined ? {} : { height: size }) } as React.CSSProperties,
     children: (
         <>
                   {iconName ? <span data-slot="avatar-icon" className={iconName} aria-hidden /> : null}

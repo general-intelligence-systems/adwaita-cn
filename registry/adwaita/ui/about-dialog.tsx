@@ -684,7 +684,7 @@ function AboutDialogClamp({ className, ...props }: React.ComponentProps<"div">) 
   return (
     <div
       data-slot="about-dialog-clamp"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -744,7 +744,7 @@ function AboutDialogClampScrollable({ className, ...props }: React.ComponentProp
   return (
     <div
       data-slot="about-dialog-clamp-scrollable"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -838,7 +838,7 @@ function AboutDialogClamp2({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="about-dialog-clamp2"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -947,7 +947,7 @@ function AboutDialogClamp3({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="about-dialog-clamp3"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -1007,7 +1007,7 @@ function AboutDialogClampScrollable2({ className, ...props }: React.ComponentPro
   return (
     <div
       data-slot="about-dialog-clamp-scrollable2"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -1115,7 +1115,7 @@ function AboutDialogClamp4({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="about-dialog-clamp4"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -1175,7 +1175,7 @@ function AboutDialogClamp5({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="about-dialog-clamp5"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -1235,7 +1235,7 @@ function AboutDialogClamp6({ className, ...props }: React.ComponentProps<"div">)
   return (
     <div
       data-slot="about-dialog-clamp6"
-      className={cn("mx-auto w-full", className)}
+      className={cn("", className)}
       {...props}
     />
   )
