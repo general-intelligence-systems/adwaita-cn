@@ -16,7 +16,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { PositionType } from "@/lib/enums"
 
 const emojiChooserVariants = cva(
-  "[--shade-color:var(--popover-shade-color)] p-2 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)] rounded-[15px]",
+  "",
   {
     variants: {
       variant: {
@@ -89,10 +89,12 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
     "data-has-arrow": hasArrow,
     "data-mnemonics-visible": mnemonicsVisible,
     "data-position": position,
-    className: cn("group/emoji-chooser", "grid [&>*]:col-start-1 [&>*]:row-start-1", emojiChooserVariants({ variant, size }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", widgetClassName, className),
+    className: cn("group/emoji-chooser", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", emojiChooserVariants({ variant, size }), "background text-[var(--window-fg-color)] bg-[var(--window-bg-color)] bg-[transparent]", widgetClassName, className),
     style,
     children: (
         <>
+                  <EmojiChooserArrow />
+                  <EmojiChooserContents />
                   {child}
                   {children}
         </>
@@ -106,6 +108,17 @@ function EmojiChooser({ className, render, variant = "default", size = "default"
     render,
     props: mergeProps<"div">(defaultProps, rest),
   })
+}
+
+function EmojiChooserArrow({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="emoji-chooser-arrow"
+        data-node="arrow"
+      className={cn("bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)]", className)}
+      {...props}
+    />
+  )
 }
 
 function EmojiChooserPlaceholder({ className, ...props }: React.ComponentProps<"div">) {
@@ -236,4 +249,15 @@ function EmojiChooserBox({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { EmojiChooser, EmojiChooserPlaceholder, EmojiChooserUndershoot, EmojiChooserSelection, EmojiChooserCursorHandle, EmojiChooserBlockCursor, EmojiChooserWindow, EmojiChooserText, EmojiChooserImage, EmojiChooserProgress, EmojiChooserEntry, EmojiChooserBox, emojiChooserVariants }
+function EmojiChooserContents({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="emoji-chooser-contents"
+        data-node="contents"
+      className={cn("hidden", className)}
+      {...props}
+    />
+  )
+}
+
+export { EmojiChooser, EmojiChooserArrow, EmojiChooserPlaceholder, EmojiChooserUndershoot, EmojiChooserSelection, EmojiChooserCursorHandle, EmojiChooserBlockCursor, EmojiChooserWindow, EmojiChooserText, EmojiChooserImage, EmojiChooserProgress, EmojiChooserEntry, EmojiChooserBox, EmojiChooserContents, emojiChooserVariants }

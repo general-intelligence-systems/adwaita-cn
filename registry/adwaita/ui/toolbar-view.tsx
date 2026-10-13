@@ -43,11 +43,14 @@ const toolbarViewVariants = cva(
 )
 
 export interface ToolbarViewProps
-  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "bottomBarStyle" | "content" | "extendContentToBottomEdge" | "extendContentToTopEdge" | "revealBottomBars" | "revealTopBars" | "topBarStyle" | "variant" | "size">,
+  extends Omit<useRender.ComponentProps<"div">, keyof WidgetProps | "bottomBarStyle" | "content" | "extendContentToBottomEdge" | "extendContentToTopEdge" | "revealBottomBars" | "revealTopBars" | "topBarStyle" | "bottomBars" | "variant" | "size">,
     WidgetProps,
     VariantProps<typeof toolbarViewVariants> {
   /** ToolbarStyle, from Adw.ToolbarView */
   bottomBarStyle?: ToolbarStyle
+
+  /** Gtk.Widget, from Adw.ToolbarView */
+  bottomBars?: ReactNode
 
   /** Gtk.Widget, from Adw.ToolbarView */
   content?: ReactNode
@@ -68,7 +71,7 @@ export interface ToolbarViewProps
   topBarStyle?: ToolbarStyle
 }
 
-function ToolbarView({ className, render, variant = "default", content, bottomBarStyle, extendContentToBottomEdge, extendContentToTopEdge, revealBottomBars, revealTopBars, topBarStyle, children, ...props }: ToolbarViewProps) {
+function ToolbarView({ className, render, variant = "default", bottomBars, content, bottomBarStyle, extendContentToBottomEdge, extendContentToTopEdge, revealBottomBars, revealTopBars, topBarStyle, children, ...props }: ToolbarViewProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
   // Named rather than passed inline: a fresh object literal handed straight
@@ -99,7 +102,9 @@ function ToolbarView({ className, render, variant = "default", content, bottomBa
               </ToolbarViewRevealer>
                   <ToolbarViewRevealer2>
                 <ToolbarViewWindowhandle2>
-                  <ToolbarViewInternalBox2 />
+                  <ToolbarViewInternalBox2>
+                    {bottomBars}
+                  </ToolbarViewInternalBox2>
                 </ToolbarViewWindowhandle2>
               </ToolbarViewRevealer2>
         </>

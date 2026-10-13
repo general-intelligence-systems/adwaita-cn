@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { FileChooserAction } from "@/lib/enums"
 
 const fileChooserWidgetVariants = cva(
-  "shadow-[0_1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+  "",
   {
     variants: {
       variant: {

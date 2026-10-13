@@ -87,8 +87,8 @@ function FlowBox({ className, render, variant = "default", acceptUnpairedRelease
     "data-orientation": orientation,
     "data-row-spacing": rowSpacing,
     "data-selection-mode": selectionMode,
-    className: cn("group/flow-box", flowBoxVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
-    style,
+    className: cn("group/flow-box", "flex flex-wrap", flowBoxVariants({ variant }), orientation !== "vertical" && "horizontal", orientation === "vertical" && "vertical", widgetClassName, className),
+    style: { ...style, gap: `${rowSpacing ?? 0}px ${columnSpacing ?? 0}px` } as React.CSSProperties,
     children: children,
     ...widgetAttributes,
   }

@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { BannerButtonStyle } from "@/lib/enums"
 
 const bannerVariants = cva(
-  "[--banner-color:#7d7d83]",
+  "",
   {
     variants: {
       variant: {

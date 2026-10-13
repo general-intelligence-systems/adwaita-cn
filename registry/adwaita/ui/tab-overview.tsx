@@ -81,7 +81,7 @@ function TabOverview({ className, render, variant = "default", child, secondaryM
     "data-open": open,
     "data-show-end-title-buttons": showEndTitleButtons,
     "data-show-start-title-buttons": showStartTitleButtons,
-    className: cn("group/tab-overview", "flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", tabOverviewVariants({ variant }), widgetClassName, className),
+    className: cn("group/tab-overview", "flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", tabOverviewVariants({ variant }), widgetClassName, className),
     style,
     children: (
         <>
@@ -149,7 +149,7 @@ function TabOverviewScrolledWindow({ className, ...props }: React.ComponentProps
     <div
       data-slot="tab-overview-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", className)}
       {...props}
     />
   )
@@ -296,7 +296,7 @@ function TabOverviewScrolledWindow2({ className, ...props }: React.ComponentProp
     <div
       data-slot="tab-overview-scrolled-window2"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", className)}
       {...props}
     />
   )
@@ -454,7 +454,7 @@ function TabOverviewScrolledWindow3({ className, ...props }: React.ComponentProp
     <div
       data-slot="tab-overview-scrolled-window3"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", className)}
       {...props}
     />
   )

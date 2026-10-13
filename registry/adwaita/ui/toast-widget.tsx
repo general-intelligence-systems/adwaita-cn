@@ -25,7 +25,7 @@ function ToastWidget({ className, render, children, ...props }: ToastWidgetProps
   const defaultProps = {
     "data-slot": "toast-widget",
     "data-node": "toast",
-    className: cn("group/toast-widget", "grid [&>*]:col-start-1 [&>*]:row-start-1", "py-1.5 px-3 mt-3 mb-6 mx-3 bg-[#505053] text-[white] shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [--standalone-color-oklab:Max(l,0.85)_a_b] [--accent-color:oklab(from_var(--accent-bg-color)_var(--standalone-color-oklab))] [--destructive-color:oklab(from_var(--destructive-bg-color)_var(--standalone-color-oklab))] [--success-color:oklab(from_var(--success-bg-color)_var(--standalone-color-oklab))] [--warning-color:oklab(from_var(--warning-bg-color)_var(--standalone-color-oklab))] [--error-color:oklab(from_var(--error-bg-color)_var(--standalone-color-oklab))] rounded-[150px] gap-[6px]", widgetClassName, className),
+    className: cn("group/toast-widget", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>

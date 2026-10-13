@@ -88,12 +88,13 @@ function NavigationSplitView({ className, render, variant = "default", content, 
     style: { ...style, ...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns }) } as React.CSSProperties,
     children: (
         <>
-                  <NavigationSplitViewBin />
+                  <NavigationSplitViewBin>
+                {sidebar}
+              </NavigationSplitViewBin>
                   <NavigationSplitViewBin2>
                 {children}
+                {content}
               </NavigationSplitViewBin2>
-                  {sidebar}
-                  {content}
         </>
       ),
     ...widgetAttributes,

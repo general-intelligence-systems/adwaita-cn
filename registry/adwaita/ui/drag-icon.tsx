@@ -14,7 +14,7 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const dragIconVariants = cva(
-  "text-[var(--window-fg-color)]",
+  "",
   {
     variants: {
       variant: {

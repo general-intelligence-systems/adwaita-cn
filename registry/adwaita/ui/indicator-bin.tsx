@@ -30,7 +30,6 @@ function IndicatorBin({ className, render, children, ...props }: IndicatorBinPro
     children: (
         <>
                   <IndicatorBinIndicator />
-                  <IndicatorBinMask />
                   {children}
         </>
       ),

@@ -59,11 +59,11 @@ export default function ClocksApp() {
               </Box>
               <Box name="stopwatch" orientation="vertical" spacing={12} className="gap-3 m-3">
                 <Squeezer>
-                  <Label label="00:00:12.48 elapsed" className="text-3xl" />
+                  <Label label="00:00:12.48 elapsed" className="title-1" />
                 </Squeezer>
                 <Spinner className="self-center" />
                 <Revealer revealChild>
-                  <Label label="Lap 3 — 4.12" className="opacity-55" />
+                  <Label label="Lap 3 — 4.12" className="dim-label" />
                 </Revealer>
               </Box>
             </Stack>
@@ -96,7 +96,7 @@ export function Timer() {
       <ToolbarView
         content={
           <Box orientation="vertical" spacing={12} className="gap-3 m-[18px] self-center">
-            <Label label="00:05:00" className="text-4xl" />
+            <Label label="00:05:00" className="title-1" />
             <Button size="pill" variant="suggestedAction" label="Start" halign="center" />
           </Box>
         }

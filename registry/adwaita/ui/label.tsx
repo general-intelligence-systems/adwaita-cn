@@ -14,10 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { EllipsizeMode, Justification, NaturalWrapMode, PangoWrapMode } from "@/lib/enums"
 
 const labelVariants = cva(
-  [
-    "caret-[currentColor]",
-    "disabled:[filter:Opacity(var(--disabled-opacity))]",
-  ],
+  "",
   {
     variants: {
       variant: {

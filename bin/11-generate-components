@@ -142,6 +142,14 @@ module GenerateComponents
 
   NOT_WIDGET_PREFIXES = %w[Gesture EventController Drop Shortcut].freeze
 
+  # Nodes the toolkit paints in order to NOT show them.
+  #
+  # `indicatorbin > mask` is filled black and then used as the alpha mask the indicator
+  # is composited through, which is a GSK operation and not a thing a stylesheet does.
+  # Rendered as an element it is what it says it is -- a black dot -- and there were
+  # three of them across the mail application's header bar where the toolkit draws none.
+  NOT_DRAWN = %w[mask].to_set
+
   # The classes a widget puts on itself from what it is holding. bin/08 marks them
   # `applied`, because the toolkit's source applies them rather than any application:
   # gtkbutton.c adds `.text-button` to every button whose child is a label. A component
@@ -198,7 +206,16 @@ module GenerateComponents
     # in a page pushed the page open instead of scrolling.
     "fill" => "flex flex-col grow min-h-0",
     # The same, and what will not fit is scrolled rather than pushing the page open.
-    "scroll" => "flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0",
+    #
+    # A child which aligns itself is NOT stretched: `[&>*]:grow` is what a scrolled
+    # window does with a child which fills it, and AdwStatusPage's box asks for
+    # `valign=center` instead. Grown, it was as tall as the viewport and its contents sat
+    # at the top of it -- the icon, the title and the button of every status page in the
+    # registry were 115px above where the toolkit puts them.
+    "scroll" =>
+      "flex flex-col grow min-h-0 overflow-auto " \
+      "[&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 " \
+      "[&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto",
     # Items across, wrapped, packed to the top of whatever height the view is given.
     "fill-grid" =>
       "grid [grid-template-columns:repeat(auto-fill,minmax(96px,1fr))] content-start grow min-h-0",
@@ -251,6 +268,17 @@ module GenerateComponents
     "ListBase" => "fill",
     # A grid view runs its items across and wraps them, and fills what it is given.
     "GridView" => "fill-grid", "IconView" => "fill-grid",
+    # A flow box runs its children across and wraps them. It sets no layout manager and
+    # measures in its own C, so nothing in the sources says so and the eight photos in
+    # bin/apps/photos came out in one column down the left of a 820px window.
+    "FlowBox" => "wrap",
+  }.freeze
+
+  # The two lengths a wrapping container is spaced by: between its lines, and between
+  # the children along one.
+  GAPS = {
+    "WrapBox" => %w[lineSpacing childSpacing],
+    "FlowBox" => %w[rowSpacing columnSpacing],
   }.freeze
 
   # The prop a hand-laid widget gives whatever space is left once the rest is placed:
@@ -392,6 +420,7 @@ module GenerateComponents
     shared = final.fetch("widget")
     self.write(root, "lib/widget-props.ts", self.widget_props(shared, flags), force)
     self.write(root, "lib/stack.ts", STACK_TS, true)
+    self.write(root, "lib/view-pages.ts", VIEW_PAGES_TS, true)
     self.write(root, "lib/style-classes.ts", self.style_classes_ts(final.fetch("styleClasses", [])), true)
     self.write(root, "lib/utils.ts", UTILS_TS, true)
 
@@ -1004,6 +1033,356 @@ module GenerateComponents
     component["tree"] && VOID.include?(found) ? "div" : found
   end
 
+  # What a widget's own C does that nothing declarative states.
+  #
+  # A tree says which nodes a widget builds and the stylesheet says what each one
+  # measures, and between them that is every widget here but a few. AdwAvatar is one of
+  # the few: adw-avatar.c picks one of fourteen colours by hashing the text, shows the
+  # label or the icon depending on `show-initials`, and neither the template nor any
+  # rule in Adwaita says so. Generated as structure alone it is a correctly sized,
+  # correctly rounded, entirely invisible box -- which is what every avatar in
+  # bin/apps/mail and bin/apps/library was.
+  #
+  # The body here REPLACES the generated one. It is the last resort and the table is
+  # meant to stay short: anything which can be read out of a source belongs in bin/08.
+  OWN_BEHAVIOUR = {
+    # AdwInlineViewSwitcher is an AdwToggleGroup with the labels of the stack's pages, one
+    # toggle each, separated by a hidden separator before the first. The separator is a
+    # widget in the toolkit's tree and so is drawn here, hidden where the toolkit hides it.
+    "InlineViewSwitcher" => {
+      imports: ['import { IndicatorBin } from "@/ui/indicator-bin"', 'import type { ViewPage } from "@/lib/view-pages"'],
+      props: ["  /** The pages of the stack this switches between. */\n  pages?: ViewPage[]\n\n  /** The name of the page which is selected. The first, where none is named. */\n  visiblePage?: string"],
+      body: <<~'TSX'.chomp,
+        function InlineViewSwitcher({ className, render, variant = "default", stack: _stack, canShrink, displayMode, homogeneous, orientation, pages, visiblePage, children, ...props }: InlineViewSwitcherProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          const shown = pages ?? []
+          const selected = visiblePage ?? shown[0]?.name
+
+          const defaultProps = {
+            "data-slot": "inline-view-switcher",
+            "data-node": "inline-view-switcher",
+            "data-variant": variant,
+            role: "tablist",
+            className: cn("flex flex-row", widgetClassName, className),
+            style,
+            children: (
+              <div data-slot="inline-view-switcher-toggle-group" data-node="toggle-group" className="labels flex flex-row items-center grow">
+                {shown.map((page, index) => (
+                  <React.Fragment key={page.name}>
+                    <div
+                      data-slot="inline-view-switcher-separator"
+                      data-node="separator"
+                      className={cn("horizontal self-stretch my-1.5", index === 0 && "hidden")}
+                    />
+                    <div
+                      data-slot="inline-view-switcher-toggle"
+                      data-node="toggle"
+                      role="tab"
+                      aria-selected={page.name === selected}
+                      data-state={page.name === selected ? "checked" : "unchecked"}
+                      className="toggle grow basis-0 flex"
+                    >
+                      <div data-slot="inline-view-switcher-bin" data-node="widget" className="grow flex items-center justify-center">
+                        <IndicatorBin>
+                          <span data-slot="label" data-node="label" className="whitespace-nowrap">{page.title}</span>
+                        </IndicatorBin>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+                {children}
+              </div>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+      TSX
+    },
+    # AdwViewSwitcherBar is an action bar whose centre is an AdwViewSwitcher, revealed or
+    # not. Nothing of the pages is read here: the switcher inside reads them.
+    "ViewSwitcherBar" => {
+      imports: ['import { ViewSwitcher } from "@/ui/view-switcher"', 'import type { ViewPage } from "@/lib/view-pages"'],
+      props: ["  /** The pages of the stack this switches between. */\n  pages?: ViewPage[]\n\n  /** The name of the page which is selected. The first, where none is named. */\n  visiblePage?: string"],
+      body: <<~'TSX'.chomp,
+        function ViewSwitcherBar({ className, render, stack: _stack, reveal, pages, visiblePage, children, ...props }: ViewSwitcherBarProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          const defaultProps = {
+            "data-slot": "view-switcher-bar",
+            "data-node": "viewswitcherbar",
+            className: cn("flex flex-col", widgetClassName, className),
+            style,
+            children: (
+              <div data-slot="view-switcher-bar-action-bar" data-node="actionbar" className="flex flex-col">
+                <div data-slot="view-switcher-bar-revealer" data-node="revealer" className={cn("flex flex-col", reveal ? "" : "hidden")}>
+                  <div
+                    data-slot="view-switcher-bar-center-box"
+                    data-node="box"
+                    className="grid [grid-template-columns:1fr_auto_1fr] items-center"
+                  >
+                    <div data-node="box" className="start flex flex-row" />
+                    <ViewSwitcher pages={pages} visiblePage={visiblePage} />
+                    <div data-node="box" className="end flex flex-row justify-self-end" />
+                  </div>
+                </div>
+                {children}
+              </div>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+      TSX
+    },
+    # AdwViewSwitcherSidebar is an AdwSidebar: a scrolled list with a row per page, each an
+    # icon beside the page's title. The rows are AdwActionRow's shape -- `box.horizontal`
+    # holding the image and a vertical box of title and subtitle -- rather than the rows
+    # themselves, which is why they are written out and not composed from ActionRow.
+    "ViewSwitcherSidebar" => {
+      imports: ['import { Icon } from "@/lib/icon"', 'import type { ViewPage } from "@/lib/view-pages"'],
+      props: ["  /** The pages of the stack this switches between. */\n  pages?: ViewPage[]\n\n  /** The name of the page which is selected. The first, where none is named. */\n  visiblePage?: string"],
+      body: <<~'TSX'.chomp,
+        function ViewSwitcherSidebar({ className, render, stack: _stack, filter, mode, placeholder, pages, visiblePage, children, ...props }: ViewSwitcherSidebarProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          const shown = pages ?? []
+          const selected = visiblePage ?? shown[0]?.name
+
+          const defaultProps = {
+            "data-slot": "view-switcher-sidebar",
+            "data-node": "viewswitchersidebar",
+            className: cn("flex flex-col", widgetClassName, className),
+            style,
+            children: (
+              <div data-slot="view-switcher-sidebar-sidebar" data-node="sidebar" className="flex flex-col grow min-h-0">
+                <div data-slot="view-switcher-sidebar-scrolled-window" data-node="scrolledwindow" className="flex flex-col grow min-h-0 overflow-auto">
+                  <div data-slot="view-switcher-sidebar-viewport" data-node="viewport" className="flex flex-col grow min-h-0">
+                    <div data-slot="view-switcher-sidebar-list" data-node="list" className="navigation-sidebar flex flex-col">
+                      {shown.map((page) => (
+                        <div
+                          key={page.name}
+                          data-slot="view-switcher-sidebar-row"
+                          data-node="row"
+                          role="tab"
+                          aria-selected={page.name === selected}
+                          data-state={page.name === selected ? "checked" : "unchecked"}
+                          className="activatable flex flex-row"
+                        >
+                          <div data-node="box" className="horizontal flex flex-row items-center grow gap-3 px-3">
+                            {page.iconName === undefined ? null : <Icon name={page.iconName} className="icon" />}
+                            <div data-node="box" className="vertical flex flex-col grow">
+                              <span data-slot="label" data-node="label" className="title">{page.title}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {children}
+              </div>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+      TSX
+    },
+    # AdwViewSwitcher builds one button per page of its stack, and each button holds BOTH
+    # layouts in a GtkStack: `box.wide` is the icon beside the label and `box.narrow` the
+    # icon above it, and the policy shows one of them. Both are rendered here because both
+    # are in the toolkit's tree and the comparison walks the two in order; the one which is
+    # not shown measures nothing, exactly as the toolkit's does.
+    #
+    # Every rule for this is already in registry/adwaita/styles.css, written against
+    # `viewswitcher > button.toggle > stack > box.narrow > label`, so the nodes are what
+    # earn the measurements and nothing is restated here.
+    "ViewSwitcher" => {
+      imports: ['import { Icon } from "@/lib/icon"', 'import { IndicatorBin } from "@/ui/indicator-bin"', 'import type { ViewPage } from "@/lib/view-pages"'],
+      props: ["  /** The pages of the stack this switches between. */\n  pages?: ViewPage[]\n\n  /** The name of the page which is selected. The first, where none is named. */\n  visiblePage?: string"],
+      body: <<~'TSX'.chomp,
+        function ViewSwitcherButtonContent({ page, wide, shown }: { page: ViewPage; wide: boolean; shown: boolean }) {
+          return (
+            <div
+              data-slot="view-switcher-button-box"
+              data-node="box"
+              aria-hidden={shown ? undefined : true}
+              className={cn(
+                wide ? "wide flex flex-row items-center justify-center" : "narrow flex flex-col items-center justify-center",
+                "whitespace-nowrap",
+                shown ? "" : "invisible pointer-events-none",
+              )}
+            >
+              <IndicatorBin>
+                {page.iconName === undefined ? null : <Icon name={page.iconName} />}
+              </IndicatorBin>
+              <span data-slot="label" data-node="label">{page.title}</span>
+            </div>
+          )
+        }
+
+        function ViewSwitcherButton({ page, selected, wide }: { page: ViewPage; selected: boolean; wide: boolean }) {
+          return (
+            <div
+              data-slot="view-switcher-button"
+              data-node="button"
+              role="tab"
+              aria-selected={selected}
+              data-state={selected ? "checked" : "unchecked"}
+              className="toggle flat vertical grow basis-0 grid [&>*]:col-start-1 [&>*]:row-start-1"
+            >
+              {/* BOTH LAYOUTS MEASURED, one of them shown. A GtkStack asks every child for
+                  its size and takes the largest, so a narrow switcher is still as wide as
+                  its own wide layout -- which is where the toolkit's 100px per button comes
+                  from, against the 36px a button came to when the layout it was not showing
+                  was `display: none` and measured nothing. Overlapped in one grid cell and
+                  hidden with `visibility`, the cell is the larger of the two either way. */}
+              <div data-slot="view-switcher-button-stack" data-node="stack" className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+                <ViewSwitcherButtonContent page={page} wide shown={wide} />
+                <ViewSwitcherButtonContent page={page} wide={false} shown={!wide} />
+              </div>
+            </div>
+          )
+        }
+
+        function ViewSwitcher({ className, render, variant = "default", stack: _stack, policy, pages, visiblePage, children, ...props }: ViewSwitcherProps) {
+          const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+          const wide = policy === "wide" || variant === "wide"
+          const shown = pages ?? []
+          const selected = visiblePage ?? shown[0]?.name
+
+          const defaultProps = {
+            "data-slot": "view-switcher",
+            "data-node": "viewswitcher",
+            "data-variant": variant,
+            role: "tablist",
+            "data-policy": policy,
+            className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", viewSwitcherVariants({ variant }), wide ? "wide" : "narrow", "my-[-3px] min-h-1.5", widgetClassName, className),
+            style,
+            children: (
+              <>
+                {shown.map((page) => (
+                  <ViewSwitcherButton key={page.name} page={page} selected={page.name === selected} wide={wide} />
+                ))}
+                {children}
+              </>
+            ),
+            ...widgetAttributes,
+          }
+
+          return useRender({
+            defaultTagName: "div",
+            enabled: !hidden,
+            render,
+            props: mergeProps<"div">(defaultProps, rest),
+          })
+        }
+      TSX
+    },
+    "Avatar" => { body: <<~'TSX'.chomp },
+      // adw-avatar.c: `(g_str_hash (text) % 14) + 1`, as a class on the gizmo. g_str_hash
+      // is djb2 over the bytes, so the text is encoded before it is hashed -- a name with
+      // an accent in it hashed by UTF-16 code unit picked a different colour from the one
+      // the toolkit picks.
+      function avatarColor(text: string | undefined) {
+        if (!text) return "color1"
+
+        let hash = 5381
+        for (const byte of new TextEncoder().encode(text)) hash = (Math.imul(hash, 33) + byte) >>> 0
+
+        return `color${(hash % 14) + 1}`
+      }
+
+      function Avatar({ className, render, iconName, customImage: _customImage, showInitials, size, text, children, ...props }: AvatarProps) {
+        const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
+
+        // The label when there are initials to show and the icon when there are not:
+        // adw_avatar_set_show_initials toggles exactly one of the two children visible.
+        //
+        // ONE LETTER PER WORD, which is what adw_avatar_set_text means by initials:
+        // `Adwaita::Avatar.new (32, "AL", true)` draws `A`, not `AL`, because "AL" is one
+        // word. Shown whole, every avatar in bin/apps/library was a letter wider than the
+        // toolkit's and the text was scaled down to fit a circle it should have filled.
+        const initials = showInitials && text
+          ? text.split(/\s+/).filter(Boolean).map((word) => [...word][0]).join("")
+          : null
+
+        const defaultProps = {
+          "data-slot": "avatar",
+          "data-show-initials": showInitials,
+          "data-size": size,
+          "data-text": text,
+          className: cn("group/avatar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+          style: { ...style, ...(size === undefined ? {} : { minWidth: size }), ...(size === undefined ? {} : { minHeight: size }) } as React.CSSProperties,
+          children: (
+            <AvatarGizmo className={cn(avatarColor(text), "contrasted", "flex items-center justify-center overflow-hidden")}
+              style={{ fontSize: size === undefined ? undefined : `${Math.round(size * 0.4)}px` }}>
+              {initials === null ? (
+                <AvatarImage name={iconName ?? "avatar-default-symbolic"} style={{ "--adw-icon-size": size === undefined ? undefined : `${Math.round(size * 0.6)}px` } as React.CSSProperties} />
+              ) : (
+                <AvatarLabel>{initials}</AvatarLabel>
+              )}
+              {children}
+            </AvatarGizmo>
+          ),
+          ...widgetAttributes,
+        }
+
+        return useRender({
+          defaultTagName: "div",
+          enabled: !hidden,
+          render,
+          props: mergeProps<"div">(defaultProps, rest),
+        })
+      }
+    TSX
+  }.freeze
+
+  # What `adw_view_stack_add_titled_with_icon` records about a page, and all a switcher
+  # ever reads off a stack.
+  #
+  # A GtkStackPage is a GObject and not a widget, so it is not buildable and there is no
+  # component for it. In GTK a switcher is handed the stack and walks its pages; a
+  # component cannot be handed another component, so the pages are passed as data and
+  # the application states them once for the stack and its switchers -- which is what
+  # `stack.add_titled_with_icon` and `switcher.stack = stack` amount to between them.
+  VIEW_PAGES_TS = <<~'TS'
+    /** A page of an Adw.ViewStack, as its switchers read it. */
+    export interface ViewPage {
+      /** The name `adw_view_stack_add_titled` filed the page under. */
+      name: string
+      /** The page's title, which a switcher shows as its label. */
+      title?: string
+      /** The page's icon, which a switcher shows above or beside the label. */
+      iconName?: string
+      /** AdwViewStackPage:badge-number. Shown in the indicator when it is not zero. */
+      badgeNumber?: number
+      /** AdwViewStackPage:needs-attention. Shown as a dot when there is no badge. */
+      needsAttention?: boolean
+    }
+  TS
+
   def self.component(name, component, flags)
     props = component.fetch("props")
     appearance, sizes = AdwaitaClasses.split(self.offered(component))
@@ -1023,12 +1402,12 @@ module GenerateComponents
       import { useRender } from "@base-ui/react/use-render"
 
       import { cn } from "@/lib/utils"
-      #{self.draws_icon?(component, parts) ? "import { Icon } from \"@/lib/icon\"\n" : ''}#{STACKS.include?(name) ? "import { visibleChild } from \"@/lib/stack\"\n" : ''}import { widget } from "@/lib/widget"
+      #{(OWN_BEHAVIOUR[name] || {})[:imports].to_a.map{|line| "#{line}\n" }.join}#{self.draws_icon?(component, parts) ? "import { Icon } from \"@/lib/icon\"\n" : ''}#{STACKS.include?(name) ? "import { visibleChild } from \"@/lib/stack\"\n" : ''}import { widget } from "@/lib/widget"
       import type { WidgetProps } from "@/lib/widget-props"
       #{self.clamped?(name, component) ? "import { useClamp } from \"@/lib/clamp\"\n" : ''}#{SPLIT.include?(name) ? "import { useSplitView } from \"@/lib/split-view\"\n" : ''}#{enums.empty? ? '' : "import type { #{enums.join(', ')} } from \"@/lib/enums\"\n"}#{cva ? "\n#{self.cva(name, component, appearance, sizes)}\n" : ''}
       #{self.interface(name, component, props, flags, cva, element)}
 
-      #{self.root(name, component, props, cva, element, parts)}#{parts.map{|part| "\n\n#{part.fetch(:source)}"}.join}
+      #{(OWN_BEHAVIOUR[name] || {})[:body] || self.root(name, component, props, cva, element, parts)}#{parts.map{|part| "\n\n#{part.fetch(:source)}"}.join}
 
       export { #{([name] + parts.map{|part| part.fetch(:name)} + (cva ? ["#{self.variants_name(name)}"] : [])).join(', ')} }
     TS
@@ -1045,7 +1424,12 @@ module GenerateComponents
   end
 
   def self.cva(name, component, appearance, sizes)
-    base = AdwaitaClasses.expression(component["classes"], 2) || '""'
+    # Empty on purpose. What the stylesheet says about the component's own node is a
+    # rule in registry/adwaita/styles.css now, not a list of utilities here: a utility
+    # sits in `@layer utilities` and every contextual rule in `@layer components`, so a
+    # component which carried its own measurements could not be overridden by the sheet
+    # at all -- `list` beat `.navigation-sidebar` and every sidebar came out white.
+    base = '""'
     keys = []
 
     unless appearance.empty?
@@ -1093,6 +1477,7 @@ module GenerateComponents
     extends << "VariantProps<typeof #{self.variants_name(name)}>" if cva
 
     declarations = props.sort.map{|prop, attributes| self.declaration(prop, attributes, flags)}
+    declarations += (OWN_BEHAVIOUR[name] || {})[:props].to_a
 
     <<~TS.chomp
       export interface #{name}Props
@@ -1239,7 +1624,7 @@ module GenerateComponents
       if cva
         "#{self.variants_name(name)}({ #{arguments.join(', ')} })"
       else
-        AdwaitaClasses.expression(component["classes"], 8)
+        nil
       end
 
     inner = []
@@ -1401,6 +1786,14 @@ module GenerateComponents
       found << '...(spacing === undefined ? {} : { gap: `${spacing}px` })'
     end
 
+    # A wrapping container spaces its lines and its children separately, which is `gap`
+    # with two lengths. Named differently by each of the two widgets which wrap.
+    GAPS.fetch(name, []).select{|prop| props.key?(prop) }.then do |(down, across)|
+      next if down.nil? || across.nil?
+
+      found << "gap: `${#{down} ?? 0}px ${#{across} ?? 0}px`"
+    end
+
     if CLAMPED.include?(name) || SPLIT.include?(name)
       found << "...(clampColumns === undefined ? {} : { gridTemplateColumns: clampColumns })"
     end
@@ -1451,6 +1844,7 @@ module GenerateComponents
   # the markup. The part is still generated, because a caller who does want one needs it.
   def self.rendered?(node, props = {})
     return false unless self.widget_node?(node)
+    return false if NOT_DRAWN.include?(node["node"])
     # The item node is the shape of what the caller puts in, not a thing to put in.
     return false if node["item"]
     # Unless the component has the value which fills it: a level bar's block is drawn twice in

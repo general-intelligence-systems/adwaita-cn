@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { InputHints, InputPurpose, Justification, ScrollablePolicy, WrapMode } from "@/lib/enums"
 
 const textViewVariants = cva(
-  "caret-[currentColor]",
+  "",
   {
     variants: {
       variant: {

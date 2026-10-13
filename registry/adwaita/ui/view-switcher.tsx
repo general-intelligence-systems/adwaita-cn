@@ -9,12 +9,15 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
+import { IndicatorBin } from "@/ui/indicator-bin"
+import type { ViewPage } from "@/lib/view-pages"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { ViewSwitcherPolicy } from "@/lib/enums"
 
 const viewSwitcherVariants = cva(
-  "gap-[3px] min-h-8.5",
+  "",
   {
     variants: {
       variant: {
@@ -36,23 +39,81 @@ export interface ViewSwitcherProps
 
   /** ViewStack, from Adw.ViewSwitcher */
   stack?: unknown
+
+  /** The pages of the stack this switches between. */
+  pages?: ViewPage[]
+
+  /** The name of the page which is selected. The first, where none is named. */
+  visiblePage?: string
 }
 
-function ViewSwitcher({ className, render, variant = "default", stack: _stack, policy, children, ...props }: ViewSwitcherProps) {
+function ViewSwitcherButtonContent({ page, wide, shown }: { page: ViewPage; wide: boolean; shown: boolean }) {
+  return (
+    <div
+      data-slot="view-switcher-button-box"
+      data-node="box"
+      aria-hidden={shown ? undefined : true}
+      className={cn(
+        wide ? "wide flex flex-row items-center justify-center" : "narrow flex flex-col items-center justify-center",
+        "whitespace-nowrap",
+        shown ? "" : "invisible pointer-events-none",
+      )}
+    >
+      <IndicatorBin>
+        {page.iconName === undefined ? null : <Icon name={page.iconName} />}
+      </IndicatorBin>
+      <span data-slot="label" data-node="label">{page.title}</span>
+    </div>
+  )
+}
+
+function ViewSwitcherButton({ page, selected, wide }: { page: ViewPage; selected: boolean; wide: boolean }) {
+  return (
+    <div
+      data-slot="view-switcher-button"
+      data-node="button"
+      role="tab"
+      aria-selected={selected}
+      data-state={selected ? "checked" : "unchecked"}
+      className="toggle flat vertical grow basis-0 grid [&>*]:col-start-1 [&>*]:row-start-1"
+    >
+      {/* BOTH LAYOUTS MEASURED, one of them shown. A GtkStack asks every child for
+          its size and takes the largest, so a narrow switcher is still as wide as
+          its own wide layout -- which is where the toolkit's 100px per button comes
+          from, against the 36px a button came to when the layout it was not showing
+          was `display: none` and measured nothing. Overlapped in one grid cell and
+          hidden with `visibility`, the cell is the larger of the two either way. */}
+      <div data-slot="view-switcher-button-stack" data-node="stack" className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+        <ViewSwitcherButtonContent page={page} wide shown={wide} />
+        <ViewSwitcherButtonContent page={page} wide={false} shown={!wide} />
+      </div>
+    </div>
+  )
+}
+
+function ViewSwitcher({ className, render, variant = "default", stack: _stack, policy, pages, visiblePage, children, ...props }: ViewSwitcherProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  const wide = policy === "wide" || variant === "wide"
+  const shown = pages ?? []
+  const selected = visiblePage ?? shown[0]?.name
+
   const defaultProps = {
     "data-slot": "view-switcher",
     "data-node": "viewswitcher",
     "data-variant": variant,
     role: "tablist",
     "data-policy": policy,
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", viewSwitcherVariants({ variant }), "narrow my-[-3px] min-h-1.5", widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", viewSwitcherVariants({ variant }), wide ? "wide" : "narrow", "my-[-3px] min-h-1.5", widgetClassName, className),
     style,
-    children: children,
+    children: (
+      <>
+        {shown.map((page) => (
+          <ViewSwitcherButton key={page.name} page={page} selected={page.name === selected} wide={wide} />
+        ))}
+        {children}
+      </>
+    ),
     ...widgetAttributes,
   }
 

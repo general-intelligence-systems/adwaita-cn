@@ -9,6 +9,8 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { IndicatorBin } from "@/ui/indicator-bin"
+import type { ViewPage } from "@/lib/view-pages"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import type { InlineViewSwitcherDisplayMode, Orientation } from "@/lib/enums"
@@ -55,33 +57,55 @@ export interface InlineViewSwitcherProps
 
   /** ViewStack, from Adw.InlineViewSwitcher */
   stack?: unknown
+
+  /** The pages of the stack this switches between. */
+  pages?: ViewPage[]
+
+  /** The name of the page which is selected. The first, where none is named. */
+  visiblePage?: string
 }
 
-function InlineViewSwitcher({ className, render, variant = "default", stack: _stack, canShrink, displayMode, homogeneous, orientation, children, ...props }: InlineViewSwitcherProps) {
+function InlineViewSwitcher({ className, render, variant = "default", stack: _stack, canShrink, displayMode, homogeneous, orientation, pages, visiblePage, children, ...props }: InlineViewSwitcherProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  const shown = pages ?? []
+  const selected = visiblePage ?? shown[0]?.name
+
   const defaultProps = {
     "data-slot": "inline-view-switcher",
     "data-node": "inline-view-switcher",
     "data-variant": variant,
     role: "tablist",
-    "data-can-shrink": canShrink,
-    "data-display-mode": displayMode,
-    "data-homogeneous": homogeneous,
-    "data-orientation": orientation,
-    className: cn("group/inline-view-switcher", "grid [&>*]:col-start-1 [&>*]:row-start-1", inlineViewSwitcherVariants({ variant }), widgetClassName, className),
+    className: cn("flex flex-row", widgetClassName, className),
     style,
     children: (
-        <>
-                  <InlineViewSwitcherToggleGroup>
-                <InlineViewSwitcherToggle />
-              </InlineViewSwitcherToggleGroup>
-                  {children}
-        </>
-      ),
+      <div data-slot="inline-view-switcher-toggle-group" data-node="toggle-group" className="labels flex flex-row items-center grow">
+        {shown.map((page, index) => (
+          <React.Fragment key={page.name}>
+            <div
+              data-slot="inline-view-switcher-separator"
+              data-node="separator"
+              className={cn("horizontal self-stretch my-1.5", index === 0 && "hidden")}
+            />
+            <div
+              data-slot="inline-view-switcher-toggle"
+              data-node="toggle"
+              role="tab"
+              aria-selected={page.name === selected}
+              data-state={page.name === selected ? "checked" : "unchecked"}
+              className="toggle grow basis-0 flex"
+            >
+              <div data-slot="inline-view-switcher-bin" data-node="widget" className="grow flex items-center justify-center">
+                <IndicatorBin>
+                  <span data-slot="label" data-node="label" className="whitespace-nowrap">{page.title}</span>
+                </IndicatorBin>
+              </div>
+            </div>
+          </React.Fragment>
+        ))}
+        {children}
+      </div>
+    ),
     ...widgetAttributes,
   }
 

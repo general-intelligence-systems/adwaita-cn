@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { EllipsizeMode, Orientation } from "@/lib/enums"
 
 const progressBarVariants = cva(
-  "disabled:[filter:Opacity(var(--disabled-opacity))]",
+  "",
   {
     variants: {
       variant: {

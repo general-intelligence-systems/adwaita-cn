@@ -51,7 +51,7 @@ function Expander({ className, render, child, labelWidget, expanded, label, resi
     "data-resize-toplevel": resizeToplevel,
     "data-use-markup": useMarkup,
     "data-use-underline": useUnderline,
-    className: cn("group/expander", "grid [&>*]:col-start-1 [&>*]:row-start-1", "duration-[300ms]", widgetClassName, className),
+    className: cn("group/expander", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <>

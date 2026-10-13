@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { PackType } from "@/lib/enums"
 
 const windowControlsVariants = cva(
-  "gap-[3px]",
+  "",
   {
     variants: {
       variant: {

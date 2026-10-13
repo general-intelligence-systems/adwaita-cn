@@ -46,7 +46,7 @@ export default function PhotosApp() {
           <GLArea className="h-12" />
           <WrapBox childSpacing={6} lineSpacing={6}>
             {TAGS.map((tag) => (
-              <Label key={tag} label={tag} className="opacity-55" />
+              <Label key={tag} label={tag} className="dim-label" />
             ))}
           </WrapBox>
         </Box>
@@ -67,8 +67,8 @@ export function Share() {
       content={<Label label="The library, behind the sheet" />}
       sheet={
         <Box orientation="vertical" spacing={6} className="gap-1.5 m-[18px]">
-          <Label label="Share “photo.jpg”" className="font-bold" />
-          <Label label="Pick somewhere to send it." className="opacity-55" />
+          <Label label="Share “photo.jpg”" className="title-4" />
+          <Label label="Pick somewhere to send it." className="dim-label" />
         </Box>
       }
     />

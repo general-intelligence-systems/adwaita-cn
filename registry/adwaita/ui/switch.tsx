@@ -41,15 +41,7 @@ function Switch({ className, render, actionTarget: _actionTarget, actionName, ac
     "data-action-name": actionName,
     "data-state": active ? "checked" : "unchecked",
     "aria-checked": active,
-    className: cn("group/switch", "grid [&>*]:col-start-1 [&>*]:row-start-1", [
-          "p-[3px] rounded-[14px] bg-[color-mix(in_srgb,currentColor_15%,transparent)] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset,background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-          "hover:bg-[color-mix(in_srgb,currentColor_20%,transparent)]",
-          "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
-          "disabled:[filter:Opacity(var(--disabled-opacity))]",
-          "data-[state=checked]:text-[var(--accent-fg-color)] data-[state=checked]:bg-[var(--accent-bg-color)]",
-          "data-[state=checked]:hover:bg-[image:image(color-mix(in_srgb,currentColor_10%,transparent))]",
-          "data-[state=checked]:active:bg-[image:image(RGB(0_0_6/20%))]",
-        ], "min-w-[46px]", widgetClassName, className),
+    className: cn("group/switch", "grid [&>*]:col-start-1 [&>*]:row-start-1", "min-w-[46px]", widgetClassName, className),
     style,
     children: (
         <>

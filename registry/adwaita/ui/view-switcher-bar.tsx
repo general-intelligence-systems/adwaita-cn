@@ -8,6 +8,8 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { ViewSwitcher } from "@/ui/view-switcher"
+import type { ViewPage } from "@/lib/view-pages"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
@@ -19,28 +21,38 @@ export interface ViewSwitcherBarProps
 
   /** ViewStack, from Adw.ViewSwitcherBar */
   stack?: unknown
+
+  /** The pages of the stack this switches between. */
+  pages?: ViewPage[]
+
+  /** The name of the page which is selected. The first, where none is named. */
+  visiblePage?: string
 }
 
-function ViewSwitcherBar({ className, render, stack: _stack, reveal, children, ...props }: ViewSwitcherBarProps) {
+function ViewSwitcherBar({ className, render, stack: _stack, reveal, pages, visiblePage, children, ...props }: ViewSwitcherBarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
   const defaultProps = {
     "data-slot": "view-switcher-bar",
     "data-node": "viewswitcherbar",
-    "data-reveal": reveal,
-    className: cn("group/view-switcher-bar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
+    className: cn("flex flex-col", widgetClassName, className),
     style,
     children: (
-        <>
-                  <ViewSwitcherBarActionBar>
-                <ViewSwitcherBarViewSwitcher />
-              </ViewSwitcherBarActionBar>
-                  {children}
-        </>
-      ),
+      <div data-slot="view-switcher-bar-action-bar" data-node="actionbar" className="flex flex-col">
+        <div data-slot="view-switcher-bar-revealer" data-node="revealer" className={cn("flex flex-col", reveal ? "" : "hidden")}>
+          <div
+            data-slot="view-switcher-bar-center-box"
+            data-node="box"
+            className="grid [grid-template-columns:1fr_auto_1fr] items-center"
+          >
+            <div data-node="box" className="start flex flex-row" />
+            <ViewSwitcher pages={pages} visiblePage={visiblePage} />
+            <div data-node="box" className="end flex flex-row justify-self-end" />
+          </div>
+        </div>
+        {children}
+      </div>
+    ),
     ...widgetAttributes,
   }
 

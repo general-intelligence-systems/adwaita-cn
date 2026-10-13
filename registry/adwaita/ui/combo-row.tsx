@@ -16,10 +16,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { StringFilterMatchMode } from "@/lib/enums"
 
 const comboRowVariants = cva(
-  [
-    "bg-clip-padding [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
-  ],
+  "",
   {
     variants: {
       variant: {
@@ -548,7 +545,7 @@ function ComboRowScrolledWindow({ className, ...props }: React.ComponentProps<"d
     <div
       data-slot="combo-row-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", className)}
       {...props}
     />
   )

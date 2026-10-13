@@ -13,7 +13,7 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const calendarVariants = cva(
-  "text-[var(--view-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+  "",
   {
     variants: {
       variant: {

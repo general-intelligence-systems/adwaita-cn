@@ -18,6 +18,7 @@ import { ToggleButton } from "@/ui/toggle-button"
 import { ToolbarView } from "@/ui/toolbar-view"
 import { ViewStack } from "@/ui/view-stack"
 import { ViewSwitcher } from "@/ui/view-switcher"
+import type { ViewPage } from "@/lib/view-pages"
 import { ViewSwitcherBar } from "@/ui/view-switcher-bar"
 import { ViewSwitcherSidebar } from "@/ui/view-switcher-sidebar"
 import { ViewSwitcherTitle } from "@/ui/view-switcher-title"
@@ -28,10 +29,18 @@ const MESSAGES = [
   ["Grace Hopper", "Re: the compiler", "GH"],
 ]
 
+// `stack.add_titled_with_icon` in app.rb beside this: the stack's pages, which every
+// switcher on the screen reads its buttons off.
+const PAGES: ViewPage[] = [
+  { name: "inbox", title: "Inbox", iconName: "mail-unread-symbolic" },
+  { name: "drafts", title: "Drafts", iconName: "document-edit-symbolic" },
+  { name: "sent", title: "Sent", iconName: "mail-send-symbolic" },
+]
+
 export default function MailApp() {
   return (
     <Box orientation="horizontal">
-      <ViewSwitcherSidebar className="w-[200px]" />
+      <ViewSwitcherSidebar className="w-[200px]" pages={PAGES} />
       <ToolbarView
         className="grow"
         content={
@@ -47,7 +56,7 @@ export default function MailApp() {
                     key={sender}
                     title={sender}
                     subtitle={subject}
-                    prefix={<Avatar size={32} text={sender} showInitials />}
+                    prefix={<Avatar size={32} text={initials} showInitials />}
                   />
                 ))}
               </ListBox>
@@ -56,17 +65,11 @@ export default function MailApp() {
         }
       >
         <HeaderBar titleWidget={<ViewSwitcherTitle title="Mail" />}>
-          <ViewSwitcher>
-            {["Inbox", "Drafts", "Sent"].map((name) => (
-              <ToggleButton key={name}>
-                <IndicatorBin />
-              </ToggleButton>
-            ))}
-          </ViewSwitcher>
-          <InlineViewSwitcher />
+          <ViewSwitcher pages={PAGES} />
+          <InlineViewSwitcher pages={PAGES} />
           <Button variant="flat" iconName="mail-message-new-symbolic" />
         </HeaderBar>
-        <ViewSwitcherBar reveal />
+        <ViewSwitcherBar reveal pages={PAGES} />
       </ToolbarView>
     </Box>
   )

@@ -14,10 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { InscriptionOverflow, PangoWrapMode } from "@/lib/enums"
 
 const inscriptionVariants = cva(
-  [
-    "caret-[currentColor]",
-    "disabled:[filter:Opacity(var(--disabled-opacity))]",
-  ],
+  "",
   {
     variants: {
       variant: {

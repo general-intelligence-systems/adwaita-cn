@@ -10,6 +10,8 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/lib/icon"
+import type { ViewPage } from "@/lib/view-pages"
 import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 import { useClamp } from "@/lib/clamp"
@@ -50,37 +52,54 @@ export interface ViewSwitcherSidebarProps
 
   /** ViewStack, from Adw.ViewSwitcherSidebar */
   stack?: unknown
+
+  /** The pages of the stack this switches between. */
+  pages?: ViewPage[]
+
+  /** The name of the page which is selected. The first, where none is named. */
+  visiblePage?: string
 }
 
-function ViewSwitcherSidebar({ className, render, variant = "default", placeholder, filter: _filter, stack: _stack, mode, children, ...props }: ViewSwitcherSidebarProps) {
+function ViewSwitcherSidebar({ className, render, stack: _stack, filter, mode, placeholder, pages, visiblePage, children, ...props }: ViewSwitcherSidebarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  const shown = pages ?? []
+  const selected = visiblePage ?? shown[0]?.name
+
   const defaultProps = {
     "data-slot": "view-switcher-sidebar",
-    "data-node": "view-switcher-sidebar",
-    "data-variant": variant,
-    "data-mode": mode,
-    className: cn("group/view-switcher-sidebar", "grid [&>*]:col-start-1 [&>*]:row-start-1", viewSwitcherSidebarVariants({ variant }), widgetClassName, className),
+    "data-node": "viewswitchersidebar",
+    className: cn("flex flex-col", widgetClassName, className),
     style,
     children: (
-        <>
-                  <ViewSwitcherSidebarSidebar>
-                <ViewSwitcherSidebarPreferencesPage>
-                  <ViewSwitcherSidebarScrolledWindow>
-                    <ViewSwitcherSidebarClamp>
-                      <ViewSwitcherSidebarBox>
-                        {children}
-                      </ViewSwitcherSidebarBox>
-                    </ViewSwitcherSidebarClamp>
-                  </ViewSwitcherSidebarScrolledWindow>
-                </ViewSwitcherSidebarPreferencesPage>
-              </ViewSwitcherSidebarSidebar>
-                  {placeholder}
-        </>
-      ),
+      <div data-slot="view-switcher-sidebar-sidebar" data-node="sidebar" className="flex flex-col grow min-h-0">
+        <div data-slot="view-switcher-sidebar-scrolled-window" data-node="scrolledwindow" className="flex flex-col grow min-h-0 overflow-auto">
+          <div data-slot="view-switcher-sidebar-viewport" data-node="viewport" className="flex flex-col grow min-h-0">
+            <div data-slot="view-switcher-sidebar-list" data-node="list" className="navigation-sidebar flex flex-col">
+              {shown.map((page) => (
+                <div
+                  key={page.name}
+                  data-slot="view-switcher-sidebar-row"
+                  data-node="row"
+                  role="tab"
+                  aria-selected={page.name === selected}
+                  data-state={page.name === selected ? "checked" : "unchecked"}
+                  className="activatable flex flex-row"
+                >
+                  <div data-node="box" className="horizontal flex flex-row items-center grow gap-3 px-3">
+                    {page.iconName === undefined ? null : <Icon name={page.iconName} className="icon" />}
+                    <div data-node="box" className="vertical flex flex-col grow">
+                      <span data-slot="label" data-node="label" className="title">{page.title}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {children}
+      </div>
+    ),
     ...widgetAttributes,
   }
 
@@ -164,7 +183,7 @@ function ViewSwitcherSidebarScrolledWindow({ className, ...props }: React.Compon
     <div
       data-slot="view-switcher-sidebar-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", className)}
       {...props}
     />
   )

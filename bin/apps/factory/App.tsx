@@ -60,11 +60,11 @@ export default function FactoryApp() {
                 </ShortcutsGroup>
                 <MultiLayoutView className="h-8">
                   <LayoutSlot id="main">
-                    <Label label="In the layout's slot" className="opacity-55" />
+                    <Label label="In the layout's slot" className="dim-label" />
                   </LayoutSlot>
                 </MultiLayoutView>
                 <Bin>
-                  <Label label="In a bin" className="opacity-55" />
+                  <Label label="In a bin" className="dim-label" />
                 </Bin>
                 <PopoverBin />
                 <ClampScrollable maximumSize={240}>

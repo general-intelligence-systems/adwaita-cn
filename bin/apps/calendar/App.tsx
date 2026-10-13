@@ -31,10 +31,10 @@ export default function CalendarApp() {
           </Box>
           <Grid columnSpacing={6} rowSpacing={6} columnHomogeneous className="grow">
             {DAYS.map((day) => (
-              <Label key={day} label={day} className="font-bold" />
+              <Label key={day} label={day} className="heading" />
             ))}
             {DAYS.map((day, index) => (
-              <Label key={`${day}-n`} label={String(12 + index)} className="opacity-55" />
+              <Label key={`${day}-n`} label={String(12 + index)} className="dim-label" />
             ))}
             <Fixed className="h-10">
               <Button size="pill" variant="suggestedAction" label="Design review 14:00" />
@@ -48,7 +48,7 @@ export default function CalendarApp() {
           <CenterBox
             className="grow"
             startWidget={<Button variant="flat" iconName="go-previous-symbolic" />}
-            centerWidget={<Label label="October 2026" className="font-bold" />}
+            centerWidget={<Label label="October 2026" className="heading" />}
             endWidget={<Button variant="flat" iconName="go-next-symbolic" />}
           />
         }
@@ -64,8 +64,8 @@ export function Event() {
       <ToolbarView
         content={
           <Box orientation="vertical" spacing={6} className="gap-1.5 m-[18px]">
-            <Label label="Design review" className="text-2xl" />
-            <Label label="Today, 14:00 – 15:00" className="opacity-55" />
+            <Label label="Design review" className="title-2" />
+            <Label label="Today, 14:00 – 15:00" className="dim-label" />
           </Box>
         }
       >

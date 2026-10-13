@@ -165,7 +165,7 @@ module FinalComponents
       # which then drops the utility they appear to conflict with. `.destructive-action`
       # lost its colour to `.text-button` exactly that way.
       "styleClasses" => self.style_classes(contexts, widgets),
-      "styles" => self.style_sheet(contexts),
+      "styles" => self.style_sheet(contexts, widgets),
       "variables" => self.read("bin/03-adwaita-tailwind.out/variables.json"),
     })}\n")
     warn("wrote bin/08-final-components.out/final-components.json")
@@ -177,7 +177,7 @@ module FinalComponents
   def self.entry(name, qualified, classes, source, shared, enums, widgets, contexts, trees)
     schema = classes[name]
     own = self.source_for(name, qualified, source)
-    props = schema.nil? ? {} : self.own_props(schema, shared)
+    props = (schema.nil? ? {} : self.own_props(schema, shared)).merge(ADDED_PROPS.fetch(name, {}))
 
     node = own && own["node"]
     tree = self.tree_for(name, classes, trees)
@@ -246,6 +246,23 @@ module FinalComponents
   # the wrong end.
   TEMPLATE_TAKES = { "prefixes" => "prefix", "suffixes" => "children" }.freeze
 
+  # Properties a widget has as METHODS and not as GObject properties, so no GIR states
+  # them and the generator would give the component nowhere to put them.
+  #
+  # `adw_toolbar_view_add_bottom_bar` is the only way anything reaches a toolbar view's
+  # bottom bar, and without a prop for it `<ToolbarView>`'s children all went into the
+  # top bar: bin/apps/mail's view switcher bar was drawn under the header instead of at
+  # the foot of the window.
+  ADDED_PROPS = {
+    "ToolbarView" => {
+      "bottomBars" => {
+        "prop" => "bottomBars", "gir" => "Gtk.Widget", "array" => false, "writable" => true,
+        "constructOnly" => false, "default" => nil, "deprecated" => false,
+        "from" => "Adw.ToolbarView", "type" => "node", "gobject" => "Gtk.Widget"
+      },
+    },
+  }.freeze
+
   CONSTRUCTED = {
     # The content, then the revealer which holds the top bars, then the one which holds
     # the bottom bars -- in that order, because that is the order AdwToolbarView parents
@@ -277,7 +294,7 @@ module FinalComponents
             "class" => "Windowhandle", "node" => "windowhandle",
             "children" => [{
               "class" => "InternalBox", "slot" => "box", "node" => "box", "layout" => "box",
-              "properties" => { "orientation" => "vertical" },
+              "properties" => { "orientation" => "vertical" }, "takes" => "bottomBars",
             }],
           }],
         },
@@ -452,7 +469,7 @@ module FinalComponents
     # what the widget builds and, through the brackets around a node, which of those it only
     # builds when it is asked to.
     drawn = self.documented_tree(name, node, documented)
-    return { "tree" => drawn } if drawn
+    return { "tree" => self.within_node_owner(name, node, drawn, documented) } if drawn
 
     found = self.node_tree(name, node, contexts, props, sources, documented)
     return { "tree" => self.aside(found) } if found
@@ -712,26 +729,29 @@ module FinalComponents
   # rules they scope reach the widgets inside as well, which is why the whole selector is
   # kept rather than only what it says about the class itself. bin/11 writes them out as
   # a stylesheet, so a caller naming one gets what the toolkit gives it.
-  def self.style_sheet(contexts)
+  def self.style_sheet(contexts, widgets = {})
     {}.tap do |found|
-      contexts.each do |selector, states|
-        segments = self.segments(selector)
+      # The merged map first, as the floor. bin/03 keys it by the subject a rule styles
+      # rather than by the whole selector, so it is the only statement of what a node
+      # measures when every rule which mentions it is written from the window down:
+      # `window.background.csd > popover` is in `contexts` and plain `popover` is not,
+      # and a sheet built from `contexts` alone left a popover with no size at all.
+      widgets.each{|node, states| found[node] = states if node.match?(/\A[a-z][a-z0-9-]*\z/) }
 
-        # A rule about one node on its own is the component's own business and is already
-        # in its class list. What goes in the sheet is everything which says where the
-        # node has to be: `list.boxed-list > row`, `.navigation-sidebar > row`. A
-        # component cannot carry those, because the same AdwActionRow is a card in a
-        # preferences group and a flat line in a sidebar, and which one it is depends on
-        # what it was put in -- which is the cascade's question, not the component's.
-        element, styles = self.segment(segments.first.to_a.last.to_s)
-
-        # A rule about one node on its own is already in that component's class list. A
-        # rule about one *class* on its own belongs to no component -- `.navigation-sidebar`
-        # goes on whichever widget an application puts it on -- so it is a class here.
-        next if segments.length < 2 && !(element.nil? && !styles.empty?)
-
-        (found[selector] = states)
-      end
+      # EVERY rule, including the ones about a node on its own.
+      #
+      # A component used to carry its own node's rules as Tailwind utilities and only
+      # the contextual ones were left as rules, which put the two in different cascade
+      # layers: `@layer utilities` beats `@layer components`, so `list` beat
+      # `.navigation-sidebar` and no rule in this sheet could ever override a component.
+      # Every sidebar in the registry was `--view-bg-color` white over the grey pane it
+      # sat in, and the same went for every other class an application puts on a widget
+      # to change it.
+      #
+      # Written at a specificity of zero through `:where`, so the order here is the
+      # cascade and it is the stylesheet's own: `list` loses to `list.boxed-list`, which
+      # loses to `.sidebar-pane list.boxed-list`, exactly as it does in GTK.
+      contexts.each{|selector, states| found[selector] = states }
     end
   end
 
@@ -1232,6 +1252,27 @@ module FinalComponents
   end
 
   # The flat list bin/05-adwaita-components read out of the doc comment, nested by its depths.
+  # A widget which renders as another's node is built out of that widget.
+  #
+  # GtkEmojiChooser IS a GtkPopover, and a popover is `popover > arrow` and
+  # `popover > contents` -- which is where a popover's padding, border, background and
+  # 15px corners are stated. The emoji chooser's own documentation draws its two boxes
+  # straight under `popover` and says nothing about the contents, so a tree read from it
+  # alone was a popover with no chrome at all and nothing to put the chooser in.
+  def self.within_node_owner(name, node, drawn, documented)
+    owner = node && self.documented_by_node[node]
+    return drawn if owner.nil? || owner.equal?(documented)
+
+    outer = self.documented_tree(name, node, owner)
+    return drawn if outer.nil?
+
+    slot = outer.fetch("children", []).find{|one| CONTENT_NODES.include?(one.fetch("node")) }
+    return drawn if slot.nil?
+
+    slot["children"] = drawn.fetch("children", [])
+    outer
+  end
+
   def self.documented_tree(name, node, documented)
     return nil if documented.nil? || documented.empty?
 

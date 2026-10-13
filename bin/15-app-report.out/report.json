@@ -478,13 +478,13 @@
           6,
           52,
           263,
-          54
+          50
         ],
         "delta": [
           0.0,
           0.0,
           50.0,
-          4.0
+          0.0
         ],
         "out": true
       },
@@ -497,18 +497,18 @@
           50.0
         ],
         "components": [
-          26,
-          54,
+          32,
+          52,
           32,
           50
         ],
         "delta": [
+          6.0,
           0.0,
-          2.0,
           0.0,
           0.0
         ],
-        "out": false
+        "out": true
       },
       {
         "component": "ActionRow",
@@ -520,15 +520,15 @@
         ],
         "components": [
           6,
-          108,
+          104,
           263,
-          54
+          50
         ],
         "delta": [
           0.0,
-          4.0,
+          0.0,
           50.0,
-          4.0
+          0.0
         ],
         "out": true
       },
@@ -541,14 +541,14 @@
           50.0
         ],
         "components": [
-          26,
-          110,
+          32,
+          104,
           32,
           50
         ],
         "delta": [
-          0.0,
           6.0,
+          0.0,
           0.0,
           0.0
         ],
@@ -564,15 +564,15 @@
         ],
         "components": [
           6,
-          164,
+          156,
           263,
-          54
+          50
         ],
         "delta": [
           0.0,
-          8.0,
+          0.0,
           50.0,
-          4.0
+          0.0
         ],
         "out": true
       },
@@ -585,14 +585,14 @@
           50.0
         ],
         "components": [
-          26,
-          166,
+          32,
+          156,
           32,
           50
         ],
         "delta": [
+          6.0,
           0.0,
-          10.0,
           0.0,
           0.0
         ],
@@ -608,15 +608,15 @@
         ],
         "components": [
           6,
-          220,
+          208,
           263,
-          54
+          50
         ],
         "delta": [
           0.0,
-          12.0,
+          0.0,
           50.0,
-          4.0
+          0.0
         ],
         "out": true
       },
@@ -629,14 +629,14 @@
           50.0
         ],
         "components": [
-          26,
-          222,
+          32,
+          208,
           32,
           50
         ],
         "delta": [
+          6.0,
           0.0,
-          14.0,
           0.0,
           0.0
         ],
@@ -806,13 +806,13 @@
         ],
         "components": [
           556.8,
-          314.5,
+          417.2,
           61.4,
           44
         ],
         "delta": [
           40.8,
-          -115.5,
+          -12.8,
           -30.6,
           0.0
         ],
@@ -1162,13 +1162,13 @@
           107,
           122,
           345.9,
-          44
+          40
         ],
         "delta": [
           2.0,
           0.0,
           -3.1,
-          10.0
+          6.0
         ],
         "out": true
       },
@@ -1195,13 +1195,13 @@
         "components": [
           127,
           130,
-          34,
+          20.6,
           15
         ],
         "delta": [
           11.0,
           5.0,
-          -58.0,
+          -71.4,
           -13.0
         ],
         "out": true
@@ -1227,15 +1227,15 @@
           28.0
         ],
         "components": [
-          195,
+          181.6,
           130,
-          34,
+          27.4,
           15
         ],
         "delta": [
-          -32.0,
+          -45.4,
           5.0,
-          -61.0,
+          -67.6,
           -13.0
         ],
         "out": true
@@ -1261,13 +1261,13 @@
           28.0
         ],
         "components": [
-          263,
+          243,
           130,
           34.3,
           15
         ],
         "delta": [
-          -78.0,
+          -98.0,
           5.0,
           -67.7,
           -13.0
@@ -1284,13 +1284,13 @@
         ],
         "components": [
           107,
-          184,
+          180,
           345.9,
           34
         ],
         "delta": [
           2.0,
-          10.0,
+          6.0,
           -3.1,
           0.0
         ],
@@ -1306,13 +1306,13 @@
         ],
         "components": [
           107,
-          345.5,
+          341.5,
           281.9,
           15
         ],
         "delta": [
           -7.0,
-          171.5,
+          167.5,
           -49.1,
           -19.0
         ],
@@ -1328,13 +1328,13 @@
         ],
         "components": [
           107,
-          236,
+          232,
           345.9,
           34
         ],
         "delta": [
           2.0,
-          10.0,
+          6.0,
           -3.1,
           0.0
         ],
@@ -1350,13 +1350,13 @@
         ],
         "components": [
           135,
-          388,
+          384,
           75.3,
           20
         ],
         "delta": [
           -1.0,
-          162.0,
+          158.0,
           -233.7,
           -14.0
         ],
@@ -1372,13 +1372,13 @@
         ],
         "components": [
           107,
-          288,
+          284,
           345.9,
           34
         ],
         "delta": [
           2.0,
-          10.0,
+          6.0,
           -3.1,
           0.0
         ],
@@ -1394,13 +1394,13 @@
         ],
         "components": [
           107,
-          340,
+          336,
           345.9,
           26
         ],
         "delta": [
           2.0,
-          10.0,
+          6.0,
           -3.1,
           0.0
         ],
@@ -1416,13 +1416,13 @@
         ],
         "components": [
           107,
-          430,
+          426,
           345.9,
           16
         ],
         "delta": [
           2.0,
-          100.0,
+          96.0,
           54.9,
           -10.0
         ],
@@ -1438,13 +1438,13 @@
         ],
         "components": [
           400.9,
-          340,
+          336,
           52,
           26
         ],
         "delta": [
           -7.1,
-          10.0,
+          6.0,
           6.0,
           0.0
         ],
@@ -1460,13 +1460,13 @@
         ],
         "components": [
           107,
-          384,
+          380,
           345.9,
           28
         ],
         "delta": [
           2.0,
-          10.0,
+          6.0,
           -3.1,
           0.0
         ],
@@ -1482,13 +1482,13 @@
         ],
         "components": [
           107,
-          430,
+          426,
           345.9,
           16
         ],
         "delta": [
           2.0,
-          10.0,
+          6.0,
           -3.1,
           -18.0
         ],
@@ -1692,13 +1692,13 @@
         ],
         "components": [
           107,
-          464,
+          460,
           345.9,
           8
         ],
         "delta": [
           2.0,
-          -8.0,
+          -12.0,
           -3.1,
           0.0
         ],
@@ -1714,13 +1714,13 @@
         ],
         "components": [
           107,
-          490,
+          486,
           345.9,
           8
         ],
         "delta": [
           2.0,
-          -8.0,
+          -12.0,
           -3.1,
           0.0
         ],
@@ -1736,13 +1736,13 @@
         ],
         "components": [
           107,
-          516,
+          512,
           345.9,
           34
         ],
         "delta": [
           2.0,
-          -8.0,
+          -12.0,
           -3.1,
           0.0
         ],
@@ -1758,13 +1758,13 @@
         ],
         "components": [
           386.9,
-          516,
+          512,
           33,
           34
         ],
         "delta": [
           -1.1,
-          -8.0,
+          -12.0,
           0.0,
           0.0
         ],
@@ -1780,13 +1780,13 @@
         ],
         "components": [
           419.9,
-          516,
+          512,
           33,
           34
         ],
         "delta": [
           -1.1,
-          -8.0,
+          -12.0,
           0.0,
           0.0
         ],
@@ -1799,6 +1799,18 @@
           0.0,
           560.0,
           46.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
         ],
         "components": null,
         "delta": null,
@@ -1829,6 +1841,18 @@
       {
         "component": "Box",
         "toolkit": [
+          520.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
           0.0,
           720.0,
           560.0,
@@ -1852,15 +1876,15 @@
           0,
           0,
           560,
-          440.5
+          420
         ],
         "delta": [
           0.0,
           0.0,
           0.0,
-          20.5
+          0.0
         ],
-        "out": true
+        "out": false
       },
       {
         "component": "ToastOverlay",
@@ -1874,15 +1898,15 @@
           0,
           46,
           560,
-          394.5
+          374
         ],
         "delta": [
           0.0,
           0.0,
           0.0,
-          20.5
+          0.0
         ],
-        "out": true
+        "out": false
       },
       {
         "component": "Box",
@@ -1896,15 +1920,15 @@
           0,
           46,
           560,
-          394.5
+          374
         ],
         "delta": [
           0.0,
           0.0,
           0.0,
-          20.5
+          0.0
         ],
-        "out": true
+        "out": false
       },
       {
         "component": "Banner",
@@ -1940,15 +1964,15 @@
           0,
           92,
           560,
-          348.5
+          328
         ],
         "delta": [
           0.0,
           0.0,
           0.0,
-          20.5
+          0.0
         ],
-        "out": true
+        "out": false
       },
       {
         "component": "Box",
@@ -1982,13 +2006,13 @@
         ],
         "components": [
           0,
-          440.5,
+          420,
           560,
           0
         ],
         "delta": [
           -46.0,
-          312.5,
+          292.0,
           92.0,
           -222.0
         ],
@@ -2004,13 +2028,13 @@
         ],
         "components": [
           238.9,
-          370.5,
+          360.2,
           82.2,
           24
         ],
         "delta": [
           192.9,
-          78.5,
+          68.2,
           -385.8,
           -4.0
         ],
@@ -2038,13 +2062,13 @@
         ],
         "components": [
           221.9,
-          360.5,
+          350.2,
           116.2,
           44
         ],
         "delta": [
           15.9,
-          -25.5,
+          -35.8,
           -30.8,
           0.0
         ],
@@ -2155,12 +2179,36 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
           1.0,
           10.0,
           10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          520.0,
+          6.0,
+          34.0,
+          34.0
         ],
         "components": null,
         "delta": null,
@@ -2325,6 +2373,28 @@
         "out": true
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          111.0,
+          34.0
+        ],
+        "components": [
+          0,
+          309.5,
+          800,
+          34
+        ],
+        "delta": [
+          -6.0,
+          303.5,
+          689.0,
+          0.0
+        ],
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
@@ -2401,14 +2471,36 @@
         "components": [
           149.4,
           175.5,
-          36,
+          16,
           34
         ],
         "delta": [
           55.4,
           169.5,
-          13.0,
+          -7.0,
           0.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          720.0,
+          6.0,
+          74.0,
+          34.0
+        ],
+        "components": [
+          0,
+          600,
+          800,
+          0
+        ],
+        "delta": [
+          -720.0,
+          594.0,
+          726.0,
+          -34.0
         ],
         "out": true
       },
@@ -2432,18 +2524,8 @@
           16.0,
           24.0
         ],
-        "components": [
-          0,
-          309.5,
-          800,
-          34
-        ],
-        "delta": [
-          -729.0,
-          298.5,
-          784.0,
-          10.0
-        ],
+        "components": null,
+        "delta": null,
         "out": true
       },
       {
@@ -2686,18 +2768,8 @@
           800.0,
           39.0
         ],
-        "components": [
-          0,
-          600,
-          800,
-          0
-        ],
-        "delta": [
-          0.0,
-          39.0,
-          0.0,
-          -39.0
-        ],
+        "components": null,
+        "delta": null,
         "out": true
       },
       {
@@ -3113,12 +3185,36 @@
         "out": true
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
           1.0,
           10.0,
           10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          760.0,
+          6.0,
+          34.0,
+          34.0
         ],
         "components": null,
         "delta": null,
@@ -3434,13 +3530,13 @@
           0,
           0,
           40,
-          72
+          47
         ],
         "delta": [
           0.0,
           0.0,
           -560.0,
-          -268.0
+          -293.0
         ],
         "out": true
       }
@@ -3839,6 +3935,18 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          209.0,
+          6.0,
+          307.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           204.0,
@@ -3927,6 +4035,18 @@
         "out": true
       },
       {
+        "component": "Box",
+        "toolkit": [
+          642.0,
+          6.0,
+          252.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "SearchEntry",
         "toolkit": [
           642.0,
@@ -3981,18 +4101,6 @@
           0.0
         ],
         "out": true
-      },
-      {
-        "component": "ScrolledWindow",
-        "toolkit": [
-          0.0,
-          0.0,
-          203.0,
-          620.0
-        ],
-        "components": null,
-        "delta": null,
-        "out": true
       }
     ],
     "files-menu": [
@@ -4007,14 +4115,14 @@
         "components": [
           0,
           0,
-          111.1,
-          140
+          93.1,
+          122
         ],
         "delta": [
           1.0,
           1.0,
-          17.1,
-          8.0
+          -0.9,
+          -10.0
         ],
         "out": true
       }
@@ -4915,6 +5023,18 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
@@ -4927,12 +5047,36 @@
         "out": true
       },
       {
+        "component": "Image",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Label",
         "toolkit": [
           351.0,
           15.0,
           59.0,
           15.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          640.0,
+          6.0,
+          114.0,
+          34.0
         ],
         "components": null,
         "delta": null,
@@ -5277,14 +5421,14 @@
         "components": [
           12,
           58,
-          796,
-          22
+          22,
+          299
         ],
         "delta": [
           0.0,
           0.0,
-          641.0,
-          -65.0
+          -133.0,
+          212.0
         ],
         "out": true
       },
@@ -5297,16 +5441,16 @@
           87.0
         ],
         "components": [
-          12,
-          80,
-          796,
-          22
+          40,
+          58,
+          22,
+          299
         ],
         "delta": [
-          -161.0,
-          22.0,
-          641.0,
-          -65.0
+          -133.0,
+          0.0,
+          -133.0,
+          212.0
         ],
         "out": true
       },
@@ -5319,16 +5463,16 @@
           87.0
         ],
         "components": [
-          12,
-          102,
-          796,
-          22
+          68,
+          58,
+          22,
+          299
         ],
         "delta": [
-          -322.0,
-          44.0,
-          642.0,
-          -65.0
+          -266.0,
+          0.0,
+          -132.0,
+          212.0
         ],
         "out": true
       },
@@ -5341,16 +5485,16 @@
           87.0
         ],
         "components": [
-          12,
-          124,
-          796,
-          22
+          96,
+          58,
+          22,
+          299
         ],
         "delta": [
-          -482.0,
-          66.0,
-          642.0,
-          -65.0
+          -398.0,
+          0.0,
+          -132.0,
+          212.0
         ],
         "out": true
       },
@@ -5363,16 +5507,16 @@
           87.0
         ],
         "components": [
-          12,
-          146,
-          796,
-          22
+          124,
+          58,
+          22,
+          299
         ],
         "delta": [
-          -642.0,
-          88.0,
-          642.0,
-          -65.0
+          -530.0,
+          0.0,
+          -132.0,
+          212.0
         ],
         "out": true
       },
@@ -5385,16 +5529,16 @@
           87.0
         ],
         "components": [
-          12,
-          168,
-          796,
-          22
+          152,
+          58,
+          22,
+          299
         ],
         "delta": [
-          0.0,
-          17.0,
-          641.0,
-          -65.0
+          140.0,
+          -93.0,
+          -133.0,
+          212.0
         ],
         "out": true
       },
@@ -5407,16 +5551,16 @@
           87.0
         ],
         "components": [
-          12,
-          190,
-          796,
-          22
+          180,
+          58,
+          22,
+          299
         ],
         "delta": [
-          -161.0,
-          39.0,
-          641.0,
-          -65.0
+          7.0,
+          -93.0,
+          -133.0,
+          212.0
         ],
         "out": true
       },
@@ -5429,16 +5573,16 @@
           87.0
         ],
         "components": [
-          12,
-          212,
-          796,
-          22
+          208,
+          58,
+          22,
+          299
         ],
         "delta": [
-          -322.0,
-          61.0,
-          642.0,
-          -65.0
+          -126.0,
+          -93.0,
+          -132.0,
+          212.0
         ],
         "out": true
       },
@@ -5641,6 +5785,28 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": [
+          0,
+          600,
+          820,
+          0
+        ],
+        "delta": [
+          -6.0,
+          594.0,
+          820.0,
+          0.0
+        ],
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
@@ -5660,6 +5826,18 @@
           65.1,
           24.0
         ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          698.0,
+          6.0,
+          116.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
         "out": true
       },
       {
@@ -5692,19 +5870,9 @@
           820.0,
           0.0
         ],
-        "components": [
-          0,
-          600,
-          820,
-          0
-        ],
-        "delta": [
-          0.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        "out": false
+        "components": null,
+        "delta": null,
+        "out": true
       }
     ],
     "photos-share": [
@@ -5764,13 +5932,13 @@
           18,
           33,
           784,
-          36
+          39
         ],
         "delta": [
           0.0,
           -510.0,
           0.0,
-          -3.0
+          0.0
         ],
         "out": true
       },
@@ -5786,13 +5954,13 @@
           18,
           33,
           784,
-          15
+          18
         ],
         "delta": [
           0.0,
           -510.0,
           0.0,
-          -3.0
+          0.0
         ],
         "out": true
       },
@@ -5806,13 +5974,13 @@
         ],
         "components": [
           18,
-          54,
+          57,
           784,
           15
         ],
         "delta": [
           0.0,
-          -513.0,
+          -510.0,
           0.0,
           0.0
         ],
@@ -5898,13 +6066,13 @@
           206,
           132,
           708,
-          40
+          36
         ],
         "delta": [
           200.0,
           126.0,
           520.0,
-          -2.0
+          -6.0
         ],
         "out": true
       },
@@ -5961,15 +6129,15 @@
           15.0
         ],
         "components": [
-          220,
-          140,
-          692,
+          226,
+          138,
+          680,
           24
         ],
         "delta": [
-          172.0,
-          121.0,
-          560.0,
+          178.0,
+          119.0,
+          548.0,
           9.0
         ],
         "out": true
@@ -6252,15 +6420,15 @@
         ],
         "components": [
           206,
-          174,
+          170,
           708,
-          54
+          50
         ],
         "delta": [
           0.0,
-          38.0,
+          34.0,
           0.0,
-          4.0
+          0.0
         ],
         "out": true
       },
@@ -6273,58 +6441,58 @@
           50.0
         ],
         "components": [
-          226,
-          176,
-          32,
-          50
-        ],
-        "delta": [
-          0.0,
-          40.0,
-          0.0,
-          0.0
-        ],
-        "out": true
-      },
-      {
-        "component": "ActionRow",
-        "toolkit": [
-          206.0,
-          188.0,
-          708.0,
-          50.0
-        ],
-        "components": [
-          206,
-          230,
-          708,
-          54
-        ],
-        "delta": [
-          0.0,
-          42.0,
-          0.0,
-          4.0
-        ],
-        "out": true
-      },
-      {
-        "component": "Avatar",
-        "toolkit": [
-          226.0,
-          188.0,
-          32.0,
-          50.0
-        ],
-        "components": [
-          226,
           232,
+          170,
           32,
           50
         ],
         "delta": [
+          6.0,
+          34.0,
           0.0,
-          44.0,
+          0.0
+        ],
+        "out": true
+      },
+      {
+        "component": "ActionRow",
+        "toolkit": [
+          206.0,
+          188.0,
+          708.0,
+          50.0
+        ],
+        "components": [
+          206,
+          222,
+          708,
+          50
+        ],
+        "delta": [
+          0.0,
+          34.0,
+          0.0,
+          0.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Avatar",
+        "toolkit": [
+          226.0,
+          188.0,
+          32.0,
+          50.0
+        ],
+        "components": [
+          232,
+          222,
+          32,
+          50
+        ],
+        "delta": [
+          6.0,
+          34.0,
           0.0,
           0.0
         ],
@@ -6340,15 +6508,15 @@
         ],
         "components": [
           206,
-          286,
+          274,
           708,
-          54
+          50
         ],
         "delta": [
           0.0,
-          46.0,
+          34.0,
           0.0,
-          4.0
+          0.0
         ],
         "out": true
       },
@@ -6361,14 +6529,14 @@
           50.0
         ],
         "components": [
-          226,
-          288,
+          232,
+          274,
           32,
           50
         ],
         "delta": [
-          0.0,
-          48.0,
+          6.0,
+          34.0,
           0.0,
           0.0
         ],
@@ -6433,6 +6601,18 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          206.0,
+          6.0,
+          513.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           201.0,
@@ -6441,13 +6621,13 @@
           10.0
         ],
         "components": [
-          344,
+          324,
           6,
           34,
           34
         ],
         "delta": [
-          143.0,
+          123.0,
           5.0,
           24.0,
           24.0
@@ -6465,13 +6645,13 @@
         "components": [
           218,
           3,
-          114,
+          54,
           40
         ],
         "delta": [
           12.0,
           0.0,
-          -192.0,
+          -252.0,
           0.0
         ],
         "out": true
@@ -6489,6 +6669,18 @@
         "out": true
       },
       {
+        "component": "Box",
+        "toolkit": [
+          194.0,
+          1.0,
+          24.0,
+          4.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "IndicatorBin",
         "toolkit": [
           206.0,
@@ -6497,16 +6689,16 @@
           0.0
         ],
         "components": [
-          228,
-          8,
+          218,
+          3,
           16,
-          20
+          10
         ],
         "delta": [
-          22.0,
-          5.0,
+          12.0,
+          0.0,
           16.0,
-          20.0
+          10.0
         ],
         "out": true
       },
@@ -6529,6 +6721,18 @@
           3.0,
           0.0,
           0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          240.0,
+          3.0,
+          32.0,
+          40.0
         ],
         "components": null,
         "delta": null,
@@ -6543,16 +6747,16 @@
           16.0
         ],
         "components": [
-          267,
-          8,
+          237,
+          3,
           16,
-          20
+          10
         ],
         "delta": [
-          19.0,
-          1.0,
+          -11.0,
+          -4.0,
           0.0,
-          4.0
+          -6.0
         ],
         "out": true
       },
@@ -6593,6 +6797,18 @@
         "out": true
       },
       {
+        "component": "Box",
+        "toolkit": [
+          297.0,
+          1.0,
+          24.0,
+          4.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "IndicatorBin",
         "toolkit": [
           309.0,
@@ -6601,16 +6817,16 @@
           0.0
         ],
         "components": [
-          306,
-          8,
+          256,
+          3,
           16,
-          20
+          10
         ],
         "delta": [
-          -3.0,
-          5.0,
+          -53.0,
+          0.0,
           16.0,
-          20.0
+          10.0
         ],
         "out": true
       },
@@ -6633,6 +6849,18 @@
           3.0,
           0.0,
           0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          340.0,
+          3.0,
+          37.0,
+          40.0
         ],
         "components": null,
         "delta": null,
@@ -6687,6 +6915,18 @@
         "out": true
       },
       {
+        "component": "Box",
+        "toolkit": [
+          400.0,
+          1.0,
+          24.0,
+          4.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "IndicatorBin",
         "toolkit": [
           412.0,
@@ -6717,6 +6957,18 @@
           3.0,
           0.0,
           0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          448.0,
+          3.0,
+          27.0,
+          40.0
         ],
         "components": null,
         "delta": null,
@@ -6767,15 +7019,15 @@
           34.0
         ],
         "components": [
-          338,
+          278,
           6,
-          0,
+          40,
           34
         ],
         "delta": [
-          -180.0,
+          -240.0,
           0.0,
-          -201.0,
+          -161.0,
           0.0
         ],
         "out": true
@@ -7265,6 +7517,18 @@
           0.0,
           0.0,
           0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          840.0,
+          6.0,
+          74.0,
+          34.0
         ],
         "components": null,
         "delta": null,
@@ -8433,6 +8697,18 @@
         "out": true
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
@@ -8537,6 +8813,18 @@
       {
         "component": "Box",
         "toolkit": [
+          720.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
           0.0,
           600.0,
           760.0,
@@ -8559,14 +8847,14 @@
         "components": [
           0,
           0,
-          207.6,
-          135
+          173,
+          123
         ],
         "delta": [
           0.0,
           0.0,
-          -152.4,
-          -85.0
+          -187.0,
+          -97.0
         ],
         "out": true
       }
@@ -8647,18 +8935,18 @@
           50.0
         ],
         "components": [
-          26,
-          54,
+          32,
+          52,
           32,
           50
         ],
         "delta": [
+          6.0,
           0.0,
-          2.0,
           0.0,
           0.0
         ],
-        "out": false
+        "out": true
       },
       {
         "component": "Avatar",
@@ -8669,14 +8957,14 @@
           50.0
         ],
         "components": [
-          26,
-          110,
+          32,
+          104,
           32,
           50
         ],
         "delta": [
-          0.0,
           6.0,
+          0.0,
           0.0,
           0.0
         ],
@@ -8691,14 +8979,14 @@
           50.0
         ],
         "components": [
-          26,
-          166,
+          32,
+          156,
           32,
           50
         ],
         "delta": [
+          6.0,
           0.0,
-          10.0,
           0.0,
           0.0
         ],
@@ -8747,6 +9035,28 @@
           0.0
         ],
         "out": false
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": [
+          0,
+          600,
+          205,
+          0
+        ],
+        "delta": [
+          -6.0,
+          594.0,
+          205.0,
+          0.0
+        ],
+        "out": true
       },
       {
         "component": "Button",
@@ -8823,28 +9133,6 @@
           0.0
         ],
         "components": [
-          0,
-          600,
-          205,
-          0
-        ],
-        "delta": [
-          -27.0,
-          594.0,
-          205.0,
-          0.0
-        ],
-        "out": true
-      },
-      {
-        "component": "Box",
-        "toolkit": [
-          27.0,
-          6.0,
-          0.0,
-          0.0
-        ],
-        "components": [
           205,
           46,
           615,
@@ -8855,28 +9143,6 @@
           40.0,
           615.0,
           127.0
-        ],
-        "out": true
-      },
-      {
-        "component": "Label",
-        "toolkit": [
-          27.0,
-          6.0,
-          0.0,
-          0.0
-        ],
-        "components": [
-          217,
-          52,
-          591,
-          15
-        ],
-        "delta": [
-          190.0,
-          46.0,
-          591.0,
-          15.0
         ],
         "out": true
       },
@@ -8912,6 +9178,50 @@
         ],
         "components": [
           217,
+          52,
+          591,
+          15
+        ],
+        "delta": [
+          190.0,
+          46.0,
+          591.0,
+          15.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          27.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": [
+          205,
+          0,
+          615,
+          46
+        ],
+        "delta": [
+          178.0,
+          -6.0,
+          615.0,
+          46.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          27.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": [
+          217,
           79,
           591,
           15
@@ -8927,23 +9237,35 @@
       {
         "component": "Box",
         "toolkit": [
+          199.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": [
+          205,
+          600,
+          615,
+          0
+        ],
+        "delta": [
+          6.0,
+          594.0,
+          615.0,
+          0.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
           0.0,
           600.0,
           205.0,
           0.0
         ],
-        "components": [
-          205,
-          0,
-          615,
-          46
-        ],
-        "delta": [
-          205.0,
-          -600.0,
-          410.0,
-          46.0
-        ],
+        "components": null,
+        "delta": null,
         "out": true
       },
       {
@@ -9042,18 +9364,8 @@
           615.0,
           554.0
         ],
-        "components": [
-          205,
-          600,
-          615,
-          0
-        ],
-        "delta": [
-          0.0,
-          554.0,
-          0.0,
-          -554.0
-        ],
+        "components": null,
+        "delta": null,
         "out": true
       },
       {
@@ -9169,13 +9481,13 @@
         "components": [
           211,
           133,
-          521,
+          541,
           34
         ],
         "delta": [
           0.0,
           -427.0,
-          -2.0,
+          18.0,
           0.0
         ],
         "out": true
@@ -9218,6 +9530,414 @@
       },
       {
         "component": "Box",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          740.0,
+          560.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
         "toolkit": [
           740.0,
           560.0,
@@ -13075,6 +13795,18 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          211.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           206.0,
@@ -13092,6 +13824,18 @@
           471.0,
           6.0,
           83.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          740.0,
+          6.0,
+          74.0,
           34.0
         ],
         "components": null,
@@ -13231,14 +13975,14 @@
         "components": [
           0,
           0,
-          18,
-          18
+          2,
+          2
         ],
         "delta": [
           1.0,
           1.0,
-          -370.0,
-          -406.0
+          -386.0,
+          -422.0
         ],
         "out": true
       }
@@ -13255,14 +13999,14 @@
         "components": [
           0,
           0,
-          124,
-          6
+          122,
+          4
         ],
         "delta": [
           1.0,
           1.0,
-          -65.0,
-          -116.0
+          -67.0,
+          -118.0
         ],
         "out": true
       }
@@ -13343,15 +14087,15 @@
           15.0
         ],
         "components": [
-          9,
-          54,
-          163,
+          15,
+          52,
+          151,
           36
         ],
         "delta": [
-          -5.0,
-          -8.0,
-          116.0,
+          1.0,
+          -10.0,
+          104.0,
           21.0
         ],
         "out": true
@@ -13365,15 +14109,15 @@
           15.0
         ],
         "components": [
-          9,
-          96,
-          163,
+          15,
+          90,
+          151,
           36
         ],
         "delta": [
-          -5.0,
-          -4.0,
-          109.0,
+          1.0,
+          -10.0,
+          97.0,
           21.0
         ],
         "out": true
@@ -13387,15 +14131,15 @@
           15.0
         ],
         "components": [
-          9,
-          138,
-          163,
+          15,
+          128,
+          151,
           36
         ],
         "delta": [
-          -5.0,
-          0.0,
-          89.0,
+          1.0,
+          -10.0,
+          77.0,
           21.0
         ],
         "out": true
@@ -13651,15 +14395,15 @@
           0.0
         ],
         "components": [
-          252,
+          170.5,
           11,
-          46.3,
+          112,
           15
         ],
         "delta": [
-          71.0,
+          -10.5,
           -35.0,
-          46.3,
+          112.0,
           15.0
         ],
         "out": true
@@ -13707,15 +14451,15 @@
           0.0
         ],
         "components": [
-          319.2,
+          303.5,
           11,
-          53.1,
+          112,
           15
         ],
         "delta": [
-          138.2,
+          122.5,
           -35.0,
-          53.1,
+          112.0,
           15.0
         ],
         "out": true
@@ -13729,15 +14473,15 @@
           0.0
         ],
         "components": [
-          393.3,
+          436.5,
           11,
-          73.7,
+          112,
           15
         ],
         "delta": [
-          212.3,
+          255.5,
           -35.0,
-          73.7,
+          112.0,
           15.0
         ],
         "out": true
@@ -13823,6 +14567,18 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
@@ -13853,18 +14609,18 @@
           34.0
         ],
         "components": [
-          242,
+          160.5,
           6,
-          236,
+          399,
           34
         ],
         "delta": [
-          82.0,
+          0.5,
           0.0,
-          -164.0,
+          -1.0,
           0.0
         ],
-        "out": true
+        "out": false
       },
       {
         "component": "Label",
@@ -13897,6 +14653,18 @@
           11.0,
           74.0,
           24.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          640.0,
+          6.0,
+          74.0,
+          34.0
         ],
         "components": null,
         "delta": null,
@@ -14082,13 +14850,13 @@
         ],
         "components": [
           352,
-          353.5,
+          317.5,
           175.9,
           44
         ],
         "delta": [
           340.0,
-          295.5,
+          259.5,
           -680.1,
           5.0
         ],
@@ -14170,13 +14938,13 @@
         ],
         "components": [
           352,
-          353.5,
+          317.5,
           82,
           44
         ],
         "delta": [
           -484.0,
-          289.5,
+          253.5,
           56.0,
           18.0
         ],
@@ -14194,13 +14962,13 @@
           12,
           85,
           856,
-          348.5
+          276.5
         ],
         "delta": [
           0.0,
           -24.0,
           0.0,
-          -9.5
+          -81.5
         ],
         "out": true
       },
@@ -14238,13 +15006,13 @@
         ],
         "components": [
           369,
-          363.5,
+          327.5,
           48,
           24
         ],
         "delta": [
           182.0,
-          54.5,
+          18.5,
           -458.0,
           -4.0
         ],
@@ -14260,13 +15028,13 @@
         ],
         "components": [
           463,
-          368,
+          332,
           48,
           15
         ],
         "delta": [
           276.0,
-          19.0,
+          -17.0,
           -458.0,
           -3.0
         ],
@@ -14338,13 +15106,13 @@
         ],
         "components": [
           446,
-          353.5,
+          317.5,
           82,
           44
         ],
         "delta": [
           -15.0,
-          -49.5,
+          -85.5,
           0.0,
           0.0
         ],
@@ -14372,13 +15140,13 @@
         ],
         "components": [
           12,
-          445.5,
+          373.5,
           856,
           87
         ],
         "delta": [
           0.0,
-          -33.5,
+          -105.5,
           0.0,
           -42.0
         ],
@@ -14394,13 +15162,13 @@
         ],
         "components": [
           12,
-          488.5,
+          416.5,
           856,
           44
         ],
         "delta": [
           0.0,
-          -30.5,
+          -102.5,
           0.0,
           0.0
         ],
@@ -14416,13 +15184,13 @@
         ],
         "components": [
           12,
-          472.5,
+          400.5,
           856,
           8
         ],
         "delta": [
           0.0,
-          -90.5,
+          -162.5,
           0.0,
           -13.0
         ],
@@ -14450,13 +15218,13 @@
         ],
         "components": [
           12,
-          480.5,
+          408.5,
           856,
           8
         ],
         "delta": [
           0.0,
-          -103.5,
+          -175.5,
           0.0,
           0.0
         ],
@@ -14472,13 +15240,13 @@
         ],
         "components": [
           440,
-          488.5,
+          416.5,
           0,
           0
         ],
         "delta": [
           11.1,
-          -100.4,
+          -172.4,
           -22.3,
           -22.3
         ],
@@ -14599,6 +15367,18 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
@@ -14617,6 +15397,18 @@
           15.0,
           59.0,
           15.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          744.0,
+          6.0,
+          130.0,
+          34.0
         ],
         "components": null,
         "delta": null,
@@ -15137,6 +15929,30 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          301.0,
+          6.0,
+          218.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "ComboBox",
         "toolkit": [
           301.0,
@@ -15411,6 +16227,18 @@
       {
         "component": "Box",
         "toolkit": [
+          780.0,
+          6.0,
+          34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
           0.0,
           560.0,
           820.0,
@@ -15526,17 +16354,17 @@
         ],
         "components": [
           0,
+          -16640.5,
           0,
-          820,
-          560
+          0
         ],
         "delta": [
           0.0,
-          0.0,
-          0.0,
-          0.0
+          -16640.5,
+          -820.0,
+          -560.0
         ],
-        "out": false
+        "out": true
       },
       {
         "component": "PopoverMenuBar",
@@ -15548,15 +16376,15 @@
         ],
         "components": [
           0,
+          -16640.5,
           0,
-          820,
-          560
+          0
         ],
         "delta": [
           0.0,
-          0.0,
-          34.0,
-          0.0
+          -16640.5,
+          -786.0,
+          -560.0
         ],
         "out": true
       },
@@ -15713,16 +16541,16 @@
           560.0
         ],
         "components": [
-          820,
           0,
+          -16640.5,
           0,
-          560
+          0
         ],
         "delta": [
-          34.0,
-          0.0,
+          -786.0,
+          -16640.5,
           -34.0,
-          0.0
+          -560.0
         ],
         "out": true
       }
@@ -16475,12 +17303,36 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Button",
         "toolkit": [
           1.0,
           1.0,
           10.0,
           10.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          360.0,
+          6.0,
+          100.0,
+          34.0
         ],
         "components": null,
         "delta": null,
@@ -16536,6 +17388,18 @@
           426.0,
           6.0,
           34.0,
+          34.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          729.0,
+          6.0,
+          85.0,
           34.0
         ],
         "components": null,
@@ -16636,13 +17500,13 @@
           0,
           0,
           760,
-          1099
+          1103
         ],
         "delta": [
           0.0,
           0.0,
           0.0,
-          419.0
+          423.0
         ],
         "out": true
       },
@@ -16658,13 +17522,13 @@
           0,
           46,
           760,
-          1053
+          1057
         ],
         "delta": [
           0.0,
           0.0,
           0.0,
-          419.0
+          423.0
         ],
         "out": true
       },
@@ -16680,13 +17544,13 @@
           139,
           305,
           481,
-          255
+          259
         ],
         "delta": [
           48.0,
           235.0,
           -96.0,
-          -1051.0
+          -1047.0
         ],
         "out": true
       },
@@ -16810,13 +17674,13 @@
         ],
         "components": [
           139,
-          445,
+          449,
           481,
           32
         ],
         "delta": [
           34.0,
-          156.0,
+          160.0,
           -68.0,
           17.0
         ],
@@ -16834,13 +17698,13 @@
           139,
           278,
           481,
-          282
+          286
         ],
         "delta": [
           48.0,
           -64.0,
           -96.0,
-          -84.0
+          -80.0
         ],
         "out": true
       },
@@ -16856,13 +17720,13 @@
           139,
           305,
           481,
-          0
+          4
         ],
         "delta": [
           48.0,
           -77.0,
           -96.0,
-          0.0
+          4.0
         ],
         "out": true
       },
@@ -16876,13 +17740,13 @@
         ],
         "components": [
           139,
-          317,
+          321,
           481,
           34
         ],
         "delta": [
           48.0,
-          -77.0,
+          -73.0,
           -96.0,
           0.0
         ],
@@ -16898,13 +17762,13 @@
         ],
         "components": [
           139,
-          363,
+          367,
           481,
           34
         ],
         "delta": [
           58.0,
-          -14.0,
+          -10.0,
           461.0,
           24.0
         ],
@@ -16920,13 +17784,13 @@
         ],
         "components": [
           139,
-          409,
+          413,
           481,
           0
         ],
         "delta": [
           48.0,
-          -31.0,
+          -27.0,
           -96.0,
           -34.0
         ],
@@ -16942,13 +17806,13 @@
         ],
         "components": [
           139,
-          611,
+          615,
           481,
           464
         ],
         "delta": [
           48.0,
-          171.0,
+          175.0,
           -96.0,
           430.0
         ],
@@ -16986,13 +17850,13 @@
         ],
         "components": [
           0,
-          1099,
+          1103,
           760,
           0
         ],
         "delta": [
           -85.0,
-          665.0,
+          669.0,
           748.0,
           -12.0
         ],
@@ -17008,13 +17872,13 @@
         ],
         "components": [
           139,
-          421,
+          425,
           0,
           0
         ],
         "delta": [
           48.0,
-          -65.0,
+          -61.0,
           -170.0,
           -29.0
         ],
@@ -17030,13 +17894,13 @@
         ],
         "components": [
           139,
-          433,
+          437,
           481,
           0
         ],
         "delta": [
           48.0,
-          -94.0,
+          -90.0,
           -96.0,
           -54.0
         ],
@@ -17052,13 +17916,13 @@
         ],
         "components": [
           139,
-          433,
+          437,
           481,
           0
         ],
         "delta": [
           48.0,
-          -119.0,
+          -115.0,
           -96.0,
           -29.0
         ],
@@ -17077,6 +17941,76 @@
         "out": true
       },
       {
+        "component": "Label",
+        "toolkit": [
+          91.0,
+          552.0,
+          50.0,
+          29.0
+        ],
+        "components": [
+          139,
+          493,
+          481,
+          15
+        ],
+        "delta": [
+          48.0,
+          -59.0,
+          431.0,
+          -14.0
+        ],
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          147.0,
+          552.0,
+          7.0,
+          29.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          160.0,
+          552.0,
+          32.0,
+          29.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          204.0,
+          559.0,
+          464.0,
+          15.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          204.0,
+          559.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "MultiLayoutView",
         "toolkit": [
           91.0,
@@ -17086,13 +18020,13 @@
         ],
         "components": [
           139,
-          445,
+          449,
           481,
           32
         ],
         "delta": [
           48.0,
-          -148.0,
+          -144.0,
           -96.0,
           0.0
         ],
@@ -17108,13 +18042,13 @@
         ],
         "components": [
           139,
-          445,
+          449,
           481,
           32
         ],
         "delta": [
           48.0,
-          -148.0,
+          -144.0,
           -96.0,
           0.0
         ],
@@ -17130,13 +18064,13 @@
         ],
         "components": [
           139,
-          489,
+          493,
           481,
           15
         ],
         "delta": [
           48.0,
-          -148.0,
+          -144.0,
           -96.0,
           0.0
         ],
@@ -17152,13 +18086,13 @@
         ],
         "components": [
           139,
-          516,
+          520,
           481,
           0
         ],
         "delta": [
           48.0,
-          -148.0,
+          -144.0,
           -96.0,
           0.0
         ],
@@ -17174,13 +18108,13 @@
         ],
         "components": [
           139,
-          528,
+          532,
           481,
           32
         ],
         "delta": [
           48.0,
-          -148.0,
+          -144.0,
           -96.0,
           0.0
         ],
@@ -17196,13 +18130,13 @@
         ],
         "components": [
           139,
-          584,
+          588,
           481,
           491
         ],
         "delta": [
           48.0,
-          -148.0,
+          -144.0,
           -96.0,
           -153.0
         ],
@@ -17218,13 +18152,13 @@
         ],
         "components": [
           139,
-          611,
+          615,
           481,
           120
         ],
         "delta": [
           48.0,
-          -161.0,
+          -157.0,
           -96.0,
           0.0
         ],
@@ -17238,18 +18172,8 @@
           0.0,
           0.0
         ],
-        "components": [
-          139,
-          489,
-          481,
-          15
-        ],
-        "delta": [
-          47.0,
-          -284.0,
-          481.0,
-          15.0
-        ],
+        "components": null,
+        "delta": null,
         "out": true
       },
       {
@@ -17406,13 +18330,13 @@
         ],
         "components": [
           139,
-          743,
+          747,
           481,
           160
         ],
         "delta": [
           48.0,
-          -161.0,
+          -157.0,
           -96.0,
           -120.0
         ],
@@ -20236,13 +21160,13 @@
         ],
         "components": [
           139,
-          915,
+          919,
           481,
           160
         ],
         "delta": [
           48.0,
-          -281.0,
+          -277.0,
           -96.0,
           -20.0
         ],
@@ -22799,6 +23723,126 @@
           1289.0,
           531.0,
           16.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Label",
+        "toolkit": [
+          92.0,
+          1237.0,
+          0.0,
+          0.0
         ],
         "components": null,
         "delta": null,
@@ -36303,6 +37347,18 @@
         "out": false
       },
       {
+        "component": "Box",
+        "toolkit": [
+          6.0,
+          6.0,
+          0.0,
+          0.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
         "component": "Bin",
         "toolkit": [
           351.0,
@@ -36321,6 +37377,18 @@
           15.0,
           59.0,
           15.0
+        ],
+        "components": null,
+        "delta": null,
+        "out": true
+      },
+      {
+        "component": "Box",
+        "toolkit": [
+          720.0,
+          6.0,
+          34.0,
+          34.0
         ],
         "components": null,
         "delta": null,

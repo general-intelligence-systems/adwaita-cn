@@ -43,7 +43,7 @@ function TreeExpander({ className, render, child, listRow: _listRow, hideExpande
     "data-hide-expander": hideExpander,
     "data-indent-for-depth": indentForDepth,
     "data-indent-for-icon": indentForIcon,
-    className: cn("group/tree-expander", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "gap-[4px]", widgetClassName, className),
+    className: cn("group/tree-expander", "flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
     style,
     children: (
         <>

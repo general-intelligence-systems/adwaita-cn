@@ -31,12 +31,33 @@ export interface AvatarProps
   text?: string
 }
 
+// adw-avatar.c: `(g_str_hash (text) % 14) + 1`, as a class on the gizmo. g_str_hash
+// is djb2 over the bytes, so the text is encoded before it is hashed -- a name with
+// an accent in it hashed by UTF-16 code unit picked a different colour from the one
+// the toolkit picks.
+function avatarColor(text: string | undefined) {
+  if (!text) return "color1"
+
+  let hash = 5381
+  for (const byte of new TextEncoder().encode(text)) hash = (Math.imul(hash, 33) + byte) >>> 0
+
+  return `color${(hash % 14) + 1}`
+}
+
 function Avatar({ className, render, iconName, customImage: _customImage, showInitials, size, text, children, ...props }: AvatarProps) {
   const { hidden, className: widgetClassName, style, attributes: widgetAttributes, rest } = widget(props)
 
-  // Named rather than passed inline: a fresh object literal handed straight
-  // to mergeProps is excess-property checked against the element's props,
-  // which no data attribute of ours is one of.
+  // The label when there are initials to show and the icon when there are not:
+  // adw_avatar_set_show_initials toggles exactly one of the two children visible.
+  //
+  // ONE LETTER PER WORD, which is what adw_avatar_set_text means by initials:
+  // `Adwaita::Avatar.new (32, "AL", true)` draws `A`, not `AL`, because "AL" is one
+  // word. Shown whole, every avatar in bin/apps/library was a letter wider than the
+  // toolkit's and the text was scaled down to fit a circle it should have filled.
+  const initials = showInitials && text
+    ? text.split(/\s+/).filter(Boolean).map((word) => [...word][0]).join("")
+    : null
+
   const defaultProps = {
     "data-slot": "avatar",
     "data-show-initials": showInitials,
@@ -45,13 +66,16 @@ function Avatar({ className, render, iconName, customImage: _customImage, showIn
     className: cn("group/avatar", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style: { ...style, ...(size === undefined ? {} : { minWidth: size }), ...(size === undefined ? {} : { minHeight: size }) } as React.CSSProperties,
     children: (
-        <AvatarGizmo>
-                <AvatarLabel />
-                <AvatarImage name={iconName} />
-                <AvatarImage2 name={iconName} />
-                {children}
-              </AvatarGizmo>
-      ),
+      <AvatarGizmo className={cn(avatarColor(text), "contrasted", "flex items-center justify-center overflow-hidden")}
+        style={{ fontSize: size === undefined ? undefined : `${Math.round(size * 0.4)}px` }}>
+        {initials === null ? (
+          <AvatarImage name={iconName ?? "avatar-default-symbolic"} style={{ "--adw-icon-size": size === undefined ? undefined : `${Math.round(size * 0.6)}px` } as React.CSSProperties} />
+        ) : (
+          <AvatarLabel>{initials}</AvatarLabel>
+        )}
+        {children}
+      </AvatarGizmo>
+    ),
     ...widgetAttributes,
   }
 

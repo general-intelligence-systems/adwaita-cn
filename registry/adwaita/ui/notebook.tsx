@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { PositionType } from "@/lib/enums"
 
 const notebookVariants = cva(
-  "duration-[300ms]",
+  "",
   {
     variants: {
       variant: {

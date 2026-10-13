@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation } from "@/lib/enums"
 
 const panedVariants = cva(
-  "[&>*]:bg-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [&>*]:min-w-[1px] [&>*]:min-h-[1px] [&>*]:bg-none [&>*]:bg-[size:1px_1px] [&>*]:shadow-[inset_-1px_0_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+  "",
   {
     variants: {
       variant: {

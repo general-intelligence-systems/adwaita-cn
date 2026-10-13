@@ -99,7 +99,7 @@ function WrapBox({ className, render, variant = "default", align, childSpacing, 
     "data-wrap-policy": wrapPolicy,
     "data-wrap-reverse": wrapReverse,
     className: cn("flex flex-wrap", wrapBoxVariants({ variant }), widgetClassName, className),
-    style,
+    style: { ...style, gap: `${lineSpacing ?? 0}px ${childSpacing ?? 0}px` } as React.CSSProperties,
     children: children,
     ...widgetAttributes,
   }

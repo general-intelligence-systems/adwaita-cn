@@ -14,10 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation } from "@/lib/enums"
 
 const toggleGroupVariants = cva(
-  [
-    "p-[var(---group-padding)] [---group-padding:3px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] rounded-[9px] [&>*]:rounded-[calc(9px_-_var(---group-padding))] [&>*]:font-bold [&>*]:min-w-8.5 [&>*]:min-h-[calc(34px_-_var(---group-padding)_*_2)] [&>*]:[outline-width:0px] [&>*]:[outline-style:solid] [&>*]:[outline-color:transparent] [&>*]:outline-offset-[4px] [&>*]:transition-[outline-color,outline-width,outline-offset,color,background,box-shadow] [&>*]:duration-200 [&>*]:ease-[cubic-bezier(0.25,0.46,0.45,0.94)] [&>*]:hover:bg-[color-mix(in_srgb,currentColor_7%,transparent)] [&>*]:active:bg-[color-mix(in_srgb,currentColor_16%,transparent)] [&>*]:data-[state=checked]:bg-[var(--active-toggle-bg-color)] [&>*]:data-[state=checked]:text-[var(--active-toggle-fg-color)] [&>*]:data-[state=checked]:shadow-[0_1px_3px_1px_RGB(0_0_6/7%),0_2px_6px_2px_RGB(0_0_6/3%)] [&>*]:data-[state=checked]:disabled:bg-[color-mix(in_srgb,var(--active-toggle-bg-color)_var(--disabled-opacity),transparent)] [&>*]:data-[state=checked]:disabled:shadow-none",
-    "disabled:bg-[color-mix(in_srgb,color-mix(in_srgb,currentColor_10%,transparent)_var(--disabled-opacity),transparent)]",
-  ],
+  "",
   {
     variants: {
       variant: {

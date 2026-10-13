@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ShortcutType, TextDirection } from "@/lib/enums"
 
 const shortcutsShortcutVariants = cva(
-  "gap-[6px] rounded-[6px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[8px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+  "",
   {
     variants: {
       variant: {

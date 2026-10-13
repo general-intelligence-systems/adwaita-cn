@@ -812,7 +812,8 @@
           "field": "bin",
           "into": null,
           "node": {
-            "class": "BreakpointBin"
+            "class": "BreakpointBin",
+            "takes": "bottomSheet"
           }
         }
       ],
@@ -821,7 +822,8 @@
           "class": "BreakpointBin"
         },
         {
-          "class": "BreakpointBin"
+          "class": "BreakpointBin",
+          "takes": "bottomSheet"
         }
       ]
     },
@@ -1500,7 +1502,8 @@
             "class": "Bin",
             "styles": [
               "sidebar-pane"
-            ]
+            ],
+            "takes": "sidebar"
           }
         },
         {
@@ -1510,7 +1513,8 @@
             "class": "Bin",
             "styles": [
               "content-pane"
-            ]
+            ],
+            "takes": "content"
           }
         }
       ],
@@ -1519,13 +1523,15 @@
           "class": "Bin",
           "styles": [
             "sidebar-pane"
-          ]
+          ],
+          "takes": "sidebar"
         },
         {
           "class": "Bin",
           "styles": [
             "content-pane"
-          ]
+          ],
+          "takes": "content"
         }
       ]
     },
@@ -4424,7 +4430,8 @@
             "class": "Button",
             "styles": [
               "color"
-            ]
+            ],
+            "takes": "swatch"
           }
         }
       ],
@@ -4433,7 +4440,8 @@
           "class": "Button",
           "styles": [
             "color"
-          ]
+          ],
+          "takes": "swatch"
         }
       ]
     },
@@ -10120,7 +10128,8 @@
             "class": "Popover",
             "styles": [
               "magnifier"
-            ]
+            ],
+            "takes": "magnifier"
           }
         },
         {
@@ -10136,7 +10145,8 @@
           "class": "Popover",
           "styles": [
             "magnifier"
-          ]
+          ],
+          "takes": "magnifier"
         },
         {
           "class": "PopoverMenu"
@@ -10367,7 +10377,8 @@
             "class": "Popover",
             "styles": [
               "magnifier"
-            ]
+            ],
+            "takes": "magnifier"
           }
         },
         {
@@ -10383,7 +10394,8 @@
           "class": "Popover",
           "styles": [
             "magnifier"
-          ]
+          ],
+          "takes": "magnifier"
         },
         {
           "class": "PopoverMenu"

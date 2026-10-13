@@ -15,10 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { InputHints, InputPurpose } from "@/lib/enums"
 
 const entryVariants = cva(
-  [
-    "px-[9px] min-h-8.5 rounded-[9px] gap-[6px] bg-[color-mix(in_srgb,currentColor_10%,transparent)] bg-clip-padding caret-[currentColor] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "disabled:[filter:Opacity(var(--disabled-opacity))]",
-  ],
+  "",
   {
     variants: {
       variant: {

@@ -39,7 +39,7 @@ function ViewSwitcherTitle({ className, render, stack: _stack, subtitle, title, 
     "data-subtitle": subtitle,
     "data-title": title,
     "data-view-switcher-enabled": viewSwitcherEnabled,
-    className: cn("group/view-switcher-title", "grid [&>*]:col-start-1 [&>*]:row-start-1", "-my-1.5", widgetClassName, className),
+    className: cn("group/view-switcher-title", "grid [&>*]:col-start-1 [&>*]:row-start-1", widgetClassName, className),
     style,
     children: (
         <ViewSwitcherTitleSqueezer>

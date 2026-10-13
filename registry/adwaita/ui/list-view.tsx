@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, Orientation, ScrollablePolicy } from "@/lib/enums"
 
 const listViewVariants = cva(
-  "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)]",
+  "",
   {
     variants: {
       variant: {

@@ -28,7 +28,7 @@ function PopoverMenuBar({ className, render, menuModel: _menuModel, children, ..
     "data-slot": "popover-menu-bar",
     "data-node": "menubar",
     role: "menubar",
-    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", "pb-[1px] shadow-[inset_0_-1px_color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [&>*]:py-1 [&>*]:px-2 [&>*]:min-h-4 [&>*]:rounded-[9px] [&>*]:data-[selected]:bg-[color-mix(in_srgb,currentColor_10%,transparent)]", widgetClassName, className),
+    className: cn("flex", "flex-row [&>[data-hexpand]]:grow [&>[data-valign=start]]:self-start [&>[data-valign=center]]:self-center [&>[data-valign=end]]:self-end [&>[data-valign=baseline]]:self-baseline", widgetClassName, className),
     style,
     children: children,
     ...widgetAttributes,

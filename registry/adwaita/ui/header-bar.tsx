@@ -16,7 +16,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { CenteringPolicy } from "@/lib/enums"
 
 const headerBarVariants = cva(
-  "mx-[-1px] min-h-[47px] bg-[var(--headerbar-bg-color)] text-[var(--headerbar-fg-color)] shadow-[inset_0_-1px_var(--headerbar-shade-color),inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)] shadow-[inset_1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent),inset_-1px_0_color-mix(in_srgb,var(--headerbar-border-color)_var(--border-opacity),transparent)] min-h-11.5",
+  "",
   {
     variants: {
       variant: {

@@ -39,7 +39,7 @@ function Frame({ className, render, child, labelWidget, label, labelXalign, chil
     "data-node": "frame",
     "data-label": label,
     "data-label-xalign": labelXalign,
-    className: cn("[border-width:1px] [border-style:solid] [border-color:color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] rounded-[12px]", widgetClassName, className),
+    className: cn(widgetClassName, className),
     style,
     children: (
         <>

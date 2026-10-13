@@ -923,7 +923,7 @@ function AboutWindowMainScrolledWindow({ className, ...props }: React.ComponentP
     <div
       data-slot="about-window-main-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "main-page", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "main-page", className)}
       {...props}
     />
   )
@@ -1123,7 +1123,7 @@ function AboutWindowScrolledWindow({ className, ...props }: React.ComponentProps
     <div
       data-slot="about-window-scrolled-window"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "subpage", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "subpage", className)}
       {...props}
     />
   )
@@ -1389,7 +1389,7 @@ function AboutWindowScrolledWindow2({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-scrolled-window2"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "subpage", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "subpage", className)}
       {...props}
     />
   )
@@ -1666,7 +1666,7 @@ function AboutWindowScrolledWindow3({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-scrolled-window3"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "subpage", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "subpage", className)}
       {...props}
     />
   )
@@ -1866,7 +1866,7 @@ function AboutWindowScrolledWindow4({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-scrolled-window4"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "subpage", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "subpage", className)}
       {...props}
     />
   )
@@ -2115,7 +2115,7 @@ function AboutWindowScrolledWindow5({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-scrolled-window5"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "subpage", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "subpage", className)}
       {...props}
     />
   )
@@ -2315,7 +2315,7 @@ function AboutWindowScrolledWindow6({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-scrolled-window6"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "subpage", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "subpage", className)}
       {...props}
     />
   )
@@ -2515,7 +2515,7 @@ function AboutWindowScrolledWindow7({ className, ...props }: React.ComponentProp
     <div
       data-slot="about-window-scrolled-window7"
         data-node="scrolledwindow"
-      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*]:grow [&>*]:min-h-0", "subpage", className)}
+      className={cn("flex flex-col grow min-h-0 overflow-auto [&>*:not([data-valign])]:grow [&>*:not([data-valign])]:min-h-0 [&>[data-valign=center]]:my-auto [&>[data-valign=end]]:mt-auto [&>[data-valign=start]]:mb-auto", "subpage", className)}
       {...props}
     />
   )

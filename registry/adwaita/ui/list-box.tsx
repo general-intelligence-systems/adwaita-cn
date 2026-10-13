@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, SelectionMode } from "@/lib/enums"
 
 const listBoxVariants = cva(
-  "text-[var(--view-fg-color)] bg-[var(--view-bg-color)] bg-clip-padding border-[color-mix(in_srgb,currentColor_var(--border-opacity),transparent)] [&>*]:bg-clip-padding [&>*]:[outline-width:0px] [&>*]:[outline-style:solid] [&>*]:[outline-color:transparent] [&>*]:outline-offset-[4px] [&>*]:transition-[outline-color,outline-width,outline-offset] [&>*]:duration-200 [&>*]:ease-[cubic-bezier(0.25,0.46,0.45,0.94)] [&>*]:p-0.5 [&>*]:data-[selected]:bg-[color-mix(in_srgb,var(--accent-bg-color)_25%,transparent)]",
+  "",
   {
     variants: {
       variant: {

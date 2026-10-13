@@ -26,7 +26,7 @@ export default function MusicApp() {
         <Box orientation="vertical" spacing={12} className="gap-3 m-3">
           <Carousel className="h-[140px]">
             {ALBUMS.map((title) => (
-              <Label key={title} label={title} className="text-2xl w-[200px]" />
+              <Label key={title} label={title} className="title-2 w-[200px]" />
             ))}
           </Carousel>
           <CarouselIndicatorDots />
@@ -34,7 +34,7 @@ export default function MusicApp() {
           <Separator orientation="horizontal" />
           <Box orientation="horizontal" spacing={12} className="gap-3">
             <Image iconName="audio-x-generic-symbolic" pixelSize={48} />
-            <Label label="So What" className="text-left grow font-bold" />
+            <Label label="So What" className="title-4 text-left grow" />
             <Button size="circular" variant="suggestedAction" iconName="media-playback-start-symbolic" />
           </Box>
           <MediaControls />

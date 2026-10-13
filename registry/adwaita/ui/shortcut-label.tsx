@@ -13,7 +13,7 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const shortcutLabelVariants = cva(
-  "rounded-[6px] [outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[5px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] gap-[6px]",
+  "",
   {
     variants: {
       variant: {

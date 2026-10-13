@@ -14,7 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ListTabBehavior, ScrollablePolicy } from "@/lib/enums"
 
 const columnViewVariants = cva(
-  "[outline-width:0px] [outline-style:solid] [outline-color:transparent] outline-offset-[4px] transition-[outline-color,outline-width,outline-offset] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
+  "",
   {
     variants: {
       variant: {

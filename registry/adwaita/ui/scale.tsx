@@ -14,10 +14,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { Orientation, PositionType } from "@/lib/enums"
 
 const scaleVariants = cva(
-  [
-    "p-3 min-h-2.5 min-w-2.5 [---slider-border-color:RGB(0_0_6_/_10%)]",
-    "disabled:[filter:Opacity(var(--disabled-opacity))]",
-  ],
+  "",
   {
     variants: {
       variant: {

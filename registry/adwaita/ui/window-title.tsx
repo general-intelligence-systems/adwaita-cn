@@ -13,7 +13,7 @@ import { widget } from "@/lib/widget"
 import type { WidgetProps } from "@/lib/widget-props"
 
 const windowTitleVariants = cva(
-  "-my-1.5 min-h-3",
+  "",
   {
     variants: {
       variant: {

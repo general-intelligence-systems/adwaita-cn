@@ -15,7 +15,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { PositionType } from "@/lib/enums"
 
 const popoverVariants = cva(
-  "[--shade-color:var(--popover-shade-color)] p-2 bg-[var(--popover-bg-color)] text-[var(--popover-fg-color)] bg-clip-padding [border-width:1px] [border-style:solid] [border-color:RGB(0_0_0/14%)] shadow-[0_1px_5px_1px_RGB(0_0_0/9%),0_2px_14px_3px_RGB(0_0_0/5%)] rounded-[15px]",
+  "",
   {
     variants: {
       variant: {

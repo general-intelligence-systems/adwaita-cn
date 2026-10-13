@@ -8636,45 +8636,6 @@
                                                   ]
                                                 },
                                                 {
-                                                  "node": "row",
-                                                  "classes": [
-                                                    "activatable",
-                                                    "sidebar-row"
-                                                  ],
-                                                  "children": [
-                                                    {
-                                                      "node": "revealer",
-                                                      "classes": [
-                                                        "sidebar-revealer"
-                                                      ],
-                                                      "children": [
-                                                        {
-                                                          "node": "box",
-                                                          "classes": [
-                                                            "horizontal"
-                                                          ],
-                                                          "children": [
-                                                            {
-                                                              "node": "image",
-                                                              "classes": [
-                                                                "sidebar-icon"
-                                                              ],
-                                                              "children": []
-                                                            },
-                                                            {
-                                                              "node": "label",
-                                                              "classes": [
-                                                                "sidebar-label"
-                                                              ],
-                                                              "children": []
-                                                            }
-                                                          ]
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                                },
-                                                {
                                                   "node": "separator",
                                                   "classes": [
                                                     "horizontal"
@@ -9120,6 +9081,126 @@
                                                             "view"
                                                           ],
                                                           "children": [
+                                                            {
+                                                              "node": "row",
+                                                              "classes": [
+                                                                "activatable"
+                                                              ],
+                                                              "children": [
+                                                                {
+                                                                  "node": "cell",
+                                                                  "classes": [],
+                                                                  "children": [
+                                                                    {
+                                                                      "node": "filelistcell",
+                                                                      "classes": [],
+                                                                      "children": [
+                                                                        {
+                                                                          "node": "box",
+                                                                          "classes": [
+                                                                            "horizontal"
+                                                                          ],
+                                                                          "children": [
+                                                                            {
+                                                                              "node": "filethumbnail",
+                                                                              "classes": [],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "image",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "label",
+                                                                              "classes": [],
+                                                                              "children": []
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "node": "cell",
+                                                                  "classes": [],
+                                                                  "children": [
+                                                                    {
+                                                                      "node": "filelistcell",
+                                                                      "classes": [],
+                                                                      "children": [
+                                                                        {
+                                                                          "node": "label",
+                                                                          "classes": [],
+                                                                          "children": []
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "node": "cell",
+                                                                  "classes": [],
+                                                                  "children": [
+                                                                    {
+                                                                      "node": "filelistcell",
+                                                                      "classes": [],
+                                                                      "children": [
+                                                                        {
+                                                                          "node": "label",
+                                                                          "classes": [],
+                                                                          "children": []
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "node": "cell",
+                                                                  "classes": [],
+                                                                  "children": [
+                                                                    {
+                                                                      "node": "filelistcell",
+                                                                      "classes": [],
+                                                                      "children": [
+                                                                        {
+                                                                          "node": "label",
+                                                                          "classes": [],
+                                                                          "children": []
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "node": "cell",
+                                                                  "classes": [],
+                                                                  "children": [
+                                                                    {
+                                                                      "node": "filelistcell",
+                                                                      "classes": [],
+                                                                      "children": [
+                                                                        {
+                                                                          "node": "box",
+                                                                          "classes": [
+                                                                            "horizontal"
+                                                                          ],
+                                                                          "children": [
+                                                                            {
+                                                                              "node": "label",
+                                                                              "classes": [],
+                                                                              "children": []
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
                                                             {
                                                               "node": "row",
                                                               "classes": [
@@ -27604,138 +27685,6 @@
                                               "children": []
                                             }
                                           ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "node": "emoji",
-                                          "classes": [],
-                                          "children": [
-                                            {
-                                              "node": "label",
-                                              "classes": [],
-                                              "children": []
-                                            }
-                                          ]
                                         }
                                       ]
                                     },
@@ -35936,6 +35885,126 @@
                                                                                                   ]
                                                                                                 }
                                                                                               ]
+                                                                                            },
+                                                                                            {
+                                                                                              "node": "row",
+                                                                                              "classes": [
+                                                                                                "activatable"
+                                                                                              ],
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "node": "cell",
+                                                                                                  "classes": [],
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "node": "filelistcell",
+                                                                                                      "classes": [],
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "node": "box",
+                                                                                                          "classes": [
+                                                                                                            "horizontal"
+                                                                                                          ],
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "node": "filethumbnail",
+                                                                                                              "classes": [],
+                                                                                                              "children": [
+                                                                                                                {
+                                                                                                                  "node": "image",
+                                                                                                                  "classes": [],
+                                                                                                                  "children": []
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                              "node": "label",
+                                                                                                              "classes": [],
+                                                                                                              "children": []
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                },
+                                                                                                {
+                                                                                                  "node": "cell",
+                                                                                                  "classes": [],
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "node": "filelistcell",
+                                                                                                      "classes": [],
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "node": "label",
+                                                                                                          "classes": [],
+                                                                                                          "children": []
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                },
+                                                                                                {
+                                                                                                  "node": "cell",
+                                                                                                  "classes": [],
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "node": "filelistcell",
+                                                                                                      "classes": [],
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "node": "label",
+                                                                                                          "classes": [],
+                                                                                                          "children": []
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                },
+                                                                                                {
+                                                                                                  "node": "cell",
+                                                                                                  "classes": [],
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "node": "filelistcell",
+                                                                                                      "classes": [],
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "node": "label",
+                                                                                                          "classes": [],
+                                                                                                          "children": []
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                },
+                                                                                                {
+                                                                                                  "node": "cell",
+                                                                                                  "classes": [],
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "node": "filelistcell",
+                                                                                                      "classes": [],
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "node": "box",
+                                                                                                          "classes": [
+                                                                                                            "horizontal"
+                                                                                                          ],
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "node": "label",
+                                                                                                              "classes": [],
+                                                                                                              "children": []
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                }
+                                                                                              ]
                                                                                             }
                                                                                           ]
                                                                                         }
@@ -36552,6 +36621,136 @@
                                                                             "view"
                                                                           ],
                                                                           "children": [
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "node": "row",
+                                                                              "classes": [
+                                                                                "activatable"
+                                                                              ],
+                                                                              "children": [
+                                                                                {
+                                                                                  "node": "label",
+                                                                                  "classes": [],
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            },
                                                                             {
                                                                               "node": "row",
                                                                               "classes": [
@@ -41354,8 +41553,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -41430,8 +41627,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -41512,8 +41707,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -41718,8 +41911,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -41766,8 +41957,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -41814,8 +42003,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -41870,10 +42057,7 @@
                                                       "node": "button",
                                                       "classes": [
                                                         "duration-200",
-                                                        "font-bold",
                                                         "grid",
-                                                        "min-h-6",
-                                                        "min-w-4",
                                                         "shadow-none",
                                                         "suggested-action",
                                                         "text-button"
@@ -41972,10 +42156,8 @@
                                           "classes": [
                                             "duration-200",
                                             "flat",
-                                            "font-bold",
                                             "grid",
                                             "image-button",
-                                            "min-h-6",
                                             "min-w-6",
                                             "shadow-none"
                                           ],
@@ -41992,8 +42174,7 @@
                                     {
                                       "node": "windowtitle",
                                       "classes": [
-                                        "grid",
-                                        "min-h-3"
+                                        "grid"
                                       ],
                                       "children": [
                                         {
@@ -42142,7 +42323,6 @@
                 {
                   "node": "list",
                   "classes": [
-                    "bg-clip-padding",
                     "flex",
                     "flex-col",
                     "navigation-sidebar"
@@ -42152,8 +42332,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -42213,8 +42391,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -42274,8 +42450,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -42335,8 +42509,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -42458,10 +42630,8 @@
                                                   "classes": [
                                                     "duration-200",
                                                     "flat",
-                                                    "font-bold",
                                                     "grid",
                                                     "image-button",
-                                                    "min-h-6",
                                                     "min-w-6",
                                                     "shadow-none"
                                                   ],
@@ -42478,8 +42648,6 @@
                                             {
                                               "node": "entry",
                                               "classes": [
-                                                "bg-clip-padding",
-                                                "duration-200",
                                                 "flex",
                                                 "flex-row",
                                                 "grow",
@@ -42682,10 +42850,7 @@
                                       "node": "button",
                                       "classes": [
                                         "duration-200",
-                                        "font-bold",
                                         "grid",
-                                        "min-h-6",
-                                        "min-w-4",
                                         "pill",
                                         "rounded-full",
                                         "shadow-none",
@@ -42774,10 +42939,8 @@
                                                   "classes": [
                                                     "duration-200",
                                                     "flat",
-                                                    "font-bold",
                                                     "grid",
                                                     "image-button",
-                                                    "min-h-6",
                                                     "min-w-6",
                                                     "shadow-none"
                                                   ],
@@ -42794,8 +42957,7 @@
                                             {
                                               "node": "windowtitle",
                                               "classes": [
-                                                "grid",
-                                                "min-h-3"
+                                                "grid"
                                               ],
                                               "children": [
                                                 {
@@ -42960,11 +43122,7 @@
                     {
                       "node": "button",
                       "classes": [
-                        "duration-200",
-                        "font-bold",
                         "grid",
-                        "min-h-6",
-                        "min-w-4",
                         "text-button"
                       ],
                       "children": [
@@ -42979,10 +43137,7 @@
                       "node": "button",
                       "classes": [
                         "duration-200",
-                        "font-bold",
                         "grid",
-                        "min-h-6",
-                        "min-w-4",
                         "shadow-none",
                         "suggested-action",
                         "text-button"
@@ -42999,11 +43154,7 @@
                       "node": "button",
                       "classes": [
                         "destructive-action",
-                        "duration-200",
-                        "font-bold",
                         "grid",
-                        "min-h-6",
-                        "min-w-4",
                         "text-button"
                       ],
                       "children": [
@@ -43019,10 +43170,7 @@
                       "classes": [
                         "duration-200",
                         "flat",
-                        "font-bold",
                         "grid",
-                        "min-h-6",
-                        "min-w-4",
                         "shadow-none",
                         "text-button"
                       ],
@@ -43038,8 +43186,6 @@
                       "node": "button",
                       "classes": [
                         "circular",
-                        "duration-200",
-                        "font-bold",
                         "grid",
                         "image-button",
                         "min-w-6",
@@ -43060,12 +43206,8 @@
                     {
                       "node": "button",
                       "classes": [
-                        "duration-200",
                         "flex",
                         "flex-col",
-                        "font-bold",
-                        "min-h-6",
-                        "min-w-4",
                         "text-button",
                         "toggle"
                       ],
@@ -43080,12 +43222,8 @@
                     {
                       "node": "button",
                       "classes": [
-                        "duration-200",
                         "flex",
                         "flex-col",
-                        "font-bold",
-                        "min-h-6",
-                        "min-w-4",
                         "text-button",
                         "toggle"
                       ],
@@ -43100,12 +43238,8 @@
                     {
                       "node": "button",
                       "classes": [
-                        "duration-200",
                         "flex",
                         "flex-col",
-                        "font-bold",
-                        "min-h-6",
-                        "min-w-4",
                         "text-button",
                         "toggle"
                       ],
@@ -43122,8 +43256,6 @@
                 {
                   "node": "entry",
                   "classes": [
-                    "bg-clip-padding",
-                    "duration-200",
                     "flex",
                     "flex-row"
                   ],
@@ -43144,8 +43276,6 @@
                 {
                   "node": "entry",
                   "classes": [
-                    "bg-clip-padding",
-                    "duration-200",
                     "flex",
                     "flex-row",
                     "search"
@@ -43168,8 +43298,7 @@
                   "node": "scale",
                   "classes": [
                     "grid",
-                    "horizontal",
-                    "p-3"
+                    "horizontal"
                   ],
                   "children": [
                     {
@@ -43222,7 +43351,6 @@
                     {
                       "node": "switch",
                       "classes": [
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -43244,7 +43372,6 @@
                 {
                   "node": "checkbutton",
                   "classes": [
-                    "duration-200",
                     "flex",
                     "flex-row",
                     "p-1",
@@ -43341,12 +43468,9 @@
                 {
                   "node": "spinbutton",
                   "classes": [
-                    "bg-clip-padding",
-                    "duration-200",
                     "flex",
                     "flex-row",
-                    "horizontal",
-                    "p-0"
+                    "horizontal"
                   ],
                   "children": [
                     {
@@ -43494,8 +43618,7 @@
                                     {
                                       "node": "windowtitle",
                                       "classes": [
-                                        "grid",
-                                        "min-h-3"
+                                        "grid"
                                       ],
                                       "children": [
                                         {
@@ -43749,10 +43872,7 @@
                                       "node": "button",
                                       "classes": [
                                         "duration-200",
-                                        "font-bold",
                                         "grid",
-                                        "min-h-6",
-                                        "min-w-4",
                                         "pill",
                                         "rounded-full",
                                         "shadow-none",
@@ -43851,8 +43971,7 @@
                                     {
                                       "node": "windowtitle",
                                       "classes": [
-                                        "grid",
-                                        "min-h-3"
+                                        "grid"
                                       ],
                                       "children": [
                                         {
@@ -44172,7 +44291,6 @@
                                             {
                                               "node": "splitbutton",
                                               "classes": [
-                                                "duration-200",
                                                 "flex",
                                                 "flex-row",
                                                 "suggested-action",
@@ -44517,8 +44635,6 @@
                                     {
                                       "node": "entry",
                                       "classes": [
-                                        "bg-clip-padding",
-                                        "duration-200",
                                         "flex",
                                         "flex-row",
                                         "search"
@@ -44558,11 +44674,7 @@
                                 {
                                   "node": "button",
                                   "classes": [
-                                    "duration-200",
-                                    "font-bold",
                                     "grid",
-                                    "min-h-6",
-                                    "min-w-4",
                                     "text-button"
                                   ],
                                   "children": [
@@ -46953,10 +47065,8 @@
                                               "classes": [
                                                 "duration-200",
                                                 "flat",
-                                                "font-bold",
                                                 "grid",
                                                 "image-button",
-                                                "min-h-6",
                                                 "min-w-6",
                                                 "shadow-none"
                                               ],
@@ -46974,8 +47084,6 @@
                                             {
                                               "node": "entry",
                                               "classes": [
-                                                "bg-clip-padding",
-                                                "duration-200",
                                                 "flex",
                                                 "flex-row",
                                                 "search"
@@ -47005,8 +47113,7 @@
                                         {
                                           "node": "windowtitle",
                                           "classes": [
-                                            "grid",
-                                            "min-h-3"
+                                            "grid"
                                           ],
                                           "children": [
                                             {
@@ -47138,9 +47245,7 @@
     "files-menu": {
       "node": "popover",
       "classes": [
-        "background",
-        "bg-clip-padding",
-        "p-2"
+        "background"
       ],
       "children": [
         {
@@ -47167,10 +47272,7 @@
                   "classes": [
                     "duration-200",
                     "flat",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "shadow-none",
                     "text-button"
                   ],
@@ -47187,10 +47289,7 @@
                   "classes": [
                     "duration-200",
                     "flat",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "shadow-none",
                     "text-button"
                   ],
@@ -47207,10 +47306,7 @@
                   "classes": [
                     "duration-200",
                     "flat",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "shadow-none",
                     "text-button"
                   ],
@@ -47303,11 +47399,7 @@
                 {
                   "node": "button",
                   "classes": [
-                    "duration-200",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "text-button"
                   ],
                   "children": [
@@ -47322,11 +47414,7 @@
                   "node": "button",
                   "classes": [
                     "destructive-action",
-                    "duration-200",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "text-button"
                   ],
                   "children": [
@@ -47418,8 +47506,6 @@
                               "node": "row",
                               "classes": [
                                 "activatable",
-                                "bg-clip-padding",
-                                "duration-200",
                                 "grid"
                               ],
                               "children": [
@@ -47469,8 +47555,6 @@
                               "node": "row",
                               "classes": [
                                 "activatable",
-                                "bg-clip-padding",
-                                "duration-200",
                                 "grid"
                               ],
                               "children": [
@@ -47520,8 +47604,6 @@
                               "node": "row",
                               "classes": [
                                 "activatable",
-                                "bg-clip-padding",
-                                "duration-200",
                                 "grid"
                               ],
                               "children": [
@@ -47858,7 +47940,6 @@
                   "classes": [
                     "circular",
                     "duration-200",
-                    "font-bold",
                     "grid",
                     "image-button",
                     "min-w-6",
@@ -47880,8 +47961,7 @@
               "node": "scale",
               "classes": [
                 "grid",
-                "horizontal",
-                "p-3"
+                "horizontal"
               ],
               "children": [
                 {
@@ -49882,10 +49962,7 @@
                                           "classes": [
                                             "duration-200",
                                             "flat",
-                                            "font-bold",
                                             "grid",
-                                            "min-h-6",
-                                            "min-w-4",
                                             "shadow-none",
                                             "text-button"
                                           ],
@@ -50115,7 +50192,6 @@
                     {
                       "node": "list",
                       "classes": [
-                        "bg-clip-padding",
                         "flex",
                         "flex-col",
                         "navigation-sidebar"
@@ -50125,8 +50201,6 @@
                           "node": "row",
                           "classes": [
                             "activatable",
-                            "bg-clip-padding",
-                            "duration-200",
                             "grid"
                           ],
                           "children": [
@@ -50144,8 +50218,6 @@
                           "node": "row",
                           "classes": [
                             "activatable",
-                            "bg-clip-padding",
-                            "duration-200",
                             "grid"
                           ],
                           "children": [
@@ -50205,8 +50277,6 @@
                           "node": "row",
                           "classes": [
                             "activatable",
-                            "bg-clip-padding",
-                            "duration-200",
                             "grid"
                           ],
                           "children": [
@@ -50266,8 +50336,6 @@
                           "node": "row",
                           "classes": [
                             "activatable",
-                            "bg-clip-padding",
-                            "duration-200",
                             "grid"
                           ],
                           "children": [
@@ -50399,12 +50467,8 @@
                                                 {
                                                   "node": "button",
                                                   "classes": [
-                                                    "duration-200",
                                                     "flex",
                                                     "flex-col",
-                                                    "font-bold",
-                                                    "min-h-6",
-                                                    "min-w-4",
                                                     "toggle"
                                                   ],
                                                   "children": [
@@ -50414,11 +50478,6 @@
                                                       "children": [
                                                         {
                                                           "node": "indicator",
-                                                          "classes": [],
-                                                          "children": []
-                                                        },
-                                                        {
-                                                          "node": "mask",
                                                           "classes": [],
                                                           "children": []
                                                         }
@@ -50429,12 +50488,8 @@
                                                 {
                                                   "node": "button",
                                                   "classes": [
-                                                    "duration-200",
                                                     "flex",
                                                     "flex-col",
-                                                    "font-bold",
-                                                    "min-h-6",
-                                                    "min-w-4",
                                                     "toggle"
                                                   ],
                                                   "children": [
@@ -50444,11 +50499,6 @@
                                                       "children": [
                                                         {
                                                           "node": "indicator",
-                                                          "classes": [],
-                                                          "children": []
-                                                        },
-                                                        {
-                                                          "node": "mask",
                                                           "classes": [],
                                                           "children": []
                                                         }
@@ -50459,12 +50509,8 @@
                                                 {
                                                   "node": "button",
                                                   "classes": [
-                                                    "duration-200",
                                                     "flex",
                                                     "flex-col",
-                                                    "font-bold",
-                                                    "min-h-6",
-                                                    "min-w-4",
                                                     "toggle"
                                                   ],
                                                   "children": [
@@ -50474,11 +50520,6 @@
                                                       "children": [
                                                         {
                                                           "node": "indicator",
-                                                          "classes": [],
-                                                          "children": []
-                                                        },
-                                                        {
-                                                          "node": "mask",
                                                           "classes": [],
                                                           "children": []
                                                         }
@@ -50500,10 +50541,8 @@
                                               "classes": [
                                                 "duration-200",
                                                 "flat",
-                                                "font-bold",
                                                 "grid",
                                                 "image-button",
-                                                "min-h-6",
                                                 "min-w-6",
                                                 "shadow-none"
                                               ],
@@ -50820,11 +50859,7 @@
                 {
                   "node": "button",
                   "classes": [
-                    "duration-200",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "text-button"
                   ],
                   "children": [
@@ -50839,10 +50874,7 @@
                   "node": "button",
                   "classes": [
                     "duration-200",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "shadow-none",
                     "suggested-action",
                     "text-button"
@@ -50890,7 +50922,6 @@
                 {
                   "node": "calendar",
                   "classes": [
-                    "bg-clip-padding",
                     "flex",
                     "flex-row",
                     "view"
@@ -51055,10 +51086,7 @@
                   "node": "button",
                   "classes": [
                     "duration-200",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "pill",
                     "rounded-full",
                     "shadow-none",
@@ -51157,10 +51185,8 @@
                                           "classes": [
                                             "duration-200",
                                             "flat",
-                                            "font-bold",
                                             "grid",
                                             "image-button",
-                                            "min-h-6",
                                             "min-w-6",
                                             "shadow-none"
                                           ],
@@ -51178,10 +51204,8 @@
                                           "classes": [
                                             "duration-200",
                                             "flat",
-                                            "font-bold",
                                             "grid",
                                             "image-button",
-                                            "min-h-6",
                                             "min-w-6",
                                             "shadow-none"
                                           ],
@@ -51512,7 +51536,6 @@
                 {
                   "node": "list",
                   "classes": [
-                    "bg-clip-padding",
                     "flex",
                     "flex-col",
                     "navigation-sidebar"
@@ -51522,8 +51545,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -51583,8 +51604,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -51644,8 +51663,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -51943,7 +51960,6 @@
                                 {
                                   "node": "listview",
                                   "classes": [
-                                    "bg-clip-padding",
                                     "flex",
                                     "flex-col",
                                     "grow",
@@ -51990,8 +52006,6 @@
                                 {
                                   "node": "entry",
                                   "classes": [
-                                    "bg-clip-padding",
-                                    "duration-200",
                                     "flex",
                                     "flex-row",
                                     "grow"
@@ -52025,10 +52039,8 @@
                                   "node": "button",
                                   "classes": [
                                     "duration-200",
-                                    "font-bold",
                                     "grid",
                                     "image-button",
-                                    "min-h-6",
                                     "min-w-6",
                                     "shadow-none",
                                     "suggested-action"
@@ -52231,17 +52243,23 @@
       "node": "popover",
       "classes": [
         "background",
-        "bg-clip-padding",
-        "grid",
-        "p-2"
+        "flex",
+        "flex-row"
       ],
-      "children": []
+      "children": [
+        {
+          "node": "arrow",
+          "classes": [
+            "bg-clip-padding"
+          ],
+          "children": []
+        }
+      ]
     },
     "chat-menu": {
       "node": "popover",
       "classes": [
         "background",
-        "bg-clip-padding",
         "menu",
         "min-w-30",
         "p-0"
@@ -52285,7 +52303,6 @@
                 {
                   "node": "list",
                   "classes": [
-                    "bg-clip-padding",
                     "flex",
                     "flex-col",
                     "navigation-sidebar"
@@ -52295,8 +52312,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -52313,8 +52328,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -52331,8 +52344,6 @@
                       "node": "row",
                       "classes": [
                         "activatable",
-                        "bg-clip-padding",
-                        "duration-200",
                         "grid"
                       ],
                       "children": [
@@ -52506,10 +52517,8 @@
                                           "classes": [
                                             "duration-200",
                                             "flat",
-                                            "font-bold",
                                             "grid",
                                             "image-button",
-                                            "min-h-6",
                                             "min-w-6",
                                             "shadow-none"
                                           ],
@@ -52534,12 +52543,8 @@
                                         {
                                           "node": "button",
                                           "classes": [
-                                            "duration-200",
                                             "flex",
                                             "flex-col",
-                                            "font-bold",
-                                            "min-h-6",
-                                            "min-w-4",
                                             "text-button",
                                             "toggle"
                                           ],
@@ -52554,12 +52559,8 @@
                                         {
                                           "node": "button",
                                           "classes": [
-                                            "duration-200",
                                             "flex",
                                             "flex-col",
-                                            "font-bold",
-                                            "min-h-6",
-                                            "min-w-4",
                                             "text-button",
                                             "toggle"
                                           ],
@@ -52574,12 +52575,8 @@
                                         {
                                           "node": "button",
                                           "classes": [
-                                            "duration-200",
                                             "flex",
                                             "flex-col",
-                                            "font-bold",
-                                            "min-h-6",
-                                            "min-w-4",
                                             "text-button",
                                             "toggle"
                                           ],
@@ -52738,10 +52735,7 @@
                   "node": "button",
                   "classes": [
                     "duration-200",
-                    "font-bold",
                     "grid",
-                    "min-h-6",
-                    "min-w-4",
                     "pill",
                     "rounded-full",
                     "shadow-none",
@@ -53050,10 +53044,7 @@
                                               "node": "button",
                                               "classes": [
                                                 "duration-200",
-                                                "font-bold",
                                                 "grid",
-                                                "min-h-6",
-                                                "min-w-4",
                                                 "pill",
                                                 "rounded-full",
                                                 "shadow-none",
@@ -53071,11 +53062,7 @@
                                             {
                                               "node": "button",
                                               "classes": [
-                                                "duration-200",
-                                                "font-bold",
                                                 "link",
-                                                "min-h-6",
-                                                "min-w-4",
                                                 "text-button"
                                               ],
                                               "children": [
@@ -53223,8 +53210,6 @@
                                       "node": "row",
                                       "classes": [
                                         "activatable",
-                                        "bg-clip-padding",
-                                        "duration-200",
                                         "grid"
                                       ],
                                       "children": [
@@ -53265,11 +53250,7 @@
             {
               "node": "toast",
               "classes": [
-                "grid",
-                "mb-6",
-                "mt-3",
-                "mx-3",
-                "px-3"
+                "grid"
               ],
               "children": [
                 {
@@ -53346,10 +53327,7 @@
                                           "node": "button",
                                           "classes": [
                                             "duration-200",
-                                            "font-bold",
                                             "grid",
-                                            "min-h-6",
-                                            "min-w-4",
                                             "shadow-none",
                                             "suggested-action"
                                           ],
@@ -53651,7 +53629,6 @@
                           "node": "iconview",
                           "classes": [
                             "content-start",
-                            "duration-200",
                             "grid",
                             "grow",
                             "min-h-0",
@@ -54162,8 +54139,7 @@
                   "node": "scale",
                   "classes": [
                     "grid",
-                    "horizontal",
-                    "p-3"
+                    "horizontal"
                   ],
                   "children": [
                     {
@@ -54304,12 +54280,9 @@
                                         {
                                           "node": "button",
                                           "classes": [
-                                            "duration-200",
                                             "flex",
                                             "flex-col",
-                                            "font-bold",
                                             "image-button",
-                                            "min-h-6",
                                             "min-w-6",
                                             "toggle"
                                           ],
@@ -54318,12 +54291,9 @@
                                         {
                                           "node": "button",
                                           "classes": [
-                                            "duration-200",
                                             "flex",
                                             "flex-col",
-                                            "font-bold",
                                             "image-button",
-                                            "min-h-6",
                                             "min-w-6",
                                             "toggle"
                                           ],
@@ -54332,12 +54302,9 @@
                                         {
                                           "node": "button",
                                           "classes": [
-                                            "duration-200",
                                             "flex",
                                             "flex-col",
-                                            "font-bold",
                                             "image-button",
-                                            "min-h-6",
                                             "min-w-6",
                                             "toggle"
                                           ],
@@ -54571,8 +54538,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -54615,8 +54580,6 @@
                                                               "node": "row",
                                                               "classes": [
                                                                 "activatable",
-                                                                "bg-clip-padding",
-                                                                "duration-200",
                                                                 "grid"
                                                               ],
                                                               "children": [
@@ -54702,8 +54665,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid",
                                             "password"
                                           ],
@@ -54751,8 +54712,6 @@
                                           "node": "row",
                                           "classes": [
                                             "activatable",
-                                            "bg-clip-padding",
-                                            "duration-200",
                                             "grid"
                                           ],
                                           "children": [
@@ -54856,8 +54815,6 @@
                                             {
                                               "node": "entry",
                                               "classes": [
-                                                "bg-clip-padding",
-                                                "duration-200",
                                                 "flex",
                                                 "flex-row",
                                                 "password"
@@ -54879,11 +54836,7 @@
                                             {
                                               "node": "button",
                                               "classes": [
-                                                "duration-200",
-                                                "font-bold",
-                                                "lock",
-                                                "min-h-6",
-                                                "min-w-4"
+                                                "lock"
                                               ],
                                               "children": []
                                             },
@@ -54895,7 +54848,6 @@
                                             {
                                               "node": "shortcut-label",
                                               "classes": [
-                                                "duration-200",
                                                 "flex",
                                                 "flex-row",
                                                 "self-start"
@@ -54910,9 +54862,7 @@
                                               "children": [
                                                 {
                                                   "node": "shortcut",
-                                                  "classes": [
-                                                    "duration-200"
-                                                  ],
+                                                  "classes": [],
                                                   "children": []
                                                 }
                                               ]
@@ -55616,8 +55566,6 @@
                                                                   "node": "row",
                                                                   "classes": [
                                                                     "activatable",
-                                                                    "bg-clip-padding",
-                                                                    "duration-200",
                                                                     "grid"
                                                                   ],
                                                                   "children": [
@@ -55869,8 +55817,6 @@
                                                                       "node": "row",
                                                                       "classes": [
                                                                         "activatable",
-                                                                        "bg-clip-padding",
-                                                                        "duration-200",
                                                                         "grid"
                                                                       ],
                                                                       "children": [

@@ -16,10 +16,7 @@ import type { WidgetProps } from "@/lib/widget-props"
 import type { ArrowType } from "@/lib/enums"
 
 const splitButtonVariants = cva(
-  [
-    "rounded-[9px] transition-[background,box-shadow] duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-    "disabled:[filter:Opacity(var(--disabled-opacity))]",
-  ],
+  "",
   {
     variants: {
       variant: {

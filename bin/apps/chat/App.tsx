@@ -79,7 +79,7 @@ export default function ChatApp() {
               </NavigationView>
             }
           >
-            <HeaderBar titleWidget={<Label label="Ada Lovelace" className="font-bold" />}>
+            <HeaderBar titleWidget={<Label label="Ada Lovelace" className="heading" />}>
               <MenuButton variant="flat" iconName="view-more-symbolic" />
             </HeaderBar>
           </ToolbarView>
